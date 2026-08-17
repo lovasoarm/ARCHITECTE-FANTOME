@@ -24,7 +24,7 @@ Le module qui travaille le seul levier réel d'un Staff Engineer : d'autres gens
 - [05_expliquer_trois_publics.md](05_expliquer_trois_publics.md) : la matrice de traduction.
 - [06_aveu_ignorance.md](06_aveu_ignorance.md) : dire "je ne sais pas" avec méthode et date.
 - [07_standards_pour_agents.md](07_standards_pour_agents.md) : les mêmes standards, appliqués à une flotte d'agents.
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md) : rédiger un protocole de mentorat sans IA, puis mesurer l'écart.
+- [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md) : rédiger un protocole de mentorat sans IA, puis mesurer l'écart.
 - [verification_pack/criteres.md](verification_pack/criteres.md) : les trois drills et leurs critères binaires.
 - [grimoire.md](grimoire.md) : mémo dense. Malgré son numéro, il se lit **en dernier**, après les leçons et les exercices.
 - [challenge.md](challenge.md) : challenge, les deux pièces de la preuve S5.
@@ -53,10 +53,13 @@ Liste generee : tout fichier de `03-PILOTAGE/11_leadership_mentorat` est joignab
 - [05_expliquer_trois_publics.md](05_expliquer_trois_publics.md)
 - [06_aveu_ignorance.md](06_aveu_ignorance.md)
 - [07_standards_pour_agents.md](07_standards_pour_agents.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
+- [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
 - [boss-fight.md](boss-fight.md)
 - [challenge.md](challenge.md)
+- [defense-orale.md](defense-orale.md)
 - [grimoire.md](grimoire.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+- [defense-orale.md](defense-orale.md) — trois objections a soutenir a voix haute avant de valider le module.

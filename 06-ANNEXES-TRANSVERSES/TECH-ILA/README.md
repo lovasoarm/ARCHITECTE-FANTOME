@@ -83,8 +83,24 @@ Liste generee : tout fichier de `06-ANNEXES-TRANSVERSES/TECH-ILA` est joignable 
 
 - [00_prereq_check.md](00_prereq_check.md)
 - [00_why_tech_ila.md](00_why_tech_ila.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [01_EXO_JEUNE_IA.md](01_EXO_JEUNE_IA.md)
+- [01_EXO_JEUNE_IA.md](01_EXO_JEUNE_IA.md)
 - [tech-ila/](tech-ila/README.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+## Six appels, six modules (depuis S-10)
+
+Ces cartes ne s'ouvrent plus a la retrospective : chaque niveau est appele depuis le module qui
+en a besoin au moment ou il en a besoin. Les cartes restent ici parce qu'elles sont perissables
+et doivent pouvoir etre remplacees sans toucher au fil.
+
+| Niveau | Appele depuis | Livrable verifie ensuite en retrospective |
+| --- | --- | --- |
+| 1 Socle | `00-SOCLE/01_getting_started` | fiche d'orientation outils |
+| 2 Frontend | `02-CONSTRUCTION/01-USER-WIZARD` | choix de rendu ecrit |
+| 3 Backend | `02-CONSTRUCTION/19_api_craft` | contrat d'API publie |
+| 4 Systemes | `05-MAITRISE/02_scalability` | topologie dessinee |
+| 5 Transfert | `04-EPREUVE` (livrable PORTAGE.md) | `PORTAGE.md` |
+| 6 IA | `04-EPREUVE/04_ai_native_dev` | `IA-EN-PROD.md` |

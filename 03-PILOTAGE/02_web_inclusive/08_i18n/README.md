@@ -24,7 +24,8 @@ Liste generee : tout fichier de `03-PILOTAGE/02_web_inclusive/08_i18n` est joign
 - [05_i18n_in_project.md](05_i18n_in_project.md)
 - [06_i18n_grimoire.md](06_i18n_grimoire.md)
 - [07_i18n_drill_exec.md](07_i18n_drill_exec.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
+- [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

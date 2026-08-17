@@ -18,7 +18,7 @@ Prends un exercice d'un module **antérieur au bloc** et refais-le avec les outi
 
 ## Rétro-ADR
 
-Rejoue le drill solo-vs-copilot (`04-EPREUVE/04_ai_native_dev/07_solo_vs_copilot_drill.md`).
+Rejoue le drill solo-vs-copilot (`04-EPREUVE/04_ai_native_dev/07b_solo_vs_copilot_drill.md`).
 Compare ton temps et ta confiance sur ce bloc (21-25) à ceux du bloc précédent.
 
 ## Question rituelle

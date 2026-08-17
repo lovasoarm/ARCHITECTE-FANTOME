@@ -31,8 +31,7 @@ Liste generee : tout fichier de `00-SOCLE/05_problem_solving` est joignable depu
 - [08_EXO_LECTURE.md](08_EXO_LECTURE.md)
 - [09_EXO_JEUNE_IA.md](09_EXO_JEUNE_IA.md)
 - [98_EXO_IA_MENTEUSE.md](98_EXO_IA_MENTEUSE.md)
-- [99_PONT_avant_module_03_async.md](99_PONT_avant_module_03_async.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [99_PONT_avant_01-CADRAGE-02_async.md](99_PONT_avant_01-CADRAGE-02_async.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

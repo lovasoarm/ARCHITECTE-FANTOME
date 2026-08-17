@@ -25,7 +25,6 @@ Liste generee : tout fichier de `02-CONSTRUCTION/14_architecture_patterns` est j
 - [08_EXO_LECTURE.md](08_EXO_LECTURE.md)
 - [09_EXO_JEUNE_IA.md](09_EXO_JEUNE_IA.md)
 - [98_PORTAGE_MENTAL.md](98_PORTAGE_MENTAL.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

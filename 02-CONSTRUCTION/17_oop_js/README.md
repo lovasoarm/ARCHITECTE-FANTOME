@@ -30,7 +30,6 @@ Liste generee : tout fichier de `02-CONSTRUCTION/17_oop_js` est joignable depuis
 - [12_EXO_LECTURE.md](12_EXO_LECTURE.md)
 - [13_EXO_JEUNE_IA.md](13_EXO_JEUNE_IA.md)
 - [98_PORTAGE_MENTAL.md](98_PORTAGE_MENTAL.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

@@ -180,7 +180,7 @@ capstone/
 - `TRANSFERT.md` : la retranscription d'une décision du jalon Architecture hors de la stack du
   projet, avec la distinction explicite entre mécanisme intemporel et syntaxe remplaçable.
 - `ADR/` : un fichier par décision structurante, au format du Niveau 15
-  (`../15-BONUS-VAULT/01-decision-templates.md`).
+  (`../15-BONUS-VAULT/01b-decision-templates.md`).
 - `src/` : le code de la V1.
 - `tests/` : les tests automatisés, en particulier celui qui prouve la résistance du comptage
   de capacité à l'accès concurrent, et celui qui prouve qu'un accès non autorisé à la

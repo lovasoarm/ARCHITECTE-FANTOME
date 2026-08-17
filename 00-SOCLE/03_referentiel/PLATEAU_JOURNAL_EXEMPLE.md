@@ -48,7 +48,7 @@ Rappel des seuils (voir `START_HERE.md`) :
   quelqu'un d'autre.
 - **Derniere chose comprise** : j'ai la sortie correcte, je manque le mot.
 - **Prochaine micro-action** : ecrire l'explication en 5 lignes dans
-  `01-CADRAGE/02_async/04_event_loop/EXO_JEUNE_IA.md` comme si je parlais a un debutant.
+  `01-CADRAGE/02_async/04_event_loop/08_EXO_JEUNE_IA.md` comme si je parlais a un debutant.
 - **Signal plateau** : jour 5. Encore 2 jours et je declenche le playbook.
 
 ## Exemple 3 : J+7 (declenchement)

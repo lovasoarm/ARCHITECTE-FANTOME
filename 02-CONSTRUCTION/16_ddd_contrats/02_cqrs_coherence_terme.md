@@ -25,6 +25,59 @@ const affluence = () => db.query("SELECT count(*) FROM places WHERE ...");
 
 Risque réel : CQRS introduit une **cohérence à terme** (eventual consistency : la lecture rattrape l'écriture avec du retard). Si le métier ne l'accepte pas explicitement, tu as créé un bug fonctionnel, pas une optimisation.
 
+## LE FLUX, DESSINE
+
+Tu dois savoir redessiner ce schema au tableau blanc, de memoire, en moins de deux
+minutes. C'est la forme exacte sous laquelle CQRS est demande en entretien.
+
+```text
+   [ Client ]
+       |
+       | (1) COMMANDE  reserverPlace(id)      flèche pleine  = appel synchrone
+       v                                       (le client attend la reponse)
+ +-----------------------+
+ | MODELE D'ECRITURE     |   source de verite, normalise, transactionnel
+ | places (SQL)          |   contrainte : exactitude a la place pres
+ +-----------------------+
+       |
+       | (2) EVENEMENT  PlaceReservee{id, stade, t0}
+       |     flèche pointillee = asynchrone, le client n'attend pas
+       v
+ . . . . . . . . . . . . .
+ . BUS D'EVENEMENTS      .   file durable, ordre par cle, rejouable
+ . . . . . . . . . . . . .
+       |
+       | (3) PROJECTION  worker qui applique l'evenement
+       v
+ +-----------------------+
+ | MODELE DE LECTURE     |   denormalise, jetable, reconstructible
+ | affluence (cache)     |   contrainte : rapidite, tolerance au retard
+ +-----------------------+
+       ^
+       | (4) REQUETE  affluence()   flèche pleine = synchrone
+       |
+   [ Client ]
+
+ |<------------------ FENETRE D'INCOHERENCE ------------------>|
+ t0 = commande acceptee                     t1 = lecture a jour
+ mesuree au module : 50 ms mini, ~150 ms en moyenne, 245 ms au pire
+ pendant cette fenetre, la lecture renvoie l'ancienne valeur ou `undefined`
+```
+
+Legende des fleches, a citer quand tu presentes le schema :
+
+| Symbole | Sens | Ce que ca engage |
+| --- | --- | --- |
+| `-->` trait plein | appel synchrone | le client attend, la latence est dans son temps de reponse |
+| `. . >` pointille | propagation asynchrone | le client n'attend pas, mais la donnee est en retard |
+| `|<-- -->|` | fenetre d'incoherence | duree pendant laquelle deux utilisateurs voient deux verites |
+
+Les trois erreurs qui font echouer la restitution au tableau : oublier le bus (on
+dessine une fleche directe ecriture -> lecture, et il n'y a plus de rejouabilite),
+oublier d'annoter la fenetre en millisecondes (le schema redevient une opinion), et
+dessiner le modele de lecture comme une base durable (il est jetable : sa seule
+propriete interessante est de pouvoir etre reconstruit depuis les evenements).
+
 ## EXERCICE 1 : MESURER LE LAG DE PROJECTION (25 min, code exécutable)
 
 Ce script simule une écriture (commande) et une projection de lecture alimentée par un événement, avec une latence réseau réaliste. Il mesure, en millisecondes, le délai réel entre l'écriture et le moment où la lecture reflète cette écriture.
@@ -86,4 +139,4 @@ Reprends le lag maximum mesuré ci-dessus. Écris-le dans ton ADR comme un chiff
 
 ## RÉSUMÉ
 
-CQRS sépare ce qui écrit de ce qui lit pour gagner en performance de lecture, au prix d'un lag mesurable, jamais nul. Ce lag se mesure, ne se suppose pas. Suite : [03_contrats_migration.md](03_contrats_migration.md).
+CQRS sépare ce qui écrit de ce qui lit pour gagner en performance de lecture, au prix d'un lag mesurable, jamais nul. Ce lag se mesure, ne se suppose pas. Suite : [03_contrats_migration.md](03_contrats_migration.md). Defense orale du concept : [05_expliquer_cqrs_a_3_publics.md](05_expliquer_cqrs_a_3_publics.md).

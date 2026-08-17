@@ -37,7 +37,7 @@ Copie ce fichier a la racine de ton propre repo (pas dans MyFunnyJS, dans **ton*
 
 - **< 10 %** de code non-consciemment ecrit : tu tiens le controle. Continue.
 - **10-25 %** : zone normale, mais surveille les patterns recurrents (toujours les memes trucs que tu ne comprends pas ?).
-- **> 25 %** deux semaines de suite : declenche un `EXO_JEUNE_IA.md` du module concerne. Coupure IA obligatoire jusqu'a ce que tu saches refaire seul ce que tu as accepte sans comprendre.
+- **> 25 %** deux semaines de suite : declenche un `08_EXO_JEUNE_IA.md` du module concerne. Coupure IA obligatoire jusqu'a ce que tu saches refaire seul ce que tu as accepte sans comprendre.
 
 ## SEUILS D'ALERTE : RATIO LECTURE / ECRITURE
 

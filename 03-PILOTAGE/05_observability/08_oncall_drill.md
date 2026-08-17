@@ -87,3 +87,7 @@ Si NON → tu escalades. Tu ne joues pas au héros seul à 3h.
 
 Le meilleur on-call est celui qui **ne code pas** pendant l'incident. Il
 active des mécanismes préparés. Coder en urgence = ajouter un bug au bug.
+
+> **Mise en pratique projet.** Le protocole d'incident et le postmortem que tu appliques sur
+> ton fil rouge sont dans
+> [03-PILOTAGE/03-QUALITY-SHIELD/05-incidents-and-postmortem.md](../03-QUALITY-SHIELD/05-incidents-and-postmortem.md).

@@ -126,7 +126,7 @@ La grille complète de `04-evaluation-grid.md` s'applique ici, sur son total aju
 ## Durée cible
 
 32 heures au total, réparties en trois jalons seuillés : 4 h de cadrage, 8 h d'architecture,
-20 h de V1 et preuve. Fourchette acceptable annoncée dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) :
+20 h de V1 et preuve. Fourchette acceptable annoncée dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) :
 25 à 40 h. Au-delà de 40 h, le problème n'est pas ta vitesse : c'est ton périmètre, et le
 niveau 03 t'a donné les ciseaux.
 

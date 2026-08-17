@@ -2,7 +2,7 @@
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../15-ARCHI-LAB/README.md) | [Niveau suivant](../../03-PILOTAGE/01-ROADMAP-RUN/README.md)
+[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../15-ARCHI-LAB/README.md) | [Niveau suivant](../../03-PILOTAGE/01-ROADMAP-RUN/README.md)
 
 **Ce niveau réutilise :** [06-ARCHI-LAB](../15-ARCHI-LAB/03-layers-and-flow.md) : les couches UI / cas d'usage / domaine / infra, réutilisees pour situer la frontiere publique d'un contrat d'API.
 
@@ -16,7 +16,7 @@
 [challenge](../15-ARCHI-LAB/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 07 une difficulté qui vient du niveau 06.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
 
 ## Ce que c'est
 
@@ -95,6 +95,7 @@ rétrospective du bloc Build que tu viens de terminer.
 
 Liste generee : tout fichier de `02-CONSTRUCTION/20-API-DOJO` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
+- [00_prereq_check.md](00_prereq_check.md)
 - [01-why-this-level.md](01-why-this-level.md)
 - [02-contracts-first.md](02-contracts-first.md)
 - [03-errors-and-idempotence.md](03-errors-and-idempotence.md)

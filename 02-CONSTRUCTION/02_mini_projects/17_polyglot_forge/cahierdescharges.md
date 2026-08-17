@@ -3,7 +3,7 @@ stability: intemporel
 acte: appliquer
 ---
 
-# 17_polyglot_forge
+# 17_polyglot_forge — cahier des charges
 
 Temps de lecture ~2 min
 

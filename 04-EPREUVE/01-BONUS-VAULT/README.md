@@ -2,14 +2,14 @@
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../02-TOOL-CAVE/README.md) | Niveau suivant : aucun, c'est le dernier coffre
+[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../02-TOOL-CAVE/README.md) | Niveau suivant : aucun, c'est le dernier coffre
 
 **Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
 [le grimoire du niveau précédent](../02-TOOL-CAVE/grimoire.md) (20 minutes), puis refais son
 [challenge](../02-TOOL-CAVE/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 15 une difficulté qui vient du niveau 14.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
 
 ## Ce que c'est
 
@@ -44,7 +44,7 @@ vrai incident (Niveaux 6 à 12).
 ```text
 15-BONUS-VAULT/
 +-- 01-why-this-level.md                   --> statut du coffre et ses trois cas d'usage
-+-- 01-decision-templates.md              --> ADR, RFC, one-pager
++-- 01b-decision-templates.md              --> ADR, RFC, one-pager
 +-- 02-checklists.md                      --> mise en prod, revue, incident, onboarding
 +-- 03-reading-list.md                    --> ressources durables, sans liens morts
 +-- 04-anti-patterns-hall-of-fame.md      --> catalogue commenté des erreurs qui reviennent
@@ -53,7 +53,7 @@ vrai incident (Niveaux 6 à 12).
 \-- grimoire.md                           --> mémo dense
 ```
 
-[01-why-this-level.md](01-why-this-level.md) | [01-decision-templates.md](01-decision-templates.md) | [02-checklists.md](02-checklists.md) |
+[01-why-this-level.md](01-why-this-level.md) | [01b-decision-templates.md](01b-decision-templates.md) | [02-checklists.md](02-checklists.md) |
 [03-reading-list.md](03-reading-list.md) | [04-anti-patterns-hall-of-fame.md](04-anti-patterns-hall-of-fame.md) |
 [05-security-cost-privacy.md](05-security-cost-privacy.md) |
 [challenge.md](challenge.md) | [grimoire.md](grimoire.md)
@@ -63,7 +63,7 @@ Ce niveau réutilise : Niveaux 6 à 12, en particulier le brief et le modèle de
 Auto-test d'entrée : (1) Sais-tu nommer un incident réel qu'une checklist de mise en prod
 aurait empêché ? (2) Sais-tu distinguer un ADR d'un RFC par l'audience visée, pas par la
 longueur ? (3) Sais-tu citer un anti-pattern que tu as toi-même commis récemment ?
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
 
 ## Écart au gabarit
 
@@ -115,8 +115,9 @@ donne la forme ; les niveaux précédents donnent le fond.
 
 Liste generee : tout fichier de `04-EPREUVE/01-BONUS-VAULT` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
-- [01-decision-templates.md](01-decision-templates.md)
+- [00_prereq_check.md](00_prereq_check.md)
 - [01-why-this-level.md](01-why-this-level.md)
+- [01b-decision-templates.md](01b-decision-templates.md)
 - [02-checklists.md](02-checklists.md)
 - [03-reading-list.md](03-reading-list.md)
 - [04-anti-patterns-hall-of-fame.md](04-anti-patterns-hall-of-fame.md)

@@ -7,6 +7,12 @@ acte: restituer
 
 Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
 
+> **Hiérarchie de traitement.** Ce module est le **traitement de référence** des tests. Ta
+> **mise en pratique projet** est dans
+> [03-PILOTAGE/03-QUALITY-SHIELD/02-tests-that-pay.md](../../03-PILOTAGE/03-QUALITY-SHIELD/02-tests-that-pay.md) :
+> tu y arbitres quoi tester sur ton fil rouge selon le coût réel d'une panne. Règle du couple :
+> [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Un seul traitement de référence par thème ».
+
 <!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
@@ -35,8 +41,7 @@ Liste generee : tout fichier de `02-CONSTRUCTION/03_testing` est joignable depui
 - [11_EXO_LECTURE.md](11_EXO_LECTURE.md)
 - [12_EXO_JEUNE_IA.md](12_EXO_JEUNE_IA.md)
 - [98_EXO_IA_MENTEUSE.md](98_EXO_IA_MENTEUSE.md)
-- [99_PONT_avant_module_07_math_basics.md](99_PONT_avant_module_07_math_basics.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [99_PONT_avant_02-CONSTRUCTION-04_math_basics.md](99_PONT_avant_02-CONSTRUCTION-04_math_basics.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

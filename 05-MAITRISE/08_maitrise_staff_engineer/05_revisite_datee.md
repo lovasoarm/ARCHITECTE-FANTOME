@@ -25,7 +25,7 @@ s'inscrit dès aujourd'hui en fin de [01_dossier_unique.md](01_dossier_unique.md
 
 | Relevé | Source de la méthode | Ce qui doit changer sur le papier |
 | --- | --- | --- |
-| Prix unitaires | [protocole de la donnée sourcée](../../06-ANNEXES-TRANSVERSES/meta/PROTOCOLE-DONNEE-SOURCEE.md) | nouvelle date de relevé, nouvelle URL, écart en pourcentage |
+| Prix unitaires | [protocole de la donnée sourcée](../../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md) | nouvelle date de relevé, nouvelle URL, écart en pourcentage |
 | Mesure de charge | [drill de mesure](../02_scalability/11_DRILL_MESURE_DE_CHARGE.md) | deux courbes rejouées, latence au 95e centile |
 | Budget d'erreur | [SLO](../../03-PILOTAGE/06_fiabilite_slo/README.md) | consommé réel sur la période, pas l'objectif |
 

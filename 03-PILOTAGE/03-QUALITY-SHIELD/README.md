@@ -2,7 +2,7 @@
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../01-ROADMAP-RUN/README.md) | [Niveau suivant](../09-TEAM-QUEST/README.md)
+[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../01-ROADMAP-RUN/README.md) | [Niveau suivant](../09-TEAM-QUEST/README.md)
 
 **Ce niveau réutilise :** [07-API-DOJO](../../02-CONSTRUCTION/20-API-DOJO/03-errors-and-idempotence.md) : les erreurs exploitables et l'idempotence, réutilisees pour decider quoi tester et quoi observer.
 
@@ -16,7 +16,7 @@
 [challenge](../01-ROADMAP-RUN/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 09 une difficulté qui vient du niveau 08.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
 
 ## Ce que c'est
 
@@ -69,6 +69,7 @@ sont des coûts. Ce niveau t'apprend à dépenser cet effort là où il rapporte
 
 Liste generee : tout fichier de `03-PILOTAGE/03-QUALITY-SHIELD` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
+- [00_prereq_check.md](00_prereq_check.md)
 - [01-why-this-level.md](01-why-this-level.md)
 - [02-tests-that-pay.md](02-tests-that-pay.md)
 - [03-observability.md](03-observability.md)

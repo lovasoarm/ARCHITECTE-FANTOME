@@ -2,7 +2,7 @@
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../../00-SOCLE/06-MINDSET/README.md) | [Niveau suivant](../05-MVP-SPLIT/README.md)
+[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../../00-SOCLE/06-MINDSET/README.md) | [Niveau suivant](../05-MVP-SPLIT/README.md)
 
 **Ce niveau réutilise :** [01-MINDSET](../../00-SOCLE/06-MINDSET/03-cost-of-decisions.md) : le coût réel d'une décision, réutilise pour chiffrer le coût d'un mauvais cadrage.
 
@@ -16,7 +16,7 @@
 [challenge](../../00-SOCLE/06-MINDSET/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 02 une difficulté qui vient du niveau 01.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
 
 ## Ce que c'est
 
@@ -80,6 +80,7 @@ c'est le Niveau 03 (MVP Split), qui suppose que ce niveau-ci est acquis.
 
 Liste generee : tout fichier de `01-CADRAGE/01-PROBLEM-HUNT` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
+- [00_prereq_check.md](00_prereq_check.md)
 - [01-why-this-level.md](01-why-this-level.md)
 - [02-find-the-real-need.md](02-find-the-real-need.md)
 - [03-users-and-jobs.md](03-users-and-jobs.md)

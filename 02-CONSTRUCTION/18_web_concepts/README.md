@@ -33,7 +33,6 @@ Liste generee : tout fichier de `02-CONSTRUCTION/18_web_concepts` est joignable 
 - [10_EXO_JEUNE_IA.md](10_EXO_JEUNE_IA.md)
 - [11_web_concepts_drill_exec.md](11_web_concepts_drill_exec.md)
 - [98_PORTAGE_MENTAL.md](98_PORTAGE_MENTAL.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

@@ -10,7 +10,7 @@ acte: restituer
 
 > **CE MODULE RÉUTILISE** : closures (00-SOCLE/04_fundamentals), async (01-CADRAGE/02_async), bits & représentation (02-CONSTRUCTION/04_math_basics). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
-> **AVANT D'OUVRIR CE MODULE** : si tu n'as pas lu `02-CONSTRUCTION/04_math_basics/99_PONT_avant_module_08_memory.md` (le pont bits-mémoire), fais-le d'abord. Sans cette image mentale, ce qui suit reste des mots.
+> **AVANT D'OUVRIR CE MODULE** : si tu n'as pas lu `02-CONSTRUCTION/04_math_basics/99_PONT_avant_02-CONSTRUCTION-05_memory_performance.md` (le pont bits-mémoire), fais-le d'abord. Sans cette image mentale, ce qui suit reste des mots.
 
 Temps de lecture ~8 min
 

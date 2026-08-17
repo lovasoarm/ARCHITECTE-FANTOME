@@ -5,6 +5,14 @@ acte: appliquer
 
 # MODÈLE S1 : BUDGET-CLOUD.md : exemplaire de référence, anonymisé
 
+> **Ordres de grandeur relevés le 2026-08-14, périmés au 2027-08-14, à remplacer par TON
+> relevé.** Ce fichier illustre la **forme** d'un budget cloud ; il ne fait autorité sur aucun
+> montant. La vérité chiffrée de ton dossier vient de `RELEVE-TARIFAIRE.md`, produit par
+> l'exercice obligatoire
+> [03-PILOTAGE/07_cloud_foundations/07_releve_tarifaire_reel.md](../03-PILOTAGE/07_cloud_foundations/07_releve_tarifaire_reel.md)
+> : trois fournisseurs nommés, quatre lignes, URL complète et date pour chaque prix. Un
+> montant recopié d'ici dans ton budget est un montant que tu ne peux pas défendre.
+
 > Ceci est un modèle. Le gabarit vivant, à jour, est maintenu dans le module qui enseigne
 > le chiffrage cloud : `03-PILOTAGE/07_cloud_foundations/BUDGET-CLOUD.md`. Consulte-le pour
 > le format imposé exact ; ce fichier-ci illustre à quoi ressemble une copie remplie.
@@ -13,7 +21,7 @@ Projet fictif : **Lumen**, plateforme de réservation de créneaux pour ateliers
 
 ## 1. Hypothèses de trafic retenues
 
-> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, URL : pages tarifaires publiques du fournisseur, à revérifier avant 2027. Protocole : [../06-ANNEXES-TRANSVERSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../06-ANNEXES-TRANSVERSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
+> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, URL : pages tarifaires publiques du fournisseur, à revérifier avant 2027. Protocole : [../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
 
 | Palier | Utilisateurs actifs/mois | Requêtes/s en pointe | Volume stocké |
 | --- | --- | --- | --- |
@@ -23,7 +31,7 @@ Projet fictif : **Lumen**, plateforme de réservation de créneaux pour ateliers
 
 ## 2. Facture mensuelle par catégorie, à 100 utilisateurs
 
-> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, URL : pages tarifaires publiques du fournisseur, à revérifier avant 2027. Protocole : [../06-ANNEXES-TRANSVERSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../06-ANNEXES-TRANSVERSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
+> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, URL : pages tarifaires publiques du fournisseur, à revérifier avant 2027. Protocole : [../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
 
 | Catégorie | Service | Unité | Coût mensuel | Chez | Relevé le | URL |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -36,7 +44,7 @@ Projet fictif : **Lumen**, plateforme de réservation de créneaux pour ateliers
 
 ## 3. Facture mensuelle par catégorie, à 10 000 utilisateurs
 
-> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, URL : pages tarifaires publiques du fournisseur, à revérifier avant 2027. Protocole : [../06-ANNEXES-TRANSVERSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../06-ANNEXES-TRANSVERSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
+> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, URL : pages tarifaires publiques du fournisseur, à revérifier avant 2027. Protocole : [../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
 
 | Catégorie | Service | Unité | Coût mensuel | Chez | Relevé le | URL |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -49,7 +57,7 @@ Projet fictif : **Lumen**, plateforme de réservation de créneaux pour ateliers
 
 ## 4. Facture mensuelle par catégorie, à 1 000 000 utilisateurs
 
-> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, URL : pages tarifaires publiques du fournisseur, à revérifier avant 2027. Protocole : [../06-ANNEXES-TRANSVERSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../06-ANNEXES-TRANSVERSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
+> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, URL : pages tarifaires publiques du fournisseur, à revérifier avant 2027. Protocole : [../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
 
 | Catégorie | Service | Unité | Coût mensuel | Chez | Relevé le | URL |
 | --- | --- | --- | --- | --- | --- | --- |

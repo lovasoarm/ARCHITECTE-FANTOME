@@ -6,7 +6,7 @@ sur un même projet fictif : **Lumen**, plateforme de réservation de créneaux 
 associatifs. Un seul projet pour les six, volontairement : c'est la cohérence entre les pièces
 qui se juge, pas leur beauté séparée.
 
-## Les six modèles
+## Les six modèles, et la septième pièce
 
 | Famille | Fichier modèle | Ce que tu dois produire dans TON dépôt |
 | --- | --- | --- |
@@ -16,6 +16,7 @@ qui se juge, pas leur beauté séparée.
 | S4 : produit et business | [S4-DECISION-ARBITRAGE.md](S4-DECISION-ARBITRAGE.md) | `PREUVES/DECISION-ARBITRAGE.md` |
 | S5 : leadership et pédagogie | [S5-NOTE-DIRECTION-ET-REVUE.md](S5-NOTE-DIRECTION-ET-REVUE.md) | `PREUVES/REVUE-DE-CODE.md` et `PREUVES/NOTE-DIRECTION.md` |
 | S6 : IA et automatisation | [S6-IA-EN-PROD.md](S6-IA-EN-PROD.md) | `PREUVES/IA-EN-PROD.md` |
+| S7 : pensée transférable | [S7-PORTAGE.md](S7-PORTAGE.md) | `PREUVES/PORTAGE.md` |
 
 Le gabarit vivant de S1 est maintenu dans le module qui l'enseigne :
 [03-PILOTAGE/07_cloud_foundations/BUDGET-CLOUD.md](../03-PILOTAGE/07_cloud_foundations/BUDGET-CLOUD.md).

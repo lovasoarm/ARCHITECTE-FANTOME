@@ -2,7 +2,7 @@
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../08_maitrise_staff_engineer/challenge.md](../08_maitrise_staff_engineer/challenge.md)).
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../../04-EPREUVE/06-CAPSTONE-ARENA/README.md) | [Niveau suivant](../../04-EPREUVE/02-TOOL-CAVE/README.md)
+[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../../04-EPREUVE/06-CAPSTONE-ARENA/README.md) | [Niveau suivant](../../04-EPREUVE/02-TOOL-CAVE/README.md)
 
 **Ce niveau réutilise :** [12-CAPSTONE-ARENA](../../04-EPREUVE/06-CAPSTONE-ARENA/04-evaluation-grid.md) : la grille d'evaluation chiffrée, réutilisee comme modèle pour batir ton propre suivi de progression.
 
@@ -16,7 +16,7 @@
 [challenge](../../04-EPREUVE/06-CAPSTONE-ARENA/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 13 une difficulté qui vient du niveau 12.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
 
 ## Ce que c'est
 
@@ -79,6 +79,7 @@ vrai longtemps plutôt que sur ce qui est vrai cette année.
 
 Liste generee : tout fichier de `05-MAITRISE/05-DAY-TO-LEGEND` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
+- [00_prereq_check.md](00_prereq_check.md)
 - [01-why-this-level.md](01-why-this-level.md)
 - [02-daily-training.md](02-daily-training.md)
 - [03-learning-loops.md](03-learning-loops.md)

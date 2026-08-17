@@ -26,7 +26,7 @@ d'API avec un préavis et une date d'extinction plutôt qu'un jour de panique.
 - [challenge.md](challenge.md) : challenge, le découpage de ton projet.
 - [04_exercice_architecture_trop_belle.md](04_exercice_architecture_trop_belle.md) : l'exercice qui punit la sur-conception.
 - [boss-fight.md](boss-fight.md) : boss fight, la rupture de contrat imposée.
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md) : decider seul, IA coupee, puis mesurer l'ecart avec l'IA.
+- [05_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md) : decider seul, IA coupee, puis mesurer l'ecart avec l'IA.
 - [verification_pack/criteres.md](verification_pack/criteres.md) : les trois drills et leurs criteres binaires.
 - [grimoire.md](grimoire.md) : mémo dense, à ouvrir après le reste.
 
@@ -53,10 +53,16 @@ Liste generee : tout fichier de `02-CONSTRUCTION/16_ddd_contrats` est joignable 
 - [02_cqrs_coherence_terme.md](02_cqrs_coherence_terme.md)
 - [03_contrats_migration.md](03_contrats_migration.md)
 - [04_exercice_architecture_trop_belle.md](04_exercice_architecture_trop_belle.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [05_expliquer_cqrs_a_3_publics.md](05_expliquer_cqrs_a_3_publics.md)
+- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
 - [boss-fight.md](boss-fight.md)
 - [challenge.md](challenge.md)
+- [defense-orale.md](defense-orale.md)
 - [grimoire.md](grimoire.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+- [05_expliquer_cqrs_a_3_publics.md](05_expliquer_cqrs_a_3_publics.md) — restitution orale de CQRS a trois publics, dont un CTO qui defend le CRUD.
+- [defense-orale.md](defense-orale.md) — trois objections a soutenir a voix haute avant de valider le module.
+
+> **Contexte d'entreprise manquant ?** Ce module suppose un comite qui conteste tes contrats. Protocole solo jouable, avec tirage au sort et verdict binaire : [SIMULATION-ENTREPRISE.md](../../06-ANNEXES-TRANSVERSES/SIMULATION-ENTREPRISE.md) (protocole 1).

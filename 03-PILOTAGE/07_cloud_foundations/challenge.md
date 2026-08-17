@@ -13,7 +13,7 @@ La direction prépare le budget de l'année. On te demande une page : combien co
 
 ## Ce que tu produis
 
-1. **Le relevé daté, avant tout calcul.** Trois prix unitaires (calcul, egress, journaux) relevés toi-même chez deux fournisseurs, avec date, fournisseur, unité de facturation et URL, selon le [protocole de la donnée sourcée](../../06-ANNEXES-TRANSVERSES/meta/PROTOCOLE-DONNEE-SOURCEE.md). Le budget se construit avec ces chiffres, pas avec ceux du cours.
+1. **Le relevé daté, avant tout calcul.** Trois prix unitaires (calcul, egress, journaux) relevés toi-même chez deux fournisseurs, avec date, fournisseur, unité de facturation et URL, selon le [protocole de la donnée sourcée](../../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md). Le budget se construit avec ces chiffres, pas avec ceux du cours.
 2. **La réponse écrite à l'objection "vos prix datent de quand ?"**, cinq lignes maximum, qui donne la date, la source, et ce que tu ferais si la grille avait bougé de 30 pour cent.
 3. **Le portage chez le second fournisseur** ([06_portage_multicloud.md](06_portage_multicloud.md)) : même facture, plus la liste de ce qui change de nature et non de prix.
 4. Les trois paliers chiffrés, une ligne par catégorie, egress inclus ([02_modeles_cout.md](02_modeles_cout.md)).

@@ -23,7 +23,7 @@ sauter une étape en ne le lisant pas de bout en bout.
 ## Ses trois cas d'usage, et rien d'autre
 
 1. **Une décision technique dépasse une seule personne.** Tu as besoin du bon format, tout de
-   suite, sans réinventer sa structure : [01-decision-templates.md](01-decision-templates.md)
+   suite, sans réinventer sa structure : [01b-decision-templates.md](01b-decision-templates.md)
    (ADR, RFC, note d'une page), à croiser avec la matrice de traduction par public de
    [../../03-PILOTAGE/11_leadership_mentorat/05_expliquer_trois_publics.md](../../03-PILOTAGE/11_leadership_mentorat/05_expliquer_trois_publics.md).
 

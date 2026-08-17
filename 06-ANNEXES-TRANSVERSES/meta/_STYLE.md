@@ -24,7 +24,7 @@ Chaque module qui cite un `verification_pack` possède un dossier `verification_
 
 ### 4. Tout tableau chiffré porte sa date de relevé
 
-Ligne unique imposée juste au-dessus du tableau : `Relevé le <date>, chez <fournisseur>, unité <unité de facturation>, URL <page tarifaire>, à revérifier avant <année>.` Le protocole complet, colonnes de traçabilité comprises, est dans [PROTOCOLE-DONNEE-SOURCEE.md](PROTOCOLE-DONNEE-SOURCEE.md). Un montant en euros sans date de relevé est refusé mécaniquement. Un chiffre sans date est périmé le jour où on te le reproche.
+Ligne unique imposée juste au-dessus du tableau : `Relevé le <date>, chez <fournisseur>, unité <unité de facturation>, URL <page tarifaire>, à revérifier avant <année>.` Le protocole complet, colonnes de traçabilité comprises, est dans [PROTOCOLE-DONNEE-SOURCEE.md](../../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md). Un montant en euros sans date de relevé est refusé mécaniquement. Un chiffre sans date est périmé le jour où on te le reproche.
 
 ### Grimoire : exemple conforme et exemple refusé
 
@@ -97,3 +97,61 @@ Règles :
 - le contrôle de livraison vérifie la présence et la validité du champ, jamais sa pertinence :
   celle-ci est du ressort de la revue humaine.
 
+## Regle de livraison : un titre de niveau 1 par dossier
+
+Deux fichiers du meme dossier ne peuvent pas porter le meme titre de niveau 1 (`# ...`). Deux titres identiques signifient soit un doublon, soit une variante non arbitree : dans les deux cas le lecteur choisit au hasard, et il choisit toujours la version la moins exigeante. Le controle de livraison ([../../outils/controle_livraison.mjs](../../outils/controle_livraison.mjs)) refuse le dossier fautif en nommant les deux fichiers. Corollaire applique aux exercices de jeune IA : un module a exactement un `NN_EXO_JEUNE_IA.md`, numerote a sa place dans la sequence locale, de 60 minutes, verifie par le critere binaire de son `verification_pack`, et sans auto-notation.
+
+## Un seul traitement de référence par thème
+
+Un thème enseigné à deux endroits n'est pas deux cours : c'est un cours et sa mise en
+pratique. La hiérarchie est fixe et ne se discute pas fichier par fichier :
+
+- le **module** (origine MyFunnyJS, dossiers `NN_nom/`) est le **traitement de référence** :
+  il est hypercomplet, il porte le grimoire, le `verification_pack` et le critère binaire ;
+- le **niveau** (origine ProjectFunny, dossiers `NN-NOM-EN-MAJUSCULES/`) est la **mise en
+  pratique sur le fil rouge** : il ne réexplique pas, il fait produire une pièce datée.
+
+Trois obligations, sans exception :
+
+1. la page de mise en pratique s'ouvre par un bloc « Hiérarchie de traitement » qui nomme la
+   référence, la lie, et écrit « reviens ici quand tu l'as lue » ;
+2. la référence porte le renvoi retour vers sa mise en pratique, dans son `README.md` ou dans
+   le fichier concerné ;
+3. la mise en pratique ne redéfinit aucun concept déjà défini dans la référence : elle le cite.
+
+Couples en vigueur :
+
+| Thème | Traitement de référence | Mise en pratique |
+| --- | --- | --- |
+| Observabilité | `03-PILOTAGE/05_observability/` | `03-PILOTAGE/03-QUALITY-SHIELD/03-observability.md` |
+| Tests | `02-CONSTRUCTION/03_testing/` | `03-PILOTAGE/03-QUALITY-SHIELD/02-tests-that-pay.md` |
+| Incidents | `03-PILOTAGE/05_observability/` (`08_oncall_drill.md`, `06_debug_in_prod.md`) | `03-PILOTAGE/03-QUALITY-SHIELD/05-incidents-and-postmortem.md` |
+
+Tout nouveau thème traité deux fois rejoint ce tableau ou perd l'un de ses deux traitements.
+Un thème présent deux fois sans renvoi croisé est un défaut de livraison, au même titre qu'un
+lien cassé.
+
+## Le gabarit de grimoire : 4 colonnes en socle, 5 colonnes en Staff
+
+Un grimoire est un memo de revision a voix haute, pas un glossaire. Deux gabarits
+coexistent, et le choix ne se fait pas au gout du redacteur :
+
+- **4 colonnes** (Terme / Definition / Code / Analogie) pour les modules ou le terme
+  designe un mecanisme du langage : la definition et un exemple executable suffisent a
+  lever l'ambiguite.
+- **5 colonnes** (Terme / Definition / Code / Analogies (exactement 2) / Limite) pour les
+  modules d'architecture, de pilotage et de posture Staff.
+
+Justification pedagogique des deux colonnes ajoutees, a ne pas negocier :
+
+1. **Analogies (exactement 2)** : une seule analogie se confond avec le concept et devient
+   fausse des qu'on la pousse. Deux analogies issues de domaines differents forcent
+   l'apprenant a chercher ce qu'elles ont en commun, c'est-a-dire le concept lui-meme. Ni
+   une (dogme), ni trois (bavardage) : exactement deux.
+2. **Limite** : un concept d'architecture se juge sur le moment ou il cesse de s'appliquer.
+   La colonne nomme la condition de non-application, ce qui est exactement ce qu'un jury
+   ou un contradicteur ira chercher (`06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md`).
+
+Regles de livraison : un grimoire ne melange pas les deux gabarits dans la meme table ; la
+colonne Code contient du code executable, jamais une paraphrase ; la colonne Limite est
+une condition observable, jamais « depend du contexte ».

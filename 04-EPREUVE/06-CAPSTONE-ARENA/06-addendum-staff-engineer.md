@@ -38,6 +38,31 @@ tension 3 : fonctionnalité IA (S6) --> coût par requête variable (S1)
 
 Un dossier sans tension écrite n'a pas croisé les familles : il les a rangées côte à côte.
 
+## La tension n°1 est imposée, et elle est chiffrée
+
+Les tensions 2 et 3 sont au choix. La **première ne l'est pas** : tout dossier de capstone
+oppose le SLO à la facture, avec des nombres relevés, jamais estimés. Elle se rédige ainsi,
+et le jury (toi) refuse toute autre forme :
+
+```text
+tension 1 (imposée) :
+  SLO cible                  : ..., budget d'erreur ... min/mois          (S3)
+  topologie exigée           : mono-zone -> multi-zone
+  coût de la seconde zone    : calcul + base + inter-zones = X EUR/mois   (S1)
+  source de chaque prix      : URL complète + date, dans RELEVE-TARIFAIRE.md
+  coût d'une minute d'arrêt  : Y EUR, justifié en une phrase métier
+  verdict                    : gain annuel (Y x minutes évitées) vs X x 12
+  arbitrage retenu           : ... parce que ...
+```
+
+Les deux pièces amont sont obligatoires et vérifiables sur disque :
+
+- le relevé, [03-PILOTAGE/07_cloud_foundations/07_releve_tarifaire_reel.md](../../03-PILOTAGE/07_cloud_foundations/07_releve_tarifaire_reel.md) ;
+- le calcul de la seconde zone, [04_rayon_impact_zones.md](../../03-PILOTAGE/07_cloud_foundations/04_rayon_impact_zones.md), section 3 bis.
+
+Un X sans URL ni date, ou un Y sans phrase métier, et la tension n°1 est réputée non écrite :
+le capstone n'est pas validé, quel que soit l'état du reste du dossier.
+
 ## Où ça finit
 
 Les chemins exacts de ces quatre pièces se recopient dans [PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md), à la racine du repo. C'est ce fichier qu'un recruteur ouvre en premier, pas ton code.

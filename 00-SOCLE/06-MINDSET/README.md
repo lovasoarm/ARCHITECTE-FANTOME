@@ -2,7 +2,7 @@
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../02-PROLOGUE/README.md) | [Niveau suivant](../../01-CADRAGE/01-PROBLEM-HUNT/README.md)
+[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../02-PROLOGUE/README.md) | [Niveau suivant](../../01-CADRAGE/01-PROBLEM-HUNT/README.md)
 
 **Ce niveau réutilise :** [00-PROLOGUE](../02-PROLOGUE/README.md) : les 7 règles du joueur (notamment ne jamais sauter une étape) qui encadrent la manière de lire ce niveau.
 
@@ -16,7 +16,7 @@
 [challenge](../02-PROLOGUE/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 01 une difficulté qui vient du niveau 00.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
 
 ## Ce que c'est
 
@@ -66,6 +66,7 @@ réflexe qu'il vient corriger.
 
 Liste generee : tout fichier de `00-SOCLE/06-MINDSET` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
+- [00_prereq_check.md](00_prereq_check.md)
 - [01-why-this-level.md](01-why-this-level.md)
 - [02-thinking-in-systems.md](02-thinking-in-systems.md)
 - [03-cost-of-decisions.md](03-cost-of-decisions.md)

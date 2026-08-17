@@ -1,87 +1,75 @@
 #!/usr/bin/env node
-// Verifie que tous les liens markdown relatifs du repo resolvent vers un
-// fichier ou un dossier reellement present, et produit la preuve d'exhaustivite
-// VERIFICATION_LIENS.md avec trois nombres auto-calcules :
-// fichiers parcourus / liens trouves / liens resolus.
-// Usage : node outils/verifier_liens.mjs [racine] [--ecrire]
+// Verifie 100 % des liens relatifs des .md du depot.
+// node outils/verifier_liens.mjs .            -> rapport console, code 1 si un lien casse
+// node outils/verifier_liens.mjs . --ecrire   -> regenere VERIFICATION_LIENS.md
+import { writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { listerMd, lireFichier, liensRelatifs, resoudre } from "./lib_depot.mjs";
 
-import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
-import { dirname, join, normalize, relative, sep } from "node:path";
+const racine = process.argv[2] && !process.argv[2].startsWith("--") ? process.argv[2] : ".";
+const ecrire = process.argv.includes("--ecrire");
 
-const args = process.argv.slice(2);
-const ECRIRE = args.includes("--ecrire");
-const RACINE = args.find((a) => !a.startsWith("--")) ?? ".";
-export const CIBLE_PREUVE = "VERIFICATION_LIENS.md";
+const fichiers = listerMd(racine);
+let trouves = 0;
+let resolus = 0;
+const couples = new Set();
+const casses = [];
 
-export function* fichiersMd(dir) {
-  for (const e of readdirSync(dir).sort()) {
-    if (e === ".git" || e === "node_modules") continue;
-    const p = join(dir, e);
-    if (statSync(p).isDirectory()) yield* fichiersMd(p);
-    else if (p.endsWith(".md")) yield p;
+for (const rel of fichiers) {
+  const { corps } = lireFichier(racine, rel);
+  for (const lien of liensRelatifs(corps)) {
+    trouves += 1;
+    const { relCible, existe, horsDepot } = resoudre(racine, rel, lien.chemin);
+    couples.add(`${rel} -> ${relCible}`);
+    if (existe && !horsDepot) resolus += 1;
+    else casses.push({ source: rel, cible: lien.brut, resolu: relCible });
   }
 }
 
-export function scanner(racine = ".") {
-  let fichiers = 0, liens = 0, resolus = 0;
-  const casses = [];
-  const couples = new Set();
-  for (const f of fichiersMd(racine)) {
-    fichiers++;
-    let texte = readFileSync(f, "utf8");
-    texte = texte.replace(/```[\s\S]*?```/g, "").replace(/`[^`]*`/g, "");
-    for (const m of texte.matchAll(/\[[^\]]*\]\(([^)\s]+)\)/g)) {
-      const cible = m[1];
-      if (/^(https?:|mailto:|#)/.test(cible)) continue;
-      liens++;
-      const src = relative(racine, f).split(sep).join("/");
-      couples.add(`${src} -> ${cible}`);
-      const resolu = normalize(join(dirname(f), cible.split("#")[0]));
-      if (existsSync(resolu)) resolus++;
-      else casses.push(`${src} -> ${cible}`);
-    }
-  }
-  return { fichiers, liens, resolus, casses, couples: couples.size };
+const rapport = `---
+stability: mouvant
+acte: évaluer
+---
+
+# VERIFICATION DES LIENS RELATIFS (généré)
+
+Acte attendu : évaluer.
+
+> Ce fichier est produit par \`node outils/verifier_liens.mjs . --ecrire\`.
+> Il ne se modifie jamais à la main. Le contrôle de livraison refuse la livraison
+> si le périmètre déclaré ici ne couvre pas 100 % des \`.md\` du dépôt.
+
+## Les trois nombres qui font la preuve
+
+| Mesure | Valeur |
+| --- | --- |
+| Fichiers \`.md\` parcourus | ${fichiers.length} |
+| Liens relatifs trouvés | ${trouves} |
+| Liens relatifs résolus | ${resolus} |
+| Couples source vers cible uniques | ${couples.size} |
+| Liens cassés | ${casses.length} |
+
+Périmètre : la totalité des fichiers \`.md\` du dépôt, sans exception ni échantillon.
+Les liens externes (\`http\`, \`mailto\`) et les ancres pures (\`#\`) sont hors périmètre :
+ils ne se vérifient pas sur disque.
+
+## Liens cassés
+
+${
+  casses.length === 0
+    ? "Aucun."
+    : ["| Fichier source | Lien écrit | Cible résolue |", "| --- | --- | --- |"]
+        .concat(casses.map((c) => `| \`${c.source}\` | \`${c.cible}\` | \`${c.resolu}\` |`))
+        .join("\n")
+}
+`;
+
+if (ecrire) {
+  writeFileSync(join(racine, "VERIFICATION_LIENS.md"), rapport);
+  console.log(`VERIFICATION_LIENS.md régénéré : ${fichiers.length} fichiers, ${trouves} liens, ${casses.length} cassés.`);
+} else {
+  console.log(`${fichiers.length} fichiers .md, ${trouves} liens relatifs, ${casses.length} cassés.`);
+  for (const c of casses) console.log(`  CASSE ${c.source} -> ${c.cible}`);
 }
 
-export function construirePreuve(racine = ".") {
-  const r = scanner(racine);
-  const out = [];
-  out.push("---", "stability: mouvant", "acte: \u00e9valuer", "---", "");
-  out.push("# VERIFICATION DES LIENS RELATIFS (g\u00e9n\u00e9r\u00e9)");
-  out.push("");
-  out.push("Acte attendu : \u00e9valuer.");
-  out.push("");
-  out.push("> Ce fichier est produit par `node outils/verifier_liens.mjs . --ecrire`.");
-  out.push("> Il ne se modifie jamais \u00e0 la main. Le contr\u00f4le de livraison refuse la livraison");
-  out.push("> si le p\u00e9rim\u00e8tre d\u00e9clar\u00e9 ici ne couvre pas 100 % des `.md` du d\u00e9p\u00f4t.");
-  out.push("");
-  out.push("## Les trois nombres qui font la preuve");
-  out.push("");
-  out.push("| Mesure | Valeur |");
-  out.push("| --- | --- |");
-  out.push(`| Fichiers \`.md\` parcourus | ${r.fichiers} |`);
-  out.push(`| Liens relatifs trouv\u00e9s | ${r.liens} |`);
-  out.push(`| Liens relatifs r\u00e9solus | ${r.resolus} |`);
-  out.push(`| Couples source vers cible uniques | ${r.couples} |`);
-  out.push(`| Liens cass\u00e9s | ${r.casses.length} |`);
-  out.push("");
-  out.push("P\u00e9rim\u00e8tre : la totalit\u00e9 des fichiers `.md` du d\u00e9p\u00f4t, sans exception ni \u00e9chantillon.");
-  out.push("Les liens externes (`http`, `mailto`) et les ancres pures (`#`) sont hors p\u00e9rim\u00e8tre :");
-  out.push("ils ne se v\u00e9rifient pas sur disque.");
-  out.push("");
-  out.push("## Liens cass\u00e9s");
-  out.push("");
-  if (r.casses.length === 0) out.push("Aucun.");
-  else for (const c of r.casses) out.push(`- ${c}`);
-  out.push("");
-  return { texte: out.join("\n"), ...r };
-}
-
-if (import.meta.url === `file://${process.argv[1]}`) {
-  const p = construirePreuve(RACINE);
-  if (ECRIRE) writeFileSync(join(RACINE, CIBLE_PREUVE), p.texte);
-  console.log(`Fichiers parcourus : ${p.fichiers} : liens trouves ${p.liens} : resolus ${p.resolus} : CASSES ${p.casses.length}`);
-  for (const c of p.casses) console.log(`  ${c}`);
-  if (p.casses.length > 0) process.exit(1);
-}
+process.exit(casses.length === 0 ? 0 : 1);

@@ -1,6 +1,6 @@
 # Rétrospective de bloc : Bloc CADRAGE (niveaux 00 à 03)
 
-[Sommaire](../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
+[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
 
 Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opération précise : tu
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
@@ -103,7 +103,11 @@ Relis tes horodatages de boss-fight du bloc. Combien sont antérieurs à ta prem
 la grille ? Si moins de la moitié, refais-en un avant de continuer : une grille lue d'abord
 transforme un exercice de raisonnement en exercice de remplissage.
 
-## Palier TECH-ILA 1 sur 6 : Niveau 1 Socle (bloquant)
+## Verification du livrable TECH-ILA 1 sur 6
+
+> Depuis S-10, la carte n'est plus annoncee ici : elle a ete ouverte dans `00-SOCLE/01_getting_started`. Cette retrospective ne verifie qu'une chose, binaire : le livrable existe-t-il ? Attendu : la fiche d'orientation remplie : quel outil tu utilises, pour quoi, depuis quelle version. Non produit = le bloc n'est pas ferme, meme si toutes les lecons sont lues.
+
+### Rappel de la carte (reference, pas decouverte) : Niveau 1 Socle (bloquant)
 
 Ce bloc t'a donné des réflexes JavaScript : async, debugging, gestion d'erreur. Le
 [Niveau 1 TECH-ILA](../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/01-niveau-1-socle.md) reprend

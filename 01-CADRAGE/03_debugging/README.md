@@ -41,8 +41,7 @@ Liste generee : tout fichier de `01-CADRAGE/03_debugging` est joignable depuis i
 - [17_EXO_JEUNE_IA.md](17_EXO_JEUNE_IA.md)
 - [18_EXO_DEBUG_AVEUGLE.md](18_EXO_DEBUG_AVEUGLE.md)
 - [98_EXO_IA_MENTEUSE.md](98_EXO_IA_MENTEUSE.md)
-- [99_PONT_avant_module_05_error_handling.md](99_PONT_avant_module_05_error_handling.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [99_PONT_avant_01-CADRAGE-04_error_handling.md](99_PONT_avant_01-CADRAGE-04_error_handling.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

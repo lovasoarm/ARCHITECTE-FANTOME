@@ -22,7 +22,7 @@ Raisons :
 
 1. `01_install.md` : Node 20+, Git, éditeur.
 2. `02_day_one.md` : contexte du métier, poste de travail, premières lignes de JS.
-3. `02_shell_survival.md` : 12 commandes pour survivre.
+3. `02b_shell_survival.md` : 12 commandes pour survivre.
 4. `03_git_101.md` : clone, add, commit, push, revert.
 5. `04_package_managers.md` : npm vs pnpm vs bun, en 15 min.
 6. `05_devsec_perso.md` : ne pas fuiter tes secrets dès le jour 1.
@@ -40,20 +40,34 @@ Ensuite, direction `00-SOCLE/04_fundamentals/`.
 
 Rien (c'est le point d'entrée).
 
+## Appel TECH-ILA 1 sur 6 : Niveau 1 Socle
+
+Tu ouvres la carte **maintenant**, dans ce module, pas a la retrospective. Elle apporte ici
+les noms d'outils que ta machine vient d'installer (runtime, gestionnaire de paquets, editeur, terminal, git) et ce qu'ils recouvrent dans une equipe reelle.
+
+- Carte : [Niveau 1 Socle](../../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/01-niveau-1-socle.md)
+- Pourquoi ici : ce module est le premier endroit du parcours ou ces noms d'outils changent une
+  decision. Lue plus tard, la carte n'est plus qu'un catalogue.
+- Ce que tu produis avec : la fiche d'orientation remplie : quel outil tu utilises, pour quoi, depuis quelle version.
+- Regle : la carte est perissable, le module ne l'est pas. Si un nom d'outil a vieilli, on
+  remplace la carte en annexes sans toucher a ce module.
+
 <!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
 Liste generee : tout fichier de `00-SOCLE/01_getting_started` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
+- [00_prereq_check.md](00_prereq_check.md)
 - [00_why_getting_started.md](00_why_getting_started.md)
 - [01_install.md](01_install.md)
 - [02_day_one.md](02_day_one.md)
-- [02_shell_survival.md](02_shell_survival.md)
+- [02b_shell_survival.md](02b_shell_survival.md)
 - [03_git_101.md](03_git_101.md)
 - [04_package_managers.md](04_package_managers.md)
 - [05_devsec_perso.md](05_devsec_perso.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
+- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
 - [PACKAGE_JSON_README.md](PACKAGE_JSON_README.md)
 - [verification_pack/](verification_pack/README.md)
 

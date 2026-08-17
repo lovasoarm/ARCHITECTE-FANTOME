@@ -15,10 +15,10 @@ Acte attendu : évaluer.
 
 | Mesure | Valeur |
 | --- | --- |
-| Fichiers `.md` parcourus | 1784 |
-| Liens relatifs trouvés | 3872 |
-| Liens relatifs résolus | 3872 |
-| Couples source vers cible uniques | 3337 |
+| Fichiers `.md` parcourus | 1753 |
+| Liens relatifs trouvés | 3899 |
+| Liens relatifs résolus | 3899 |
+| Couples source vers cible uniques | 3297 |
 | Liens cassés | 0 |
 
 Périmètre : la totalité des fichiers `.md` du dépôt, sans exception ni échantillon.

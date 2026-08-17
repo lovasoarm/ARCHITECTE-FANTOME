@@ -33,8 +33,7 @@ Liste generee : tout fichier de `02-CONSTRUCTION/09_functional_js` est joignable
 - [10_EXO_JEUNE_IA.md](10_EXO_JEUNE_IA.md)
 - [98_EXO_IA_MENTEUSE.md](98_EXO_IA_MENTEUSE.md)
 - [98_PORTAGE_MENTAL.md](98_PORTAGE_MENTAL.md)
-- [99_PONT_avant_module_12_design_patterns.md](99_PONT_avant_module_12_design_patterns.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [99_PONT_avant_02-CONSTRUCTION-10_design_patterns.md](99_PONT_avant_02-CONSTRUCTION-10_design_patterns.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

@@ -314,7 +314,7 @@ La troisième colonne est la condition des deux autres : on ne peut pas vérifie
 
 **Chaque tag NOYAU DURABLE de ce document est un pari sur la troisième colonne.**
 
-Pour aller plus loin côté mécanismes : [`04-EPREUVE/04_ai_native_dev/`](../../../04-EPREUVE/04_ai_native_dev/) et [`05-MAITRISE/04_ai_agents_and_autonomy/`](../../../05-MAITRISE/04_ai_agents_and_autonomy/).
+Pour aller plus loin côté mécanismes : [`04-EPREUVE/04_ai_native_dev/`](../../../04-EPREUVE/04_ai_native_dev) et [`05-MAITRISE/04_ai_agents_and_autonomy/`](../../../05-MAITRISE/04_ai_agents_and_autonomy).
 
 ---
 

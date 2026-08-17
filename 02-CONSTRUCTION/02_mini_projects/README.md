@@ -118,7 +118,6 @@ Liste generee : tout fichier de `02-CONSTRUCTION/02_mini_projects` est joignable
 - [00_why_mini_projects.md](00_why_mini_projects.md)
 - [20_EXO_LECTURE.md](20_EXO_LECTURE.md)
 - [21_EXO_JEUNE_IA.md](21_EXO_JEUNE_IA.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
 - [01_rasengan_engine/](01_rasengan_engine/README.md)
 - [02_garo_no_kronika/](02_garo_no_kronika/README.md)
 - [03_walking_dead_protocol/](03_walking_dead_protocol/README.md)

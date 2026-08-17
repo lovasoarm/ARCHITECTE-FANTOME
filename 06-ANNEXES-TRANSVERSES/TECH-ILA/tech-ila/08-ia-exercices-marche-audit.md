@@ -63,7 +63,7 @@ Trois projets, cohérents entre eux, valent mieux que douze démos jetables. Un 
 > **Temps réaliste** : 90 min · **Prérequis matériel / compte** : aucun · **Coût max** : 0 € ·
 > **Mode** : jeûne d'IA obligatoire
 > **Contraintes** : choisis une décision technique réelle prise dans l'un de tes trois mini-projets. Rédige l'ADR : contexte, contraintes, options écartées et pourquoi, décision, conséquences acceptées, signal qui déclencherait une révision. Puis **réécris la même décision en 5 lignes pour un responsable produit, sans un seul nom de techno**.
-> **Réutilise** : [03-PILOTAGE/10_team_craft](../../../03-PILOTAGE/10_team_craft/) : la trace écrite d'une décision.
+> **Réutilise** : [03-PILOTAGE/10_team_craft](../../../03-PILOTAGE/10_team_craft) : la trace écrite d'une décision.
 > **Piège** : écrire « on a choisi X parce que c'est mieux ». Une option écartée sans raison chiffrée n'est pas une option écartée.
 > **À observer** : le moment où tu ne sais plus justifier un choix. C'est là que la décision était une habitude, pas une décision.
 > **Vérification** (observable, chiffrée) : la version produit tient en 5 lignes, contient zéro nom de technologie, et une personne non technique peut redire la contrainte principale après une seule lecture.

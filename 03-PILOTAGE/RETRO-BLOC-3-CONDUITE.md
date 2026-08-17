@@ -1,6 +1,6 @@
 # Rétrospective de bloc : Bloc CONDUITE (niveaux 08 à 10)
 
-[Sommaire](../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
+[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
 
 Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opération précise : tu
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
@@ -120,7 +120,11 @@ Relis tes horodatages de boss-fight du bloc. Combien sont antérieurs à ta prem
 la grille ? Si moins de la moitié, refais-en un avant de continuer : une grille lue d'abord
 transforme un exercice de raisonnement en exercice de remplissage.
 
-## Palier TECH-ILA 4 sur 6 : Niveau 4 Systèmes (bloquant)
+## Verification du livrable TECH-ILA 4 sur 6
+
+> Depuis S-10, la carte n'est plus annoncee ici : elle a ete ouverte dans `05-MAITRISE/02_scalability`. Cette retrospective ne verifie qu'une chose, binaire : le livrable existe-t-il ? Attendu : une topologie dessinee avec ses briques nommees. Non produit = le bloc n'est pas ferme, meme si toutes les lecons sont lues.
+
+### Rappel de la carte (reference, pas decouverte) : Niveau 4 Systèmes (bloquant)
 
 Ce bloc t'a fait piloter la fiabilité, le cloud et le coût d'un système en production. Le
 [Niveau 4 Systèmes](../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/04-niveau-4-systemes.md) de

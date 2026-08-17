@@ -40,7 +40,7 @@ Trois phrases sur trois contenant les quatre éléments : tu entres. Deux sur tr
 ## Verdict
 
 - **3+ réponses solides** → tu peux entrer.
-- **2 ou moins** → retour à `03-PILOTAGE/05_observability/`, ou à sa synthèse `09_observability_grimoire.md`.
+- **2 ou moins** → retour à `03-PILOTAGE/05_observability/`, ou à sa synthèse `09b_observability_grimoire.md`.
 
 > Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
 

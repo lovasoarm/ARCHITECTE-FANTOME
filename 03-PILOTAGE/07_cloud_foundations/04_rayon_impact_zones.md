@@ -36,6 +36,50 @@ composant --> ce qui tombe avec lui --> ce que l'utilisateur voit --> temps de r
 
 La colonne "vu par l'utilisateur" est celle qu'on présente à un non-technicien. Les deux autres servent à décider.
 
+## 2 BIS. LA TOPOLOGIE, DESSINEE
+
+Ce schema est le diagramme exige au volet « diagrammes » du dossier final. Le meme
+dessin sert de reference dans [PREUVES-MODELES/S2-ADR-PRINCIPAL.md](../../PREUVES-MODELES/S2-ADR-PRINCIPAL.md).
+
+```text
+                        REGION A (europe-ouest)
+  +-------------------------------------------------------------+
+  |   ZONE a1                        ZONE a2                     |
+  |  +---------------+   replication  +---------------+          |
+  |  | app  x2       |  synchrone     | app  x2       |          |
+  |  | base PRIMAIRE |==============> | base REPLIQUE |          |
+  |  | cache         |  < 5 ms, meme  | cache         |          |
+  |  +---------------+  facture zone  +---------------+          |
+  |          \                              /                    |
+  |           \____ repartiteur de charge _/                     |
+  |                        |                                     |
+  +------------------------|-------------------------------------+
+                           |  bascule automatique si une zone tombe
+                           |  perte attendue : 0 donnee, ~60 s de service
+                           |
+       egress inter-region |  FACTURE AU Go SORTANT
+       ~0,02 a 0,11 USD/Go |  (relever le vrai prix : 07_releve_tarifaire_reel.md)
+                           v
+                        REGION B (amerique-nord)
+  +-------------------------------------------------------------+
+  |   ZONE b1                                                    |
+  |  +---------------+   replication asynchrone                  |
+  |  | app  x1       |   retard 1 a 15 s = donnees perdues        |
+  |  | base SECONDE  |   en cas de bascule region                |
+  |  +---------------+                                           |
+  +-------------------------------------------------------------+
+
+  Trait `==>`  : replication synchrone, gratuite dans la region, coute de la latence.
+  Trait `-->`  : trafic facture, l'egress inter-region est la ligne qu'on oublie.
+  Une ZONE tombe : bascule interne, l'utilisateur voit une coupure courte.
+  Une REGION tombe : bascule externe, l'utilisateur voit une coupure ET une perte.
+```
+
+Ce que le dessin rend indiscutable et qu'un tableau ne rend pas : l'egress se paie sur
+la fleche entre les deux regions, pas dans les cases ; la replication intra-region ne se
+paie pas en argent mais en latence d'ecriture ; et une bascule de region admet une perte
+de donnees, ce qui est une decision metier, jamais une decision technique.
+
 ## 3. LE PRIX D'UNE NEUVIÈME, CALCULÉ ET NON RESSENTI
 
 ```
@@ -46,6 +90,51 @@ gain = minutes d'indisponibilité évitées * coût d'une minute d'arrêt
 Le coût d'une minute d'arrêt s'estime avec le métier : revenu horaire perdu, coût de traitement des réclamations, pénalité contractuelle éventuelle. Un ordre de grandeur assumé et daté vaut mieux que l'absence de chiffre.
 
 Intuition : une assurance ne s'achète pas au sentiment, mais en comparant la prime au sinistre probable. Une neuvième supplémentaire est exactement une prime d'assurance.
+
+## 3 BIS : LE CALCUL CHIFFRÉ DE LA SECONDE ZONE
+
+Les pourcentages de la section 1 sont des ordres de grandeur : ils ne se recopient pas dans un budget. Le calcul se fait ligne par ligne, avec **tes** prix issus de [07_releve_tarifaire_reel.md](07_releve_tarifaire_reel.md), parce que la seconde zone ne double pas tout : elle double ce qui est répliqué, et ajoute une ligne que personne n'anticipe, le trafic entre zones.
+
+```text
+Ce que la seconde zone duplique          Ce qu'elle ne duplique pas
+- calcul (les instances de secours)      - stockage objet (déjà multi-zone chez la
+- base managée (réplique synchrone)        plupart des fournisseurs : à vérifier, pas
+- adresses IP / équilibreur                à supposer)
+                                         - egress Internet (même volume sortant)
+Ce qu'elle AJOUTE
+- trafic inter-zones, facturé au Go dans un sens, parfois dans les deux
+```
+
+Le calcul, avec les quatre lignes du relevé :
+
+```text
+mono_zone   = calcul + base + stockage + egress
+multi_zone  = (calcul x 2) + (base x 2) + stockage + egress + inter_zones
+inter_zones = Go répliqués par mois x prix au Go du trafic inter-zones
+
+cout_seconde_zone = multi_zone - mono_zone
+                  = calcul + base + inter_zones
+```
+
+Exemple entièrement fictif, structure à recopier, chiffres à remplacer par les tiens :
+
+```text
+calcul       : 1 vCPU / 2 Go            -> A EUR / mois   (relevé, section 1)
+base managée : petite instance, 20 Go   -> B EUR / mois   (relevé, section 1)
+réplication  : 30 Go/mois entre zones   -> 30 x C EUR/Go  (relevé, ligne à ajouter)
+
+cout_seconde_zone = A + B + 30 x C  EUR / mois
+```
+
+Puis, et seulement alors, la comparaison qui décide :
+
+```text
+minutes d'arrêt évitées par an = (SLO cible - SLO actuel) x 525 600 minutes
+gain annuel = minutes évitées x coût d'une minute d'arrêt
+verdict     = gain annuel  vs  cout_seconde_zone x 12
+```
+
+Trois obligations pour que ce calcul soit opposable : chaque prix porte son URL et sa date, le volume répliqué est une mesure ou une hypothèse écrite (jamais un blanc), et le coût d'une minute d'arrêt est justifié en une phrase par un élément métier. Un calcul de neuvième sans ces trois attributs se démonte en une question, et c'est exactement la question que pose la **tension n°1 imposée du capstone**.
 
 ## 4. LES DÉPENDANCES QUI ANNULENT TA REDONDANCE
 
@@ -61,7 +150,7 @@ Risque réel : une facture multi-zone payée douze mois pour une disponibilité 
 
 **Exercice 1 : la carte d'impact (25 min).** Remplis le tableau de la section 2 pour ton fil rouge, tous composants inclus, tiers compris.
 
-**Exercice 2 : le prix de la neuvième (20 min).** Prends ton SLO actuel. Chiffre le passage au palier supérieur, en euros par mois, et écris la phrase que tu dirais au commanditaire : "cette neuvième coûte X par mois, et voici ce qu'elle évite".
+**Exercice 2 : le prix de la neuvième (20 min).** Prends ton SLO actuel. Applique le calcul de la section 3 bis avec les prix de ton [relevé tarifaire](07_releve_tarifaire_reel.md), inter-zones compris, et écris la phrase que tu dirais au commanditaire : "cette neuvième coûte X par mois, et voici ce qu'elle évite". Une phrase sans les trois attributs (URL, date, volume) n'est pas recevable.
 
 **Exercice 3 : le maillon faible (15 min).** Cherche dans ta carte la dépendance qui plafonne ta disponibilité réelle. Écris ce que tu ferais si le budget augmentait de 20%, et ce que tu ferais s'il n'augmentait pas.
 

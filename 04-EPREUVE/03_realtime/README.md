@@ -19,7 +19,6 @@ Liste generee : tout fichier de `04-EPREUVE/03_realtime` est joignable depuis ic
 - [05_EXO_LECTURE.md](05_EXO_LECTURE.md)
 - [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
 - [98_PORTAGE_MENTAL.md](98_PORTAGE_MENTAL.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
 - [01_websockets/](01_websockets/README.md)
 - [02_sse/](02_sse/README.md)
 - [03_webrtc/](03_webrtc/README.md)

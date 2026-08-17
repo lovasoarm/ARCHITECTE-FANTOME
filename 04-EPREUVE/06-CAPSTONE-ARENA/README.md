@@ -1,4 +1,4 @@
-[Sommaire](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../05-BIG-APP-SNOOP/README.md) | [Niveau suivant](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md)
+[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../05-BIG-APP-SNOOP/README.md) | [Niveau suivant](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md)
 
 # Niveau 12 : Capstone Arena
 
@@ -18,7 +18,7 @@ quelle compétence utiliser à quel moment.
 [challenge](../05-BIG-APP-SNOOP/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 12 une difficulté qui vient du niveau 11.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
 
 Prérequis : tous les niveaux 00 à 11 terminés, avec leurs challenges et boss fights validés.
 Ce niveau n'enseigne pas de méthode nouvelle, il vérifie que les précédentes tiennent
@@ -97,6 +97,7 @@ Personne ne va clarifier le brief à ta place. C'est le point.
 
 Liste generee : tout fichier de `04-EPREUVE/06-CAPSTONE-ARENA` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
+- [00_prereq_check.md](00_prereq_check.md)
 - [01-why-this-level.md](01-why-this-level.md)
 - [02-briefing.md](02-briefing.md)
 - [03-deliverables.md](03-deliverables.md)

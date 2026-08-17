@@ -31,7 +31,6 @@ Liste generee : tout fichier de `03-PILOTAGE/02_web_inclusive` est joignable dep
 - [09_EXO_LECTURE.md](09_EXO_LECTURE.md)
 - [10_EXO_JEUNE_IA.md](10_EXO_JEUNE_IA.md)
 - [98_PORTAGE_MENTAL.md](98_PORTAGE_MENTAL.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
 - [08_i18n/](08_i18n/README.md)
 - [verification_pack/](verification_pack/README.md)
 

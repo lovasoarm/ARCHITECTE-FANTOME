@@ -1,52 +1,63 @@
 #!/usr/bin/env node
-// Verrou anti-regression : interdit toute citation d'un module par son ancienne
-// numerotation MyFunnyJS (ex: "22_security") sans son prefixe de palier
-// (ex: "03-PILOTAGE/04_security").
-// Usage : node outils/verifier_numerotation.mjs [racine]
+// Verifie la numerotation locale NN_ / NN- de chaque dossier.
+// Refus (code 1) : deux fichiers du meme dossier qui se disputent le meme numero.
+// Avertissement (code 0) : trou dans la sequence, tolere car un fichier retire
+// laisse son numero libre et renumeroter casserait tous les liens entrants.
+//
+// Conventions du depot, hors perimetre du refus :
+//   - `00_` : porte d'entree (00_why_*, 00_prereq_check, 00_bridge_exo) ;
+//   - `NN_*_minimini_projet.md` : application immediate du fichier NN ;
+//   - `NNb_` : second fichier au meme rang de lecture (convention 11b du depot) ;
+//   - `9x_` : annexes de fin de module (PORTAGE_MENTAL, PONT, EXO_IA_MENTEUSE).
+//
+// node outils/verifier_numerotation.mjs .
+import { listerMd } from "./lib_depot.mjs";
 
-import { readdirSync, readFileSync, statSync } from "node:fs";
-import { join, relative } from "node:path";
+const racine = process.argv[2] ?? ".";
+const NUM = /^(\d{2})([a-z]?)[_-]/;
+const RESERVE = (num, nom) =>
+  num === 0 || num >= 90 || /_minimini_projet\.md$/.test(nom) || /_drill_exec\.md$/.test(nom);
 
-const RACINE = process.argv[2] ?? ".";
+const parDossier = new Map();
+for (const rel of listerMd(racine)) {
+  const parts = rel.split("/");
+  const nom = parts.pop();
+  const dossier = parts.join("/") || ".";
+  const m = nom.match(NUM);
+  if (!m) continue;
+  if (!parDossier.has(dossier)) parDossier.set(dossier, []);
+  parDossier.get(dossier).push({ nom, num: Number(m[1]), lettre: m[2] });
+}
 
-const MORTS = [
-  "00_getting_started", "00_referentiel", "01_fundamentals", "02_problem_solving",
-  "03_async", "04_debugging", "05_error_handling", "06_testing", "07_math_basics",
-  "08_memory_performance", "09_data_structures", "10_algorithms", "11_functional_js",
-  "12_design_patterns", "13_refactoring", "14_typescript", "15_runtime_env",
-  "16_architecture_patterns", "17_web_concepts", "18_oop_js", "19_web_inclusive",
-  "20_realtime", "21_api_craft", "22_security", "23_ai_native_dev", "24_databases",
-  "25_scalability", "26_observability", "27_team_craft", "28_edge_cases",
-  "29_ai_agents_and_autonomy", "30_mini_projects", "31_annexes", "32_tools",
-];
+const refus = [];
+const avertissements = [];
 
-const MOTIF = new RegExp(`(?<![\\w/\\-.])(${MORTS.join("|")})\\b`, "g");
-
-function* fichiers(dir) {
-  for (const e of readdirSync(dir)) {
-    if (e === ".git" || e === "node_modules") continue;
-    const p = join(dir, e);
-    if (statSync(p).isDirectory()) yield* fichiers(p);
-    else if (p.endsWith(".md")) yield p;
+for (const [dossier, entrees] of [...parDossier].sort()) {
+  const vus = new Map();
+  const rangs = new Map();
+  for (const e of entrees.sort((a, b) => a.nom.localeCompare(b.nom))) {
+    const cle = `${e.num}${e.lettre}`;
+    if (rangs.has(cle)) {
+      const detail = `${dossier} : rang ${cle} porte par ${rangs.get(cle)} et ${e.nom}`;
+      if (RESERVE(e.num, e.nom) || RESERVE(e.num, rangs.get(cle))) avertissements.push(detail);
+      else refus.push(detail);
+    } else {
+      rangs.set(cle, e.nom);
+      if (!vus.has(e.num)) vus.set(e.num, e.nom);
+    }
+  }
+  const nums = [...vus.keys()].filter((n) => n > 0 && n < 90).sort((a, b) => a - b);
+  for (let i = 1; i < nums.length; i += 1) {
+    if (nums[i] - nums[i - 1] > 1) {
+      const manquants = [];
+      for (let n = nums[i - 1] + 1; n < nums[i]; n += 1) manquants.push(String(n).padStart(2, "0"));
+      avertissements.push(`${dossier} : numero(s) libre(s) ${manquants.join(", ")} entre ${vus.get(nums[i - 1])} et ${vus.get(nums[i])}`);
+    }
   }
 }
 
-let fautes = 0;
-for (const f of fichiers(RACINE)) {
-  // Les blocs de code et le code inline sont exclus du controle : ils servent
-  // justement a montrer des exemples de ce qui est refuse.
-  const brut = readFileSync(f, "utf8").replace(/```[\s\S]*?```/g, (b) => b.replace(/[^\n]/g, " "));
-  const lignes = brut.split("\n").map((l) => l.replace(/`[^`]*`/g, ""));
-  lignes.forEach((ligne, i) => {
-    for (const m of ligne.matchAll(MOTIF)) {
-      fautes++;
-      console.log(`${relative(RACINE, f)}:${i + 1}: numerotation morte "${m[1]}"`);
-    }
-  });
-}
-
-if (fautes > 0) {
-  console.error(`\nECHEC : ${fautes} citation(s) d'ancienne numerotation. Utilise le chemin de palier complet.`);
-  process.exit(1);
-}
-console.log("OK : aucune numerotation morte citee dans le repo.");
+console.log(`${parDossier.size} dossiers numerotes verifies : ${refus.length} refus, ${avertissements.length} avertissements.`);
+for (const a of avertissements.slice(0, 20)) console.log(`  info  ${a}`);
+if (avertissements.length > 20) console.log(`  info  ... et ${avertissements.length - 20} autres numeros libres.`);
+for (const r of refus) console.log(`  FAUTE ${r}`);
+process.exit(refus.length === 0 ? 0 : 1);

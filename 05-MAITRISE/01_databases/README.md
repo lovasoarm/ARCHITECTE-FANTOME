@@ -27,7 +27,6 @@ Liste generee : tout fichier de `05-MAITRISE/01_databases` est joignable depuis 
 - [98_EXO_IA_MENTEUSE.md](98_EXO_IA_MENTEUSE.md)
 - [98_PORTAGE_MENTAL.md](98_PORTAGE_MENTAL.md)
 - [99_du_single_node_au_cluster.md](99_du_single_node_au_cluster.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

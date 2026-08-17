@@ -1,5 +1,11 @@
 # Pyramide vs trophée, quoi tester selon le coût de la panne
 
+> **Hiérarchie de traitement.** Le traitement de référence des tests est
+> [02-CONSTRUCTION/03_testing/](../../02-CONSTRUCTION/03_testing/README.md) : unitaire,
+> mocking, intégration, TDD, contrat, end-to-end, stratégie. Cette page est la **mise en
+> pratique sur ton fil rouge** : elle arbitre quoi tester chez toi selon le coût réel d'une
+> panne. Reviens ici quand tu as lu la référence.
+
 ## Le piège
 
 L'équipe du système de tournées de livraison frigorifique a un objectif affiché : "80 % de

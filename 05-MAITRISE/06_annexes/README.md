@@ -39,7 +39,6 @@ Liste generee : tout fichier de `05-MAITRISE/06_annexes` est joignable depuis ic
 - [26_spaced_repetition.md](26_spaced_repetition.md)
 - [32_EXO_LECTURE.md](32_EXO_LECTURE.md)
 - [33_EXO_JEUNE_IA.md](33_EXO_JEUNE_IA.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
 - [16_career/](16_career/README.md)
 - [19_interview/](19_interview/README.md)
 - [23_reading/](23_reading/README.md)

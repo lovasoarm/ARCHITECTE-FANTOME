@@ -1,4 +1,4 @@
-[Sommaire](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md) | [Niveau suivant](../01-BONUS-VAULT/README.md)
+[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md) | [Niveau suivant](../01-BONUS-VAULT/README.md)
 
 # Niveau 14 : Tool Cave
 
@@ -38,7 +38,7 @@ Auto-test d'entrée :
 [challenge](../../05-MAITRISE/05-DAY-TO-LEGEND/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 14 une difficulté qui vient du niveau 13.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
 
 ## Ce que tu sais faire à la sortie
 
@@ -93,6 +93,7 @@ transmissible, quel que soit l'outil que tu tiens dans la main.
 
 Liste generee : tout fichier de `04-EPREUVE/02-TOOL-CAVE` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
+- [00_prereq_check.md](00_prereq_check.md)
 - [01-why-this-level.md](01-why-this-level.md)
 - [02-editor-and-shell.md](02-editor-and-shell.md)
 - [03-debugging-toolkit.md](03-debugging-toolkit.md)

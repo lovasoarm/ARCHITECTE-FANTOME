@@ -69,4 +69,4 @@ console.log("D");
 - L'event loop ne pousse que sur pile vide.
 - Les I/O sont déléguées à l'OS, pas exécutées par JS.
 
-Prochain arrêt : [`04_event_loop/`](04_event_loop/).
+Prochain arrêt : [`04_event_loop/`](04_event_loop).

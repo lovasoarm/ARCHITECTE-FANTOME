@@ -3,62 +3,44 @@ stability: intemporel
 acte: produire
 ---
 
-# EXO [JEUNE IA] : 02-CONSTRUCTION/02_mini_projects
+# EXO [JEUNE IA] : 02-CONSTRUCTION/02_mini_projects : pourquoi des projets : la différence entre savoir et pouvoir sans IA
 
 Temps de lecture ~2 min
 
-> Tag `[JEUNE IA]` : IA totalement coupée (Copilot / Claude / ChatGPT
-> désactivés). Durée : 45 min chrono.
+> Tag `[JEUNE IA]` : IA totalement coupee (Copilot, Claude, ChatGPT desactives).
+> Duree : 60 min chrono, en un seul bloc.
+> Mode de verification : critere binaire du `verification_pack` de ce module ([verification_pack/criteres.md](verification_pack/criteres.md)). Jamais une IA.
+> Auto-notation interdite : aucune case a cocher, aucune note que tu te donnes a toi-meme ne vaut verdict. Le verdict sort des drills, ou il n'existe pas.
 
-## Contexte
+## Pourquoi ici et pas ailleurs
 
-Tu joues le rôle du **dev senior** qui accompagne une IA junior sur son
-premier mini-projet. L'IA est bornée : elle sait générer du code, elle ne
-sait pas juger un scope.
+Sur ce sujet, une reponse d'IA est plausible avant d'etre juste, et l'erreur ne plante pas : elle se defend en reunion. Le seul moyen de savoir ou tu en es vraiment, c'est de produire d'abord, de comparer ensuite, et de chiffrer l'ecart.
 
-## Mission
+## Protocole en trois temps, sans exception
 
-Prends `10_legacy_dungeon` ou `13_memory_hunter`. Sans écrire une ligne
-de code, produis **un brief de 300 mots max** que tu donnerais à une IA
-junior pour qu'elle attaque le projet sans dérailler.
+**Temps 1 : produire seul (35 min).** IA coupee de bout en bout. Reprends l'un des exercices deja faits de ce module et refais-le sur un cas neuf, de memoire :
 
-Le brief doit contenir, dans cet ordre :
+- [20_EXO_LECTURE.md](20_EXO_LECTURE.md)
+- [21_EXO_JEUNE_IA.md](21_EXO_JEUNE_IA.md)
 
-1. **But mesurable** en une phrase.
-2. **Périmètre exclu** (ce que l'IA ne doit surtout PAS coder toute seule
-   sans validation humaine, typiquement : les décisions d'architecture,
-   la politique d'éviction, le choix de broker).
-3. **3 checkpoints** où l'IA doit s'arrêter et te montrer son travail.
-4. **1 test d'acceptation** rédigé en langage naturel.
+Ecris ton hypothese de depart avant de produire, dans `HYPOTHESES.md`, horodatee.
 
-## Auto-vérification (10 min)
+**Temps 2 : demander la meme chose a une IA (10 min).** Meme enonce, mot pour mot, sans lui montrer ta production. Conserve sa reponse telle quelle, dans un fichier a cote de la tienne.
 
-Relis ton brief à voix haute. Si un dev de 2 ans XP le lit sans contexte,
-peut-il commencer à guider une IA ? Si non, reformule.
+**Temps 3 : ecrire les trois ecarts (15 min).** Dix lignes maximum : les trois ecarts les plus importants, qui a raison pour chacun, et une justification chiffree. Au moins un des trois ecarts doit porter sur un chiffre mesure sur ta machine, pas sur une opinion.
 
-Piège classique : le brief liste toutes les fonctions à écrire. C'est la
-mauvaise granularité. Le brief doit contraindre les **choix**, pas la
-frappe.
+## Preuve a livrer
 
-Livrable : `BRIEF.md` dans le dossier du mini-projet choisi. Non versionné
-si tu le juges brouillon.
+- ta production seule, horodatee avant la reponse de l'IA ;
+- la reponse de l'IA, non modifiee ;
+- `ECARTS.md` : trois ecarts, trois verdicts, trois justifications chiffrees.
 
+Un `ECARTS.md` ou l'IA a raison trois fois sur trois sans que tu expliques pourquoi tu t'es trompe est non recevable : ce n'est pas un aveu, c'est une abdication.
 
-## Preuve tracable (proof-of-work)
+## Verdict
 
-L'auto-evaluation ci-dessus repose sur ton honnetete. Pour transformer ca en preuve horodatee : demarre un chrono visible (`date` avant + `date` apres), colle les deux timestamps + un SHA256 de ta solution (`shasum -a 256 solution.js`) dans un fichier `FASTING.md` a cote de la solution. C'est ta ligne de progression : relis-la dans 3 mois pour voir la courbe.
+Correction par les drills du [verification_pack](verification_pack/criteres.md) de ce module, jamais par l'IA. Binaire : les trois ecarts sont nommes et chiffres, ou l'exercice est non reussi.
 
-## VERROU LOCK (obligatoire, principe generalise)
+## Interdiction d'auto-notation
 
-> Principe LOCK : interdiction de toucher au clavier tant que tu n'as pas
-> ecrit ton plan d'attaque. Le meme verrou que dans le mini-projet 18 et
-> dans `01-CADRAGE/03_debugging/HYPOTHESES_*`. Il n'est pas negociable ici non plus.
-
-Avant tout code :
-1. Ecris ton `HYPOTHESES.md` (une phrase par hypothese, chaque hypothese
-   testable en isolation).
-2. Ecris le critere binaire de reussite (une commande, une sortie attendue).
-3. Ensuite seulement, tu ouvres l'editeur.
-
-Un exo `[JEUNE IA]` sans ces deux artefacts ecrits **avant** le premier
-caractere de code est considere invalide par le `verification_pack`.
+Cet exercice ne se valide jamais par une liste de cases cochees ni par une note que tu t'attribues. Le seul verdict opposable est le critere binaire du [verification_pack/criteres.md](verification_pack/criteres.md) de ce module : reussi ou non reussi, rien entre les deux. Une IA ne corrige pas ce fichier, et toi non plus tu ne le corriges pas au ressenti.

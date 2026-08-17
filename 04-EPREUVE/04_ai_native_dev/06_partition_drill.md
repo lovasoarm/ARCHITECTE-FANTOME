@@ -84,6 +84,6 @@ les 4 semaines.
 
 ## Reference croisee
 
-- `04-EPREUVE/04_ai_native_dev/07_solo_vs_copilot_drill.md`
+- `04-EPREUVE/04_ai_native_dev/07b_solo_vs_copilot_drill.md`
 - `DEPENDENCY_LEDGER.md`
 - `node solution.js` (auto-verif ecrite par toi)

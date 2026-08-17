@@ -5,6 +5,13 @@ acte: appliquer
 
 # Gestion d'incident, postmortem sans blâme
 
+> **Hiérarchie de traitement.** L'incident se lit avec les signaux du module de référence
+> [03-PILOTAGE/05_observability/](../05_observability/README.md), en particulier
+> [08_oncall_drill.md](../05_observability/08_oncall_drill.md) et
+> [06_debug_in_prod.md](../05_observability/06_debug_in_prod.md). Cette page est la **mise en
+> pratique** : le protocole que tu appliques sur ton fil rouge quand il tombe, et le
+> postmortem que tu écris ensuite.
+
 ## Le piège
 
 Un vendredi soir, un déploiement du service de vérification de température du système de

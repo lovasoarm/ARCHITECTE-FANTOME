@@ -1,58 +1,41 @@
-# outils
+---
+stability: perissable_2028
+acte: évaluer
+---
 
-Deux verrous de qualite, a lancer avant toute livraison du repo. Ils ne demandent aucune dependance : Node seul suffit.
+# outils/ — les verrous de livraison
+
+Acte attendu : évaluer.
+
+Aucun de ces scripts n'enseigne quoi que ce soit. Ils existent pour une seule raison : une promesse de qualité qu'on ne peut pas rejouer soi-même n'est pas une preuve, c'est une déclaration. Node >= 18, aucune dépendance à installer.
+
+## Les quatre verrous
+
+| Commande | Ce qu'elle refuse |
+| --- | --- |
+| `node outils/verifier_numerotation.mjs .` | deux fichiers avec le même numéro local, ou un trou dans la séquence d'un dossier |
+| `node outils/verifier_liens.mjs . --ecrire` | un lien relatif qui ne résout pas sur disque ; régénère `VERIFICATION_LIENS.md` avec les vrais nombres |
+| `node outils/generer_perissabilite.mjs` | un en-tête `stability:` absent de l'index de péremption ; régénère `05-MAITRISE/06_annexes/21_PERISSABILITE_INDEX.md` |
+| `node outils/controle_livraison.mjs --strict` | tout le reste : en-tête manquant, lien cassé, deux titres de niveau 1 identiques dans un dossier, exercice de jeûne IA en double ou non numéroté, fichier généré sans son générateur, montant en euros sans relevé daté, gate sécurité absent des modules cloud / SLO / DDD |
+
+`node outils/generer_index_dossiers.mjs` régénère les blocs `CONTENU-DOSSIER` des `README.md` : il existe parce que ces blocs sont marqués « généré », et qu'un fichier généré ne se livre pas sans son générateur.
+
+## L'ordre à respecter
 
 ```bash
-node outils/verifier_numerotation.mjs .
-node outils/verifier_liens.mjs . --ecrire
+node outils/generer_index_dossiers.mjs
 node outils/generer_perissabilite.mjs
+node outils/verifier_liens.mjs . --ecrire
+node outils/verifier_numerotation.mjs .
 node outils/controle_livraison.mjs --strict
 ```
 
-## verifier_numerotation.mjs
+Les générateurs d'abord, les vérificateurs ensuite : on vérifie l'état livré, pas un état intermédiaire.
 
-Interdit qu'un module soit cite par son ancienne numerotation MyFunnyJS seule. Un module se cite toujours avec son prefixe de palier.
+## La règle qui survit à ces scripts
 
-- Refuse : `22_security`, `30_mini_projects`, `31_annexes`
-- Exige : `03-PILOTAGE/04_security`, `02-CONSTRUCTION/02_mini_projects`, `05-MAITRISE/06_annexes`
+Aucun fichier « généré » ne survit sans son générateur dans le même zip. Si l'outillage disparaît, la section « Preuves de qualité du dépôt » du README, `VERIFICATION_LIENS.md`, l'index de péremption et les blocs `CONTENU-DOSSIER` disparaissent dans le même mouvement — sinon le dépôt certifie ce que personne ne peut plus vérifier.
 
-Le script sort en code 1 des la premiere occurrence, avec le fichier et la ligne fautive.
+## Code de sortie
 
-## verifier_liens.mjs
-
-Rejoue le controle des liens relatifs : chemin resolu depuis le dossier du fichier source, ancre retiree, blocs de code et code inline exclus. Sort en code 1 si un seul lien ne resout pas.
-
-Avec `--ecrire`, il produit la preuve d'exhaustivite [VERIFICATION_LIENS.md](../VERIFICATION_LIENS.md) a la racine : fichiers parcourus, liens trouves, liens resolus, liens casses. Le perimetre est le depot entier, jamais un echantillon.
-
-## generer_perissabilite.mjs
-
-Regenere `05-MAITRISE/06_annexes/21_PERISSABILITE_INDEX.md` depuis les en-tetes `stability:` du depot. Avec `--verifier`, ne reecrit rien et sort en code 1 si l'index commite differe de l'index regenere.
-
-## controle_livraison.mjs
-
-Refuse la livraison au premier controle en echec. Le drapeau `--strict` est accepte : il n'existe pas de mode indulgent. Controles ajoutes au bloc C : tout tableau portant un montant en euros doit etre precede de sa ligne `Releve le <date>, chez <fournisseur>, unite <unite>, URL <page>`, et l'index de perissabilite doit etre a jour.
-
-Controles ajoutes au bloc F : la preuve d'exhaustivite des liens doit couvrir 100 % des `.md` du depot, afficher fichiers parcourus / liens trouves / liens resolus, et le depot ne doit porter aucun lien relatif casse.
-
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `outils` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-
-<!-- CONTENU-DOSSIER:fin -->
-
-## generer_index_dossiers.mjs
-
-Ecrit dans chaque README de dossier la section « Contenu du dossier », qui cite tous les fichiers et sous-dossiers. Garantit qu'aucun `.md` n'est orphelin. Avec `--verifier`, ne reecrit rien et sort en code 1 si un index est perime.
-
-Controles ajoutes au bloc G : zero document orphelin, zero espace dans un nom de fichier, aucune phrase de colonne « Limite » repetee plus de deux fois.
-
-## controle_typographie.mjs
-
-Controle 22 (bloc B2). Trois regles gelees, sortie `fichier:ligne` : 0 emoji, 0 selecteur de variation (U+FE0E / U+FE0F), 0 tiret cadratin ni demi-cadratin. Usage : `node outils/controle_typographie.mjs .`
-
-## controle_numerotation_continue.mjs
-
-Controle 23 (bloc B4). Dans tout dossier de module (celui qui porte un `00_why_*.md`), les prefixes numeriques demarrent a 00 et se suivent sans trou ; les numeros reserves 90 a 99 sont hors perimetre. Usage : `node outils/controle_numerotation_continue.mjs .`
+`0` = livrable. `1` = refus, avec la liste nommée des fautes. Un refus ne se contourne pas en retirant le contrôle : il se corrige dans le contenu.

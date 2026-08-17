@@ -22,7 +22,8 @@ Liste generee : tout fichier de `05-MAITRISE/06_annexes/29_toolchain` est joigna
 - [06_cicd_basics.md](06_cicd_basics.md)
 - [07_toolchain_grimoire.md](07_toolchain_grimoire.md)
 - [08_NODE_VERSIONS.md](08_NODE_VERSIONS.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [09_EXO_JEUNE_IA.md](09_EXO_JEUNE_IA.md)
+- [09_EXO_JEUNE_IA.md](09_EXO_JEUNE_IA.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

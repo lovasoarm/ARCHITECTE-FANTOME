@@ -22,7 +22,6 @@ Liste generee : tout fichier de `05-MAITRISE/07_tools` est joignable depuis ici,
 - [05_tools_grimoire.md](05_tools_grimoire.md)
 - [06_EXO_LECTURE.md](06_EXO_LECTURE.md)
 - [07_EXO_JEUNE_IA.md](07_EXO_JEUNE_IA.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

@@ -27,7 +27,6 @@ Liste generee : tout fichier de `05-MAITRISE/04_ai_agents_and_autonomy` est joig
 - [10_EXO_JEUNE_IA.md](10_EXO_JEUNE_IA.md)
 - [11_EXO_PARTITION_HUMAIN_IA.md](11_EXO_PARTITION_HUMAIN_IA.md)
 - [98_PORTAGE_MENTAL.md](98_PORTAGE_MENTAL.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
 - [08_traces_pool/](08_traces_pool/README.md)
 - [verification_pack/](verification_pack/README.md)
 

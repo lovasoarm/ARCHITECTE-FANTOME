@@ -19,7 +19,8 @@ Liste generee : tout fichier de `02-CONSTRUCTION/12_typescript/04_typescript_too
 - [02_ts_compiler_config_minimini_projet.md](02_ts_compiler_config_minimini_projet.md)
 - [03_ts_migration_guide.md](03_ts_migration_guide.md)
 - [04_ts_advanced_grimoire.md](04_ts_advanced_grimoire.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [05_EXO_JEUNE_IA.md](05_EXO_JEUNE_IA.md)
+- [05_EXO_JEUNE_IA.md](05_EXO_JEUNE_IA.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

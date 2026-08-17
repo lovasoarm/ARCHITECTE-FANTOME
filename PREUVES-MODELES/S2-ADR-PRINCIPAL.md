@@ -61,6 +61,43 @@ version précédente. Les deux champs coexistent 90 jours, avec un en-tête de d
 sur l'ancien. Date d'extinction fixée et communiquée aux trois consommateurs connus de
 l'API avant l'écriture de cet ADR, pas après.
 
+## Diagramme de reference (volet « diagrammes » du dossier final)
+
+Un ADR de topologie sans dessin n'est pas defendable au tableau. Le diagramme
+ci-dessous est celui attendu : il montre les deux zones, la region secondaire, la nature
+de chaque replication et l'endroit exact ou l'argent sort. Il est repris a l'identique de
+[03-PILOTAGE/07_cloud_foundations/04_rayon_impact_zones.md](../03-PILOTAGE/07_cloud_foundations/04_rayon_impact_zones.md).
+
+```text
+                        REGION A (europe-ouest)
+  +-------------------------------------------------------------+
+  |   ZONE a1                        ZONE a2                     |
+  |  +---------------+   replication  +---------------+          |
+  |  | app  x2       |  synchrone     | app  x2       |          |
+  |  | base PRIMAIRE |==============> | base REPLIQUE |          |
+  |  | cache         |  < 5 ms, meme  | cache         |          |
+  |  +---------------+  facture zone  +---------------+          |
+  |          \                              /                    |
+  |           \____ repartiteur de charge _/                     |
+  |                        |                                     |
+  +------------------------|-------------------------------------+
+                           |  bascule automatique si une zone tombe
+                           |  perte attendue : 0 donnee, ~60 s de service
+                           |
+       egress inter-region |  FACTURE AU Go SORTANT
+                           v
+                        REGION B (amerique-nord)
+  +-------------------------------------------------------------+
+  |   ZONE b1 : app x1, base SECONDE, replication asynchrone     |
+  |   retard 1 a 15 s = donnees perdues en cas de bascule region |
+  +-------------------------------------------------------------+
+```
+
+Regle de reprise : dans TON ADR, remplace les prix et les latences par ceux de ton
+releve ([07_releve_tarifaire_reel.md](../03-PILOTAGE/07_cloud_foundations/07_releve_tarifaire_reel.md)),
+date le dessin, et annote la fleche d'egress avec le volume mensuel que tu attends. Un
+diagramme sans volume annote ne permet pas de discuter le cout.
+
 ## Où ce modèle est repris
 
 Chaque ADR chiffre au moins une conséquence en coût (famille S1) ou en disponibilité

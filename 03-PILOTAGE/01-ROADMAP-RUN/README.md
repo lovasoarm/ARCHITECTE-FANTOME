@@ -2,7 +2,7 @@
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../../02-CONSTRUCTION/20-API-DOJO/README.md) | [Niveau suivant](../03-QUALITY-SHIELD/README.md)
+[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../../02-CONSTRUCTION/20-API-DOJO/README.md) | [Niveau suivant](../03-QUALITY-SHIELD/README.md)
 
 **Ce niveau réutilise :** [03-MVP-SPLIT](../../01-CADRAGE/05-MVP-SPLIT/04-estimating-honestly.md) : l'estimation honnete et l'effet tunnel, réutilises pour batir un planning risk-first.
 
@@ -16,7 +16,7 @@
 [challenge](../../02-CONSTRUCTION/20-API-DOJO/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 08 une difficulté qui vient du niveau 07.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
 
 ## Ce que c'est
 
@@ -91,6 +91,7 @@ présentés dans ce niveau sans qu'on te les rappelle.
 
 Liste generee : tout fichier de `03-PILOTAGE/01-ROADMAP-RUN` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
+- [00_prereq_check.md](00_prereq_check.md)
 - [01-why-this-level.md](01-why-this-level.md)
 - [02-phases-and-milestones.md](02-phases-and-milestones.md)
 - [03-risk-first-planning.md](03-risk-first-planning.md)

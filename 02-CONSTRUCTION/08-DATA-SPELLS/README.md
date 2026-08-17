@@ -2,7 +2,7 @@
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../01-USER-WIZARD/README.md) | [Niveau suivant](../15-ARCHI-LAB/README.md)
+[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../01-USER-WIZARD/README.md) | [Niveau suivant](../15-ARCHI-LAB/README.md)
 
 **Ce niveau réutilise :** [04-USER-WIZARD](../01-USER-WIZARD/03-states-and-empty-cases.md) : les états obligatoires d'un affichage (vide, chargement, erreur), qui deviennent des contraintes sur le modèle de données.
 
@@ -16,7 +16,7 @@
 [challenge](../01-USER-WIZARD/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 05 une difficulté qui vient du niveau 04.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
 
 ## Ce niveau en une phrase
 
@@ -127,6 +127,7 @@ un manque de motivation, c'est un blocage d'outillage. Applique l'issue 1 le jou
 
 Liste generee : tout fichier de `02-CONSTRUCTION/08-DATA-SPELLS` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
+- [00_prereq_check.md](00_prereq_check.md)
 - [01-why-this-level.md](01-why-this-level.md)
 - [02-model-the-domain.md](02-model-the-domain.md)
 - [03-relations-and-normalization.md](03-relations-and-normalization.md)

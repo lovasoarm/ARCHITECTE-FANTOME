@@ -117,7 +117,7 @@ EventEmitter (camp de Rick)
            └── campData (12.4 MB) ← le vrai poids
 ```
 
-Cette chaîne se lit comme une enquête : `campData` ne devrait probablement pas être retenu par un listener d'event toujours actif. Le suspect n'est pas `campData` lui-même, c'est le listener `handleAlerte` jamais retiré qui le garde en otage. La correction n'est pas "alléger campData", c'est "retirer le listener au bon moment" (le sujet du module `04_profiling/02_memory_leak_hunter.md`, mais vu cette fois depuis l'outil plutôt que depuis le code).
+Cette chaîne se lit comme une enquête : `campData` ne devrait probablement pas être retenu par un listener d'event toujours actif. Le suspect n'est pas `campData` lui-même, c'est le listener `handleAlerte` jamais retiré qui le garde en otage. La correction n'est pas "alléger campData", c'est "retirer le listener au bon moment" (le sujet du module `04_profiling/02b_memory_leak_hunter.md`, mais vu cette fois depuis l'outil plutôt que depuis le code).
 
 ---
 

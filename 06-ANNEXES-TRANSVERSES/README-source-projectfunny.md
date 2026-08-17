@@ -112,7 +112,7 @@ donc **avant** le 12, même s'il est numéroté après.
 
 ## Durée honnête
 
-La seule source de durée du dépôt est [CURRICULUM.md](archives/CURRICULUM-projectfunny.md). Total réel du parcours :
+La seule source de durée du dépôt est [CURRICULUM.md](../99-COULISSES/archives/CURRICULUM-projectfunny.md). Total réel du parcours :
 **130 à 145 h hors niveau 13**, soit 11 à 12 semaines à 12 h/semaine, ou 8 à 9 mois à 4 h/semaine.
 Le niveau 13 s'ajoute par-dessus sous forme de routine bornée à 12 semaines. Le capstone (niveau 12)
 pèse 25 à 40 h à lui seul.

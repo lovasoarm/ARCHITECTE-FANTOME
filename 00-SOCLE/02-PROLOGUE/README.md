@@ -2,7 +2,7 @@
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | Niveau précédent : aucun | [Niveau suivant](../06-MINDSET/README.md)
+[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | Niveau précédent : aucun | [Niveau suivant](../06-MINDSET/README.md)
 
 **Ce niveau réutilise :** Rien : c'est le point d'entrée du parcours, il n'y a pas de niveau amont.
 
@@ -14,7 +14,7 @@
 **Verdict de l'auto-test :** ces trois questions n'ont pas de note. Une seule réponse
 hésitante n'empeche pas d'entrer ici : c'est le point de depart du parcours.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
 
 ## Test de calibrage du projet fil rouge
 
@@ -94,6 +94,7 @@ fil rouge est un vrai livrable daté, réutilisé par tous les niveaux suivants.
 
 Liste generee : tout fichier de `00-SOCLE/02-PROLOGUE` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
+- [00_prereq_check.md](00_prereq_check.md)
 - [01-why-this-level.md](01-why-this-level.md)
 - [02-how-to-use-this-curriculum.md](02-how-to-use-this-curriculum.md)
 - [03-the-map.md](03-the-map.md)

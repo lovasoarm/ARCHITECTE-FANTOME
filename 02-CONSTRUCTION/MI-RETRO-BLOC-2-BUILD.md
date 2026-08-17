@@ -1,6 +1,6 @@
 # Mi-rétrospective : bloc CONSTRUCTION, première moitié (modules 01 à 10)
 
-[Sommaire](../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
+[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
 
 Ce bloc compte 20 modules, le double de n'importe quel autre bloc du parcours. Une seule
 rétrospective en sortie, après le module 20, laisse dix modules sans jamais se retourner
@@ -9,7 +9,7 @@ bloc pendant que tu avances sur la suite. Cette mi-rétrospective comble ce trou
 courte qu'une rétrospective de bloc complète : 30 à 40 minutes, pas 60 à 90.
 
 À faire après le module [10_design_patterns](10_design_patterns/00_why_design_patterns.md),
-avant d'ouvrir le [pont vers 11_refactoring](10_design_patterns/99_PONT_avant_module_13_refactoring.md).
+avant d'ouvrir le [pont vers 11_refactoring](10_design_patterns/99_PONT_avant_02-CONSTRUCTION-11_refactoring.md).
 
 ## Ce que tu rouvres
 
@@ -32,7 +32,11 @@ devenu discutable une fois que tu as vu plus large. Ce n'est pas une erreur d'av
 c'est une erreur de ne jamais revenir vérifier si la décision tient encore. Note l'écart, même
 petit, et surtout n'y touche pas encore : la correction vient après la passe 2, pas pendant.
 
-## Palier TECH-ILA 2 sur 6 : Niveau 2 Frontend (bloquant)
+## Verification du livrable TECH-ILA 2 sur 6
+
+> Depuis S-10, la carte n'est plus annoncee ici : elle a ete ouverte dans `02-CONSTRUCTION/01-USER-WIZARD`. Cette retrospective ne verifie qu'une chose, binaire : le livrable existe-t-il ? Attendu : un choix de rendu ecrit et justifie pour le fil rouge. Non produit = le bloc n'est pas ferme, meme si toutes les lecons sont lues.
+
+### Rappel de la carte (reference, pas decouverte) : Niveau 2 Frontend (bloquant)
 
 Dix modules de construction plus tard, le
 [Niveau 2 Frontend](../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/02-niveau-2-frontend.md) de
@@ -58,6 +62,6 @@ comparant un livrable à son propre filtre d'entrée, pas à ta mémoire de ce q
 
 ## ET APRÈS
 
-Le [pont vers 11_refactoring](10_design_patterns/99_PONT_avant_module_13_refactoring.md), puis
+Le [pont vers 11_refactoring](10_design_patterns/99_PONT_avant_02-CONSTRUCTION-11_refactoring.md), puis
 la seconde moitié du bloc. La rétrospective complète t'attend à la fin, après le module 20 :
 [RETRO-BLOC-2-BUILD.md](RETRO-BLOC-2-BUILD.md).

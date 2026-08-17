@@ -19,7 +19,6 @@ Liste generee : tout fichier de `02-CONSTRUCTION/07_algorithms` est joignable de
 - [08_EXO_LECTURE.md](08_EXO_LECTURE.md)
 - [09_EXO_JEUNE_IA.md](09_EXO_JEUNE_IA.md)
 - [98_EXO_IA_MENTEUSE.md](98_EXO_IA_MENTEUSE.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
 - [01_sorting/](01_sorting/README.md)
 - [02_searching/](02_searching/README.md)
 - [03_dynamic_programming/](03_dynamic_programming/README.md)

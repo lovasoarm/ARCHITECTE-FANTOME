@@ -24,7 +24,6 @@ Liste generee : tout fichier de `02-CONSTRUCTION/13_runtime_env` est joignable d
 - [08_EXO_LECTURE.md](08_EXO_LECTURE.md)
 - [09_EXO_JEUNE_IA.md](09_EXO_JEUNE_IA.md)
 - [98_PORTAGE_MENTAL.md](98_PORTAGE_MENTAL.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
 - [06_node_cli_scripts/](06_node_cli_scripts/README.md)
 - [verification_pack/](verification_pack/README.md)
 

@@ -14,6 +14,9 @@ acte: restituer
 
 # ARCHITECTE-FANTOME
 
+> Contenu releve le 2026-08-14 ; les elements perissables et leur procedure de rafraichissement sont listes dans [06-ANNEXES-TRANSVERSES/PEREMPTION-2027.md](06-ANNEXES-TRANSVERSES/PEREMPTION-2027.md).
+
+
 Un seul parcours, six paliers, un seul fil de progression : de zéro jusqu'à un profil Staff Engineer / Principal Engineer à forte dimension Software / Solutions Architect.
 
 Le nom dit ce que devient le diplômé : un Staff Engineer influence tout le système sans être visible partout. Il laisse une empreinte d'architecture dans chaque décision sans avoir écrit chaque ligne.
@@ -139,7 +142,6 @@ Point de passage bloquant de ce palier : le défi de transfert vers un autre lan
 
 ### 06-ANNEXES-TRANSVERSES : références, hors progression
 
-Charte de style, univers narratifs autorisés, pérennité, cartes TECH-ILA, rythmes de travail, épilogue, et l'archive du plan d'entrelacement d'origine dans [06-ANNEXES-TRANSVERSES/archives/ARCHIVE-ORDRE-DE-BATAILLE.md](06-ANNEXES-TRANSVERSES/archives/ARCHIVE-ORDRE-DE-BATAILLE.md). Ce plan décrivait comment naviguer entre deux repos séparés : il est conservé comme trace historique, il n'est plus la carte à suivre. La carte, c'est ce README. Les cartes TECH-ILA ne sont plus une pure référence libre : chacun de ses 6 niveaux est accroché à la rétrospective du bloc correspondant (RETRO-BLOC-1 à RETRO-BLOC-5), avec un seul livrable noté, le portage d'un service du fil rouge dans un second langage, au bloc EPREUVE.
 
 ## Ce que tu montres à la fin
 
@@ -169,7 +171,6 @@ node outils/controle_livraison.mjs --strict
 
 - [VERIFICATION_LIENS.md](VERIFICATION_LIENS.md) : la preuve d'exhaustivité des liens, générée, avec fichiers parcourus, liens trouvés, liens résolus.
 - [outils/README.md](outils/README.md) : ce que chaque verrou refuse, et pourquoi.
-- [06-ANNEXES-TRANSVERSES/archives/](06-ANNEXES-TRANSVERSES/archives/README.md) : le protocole d'audit d'origine et le prompt de fusion v3, archivés en texte intégral pour rendre la fusion traçable de l'extérieur.
 
 <!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
 
@@ -191,3 +192,11 @@ Liste generee : tout fichier de `.` est joignable depuis ici, aucun document n'e
 - [outils/](outils/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+## Pour auditer l'origine de ce repo
+
+La tracabilite pedagogique est deja portee par la colonne [M]/[P]/[N] du sommaire : elle dit,
+ligne par ligne, d'ou vient chaque module. Si tu veux remonter plus loin — prompt de fusion,
+ordre de bataille, protocole d'audit d'origine, notes de decision internes — tout est conserve
+dans [99-COULISSES/](99-COULISSES/README.md). Rien de ce qui s'y trouve n'est a apprendre, et
+c'est pourquoi ce dossier n'apparait dans aucun index destine a l'apprenant.

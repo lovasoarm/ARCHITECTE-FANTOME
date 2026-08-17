@@ -13,7 +13,7 @@ Temps de lecture ~10 min
 
 Un comparatif de fournisseurs n'a de sens que sur **ta** charge, exprimée en unités : vCPU-heures, Go-mois, Go sortants, opérations. Comparer des noms d'offres ne donne rien.
 
-> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste) et fournisseur B (fournisseur européen), unité indiquée colonne par colonne, URL : pages tarifaires publiques citées ci-dessous, à revérifier avant 2027-02. Protocole appliqué : [../../06-ANNEXES-TRANSVERSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../../06-ANNEXES-TRANSVERSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
+> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste) et fournisseur B (fournisseur européen), unité indiquée colonne par colonne, URL : pages tarifaires publiques citées ci-dessous, à revérifier avant 2027-02. Protocole appliqué : [../../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
 
 Ces montants ne sont pas des références : ce sont des **exemples datés**, conservés pour montrer la forme d'un relevé correct. Le tien les remplace.
 

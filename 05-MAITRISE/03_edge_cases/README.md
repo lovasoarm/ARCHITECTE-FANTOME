@@ -28,8 +28,7 @@ Liste generee : tout fichier de `05-MAITRISE/03_edge_cases` est joignable depuis
 - [10_SPEC_DRIFT_DRILL.md](10_SPEC_DRIFT_DRILL.md)
 - [11_SPEC_FLOU_DRIFT_COMBO_DRILL.md](11_SPEC_FLOU_DRIFT_COMBO_DRILL.md)
 - [98_PORTAGE_MENTAL.md](98_PORTAGE_MENTAL.md)
-- [99_PONT_28_29.md](99_PONT_28_29.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [99_PONT_avant_05-MAITRISE-04_ai_agents_and_autonomy.md](99_PONT_avant_05-MAITRISE-04_ai_agents_and_autonomy.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

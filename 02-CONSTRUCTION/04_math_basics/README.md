@@ -27,8 +27,7 @@ Liste generee : tout fichier de `02-CONSTRUCTION/04_math_basics` est joignable d
 - [10_EXO_LECTURE.md](10_EXO_LECTURE.md)
 - [11_EXO_JEUNE_IA.md](11_EXO_JEUNE_IA.md)
 - [98_EXO_IA_MENTEUSE.md](98_EXO_IA_MENTEUSE.md)
-- [99_PONT_avant_module_08_memory.md](99_PONT_avant_module_08_memory.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [99_PONT_avant_02-CONSTRUCTION-05_memory_performance.md](99_PONT_avant_02-CONSTRUCTION-05_memory_performance.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

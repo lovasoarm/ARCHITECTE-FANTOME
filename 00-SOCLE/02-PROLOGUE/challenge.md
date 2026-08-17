@@ -1,6 +1,6 @@
 # Challenge 00 : ton contrat de départ
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Niveau](README.md) | [Grimoire](grimoire.md)
+[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau](README.md) | [Grimoire](grimoire.md)
 
 Ce niveau n'enseigne aucune technique, mais il produit un livrable daté, réutilisé par les
 quinze niveaux suivants : le contrat que tu signes avec toi-même sur ton projet fil rouge.

@@ -27,8 +27,9 @@ Liste generee : tout fichier de `06-ANNEXES-TRANSVERSES` est joignable depuis ic
 - [UNIVERS_AUTORISES.md](UNIVERS_AUTORISES.md)
 - [support.md](support.md)
 - [TECH-ILA/](TECH-ILA/README.md)
-- [archives/](archives/README.md)
 - [assets/](assets/README.md)
-- [meta/](meta/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+- [SIMULATION-ENTREPRISE.md](SIMULATION-ENTREPRISE.md) : trois protocoles solo (comite d'architecture, direction financiere, astreinte) pour les modules Staff qui supposent une equipe.
+- [PEREMPTION-2027.md](PEREMPTION-2027.md) : inventaire date de tout ce qui perime dans ce depot, avec la question a reposer et la source a reverifier.

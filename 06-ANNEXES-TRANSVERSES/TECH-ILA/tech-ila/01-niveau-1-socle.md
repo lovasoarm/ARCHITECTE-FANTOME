@@ -28,20 +28,20 @@ Tout ce qui suit est vrai que tu fasses du web, du mobile, de la data ou de l'em
 
 **Pourquoi ça existe.** Une machine de production n'a pas d'interface graphique. Le jour où ton service tombe à 3h du matin, tu as un SSH, un shell, et rien d'autre.
 
-- **Ancrage MyFunnyJS** : [00-SOCLE/01_getting_started/02_shell_survival.md](../../../00-SOCLE/01_getting_started/02_shell_survival.md) : navigation, pipes, redirections : c'est exactement la chaîne `tail -f | grep` que tu utiliseras en incident.
+- **Ancrage MyFunnyJS** : [00-SOCLE/01_getting_started/02b_shell_survival.md](../../../00-SOCLE/01_getting_started/02b_shell_survival.md) : navigation, pipes, redirections : c'est exactement la chaîne `tail -f | grep` que tu utiliseras en incident.
 - **Ce qu'elle ajoute** : un accès direct au système : processus, permissions, signaux, réseau : sans interface graphique entre toi et la machine.
 - **Ce qu'elle masque** : le fait qu'une commande "qui marche chez toi" dépend de la version du shell, du `PATH`, des locales et des droits de l'utilisateur courant : rien de tout ça n'est visible dans la commande elle-même.
 - **Ce qu'elle ne résout pas** : elle ne t'apprend pas à lire un code source ni à comprendre une architecture ; c'est un outil d'observation et d'action, pas de compréhension.
 - **Quand ne pas la choisir** : pas avant que tu aies un vrai besoin d'agir sur une machine distante ou un incident à diagnostiquer : apprendre 40 flags par cœur sans les avoir utilisés une fois ne sert à rien.
 - **Exemple qui casse** : ton conteneur Docker écrit dans `/data`, monté depuis l'hôte. Le process tourne en `uid 1000`, le dossier appartient à `root`. Ton app plante avec `EACCES: permission denied, open '/data/output.log'`. Aucune ligne de JavaScript n'est en cause.
-- **Preuve que c'est acquis** : tu sais lire `ls -ln` et expliquer un `permission denied` sans changer une ligne de code. **Si tu bloques, reviens à** : [00-SOCLE/01_getting_started/02_shell_survival.md](../../../00-SOCLE/01_getting_started/02_shell_survival.md).
+- **Preuve que c'est acquis** : tu sais lire `ls -ln` et expliquer un `permission denied` sans changer une ligne de code. **Si tu bloques, reviens à** : [00-SOCLE/01_getting_started/02b_shell_survival.md](../../../00-SOCLE/01_getting_started/02b_shell_survival.md).
 
 #### Ce que MyFunnyJS permet déjà de comprendre
 
 Tu as déjà manipulé un shell et écrit des scripts qui parlent au système ; il ne reste qu'à transposer ces gestes sur une machine sans interface graphique.
 
-- [00-SOCLE/01_getting_started/02_shell_survival.md](../../../00-SOCLE/01_getting_started/02_shell_survival.md) : navigation, pipes, redirections.
-- [02-CONSTRUCTION/13_runtime_env/06_node_cli_scripts/](../../../02-CONSTRUCTION/13_runtime_env/06_node_cli_scripts/) : tu as déjà lu `process.argv` et le système de fichiers depuis du code ; un script shell et un script Node résolvent le même problème avec deux vocabulaires.
+- [00-SOCLE/01_getting_started/02b_shell_survival.md](../../../00-SOCLE/01_getting_started/02b_shell_survival.md) : navigation, pipes, redirections.
+- [02-CONSTRUCTION/13_runtime_env/06_node_cli_scripts/](../../../02-CONSTRUCTION/13_runtime_env/06_node_cli_scripts) : tu as déjà lu `process.argv` et le système de fichiers depuis du code ; un script shell et un script Node résolvent le même problème avec deux vocabulaires.
 - [02-CONSTRUCTION/13_runtime_env/02_streams_buffers.md](../../../02-CONSTRUCTION/13_runtime_env/02_streams_buffers.md) : un pipe Unix est un stream, et la backpressure que tu connais en Node y est le même mécanisme.
 - [02-CONSTRUCTION/13_runtime_env/04_process_env_argv.md](../../../02-CONSTRUCTION/13_runtime_env/04_process_env_argv.md) : `export`, `env`, `printenv` : la configuration par l'environnement, déjà pratiquée.
 
@@ -65,7 +65,7 @@ Tu as déjà manipulé un shell et écrit des scripts qui parlent au système ; 
 > **Temps réaliste** : 30 min · **Prérequis matériel / compte** : un terminal, un de tes mini-projets MyFunnyJS · **Coût max** : 0 €
 > **Mode** : jeûne d'IA obligatoire
 > **Contraintes** : une seule ligne de shell, pas de script Node
-> **Réutilise** : [02-CONSTRUCTION/02_mini_projects/](../../../02-CONSTRUCTION/02_mini_projects/) : un fichier de log existant ou généré par ton projet
+> **Réutilise** : [02-CONSTRUCTION/02_mini_projects/](../../../02-CONSTRUCTION/02_mini_projects) : un fichier de log existant ou généré par ton projet
 > **Piège** : un fichier vide ou sans erreur ne doit pas faire planter la commande
 > **À observer** : l'ordre de tri change selon que tu comptes avant ou après avoir extrait le message
 > **Vérification** (observable, chiffrée) : relance la commande sur un fichier vide : elle doit rendre une sortie vide et un code de sortie 0, jamais une erreur
@@ -159,20 +159,20 @@ Exécuter du JavaScript hors du navigateur, avec des I/O non bloquantes. L'idée
 
 Les serveurs classiques ouvraient un thread par connexion. 10 000 connexions = 10 000 threads = mémoire explosée. Node répond : un thread, des milliers de connexions, tant que le travail est **I/O-bound** (limité par l'attente réseau/disque) et non **CPU-bound** (limité par le calcul).
 
-- **Ancrage MyFunnyJS** : [01-CADRAGE/02_async/04_event_loop/](../../../01-CADRAGE/02_async/04_event_loop/) : tu sais déjà pourquoi une microtâche passe avant un `setTimeout`. C'est exactement ce qui explique pourquoi ton handler HTTP répond avant ton log.
+- **Ancrage MyFunnyJS** : [01-CADRAGE/02_async/04_event_loop/](../../../01-CADRAGE/02_async/04_event_loop) : tu sais déjà pourquoi une microtâche passe avant un `setTimeout`. C'est exactement ce qui explique pourquoi ton handler HTTP répond avant ton log.
 - **Ce qu'elle ajoute** : un accès système (`fs`, `net`, `http`, `crypto`, `worker_threads`, `child_process`), un modèle de modules, un écosystème npm gigantesque.
 - **Ce qu'elle masque** : l'epoll/kqueue du système et le pool de threads libuv (4 threads par défaut) utilisé pour le disque, le DNS et certaines opérations crypto. Tu ne le vois pas : jusqu'au jour où ton hachage bcrypt synchrone bloque tout.
 - **Ce qu'elle ne résout pas** : le CPU-bound (une boucle de calcul de 2 secondes gèle toutes les requêtes), la mémoire (le heap V8 a une limite), la cohérence entre plusieurs instances.
 - **Quand ne pas la choisir** : pas avant d'avoir vérifié que ton travail est I/O-bound : pour du calcul lourd continu (traitement d'images, ML, simulation), pas avant d'avoir écarté Python, Go ou Rust.
 - **Exemple qui casse** : un pipeline lit un fichier entier en mémoire avec `readFile` sur un export de 4 Go. Sur ta machine de dev avec un échantillon de 5 Mo, ça passe. En production : `FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory`, le conteneur est tué par l'orchestrateur (OOMKill), et le redémarrage relance le traitement depuis zéro.
-- **Preuve que c'est acquis** : tu sais expliquer pourquoi une API Node "lente" n'a souvent aucun problème de base de données : juste un `JSON.parse` de 30 Mo dans le mauvais handler. **Si tu bloques, reviens à** : [01-CADRAGE/02_async/04_event_loop/](../../../01-CADRAGE/02_async/04_event_loop/).
+- **Preuve que c'est acquis** : tu sais expliquer pourquoi une API Node "lente" n'a souvent aucun problème de base de données : juste un `JSON.parse` de 30 Mo dans le mauvais handler. **Si tu bloques, reviens à** : [01-CADRAGE/02_async/04_event_loop/](../../../01-CADRAGE/02_async/04_event_loop).
 
 #### Ce que MyFunnyJS permet déjà de comprendre
 
-- [01-CADRAGE/02_async/04_event_loop/](../../../01-CADRAGE/02_async/04_event_loop/) : tu sais déjà pourquoi une microtâche passe avant un `setTimeout`.
+- [01-CADRAGE/02_async/04_event_loop/](../../../01-CADRAGE/02_async/04_event_loop) : tu sais déjà pourquoi une microtâche passe avant un `setTimeout`.
 - [01-CADRAGE/02_async/06_backpressure.md](../../../01-CADRAGE/02_async/06_backpressure.md) : tu sais que si tu lis plus vite que tu n'écris, la mémoire monte. C'est le bug n°1 des pipelines de fichiers en Node.
 - [02-CONSTRUCTION/13_runtime_env/02_streams_buffers.md](../../../02-CONSTRUCTION/13_runtime_env/02_streams_buffers.md) : les streams ne sont pas une API exotique, c'est le modèle central de Node.
-- [02-CONSTRUCTION/05_memory_performance/01_gc/](../../../02-CONSTRUCTION/05_memory_performance/01_gc/) : un serveur Node qui vit des semaines révèle toutes les fuites qu'un script de 3 secondes cachait.
+- [02-CONSTRUCTION/05_memory_performance/01_gc/](../../../02-CONSTRUCTION/05_memory_performance/01_gc) : un serveur Node qui vit des semaines révèle toutes les fuites qu'un script de 3 secondes cachait.
 
 #### Exemple minimal
 
@@ -218,7 +218,7 @@ for (const line of data.split("\n")) {
 }
 ```
 
-Message obtenu en production sur le fichier de 4 Go : `FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory`. Le diagnostic vient de [02-CONSTRUCTION/05_memory_performance/04_profiling/](../../../02-CONSTRUCTION/05_memory_performance/04_profiling/) : heap snapshot, tu vois une seule string géante. Pas besoin de deviner.
+Message obtenu en production sur le fichier de 4 Go : `FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory`. Le diagnostic vient de [02-CONSTRUCTION/05_memory_performance/04_profiling/](../../../02-CONSTRUCTION/05_memory_performance/04_profiling) : heap snapshot, tu vois une seule string géante. Pas besoin de deviner.
 
 #### Pièges fréquents
 
@@ -261,10 +261,10 @@ Conteneur Docker, image `node:XX-slim` ou distroless (image minimale sans shell 
 
 | Alternative                   | Ce qu'elle change                                           | Ce qui reste identique (mécanisme MyFunnyJS)                                              |
 | ----------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| Deno (PROFESSIONNELLE)        | TS natif, sécurité par permissions                          | event loop, modèle async ([01-CADRAGE/02_async/04_event_loop/](../../../01-CADRAGE/02_async/04_event_loop/))       |
+| Deno (PROFESSIONNELLE)        | TS natif, sécurité par permissions                          | event loop, modèle async ([01-CADRAGE/02_async/04_event_loop/](../../../01-CADRAGE/02_async/04_event_loop))       |
 | Bun (PÉRISSABLE)              | démarrage rapide, runtime tout-en-un, jeune sur les détails | JS, async, npm                                                                            |
 | Go (CONTEXTUELLE)             | vraie concurrence, goroutines, binaire unique               | pas d'event loop mono-thread : modèle différent                                           |
-| Python/FastAPI (tag du langage : cf. 8.1 en 05-niveau-5-transfert.md) | async aussi, écosystème data                                | modèle async/await très proche ([01-CADRAGE/02_async/04_event_loop/](../../../01-CADRAGE/02_async/04_event_loop/)) |
+| Python/FastAPI (tag du langage : cf. 8.1 en 05-niveau-5-transfert.md) | async aussi, écosystème data                                | modèle async/await très proche ([01-CADRAGE/02_async/04_event_loop/](../../../01-CADRAGE/02_async/04_event_loop)) |
 
 #### Ce qui restera valable dans 5 à 10 ans
 
@@ -358,17 +358,17 @@ pnpm sait gérer des **workspaces** : plusieurs paquets versionnés ensemble dan
 
 MyFunnyJS t'a donné le langage : génériques, types utilitaires, gardes de type, types conditionnels, `tsconfig`. TECH-ILA ne les réexplique pas. Ce qui change en entreprise, c'est l'endroit où tu acceptes de faire confiance à un type.
 
-- **Ancrage MyFunnyJS** : [02-CONSTRUCTION/12_typescript/](../../../02-CONSTRUCTION/12_typescript/) : génériques, gardes de type, unions discriminées, `tsconfig` : rien de tout ça n'est à réapprendre.
+- **Ancrage MyFunnyJS** : [02-CONSTRUCTION/12_typescript/](../../../02-CONSTRUCTION/12_typescript) : génériques, gardes de type, unions discriminées, `tsconfig` : rien de tout ça n'est à réapprendre.
 - **Ce qu'elle ajoute** : un contrat statique entre les parties de ton code, vérifié à la compilation, et un vocabulaire pour "rendre les états impossibles inexprimables".
 - **Ce qu'elle masque** : le fait que ton type `User` est **entièrement effacé à l'exécution**. Un `as User` sur une réponse d'API mal formée passe sans un bruit : TypeScript ne protège aucune frontière réseau ou fichier.
 - **Ce qu'elle ne résout pas** : le comportement. Un type garantit une forme, pas une logique correcte ; les tests restent nécessaires (cf. [02-CONSTRUCTION/03_testing/09_test_strategy_not_framework.md](../../../02-CONSTRUCTION/03_testing/09_test_strategy_not_framework.md)).
 - **Quand ne pas la choisir** : pas avant qu'un projet dépasse le stade du script jetable d'une heure : sur un prototype d'après-midi, le coût de configuration dépasse le bénéfice.
 - **Exemple qui casse** : une réponse d'API renvoie `{ "id": 42 }` au lieu de `{ "id": "42" }`. Le code fait `const user = (await res.json()) as User;` puis `user.id.toUpperCase()`. TypeScript ne dit rien à la compilation. À l'exécution : `TypeError: user.id.toUpperCase is not a function`.
-- **Preuve que c'est acquis** : tu sais dire, pour n'importe quelle fonction, où s'arrête la garantie du compilateur et où commence la responsabilité de la validation runtime. **Si tu bloques, reviens à** : [02-CONSTRUCTION/12_typescript/](../../../02-CONSTRUCTION/12_typescript/).
+- **Preuve que c'est acquis** : tu sais dire, pour n'importe quelle fonction, où s'arrête la garantie du compilateur et où commence la responsabilité de la validation runtime. **Si tu bloques, reviens à** : [02-CONSTRUCTION/12_typescript/](../../../02-CONSTRUCTION/12_typescript).
 
 #### Ce que MyFunnyJS permet déjà de comprendre
 
-- [02-CONSTRUCTION/12_typescript/](../../../02-CONSTRUCTION/12_typescript/) : génériques, gardes de type, unions discriminées, `tsconfig`.
+- [02-CONSTRUCTION/12_typescript/](../../../02-CONSTRUCTION/12_typescript) : génériques, gardes de type, unions discriminées, `tsconfig`.
 - [05-MAITRISE/03_edge_cases/01_nan_undefined_null.md](../../../05-MAITRISE/03_edge_cases/01_nan_undefined_null.md) : pourquoi `strictNullChecks` n'est pas un caprice de configuration.
 - [00-SOCLE/04_fundamentals/04_types/02_type_coercion.md](../../../00-SOCLE/04_fundamentals/04_types/02_type_coercion.md) : tout ce qui arrive d'une query string est une `string` ; le type ne le corrige pas, la validation si.
 - [02-CONSTRUCTION/11_refactoring/03_code_smells.md](../../../02-CONSTRUCTION/11_refactoring/03_code_smells.md) : un type de 40 lignes est un smell, exactement comme une fonction de 400 lignes.
@@ -402,7 +402,7 @@ export async function loadEvent(res: Response): Promise<MetricEvent> {
 > **Temps réaliste** : 1 h · **Prérequis matériel / compte** : un mini-projet TypeScript existant · **Coût max** : 0 €
 > **Mode** : jeûne d'IA obligatoire
 > **Contraintes** : le compilateur doit refuser le mauvais code, pas seulement un test
-> **Réutilise** : [02-CONSTRUCTION/12_typescript/](../../../02-CONSTRUCTION/12_typescript/)
+> **Réutilise** : [02-CONSTRUCTION/12_typescript/](../../../02-CONSTRUCTION/12_typescript)
 > **Piège** : une union discriminée mal construite laisse encore un état incohérent passer
 > **À observer** : le message d'erreur exact du compilateur quand tu casses volontairement la garde de type
 > **Vérification** (observable, chiffrée) : commente ta garde de type et vérifie que `tsc` échoue avec au moins une erreur ; remets-la et vérifie 0 erreur
@@ -456,7 +456,7 @@ Tu vas passer ta carrière à envoyer et recevoir des requêtes HTTP. C'est le p
 
 **REST : ce qu'on en garde.** Des ressources, des URLs stables, des verbes cohérents, des codes honnêtes. **Ce qu'on abandonne.** La chasse aux niveaux de maturité HATEOAS.
 
-**Pont MyFunnyJS.** [02-CONSTRUCTION/19_api_craft/](../../../02-CONSTRUCTION/19_api_craft/) tout entier, [01-CADRAGE/04_error_handling/03_error_propagation.md](../../../01-CADRAGE/04_error_handling/03_error_propagation.md).
+**Pont MyFunnyJS.** [02-CONSTRUCTION/19_api_craft/](../../../02-CONSTRUCTION/19_api_craft) tout entier, [01-CADRAGE/04_error_handling/03_error_propagation.md](../../../01-CADRAGE/04_error_handling/03_error_propagation.md).
 
 > **Exercice : Anatomie d'une requête**
 > **Temps réaliste** : 1 h · **Prérequis matériel / compte** : `curl` installé, accès à une API publique gratuite · **Coût max** : 0 €
@@ -487,7 +487,7 @@ Tu vas passer ta carrière à envoyer et recevoir des requêtes HTTP. C'est le p
 
 Si tu ne dois investir sérieusement que dans **une** techno backend au-delà du langage, c'est celle-ci. SQL a 50 ans et sera là dans 20 ans. SQL n'est pas un produit, c'est un modèle mathématique avec une syntaxe : c'est pour ça que sa durée de vie annoncée dépasse celle de toutes les autres fiches de ce document.
 
-- **Ancrage MyFunnyJS** : [02-CONSTRUCTION/06_data_structures/07_hash_table/](../../../02-CONSTRUCTION/06_data_structures/07_hash_table/) et [02-CONSTRUCTION/06_data_structures/06_bst/](../../../02-CONSTRUCTION/06_data_structures/06_bst/) : un index B-tree, c'est l'arbre que tu as déjà implémenté ; un index de hachage, la table que tu as déjà implémentée.
+- **Ancrage MyFunnyJS** : [02-CONSTRUCTION/06_data_structures/07_hash_table/](../../../02-CONSTRUCTION/06_data_structures/07_hash_table) et [02-CONSTRUCTION/06_data_structures/06_bst/](../../../02-CONSTRUCTION/06_data_structures/06_bst) : un index B-tree, c'est l'arbre que tu as déjà implémenté ; un index de hachage, la table que tu as déjà implémentée.
 - **Ce qu'elle ajoute** : durabilité, transactions, concurrence, contraintes. Une contrainte `UNIQUE` en base est la seule garantie d'unicité réelle.
 - **Ce qu'elle masque** : le planificateur de requêtes. Il décide seul d'utiliser un index ou non, selon des statistiques, et change d'avis quand le volume change. Ta requête rapide en dev peut devenir un scan complet en prod.
 - **Ce qu'elle ne résout pas** : une mauvaise modélisation. Un schéma mal pensé produit des requêtes lentes quels que soient les index posés dessus.
@@ -497,8 +497,8 @@ Si tu ne dois investir sérieusement que dans **une** techno backend au-delà du
 
 #### Ce que MyFunnyJS permet déjà de comprendre
 
-- [02-CONSTRUCTION/06_data_structures/07_hash_table/](../../../02-CONSTRUCTION/06_data_structures/07_hash_table/) et [02-CONSTRUCTION/06_data_structures/06_bst/](../../../02-CONSTRUCTION/06_data_structures/06_bst/) : un index B-tree, c'est l'arbre que tu as déjà implémenté.
-- [02-CONSTRUCTION/05_memory_performance/03_complexity/](../../../02-CONSTRUCTION/05_memory_performance/03_complexity/) : un `Seq Scan` sur 10 millions de lignes, c'est O(n), et tu sais ce que ça coûte.
+- [02-CONSTRUCTION/06_data_structures/07_hash_table/](../../../02-CONSTRUCTION/06_data_structures/07_hash_table) et [02-CONSTRUCTION/06_data_structures/06_bst/](../../../02-CONSTRUCTION/06_data_structures/06_bst) : un index B-tree, c'est l'arbre que tu as déjà implémenté.
+- [02-CONSTRUCTION/05_memory_performance/03_complexity/](../../../02-CONSTRUCTION/05_memory_performance/03_complexity) : un `Seq Scan` sur 10 millions de lignes, c'est O(n), et tu sais ce que ça coûte.
 - [05-MAITRISE/03_edge_cases/05_race_condition_hunter.md](../../../05-MAITRISE/03_edge_cases/05_race_condition_hunter.md) : un `if (await exists(x))` suivi d'un `insert` est la race condition que tu as déjà chassée, cette fois entre deux transactions.
 - [05-MAITRISE/03_edge_cases/02_floating_point.md](../../../05-MAITRISE/03_edge_cases/02_floating_point.md) : pourquoi un montant se stocke en `NUMERIC` et jamais en flottant.
 
@@ -687,7 +687,7 @@ MyFunnyJS t'a appris la stratégie ([02-CONSTRUCTION/03_testing/09_test_strategy
 - **Ce qu'il ne résout pas** : une app mal écrite reste mal écrite. Une fuite mémoire est juste redémarrée plus souvent. Un `docker-compose.yml` de 400 lignes est une architecture qui a échoué.
 - **Quand ne pas la choisir** : pas avant d'avoir plus d'un environnement à reproduire : pas pour un script ponctuel, un site statique ou une fonction serverless, où le conteneur n'ajoute qu'un coût opérationnel (registre, build, scan de vulnérabilités).
 - **Exemple qui casse** : le process tourne en PID 1 sans gérer les signaux. `docker stop` envoie `SIGTERM`, le process ne l'intercepte pas nativement en PID 1, Docker attend le délai de grâce puis envoie `SIGKILL` : requêtes en vol coupées net, aucun log de fermeture propre.
-- **Preuve que c'est acquis** : tu sais expliquer, sur un `permission denied` de volume monté, si la cause est l'UID hôte, l'UID conteneur, ou les droits du dossier. **Si tu bloques, reviens à** : [00-SOCLE/01_getting_started/02_shell_survival.md](../../../00-SOCLE/01_getting_started/02_shell_survival.md) (4.1) pour la lecture des permissions.
+- **Preuve que c'est acquis** : tu sais expliquer, sur un `permission denied` de volume monté, si la cause est l'UID hôte, l'UID conteneur, ou les droits du dossier. **Si tu bloques, reviens à** : [00-SOCLE/01_getting_started/02b_shell_survival.md](../../../00-SOCLE/01_getting_started/02b_shell_survival.md) (4.1) pour la lecture des permissions.
 
 **Ce que tu logues ici.** Uniquement les événements du cycle de vie du conteneur utiles au diagnostic : démarrage, échec de healthcheck, réception de `SIGTERM`, arrêt effectif : jamais le contenu des variables d'environnement ni les secrets injectés au démarrage.
 **Avec quel identifiant.** L'identifiant de conteneur (`docker ps --format`) et le `request_id` applicatif propagé depuis 4.3, pour pouvoir corréler un log applicatif avec l'instance de conteneur qui l'a produit, y compris après un redémarrage.
@@ -695,8 +695,8 @@ MyFunnyJS t'a appris la stratégie ([02-CONSTRUCTION/03_testing/09_test_strategy
 #### Ce que MyFunnyJS permet déjà de comprendre
 
 - [02-CONSTRUCTION/13_runtime_env/04_process_env_argv.md](../../../02-CONSTRUCTION/13_runtime_env/04_process_env_argv.md) : configuration par variables d'environnement et signaux.
-- [00-SOCLE/01_getting_started/02_shell_survival.md](../../../00-SOCLE/01_getting_started/02_shell_survival.md) : uid, permissions, `ls -ln` : la moitié des `permission denied` d'un conteneur se lisent là.
-- [02-CONSTRUCTION/05_memory_performance/01_gc/](../../../02-CONSTRUCTION/05_memory_performance/01_gc/) : une limite mémoire de conteneur ne crée pas la fuite, elle la révèle plus tôt.
+- [00-SOCLE/01_getting_started/02b_shell_survival.md](../../../00-SOCLE/01_getting_started/02b_shell_survival.md) : uid, permissions, `ls -ln` : la moitié des `permission denied` d'un conteneur se lisent là.
+- [02-CONSTRUCTION/05_memory_performance/01_gc/](../../../02-CONSTRUCTION/05_memory_performance/01_gc) : une limite mémoire de conteneur ne crée pas la fuite, elle la révèle plus tôt.
 - [02-CONSTRUCTION/13_runtime_env/03_commonjs_vs_esm.md](../../../02-CONSTRUCTION/13_runtime_env/03_commonjs_vs_esm.md) : ce qui casse au build dans l'image casse pour les mêmes raisons qu'en local.
 
 #### Exemple réaliste : image multi-étages, non-root, sans secret en couche
@@ -771,7 +771,7 @@ app.get("/readyz", (req, res) => {
 > **Temps réaliste** : 2 h 30 · **Prérequis matériel / compte** : Docker installé localement (Docker Desktop ou équivalent gratuit) · **Coût max** : 0 €
 > **Mode** : assistant autorisé pour la syntaxe Dockerfile, jeûne d'IA obligatoire pour le diagnostic des erreurs
 > **Contraintes** : image finale < 200 Mo, utilisateur non root, arrêt gracieux vérifié, healthcheck présent
-> **Réutilise** : un de tes mini-projets MyFunnyJS ([02-CONSTRUCTION/02_mini_projects/](../../../02-CONSTRUCTION/02_mini_projects/))
+> **Réutilise** : un de tes mini-projets MyFunnyJS ([02-CONSTRUCTION/02_mini_projects/](../../../02-CONSTRUCTION/02_mini_projects))
 > **Piège** : `docker stop` ne doit couper aucune requête en vol : un process en PID 1 qui ignore `SIGTERM` échoue silencieusement ce critère
 > **À observer** : le comportement du process pendant les 10 secondes de délai de grâce avant `SIGKILL`
 > **Vérification** (observable, chiffrée) : `docker images` montre une taille finale sous 200 Mo ; pendant une charge générée avec autocannon, `docker stop` puis un nouveau test montrent 0 requête en erreur côté client

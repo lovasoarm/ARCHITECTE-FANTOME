@@ -1,6 +1,6 @@
 # Rétrospective de bloc : Bloc EPREUVE (niveaux 11 à 12)
 
-[Sommaire](../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
+[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
 
 Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opération précise : tu
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
@@ -135,7 +135,11 @@ compétence : elle se comble en refaisant le drill du module, pas en relisant la
 Mode de vérification de ce rappel : critère binaire du `verification_pack` du module concerné.
 Trois réponses produites de mémoire, ou rappel non réussi.
 
-## Palier TECH-ILA 5 sur 6 : Niveau 5 Transfert (bloquant)
+## Verification du livrable TECH-ILA 5 sur 6
+
+> Depuis S-10, la carte n'est plus annoncee ici : elle a ete ouverte dans `04-EPREUVE`. Cette retrospective ne verifie qu'une chose, binaire : le livrable existe-t-il ? Attendu : PORTAGE.md, le livrable note du palier. Non produit = le bloc n'est pas ferme, meme si toutes les lecons sont lues.
+
+### Rappel de la carte (reference, pas decouverte) : Niveau 5 Transfert (bloquant)
 
 Le [Niveau 5 Transfert](../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/05-niveau-5-transfert.md) de
 TECH-ILA contient un exercice de portage : prendre un service de 150 lignes de ton fil rouge,

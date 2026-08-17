@@ -22,7 +22,7 @@ Le passage de "je vois ce qui se passe en production" à "j'ai promis quelque ch
 - [03_reprise_rpo_rto.md](03_reprise_rpo_rto.md) : RPO, RTO et la restauration mesurée au chronomètre.
 - [04_degradation_disjoncteur.md](04_degradation_disjoncteur.md) : dégrader plutôt que tomber (timeout, retry, disjoncteur, repli).
 - [05_panne_subie_sur_fil_rouge.md](05_panne_subie_sur_fil_rouge.md) : gate bloquante, une vraie panne provoquée sur ton fil rouge, chronométrée, postmortem signé.
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md) : decider seul, IA coupee, puis mesurer l'ecart avec l'IA.
+- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md) : decider seul, IA coupee, puis mesurer l'ecart avec l'IA.
 - [verification_pack/criteres.md](verification_pack/criteres.md) : les trois drills et leurs criteres binaires.
 - [grimoire.md](grimoire.md) : mémo dense, à ouvrir seulement après avoir fini le reste.
 - [challenge.md](challenge.md) : challenge, produire le `SLO.md` de ton projet.
@@ -58,10 +58,15 @@ Liste generee : tout fichier de `03-PILOTAGE/06_fiabilite_slo` est joignable dep
 - [03_reprise_rpo_rto.md](03_reprise_rpo_rto.md)
 - [04_degradation_disjoncteur.md](04_degradation_disjoncteur.md)
 - [05_panne_subie_sur_fil_rouge.md](05_panne_subie_sur_fil_rouge.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
+- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
 - [boss-fight.md](boss-fight.md)
 - [challenge.md](challenge.md)
+- [defense-orale.md](defense-orale.md)
 - [grimoire.md](grimoire.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+- [defense-orale.md](defense-orale.md) — trois objections a soutenir a voix haute avant de valider le module.
+
+> **Contexte d'entreprise manquant ?** Ce module suppose une astreinte reelle et des pannes que tu n'as pas ecrites. Protocole solo jouable, avec tirage au sort et verdict binaire : [SIMULATION-ENTREPRISE.md](../../06-ANNEXES-TRANSVERSES/SIMULATION-ENTREPRISE.md) (protocole 3).

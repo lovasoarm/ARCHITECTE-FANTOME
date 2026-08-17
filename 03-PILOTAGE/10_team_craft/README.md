@@ -35,7 +35,6 @@ Liste generee : tout fichier de `03-PILOTAGE/10_team_craft` est joignable depuis
 - [18_EXO_TROIS_PUBLICS.md](18_EXO_TROIS_PUBLICS.md)
 - [98_EXO_IA_MENTEUSE.md](98_EXO_IA_MENTEUSE.md)
 - [98_PORTAGE_MENTAL.md](98_PORTAGE_MENTAL.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

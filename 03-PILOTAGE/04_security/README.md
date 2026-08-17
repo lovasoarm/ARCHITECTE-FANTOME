@@ -32,8 +32,7 @@ Liste generee : tout fichier de `03-PILOTAGE/04_security` est joignable depuis i
 - [12_EXO_JEUNE_IA.md](12_EXO_JEUNE_IA.md)
 - [98_EXO_IA_MENTEUSE.md](98_EXO_IA_MENTEUSE.md)
 - [98_PORTAGE_MENTAL.md](98_PORTAGE_MENTAL.md)
-- [99_PONT_avant_module_23_ai_native_dev.md](99_PONT_avant_module_23_ai_native_dev.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [99_PONT_avant_04-EPREUVE-04_ai_native_dev.md](99_PONT_avant_04-EPREUVE-04_ai_native_dev.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

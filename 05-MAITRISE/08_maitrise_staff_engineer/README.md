@@ -58,10 +58,13 @@ Liste generee : tout fichier de `05-MAITRISE/08_maitrise_staff_engineer` est joi
 - [03_trois_tensions.md](03_trois_tensions.md)
 - [04_plan_90_jours.md](04_plan_90_jours.md)
 - [05_revisite_datee.md](05_revisite_datee.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
+- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
 - [boss-fight.md](boss-fight.md)
 - [challenge.md](challenge.md)
+- [defense-orale.md](defense-orale.md)
 - [grimoire.md](grimoire.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+- [defense-orale.md](defense-orale.md) — trois objections a soutenir a voix haute avant de valider le module.

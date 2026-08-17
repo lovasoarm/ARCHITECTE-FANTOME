@@ -1,6 +1,6 @@
 # Rétrospective de bloc : Bloc MAITRISE (niveaux 13 à 15)
 
-[Sommaire](../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
+[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
 
 Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opération précise : tu
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
@@ -105,7 +105,11 @@ Relis tes horodatages de boss-fight du bloc. Combien sont antérieurs à ta prem
 la grille ? Si moins de la moitié, refais-en un avant de continuer : une grille lue d'abord
 transforme un exercice de raisonnement en exercice de remplissage.
 
-## Palier TECH-ILA 6 sur 6 : Niveau 6 IA (bloquant)
+## Verification du livrable TECH-ILA 6 sur 6
+
+> Depuis S-10, la carte n'est plus annoncee ici : elle a ete ouverte dans `04-EPREUVE/04_ai_native_dev`. Cette retrospective ne verifie qu'une chose, binaire : le livrable existe-t-il ? Attendu : IA-EN-PROD.md, avec cout par utilisateur actif et jeu d'evaluation. Non produit = le bloc n'est pas ferme, meme si toutes les lecons sont lues.
+
+### Rappel de la carte (reference, pas decouverte) : Niveau 6 IA (bloquant)
 
 Le [Niveau 6 IA](../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/06-niveau-6-ia.md) de TECH-ILA
 referme la boucle commencée au palier du bloc CADRAGE : la même question, portée cette fois sur

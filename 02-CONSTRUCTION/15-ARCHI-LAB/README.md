@@ -2,7 +2,7 @@
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../08-DATA-SPELLS/README.md) | [Niveau suivant](../20-API-DOJO/README.md)
+[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../08-DATA-SPELLS/README.md) | [Niveau suivant](../20-API-DOJO/README.md)
 
 **Ce niveau réutilise :** [05-DATA-SPELLS](../08-DATA-SPELLS/03-relations-and-normalization.md) : normalisation et source de vérité d'une donnée, réutilisees pour poser les frontieres entre couches.
 
@@ -16,7 +16,7 @@
 [challenge](../08-DATA-SPELLS/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 06 une difficulté qui vient du niveau 05.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
 
 ## Ce que c'est
 
@@ -76,6 +76,7 @@ religion à apprendre par cœur.
 
 Liste generee : tout fichier de `02-CONSTRUCTION/15-ARCHI-LAB` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
+- [00_prereq_check.md](00_prereq_check.md)
 - [01-why-this-level.md](01-why-this-level.md)
 - [02-boundaries-and-coupling.md](02-boundaries-and-coupling.md)
 - [03-layers-and-flow.md](03-layers-and-flow.md)

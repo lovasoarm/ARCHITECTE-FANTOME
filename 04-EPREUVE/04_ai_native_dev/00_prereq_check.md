@@ -28,6 +28,6 @@ Temps de lecture ~5 min
 > **Note pour ce module précis** : ce qu'est une hallucination IA, le
 > prompt engineering, et le principe du drill solo-vs-copilot sont le
 > contenu que ce module va t'enseigner (notamment `02_prompt_engineering.md`
-> et `07_solo_vs_copilot_drill.md`) : normal de ne pas encore les
+> et `07b_solo_vs_copilot_drill.md`) : normal de ne pas encore les
 > maîtriser. Ta compréhension est testée en fin de module, dans
 > `12_ai_grimoire.md`.

@@ -29,8 +29,7 @@ Liste generee : tout fichier de `01-CADRAGE/04_error_handling` est joignable dep
 - [07_EXO_LECTURE.md](07_EXO_LECTURE.md)
 - [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
 - [98_EXO_IA_MENTEUSE.md](98_EXO_IA_MENTEUSE.md)
-- [99_PONT_avant_module_06_testing.md](99_PONT_avant_module_06_testing.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [99_PONT_avant_02-CONSTRUCTION-03_testing.md](99_PONT_avant_02-CONSTRUCTION-03_testing.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

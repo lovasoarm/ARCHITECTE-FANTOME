@@ -1,4 +1,4 @@
-[Sommaire](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../../03-PILOTAGE/09-TEAM-QUEST/README.md) | [Niveau suivant](../06-CAPSTONE-ARENA/README.md)
+[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../../03-PILOTAGE/09-TEAM-QUEST/README.md) | [Niveau suivant](../06-CAPSTONE-ARENA/README.md)
 
 # Niveau 11 : Big App Snoop
 
@@ -39,7 +39,7 @@ Si tu rates une de ces trois questions, remonte au niveau précédent avant de c
 [challenge](../../03-PILOTAGE/09-TEAM-QUEST/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 11 une difficulté qui vient du niveau 10.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
 
 Prérequis : Niveaux 06 (Archi Lab) et 07 (API Dojo) terminés. Tu dois savoir reconnaître une
 architecture en couches, un pattern de repository, une frontière de service avant de pouvoir
@@ -107,6 +107,7 @@ fois ce niveau terminé, pas un objectif de ce niveau.
 
 Liste generee : tout fichier de `04-EPREUVE/05-BIG-APP-SNOOP` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
+- [00_prereq_check.md](00_prereq_check.md)
 - [01-why-this-level.md](01-why-this-level.md)
 - [02-read-a-codebase.md](02-read-a-codebase.md)
 - [03-reverse-engineer-decisions.md](03-reverse-engineer-decisions.md)

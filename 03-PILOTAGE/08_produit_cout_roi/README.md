@@ -23,7 +23,7 @@ Le langage dans lequel un Staff Engineer discute avec le reste de l'entreprise :
 - [04_dette_technique_declaree.md](04_dette_technique_declaree.md) : déclarer une dette avec un taux et une échéance.
 - [05_spike_borne.md](05_spike_borne.md) : explorer une inconnue sans qu'elle avale le sprint.
 - [06_refus_chiffre_direction_financiere.md](06_refus_chiffre_direction_financiere.md) : tenir un refus face à une direction financière.
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md) : decider seul, IA coupee, puis mesurer l'ecart avec l'IA.
+- [07_EXO_JEUNE_IA.md](07_EXO_JEUNE_IA.md) : decider seul, IA coupee, puis mesurer l'ecart avec l'IA.
 - [verification_pack/criteres.md](verification_pack/criteres.md) : les trois drills et leurs criteres binaires.
 - [grimoire.md](grimoire.md) : mémo dense, à ouvrir seulement après avoir fini le reste.
 - [challenge.md](challenge.md) : challenge, ton arbitrage devant un comité budgétaire.
@@ -51,10 +51,13 @@ Liste generee : tout fichier de `03-PILOTAGE/08_produit_cout_roi` est joignable 
 - [04_dette_technique_declaree.md](04_dette_technique_declaree.md)
 - [05_spike_borne.md](05_spike_borne.md)
 - [06_refus_chiffre_direction_financiere.md](06_refus_chiffre_direction_financiere.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [07_EXO_JEUNE_IA.md](07_EXO_JEUNE_IA.md)
+- [07_EXO_JEUNE_IA.md](07_EXO_JEUNE_IA.md)
 - [boss-fight.md](boss-fight.md)
 - [challenge.md](challenge.md)
+- [defense-orale.md](defense-orale.md)
 - [grimoire.md](grimoire.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+- [defense-orale.md](defense-orale.md) — trois objections a soutenir a voix haute avant de valider le module.

@@ -22,8 +22,9 @@ Liste generee : tout fichier de `00-SOCLE/03_referentiel` est joignable depuis i
 - [05_where_you_stand.md](05_where_you_stand.md)
 - [06_intemporel_vs_perissable.md](06_intemporel_vs_perissable.md)
 - [07_repetition_espacee.md](07_repetition_espacee.md)
+- [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
 - [DEPENDENCY_LEDGER.md](DEPENDENCY_LEDGER.md)
-- [EXO_JEUNE_IA.md](EXO_JEUNE_IA.md)
+- [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
 - [PLATEAU_JOURNAL_EXEMPLE.md](PLATEAU_JOURNAL_EXEMPLE.md)
 - [verification_pack/](verification_pack/README.md)
 
