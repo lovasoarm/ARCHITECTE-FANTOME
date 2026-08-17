@@ -1,0 +1,204 @@
+---
+stability: intemporel
+acte: restituer
+---
+
+# Page verrouillée
+
+> Rappel : ce grimoire simplifie via analogies. Lire d'abord [`05-MAITRISE/06_annexes/GRIMOIRE_CODE_HONNEUR.md`](../../05-MAITRISE/06_annexes/18_GRIMOIRE_CODE_HONNEUR.md).
+
+Temps de lecture ~13 min
+
+> **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
+> Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
+
+## Checklist prérequis
+
+- [ ] J'ai fini **tous** les exercices du module courant.
+- [ ] J'ai réussi le `00_prereq_check.md` du module suivant.
+- [ ] J'ai écrit **au moins un** de mes propres exemples (pas copié).
+- [ ] Je peux réexpliquer les 3 concepts phares du module **sans regarder**.
+
+Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
+
+---
+
+## SECURITY GRIMOIRE
+
+Le lexique de sécurité que tout dev web doit avoir en tête. Pas une liste Wikipedia : les définitions qui servent vraiment quand tu codes, que tu reviews du code, ou que tu réponds à un incident.
+
+---
+
+## GLOSSAIRE
+
+| Terme                                                                          | Définition                                                                                                                                                                                                            | Code                                                                   | Analogies                                                                                                                                                             | Limite |
+| ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| **XSS** (Cross-Site Scripting : injection de script côté client)               | L'attaquant injecte du JS malveillant dans une page web. Ce script s'exécute dans le navigateur d'une victime avec les droits de ton domaine. Peut voler des cookies, tokens, et keylogger (enregistreur de frappes). | `element.textContent = userInput` au lieu de `innerHTML`               | Un graffiti dans une salle propre que les visiteurs lisent comme officiel / Un message piégé dans la boîte aux lettres d'une entreprise de confiance                  | « Un graffiti dans une salle propre que les visiteurs lisent comme... » a une frontière visible à l'oeil ; sur XSS (Cross-Site Scripting : injection de script côté client), une dépendance transitive compromise s'exécute avec les mêmes droits que ton code. Relis les droits accordés en urgence à date fixe. |
+| **SQL Injection**                                                              | L'attaquant insère du SQL dans un input. Si la requête est construite par concaténation, son code SQL est exécuté par la base de données. Peut lire, modifier, supprimer des tables entières.                         | `db.query('SELECT * FROM users WHERE id = $1', [id])`                  | Un faux formulaire de commande qui réécrit le contrat / Une clause cachée dans un document signé                                                                      | « Un faux formulaire de commande qui réécrit le contrat » a une frontière visible à l'oeil ; sur SQL Injection, un journal trop verbeux devient lui-même une fuite de données. Vérifie l'autorisation à chaque appel, pas seulement à l'écran. |
+| **CSRF** (Cross-Site Request Forgery : falsification de requête cross-site)    | Une page malveillante déclenche une requête vers ton API en utilisant la session active d'un utilisateur connecté. Le serveur voit le cookie valide et exécute l'action.                                              | `res.cookie('session', id, { sameSite: 'Strict' })`                    | Quelqu'un qui signe à ta place avec ta signature volée / Un commis qui exécute un ordre en croyant que c'est de toi                                                   | « Quelqu'un qui signe à ta place avec ta signature volée » s'arrête à la première surprise ; sur CSRF (Cross-Site Request Forgery : falsification de requête cross-site), une validation côté client se contourne en une requête. Attaque ton propre point d'entrée hors interface avant de le publier. |
+| **CORS** (Cross-Origin Resource Sharing : partage de ressources cross-origine) | Mécanisme navigateur qui bloque les requêtes JS vers une autre origine par défaut. Le serveur indique via des headers quelles origines sont autorisées à lire ses réponses.                                           | `app.use(cors({ origin: 'https://app.com' }))`                         | Le videur d'une boîte qui vérifie si ton badge vient du bon bâtiment / Une frontière avec contrôle douanier à sens unique                                             | « Le videur d'une boîte qui vérifie si ton badge vient du bon bâtiment » n'a ni facture ni horloge ; sur CORS (Cross-Origin Resource Sharing : partage de ressources cross-origine), l'authentification dit qui tu es, l'autorisation dit ce que tu peux : confondre les deux ouvre la porte. Fais tourner le secret, la suppression ne suffit pas. |
+| **Prototype Pollution**                                                        | L'attaquant modifie `Object.prototype` via un input malicieux. Tous les objets JS héritent de ce prototype : la modification affecte l'app entière instantanément.                                                    | `if (key === '__proto__') continue;`                                   | Un virus qui modifie l'ADN commun de toutes les cellules / Un pirate qui réécrit le dictionnaire que tout le monde utilise                                            | « Un virus qui modifie l'ADN commun de toutes les cellules » raconte le cas nominal ; sur Prototype Pollution, l'attaquant ne suit pas le parcours prévu par l'interface, il appelle directement. Relis les droits accordés en urgence à date fixe. |
+| **Salt**                                                                       | Valeur aléatoire unique générée pour chaque mot de passe avant le hash. Rend chaque hash unique même si les mots de passe sont identiques. Empêche les rainbow tables (tables précalculées de hash).                  | `bcrypt.hash(password, 12)` (salt généré auto)                         | Ajouter un code secret différent à chaque lettre avant de la chiffrer / Un sel différent dans chaque recette même si les ingrédients sont les mêmes                   | « Ajouter un code secret différent à chaque lettre avant de la chiffrer » n'a ni facture ni horloge ; sur Salt, le principe de moindre privilège s'érode à chaque exception accordée en urgence. Vérifie l'autorisation à chaque appel, pas seulement à l'écran. |
+| **Bcrypt**                                                                     | Algorithme de hash conçu pour être lent et configurable. Un paramètre de coût (rounds) contrôle le nombre d'itérations. Plus lent = plus difficile à brute-forcer.                                                    | `bcrypt.hash(password, 12)` (~400ms à cost 12)                         | Un coffre-fort qui prend 400ms à ouvrir même avec la bonne clé / Une serrure avec 4096 trous au lieu d'un seul                                                        | « Un coffre-fort qui prend 400ms à ouvrir même avec la bonne clé » raconte le cas nominal ; sur Bcrypt, le chiffrement protège les données au repos, pas les droits d'accès mal posés. Fais tourner le secret, la suppression ne suffit pas. |
+| **JWT** (JSON Web Token : jeton web JSON)                                      | Token signé contenant des données encodées (payload). Le serveur vérifie la signature sans stocker d'état. Stateless par nature. Le payload est lisible (base64), pas chiffré.                                        | `jwt.sign({ userId }, SECRET, { expiresIn: '15m' })`                   | Un badge d'entreprise signé par le DRH que tu peux lire mais pas falsifier / Un billet de train horodaté avec signature officielle                                    | « Un badge d'entreprise signé par le DRH que tu peux lire mais pas... » tient tant que rien ne tombe en route ; sur JWT (JSON Web Token : jeton web JSON), un journal trop verbeux devient lui-même une fuite de données. Vérifie l'autorisation à chaque appel, pas seulement à l'écran. |
+| **OAuth 2.0**                                                                  | Protocole d'autorisation qui permet à un utilisateur d'accorder l'accès à ses ressources chez un tiers (Google, GitHub) sans partager son mot de passe. Délègue l'authentification.                                   | Redirection vers l'authorization endpoint + échange de code            | Un huissier qui confirme ton identité sans te demander ton passeport / Un hôtel qui accepte la carte de fidélité d'une compagnie aérienne                             | « Un huissier qui confirme ton identité sans te demander ton passeport » s'arrête à la première surprise ; sur OAuth 2.0, l'authentification dit qui tu es, l'autorisation dit ce que tu peux : confondre les deux ouvre la porte. Vérifie l'autorisation à chaque appel, pas seulement à l'écran. |
+| **IDOR** (Insecure Direct Object Reference : référence directe non sécurisée)  | L'utilisateur accède à une ressource d'un autre utilisateur en changeant un identifiant dans l'URL ou le body. Symptôme d'un contrôle d'accès absent ou insuffisant.                                                  | `WHERE id = $1 AND user_id = $2` (double contrainte)                   | Une clé d'hôtel qui ouvre aussi les chambres des voisins / Une boîte aux lettres sans cadenas dans un couloir commun                                                  | « Une clé d'hôtel qui ouvre aussi les chambres des voisins » suppose que quelqu'un surveille ; sur IDOR (Insecure Direct Object Reference : référence directe non sécurisée), le chiffrement protège les données au repos, pas les droits d'accès mal posés. Attaque ton propre point d'entrée hors interface avant de le publier. |
+| **SSRF** (Server-Side Request Forgery : falsification de requête côté serveur) | L'attaquant force ton serveur à faire des requêtes vers des services internes (DB, metadata AWS, services cachés derrière un pare-feu). Le serveur a des accès que le client n'a pas.                                 | `isAllowedUrl(url)` + blocage des IP privées                           | Convaincre un livreur d'entrer dans une zone restreinte à ta place / Utiliser un gardien pour passer une frontière sécurisée                                          | « Convaincre un livreur d'entrer dans une zone restreinte à ta place » suppose un seul acteur à la fois ; sur SSRF (Server-Side Request Forgery : falsification de requête côté serveur), une validation côté client se contourne en une requête. Relis les droits accordés en urgence à date fixe. |
+| **Timing Attack** (attaque temporelle)                                         | L'attaquant mesure le temps de réponse pour déduire une information. Ex : une comparaison string courte est plus rapide qu'une longue, révélant si les premiers caractères sont corrects.                             | `crypto.timingSafeEqual(a, b)`                                         | Deviner un code de coffre en écoutant le déclic au bon chiffre / Tester des mots de passe en chronométrant les réponses                                               | « Deviner un code de coffre en écoutant le déclic au bon chiffre » a une frontière visible à l'oeil ; sur Timing Attack (attaque temporelle), l'attaquant ne suit pas le parcours prévu par l'interface, il appelle directement. Attaque ton propre point d'entrée hors interface avant de le publier. |
+| **Rate Limiting** (limitation de débit)                                        | Limiter le nombre de requêtes qu'un client peut faire dans une fenêtre de temps. Protège contre le brute force, les DoS applicatifs, et le scraping.                                                                  | `rateLimit({ windowMs: 900000, max: 5 })`                              | Un portier qui refuse l'entrée après 5 tentatives en 15 minutes / Un robinet avec un débit maximum réglementaire                                                      | « Un portier qui refuse l'entrée après 5 tentatives en 15 minutes » suppose que quelqu'un surveille ; sur Rate Limiting (limitation de débit), le chiffrement protège les données au repos, pas les droits d'accès mal posés. Fais tourner le secret, la suppression ne suffit pas. |
+| **HSTS** (HTTP Strict Transport Security)                                      | Header HTTP qui force le navigateur à utiliser HTTPS pour toutes les requêtes futures vers ce domaine, même si l'utilisateur tape `http://`. Protège contre les downgrade attacks.                                    | `helmet.hsts({ maxAge: 31536000 })`                                    | Un panneau "pas d'entrée sans casque" que le visiteur mémorise pour toujours / Une règle de conduite que ton cerveau applique automatiquement dès la prochaine visite | « Un panneau "pas d'entrée sans casque" que le visiteur mémorise... » tient tant que rien ne tombe en route ; sur HSTS (HTTP Strict Transport Security), un secret présent dans l'historique du dépôt reste accessible après suppression du fichier. Relis les droits accordés en urgence à date fixe. |
+| **CSP** (Content Security Policy : politique de sécurité du contenu)           | Header HTTP qui indique au navigateur quelles sources de contenu sont autorisées. Même si du XSS passe, le script injecté est bloqué s'il ne vient pas d'une source listée.                                           | `"script-src 'self'"` bloque les scripts externes                      | Un règlement qui interdit l'entrée à toute personne sans badge du bâtiment / Une liste de fournisseurs agréés en dehors desquels rien n'entre                         | « Un règlement qui interdit l'entrée à toute personne sans badge du... » tient tant que rien ne tombe en route ; sur CSP (Content Security Policy : politique de sécurité du contenu), le principe de moindre privilège s'érode à chaque exception accordée en urgence. Fais tourner le secret, la suppression ne suffit pas. |
+| **User Enumeration** (confirmation d'existence)                                | Faille qui permet à un attaquant de savoir si un compte existe via des messages d'erreur différents ("email inconnu" vs "mauvais mot de passe") ou des temps de réponse différents.                                   | Toujours "Identifiants incorrects" + dummy compare si email inexistant | Un hôtel qui dit "ce client n'est pas chez nous" au lieu de "je ne peux pas donner cette info" / Un annuaire public dans une organisation privée                      | « Un hôtel qui dit "ce client n'est pas chez nous" au lieu de "je ne... » se corrige toute seule quand elle dérape ; sur User Enumeration (confirmation d'existence), l'attaquant ne suit pas le parcours prévu par l'interface, il appelle directement. Attaque ton propre point d'entrée hors interface avant de le publier. |
+| **Bcrypt Cost Factor** (facteur de coût bcrypt)                                | Paramètre qui contrôle le nombre d'itérations de bcrypt. Chaque incrément double le temps de calcul. Cost 10 = 100ms, cost 12 = 400ms, cost 14 = 1.5s. À ajuster selon la puissance du serveur.                       | `bcrypt.hash(pw, 12)` : le 12 est le cost factor                       | La difficulté d'un verrou qu'on peut régler / Le nombre de tours qu'une clé doit faire pour ouvrir                                                                    | « La difficulté d'un verrou qu'on peut régler » décrit un monde où chaque étape se voit ; sur Bcrypt Cost Factor (facteur de coût bcrypt), le principe de moindre privilège s'érode à chaque exception accordée en urgence. Vérifie l'autorisation à chaque appel, pas seulement à l'écran. |
+| **Prepared Statement** (requête préparée)                                      | Requête SQL où le code et les données sont envoyés séparément au moteur SQL. Rend l'injection structurellement impossible : les données ne peuvent jamais être interprétées comme du code SQL.                        | `db.query('SELECT * FROM t WHERE id = $1', [id])`                      | Appeler un traducteur plutôt que de mélanger deux langues dans la même phrase / Séparer la recette de l'exécuteur pour éviter toute improvisation                     | « Appeler un traducteur plutôt que de mélanger deux langues dans la... » a une frontière visible à l'oeil ; sur Prepared Statement (requête préparée), une dépendance transitive compromise s'exécute avec les mêmes droits que ton code. Fais tourner le secret, la suppression ne suffit pas. |
+| **Helmet**                                                                     | Middleware Express qui configure automatiquement les headers de sécurité HTTP (X-Content-Type-Options, X-Frame-Options, HSTS, CSP de base, etc.). Défense en profondeur sans config manuelle.                         | `app.use(helmet())`                                                    | Un équipement de protection complet qu'on enfile en une ligne / Les ceintures de sécurité activées par défaut dans une voiture moderne                                | « Un équipement de protection complet qu'on enfile en une ligne » décrit un monde où chaque étape se voit ; sur Helmet, un secret présent dans l'historique du dépôt reste accessible après suppression du fichier. Attaque ton propre point d'entrée hors interface avant de le publier. |
+| **SameSite Cookie**                                                            | Attribut de cookie qui contrôle si le cookie est envoyé avec les requêtes cross-site. Strict = jamais cross-site, Lax = seulement sur les GET de navigation, None = toujours (avec Secure).                           | `cookie: { sameSite: 'Strict' }`                                       | Un badge qui ne fonctionne que dans le bâtiment où il a été émis / Une carte d'accès géolocalisée                                                                     | « Un badge qui ne fonctionne que dans le bâtiment où il a été émis » se corrige toute seule quand elle dérape ; sur SameSite Cookie, une validation côté client se contourne en une requête. Vérifie l'autorisation à chaque appel, pas seulement à l'écran. |
+| **httpOnly Cookie**                                                            | Attribut de cookie qui empêche JavaScript d'y accéder. Protège contre le vol de cookie via XSS. Uniquement lisible par le navigateur pour les requêtes HTTP.                                                          | `cookie: { httpOnly: true }`                                           | Un coffre-fort que seul le transporteur peut ouvrir / Une valise dont le contenu n'est visible qu'à la douane                                                         | « Un coffre-fort que seul le transporteur peut ouvrir » se corrige toute seule quand elle dérape ; sur httpOnly Cookie, le chiffrement protège les données au repos, pas les droits d'accès mal posés. Relis les droits accordés en urgence à date fixe. |
+| **DOMPurify**                                                                  | Bibliothèque qui assainit (sanitize) du HTML en retirant tout ce qui est dangereux (scripts, event handlers, iframes malveillantes) tout en conservant le HTML inoffensif.                                            | `DOMPurify.sanitize(userHtml, { ALLOWED_TAGS: ['b','i'] })`            | Un agent des douanes qui confisque les armes mais laisse passer les valises / Un filtre à eau qui retire les bactéries mais laisse les minéraux                       | « Un agent des douanes qui confisque les armes mais laisse passer... » suppose un seul acteur à la fois ; sur DOMPurify, un journal trop verbeux devient lui-même une fuite de données. Relis les droits accordés en urgence à date fixe. |
+| **Rainbow Table**                                                              | Table précalculée de hash → mot de passe. Permet de retrouver un mot de passe depuis son hash sans le recalculer. Rendue inefficace par l'utilisation d'un salt unique par utilisateur.                               | Salt unique par user dans bcrypt : `bcrypt.hash(pw, 12)`               | Un dictionnaire de traduction qu'on a préparé à l'avance / Un carnet de réponses qu'on doit recalculer si les questions changent                                      | « Un dictionnaire de traduction qu'on a préparé à l'avance » raconte le cas nominal ; sur Rainbow Table, une dépendance transitive compromise s'exécute avec les mêmes droits que ton code. Fais tourner le secret, la suppression ne suffit pas. |
+
+---
+
+## RELATIONS ENTRE CONCEPTS
+
+```
+Attaques côté client
+ XSS          --> injecte du code dans ta page
+  defense       --> textContent / DOMPurify / CSP
+
+ CSRF         --> déclenche des actions à ta place
+  defense       --> token CSRF / SameSite cookie
+
+Attaques côté serveur
+ SQL Injection     --> manipule tes requêtes DB
+  defense       --> prepared statements
+
+ SSRF         --> force ton serveur à faire des requêtes internes
+  defense       --> validation URL + blocage IP privées
+
+ Prototype Pollution  --> modifie Object.prototype globalement
+  defense       --> blocage clés dangereuses / Object.freeze
+
+Attaques sur les credentials (identifiants)
+ Brute Force      --> tester des milliers de mots de passe
+  defense       --> rate limiting + bcrypt (lent)
+
+ Timing Attack     --> deviner via le temps de réponse
+  defense       --> timingSafeEqual + dummy compare
+
+ Rainbow Table     --> retrouver le mot de passe depuis le hash
+  defense       --> salt unique (inclus dans bcrypt)
+
+Contrôle d'accès
+ IDOR         --> accéder à la ressource d'un autre user
+  defense       --> double contrainte (id + user_id) en DB
+
+ Privilege Escalation --> obtenir des droits supérieurs
+  defense       --> vérification de rôle côté serveur, jamais côté client
+```
+
+---
+
+## ERREURS CLASSIQUES EN PROD
+
+```
+1. Stocker des mots de passe en MD5 ou SHA256 (trop rapide, cassable par GPU)
+  --> fix : bcrypt cost >= 12
+
+2. Faire confiance au rôle venant du cookie ou du body de la requête
+  --> fix : rôle extrait du token signé côté serveur
+
+3. `Access-Control-Allow-Origin: *` avec `credentials: true`
+  --> fix : origin précise quand credentials sont nécessaires
+
+4. JWT stocké en localStorage (accessible par XSS)
+  --> fix : access token en mémoire, refresh token en cookie httpOnly
+
+5. Pas de validation sur les IDs dans les URLs (IDOR)
+  --> fix : WHERE id = $1 AND user_id = $2 sur toutes les requêtes de ressources
+
+6. Stack traces exposées en prod
+  --> fix : message générique en prod, log détaillé côté serveur uniquement
+
+7. Secrets dans le code source
+  --> fix : .env + .gitignore + variables d'environnement en CI/CD
+
+8. `eval()` ou `child_process.exec()` avec un input utilisateur
+  --> fix : execFile avec args séparés, ou éviter complètement
+
+9. Pas de rate limiting sur les endpoints de login
+  --> fix : express-rate-limit + verrouillage après N échecs
+
+10. npm audit jamais lancé
+  --> fix : npm audit dans la CI, bloquant sur critical
+```
+
+---
+
+## HEADERS DE SÉCURITÉ : LA RÉFÉRENCE
+
+```
+Content-Security-Policy  --> contrôle les sources de scripts, styles, iframes
+X-Content-Type-Options  --> empêche le navigateur de deviner le type MIME
+X-Frame-Options      --> empêche l'affichage dans une iframe (clickjacking)
+Strict-Transport-Security --> force HTTPS pour les futures visites
+Referrer-Policy      --> contrôle ce qui est envoyé dans le header Referer
+Permissions-Policy    --> limite l'accès aux APIs navigateur (caméra, géoloc, etc.)
+
+helmet() configure tout ça en une ligne.
+```
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.
+
+---
+
+stability: intemporel
+
+---
+
+## TROIS PUBLICS : GRILLE D'AUTO-EVALUATION
+
+> Greffe P6 : un ingenieur qui ne sait pas expliquer a trois publics ne survit
+> pas a un entretien senior. Voir `03-PILOTAGE/10_team_craft/12_three_audiences_intro.md`.
+
+Prends le concept-cle du module. Explique-le **trois fois**, chronometre en main :
+
+### 1. A un enfant de 10 ans (60 s)
+
+Analogie seule, zero jargon. Si le mot "runtime" sort, tu as perdu.
+
+### 2. A un dev junior (3 min)
+
+Un exemple de code minimal executable, un piege classique, un cas d'usage reel.
+
+### 3. A un CTO hostile (5 min)
+
+Trade-off, cout, quand NE PAS l'utiliser, impact business, alternative.
+
+### Grille (coche honnetement)
+
+- [ ] Enfant : aucun mot technique.
+- [ ] Junior : l'exemple tourne vraiment.
+- [ ] CTO : le mot "cout" ou "risque" est sorti au moins une fois.
+- [ ] Aucune version ne ment (pas de simplification qui devient fausse).
+
+Si une case n'est pas cochee : tu ne maitrises pas encore ce concept, tu le
+recites.
+
+---
+
+## OÙ LES ANALOGIES CASSENT (règle B.2)
+
+Les analogies de ce grimoire simplifient : elles ne définissent pas. Une
+closure **nest pas** un tiroir ; un event loop **nest pas** un carrousel ;
+une pile **nest pas** une pile de crêpes. Chaque analogie sert à visualiser
+un mécanisme ; elle cesse dès que tu veux raisonner sur la complexité, la
+mémoire, la concurrence ou les cas limites. Reviens toujours à la définition
+technique avant de coder, débugger ou expliquer à un pair. Une analogie
+prise pour la réalité devient un obstacle épistémologique.

@@ -1,0 +1,56 @@
+# PREUVES STAFF ENGINEER : LES SIX FAMILLES, ET OÙ ELLES SE PROUVENT
+
+Ce fichier n'est pas un résumé pédagogique. C'est la pièce qu'un recruteur ou un jury ouvre en premier : pour chacune des six familles de compétences visées, le chemin exact du livrable que TU produis, et l'endroit du parcours qui te le fait produire.
+
+Deux colonnes à distinguer, et ne jamais confondre :
+
+- **Où ça s'apprend** : le fichier du parcours qui enseigne et fait pratiquer.
+- **Ce que tu montres** : le fichier que tu produis dans ton propre dépôt de projet fil rouge. Tant qu'il n'existe pas chez toi, la famille n'est pas prouvée, même si tu as lu le module.
+
+## S1 : Systèmes, backend et cloud
+
+- Où ça s'apprend : [03-PILOTAGE/07_cloud_foundations/00_why_cloud_foundations.md](03-PILOTAGE/07_cloud_foundations/00_why_cloud_foundations.md), [05-MAITRISE/02_scalability](05-MAITRISE/02_scalability/00_why_scalability.md), [05-MAITRISE/01_databases](05-MAITRISE/01_databases/00_why_databases.md), [02-CONSTRUCTION/19_api_craft](02-CONSTRUCTION/19_api_craft/00_why_api_craft.md).
+- Ce que tu montres : `BUDGET-CLOUD.md` de ton projet fil rouge : la facture mensuelle chiffrée à 100, 10 000 et 1 000 000 d'utilisateurs, une ligne par catégorie de service, la ligne egress incluse. Exercice 1 du module cloud, repris en section 3 du dossier final.
+- Recroisement exigé : ce budget doit apparaître dans les tensions de [04-EPREUVE/06-CAPSTONE-ARENA/06-addendum-staff-engineer.md](04-EPREUVE/06-CAPSTONE-ARENA/06-addendum-staff-engineer.md).
+
+## S2 : Architecture logicielle
+
+- Où ça s'apprend : [02-CONSTRUCTION/16_ddd_contrats](02-CONSTRUCTION/16_ddd_contrats/00_why_ddd_contrats.md), [02-CONSTRUCTION/14_architecture_patterns](02-CONSTRUCTION/14_architecture_patterns/00_why_architecture_patterns.md), [02-CONSTRUCTION/15-ARCHI-LAB](02-CONSTRUCTION/15-ARCHI-LAB/README.md).
+- Ce que tu montres : le dossier `ADR/` de ton projet, avec au minimum un ADR de découpage en contextes bornés, un ADR de choix de persistance, un ADR de rupture de contrat avec sa date d'extinction. Le gabarit de mini-projet impose déjà ce dossier : [02-CONSTRUCTION/02_mini_projects](02-CONSTRUCTION/02_mini_projects/00_why_mini_projects.md).
+- Recroisement exigé : chaque ADR chiffre au moins une conséquence en coût (S1) ou en disponibilité (S3).
+
+## S3 : Sécurité et fiabilité
+
+- Où ça s'apprend : [03-PILOTAGE/06_fiabilite_slo](03-PILOTAGE/06_fiabilite_slo/00_why_fiabilite_slo.md), [03-PILOTAGE/04_security](03-PILOTAGE/04_security/00_why_security.md), [03-PILOTAGE/05_observability](03-PILOTAGE/05_observability/00_why_observability.md), [04-EPREUVE/01-BONUS-VAULT/05-security-cost-privacy.md](04-EPREUVE/01-BONUS-VAULT/05-security-cost-privacy.md).
+- Ce que tu montres : `SLO.md` de ton projet, avec la phrase d'objectif, le budget d'erreur exprimé en requêtes ratées par semaine, le RTO mesuré chronomètre en main lors de la restauration, et la liste des alertes qui réveillent quelqu'un. Plus le fichier de revue de sécurité produit au passage BONUS-VAULT.
+- Recroisement exigé : le SLO doit être tenable avec le budget S1. Si les deux ne se contredisent nulle part, l'un des deux n'a pas été chiffré sérieusement.
+
+## S4 : Produit et business
+
+- Où ça s'apprend : [03-PILOTAGE/08_produit_cout_roi](03-PILOTAGE/08_produit_cout_roi/00_why_produit_cout_roi.md), [01-CADRAGE/01-PROBLEM-HUNT](01-CADRAGE/01-PROBLEM-HUNT/README.md), [01-CADRAGE/05-MVP-SPLIT](01-CADRAGE/05-MVP-SPLIT/README.md), [03-PILOTAGE/01-ROADMAP-RUN](03-PILOTAGE/01-ROADMAP-RUN/README.md).
+- Ce que tu montres : `DECISION-ARBITRAGE.md` : une page qui traite le changement de spec imposé au capstone ([04-EPREUVE/06-CAPSTONE-ARENA/05-changement-de-spec.md](04-EPREUVE/06-CAPSTONE-ARENA/05-changement-de-spec.md)) avec les trois nombres valeur, coût, risque, leurs sources, et le point mort du chantier retenu.
+- Recroisement exigé : au moins un des trois nombres vient du budget cloud S1.
+
+## S5 : Leadership et pédagogie
+
+- Où ça s'apprend : [03-PILOTAGE/11_leadership_mentorat](03-PILOTAGE/11_leadership_mentorat/00_why_leadership_mentorat.md), [03-PILOTAGE/10_team_craft](03-PILOTAGE/10_team_craft/00_why_team_craft.md), [03-PILOTAGE/09-TEAM-QUEST](03-PILOTAGE/09-TEAM-QUEST/README.md).
+- Ce que tu montres : deux pièces. Une revue de code écrite à trois niveaux annoncés, sur une contribution réelle. Et la note d'une page destinée à une direction non technique, section 6 du dossier final [05-MAITRISE/08_maitrise_staff_engineer/01_dossier_unique.md](05-MAITRISE/08_maitrise_staff_engineer/01_dossier_unique.md), sans un seul terme technique non expliqué.
+- Recroisement exigé : la note reprend les chiffres exacts de S1 et la promesse de service de S3.
+
+## S6 : IA et automatisation
+
+- Où ça s'apprend : [04-EPREUVE/04_ai_native_dev](04-EPREUVE/04_ai_native_dev/00_why_ai_native_dev.md), son pipeline RAG [04-EPREUVE/04_ai_native_dev/11b_construire_un_pipeline_rag.md](04-EPREUVE/04_ai_native_dev/11b_construire_un_pipeline_rag.md), l'ajout production [04-EPREUVE/04_ai_native_dev/90_ia_dans_le_livrable_staff.md](04-EPREUVE/04_ai_native_dev/90_ia_dans_le_livrable_staff.md), et [05-MAITRISE/04_ai_agents_and_autonomy](05-MAITRISE/04_ai_agents_and_autonomy/00_why_ai_agents.md). La preuve se produit au [challenge](04-EPREUVE/04_ai_native_dev/challenge.md) du module, combinée au [boss fight](04-EPREUVE/04_ai_native_dev/boss-fight.md).
+- Ce que tu montres : `IA-EN-PROD.md` : coût par utilisateur actif, plafond retenu, timeout et réponse dégradée, SLO séparé de la brique IA, et le jeu de 20 cas d'évaluation rejoué à chaque changement de modèle.
+- Recroisement exigé : le coût variable apparaît dans le budget S1, la sortie du modèle est validée selon les règles S3.
+
+## Le livrable qui prouve que les six tiennent ensemble
+
+Une famille prouvée seule ne prouve rien pour ce profil. La pièce qui tranche est le dossier unique : [05-MAITRISE/08_maitrise_staff_engineer/01_dossier_unique.md](05-MAITRISE/08_maitrise_staff_engineer/01_dossier_unique.md). Sa section 8, "Les trois tensions", est la seule preuve acceptable de croisement : trois contradictions réelles entre deux familles, chiffrées des deux côtés, arbitrées par écrit.
+
+## État actuel des preuves, sans complaisance
+
+À ce stade de la fusion, le parcours produit les six familles côté enseignement et côté exercice. Ce qui n'existe pas encore, et qu'aucun texte ne remplacera :
+
+- Les six fichiers de preuve ci-dessus vivent dans TON dépôt de projet, pas ici. Tant qu'ils ne sont pas écrits, coche zéro famille.
+- La famille S6 est la seule dont la mise en pratique dépend d'un choix de projet : si ton fil rouge n'a aucune brique IA, remplace-la par S4 ou S5 dans les quatre familles exigées par le capstone, et note ce choix ici même.
+- La famille S5 ne peut pas être prouvée en solitaire de bout en bout : la revue de code écrite suppose une contribution d'un tiers, ou à défaut un dépôt open source réel. C'est pourquoi la revue de [02_revue_de_code_trois_niveaux.md](03-PILOTAGE/11_leadership_mentorat/02_revue_de_code_trois_niveaux.md) doit être postée en commentaire réel sur la PR publique, et la note de direction de la section 6 du dossier unique doit être publiée sur un espace public réel : les deux deviennent contredisibles par un inconnu, pas seulement écrites.

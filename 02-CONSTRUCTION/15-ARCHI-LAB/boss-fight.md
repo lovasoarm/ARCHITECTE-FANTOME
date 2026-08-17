@@ -1,0 +1,111 @@
+# Boss Fight : Le refactoring sous deadline
+
+## Contrainte de temps
+
+```text
+CONTRAINTE DE TEMPS
+Reflexion + reponse ecrite : 40 min chrono
+Au-dela : tu notes ou tu en etais a 40 min, et tu evalues CETTE
+version-la. La version finie compte pour ta progression, pas pour
+ta note.
+```
+
+## Règle d'antériorité (obligatoire)
+
+Écris ta réponse complète dans ton `JOURNAL.md`, horodatée à la minute, AVANT de faire
+défiler jusqu'à la grille d'évaluation. La grille est volontairement placée en fin de
+fichier.
+
+Si ton horodatage est postérieur à ta première lecture de la grille, ce boss-fight vaut 0,
+quelle que soit la qualité de ta réponse. Tu ne triches pas contre un correcteur : tu
+triches contre le seul entraînement à la pression que ce niveau te propose.
+
+## La situation
+
+Tu rejoins l'équipe technique de la plateforme de refacturation d'énergie du Niveau 05,
+au moment précis où la douleur devient visible : un changement de règle de calcul de TVA,
+qui aurait dû prendre deux heures, vient de prendre trois jours à cause du couplage entre
+le module de facturation et celui des relevés de compteurs. Le CTO, sous pression d'un
+client important qui veut cette fonctionnalité "pour hier", te demande de livrer le
+correctif dans le code existant, couplé, sans prendre le temps de refactorer : "on nettoiera
+après le lancement". Un développeur senior de l'équipe, de son côté, insiste pour tout
+réécrire en microservices avant de toucher à quoi que ce soit d'autre, en citant l'article de
+blog d'une grande entreprise tech. Tu as trois jours avant la deadline client, et l'équipe
+attend une décision de ta part, pas juste du code.
+
+## Les contraintes réelles
+
+- Le client a un contrat qui prévoit une pénalité financière si la fonctionnalité n'est pas
+  livrée dans le délai annoncé.
+- L'équipe compte quatre développeurs, tous sur le même projet, aucune équipe séparée.
+- Le module de facturation et celui des relevés partagent actuellement une même base de
+  données et un couplage de contenu direct (l'un lit les tables internes de l'autre).
+- Le "nettoyage après le lancement" n'a, historiquement dans cette équipe, jamais eu lieu une
+  seule fois en deux ans : chaque "après" a été absorbé par la prochaine urgence.
+
+## Ce qu'on attend de toi
+
+Produis une décision écrite (une page maximum) qui :
+
+1. Refuse explicitement les deux extrêmes proposés (patch couplé "on nettoiera après", et
+   réécriture complète en microservices sous trois jours) en expliquant en une phrase
+   pourquoi chacun est un pari perdant, avec un coût réel à l'appui de chaque leçon du
+   niveau.
+2. Propose une troisième voie concrète et réalisable dans les trois jours : identifie
+   précisément quel refactoring minimal (probablement l'introduction d'une interface entre
+   facturation et relevés, sans toucher à la base de données ni créer de service séparé)
+   permet de livrer la fonctionnalité correctement ET de réduire le couplage qui a causé le
+   problème, sans tout réécrire.
+3. Anticipe l'objection du développeur senior sur les microservices avec un argument tiré des
+   quatre critères de décision du niveau (organisation, charge, conformité, maturité), pas un
+   simple "on n'a pas le temps".
+4. Propose un engagement mesurable et vérifiable pour éviter que "on nettoiera après" ne se
+   reproduise une troisième fois (par exemple : le refactoring minimal fait partie de la
+   définition de "terminé" de ce ticket, pas une tâche séparée reportable).
+
+## Partie orale (obligatoire)
+
+Une fois le texte écrit rendu, enregistre-toi en audio ou vidéo pendant 3 minutes maximum,
+répondant à voix haute au CTO et au développeur senior comme si tu étais réellement en situation :
+sans lire ton texte mot à mot, sans notes au-delà d'un post-it de mots-clés. Réécoute
+l'enregistrement une seule fois et note toi-même, avant toute relecture externe, un point
+où ta réponse orale était plus faible que ta réponse écrite.
+
+---
+
+*Ne fais défiler au-delà de cette ligne qu'une fois ta réponse écrite et horodatée.*
+
+## Grille d'évaluation
+
+| Critère                           | Ce qui est évalué                                                                                                                                                   |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Refus argumenté des deux extrêmes | La justification s'appuie sur un mécanisme concret (couplage, coût réel), pas sur une préférence esthétique ou une peur du changement                               |
+| Troisième voie réalisable         | La proposition tient dans les trois jours et cible précisément le couplage qui a causé le problème initial, pas un refactoring générique                            |
+| Réponse aux microservices         | L'argument utilise au moins un des quatre critères de décision du niveau, appliqué avec des faits du cas (une seule équipe, pas de contrainte de conformité isolée) |
+| Mécanisme anti-récidive           | L'engagement proposé est vérifiable (fait partie d'une définition de "terminé", d'un critère de revue de code), pas un vœu pieux                                    |
+| Ton                               | La décision est assumée et défendable devant le CTO et le développeur senior en même temps, sans chercher à plaire aux deux à la fois par du flou                   |
+| Justesse à l'oral sous contrainte de temps, sans texte préparé lu mot à mot | La réponse orale tient la même logique que le texte écrit, sans relecture mot à mot, dans le temps imparti ; une réponse orale qui appauvrit le texte ou dépasse 3 minutes ne vaut pas le maximum |
+
+## Seuil de validation chiffré
+
+| Critère | Points |
+| --- | --- |
+| Refus argumenté des deux extrêmes | 25 |
+| Troisième voie réalisable | 20 |
+| Réponse aux microservices | 20 |
+| Mécanisme anti-récidive | 20 |
+| Ton | 15 |
+| Justesse à l'oral sous contrainte | 20 |
+| **Total** | **120** |
+
+```text
+< 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
+50-69  --> valide avec reserve, identifie le critere le plus faible avant de le compter comme acquis
+70-89  --> valide, le reflexe est en place
+90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
+```
+
+Seuil de passage : 84/120. En dessous, le niveau n'est pas considéré comme acquis, même si le
+texte rendu est bien écrit.
+
+**Éliminatoire :** Si "Refus argumenté des deux extrêmes" est noté en dessous de 10/25, le total est plafonné à 60/120 : accepter l'un des deux extrêmes sans le nommer comme un extrême montre que le vocabulaire de couplage du niveau n'a pas été assimilé.
