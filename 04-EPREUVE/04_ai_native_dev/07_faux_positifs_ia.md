@@ -1,8 +1,7 @@
 ---
-stability: perissable_2028
+stability: periss-2028
 duree_de_vie_estimee: 1-2 ans
 raison: Les patterns d'hallucination IA évoluent avec les modèles.
-acte: appliquer
 ---
 
 # Faux positifs IA : le snippet propre qui ment

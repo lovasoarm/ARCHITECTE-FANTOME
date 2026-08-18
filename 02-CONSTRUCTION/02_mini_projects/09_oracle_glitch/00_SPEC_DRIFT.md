@@ -1,7 +1,6 @@
 ---
 stability: mouvant
 scope: 09_oracle_glitch
-acte: appliquer
 ---
 
 # 00_SPEC_DRIFT.md : spec drift **en cours de projet** (mouvant)

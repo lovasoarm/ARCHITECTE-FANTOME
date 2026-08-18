@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # PROXY : INTERCEPTER LES ACCÈS SANS CHANGER L'ORIGINAL
 Temps de lecture ~11 min

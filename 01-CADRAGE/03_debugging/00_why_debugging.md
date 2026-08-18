@@ -3,12 +3,11 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: La méthode scientifique de debug ne dépend d'aucun outil.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : stack trace (00-SOCLE/04_fundamentals), async & event loop (01-CADRAGE/02_async), try/catch synchrone (acquis du socle : `00-SOCLE/04_fundamentals/08b_try_catch_basics.md`). Ce module te donne juste assez pour lire une stack trace autour d'une erreur catchée, pas pour maîtriser la gestion d'erreur en profondeur : ça, c'est le reste du module 04_error_handling, juste après celui-ci. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : stack trace (01_fundamentals), async & event loop (03_async). Exceptions (05_error_handling anticipé) : tu croiseras `try`/`catch` avant de l'avoir formellement étudié, ce module te donne juste assez pour lire une stack trace, pas pour maîtriser la gestion d'erreur en profondeur. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # 00 : Pourquoi le debugging
 
@@ -62,8 +61,8 @@ Le debugging n'est pas une étape après le code : c'est un mode de pensée pré
 
 ## Prérequis
 
-- Savoir lire une erreur JS de base (module `01-CADRAGE/04_error_handling`).
-- Connaître l'event loop pour les bugs async (module `01-CADRAGE/02_async`).
+- Savoir lire une erreur JS de base (module `05_error_handling`).
+- Connaître l'event loop pour les bugs async (module `03_async`).
 - Un terminal et un debugger Node configurés (voir `00_prereq_check.md`).
 
 ## Erreurs classiques de débutant
@@ -88,4 +87,4 @@ Tu passes de "j'ai peur des bugs" à "un bug est un puzzle avec une solution gar
 
 ---
 
-> Pour tout exercice de debugging : utilise le template [`HYPOTHESES_TEMPLATE.md`](15_HYPOTHESES_TEMPLATE.md). Pas de correction sans hypothèse écrite.
+> Pour tout exercice de debugging : utilise le template [`HYPOTHESES_TEMPLATE.md`](./16_HYPOTHESES_TEMPLATE.md). Pas de correction sans hypothèse écrite.

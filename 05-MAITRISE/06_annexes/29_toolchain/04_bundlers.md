@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # BUNDLERS : WEBPACK, VITE, ESBUILD, ROLLUP : CHOISIR SANS SUBIR

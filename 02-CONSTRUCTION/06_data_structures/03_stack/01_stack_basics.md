@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # STACK : LIFO : LE DERNIER ENTRÉ EST LE PREMIER SORTI
 Temps de lecture ~8 min

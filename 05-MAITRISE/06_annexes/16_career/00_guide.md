@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # Le Guide que ton prof aurait dû te donner le jour 1
@@ -2028,8 +2027,6 @@ Adapter   : brancher une interface incompatible sur une autre
 
 #### Anti-patterns classiques
 
-> Relevé le 2026-08-14, source : pages tarifaires publiques des fournisseurs citées dans le module, à revérifier avant 2027.
-
 | Anti-pattern | C'est quoi | Conséquence |
 |---|---|---|
 | **Requêtes séquentielles indépendantes** | Tu lances deux requêtes l'une après l'autre alors qu'elles ont aucun lien | 200ms au lieu de 100ms. Multiplie par 10M req/jour et pleure |
@@ -2984,9 +2981,9 @@ La suite logique :
 
 ```
 ../../00_referentiel/where_you_stand.md  ->  les 4 axes sur lesquels tu vas progresser (juste un coup d'oeil, pas une lecture complète)
-README.md        ->  la roadmap des modules, dans l'ordre
-00-SOCLE/04_fundamentals/     ->  le premier module, le vrai départ
+README.md        ->  la roadmap des 32 modules, dans l'ordre
+01_fundamentals/     ->  le premier module, le vrai départ
 ```
 
 Ouvre `../../00_referentiel/where_you_stand.md`, puis `README.md` pour la ROADMAP, et lance-toi dans
-`00-SOCLE/04_fundamentals/00_why_fundamentals.md`.
+`01_fundamentals/00_why_fundamentals.md`.

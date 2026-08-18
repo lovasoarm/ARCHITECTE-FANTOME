@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # THIS KEYWORD RULES : THIS SELON LE CALL-SITE
 Temps de lecture ~7 min

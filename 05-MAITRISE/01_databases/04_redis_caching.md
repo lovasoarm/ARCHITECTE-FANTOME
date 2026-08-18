@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Se souvenir vite pour ne pas redemander à chaque fois
@@ -118,7 +117,7 @@ await redis.set('ninja:1:name', 'Kakashi')
 await redis.hset('ninja:1', { name: 'Kakashi', rank: 'Jonin', village: 'Konoha' })
 await redis.hget('ninja:1', 'rank')
 
-// List : une file ou une pile (vu dans 02-CONSTRUCTION/06_data_structures/03_stack et 04_queue)
+// List : une file ou une pile (vu dans 09_data_structures/03_stack et 04_queue)
 await redis.lpush('queue:missions', JSON.stringify({ id: 99, type: 'infiltration' }))
 await redis.rpop('queue:missions')
 
@@ -151,7 +150,7 @@ WRITE-BEHIND (write-back)
  --> l'écriture va d'abord dans le cache, puis est répercutée en DB plus tard (async)
  --> très rapide à l'écriture, mais risque de perte si le cache crash avant la sync DB
 
-STALE-WHILE-REVALIDATE (vu aussi dans 02-CONSTRUCTION/18_web_concepts/04_caching_strategies)
+STALE-WHILE-REVALIDATE (vu aussi dans 17_web_concepts/04_caching_strategies)
  --> sert la version en cache MÊME périmée, tout en rafraîchissant en arrière-plan
  --> le shinobi n'attend jamais, au prix d'une fraîcheur légèrement décalée
 ```
@@ -207,7 +206,7 @@ async function getNinjaRanking() {
 
 ## TIPS D'ÉVOLUTION TECHNIQUE
 
-Avant, beaucoup de devs géraient leur "cache" à la main avec un simple objet JS en mémoire (`const cache = {}`) dans le process Node. Ça marche en local, sur un seul serveur. Maintenant, dès que t'as plusieurs instances de ton serveur (scalabilité horizontale, vue dans `05-MAITRISE/02_scalability`), un cache en mémoire locale devient incohérent entre instances : chaque serveur a SA version du cache. Redis externalisé résout ça : toutes les instances partagent le même cache, peu importe combien de serveurs tournent.
+Avant, beaucoup de devs géraient leur "cache" à la main avec un simple objet JS en mémoire (`const cache = {}`) dans le process Node. Ça marche en local, sur un seul serveur. Maintenant, dès que t'as plusieurs instances de ton serveur (scalabilité horizontale, vue dans `25_scalability`), un cache en mémoire locale devient incohérent entre instances : chaque serveur a SA version du cache. Redis externalisé résout ça : toutes les instances partagent le même cache, peu importe combien de serveurs tournent.
 
 ---
 

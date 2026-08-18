@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # DÉSACCORD AVEC LE CTO (jeu de rôle écrit, puis oral)

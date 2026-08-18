@@ -1,6 +1,5 @@
 ---
-stability: perissable_2028
-acte: appliquer
+stability: periss-2028
 ---
 
 # trace_A : l'agent qui "améliore" et casse l'API publique

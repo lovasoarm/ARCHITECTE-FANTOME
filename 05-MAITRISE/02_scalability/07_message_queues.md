@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Découpler pour ne pas tout bloquer en chaîne
@@ -13,7 +12,7 @@ Une message queue (file de messages) dit : enregistre le profil tout de suite, m
 Pourquoi ça compte : c'est la différence entre une appli qui répond en 200ms et une appli qui timeout, pour exactement la même quantité de travail au final.
 
 Avantage : découplage (producteur et consommateur n'ont pas besoin d'être synchronisés), résilience (un crash du worker ne perd pas la tâche si bien configuré).
-Inconvénient : complexité ajoutée, cohérence éventuelle (vu dans `05-MAITRISE/01_databases/02_nosql_basics`) au lieu d'immédiate.
+Inconvénient : complexité ajoutée, cohérence éventuelle (vu dans `24_databases/02_nosql_basics`) au lieu d'immédiate.
 
 ---
 
@@ -56,7 +55,7 @@ async function worker() {
 }
 ```
 
-Le pourquoi : l'utilisateur reçoit une réponse en quelques centaines de millisecondes au lieu d'attendre 45 secondes. Le traitement lourd continue en arrière-plan, et l'utilisateur peut être notifié plus tard (websocket vu dans `04-EPREUVE/03_realtime`, email, ou juste un statut qui change quand il rafraîchit).
+Le pourquoi : l'utilisateur reçoit une réponse en quelques centaines de millisecondes au lieu d'attendre 45 secondes. Le traitement lourd continue en arrière-plan, et l'utilisateur peut être notifié plus tard (websocket vu dans `20_realtime`, email, ou juste un statut qui change quand il rafraîchit).
 
 ---
 
@@ -113,7 +112,7 @@ async function distribuerRations(job) {
 // Un autre worker reprend le job depuis le début --> double prélèvement du stock
 ```
 
-La correction : rendre l'opération idempotente (vue aussi dans `02-CONSTRUCTION/19_api_craft/04_auth_jwt` pour le refresh token), c'est-à-dire que la rejouer plusieurs fois donne le MÊME résultat que la jouer une fois.
+La correction : rendre l'opération idempotente (vue aussi dans `21_api_craft/04_auth_jwt` pour le refresh token), c'est-à-dire que la rejouer plusieurs fois donne le MÊME résultat que la jouer une fois.
 
 ```js
 // Idempotent : un identifiant unique de distribution empêche le double traitement
@@ -160,7 +159,7 @@ async function processWithRetry(job, maxRetries = 3) {
 }
 ```
 
-Le vrai intérêt : la dead letter queue devient un endroit que l'équipe surveille (vu dans `03-PILOTAGE/05_observability`), pour comprendre pourquoi certains messages échouent systématiquement, sans que ça bloque le traitement normal des autres messages.
+Le vrai intérêt : la dead letter queue devient un endroit que l'équipe surveille (vu dans `26_observability`), pour comprendre pourquoi certains messages échouent systématiquement, sans que ça bloque le traitement normal des autres messages.
 
 ---
 
@@ -197,7 +196,7 @@ Le risque réel : si l'ordre des opérations a un sens métier (fortifier avant 
 // des heures pour qu'une simple notification leur soit envoyée
 ```
 
-La correction : surveiller la profondeur de la file (queue depth, vu dans `03-PILOTAGE/05_observability/03_metrics_alerting`) comme une métrique critique, et scaler le nombre de workers dynamiquement selon cette profondeur, pas selon une intuition. Un système de queue sans cette surveillance peut sembler fonctionner parfaitement... jusqu'à ce que tu réalises que la file contient 6 heures de retard accumulé.
+La correction : surveiller la profondeur de la file (queue depth, vu dans `26_observability/03_metrics_alerting`) comme une métrique critique, et scaler le nombre de workers dynamiquement selon cette profondeur, pas selon une intuition. Un système de queue sans cette surveillance peut sembler fonctionner parfaitement... jusqu'à ce que tu réalises que la file contient 6 heures de retard accumulé.
 
 ---
 

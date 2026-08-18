@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CAHIER DES CHARGES : TRAPSOUL RADIO
@@ -77,22 +76,22 @@ Ce projet teste un réflexe que les devs n'ont pas naturellement : penser l'inte
 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
-### `02-CONSTRUCTION/12_typescript` : types stricts, generics, utility types
+### `14_typescript` : types stricts, generics, utility types
 
 **Où ça se voit** : tous les fichiers `.ts`. Les clés de traduction typées dans `i18n/types.ts`. Les generics sur les playlists `Playlist<Track>`.
 **Pourquoi c'est nécessaire ici** : `TranslationKey` est un type union de toutes les clés valides. Si tu écris `t('player.now_playing_typo')` et que la clé n'existe pas : erreur à la compilation.
 
-### `02-CONSTRUCTION/18_web_concepts` : browser render pipeline, LCP, INP, CLS
+### `17_web_concepts` : browser render pipeline, LCP, INP, CLS
 
 **Où ça se voit** : les optimisations de performance dans `src/player/`, les metadata dynamiques dans `src/pages/`.
 **Pourquoi c'est nécessaire ici** : un changement de track déclenche un re-render. Si ce re-render fait sauter le CLS (Cumulative Layout Shift : décalage cumulatif de la mise en page), les scores Lighthouse s'effondrent.
 
-### `03-PILOTAGE/02_web_inclusive` : ARIA, navigation clavier, contraste WCAG
+### `19_web_inclusive` : ARIA, navigation clavier, contraste WCAG
 
 **Où ça se voit** : chaque composant HTML dans `src/components/`. Les ARIA roles, les skip links, le focus management dans les modals.
 **Pourquoi c'est nécessaire ici** : les composants audio custom (bouton play, slider de progression, sélecteur de track) n'ont pas de comportement clavier natif. Il faut le construire explicitement.
 
-### `03-PILOTAGE/02_web_inclusive/i18n` : Intl, pluralisation, namespaces, locale detection
+### `19_web_inclusive/i18n` : Intl, pluralisation, namespaces, locale detection
 
 **Où ça se voit** : `src/i18n/` entier.
 **Pourquoi c'est nécessaire ici** : 4 locales, pluralisation différente par langue, dates et durées formatées selon la locale, sans bibliothèque externe.
@@ -100,10 +99,10 @@ Ce projet teste un réflexe que les devs n'ont pas naturellement : penser l'inte
 ### Résumé visuel
 
 ```
-02-CONSTRUCTION/12_typescript  --> types stricts, TranslationKey typé, Playlist<Track>, Readonly<Config>
-02-CONSTRUCTION/18_web_concepts --> LCP < 2.5s, CLS < 0.1, INP < 200ms, metadata dynamiques
-03-PILOTAGE/02_web_inclusive --> ARIA roles, navigation clavier, skip links, contraste WCAG AA
-03-PILOTAGE/02_web_inclusive/i18n     --> Intl.DateTimeFormat, Intl.NumberFormat, pluralisation manuelle, 4 locales
+14_typescript  --> types stricts, TranslationKey typé, Playlist<Track>, Readonly<Config>
+17_web_concepts --> LCP < 2.5s, CLS < 0.1, INP < 200ms, metadata dynamiques
+19_web_inclusive --> ARIA roles, navigation clavier, skip links, contraste WCAG AA
+19_web_inclusive/i18n     --> Intl.DateTimeFormat, Intl.NumberFormat, pluralisation manuelle, 4 locales
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
@@ -393,7 +392,7 @@ servant de référence). Toute nouvelle locale doit satisfaire ce type.
 
 Ce cahier des charges est **volontairement incomplet sur 3 points** (format de sortie exact d'un
 détail d'interface, un critère d'acceptation mesurable, un choix technique laissé implicite).
-Contrairement au _spec drift_ (voir `02-CONSTRUCTION/02_mini_projects/synthese/spec_drift.md`) qui simule une
+Contrairement au _spec drift_ (voir `30_mini_projects/synthese/spec_drift.md`) qui simule une
 spec qui **change** en cours de route, ici la spec est **floue dès le départ**, comme un vrai
 ticket de jour 1 en entreprise.
 
@@ -401,7 +400,7 @@ Ta mission avant d'écrire une ligne de code :
 
 1. Identifie les 3 zones de flou (elles sont réelles, pas piégeuses).
 2. Écris dans `QUESTIONS_CLARIFICATION.md` les questions exactes que tu poserais à un vrai
-   Product Owner. Utilise le protocole de `03-PILOTAGE/10_team_craft/08_how_to_ask.md`
+   Product Owner. Utilise le protocole de `27_team_craft/08_how_to_ask.md`
    (question fermée > question ouverte, hypothèse explicite, coût du "je devine tout seul").
 3. Fais ensuite des hypothèses raisonnables sur chaque point, et documente-les dans un ADR
    dédié (`ADR/000-hypotheses-spec-floue.md`) **avant** de coder.

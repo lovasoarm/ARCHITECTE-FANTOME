@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # 01c : Stack vs Heap : où vit ta valeur ?
 Temps de lecture ~5 min

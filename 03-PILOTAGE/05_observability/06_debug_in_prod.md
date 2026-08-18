@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # Quand tu ne peux pas juste mettre un breakpoint
@@ -34,7 +33,7 @@ Le pourquoi cette différence est fondamentale : un breakpoint classique arrête
 
 ```js
 // Le bug n'est pas encore arrivé, mais tu prépares le terrain en amont
-// avec des logs structurés (vus dans `03-PILOTAGE/05_observability/01_structured_logging`)
+// avec des logs structurés (vus dans `26_observability/01_structured_logging`)
 // suffisamment détaillés pour reconstruire le scénario après coup
 logger.info({
  event: 'jutsu_started',
@@ -52,7 +51,7 @@ Le risque réel : si tu n'as pas pensé à logguer le bon contexte AVANT que le 
 ## 3) SNAPSHOTS ET HEAP DUMPS : UNE PHOTO DE L'ÉTAT SANS ARRÊTER LE PROCESS
 
 ```
-Une fuite mémoire (vue dans `02-CONSTRUCTION/05_memory_performance/04_profiling`) progresse
+Une fuite mémoire (vue dans `08_memory_performance/04_profiling`) progresse
 lentement en prod. Tu ne peux pas arrêter le serveur pour l'inspecter
 en plein trafic.
 
@@ -121,7 +120,7 @@ nouvelle version --> 1% des shinobis --> si stable après surveillance --> 10% -
          99% des shinobis n'ont jamais rien vu
 ```
 
-Le pourquoi : un déploiement canary combiné aux métriques (vues dans `03-PILOTAGE/05_observability/03_metrics_alerting`) permet de détecter une régression sur un petit échantillon avant qu'elle n'atteigne tout le monde. Si le taux d'erreur grimpe chez les 1% qui ont la nouvelle version, tu le sais en quelques minutes, pas en quelques heures après que toute ta base de shinobis ait été impactée.
+Le pourquoi : un déploiement canary combiné aux métriques (vues dans `26_observability/03_metrics_alerting`) permet de détecter une régression sur un petit échantillon avant qu'elle n'atteigne tout le monde. Si le taux d'erreur grimpe chez les 1% qui ont la nouvelle version, tu le sais en quelques minutes, pas en quelques heures après que toute ta base de shinobis ait été impactée.
 
 ---
 

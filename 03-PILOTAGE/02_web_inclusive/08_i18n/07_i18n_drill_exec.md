@@ -1,6 +1,5 @@
 ---
-stability: mouvant
-acte: appliquer
+stability: évolutif
 ---
 
 # i18n : Drill exécutable

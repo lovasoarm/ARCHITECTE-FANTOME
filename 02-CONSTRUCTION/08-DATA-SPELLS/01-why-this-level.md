@@ -1,11 +1,4 @@
----
-stability: perissable_2027
-acte: restituer
----
-
 # Pourquoi ce niveau existe
-
-> Relevé le 2026-08-14, source : pages tarifaires publiques des fournisseurs citées dans ce fichier, à revérifier avant 2027. Tout montant de ce fichier est un ordre de grandeur daté, jamais une vérité intemporelle.
 
 ## La scène
 

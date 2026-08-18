@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # UTILITY TYPES : LES OUTILS QUI TRANSFORMENT TES TYPES SANS LES RÉÉCRIRE

@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # STATIC, GETTERS, SETTERS : LOGIQUE CACHÉE DERRIÈRE UNE SYNTAXE D'ATTRIBUT
 Temps de lecture ~8 min

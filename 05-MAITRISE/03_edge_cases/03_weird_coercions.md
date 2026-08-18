@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # LES COERCIONS QUI FONT RIRE ET QUI FONT MAL
 Temps de lecture ~11 min

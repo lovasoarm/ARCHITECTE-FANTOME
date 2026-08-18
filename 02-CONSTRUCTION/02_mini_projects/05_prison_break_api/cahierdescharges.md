@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # CAHIER DES CHARGES : PRISON BREAK API
@@ -71,22 +70,22 @@ Ce projet force à penser sécurité et robustesse ensemble, pas séparément :
 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
-### `02-CONSTRUCTION/19_api_craft` : Express, CRUD, middleware, versioning
+### `21_api_craft` : Express, CRUD, middleware, versioning
 
 **Où ça se voit** : toute l'arborescence `src/routes/` et `src/middleware/`.
 **Pourquoi c'est nécessaire ici** : structurer une API Express proprement (pas un seul fichier de 500 lignes) avec des routes séparées, des middlewares réutilisables, et une gestion d'erreur centralisée.
 
-### `03-PILOTAGE/04_security` : JWT, bcrypt, XSS, injection, rate limiting
+### `22_security` : JWT, bcrypt, XSS, injection, rate limiting
 
 **Où ça se voit** : `src/auth/`, `src/middleware/rateLimiter.js`, `src/middleware/sanitizer.js`.
 **Pourquoi c'est nécessaire ici** : bcrypt sur les mots de passe, JWT signé pour l'auth, rate limiting par IP pour bloquer T-Bag qui force, sanitization des inputs pour l'injection.
 
-### `05-MAITRISE/01_databases` : SQLite, modélisation, indexes, Redis cache
+### `24_databases` : SQLite, modélisation, indexes, Redis cache
 
 **Où ça se voit** : `src/db/`, `src/cache/`.
 **Pourquoi c'est nécessaire ici** : les profils et le plan d'évasion sont persistés en SQLite. Les plans souvent consultés sont cachés en Redis (simulé avec une Map en mémoire si Redis n'est pas disponible).
 
-### `02-CONSTRUCTION/18_web_concepts` : HTTP, status codes, headers, caching
+### `17_web_concepts` : HTTP, status codes, headers, caching
 
 **Où ça se voit** : partout. Chaque réponse a le bon status code, les bons headers, le bon format d'erreur.
 **Pourquoi c'est nécessaire ici** : un 200 quand la ressource n'existe pas, un 500 quand c'est une erreur métier : c'est du code qui ment. Fox River répond avec précision.
@@ -94,10 +93,10 @@ Ce projet force à penser sécurité et robustesse ensemble, pas séparément :
 ### Résumé visuel
 
 ```
-02-CONSTRUCTION/19_api_craft  --> src/routes/, src/middleware/errorHandler.js, src/server.js
-03-PILOTAGE/04_security   --> src/auth/ (JWT + bcrypt), src/middleware/rateLimiter.js + sanitizer.js
-05-MAITRISE/01_databases  --> src/db/ (SQLite), src/cache/ (Redis simulé)
-02-CONSTRUCTION/18_web_concepts --> status codes, headers, format d'erreur uniforme
+21_api_craft  --> src/routes/, src/middleware/errorHandler.js, src/server.js
+22_security   --> src/auth/ (JWT + bcrypt), src/middleware/rateLimiter.js + sanitizer.js
+24_databases  --> src/db/ (SQLite), src/cache/ (Redis simulé)
+17_web_concepts --> status codes, headers, format d'erreur uniforme
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
@@ -381,7 +380,7 @@ et si le mot de passe est faux) pour résister aux timing attacks.
 
 ## SURPRISE MI-PARCOURS (spec drift, obligatoire)
 
-Spec drift obligatoire, voir `02-CONSTRUCTION/02_mini_projects/synthese/spec_drift.md`
+Spec drift obligatoire, voir `30_mini_projects/synthese/spec_drift.md`
 (protocole unique, tirage aléatoire, déclenchement à 40 % d'avancement).
 
 ## RÔLE DES DOSSIERS (ne skippe pas)

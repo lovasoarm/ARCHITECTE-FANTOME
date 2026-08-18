@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # LIRE UNE STACK TRACE DE PROD QUAND LE CODE SOURCE N'EXISTE PLUS
@@ -102,7 +101,7 @@ TypeError: Cannot read properties of undefined (reading 'cd')
 
 ## 4) LA TRACE QUI TRAVERSE PLUSIEURS SERVICES
 
-En architecture microservices, l'erreur que tu vois côté frontend n'est parfois que le symptôme d'un crash survenu trois services plus loin. Une stack trace seule ne le montre pas : il faut la croiser avec le `traceId` (module `03-PILOTAGE/05_observability/02_distributed_tracing`).
+En architecture microservices, l'erreur que tu vois côté frontend n'est parfois que le symptôme d'un crash survenu trois services plus loin. Une stack trace seule ne le montre pas : il faut la croiser avec le `traceId` (module `26_observability/02_distributed_tracing`).
 
 ```
 Frontend reçoit : "500 Internal Server Error"

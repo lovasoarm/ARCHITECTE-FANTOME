@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: évaluer
 ---
 
 # 00 : Prereq check : Annexes
@@ -23,7 +22,7 @@ Temps de lecture ~5 min
 ## Verdict
 
 - **3+ réponses solides** → tu peux entrer.
-- **2 ou moins** → retourne d'abord consolider tes mini-projets (`02-CONSTRUCTION/02_mini_projects/`)
+- **2 ou moins** → retourne d'abord consolider tes mini-projets (`30_mini_projects/`)
   avant d'attaquer les annexes de transfert et de préparation.
 
 > Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.

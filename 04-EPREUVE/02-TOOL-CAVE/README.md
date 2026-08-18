@@ -1,14 +1,6 @@
----
-stability: stable
-acte: comprendre
-route: complete
----
-
-[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md) | [Niveau suivant](../01-BONUS-VAULT/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Niveau précédent](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md) | [Niveau suivant](../01-BONUS-VAULT/README.md)
 
 # Niveau 14 : Tool Cave
-
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
 
 ## Ce que c'est
 
@@ -44,7 +36,7 @@ Auto-test d'entrée :
 [challenge](../../05-MAITRISE/05-DAY-TO-LEGEND/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 14 une difficulté qui vient du niveau 13.
 
-**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) (règle de calcul : voir [_STYLE.md](../.meta/_STYLE.md), section « Durées »).
 
 ## Ce que tu sais faire à la sortie
 
@@ -92,22 +84,3 @@ qu'elles ne deviennent un incident. Le `boss-fight` retire l'IA de l'équation e
 Ce niveau ne compare pas VSCode à Vim, ni GPT à un concurrent. Les guerres d'outils sont un
 bruit qui masque la vraie question : est-ce que ta méthode de travail est reproductible et
 transmissible, quel que soit l'outil que tu tiens dans la main.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `04-EPREUVE/02-TOOL-CAVE` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_prereq_check.md](00_prereq_check.md)
-- [01-why-this-level.md](01-why-this-level.md)
-- [02-editor-and-shell.md](02-editor-and-shell.md)
-- [03-debugging-toolkit.md](03-debugging-toolkit.md)
-- [04-ai-as-a-tool.md](04-ai-as-a-tool.md)
-- [05-audit-dune-reponse-ia.md](05-audit-dune-reponse-ia.md)
-- [boss-fight.md](boss-fight.md)
-- [challenge.md](challenge.md)
-- [defense-orale.md](defense-orale.md)
-- [grimoire.md](grimoire.md)
-
-<!-- CONTENU-DOSSIER:fin -->

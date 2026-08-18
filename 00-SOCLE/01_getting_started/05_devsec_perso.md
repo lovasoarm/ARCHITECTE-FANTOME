@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 05 : Devsec perso : protège ton chakra avant d'affronter les ninjas renégats du net
@@ -22,7 +21,7 @@ Ton laptop dev, c'est un coffre. Dedans : tes clés SSH, tes tokens GitHub, tes 
 
 ## Le piège Copilot
 
-Une IA peut te générer du code sous licence GPL sans te prévenir. Voir `05-MAITRISE/06_annexes/07_ethics_and_licenses.md`.
+Une IA peut te générer du code sous licence GPL sans te prévenir. Voir `31_annexes/07_ethics_and_licenses.md`.
 
 ## Détecteur maison
 

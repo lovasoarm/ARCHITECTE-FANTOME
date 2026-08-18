@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Grossir un serveur ou en ajouter dix
@@ -70,7 +69,7 @@ app.post('/enter-arena', (req, res) => {
 
 ```js
 // Bon pour le scale out : état externalisé, partagé par TOUS les serveurs
-// (vu en détail dans 05-MAITRISE/01_databases/04_redis_caching)
+// (vu en détail dans 24_databases/04_redis_caching)
 app.post('/enter-arena', async (req, res) => {
  await redis.set(`active:${req.body.userId}`, true)
  // N'IMPORTE QUEL serveur peut lire cette info ensuite
@@ -166,7 +165,7 @@ PHASE 2 : 10 000 à 1 million users
 
 PHASE 3 : 1 million+ users
  --> plus une question de scale unique : architecture distribués, sharding,
-   CDN pour les assets, caches multiples (Redis vu dans 05-MAITRISE/01_databases/04)
+   CDN pour les assets, caches multiples (Redis vu dans 24_databases/04)
  --> à ce stade les décisions d'architecture precèdent les décisions d'infra
 ```
 
@@ -180,7 +179,7 @@ Memory > 85% utilisée en régime normal     --> fuite ou machine trop petite
 ```
 
 La règle qui évite de scale trop tôt : mesure d'abord. Un `console.time()` ou
-un profiling basique (vu en `02-CONSTRUCTION/05_memory_performance/04_profiling`) révèle souvent
+un profiling basique (vu en `08_memory_performance/04_profiling`) révèle souvent
 qu'une requête DB non-indexée ou un calcul O(n²) est la vraie cause de la lenteur.
 Scaler un serveur lent ne le rend pas rapide : ça te donne juste plusieurs serveurs lents.
 
@@ -188,7 +187,7 @@ Scaler un serveur lent ne le rend pas rapide : ça te donne juste plusieurs serv
 
 ## TIPS D'ÉVOLUTION TECHNIQUE
 
-Avant, scale up était souvent le réflexe par défaut, parce que gérer plusieurs serveurs à la main (déploiement, synchronisation, load balancing) était lourd opérationnellement. Maintenant, avec les conteneurs (Docker, vu dans `05-MAITRISE/06_annexes/toolchain/05_docker_basics`) et les orchestrateurs (Kubernetes), ajouter ou retirer des instances est devenu une opération quasi automatique (auto-scaling : le nombre de serveurs s'ajuste seul selon la charge mesurée). Le switch existe parce que l'outillage a rattrapé la complexité opérationnelle du scale out, pas parce que le scale up serait devenu inutile : il reste pertinent pour des charges de travail qui ne se parallélisent pas bien (calcul intensif sur une seule grosse tâche).
+Avant, scale up était souvent le réflexe par défaut, parce que gérer plusieurs serveurs à la main (déploiement, synchronisation, load balancing) était lourd opérationnellement. Maintenant, avec les conteneurs (Docker, vu dans `31_annexes/toolchain/05_docker_basics`) et les orchestrateurs (Kubernetes), ajouter ou retirer des instances est devenu une opération quasi automatique (auto-scaling : le nombre de serveurs s'ajuste seul selon la charge mesurée). Le switch existe parce que l'outillage a rattrapé la complexité opérationnelle du scale out, pas parce que le scale up serait devenu inutile : il reste pertinent pour des charges de travail qui ne se parallélisent pas bien (calcul intensif sur une seule grosse tâche).
 
 ---
 

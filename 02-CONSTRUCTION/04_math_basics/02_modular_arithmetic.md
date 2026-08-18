@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # ARITHMÉTIQUE MODULAIRE : LE MODULO QUI TOURNE EN BOUCLE
 Temps de lecture ~9 min
@@ -164,7 +163,7 @@ const indexHash = (valeurHash) => valeurHash % TAILLE_TABLE;
 // si valeurHash = 289 => 289 % 16 = 1 :collision ! (même index)
 // le hash parfait n'existe pas : le modulo amplifie les collisions
 
-// c'est la base des hash tables:module 02-CONSTRUCTION/06_data_structures creuse ça
+// c'est la base des hash tables:module 09_data_structures creuse ça
 ```
 
 ---

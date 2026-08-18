@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # HASH TABLE : O(1) POUR CHERCHER, SI LE HASH EST BON
 Temps de lecture ~9 min

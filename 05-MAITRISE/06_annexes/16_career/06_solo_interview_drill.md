@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Solo Interview Drill : 20 questions, rejouable trimestriellement
@@ -81,6 +80,6 @@ Total sur 100 (20 × 5). **Seuil de passage : ≥ 60**.
 
 ## Journal
 
-Après chaque session, écris 10 lignes dans `05-MAITRISE/06_annexes/16_career/06_interview_drill_log.md`
+Après chaque session, écris 10 lignes dans `31_annexes/16_career/06_interview_drill_log.md`
 (à créer au premier passage) : date, score, 3 questions ratées, 1 truc appris,
 prochaine cadence prévue.

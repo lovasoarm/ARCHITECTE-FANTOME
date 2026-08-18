@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # IMMUTABILITÉ : NE PAS MUTER, CRÉER
 Temps de lecture ~9 min
@@ -12,7 +11,7 @@ Immutabilité c'est : tu prends l'original, tu crées une copie avec les changem
 
 En prod, la mutation cachée est la cause numéro 1 des bugs qui "arrivent d'eux-mêmes". Tu modifies un objet à un endroit, un autre composant qui référence le même objet voit des données corrompues, et t'as aucune idée d'où ça vient.
 
-> Le mécanisme de copie par référence (pourquoi deux variables peuvent pointer vers le même objet) est traité en profondeur dans `02-CONSTRUCTION/05_memory_performance/02_copy_vs_ref/01_shallow_vs_deep.md`.
+> Le mécanisme de copie par référence (pourquoi deux variables peuvent pointer vers le même objet) est traité en profondeur dans `08_memory_performance/02_copy_vs_ref/01_shallow_vs_deep.md`.
 > Ici on travaille l'immutabilité comme discipline de code. Là-bas on explique le moteur.
 
 ---

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # ADR-002 : périmètre du POSTMORTEM sur un repo hérité

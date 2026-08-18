@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # CAHIER DES CHARGES : WALKING DEAD PROTOCOL
@@ -82,22 +81,22 @@ Ce projet teste une compétence que les juniors évitent systématiquement : tra
 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
-### `02-CONSTRUCTION/03_testing` : unit, intégration, mocking, E2E Playwright
+### `06_testing` : unit, intégration, mocking, E2E Playwright
 
 **Où ça se voit** : tout le dossier `tests/` et `e2e/`.
 **Pourquoi c'est nécessaire ici** : couvrir un legacy sans tests, puis passer au TDD pour les nouvelles features. Les deux exercices en un. Playwright simule un opérateur qui tape des commandes dans le terminal.
 
-### `02-CONSTRUCTION/11_refactoring` : SOLID sur du code procédural, code smells
+### `13_refactoring` : SOLID sur du code procédural, code smells
 
 **Où ça se voit** : le passage de `legacy/campV1.js` vers `src/`. Chaque module de `src/` correspond à une responsabilité extraite du monolithe original.
 **Pourquoi c'est nécessaire ici** : `campV1.js` viole SRP (une seule fonction fait tout), OCP (ajouter une feature = modifier la fonction existante), DIP (la logique métier dépend directement du filesystem). La v2 corrige les trois.
 
-### `02-CONSTRUCTION/13_runtime_env` : CLI Node.js, fs, Worker Threads
+### `15_runtime_env` : CLI Node.js, fs, Worker Threads
 
 **Où ça se voit** : `src/cli.js`, `src/store/fileStore.js`, `src/workers/threatSimulator.js`.
 **Pourquoi c'est nécessaire ici** : `process.argv` pour les commandes CLI, `fs.promises` pour la persistance JSON, Worker Threads pour simuler des vagues de menaces en parallèle sans bloquer le CLI.
 
-### `05-MAITRISE/07_tools` : logger structuré, benchmark, debug toolkit
+### `32_tools` : logger structuré, benchmark, debug toolkit
 
 **Où ça se voit** : `src/logger/`, `src/debug/`.
 **Pourquoi c'est nécessaire ici** : les opérations du camp sont loggées en JSON structuré avec timestamp et niveau. Le debug toolkit permet de rejouer un scénario passé depuis les logs. Ce sont des outils réutilisables dans n'importe quel autre projet du curriculum.
@@ -105,10 +104,10 @@ Ce projet teste une compétence que les juniors évitent systématiquement : tra
 ### Résumé visuel
 
 ```
-02-CONSTRUCTION/03_testing  --> tests/ (unit + integration), e2e/ (Playwright), mocks/
-02-CONSTRUCTION/11_refactoring --> legacy/ -> src/ (SOLID, code smells éliminés)
-02-CONSTRUCTION/13_runtime_env --> src/cli.js (argv), src/store/fileStore.js (fs), src/workers/
-05-MAITRISE/07_tools    --> src/logger/ (JSON structuré), src/debug/ (replay de scénarios)
+06_testing  --> tests/ (unit + integration), e2e/ (Playwright), mocks/
+13_refactoring --> legacy/ -> src/ (SOLID, code smells éliminés)
+15_runtime_env --> src/cli.js (argv), src/store/fileStore.js (fs), src/workers/
+32_tools    --> src/logger/ (JSON structuré), src/debug/ (replay de scénarios)
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE

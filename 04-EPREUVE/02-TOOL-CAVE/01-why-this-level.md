@@ -1,8 +1,3 @@
----
-stability: perissable_2027
-acte: restituer
----
-
 # Pourquoi ce niveau existe
 
 ## Le piège

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Distributed thinking (sans K8s, sans buzz)

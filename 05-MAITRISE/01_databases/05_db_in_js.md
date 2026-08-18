@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Connecter ton code à la DB sans te perdre dans l'abstraction
@@ -99,7 +98,7 @@ console.log(ninja.missions) // un tableau de missions, déjà mappé en objets J
 
 Le pourquoi c'est puissant : `include` fait le `JOIN` (ou plusieurs requêtes optimisées) pour toi, le mapping objet est automatique, le typage TypeScript est généré depuis ton schéma. Tu écris 4 lignes pour ce qui prendrait 15 lignes en SQL brut + mapping manuel.
 
-Le piège classique, le problème N+1 (vu aussi en algo de complexité dans `02-CONSTRUCTION/05_memory_performance/03_complexity`) :
+Le piège classique, le problème N+1 (vu aussi en algo de complexité dans `08_memory_performance/03_complexity`) :
 
 ```js
 // exemple qui casse : ça a l'air innocent
@@ -151,7 +150,7 @@ model Ninja {
 // ça crée un fichier SQL horodaté qui ajoute la colonne, versionné dans git
 ```
 
-Le pourquoi : ton schéma de DB est aussi important que ton code, donc il doit suivre la même discipline (vu dans `03-PILOTAGE/10_team_craft` pour la rigueur d'équipe) : versionné, reviewé, appliqué dans un ordre connu, jamais modifié à la main directement en prod.
+Le pourquoi : ton schéma de DB est aussi important que ton code, donc il doit suivre la même discipline (vu dans `27_team_craft` pour la rigueur d'équipe) : versionné, reviewé, appliqué dans un ordre connu, jamais modifié à la main directement en prod.
 
 ---
 

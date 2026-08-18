@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # BUBBLE SORT & INSERTION SORT : LES LENTS QUI T'APPRENNENT TOUT
 Temps de lecture ~8 min

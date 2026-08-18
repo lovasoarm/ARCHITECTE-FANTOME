@@ -1,29 +1,25 @@
 ---
-stability: intemporel
-acte: restituer
+stability: chantier
+acte: a_ecrire
 ---
 
-# 05-MAITRISE
+<!-- CHANTIER-OUVERT : fichier reconstruit comme facade lors de la fusion en package unique.
+     Le contenu pedagogique reel reste a ecrire. Voir RESTE-A-FAIRE-ARCHITECTE-FANTOME.md. -->
 
-Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
+# README
 
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
+> **Chantier ouvert.** Ce fichier existe pour qu'aucun lien du depot ne soit casse.
+> Son contenu pedagogique n'est pas encore ecrit.
 
-## Contenu du dossier
+## Ce qui doit etre ecrit ici
 
-Liste generee : tout fichier de `05-MAITRISE` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
+Le contrat exact de ce fichier est decrit par les documents qui le citent :
 
-- [RETRO-BLOC-5-MAITRISE.md](RETRO-BLOC-5-MAITRISE.md)
-- [01_databases/](01_databases/README.md)
-- [02_scalability/](02_scalability/README.md)
-- [03_edge_cases/](03_edge_cases/README.md)
-- [04_ai_agents_and_autonomy/](04_ai_agents_and_autonomy/README.md)
-- [05-DAY-TO-LEGEND/](05-DAY-TO-LEGEND/README.md)
-- [06_annexes/](06_annexes/README.md)
-- [07_tools/](07_tools/README.md)
-- [08_maitrise_staff_engineer/](08_maitrise_staff_engineer/README.md)
-- [BOSS-1/](BOSS-1/README.md)
-- [BOSS-2/](BOSS-2/README.md)
-- [BOSS-3/](BOSS-3/README.md)
+- `README.md`
 
-<!-- CONTENU-DOSSIER:fin -->
+## Statut
+
+- [ ] contenu redige
+- [ ] exercice borne et verifiable
+- [ ] rattache au fil rouge
+- [ ] cite dans le README de son module

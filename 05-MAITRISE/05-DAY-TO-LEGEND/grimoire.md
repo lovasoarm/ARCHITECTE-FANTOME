@@ -1,24 +1,33 @@
 # Grimoire : Day-to-Legend
 
-Ce grimoire est un mémo à quatre colonnes exactes. La table de défense orale vit à côté, dans [defense-orale.md](defense-orale.md).
+Ce grimoire comporte deux tables : le mémo à 4 colonnes, puis la table de défense orale à
+3 colonnes (écart de format assumé, voir [_STYLE.md](../.meta/_STYLE.md)).
 
 Ouvre ce mémo quand tu doutes de ta progression, ou juste avant de préparer un dossier de
 promotion. Il rappelle les leviers d'entraînement, pas le cours complet sur la progression.
 
-| Terme | Définition | Code | Analogies | Limite |
-| --- | --- | --- | --- | --- |
-| Pratique délibérée | Entraînement ciblé, juste au-delà de la zone de confort, avec feedback rapide et spécifique. | `echo "kata du jour: justifier une decision reelle en 4 lignes" >> kata.md` | course en montagne / atelier de menuiserie | « course en montagne » n'a ni facture ni horloge ; sur Pratique délibérée, déléguer sans transmettre le critère de décision produit une exécution conforme et un résultat faux. Formule le retour sur le mécanisme, pas sur la personne. |
-| Boucle de feedback fermée | Correction basée uniquement sur son propre jugement, qui plafonne vite la progression. | `git log --author="moi" --grep="revu par" --oneline \| wc -l` | s'entraîner sans miroir ni chrono / réviser en ne relisant que ses propres notes | « s'entraîner sans miroir ni chrono » raconte le cas nominal ; sur Boucle de feedback fermée, un retour de revue formulé comme un jugement ferme le dialogue et supprime l'information. Transmets le critère de décision, pas seulement la tâche. |
-| Zone d'apprentissage efficace | Difficulté juste au-delà du confortable, ni trop facile ni trop dure. | `echo "difficulte ressentie: 6/10" >> kata.md # vise 6-7, pas 2 ni 10` | course en montagne / navigation maritime | « course en montagne » raconte le cas nominal ; sur Zone d'apprentissage efficace, la montée en compétence se mesure en autonomie sur un cas neuf, pas en tâches terminées. Vérifie l'autonomie sur un cas jamais vu, pas sur une répétition. |
-| Plateau de progression | Stagnation malgré un travail continu, causée par zone de confort, boucle fermée ou mauvais calibrage. | `diff <(cat competences-2025.md) <(cat competences-2026.md)` | atelier de menuiserie / urgences d'hôpital | « atelier de menuiserie » a une frontière visible à l'oeil ; sur Plateau de progression, l'exemplarité porte tant que la personne est présente, la trace écrite lui survit. Écris le standard et le contrôle qui le rend opposable. |
-| Portfolio de preuves | Artefacts vérifiables (ADR, post-mortem, code documenté) attestant une compétence réelle. | `git log --author="moi" --grep="ADR" --oneline` | régie technique de spectacle / navigation maritime | « régie technique de spectacle » suppose un seul acteur à la fois ; sur Portfolio de preuves, le mentorat sans cas réel produit du savoir déclaratif, pas de la compétence. Vérifie l'autonomie sur un cas jamais vu, pas sur une répétition. |
-| Kata de décision | Exercice court et régulier : contexte, décision, justification, compromis, ce qui ferait changer d'avis. | `echo "contexte / decision / justification / compromis / contre-preuve" >> kata-$(date +%F).md` | course en montagne / cuisine de restaurant en service | « course en montagne » raconte le cas nominal ; sur Kata de décision, déléguer sans transmettre le critère de décision produit une exécution conforme et un résultat faux. Transmets le critère de décision, pas seulement la tâche. |
-| Journal de décision | Notation quotidienne courte de la décision du jour et de ce qu'on referait autrement. | `echo "$(date +%F): decision=X, hesitation=Y, autrement=Z" >> journal.md` | urgences d'hôpital / atelier de menuiserie | « urgences d'hôpital » s'arrête à la première surprise ; sur Journal de décision, déléguer sans transmettre le critère de décision produit une exécution conforme et un résultat faux. Transmets le critère de décision, pas seulement la tâche. |
-| Checklist annuelle de vérité | Quatre questions posées une fois par an ; trois ou quatre "non" signalent un plateau à traiter. | `grep -c "non" checklist-annuelle-2026.md` | navigation maritime / course en montagne | « navigation maritime » suppose un seul acteur à la fois ; sur Checklist annuelle de vérité, l'influence sans autorité repose sur des preuves reproductibles, pas sur l'ancienneté. Écris le standard et le contrôle qui le rend opposable. |
+| Terme | Définition | Code | Analogies |
+| --- | --- | --- | --- |
+| Pratique délibérée | Entraînement ciblé, juste au-delà de la zone de confort, avec feedback rapide et spécifique. | `echo "kata du jour: justifier une decision reelle en 4 lignes" >> kata.md` | course en montagne / atelier de menuiserie |
+| Boucle de feedback fermée | Correction basée uniquement sur son propre jugement, qui plafonne vite la progression. | `git log --author="moi" --grep="revu par" --oneline | wc -l` | urgences d'hôpital / régie technique de spectacle |
+| Zone d'apprentissage efficace | Difficulté juste au-delà du confortable, ni trop facile ni trop dure. | `echo "difficulte ressentie: 6/10" >> kata.md # vise 6-7, pas 2 ni 10` | course en montagne / navigation maritime |
+| Plateau de progression | Stagnation malgré un travail continu, causée par zone de confort, boucle fermée ou mauvais calibrage. | `diff <(cat competences-2025.md) <(cat competences-2026.md)` | atelier de menuiserie / urgences d'hôpital |
+| Portfolio de preuves | Artefacts vérifiables (ADR, post-mortem, code documenté) attestant une compétence réelle. | `git log --author="moi" --grep="ADR" --oneline` | régie technique de spectacle / navigation maritime |
+| Kata de décision | Exercice court et régulier : contexte, décision, justification, compromis, ce qui ferait changer d'avis. | `echo "contexte / decision / justification / compromis / contre-preuve" >> kata-$(date +%F).md` | course en montagne / cuisine de restaurant en service |
+| Journal de décision | Notation quotidienne courte de la décision du jour et de ce qu'on referait autrement. | `echo "$(date +%F): decision=X, hesitation=Y, autrement=Z" >> journal.md` | urgences d'hôpital / atelier de menuiserie |
+| Checklist annuelle de vérité | Quatre questions posées une fois par an ; trois ou quatre "non" signalent un plateau à traiter. | `grep -c "non" checklist-annuelle-2026.md` | navigation maritime / course en montagne |
 
 ## Défense orale
 
-La table de défense orale a son propre fichier, pour que ce grimoire garde un format unique de quatre colonnes : [defense-orale.md](defense-orale.md).
+Pour la grille complète et chiffrée, va voir [./boss-fight.md](./boss-fight.md). Voici la matière
+reformulée pour t'entraîner à l'oral.
+
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+| --- | --- | --- |
+| Reconstruire honnêtement un historique | Enjoliver le passé sans base vérifiable se retourne contre toi dès qu'on creuse. | Sur quelles traces concrètes (commits, tickets) t'appuies-tu pour prouver une compétence passée ? |
+| Choisir avec un critère explicite | Choisir "ce qui impressionne" plutôt que ce qui a un vrai impact affaiblit ta démonstration. | Quel critère explicite justifie le choix de tes trois décisions mises en avant ? |
+| Proposer un cadre juste pour tous | Une grille conçue pour t'avantager seul se retourne contre toi si elle est perçue comme une manoeuvre. | En quoi ta proposition de grille profite-t-elle aussi à tes collègues en lice ? |
+| Assumer ses limites | Bluffer une expérience ou une régularité qui n'existe pas se découvre tôt ou tard. | Que refuses-tu explicitement de prétendre avoir accompli en un mois ? |
 
 ## Routine minimale (résumé)
 

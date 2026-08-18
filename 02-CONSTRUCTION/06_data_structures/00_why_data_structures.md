@@ -3,12 +3,11 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Arrays, maps, sets, trees : socle CS.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : objets & tableaux (00-SOCLE/04_fundamentals), big-O (02-CONSTRUCTION/07_algorithms — pas un prérequis : ce module en donne le strict nécessaire, le fond est enseigné là-bas plus tard), mémoire (02-CONSTRUCTION/05_memory_performance). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : objets & tableaux (01_fundamentals), big-O (10_algorithms anticipé), mémoire (08_memory_performance). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 > **9 sous-dossiers dans ce module, c'est plus dense que la moyenne.**
 > Avant de foncer, lis `00_navigation.md` : il découpe la progression en 3
@@ -28,8 +27,8 @@ Choisir la bonne structure, c'est la différence entre un dev qui résout un pro
 ## PRÉREQUIS
 
 Ce module suppose que tu maîtrises :
-- complexité O(n) et notation Big-O : voir `02-CONSTRUCTION/05_memory_performance/03_complexity/01_big_o_basics.md`
-- copie par référence vs par valeur : voir `02-CONSTRUCTION/05_memory_performance/02_copy_vs_ref/01_shallow_vs_deep.md`
+- complexité O(n) et notation Big-O : voir `08_memory_performance/03_complexity/01_big_o_basics.md`
+- copie par référence vs par valeur : voir `08_memory_performance/02_copy_vs_ref/01_shallow_vs_deep.md`
 
 Si ces bases ne sont pas là : reviens ici après.
 
@@ -86,7 +85,7 @@ La demande pour ces compétences a aussi augmenté : avec la montée des entreti
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Oui, explicitement dans le noyau dur : "09 + 10, Data Structures + Algos : sans ça, t'es limité". Ce module dépend de `00-SOCLE/04_fundamentals` et de la notion de complexité vue en `02-CONSTRUCTION/05_memory_performance/03_complexity` (Big-O, O(1), O(n), O(log n) : si ces notations ne sont pas claires, ouvre `02-CONSTRUCTION/05_memory_performance/03_complexity/01_big_o_basics.md` avant de continuer ici), et il devient à son tour le prérequis complet de `02-CONSTRUCTION/07_algorithms`. Sans cette base, tu ne peux pas comprendre pourquoi Dijkstra utilise un min-heap, ou pourquoi un BFS utilise une queue et un DFS une pile.
+Oui, explicitement dans le noyau dur : "09 + 10, Data Structures + Algos : sans ça, t'es limité". Ce module dépend de `01_fundamentals` et de la notion de complexité vue en `08_memory_performance/03_complexity` (Big-O, O(1), O(n), O(log n) : si ces notations ne sont pas claires, ouvre `08_memory_performance/03_complexity/01_big_o_basics.md` avant de continuer ici), et il devient à son tour le prérequis complet de `10_algorithms`. Sans cette base, tu ne peux pas comprendre pourquoi Dijkstra utilise un min-heap, ou pourquoi un BFS utilise une queue et un DFS une pile.
 
 ---
 

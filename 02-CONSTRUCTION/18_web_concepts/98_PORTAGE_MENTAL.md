@@ -1,12 +1,11 @@
 ---
 stability: intemporel
 scope: portage mental (Pierre 6 : Pensee Transferable)
-acte: transférer
 ---
 
 # 98_PORTAGE_MENTAL.md : ce concept en Python / Go / Rust
 
-Module : **02-CONSTRUCTION/18_web_concepts** : concepts web (HTTP, DOM, requetes).
+Module : **17_web_concepts** : concepts web (HTTP, DOM, requetes).
 
 Encart obligatoire (Pierre 6 : Pensee Transferable). 3 lignes.
 Objectif : prouver que ce que tu viens d'apprendre n'est pas _JS_, c'est

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # HTTP ET REST : LIRE UNE REQUÊTE COMME UN PROFESSIONNEL

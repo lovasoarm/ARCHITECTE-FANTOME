@@ -1,26 +1,25 @@
 ---
-stability: intemporel
-acte: restituer
+stability: chantier
+acte: a_ecrire
 ---
 
-# 00-SOCLE
+<!-- CHANTIER-OUVERT : fichier reconstruit comme facade lors de la fusion en package unique.
+     Le contenu pedagogique reel reste a ecrire. Voir RESTE-A-FAIRE-ARCHITECTE-FANTOME.md. -->
 
-Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
+# README
 
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
+> **Chantier ouvert.** Ce fichier existe pour qu'aucun lien du depot ne soit casse.
+> Son contenu pedagogique n'est pas encore ecrit.
 
-## Contenu du dossier
+## Ce qui doit etre ecrit ici
 
-Liste generee : tout fichier de `00-SOCLE` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
+Le contrat exact de ce fichier est decrit par les documents qui le citent :
 
-- [01_getting_started/](01_getting_started/README.md)
-- [02-PROLOGUE/](02-PROLOGUE/README.md)
-- [03_referentiel/](03_referentiel/README.md)
-- [04_fundamentals/](04_fundamentals/README.md)
-- [05_problem_solving/](05_problem_solving/README.md)
-- [06-MINDSET/](06-MINDSET/README.md)
-- [BOSS-1/](BOSS-1/README.md)
-- [BOSS-2/](BOSS-2/README.md)
-- [BOSS-3/](BOSS-3/README.md)
+- `README.md`
 
-<!-- CONTENU-DOSSIER:fin -->
+## Statut
+
+- [ ] contenu redige
+- [ ] exercice borne et verifiable
+- [ ] rattache au fil rouge
+- [ ] cite dans le README de son module

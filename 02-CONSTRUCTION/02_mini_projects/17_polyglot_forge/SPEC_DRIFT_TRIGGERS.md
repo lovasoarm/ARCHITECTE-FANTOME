@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SPEC DRIFT TRIGGERS : 17_polyglot_forge

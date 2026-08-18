@@ -4,7 +4,7 @@ Micro-drill
 
 ## Niveau
 
-Difficulté : 2/5 (fondamental)
+🗸 Fondamental
 
 ## Prérequis
 

@@ -1,9 +1,3 @@
----
-stability: perissable_2027
-acte: restituer
----
-
-> **Frontière** : ce module ne traite pas le catalogue des formes d'architecture, traité en [`02-CONSTRUCTION/14_architecture_patterns`](../14_architecture_patterns/00_why_architecture_patterns.md), ni le découpage par le langage du métier ni CQRS, traités en [`02-CONSTRUCTION/16_ddd_contrats`](../16_ddd_contrats/00_why_ddd_contrats.md). Ici, on découpe un système existant en couches, dépendances dirigées et sources de vérité.
 # Pourquoi ce niveau existe
 
 ## La scène

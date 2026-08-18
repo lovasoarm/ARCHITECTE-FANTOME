@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # 03 : Distributed tracing (papier d'abord)

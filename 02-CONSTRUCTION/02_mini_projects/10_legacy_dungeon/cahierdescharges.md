@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CAHIER DES CHARGES : LEGACY DUNGEON
@@ -51,7 +50,7 @@ Trois livrables, zéro ligne de feature à construire toi-même.
 
 ## POURQUOI CE PROJET EXISTE
 
-`03-PILOTAGE/10_team_craft/04_navigate_codebase.md` t'a donné la méthode. Mais une méthode jamais appliquée sur du vrai terrain reste une théorie. Voilà ce que ce projet teste précisément :
+`27_team_craft/04_navigate_codebase.md` t'a donné la méthode. Mais une méthode jamais appliquée sur du vrai terrain reste une théorie. Voilà ce que ce projet teste précisément :
 
 - **lire du code que tu n'as pas écrit, sous contrainte de temps** : en entreprise, personne ne te donne deux semaines confortables pour "te mettre à niveau". Le chrono de 2h n'est pas une punition, c'est une simulation honnête.
 - **distinguer ce que tu comprends de ce que tu crois comprendre** : un repo pédagogique te pardonne les approximations. Un repo réel, non. Si ton MAP.md affirme un truc faux, ton bugfix part sur de mauvaises bases.
@@ -60,7 +59,7 @@ Trois livrables, zéro ligne de feature à construire toi-même.
 
 ## LE MODULE QUE CE PROJET COUVRE, ET OÙ ÇA SE VOIT
 
-### `03-PILOTAGE/10_team_craft` : coder avec des humains, pas juste avec une machine
+### `27_team_craft` : coder avec des humains, pas juste avec une machine
 
 **Où ça se voit** : intégralement. La méthode de `04_navigate_codebase.md` (les 5 questions avant d'ouvrir un fichier, lire l'arborescence comme une carte, suivre le flux d'une requête, git log comme source d'info, trouver les points d'entrée) s'applique du début à la fin sur MAP.md. L'ADR rétrospective applique `02_adr_writing.md`, mais à l'envers : tu déduis au lieu d'écrire en connaissance de cause. POSTMORTEM.md et MAP.md mobilisent `03_technical_writing.md` : écrire clair, pour un autre dev qui n'a pas ton contexte en tête.
 
@@ -69,13 +68,13 @@ Trois livrables, zéro ligne de feature à construire toi-même.
 ### Modules mobilisés en lecture, sans être le cœur du projet
 
 ```
-01-CADRAGE/03_debugging --> lire une stack trace dans un contexte inconnu, sans le confort
+04_debugging --> lire une stack trace dans un contexte inconnu, sans le confort
                   d'un code que tu as toi-même écrit
-01-CADRAGE/04_error_handling       --> comprendre une stratégie de gestion d'erreur que tu n'as pas
+05_error_handling       --> comprendre une stratégie de gestion d'erreur que tu n'as pas
                   choisie, parfois incohérente avec ce que t'as appris ici
-02-CONSTRUCTION/11_refactoring/03_code_smells --> reconnaître un smell sans le corriger : la contrainte du
+13_refactoring/03_code_smells --> reconnaître un smell sans le corriger : la contrainte du
                   projet t'interdit explicitement le refactoring "pendant que t'y es"
-02-CONSTRUCTION/03_testing          --> lire des tests existants comme documentation du comportement
+06_testing          --> lire des tests existants comme documentation du comportement
                   attendu, surtout quand le code source seul ne suffit pas
 ```
 

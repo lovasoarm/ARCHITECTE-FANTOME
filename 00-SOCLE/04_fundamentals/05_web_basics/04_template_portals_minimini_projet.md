@@ -4,7 +4,7 @@ Mini-projet
 
 ## Niveau
 
-Difficulté : 2/5 (fondamental)
+🗸 Fondamental
 
 ## CONTEXTE
 

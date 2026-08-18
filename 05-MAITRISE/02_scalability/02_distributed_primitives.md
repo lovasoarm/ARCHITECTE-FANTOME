@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Primitives distribuées : les bases qu'on te demandera en entretien

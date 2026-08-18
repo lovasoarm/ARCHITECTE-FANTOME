@@ -1,6 +1,5 @@
 ---
-stability: intemporel
-acte: appliquer
+stability: stable
 ---
 
 # GATE SBOM & SCAN DE DEPENDANCES (obligatoire mini-projets 06+)

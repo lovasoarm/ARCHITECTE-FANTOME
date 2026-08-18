@@ -2,14 +2,13 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: évaluer
 ---
 # 00 : Prereq check : Memory & Performance
 Temps de lecture ~5 min
 
 > Tu ne dois **pas** entrer dans ce module si tu ne peux pas répondre à ces questions
 > **sans regarder**. Ce n'est pas un test noté, c'est un filtre anti-illusion.
-> Ces questions portent sur `02-CONSTRUCTION/04_math_basics`, le module que tu viens de finir.
+> Ces questions portent sur `07_math_basics`, le module que tu viens de finir.
 
 ## Questions
 
@@ -21,7 +20,7 @@ Temps de lecture ~5 min
 ## Verdict
 
 - **3+ réponses solides** → tu peux entrer.
-- **2 ou moins** → retour à `02-CONSTRUCTION/04_math_basics/`, ou à sa synthèse `09_math_grimoire.md`.
+- **2 ou moins** → retour à `07_math_basics/`, ou à sa synthèse `09_math_grimoire.md`.
 
 > Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
 
@@ -29,4 +28,4 @@ Temps de lecture ~5 min
 > fuite et pic mémoire, et ce que révèle un heap snapshot sont le contenu
 > que ce module va t'enseigner (notamment `01_gc/`) : normal de ne pas
 > encore les maîtriser. La copie par valeur vs par référence, elle, a déjà
-> été vue en `00-SOCLE/04_fundamentals` : si ce point-là est flou, retourne-y d'abord.
+> été vue en `01_fundamentals` : si ce point-là est flou, retourne-y d'abord.

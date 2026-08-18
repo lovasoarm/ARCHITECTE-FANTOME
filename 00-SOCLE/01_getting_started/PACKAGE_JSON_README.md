@@ -1,6 +1,5 @@
 ---
-stability: intemporel
-acte: restituer
+stability: stable
 ---
 
 # `package.json` : mode d'emploi (2 min)

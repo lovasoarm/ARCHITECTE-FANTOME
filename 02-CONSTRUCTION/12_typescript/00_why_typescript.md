@@ -1,14 +1,13 @@
 ---
 perennite: evolutif
-stability: intemporel
+stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: TypeScript évolue vite mais les principes de typage graduel restent.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : types JS (00-SOCLE/04_fundamentals), types dynamiques (02-CONSTRUCTION/09_functional_js), design patterns (02-CONSTRUCTION/10_design_patterns). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : types JS (01_fundamentals), types dynamiques (11_functional_js), design patterns (12_design_patterns). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : TYPESCRIPT
 
@@ -72,7 +71,7 @@ L'écosystème a aussi mûri : au début, TypeScript demandait beaucoup de confi
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Oui, explicitement et sans ambiguïté : "13, TypeScript : sans ça, t'es hors marché en 2026". C'est un des 6 blocs prioritaires du curriculum, listé seul, ce qui montre son importance disproportionnée. Son seul prérequis est `00-SOCLE/04_fundamentals` complet, et il peut démarrer en parallèle de `01-CADRAGE/02_async`, ce qui en fait un module qu'on peut intégrer tôt dans l'apprentissage sans attendre la fin du curriculum.
+Oui, explicitement et sans ambiguïté : "13, TypeScript : sans ça, t'es hors marché en 2026". C'est un des 6 blocs prioritaires du curriculum, listé seul, ce qui montre son importance disproportionnée. Son seul prérequis est `01_fundamentals` complet, et il peut démarrer en parallèle de `03_async`, ce qui en fait un module qu'on peut intégrer tôt dans l'apprentissage sans attendre la fin du curriculum.
 
 ---
 
@@ -90,4 +89,4 @@ JS pur ne vérifie rien avant l'exécution, et chaque erreur de type non détect
 
 Maintenant, ouvre `01_types_and_interfaces.md`. Et commence à dire à ton code exactement ce qu'il a le droit de manipuler.
 
-> Ce module réutilise : le typage mental des données du module 01 (`00-SOCLE/04_fundamentals`), la gestion d'erreurs du module 05 (`01-CADRAGE/04_error_handling`).
+> Ce module réutilise : le typage mental des données du module 01 (`01_fundamentals`), la gestion d'erreurs du module 05 (`05_error_handling`).

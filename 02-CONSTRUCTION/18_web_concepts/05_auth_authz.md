@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # AUTHENTIFICATION ET AUTORISATION : DEUX PROBLÈMES DIFFÉRENTS

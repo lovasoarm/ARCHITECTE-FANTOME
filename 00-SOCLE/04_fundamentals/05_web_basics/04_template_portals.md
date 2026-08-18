@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # TEMPLATE PORTALS : TEMPLATE STRINGS & DOM TEMPLATING
 Temps de lecture ~9 min
@@ -195,7 +194,7 @@ recrée tout le sous-arbre DOM concerné**, backticks compris. Le bouton que
 tu vois à l'écran après l'update n'est **plus le même objet DOM** que
 celui sur lequel tu avais posé ton `addEventListener`. L'ancien bouton,
 avec son listener attaché, part au garbage collector (vu en détail en
-`02-CONSTRUCTION/05_memory_performance`). Le nouveau bouton, visuellement identique, n'a
+`08_memory_performance`). Le nouveau bouton, visuellement identique, n'a
 plus aucun listener : silence total, aucune erreur dans la console, juste
 un clic qui ne fait rien.
 

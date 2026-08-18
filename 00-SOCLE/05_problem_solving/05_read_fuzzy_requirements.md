@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # TRANSFORMER "ÇA MARCHE PAS" EN PROBLÈME PRÉCIS

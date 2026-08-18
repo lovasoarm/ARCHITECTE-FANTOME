@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # DETACHED DOM LEAK : LE POISON DES SPA
 Temps de lecture ~25 min

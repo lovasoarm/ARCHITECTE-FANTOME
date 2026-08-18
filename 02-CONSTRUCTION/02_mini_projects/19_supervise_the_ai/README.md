@@ -1,14 +1,11 @@
 ---
 stability: intemporel
-acte: restituer
 ---
 
 [PORTFOLIO]
 [ATELIER]
 
 # 19 : SUPERVISE THE AI
-
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
 
 -> ~10h (reparties sur 3 sessions), 19e mini-projet ajoute suite a la
 revue (point 5). Verrouille le passage **Kick-Ass -> Thor** : tu ne
@@ -72,26 +69,6 @@ Le mini-projet **n'est pas termine** si :
 
 - Prerequis : tous les mini-projets 01 -> 18, en particulier
   `03_walking_dead_protocol`, `14_system_design_lab`,
-  `16_distributed_arena`, `04-EPREUVE/04_ai_native_dev`, `05-MAITRISE/04_ai_agents_and_autonomy`.
+  `16_distributed_arena`, `23_ai_native_dev`, `29_ai_agents_and_autonomy`.
 - Aucun impact sur les modules 01 -> 29 : greffe pure sur
-  `02-CONSTRUCTION/02_mini_projects/`.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION/02_mini_projects/19_supervise_the_ai` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_SPEC_DRIFT.md](00_SPEC_DRIFT.md)
-- [POSTMORTEM.md](POSTMORTEM.md)
-- [RULES.md](RULES.md)
-- [SECURITY.md](SECURITY.md)
-- [SECURITY_GATE.md](SECURITY_GATE.md)
-- [TDD_JOURNAL.md](TDD_JOURNAL.md)
-- [cahierdescharges.md](cahierdescharges.md)
-- [ADR/](ADR/README.md)
-- [prompts/](prompts/README.md)
-- [reviews/](reviews/README.md)
-- [src/](src/README.md)
-
-<!-- CONTENU-DOSSIER:fin -->
+  `30_mini_projects/`.

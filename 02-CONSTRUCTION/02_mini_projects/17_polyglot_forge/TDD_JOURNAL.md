@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # TDD_JOURNAL
@@ -24,7 +23,7 @@ Temps de lecture ~2 min
 - ...
 
 ---
-stability: intemporel
+stability: stable
 
 ## Ce qui aurait été impossible à tester si j'avais gardé la version précédente
 

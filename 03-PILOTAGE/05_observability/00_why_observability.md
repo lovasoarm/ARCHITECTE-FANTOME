@@ -1,14 +1,13 @@
 ---
 perennite: evolutif
-stability: intemporel
+stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: OpenTelemetry standardise, les vendors bougent.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : debugging (01-CADRAGE/03_debugging), erreurs (01-CADRAGE/04_error_handling). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : debugging (04_debugging), erreurs (05_error_handling). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : OBSERVABILITY
 
@@ -72,7 +71,7 @@ La montée des architectures en microservices a aussi rendu le tracing distribu�
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Prérequis explicite : `03-PILOTAGE/05_observability`, prérequis `02-CONSTRUCTION/13_runtime_env` + `02-CONSTRUCTION/19_api_craft`. Tu ne peux pas observer correctement un système sans déjà comprendre où il s'exécute et comment ses APIs fonctionnent. Central aussi dans le mini-projet `06_ultras_dashboard`, où l'observabilité (logs structurés, tracing, alerting, Sentry) est une condition directe pour qu'un système avec des milliers d'utilisateurs en direct ne s'effondre jamais sans que l'équipe le voie venir.
+Prérequis explicite : `26_observability`, prérequis `15_runtime_env` + `21_api_craft`. Tu ne peux pas observer correctement un système sans déjà comprendre où il s'exécute et comment ses APIs fonctionnent. Central aussi dans le mini-projet `06_ultras_dashboard`, où l'observabilité (logs structurés, tracing, alerting, Sentry) est une condition directe pour qu'un système avec des milliers d'utilisateurs en direct ne s'effondre jamais sans que l'équipe le voie venir.
 
 ---
 
@@ -88,4 +87,4 @@ Sans observabilité, tu découvres tes problèmes par les plaintes des utilisate
 
 Maintenant, ouvre `01_structured_logging.md`. Et commence à donner à ton système les yeux qu'il n'a jamais eus.
 
-> Ce module réutilise : le debugging du module 04 (`01-CADRAGE/03_debugging`), le logging vu en gestion d'erreurs (`01-CADRAGE/04_error_handling`).
+> Ce module réutilise : le debugging du module 04 (`04_debugging`), le logging vu en gestion d'erreurs (`05_error_handling`).

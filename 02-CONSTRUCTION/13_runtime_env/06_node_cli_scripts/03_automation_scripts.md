@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SCRIPTS D'AUTOMATISATION : LE CODE QUI BOSSE À TA PLACE

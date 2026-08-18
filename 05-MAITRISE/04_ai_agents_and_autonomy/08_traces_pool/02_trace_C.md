@@ -1,6 +1,5 @@
 ---
-stability: perissable_2028
-acte: appliquer
+stability: periss-2028
 ---
 
 # trace_C : l'agent qui fait exactement ce qu'on demande, et c'est mauvais

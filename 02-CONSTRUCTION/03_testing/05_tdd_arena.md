@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # TDD ARENA : LE TEST EN PREMIER, TOUJOURS

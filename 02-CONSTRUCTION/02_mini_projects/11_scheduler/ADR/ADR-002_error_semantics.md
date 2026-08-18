@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # ADR-002 : gestion des erreurs partielles dans `pMap`

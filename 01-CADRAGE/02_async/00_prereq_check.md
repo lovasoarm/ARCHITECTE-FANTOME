@@ -2,14 +2,13 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: évaluer
 ---
 # 00 : Prereq check : Async & Event Loop
 Temps de lecture ~5 min
 
 > Tu ne dois **pas** entrer dans ce module si tu ne peux pas répondre à ces questions
 > **sans regarder**. Ce n'est pas un test noté, c'est un filtre anti-illusion.
-> Ces questions portent sur `00-SOCLE/05_problem_solving`, le module que tu viens de finir.
+> Ces questions portent sur `02_problem_solving`, le module que tu viens de finir.
 
 ## Questions
 
@@ -21,7 +20,7 @@ Temps de lecture ~5 min
 ## Verdict
 
 - **3+ réponses solides** → tu peux entrer.
-- **2 ou moins** → retour à `00-SOCLE/05_problem_solving/`, ou à sa synthèse `_recall_05.md`.
+- **2 ou moins** → retour à `02_problem_solving/`, ou à sa synthèse `_recall_05.md`.
 
 > Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
 

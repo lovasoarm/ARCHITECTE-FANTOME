@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 01 : Installation pas-à-pas (Windows / macOS / Linux)

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # MOCKING MADNESS : REMPLACER CE QU'ON NE CONTRÔLE PAS

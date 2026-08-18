@@ -2,12 +2,11 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: produire
 ---
 # FP CHALLENGE : LE PIPELINE QUI PROUVE QUE C'EST PAS QUE THÉORIQUE
 Temps de lecture ~8 min
 
-Challenge de synthèse du module 02-CONSTRUCTION/09_functional_js. Pas une leçon, pas un exercice guidé : un système complet à construire seul avec tout ce que tu as appris dans ce module.
+Challenge de synthèse du module 11_functional_js. Pas une leçon, pas un exercice guidé : un système complet à construire seul avec tout ce que tu as appris dans ce module.
 
 T'as appris les pièces séparément : fonctions pures, immutabilité, composition, curry, partial.
 Maintenant t'assembles tout ça en un seul système cohérent.

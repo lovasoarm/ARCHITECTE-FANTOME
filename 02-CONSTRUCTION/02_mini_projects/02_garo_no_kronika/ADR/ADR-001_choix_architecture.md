@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # ADR-001 : EventEmitter natif Node.js pour simuler le streaming SSE sans serveur HTTP
@@ -10,7 +9,7 @@ Temps de lecture ~5 min
 Accepté : 2026-01
 
 ## Contexte
-La Chronique des Chevaliers nécessite un mécanisme de streaming : quand Leon combat un Horror, le Conseil de Surveillance doit recevoir les événements du combat en temps réel (armure engagée, dégâts infligés, Horror éliminé ou armure effondrée). En production, ce canal serait un flux SSE (Server-Sent Events) sur HTTP. Mais le périmètre de ce projet est pédagogique : les modules couverts sont `01-CADRAGE/02_async`, `01-CADRAGE/04_error_handling`, `04-EPREUVE/03_realtime`, `02-CONSTRUCTION/14_architecture_patterns`. L'objectif est de comprendre le pattern event-driven et les Promises, pas de configurer un serveur HTTP.
+La Chronique des Chevaliers nécessite un mécanisme de streaming : quand Leon combat un Horror, le Conseil de Surveillance doit recevoir les événements du combat en temps réel (armure engagée, dégâts infligés, Horror éliminé ou armure effondrée). En production, ce canal serait un flux SSE (Server-Sent Events) sur HTTP. Mais le périmètre de ce projet est pédagogique : les modules couverts sont `03_async`, `05_error_handling`, `20_realtime`, `16_architecture_patterns`. L'objectif est de comprendre le pattern event-driven et les Promises, pas de configurer un serveur HTTP.
 
 Deux options se présentent : ouvrir un vrai serveur Express avec des endpoints SSE, ou simuler ce comportement avec `EventEmitter` natif de Node.js.
 
@@ -33,7 +32,7 @@ armure > 99.9s   --> emit('armure:collapse', { err }) --> .on() handler (ERROR)
 **Serveur Express avec vrais endpoints SSE**
 - Avantages : exactement ce qu'on ferait en prod, l'apprenant voit une vraie requête HTTP avec les headers `Content-Type: text/event-stream`
 - Limites : ajoute Express comme dépendance, nécessite de gérer un port, le démarrage devient `node src/server.js` avec un curl séparé pour observer : la complexité réseau masque la complexité async qu'on veut enseigner
-- Rejeté parce que : le module `04-EPREUVE/03_realtime` couvrira le vrai SSE HTTP en détail ; ici l'objectif est de maîtriser async/await + error propagation + event-driven, pas la couche réseau
+- Rejeté parce que : le module `20_realtime` couvrira le vrai SSE HTTP en détail ; ici l'objectif est de maîtriser async/await + error propagation + event-driven, pas la couche réseau
 
 **Callbacks directs entre modules**
 - Avantages : le plus simple : le dispatcher appelle directement `conseil.onCombatUpdate(data)`
@@ -45,7 +44,7 @@ armure > 99.9s   --> emit('armure:collapse', { err }) --> .on() handler (ERROR)
 Gains :
 - zéro dépendance réseau : `npm install` + `node src/index.js` suffisent pour voir tourner toute la démo
 - l'architecture event-driven est lisible dans le code sans bruit réseau autour
-- `EventEmitter` est natif : pas de bibliothèque, pas de version à gérer, les concepts se transfèrent directement vers WebSocket et SSE dans le module `04-EPREUVE/03_realtime`
+- `EventEmitter` est natif : pas de bibliothèque, pas de version à gérer, les concepts se transfèrent directement vers WebSocket et SSE dans le module `20_realtime`
 
 Sacrifices :
 - l'apprenant ne voit pas les vrais headers SSE (`data:`, `event:`, `id:`) : il devra faire le lien mental quand il arrivera au module 19

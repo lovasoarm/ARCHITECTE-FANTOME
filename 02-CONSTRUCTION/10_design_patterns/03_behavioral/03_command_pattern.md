@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # COMMAND PATTERN
 Temps de lecture ~9 min
@@ -227,7 +226,7 @@ queue: [missionA, missionB]
 traiterQueue --> execute(missionA) --> attendre --> execute(missionB) --> attendre --> [resultatA, resultatB]
 ```
 
-Ici Command ne sert plus à faire un undo : il sert à DÉCOUPLER la création d'une action de son exécution. La mission est créée maintenant, mais exécutée plus tard, dans un ordre contrôlé par la queue. C'est la base de plein de systèmes réels : job queues, task schedulers, message brokers (vu en `05-MAITRISE/02_scalability`).
+Ici Command ne sert plus à faire un undo : il sert à DÉCOUPLER la création d'une action de son exécution. La mission est créée maintenant, mais exécutée plus tard, dans un ordre contrôlé par la queue. C'est la base de plein de systèmes réels : job queues, task schedulers, message brokers (vu en `25_scalability`).
 
 ---
 

@@ -2,14 +2,13 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: évaluer
 ---
 # 00 : Prereq check : Data Structures
 Temps de lecture ~5 min
 
 > Tu ne dois **pas** entrer dans ce module si tu ne peux pas répondre à ces questions
 > **sans regarder**. Ce n'est pas un test noté, c'est un filtre anti-illusion.
-> Ces questions portent sur `02-CONSTRUCTION/05_memory_performance`, le module que tu viens de finir.
+> Ces questions portent sur `08_memory_performance`, le module que tu viens de finir.
 
 ## Questions
 
@@ -21,7 +20,7 @@ Temps de lecture ~5 min
 ## Verdict
 
 - **3+ réponses solides** → tu peux entrer.
-- **2 ou moins** → retour à `02-CONSTRUCTION/05_memory_performance/`, ou à sa synthèse `_recall_10.md`.
+- **2 ou moins** → retour à `08_memory_performance/`, ou à sa synthèse `_recall_10.md`.
 
 > Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
 

@@ -4,7 +4,7 @@ Mini-projet
 
 ## Niveau
 
-Difficulté : 4/5 (avancé)
+🗸 Avancé
 
 ## CONTEXTE
 

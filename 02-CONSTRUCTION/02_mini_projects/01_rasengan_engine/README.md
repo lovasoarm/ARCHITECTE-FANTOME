@@ -1,13 +1,10 @@
 ---
 stability: intemporel
-acte: restituer
 ---
 
 [PORTFOLIO]
 
 # RASENGAN ENGINE
-
-> Mode de vérification des exercices de ce module : critère binaire du `verification_pack` ([verification_pack/criteres.md](verification_pack/criteres.md)). Aucun exercice de ce module n'est corrigé par une IA.
 
 -> ~6 min
 
@@ -106,9 +103,9 @@ index.js
 
 | Module        | Où ça se voit                             |
 | -------------------- | ---------------------------------------------------------------------- |
-| `00-SOCLE/04_fundamentals`  | objets ninja, HOF (`map`/`filter`/`reduce`) partout dans `combat.js`  |
-| `02-CONSTRUCTION/04_math_basics`   | `rng.js` (probabilités), `cooldownCycle.js` (modulo)          |
-| `02-CONSTRUCTION/09_functional_js`  | `turnResolver.js` : chaque tour retourne un nouvel état, zéro mutation |
+| `01_fundamentals`  | objets ninja, HOF (`map`/`filter`/`reduce`) partout dans `combat.js`  |
+| `07_math_basics`   | `rng.js` (probabilités), `cooldownCycle.js` (modulo)          |
+| `11_functional_js`  | `turnResolver.js` : chaque tour retourne un nouvel état, zéro mutation |
 | `13_design_patterns` | `fighterFactory.js` (Factory), `jutsus/` (Strategy)          |
 
 ---
@@ -147,7 +144,7 @@ trade-off chiffré :
 - **Ce que je n'ai pas mesuré** : (mémoire, DX, coût cloud…).
 
 Sans chiffres, ce n'est pas une décision, c'est une préférence.
-Voir `02-CONSTRUCTION/05_memory_performance/00_measure_first.md`.
+Voir `08_memory_performance/00_measure_first.md`.
 
 ## Pitch 3 lignes
 
@@ -155,7 +152,7 @@ Ce projet démontre une compétence clé : lire du code inconnu, débugger sous 
 
 ## Empreinte carbone (critère d'acceptation)
 
-Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `05-MAITRISE/06_annexes/03_finops_greenops.md`.
+Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
 
 ## THÈME NEUTRE (optionnel)
 
@@ -180,22 +177,3 @@ Un CI check impose la présence de `src/` et `tests/` avant validation.
 ## REPRODUCTIBILITÉ
 
 Installation canonique : `npm ci` (pas `npm install`). `npm ci` respecte strictement le `package-lock.json` : deux personnes qui clonent obtiennent exactement les mêmes versions. Committe toujours ton `package-lock.json`. Sans lui, un `npm install` 3 mois plus tard installera d'autres versions et tu debug un fantôme.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION/02_mini_projects/01_rasengan_engine` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_SPEC_DRIFT.md](00_SPEC_DRIFT.md)
-- [POSTMORTEM.md](POSTMORTEM.md)
-- [RULES.md](RULES.md)
-- [SECURITY.md](SECURITY.md)
-- [SECURITY_GATE.md](SECURITY_GATE.md)
-- [SPEC_DRIFT_TRIGGERS.md](SPEC_DRIFT_TRIGGERS.md)
-- [TDD_JOURNAL.md](TDD_JOURNAL.md)
-- [cahierdescharges.md](cahierdescharges.md)
-- [ADR/](ADR/README.md)
-- [verification_pack/](verification_pack/README.md)
-
-<!-- CONTENU-DOSSIER:fin -->

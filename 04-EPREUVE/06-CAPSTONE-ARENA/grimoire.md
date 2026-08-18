@@ -1,24 +1,33 @@
 # Grimoire : Capstone Arena
 
-Ce grimoire est un mémo à quatre colonnes exactes. La table de défense orale vit à côté, dans [defense-orale.md](defense-orale.md).
+Ce grimoire comporte deux tables : le mémo à 4 colonnes, puis la table de défense orale à
+3 colonnes (écart de format assumé, voir [_STYLE.md](../.meta/_STYLE.md)).
 
 Ouvre ce mémo juste avant de livrer ton capstone, ou quand un pivot de dernière minute tombe.
 Il rappelle l'ordre de production et les réflexes, pas le cours complet du niveau.
 
-| Terme | Définition | Code | Analogies | Limite |
-| --- | --- | --- | --- | --- |
-| Note de cadrage | Hypothèses explicites et périmètre justifié, écrits avant toute ligne de code. | `echo "Hypothese: toutes les salles partagent le meme fuseau horaire" >> cadrage.md` | course en montagne / navigation maritime | un plan de tournage se corrige entre deux prises ; une note de cadrage vaut par sa date : elle enregistre les hypothèses avant de savoir, et c'est cet écart entre l'hypothèse et le réel qui se corrige à la revue, pas la note elle-même. |
-| Architecture assumée | Schéma avec compromis nommés, pas une liste de technologies choisies par habitude. | `# schema.md : composants + fleches de dependance, chaque fleche justifiee` | atelier de menuiserie / régie technique de spectacle | un plan d'architecte montre ce qui sera construit ; une architecture assumée montre surtout ce qui a été refusé et à quel prix : un schéma sans compromis nommé n'est pas une décision, c'est un inventaire. |
-| Preuve automatisée sur point sensible | Test qui prouve la résistance sur le cas signalé comme critique dans le brief, pas une vérification manuelle. | `npx artillery run charge-reservation.yml` | urgences d'hôpital / navigation maritime | un contrôle technique valide un véhicule à un instant donné ; une preuve automatisée ne vaut que rejouée à chaque livraison, sur le cas critique nommé dans le brief : une vérification manuelle réussie une fois ne prouve rien du mois suivant. |
-| Roadmap post-V1 | Liste ordonnée de ce qui reste à faire, avec justification de l'ordre choisi. | `echo "1. multi-fuseau 2. notifications 3. export comptable" >> roadmap.md` | course en montagne / cuisine de restaurant en service | une liste de courses s'exécute dans n'importe quel ordre ; une roadmap post-V1 justifie son ordre par le risque et la dépendance : sans cette justification, la suite se réordonne au premier avis extérieur. |
-| Auto-évaluation chiffrée | Notation honnête de sa propre copie contre la grille, avant la correction externe. | `echo "diagnostic:28/30 proposition:20/25 communication:22/25" >> auto-eval.txt` | urgences d'hôpital / atelier de menuiserie | s'auto-noter à l'école tend à flatter ; une auto-évaluation chiffrée n'a de valeur que confrontée à une correction externe : l'information utile est l'écart entre les deux notes, pas la note que tu te donnes. |
-| Fonctionnalité non négociable | Exigence cachée dans un brief flou, révélée par un incident passé ou une obligation externe. | `rg -in "audit" docs/ && rg -in "reglement" docs/` | allergène signalé en salle qu'aucun plat ne peut ignorer / obligation de matériel qu'aucune cordée ne peut sauter | une consigne écrite en gras se voit ; une exigence non négociable est le plus souvent implicite, héritée d'un incident passé ou d'une obligation légale : elle se découvre en interrogeant l'historique, pas en relisant le brief. |
-| Test qui prouve vs test qui rassure | Une vérification manuelle rassure une fois ; un test automatisé de concurrence prouve la résistance réelle. | `npx artillery run --config concurrency-reservation.yml` | urgences d'hôpital / course en montagne | vérifier une fois qu'une porte ferme rassure ; seul un test rejoué automatiquement, en concurrence et sur données réelles, prouve quelque chose : la différence n'est pas le sérieux du testeur, c'est la répétabilité. |
-| Diagnostic de pivot | Distinguer ce qui casse réellement de ce qui semble casser dans un changement de dernière minute. | `rg -n "timezone" --type ts` | plat renvoyé pour la sauce alors que c'est la cuisson qui a raté / demi-tour décidé sur la météo alors que c'est l'horaire qui a glissé | un changement de dernière minute semble tout casser ; le diagnostic de pivot consiste à séparer ce qui casse vraiment (contrat, donnée, invariant) de ce qui semble casser (habitude, confort) : sans ce tri, on réécrit ce qui tenait déjà. |
+| Terme | Définition | Code | Analogies |
+| --- | --- | --- | --- |
+| Note de cadrage | Hypothèses explicites et périmètre justifié, écrits avant toute ligne de code. | `echo "Hypothese: toutes les salles partagent le meme fuseau horaire" >> cadrage.md` | course en montagne / navigation maritime |
+| Architecture assumée | Schéma avec compromis nommés, pas une liste de technologies choisies par habitude. | `# schema.md : composants + fleches de dependance, chaque fleche justifiee` | atelier de menuiserie / régie technique de spectacle |
+| Preuve automatisée sur point sensible | Test qui prouve la résistance sur le cas signalé comme critique dans le brief, pas une vérification manuelle. | `npx artillery run charge-reservation.yml` | urgences d'hôpital / navigation maritime |
+| Roadmap post-V1 | Liste ordonnée de ce qui reste à faire, avec justification de l'ordre choisi. | `echo "1. multi-fuseau 2. notifications 3. export comptable" >> roadmap.md` | course en montagne / cuisine de restaurant en service |
+| Auto-évaluation chiffrée | Notation honnête de sa propre copie contre la grille, avant la correction externe. | `echo "diagnostic:28/30 proposition:20/25 communication:22/25" >> auto-eval.txt` | urgences d'hôpital / atelier de menuiserie |
+| Fonctionnalité non négociable | Exigence cachée dans un brief flou, révélée par un incident passé ou une obligation externe. | `rg -i "audit|reglement|incident|obligation" brief.md` | régie technique de spectacle / navigation maritime |
+| Test qui prouve vs test qui rassure | Une vérification manuelle rassure une fois ; un test automatisé de concurrence prouve la résistance réelle. | `npx artillery run --config concurrency-reservation.yml` | urgences d'hôpital / course en montagne |
+| Diagnostic de pivot | Distinguer ce qui casse réellement de ce qui semble casser dans un changement de dernière minute. | `rg -n "timezone|fuseau" --type ts | wc -l` | navigation maritime / atelier de menuiserie |
 
 ## Défense orale
 
-La table de défense orale a son propre fichier, pour que ce grimoire garde un format unique de quatre colonnes : [defense-orale.md](defense-orale.md).
+Pour la grille complète et chiffrée, va voir [./boss-fight.md](./boss-fight.md). Voici la matière
+reformulée pour t'entraîner à l'oral.
+
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+| --- | --- | --- |
+| Diagnostic technique précis | Sans localiser où l'hypothèse implicite est enterrée dans le code, tu paniques sur tout le système. | Où, précisément, ton système suppose-t-il implicitement un fuseau horaire unique ? |
+| Distinction panique et impact réel | Traiter tout comme cassé fait perdre un temps qui manquera ailleurs. | Quelle partie de ton système reste intacte malgré le changement annoncé ? |
+| Proposition réaliste | Une proposition qui ignore le délai restant n'est pas utilisable par le client. | Quel compromis (report, effort supplémentaire, délai) proposes-tu et pourquoi celui-là ? |
+| Communication honnête au client | Minimiser ou dramatiser fait perdre confiance des deux côtés. | Que dirais-tu au client en une phrase sans jargon technique ? |
 
 ## Ordre de production, jamais dans le désordre
 

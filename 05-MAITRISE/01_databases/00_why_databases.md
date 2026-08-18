@@ -1,14 +1,13 @@
 ---
 perennite: perissable
-stability: intemporel
+stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: SQL éternel, moteurs et modes managés bougent.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : structures de données (02-CONSTRUCTION/06_data_structures), async (01-CADRAGE/02_async). Scalabilité (05-MAITRISE/02_scalability — pas un prérequis : ce module en donne le strict nécessaire, le fond est enseigné là-bas plus tard) : ce module pose les bases (index, requêtes), la vraie scalabilité de la couche données est vue plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : structures de données (09_data_structures), async (03_async). Scalabilité (25_scalability anticipé) : ce module pose les bases (index, requêtes), la vraie scalabilité de la couche données est vue plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DATABASES
 
@@ -72,7 +71,7 @@ Le retour de balancier actuel est plus nuancé : la tendance privilégie de choi
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Pas dans les 6 blocs prioritaires explicitement listés, mais central dans le mini-projet `05_prison_break_api`, qui combine `02-CONSTRUCTION/19_api_craft`, `03-PILOTAGE/04_security`, `05-MAITRISE/01_databases`, et `02-CONSTRUCTION/18_web_concepts` pour une infrastructure complète où la modélisation de données et le cache Redis sont des conditions directes de tenue sous pression du système.
+Pas dans les 6 blocs prioritaires explicitement listés, mais central dans le mini-projet `05_prison_break_api`, qui combine `21_api_craft`, `22_security`, `24_databases`, et `17_web_concepts` pour une infrastructure complète où la modélisation de données et le cache Redis sont des conditions directes de tenue sous pression du système.
 
 ---
 
@@ -88,7 +87,7 @@ Une base de données mal modélisée transforme un système rapide en démo en s
 
 Maintenant, ouvre `01_sql_basics.md`. Et commence à lire une requête comme quelqu'un qui sait ce qu'elle coûte vraiment.
 
-> Ce module réutilise : les structures de données du module 09 (`02-CONSTRUCTION/06_data_structures`), l'asynchrone du module 03 (`01-CADRAGE/02_async`).
+> Ce module réutilise : les structures de données du module 09 (`09_data_structures`), l'asynchrone du module 03 (`03_async`).
 
 ---
 

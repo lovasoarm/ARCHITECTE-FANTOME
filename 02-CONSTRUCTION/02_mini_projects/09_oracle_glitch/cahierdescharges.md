@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CAHIER DES CHARGES : ORACLE GLITCH
@@ -78,22 +77,22 @@ Ce projet teste une compétence qui n'existait pas dans le métier il y a 5 ans 
 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
-### `04-EPREUVE/04_ai_native_dev` : workflow IA, prompt engineering, validation
+### `23_ai_native_dev` : workflow IA, prompt engineering, validation
 
 **Où ça se voit** : `src/prompt/`, `src/validator/`, `src/streaming/`.
 **Pourquoi c'est nécessaire ici** : le prompt n'est pas une chaîne hardcodée. Il est construit dynamiquement selon le code analysé. La sortie est validée selon un schéma attendu. Sans ces deux éléments, le pipeline est un casino.
 
-### `02-CONSTRUCTION/17_oop_js` : classes, prototype chain, mixins
+### `18_oop_js` : classes, prototype chain, mixins
 
 **Où ça se voit** : `src/analyzer/CodeAnalyzer.js`, `src/validator/OutputValidator.js`, `src/validator/StrictValidator.js`.
 **Pourquoi c'est nécessaire ici** : `Validator` → `StrictValidator` → `LLMOutputValidator` est une chaîne d'héritage réelle avec un usage intentionnel du prototype. Les mixins composent des comportements (loggable, retryable) sans hériter de tout.
 
-### `03-PILOTAGE/10_team_craft` : code review outillée, ADR
+### `27_team_craft` : code review outillée, ADR
 
 **Où ça se voit** : `src/review/`, `ADR/`.
 **Pourquoi c'est nécessaire ici** : l'IA propose des fixes. Un humain ne peut pas relire 200 suggestions à la main. Le pipeline de review automatise une première passe : les suggestions qui violent des règles connues (nommage, mutation, dépendances circulaires) sont rejetées avant qu'un humain les lise.
 
-### `05-MAITRISE/03_edge_cases` : NaN, floating point, undefined dans des tableaux
+### `28_edge_cases` : NaN, floating point, undefined dans des tableaux
 
 **Où ça se voit** : `src/edgeCases/edgeCaseInjector.js`, `tests/edgeCases.test.js`.
 **Pourquoi c'est nécessaire ici** : l'IA ne voit pas que `0.1 + 0.2 !== 0.3`. Elle ne sait pas que `NaN === NaN` est `false`. Ces cas sont injectés délibérément dans les scénarios de test pour vérifier que le pipeline les détecte, même quand l'IA les rate.
@@ -101,10 +100,10 @@ Ce projet teste une compétence qui n'existait pas dans le métier il y a 5 ans 
 ### Résumé visuel
 
 ```
-04-EPREUVE/04_ai_native_dev --> src/prompt/ (PromptBuilder), src/validator/ (schema), src/streaming/
-02-CONSTRUCTION/17_oop_js    --> CodeAnalyzer, Validator -> StrictValidator -> LLMOutputValidator, mixins
-03-PILOTAGE/10_team_craft  --> src/review/ (review automatisée), ADR/ (toutes les décisions du pipeline)
-05-MAITRISE/03_edge_cases  --> src/edgeCases/ (injecteur de pièges), tests/edgeCases.test.js
+23_ai_native_dev --> src/prompt/ (PromptBuilder), src/validator/ (schema), src/streaming/
+18_oop_js    --> CodeAnalyzer, Validator -> StrictValidator -> LLMOutputValidator, mixins
+27_team_craft  --> src/review/ (review automatisée), ADR/ (toutes les décisions du pipeline)
+28_edge_cases  --> src/edgeCases/ (injecteur de pièges), tests/edgeCases.test.js
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
@@ -379,7 +378,7 @@ les règles métier spécifiques à l'IA.
   check de type ou le check métier.
 - Composition (passer des validators en paramètre) : valide aussi. Choix de la
   hiérarchie ici pour pratiquer le prototype chain de façon intentionnelle (c'est
-  l'objectif pédagogique du module 02-CONSTRUCTION/17_oop_js).
+  l'objectif pédagogique du module 18_oop_js).
 
 ## Conséquences
 

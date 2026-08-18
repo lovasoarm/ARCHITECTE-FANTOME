@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # ENCAPSULATION & PRIVACY : CE QU'ON PROTÈGE VRAIMENT
 Temps de lecture ~10 min
@@ -225,7 +224,7 @@ Si ton API doit renvoyer `nom` en JSON, un champ `#nom` tout seul ne suffit jama
 
 ## TIPS D'ÉVOLUTION
 
-Avant les champs privés (`#`, standardisés et largement supportés depuis 2022), la communauté JS utilisait massivement les closures pour simuler une vraie privacy, au prix d'un style "factory function" qui s'éloignait de `class`. `#` a réconcilié `class` avec une vraie encapsulation native, méthodes incluses. Les closures restent pertinentes hors contexte de classe : modules, état partagé entre quelques fonctions, factory functions légères (voir `00-SOCLE/04_fundamentals/05_web_basics/06_module_factory.md`). En 2026, le réflexe par défaut dans du code `class` neuf : `#` pour tout ce qui doit rester interne, point.
+Avant les champs privés (`#`, standardisés et largement supportés depuis 2022), la communauté JS utilisait massivement les closures pour simuler une vraie privacy, au prix d'un style "factory function" qui s'éloignait de `class`. `#` a réconcilié `class` avec une vraie encapsulation native, méthodes incluses. Les closures restent pertinentes hors contexte de classe : modules, état partagé entre quelques fonctions, factory functions légères (voir `01_fundamentals/05_web_basics/06_module_factory.md`). En 2026, le réflexe par défaut dans du code `class` neuf : `#` pour tout ce qui doit rester interne, point.
 
 ---
 

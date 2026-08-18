@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 06 : CI/CD basics (feedback automatique)
@@ -46,7 +45,7 @@ jobs:
 
 Les scripts `postinstall` des dépendances peuvent exécuter n'importe quel
 code. En CI, sur un runner qui a un token du repo → **vecteur classique
-d'attaque supply chain**. Voir `03-PILOTAGE/04_security/09_supply_chain_sbom.md`.
+d'attaque supply chain**. Voir `22_security/09_supply_chain_sbom.md`.
 
 ## Cache
 

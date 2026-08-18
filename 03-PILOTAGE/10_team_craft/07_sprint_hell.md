@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SPRINT HELL : QUAND PERSONNE NE SAIT CE QU'IL FAUT VRAIMENT LIVRER

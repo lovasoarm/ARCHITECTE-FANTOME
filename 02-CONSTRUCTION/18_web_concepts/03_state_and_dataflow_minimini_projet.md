@@ -4,7 +4,7 @@ Micro-drill
 
 ## Niveau
 
-Difficulté : 3/5 (intermédiaire)
+🗸 Intermédiaire
 
 ## Prérequis
 

@@ -1,8 +1,7 @@
 ---
-stability: perissable_2027
+stability: perissable
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: produire
 ---
 
 # 09 : Instrumenter TON projet (OpenTelemetry local, zéro compte externe)
@@ -25,9 +24,9 @@ Tout tourne en `docker-compose` local. Aucun compte SaaS. Aucun secret externe.
 
 ## PROJETS OBLIGATOIRES À INSTRUMENTER
 
-1. `02-CONSTRUCTION/02_mini_projects/01_rasengan_engine`
-2. `02-CONSTRUCTION/02_mini_projects/11_scheduler`
-3. `02-CONSTRUCTION/02_mini_projects/16_distributed_arena`
+1. `30_mini_projects/01_rasengan_engine`
+2. `30_mini_projects/11_scheduler`
+3. `30_mini_projects/16_distributed_arena`
 
 ## LIVRABLE PAR PROJET : `OBSERVABILITY.md`
 

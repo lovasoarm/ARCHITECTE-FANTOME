@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # 01_WEBRTC_CONCEPTS : LE VOCABULAIRE SANS LA PEUR

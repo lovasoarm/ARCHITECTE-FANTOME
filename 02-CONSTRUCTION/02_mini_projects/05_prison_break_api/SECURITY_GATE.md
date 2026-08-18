@@ -1,7 +1,6 @@
 ---
 stability: intemporel
 gate: bloquante
-acte: appliquer
 ---
 
 # Security Gate : 05_prison_break_api

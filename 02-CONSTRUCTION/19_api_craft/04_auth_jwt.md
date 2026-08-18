@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # JWT DE BOUT EN BOUT
@@ -337,9 +336,9 @@ router.get('/protected', (req, res) => {
 
 Le flow JWT ci-dessus marche : connexion, access, refresh, middleware. Ça ne veut pas dire que ton API est prête pour la prod. Trois angles morts sont couverts ailleurs dans le curriculum, et tu dois les traiter avant de considérer l'auth comme finie.
 
-- **CSRF (Cross-Site Request Forgery)** : ton cookie httpOnly est envoyé automatiquement par le navigateur, y compris depuis un site attaquant. Sans protection dédiée, un formulaire malveillant peut déclencher des actions au nom de l'acteur connecté. --> `03-PILOTAGE/04_security/02_csrf_cors.md`
-- **Vol de session / token hijacking** : un access token en mémoire reste volable via XSS avancé, un refresh token peut fuiter via un backup ou un log mal filtré. Détection, rotation forcée, révocation immédiate --> `03-PILOTAGE/04_security/04_auth_flows.md`
-- **Rotation des secrets (`ACCESS_TOKEN_SECRET`, `REFRESH_TOKEN_SECRET`)** : un secret ne se renouvelle pas tout seul. Sans plan de rotation, un leak d'aujourd'hui compromet les tokens émis dans 6 mois. --> `03-PILOTAGE/04_security/04_auth_flows.md` + procédures de secrets management.
+- **CSRF (Cross-Site Request Forgery)** : ton cookie httpOnly est envoyé automatiquement par le navigateur, y compris depuis un site attaquant. Sans protection dédiée, un formulaire malveillant peut déclencher des actions au nom de l'acteur connecté. --> `22_security/02_csrf_cors.md`
+- **Vol de session / token hijacking** : un access token en mémoire reste volable via XSS avancé, un refresh token peut fuiter via un backup ou un log mal filtré. Détection, rotation forcée, révocation immédiate --> `22_security/04_auth_flows.md`
+- **Rotation des secrets (`ACCESS_TOKEN_SECRET`, `REFRESH_TOKEN_SECRET`)** : un secret ne se renouvelle pas tout seul. Sans plan de rotation, un leak d'aujourd'hui compromet les tokens émis dans 6 mois. --> `22_security/04_auth_flows.md` + procédures de secrets management.
 
 Un JWT qui marche n'est pas une API sécurisée. Le "reste" est le sujet des trois pointeurs ci-dessus.
 

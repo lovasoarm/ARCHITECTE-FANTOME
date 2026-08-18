@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: produire
 ---
 # GRAPH CHALLENGES : CYCLES, COMPOSANTS, TOPO SORT
 Temps de lecture ~10 min
@@ -172,13 +171,13 @@ Cas réels : ordre de compilation, ordre d'installation de packages, ordre d'ex�
 ```
 Dépendances du curriculum MyFunnyJS :
 
-00-SOCLE/04_fundamentals --> 01-CADRAGE/02_async --> 03_testing
-00-SOCLE/04_fundamentals --> 04_errors
-07_structures  --> 02-CONSTRUCTION/07_algorithms
+01_fundamentals --> 03_async --> 03_testing
+01_fundamentals --> 04_errors
+07_structures  --> 10_algorithms
 09_functional  --> 10_patterns
 ```
 
-Topological sort valide : `00-SOCLE/04_fundamentals, 07_structures, 09_functional, 01-CADRAGE/02_async, 04_errors, 03_testing, 02-CONSTRUCTION/07_algorithms, 10_patterns`
+Topological sort valide : `01_fundamentals, 07_structures, 09_functional, 03_async, 04_errors, 03_testing, 10_algorithms, 10_patterns`
 
 ### Kahn's Algorithm (BFS-based)
 
@@ -257,13 +256,13 @@ Application sur le curriculum :
 
 ```js
 const curriculum = new Graph(true)
-curriculum.addEdge("01-CADRAGE/02_async",   "00-SOCLE/04_fundamentals") // async dépend de fundamentals
-curriculum.addEdge("03_testing",  "00-SOCLE/04_fundamentals")
-curriculum.addEdge("03_testing",  "01-CADRAGE/02_async")
-curriculum.addEdge("02-CONSTRUCTION/07_algorithms", "07_structures")
+curriculum.addEdge("03_async",   "01_fundamentals") // async dépend de fundamentals
+curriculum.addEdge("03_testing",  "01_fundamentals")
+curriculum.addEdge("03_testing",  "03_async")
+curriculum.addEdge("10_algorithms", "07_structures")
 
 topologicalSortKahn(curriculum)
-// ["00-SOCLE/04_fundamentals", "07_structures", "01-CADRAGE/02_async", "03_testing", "02-CONSTRUCTION/07_algorithms"]
+// ["01_fundamentals", "07_structures", "03_async", "03_testing", "10_algorithms"]
 // ordre valide : chaque module après tous ses prérequis
 ```
 

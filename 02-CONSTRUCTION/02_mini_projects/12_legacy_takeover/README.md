@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: restituer
 ---
 
 [PORTFOLIO]
@@ -8,8 +7,6 @@ acte: restituer
 [ATELIER]
 
 # Mini-projet 12 : Legacy Takeover
-
-> Mode de vérification des exercices de ce module : critère binaire du `verification_pack` ([verification_pack/criteres.md](verification_pack/criteres.md)). Aucun exercice de ce module n'est corrigé par une IA.
 
 -> ~5 min
 
@@ -51,13 +48,13 @@ Choisis une issue ouverte "bug" (pas "feature request"). **Avant** de coder,
 - ta première hypothèse.
 
 Interdit de patcher tant que le bug n'est pas reproduit **localement** de
-façon fiable (cf. `01-CADRAGE/03_debugging/04_repro_before_fix.md`).
+façon fiable (cf. `04_debugging/04_repro_before_fix.md`).
 
 ### 3. ADR de refonte partielle
 
 Dans `ADR/ADR-003_scope_refonte.md` : quels modules tu refactores, lesquels
 tu laisses tels quels, pourquoi (coût vs risque). Utilise le template
-`03-PILOTAGE/10_team_craft/02_adr_writing.md`.
+`27_team_craft/02_adr_writing.md`.
 
 ### 4. CI minimale
 
@@ -100,7 +97,7 @@ type : mesure `--prof`").
 ## Ce que l'analogie "just refactor it" cache
 
 Refactorer sans tests = casser en silence. Le prérequis absolu : couvrir la
-zone à toucher **avant** de la toucher (voir `02-CONSTRUCTION/03_testing/09_test_strategy_not_framework.md`).
+zone à toucher **avant** de la toucher (voir `06_testing/09_test_strategy_not_framework.md`).
 
 ## Pitch 3 lignes
 
@@ -108,30 +105,8 @@ Ce projet démontre une compétence clé : lire du code inconnu, débugger sous 
 
 ## Empreinte carbone (critère d'acceptation)
 
-Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `05-MAITRISE/06_annexes/03_finops_greenops.md`.
+Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
 
 ## THÈME NEUTRE (optionnel)
 
 Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION/02_mini_projects/12_legacy_takeover` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_SPEC_DRIFT.md](00_SPEC_DRIFT.md)
-- [DAY_ONE_SIMULATION.md](DAY_ONE_SIMULATION.md)
-- [MAP_15MIN.md](MAP_15MIN.md)
-- [POSTMORTEM.md](POSTMORTEM.md)
-- [RULES.md](RULES.md)
-- [SECURITY.md](SECURITY.md)
-- [SECURITY_GATE.md](SECURITY_GATE.md)
-- [SPEC_DRIFT_TRIGGERS.md](SPEC_DRIFT_TRIGGERS.md)
-- [TDD_JOURNAL.md](TDD_JOURNAL.md)
-- [cahierdescharges.md](cahierdescharges.md)
-- [ADR/](ADR/README.md)
-- [tests/](tests/README.md)
-- [verification_pack/](verification_pack/README.md)
-
-<!-- CONTENU-DOSSIER:fin -->

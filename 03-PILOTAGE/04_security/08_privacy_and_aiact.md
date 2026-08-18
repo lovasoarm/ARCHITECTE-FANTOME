@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # RGPD ET AI ACT : CE QUE TU N'AS PAS LE DROIT DE LOGGER

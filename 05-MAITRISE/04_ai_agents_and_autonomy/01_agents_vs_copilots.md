@@ -1,8 +1,7 @@
 ---
-stability: perissable_2028
+stability: periss-2028
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # 01 : AGENTS vs COPILOTES : la ligne de fracture
 
@@ -42,7 +41,7 @@ minimum pour partir en agent. Sinon copilote, ou toi seul.
    ouvert. Un agent sur scope ouvert dérive et gonfle le diff.
 3. **Les Non-goals existent-ils ?** Si tu ne sais pas dire ce que l'agent
    n'a PAS le droit de toucher, tu ne connais pas assez la codebase pour
-   déléguer. Cartographie d'abord (`02-CONSTRUCTION/02_mini_projects/10_legacy_dungeon`).
+   déléguer. Cartographie d'abord (`30_mini_projects/10_legacy_dungeon`).
 4. **L'audit ex-post est-il moins cher que l'exécution manuelle ?** Un
    agent qui te rend 40 actions à auditer prend souvent PLUS de temps qu'un
    toi qui code 20 actions. La délégation gagne quand la tâche est répétitive

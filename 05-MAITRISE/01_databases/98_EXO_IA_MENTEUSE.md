@@ -1,9 +1,8 @@
 ---
-stability: intemporel
-acte: produire
+stability: stable
 ---
 
-# EXO IA MENTEUSE : module 05-MAITRISE/01_databases
+# EXO IA MENTEUSE : module 24_databases
 
 Temps : ~10 min. Format court, seul ou en binôme.
 

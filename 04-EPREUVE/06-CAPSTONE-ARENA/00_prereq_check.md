@@ -25,7 +25,7 @@ Il n'y a pas de « presque ».
 | 4 | Au moins une pièce parmi S4, S5, S6 (arbitrage chiffré, soutenance en quatre traductions, ou intégration IA bornée) | `PREUVES/ARBITRAGE.md`, `PREUVES/SOUTENANCE.md` ou `PREUVES/IA-EN-PROD.md` | [03-PILOTAGE/08_produit_cout_roi](../../03-PILOTAGE/08_produit_cout_roi/02_grille_cout_risque_valeur.md), [03-PILOTAGE/11_leadership_mentorat](../../03-PILOTAGE/11_leadership_mentorat/00_why_leadership_mentorat.md) ou [04-EPREUVE/04_ai_native_dev/90_ia_dans_le_livrable_staff.md](../04_ai_native_dev/90_ia_dans_le_livrable_staff.md) | oui / non |
 
 Les exemplaires de référence de ces quatre pièces sont dans
-[PREUVES-MODELES/](../../PREUVES-MODELES/README.md) : ils montrent la forme attendue, ils ne
+[06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/](../../06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/README.md) : ils montrent la forme attendue, ils ne
 remplacent aucun de tes fichiers.
 
 ## Contrôle 2 : la matière de la tension n°1 est disponible
@@ -54,4 +54,4 @@ La porte franchie, l'ordre de lecture est : [01-why-this-level.md](01-why-this-l
 
 ## Piece supplementaire exigee depuis S-09
 
-`PREUVES/PORTAGE.md` existe physiquement dans ton depot, ses tests de contrat passent des deux cotes et son ecart de cout est chiffre depuis un releve date. Sinon, le capstone n'est pas ouvert : voir [PREUVES-MODELES/S7-PORTAGE.md](../../PREUVES-MODELES/S7-PORTAGE.md).
+`PREUVES/PORTAGE.md` existe physiquement dans ton depot, ses tests de contrat passent des deux cotes et son ecart de cout est chiffre depuis un releve date. Sinon, le capstone n'est pas ouvert : voir [06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S7-PORTAGE.md](../../06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S7-PORTAGE.md).

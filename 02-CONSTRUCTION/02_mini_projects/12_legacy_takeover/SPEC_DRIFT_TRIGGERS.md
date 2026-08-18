@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SPEC DRIFT TRIGGERS : 12_legacy_takeover

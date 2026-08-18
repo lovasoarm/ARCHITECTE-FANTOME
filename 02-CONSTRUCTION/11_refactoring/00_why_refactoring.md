@@ -3,24 +3,23 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Fowler 1999, lois de la réécriture inchangées.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `05-MAITRISE/06_annexes/17_frontieres_modules.md` : table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
+> **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `31_annexes/17_frontieres_modules.md` : table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
 
-> **CE MODULE RÉUTILISE** : patterns (02-CONSTRUCTION/10_design_patterns), tests (02-CONSTRUCTION/03_testing), code smells (00-SOCLE/04_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : patterns (12_design_patterns), tests (06_testing), code smells (01_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
-> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`05-MAITRISE/06_annexes/17_frontieres_modules.md`](../../05-MAITRISE/06_annexes/17_frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
+> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/17_frontieres_modules.md`](../../05-MAITRISE/06_annexes/17_frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : REFACTORING
 
 > ## CE MODULE VS LES DEUX AUTRES
 >
 > - **Ce module apporte** : detection de code smells + gestes surs pour transformer du code sale en code testable sans casser le comportement.
-> - **Vs 02-CONSTRUCTION/10_design_patterns** : les patterns sont la cible ideale. Ici on apprend le chemin pour y aller depuis un code reel deja ecrit.
-> - **Vs 02-CONSTRUCTION/14_architecture_patterns** : refactorer intervient dans l'infiniment petit (fonction, classe). L'architecture intervient a la frontiere des sous-systemes.
+> - **Vs 12_design_patterns** : les patterns sont la cible ideale. Ici on apprend le chemin pour y aller depuis un code reel deja ecrit.
+> - **Vs 16_architecture_patterns** : refactorer intervient dans l'infiniment petit (fonction, classe). L'architecture intervient a la frontiere des sous-systemes.
 > - **Non recouvrant** : ici on apprend a bouger du code existant en securite, pas a le concevoir de zero.
 
 ---
@@ -77,7 +76,7 @@ Intemporel. Les principes SOLID (cinq principes qui structurent un codebase pour
 
 ## 5) CE QUI A CHANGÉ AU FIL DES ANNÉES
 
-Avant, refactorer du code sans tests était une pratique courante mais risquée : on changeait la structure "à l'œil", en espérant ne rien casser, et on découvrait les régressions en prod. Avec la généralisation des tests automatisés (`02-CONSTRUCTION/03_testing`), le refactoring est devenu beaucoup plus sûr : tu peux changer la structure interne du code en confiance, parce que la suite de tests te dit immédiatement si tu as cassé un comportement existant.
+Avant, refactorer du code sans tests était une pratique courante mais risquée : on changeait la structure "à l'œil", en espérant ne rien casser, et on découvrait les régressions en prod. Avec la généralisation des tests automatisés (`06_testing`), le refactoring est devenu beaucoup plus sûr : tu peux changer la structure interne du code en confiance, parce que la suite de tests te dit immédiatement si tu as cassé un comportement existant.
 
 Les outils ont aussi évolué : les IDE modernes proposent des refactorings automatiques (renommer une variable partout, extraire une fonction) qui auraient pris des heures de recherche manuelle dans du code legacy il y a 15 ans.
 
@@ -85,17 +84,17 @@ Les outils ont aussi évolué : les IDE modernes proposent des refactorings auto
 
 ## FRONTIÈRE AVEC LES MODULES VOISINS
 
-Ce module N'EST PAS `02-CONSTRUCTION/10_design_patterns` : ici on améliore du code qui existe déjà et qui a dérivé, sans changer son comportement extérieur. Là-bas, on choisit une structure au moment de concevoir un nouveau bout de code.
+Ce module N'EST PAS `12_design_patterns` : ici on améliore du code qui existe déjà et qui a dérivé, sans changer son comportement extérieur. Là-bas, on choisit une structure au moment de concevoir un nouveau bout de code.
 Exemple : renommer 15 variables mal nommées pour rendre une fonction lisible = refactoring. Décider d'utiliser un Strategy dès la première écriture pour rendre l'algo interchangeable = design pattern.
 
-Ce module N'EST PAS `02-CONSTRUCTION/14_architecture_patterns` : ici on améliore du code à l'échelle d'une classe, d'une fonction, d'un fichier. Là-bas, on redessine l'organisation d'un système entier.
+Ce module N'EST PAS `16_architecture_patterns` : ici on améliore du code à l'échelle d'une classe, d'une fonction, d'un fichier. Là-bas, on redessine l'organisation d'un système entier.
 Exemple : casser un god object en 4 classes plus petites via SOLID = refactoring. Déplacer la logique métier d'un contrôleur vers une couche domain isolée du framework = décision d'architecture.
 
 ---
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Oui, explicitement : "10 + 11, Design Patterns + Refacto : sans ça, t'es un risque pour ton équipe". `02-CONSTRUCTION/14_architecture_patterns` dépend directement de `02-CONSTRUCTION/10_design_patterns` ET de `02-CONSTRUCTION/11_refactoring` combinés. Tu ne peux pas construire une architecture clean sans savoir identifier et corriger les smells qui s'accumulent dans un système qui grandit.
+Oui, explicitement : "10 + 11, Design Patterns + Refacto : sans ça, t'es un risque pour ton équipe". `16_architecture_patterns` dépend directement de `12_design_patterns` ET de `13_refactoring` combinés. Tu ne peux pas construire une architecture clean sans savoir identifier et corriger les smells qui s'accumulent dans un système qui grandit.
 
 ---
 
@@ -123,7 +122,7 @@ stability: intemporel
 ## Frontière de ce module
 
 Ce module s'arrête aux **transformations locales à comportement identique**. Si tu vises :
-- une transformation locale à comportement identique -> `02-CONSTRUCTION/11_refactoring`
-- une décision structurelle multi-module -> `02-CONSTRUCTION/14_architecture_patterns`
-- l'usage d'un pattern nommé bien connu -> `02-CONSTRUCTION/10_design_patterns`
+- une transformation locale à comportement identique -> `13_refactoring`
+- une décision structurelle multi-module -> `16_architecture_patterns`
+- l'usage d'un pattern nommé bien connu -> `12_design_patterns`
 - au-delà, réfléchis avant d'y aller.

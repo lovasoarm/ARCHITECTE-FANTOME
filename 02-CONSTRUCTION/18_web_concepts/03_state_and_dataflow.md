@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # STATE ET DATAFLOW : QUI POSSÈDE L'ÉTAT, QUI LE LIT, QUI LE MODIFIE

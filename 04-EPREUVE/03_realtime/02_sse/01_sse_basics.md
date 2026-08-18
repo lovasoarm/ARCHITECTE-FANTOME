@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 01_SSE_BASICS : LE SERVEUR QUI PARLE EN PREMIER

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SPEC DRIFT VS FLOU STATIQUE
@@ -39,9 +38,9 @@ Un dev qui confond les deux :
 
 ## Ou ca vit dans le curriculum
 
-- Trigger technique : `02-CONSTRUCTION/02_mini_projects/18_human_vs_ai_smell/SPEC_DRIFT_TRIGGERS.md`.
+- Trigger technique : `30_mini_projects/18_human_vs_ai_smell/SPEC_DRIFT_TRIGGERS.md`.
 - Mental : ce fichier.
-- Communication : `03-PILOTAGE/10_team_craft/08_how_to_ask.md`.
+- Communication : `27_team_craft/08_how_to_ask.md`.
 
 ## Test binaire
 

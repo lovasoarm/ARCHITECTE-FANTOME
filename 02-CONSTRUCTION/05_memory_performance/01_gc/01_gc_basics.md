@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # LE GARBAGE COLLECTOR : LE NETTOYEUR QUE TU N'ENTENDS JAMAIS
 Temps de lecture ~10 min

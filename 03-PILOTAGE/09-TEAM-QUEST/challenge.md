@@ -77,7 +77,7 @@ document, et c'est exactement le réflexe que ce niveau construit.
 
 ## Durée cible
 
-6 h, égal à la durée de ce niveau dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md). Si tu dépasses
+6 h, égal à la durée de ce niveau dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md). Si tu dépasses
 largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
 de bâcler la fin du livrable.
 

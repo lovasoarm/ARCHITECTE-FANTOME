@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: évaluer
 ---
 
 # 00 : Prereq check : Realtime
@@ -8,7 +7,7 @@ Temps de lecture ~5 min
 
 > Tu ne dois **pas** entrer dans ce module si tu ne peux pas répondre à ces questions
 > **sans regarder**. Ce n'est pas un test noté, c'est un filtre anti-illusion.
-> Ces questions portent sur `03-PILOTAGE/02_web_inclusive`, le module que tu viens de finir.
+> Ces questions portent sur `19_web_inclusive`, le module que tu viens de finir.
 
 ## Questions
 
@@ -20,7 +19,7 @@ Temps de lecture ~5 min
 ## Verdict
 
 - **3+ réponses solides** → tu peux entrer.
-- **2 ou moins** → retour à `03-PILOTAGE/02_web_inclusive/`, ou à sa synthèse `07_a11y_grimoire.md`.
+- **2 ou moins** → retour à `19_web_inclusive/`, ou à sa synthèse `07_a11y_grimoire.md`.
 
 > Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
 

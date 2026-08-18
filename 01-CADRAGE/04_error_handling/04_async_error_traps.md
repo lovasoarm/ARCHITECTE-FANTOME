@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # ASYNC ERROR TRAPS : LES ERREURS QUI TOMBENT EN SILENCE

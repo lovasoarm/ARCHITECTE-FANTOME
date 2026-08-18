@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # SCOPE : OÙ VIT TA VARIABLE ?
 Temps de lecture ~7 min

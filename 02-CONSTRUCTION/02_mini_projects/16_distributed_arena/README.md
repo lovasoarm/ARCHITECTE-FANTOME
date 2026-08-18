@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: restituer
 ---
 
 
@@ -10,8 +9,6 @@ Temps de lecture ~3 min
 [ATELIER]
 
 # 16 : DISTRIBUTED ARENA
-
-> Mode de vérification des exercices de ce module : critère binaire du `verification_pack` ([verification_pack/criteres.md](verification_pack/criteres.md)). Aucun exercice de ce module n'est corrigé par une IA.
 
 -> ~8h (réparties sur 3 sessions)
 
@@ -25,7 +22,7 @@ processus Node qui parlent entre eux, en local, et tu prouves qu'il survit à :
 
 C'est le mini-projet manquant qui distingue un dev mid d'un dev senior en 2026.
 
-Prérequis : `01-CADRAGE/02_async` complet, `05-MAITRISE/02_scalability`, `03-PILOTAGE/05_observability`.
+Prérequis : `03_async` complet, `25_scalability`, `26_observability`.
 
 ---
 
@@ -58,7 +55,7 @@ $ node verify.js
 
 ---
 
-## LES 6 LIVRABLES OBLIGATOIRES
+## LES 5 LIVRABLES OBLIGATOIRES
 
 1. `coordinator.js` : reçoit les increments, applique idempotence (clé unique par op).
 2. `worker.js` : envoie des increments avec retry backoff.
@@ -67,7 +64,7 @@ $ node verify.js
 5. `ADR-001_decision.md` : pourquoi tu as choisi une clé UUID par op et pas un
   compteur monotone par worker. Trade-offs.
 
-6. `POSTMORTEM.md` (OBLIGATOIRE, pas bonus) d'un bug que tu n'as PAS anticipé au design et qui est apparu au chaos.
+Bonus (mais fortement recommandé) : 6. `POSTMORTEM.md` d'un bug que tu n'as PAS anticipé au design et qui est apparu au chaos.
 
 ---
 
@@ -107,45 +104,3 @@ un ordre de magnitude plus crédible en entretien.
 ## REPRODUCTIBILITÉ
 
 Installation canonique : `npm ci` (pas `npm install`). `npm ci` respecte strictement le `package-lock.json` : deux personnes qui clonent obtiennent exactement les mêmes versions. Committe toujours ton `package-lock.json`. Sans lui, un `npm install` 3 mois plus tard installera d'autres versions et tu debug un fantôme.
-
-
----
-
-## INCIDENT/ (OBLIGATOIRE)
-
-Le dossier `INCIDENT/` n'est pas un bonus : c'est une étape obligatoire de ce
-mini-projet, au même titre que les 6 livrables ci-dessus.
-
-- `01_scenario_panne.js` : scénario de panne déterministe, rejouable à l'identique.
-- `02_logs_correles.md` : logs corrélés entre coordinateur et workers pour ce scénario.
-- `03_CHECKLIST_DEBOGAGE_DISTRIBUE.md` : checklist de débogage distribué à suivre pendant l'incident.
-- `04_POSTMORTEM_GABARIT.md` : gabarit de postmortem spécifique à l'incident (distinct du `POSTMORTEM.md` global du projet, obligatoire lui aussi).
-- `05_CORRIGE.md` : corrigé de l'incident, à ne consulter qu'après avoir tenté la checklist seul.
-
-Tant que `INCIDENT/` n'est pas traité, le mini-projet 16 n'est pas livré,
-même si `verify.js` renvoie 0 sur les 4 scénarios chaos.
-
-Renvoi croisé : la notion d'annulation/timeout/retry mobilisée ici est posée
-dans `01-CADRAGE/02_async` (callbacks, promises, event loop, backpressure) et
-son usage en pilotage de fiabilité est prolongé dans
-`03-PILOTAGE/06_fiabilite_slo` (SLO, budget d'erreur, reprise).
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION/02_mini_projects/16_distributed_arena` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_SPEC_DRIFT.md](00_SPEC_DRIFT.md)
-- [POSTMORTEM.md](POSTMORTEM.md)
-- [RULES.md](RULES.md)
-- [SECURITY.md](SECURITY.md)
-- [SECURITY_GATE.md](SECURITY_GATE.md)
-- [SPEC_DRIFT_TRIGGERS.md](SPEC_DRIFT_TRIGGERS.md)
-- [TDD_JOURNAL.md](TDD_JOURNAL.md)
-- [cahierdescharges.md](cahierdescharges.md)
-- [ADR/](ADR/README.md)
-- [INCIDENT/](INCIDENT/README.md)
-- [verification_pack/](verification_pack/README.md)
-
-<!-- CONTENU-DOSSIER:fin -->

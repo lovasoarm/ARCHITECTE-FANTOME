@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # MVC : MODEL, VIEW, CONTROLLER
@@ -10,7 +9,7 @@ Rick Grimes gère Alexandria. Il y a les ressources (Model), ce que les survivan
 
 Sans MVC (ou une séparation équivalente), une modification dans l'affichage casse la logique métier. Une règle métier modifie l'UI directement. Les bugs se propagent partout. Impossible de tester quoi que ce soit isolément.
 
-Prérequis : `00-SOCLE/04_fundamentals` complet, `02-CONSTRUCTION/10_design_patterns` (notamment observer et factory).
+Prérequis : `01_fundamentals` complet, `12_design_patterns` (notamment observer et factory).
 
 ---
 
@@ -301,7 +300,7 @@ Règle : le Controller orchestre, il ne fait rien lui-même.
 
 ## 5) VARIANTE OBSERVABLE : MODEL QUI NOTIFIE
 
-Au lieu que le Controller appelle `view.render()` manuellement, le Model peut émettre des événements (Observer Pattern de `02-CONSTRUCTION/10_design_patterns`) :
+Au lieu que le Controller appelle `view.render()` manuellement, le Model peut émettre des événements (Observer Pattern de `12_design_patterns`) :
 
 ```js
 class ReactiveSurvivorModel extends EventTarget {

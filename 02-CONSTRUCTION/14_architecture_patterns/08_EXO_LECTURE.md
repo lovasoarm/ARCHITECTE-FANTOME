@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: produire
 ---
 
 # EXO LECTURE : 15-25 minutes (Architecture Patterns)
@@ -9,11 +8,11 @@ acte: produire
 >
 > **Budget lecture** : 320 lignes en 15 min chrono. Si tu dépasses, note pourquoi dans `MAP.md`. Objectif progressif : tu dois pouvoir tenir 500 lignes en 15 min à la fin du curriculum.
 >
-> **Protocole de cartographie** : suis `05-MAITRISE/06_annexes/reading/cartographie_15min.md` si tu ne sais pas par où entrer.
+> **Protocole de cartographie** : suis `31_annexes/reading/cartographie_15min.md` si tu ne sais pas par où entrer.
 
 Temps de lecture ~2 min
 
-Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT de le modifier. C'est 80% du métier. Applique le protocole `05-MAITRISE/06_annexes/00_cartographier_codebase_inconnue.md` en version zoom.
+Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT de le modifier. C'est 80% du métier. Applique le protocole `31_annexes/00_cartographier_codebase_inconnue.md` en version zoom.
 
 ## L'extrait
 

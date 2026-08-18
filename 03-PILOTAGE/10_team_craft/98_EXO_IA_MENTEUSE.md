@@ -1,9 +1,8 @@
 ---
-stability: intemporel
-acte: produire
+stability: stable
 ---
 
-# EXO IA MENTEUSE : module 03-PILOTAGE/10_team_craft
+# EXO IA MENTEUSE : module 27_team_craft
 
 Temps : ~10 min. Format court, seul ou en binôme.
 

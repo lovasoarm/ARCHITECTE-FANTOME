@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 02 : DAY ONE (contexte, environnement, premier code)
@@ -18,7 +17,7 @@ Avant de continuer, réponds honnêtement à ces 5 questions :
 **Score** :
 
 - **3+ oui** : fonce, tu es prêt pour la suite de ce fichier.
-- **< 3 oui** : ouvre d'abord `02b_shell_survival.md` (dans ce même dossier) et reviens ici après. Aucune honte : MyFunnyJS n'est pas un cours de terminal, mais on te renvoie vers la bonne ressource.
+- **< 3 oui** : ouvre d'abord `02_shell_survival.md` (dans ce même dossier) et reviens ici après. Aucune honte : MyFunnyJS n'est pas un cours de terminal, mais on te renvoie vers la bonne ressource.
 
 Ce quiz n'est pas technique JS. Il ne teste que **l'environnement**. Tu peux ne rien connaître à JS et cocher 5/5.
 
@@ -51,7 +50,7 @@ Pas un développeur "qui sait faire une todo-list". Un **ingénieur** qui :
 - **Tu mesures ta dépendance à l'IA** (`DEPENDENCY_LEDGER.md`). Une règle non
   mesurée reste une croyance. **Ce fichier n'existe pas encore : crée-le à la
   racine de ton propre repo maintenant**, en copiant la structure de
-  `00-SOCLE/03_referentiel/DEPENDENCY_LEDGER.md` (fourni comme modèle de référence, pas comme
+  `00_referentiel/DEPENDENCY_LEDGER.md` (fourni comme modèle de référence, pas comme
   contenu à lire).
 
 ### Ratio lecture / écriture (règle Thor)
@@ -120,7 +119,7 @@ Repère : le fichier, la ligne, le token attendu. C'est le geste #1 du métier.
 
 Corrige, relance. Réussi ? Tu viens de boucler ton premier cycle
 _hypothèse -> expérience -> réfutation -> correction_. Tout le module
-`01-CADRAGE/03_debugging` n'est qu'une version musclée de ça.
+`04_debugging` n'est qu'une version musclée de ça.
 
 ### Ce qu'on ne fait PAS aujourd'hui
 

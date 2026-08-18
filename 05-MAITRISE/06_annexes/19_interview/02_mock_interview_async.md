@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # MOCK INTERVIEW : DEBUG ASYNC EN DIRECT (solo)
@@ -54,7 +53,7 @@ Après ta première réponse, réponds à voix haute à chacune. Elles sont con�
 - [ ] J'ai proposé un test déterministe (mock de `process`, compteur d'appels concurrents max). (2 pts)
 - [ ] J'ai parlé clairement, sans "euh" toutes les 5 secondes, en verbalisant mes hypothèses. (bonus)
 
-Score < 6/10 : rejoue le module `01-CADRAGE/02_async` puis recommence ce mock.
+Score < 6/10 : rejoue le module `03_async` puis recommence ce mock.
 
 ## (attention) CE QUE LE DRILL RÉVÈLE
 

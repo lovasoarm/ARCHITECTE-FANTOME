@@ -3,7 +3,6 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Encoding, timezone, floating point : bugs éternels.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
@@ -14,7 +13,7 @@ acte: restituer
 > - Lecture rapide : la checklist en fin de module. Lecture complète : les histoires de guerre associées à chaque cas.
 > - Un dev qui ne pense pas edge case coûte plus cher en incidents qu'il ne rapporte en features.
 
-> **CE MODULE RÉUTILISE** : tests (02-CONSTRUCTION/03_testing), debugging (01-CADRAGE/03_debugging), erreurs (01-CADRAGE/04_error_handling), math (02-CONSTRUCTION/04_math_basics). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : tests (06_testing), debugging (04_debugging), erreurs (05_error_handling), math (07_math_basics). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI EDGE CASES MÉRITE TON TEMPS
 
@@ -186,11 +185,11 @@ Module 27 pour une raison : ces comportements ont plus de sens quand on a déjà
 ```
 modules qui rendent ce module concret
 --------------------------------------
-00-SOCLE/04_fundamentals/04_types  --> les types primitifs et leur comportement de base
-00-SOCLE/04_fundamentals/01_variables --> références vs valeurs : base pour comprendre la mutation
-02-CONSTRUCTION/09_functional_js/02_immutability --> pourquoi la mutation implicite est dangereuse
-02-CONSTRUCTION/12_typescript        --> ce que TS attrape et ce qu'il laisse passer
-03-PILOTAGE/04_security         --> prototype pollution comme vecteur d'attaque réel
+01_fundamentals/04_types  --> les types primitifs et leur comportement de base
+01_fundamentals/01_variables --> références vs valeurs : base pour comprendre la mutation
+11_functional_js/02_immutability --> pourquoi la mutation implicite est dangereuse
+14_typescript        --> ce que TS attrape et ce qu'il laisse passer
+22_security         --> prototype pollution comme vecteur d'attaque réel
 ```
 
 Lire ce module avant d'avoir écrit du vrai code : c'est théorique et peu mémorable.
@@ -200,7 +199,7 @@ Lire ce module après avoir rencontré un `NaN` inexpliqué en prod : c'est une 
 
 ## PRÉREQUIS
 
-- `00-SOCLE/04_fundamentals` complet : types primitifs, références, coercions de base
+- `01_fundamentals` complet : types primitifs, références, coercions de base
 - `04_types/02_type_coercion.md` en particulier : base directe de ce module
 - Avoir déjà débogué un bug lié à une valeur inattendue : pas technique, mais ça aide
 
@@ -210,7 +209,7 @@ Lire ce module après avoir rencontré un `NaN` inexpliqué en prod : c'est une 
 
 **Debugging en général :** quand un comportement est bizarre, tu sais où chercher en premier.
 
-**`03-PILOTAGE/04_security` (si pas encore fait) :** la pollution de prototype comme vecteur d'attaque est plus claire après avoir compris la chaîne prototype en profondeur.
+**`22_security` (si pas encore fait) :** la pollution de prototype comme vecteur d'attaque est plus claire après avoir compris la chaîne prototype en profondeur.
 
 **`09_oracle_glitch` (mini-projet) :** ce projet injecte des edge cases comme des pièges réels (`0.1 + 0.2` dans des métriques de scoring, `NaN` dans des tableaux, `undefined` au milieu d'une réponse LLM). Ce module t'arme pour les attraper.
 
@@ -280,6 +279,6 @@ Un dev qui les connaît : il écrit des guards précis, il débogue vite, et il 
 Ce n'est pas du trivia JavaScript.
 C'est la différence entre subir le langage et le maîtriser.
 
-> Ce module réutilise : le debugging du module 04 (`01-CADRAGE/03_debugging`) et l'asynchrone du module 03 (`01-CADRAGE/02_async`).
+> Ce module réutilise : le debugging du module 04 (`04_debugging`) et l'asynchrone du module 03 (`03_async`).
 >
-> **Référence heisenbug** : le fichier `06_heisenbug_arena.md` de ce module est LE point de référence complet sur les heisenbugs (5 scénarios, méthode, cas qui casse). Le stub `01-CADRAGE/03_debugging/heisenbug_arena.md` renvoie ici : ne le duplique pas, approfondis-le.
+> **Référence heisenbug** : le fichier `06_heisenbug_arena.md` de ce module est LE point de référence complet sur les heisenbugs (5 scénarios, méthode, cas qui casse). Le stub `04_debugging/heisenbug_arena.md` renvoie ici : ne le duplique pas, approfondis-le.

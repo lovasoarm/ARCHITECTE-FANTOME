@@ -1,26 +1,40 @@
 # Grimoire : Niveau 03, MVP Split
 
-Ce grimoire est un mémo à quatre colonnes exactes. La table de défense orale vit à côté, dans [defense-orale.md](defense-orale.md).
+Ce grimoire comporte deux tables : le mémo à 4 colonnes, puis la table de défense orale à
+3 colonnes (écart de format assumé, voir [_STYLE.md](../.meta/_STYLE.md)).
 
 Mémo à ouvrir quand il faut découper une feature sous pression de planning. Sert à trancher
 où couper, pas à réviser la théorie du découpage.
 
-| Terme | Définition | Code | Analogies | Limite |
-| --- | --- | --- | --- | --- |
-| Tranche verticale | Découpage qui traverse toute la stack et livre un scénario complet et utilisable, même réduit. | `printf "tranche1: creation_urgence_simple end-to-end\n" >> plan.md` | plat complet simplifié servi en entier / traversée courte mais complète en montagne | « plat complet simplifié servi en entier » suppose un seul acteur à la fois ; sur Tranche verticale, un indicateur qui monte peut cacher une baisse de la valeur réellement délivrée. Note ce que tu refuses, pas seulement ce que tu retiens. |
-| Couche horizontale | Découpage qui prépare une partie de l'infrastructure mais ne livre rien d'utilisable seule. | `printf "couche: auth_generique (aucune valeur seule)\n"` | mise en place sans aucun plat servi / gréement monté sans navigation possible | « mise en place sans aucun plat servi » décrit un monde où chaque étape se voit ; sur Couche horizontale, l'utilisateur qui parle n'est pas l'utilisateur moyen, et l'écart n'est jamais mesuré. Vérifie l'hypothèse de volume dans trois mois, calendrier en main. |
-| Invariant d'une feature | La règle dont la violation rend la fonctionnalité dangereuse ou trompeuse. | `const invariant = (r) => r.veterinaireDisponible === true;` | règle de sécurité non négociable aux urgences / point d'ancrage qui ne doit jamais lâcher | « règle de sécurité non négociable aux urgences » se rejoue à l'identique, le code non ; sur Invariant d'une feature, le coût d'une fonctionnalité inclut sa maintenance, pas seulement sa construction. Écris le chiffre, sa date et sa source avant d'arbitrer. |
-| Ligne de coupe | L'endroit précis où on réduit l'ampleur d'une feature sans toucher à son invariant. | `printf "coupe: 1 seul cabinet pilote, meme invariant\n"` | menu réduit mais sans plat mensonger / itinéraire raccourci sans sauter d'étape de sécurité | « menu réduit mais sans plat mensonger » se rejoue à l'identique, le code non ; sur Ligne de coupe, un chiffre d'usage sans date ni source ne permet aucune décision reproductible. Remonte de la solution demandée au problème réel avant de coder. |
-| Feature flag | Interrupteur de configuration qui active ou désactive un comportement sans redéployer. | `printf "FEATURE_PAIEMENT_EN_LIGNE=false\n" >> .env` | interrupteur du technicien en régie pendant le show / vanne coupée sans arrêter le bateau | « interrupteur du technicien en régie pendant le show » a une frontière visible à l'oeil ; sur Feature flag, une demande formulée en solution cache le problème qu'elle prétend résoudre. Note ce que tu refuses, pas seulement ce que tu retiens. |
-| Estimation honnête | Fourchette accompagnée de ses sources d'incertitude explicites. | `printf "estimation: 3-5j; incertitude: dispo_api_tiers\n"` | fourchette de temps de service annoncée en cuisine / marge de sécurité annoncée avant un sommet | « fourchette de temps de service annoncée en cuisine » se corrige toute seule quand elle dérape ; sur Estimation honnête, le retour sur investissement suppose une hypothèse de volume qui se démode en un trimestre. Écris le chiffre, sa date et sa source avant d'arbitrer. |
-| Effet tunnel | Dérive où une équipe continue sur un plan optimiste sans signaler les écarts en cours de route. | `printf "point_controle: chaque vendredi, ecart vs plan\n" >> suivi.md` | absence de point météo en pleine mer / absence de debrief à mi-service | « absence de point météo en pleine mer » raconte le cas nominal ; sur Effet tunnel, l'utilisateur qui parle n'est pas l'utilisateur moyen, et l'écart n'est jamais mesuré. Remonte de la solution demandée au problème réel avant de coder. |
-| Coût d'opportunité | Ce qu'on sacrifie ailleurs si on accepte une demande de périmètre supplémentaire. | `printf "oui_a: X; sacrifie: Y cette semaine\n"` | accepter une table de plus au prix d'un retard partout ailleurs / accepter un détour au prix du sommet du jour | « accepter une table de plus au prix d'un retard partout ailleurs » tient tant que rien ne tombe en route ; sur Coût d'opportunité, livrer plus vite déplace le coût vers l'exploitation, il ne disparaît pas. Vérifie l'hypothèse de volume dans trois mois, calendrier en main. |
-| Dette technique assumée | Raccourci pris consciemment, écrit quelque part, avec une échéance de remboursement. | `printf "dette: mock_paiement; rembourser_avant: v1.2\n" >> dette.yml` | pansement provisoire assumé aux urgences / réparation de fortune notée pour le retour au port | « pansement provisoire assumé aux urgences » se rejoue à l'identique, le code non ; sur Dette technique assumée, l'arbitrage se joue sur ce qu'on refuse, jamais sur ce qu'on ajoute. Vérifie l'hypothèse de volume dans trois mois, calendrier en main. |
-| Dette technique subie | Raccourci pris sous pression, jamais écrit, découvert plus tard comme un incident. | `git log --grep="quick fix" --oneline` | improvisation non tracée en régie qui refait surface en direct / corde mal notée qui lâche en pleine ascension | « improvisation non tracée en régie qui refait surface en direct » se rejoue à l'identique, le code non ; sur Dette technique subie, l'arbitrage se joue sur ce qu'on refuse, jamais sur ce qu'on ajoute. Écris le chiffre, sa date et sa source avant d'arbitrer. |
+| Terme | Définition | Code | Analogies |
+| --- | --- | --- | --- |
+| Tranche verticale | Découpage qui traverse toute la stack et livre un scénario complet et utilisable, même réduit. | `printf "tranche1: creation_urgence_simple end-to-end\n" >> plan.md` | plat complet simplifié servi en entier / traversée courte mais complète en montagne |
+| Couche horizontale | Découpage qui prépare une partie de l'infrastructure mais ne livre rien d'utilisable seule. | `printf "couche: auth_generique (aucune valeur seule)\n"` | mise en place sans aucun plat servi / gréement monté sans navigation possible |
+| Invariant d'une feature | La règle dont la violation rend la fonctionnalité dangereuse ou trompeuse. | `const invariant = (r) => r.veterinaireDisponible === true;` | règle de sécurité non négociable aux urgences / point d'ancrage qui ne doit jamais lâcher |
+| Ligne de coupe | L'endroit précis où on réduit l'ampleur d'une feature sans toucher à son invariant. | `printf "coupe: 1 seul cabinet pilote, meme invariant\n"` | menu réduit mais sans plat mensonger / itinéraire raccourci sans sauter d'étape de sécurité |
+| Feature flag | Interrupteur de configuration qui active ou désactive un comportement sans redéployer. | `printf "FEATURE_PAIEMENT_EN_LIGNE=false\n" >> .env` | interrupteur du technicien en régie pendant le show / vanne coupée sans arrêter le bateau |
+| Estimation honnête | Fourchette accompagnée de ses sources d'incertitude explicites. | `printf "estimation: 3-5j; incertitude: dispo_api_tiers\n"` | fourchette de temps de service annoncée en cuisine / marge de sécurité annoncée avant un sommet |
+| Effet tunnel | Dérive où une équipe continue sur un plan optimiste sans signaler les écarts en cours de route. | `printf "point_controle: chaque vendredi, ecart vs plan\n" >> suivi.md` | absence de point météo en pleine mer / absence de debrief à mi-service |
+| Coût d'opportunité | Ce qu'on sacrifie ailleurs si on accepte une demande de périmètre supplémentaire. | `printf "oui_a: X; sacrifie: Y cette semaine\n"` | accepter une table de plus au prix d'un retard partout ailleurs / accepter un détour au prix du sommet du jour |
+| Dette technique assumée | Raccourci pris consciemment, écrit quelque part, avec une échéance de remboursement. | `printf "dette: mock_paiement; rembourser_avant: v1.2\n" >> dette.yml` | pansement provisoire assumé aux urgences / réparation de fortune notée pour le retour au port |
+| Dette technique subie | Raccourci pris sous pression, jamais écrit, découvert plus tard comme un incident. | `git log --grep="quick fix" --oneline` | improvisation non tracée en régie qui refait surface en direct / corde mal notée qui lâche en pleine ascension |
 
 ## Défense orale
 
-La table de défense orale a son propre fichier, pour que ce grimoire garde un format unique de quatre colonnes : [defense-orale.md](defense-orale.md).
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+| --- | --- | --- |
+| Tranche verticale | Rien n'est utilisable avant que tout soit fini, aucune validation terrain avant la fin | Ta première tranche livre-t-elle un scénario complet, ou juste une brique technique ? |
+| Couche horizontale | Des semaines de travail sans aucun retour utilisateur possible avant l'assemblage final | Cette couche, seule, apporte-t-elle une valeur observable à quelqu'un ? |
+| Invariant d'une feature | Tu coupes au mauvais endroit et livres quelque chose qui ment à l'utilisateur | Que se passe-t-il concrètement si cette règle est violée ? |
+| Ligne de coupe | La coupe touche l'invariant : la version réduite devient dangereuse ou trompeuse | Sur quel axe as-tu réduit sans toucher l'invariant ? |
+| Feature flag | Du code incomplet part en production sans filet, ou bloque un déploiement complet | Comment reviens-tu en arrière si ce comportement pose problème en production ? |
+| Estimation honnête | Un chiffre unique rassure sur le moment puis explose sans qu'on sache pourquoi | Quelle est la source d'incertitude principale de cette estimation ? |
+| Effet tunnel | Le dépassement est découvert au dernier moment, sans marge pour réagir | Quel point de contrôle rapproché aurait révélé cet écart plus tôt ? |
+| Coût d'opportunité | Un refus paraît arbitraire, ou un oui coûte une autre priorité sans arbitrage conscient | Qu'est-ce que ce oui te fait sacrifier ailleurs, précisément ? |
+| Dette technique assumée | Le raccourci se perd dans le code, personne ne sait qu'il faut le rembourser | Quelle est l'échéance de remboursement de cette dette, et où est-elle écrite ? |
+| Dette technique subie | Le raccourci explose en production, traité comme une surprise alors qu'il était prévisible | Comment aurait-on pu transformer cette dette subie en dette assumée à temps ? |
+
+Grille détaillée : voir [boss-fight.md](./boss-fight.md).
 
 ## Checklist avant de découper un MVP
 

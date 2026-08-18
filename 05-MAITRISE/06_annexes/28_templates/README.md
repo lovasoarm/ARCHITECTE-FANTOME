@@ -1,11 +1,8 @@
 ---
 stability: intemporel
-acte: restituer
 ---
 
 # Templates réutilisables
-
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../08_maitrise_staff_engineer/challenge.md](../../08_maitrise_staff_engineer/challenge.md)).
 
 Temps de lecture ~2 min
 
@@ -15,9 +12,9 @@ module.
 
 | Template | Rôle | Utilisé par |
 |---|---|---|
-| `POSTMORTEM.md` | Squelette de post-mortem d'incident ou de mini-projet | 02-CONSTRUCTION/02_mini_projects, 03-PILOTAGE/05_observability, 03-PILOTAGE/04_security |
-| `HYPOTHESES.md` | Grille d'hypothèses pour un debug méthodique | 01-CADRAGE/03_debugging, 05-MAITRISE/03_edge_cases, 03-PILOTAGE/05_observability |
-| `PUBLICATION_CHECKLIST.md` | Checklist avant de publier un billet ou un repo | 02-CONSTRUCTION/02_mini_projects, 03-PILOTAGE/10_team_craft, 05-MAITRISE/06_annexes/career |
+| `POSTMORTEM.md` | Squelette de post-mortem d'incident ou de mini-projet | 30_mini_projects, 26_observability, 22_security |
+| `HYPOTHESES.md` | Grille d'hypothèses pour un debug méthodique | 04_debugging, 28_edge_cases, 26_observability |
+| `PUBLICATION_CHECKLIST.md` | Checklist avant de publier un billet ou un repo | 30_mini_projects, 27_team_craft, 31_annexes/career |
 
 ## Convention
 
@@ -26,15 +23,3 @@ module.
   copie-le dans le mini-projet ou l'incident, puis remplis la copie.
 - Un ajout de template ici doit être précédé d'au moins deux modules qui
   en ont besoin (sinon il reste dans le module d'origine).
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `05-MAITRISE/06_annexes/28_templates` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_HYPOTHESES.md](00_HYPOTHESES.md)
-- [01_PUBLICATION_CHECKLIST.md](01_PUBLICATION_CHECKLIST.md)
-- [POSTMORTEM.md](POSTMORTEM.md)
-
-<!-- CONTENU-DOSSIER:fin -->

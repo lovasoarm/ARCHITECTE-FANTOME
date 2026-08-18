@@ -56,7 +56,7 @@ convaincue d'avoir suivi la décision.
 
 Signal de détection précoce : personne ne peut citer la décision dans une phrase identique
 cinq minutes après la réunion. Première action : voir le gabarit ADR du fichier
-[01b-decision-templates.md](01b-decision-templates.md), même en trois lignes, envoyé dans les
+[01-decision-templates.md](01-decision-templates.md), même en trois lignes, envoyé dans les
 dix minutes suivant la réunion.
 
 ### Le Test Alibi (test qui ne teste rien)

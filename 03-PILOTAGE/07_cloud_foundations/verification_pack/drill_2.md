@@ -1,21 +1,34 @@
 ---
-stability: intemporel
-acte: appliquer
+stability: evolutif
+acte: pilotage
+noyau: renfort
 ---
 
-# drill_2 : appliquer sur un cas neuf : cloud foundations
+# DRILL 2 — LE CHIFFRAGE À FROID, EN 20 MINUTES
 
-Mode de verification : critere binaire du `verification_pack` (voir [criteres.md](criteres.md)).
-
-Duree : 25 minutes chrono. Le cas doit etre neuf : ni un exemple du module, ni un exercice deja rendu.
+Exercice de répétition. À rejouer une fois par mois, sans notes.
 
 ## Consigne
 
-1. rechiffre la facture mensuelle de ton projet fil rouge a trois paliers de charge.
-2. Produis un artefact concret dans ton depot : tableau chiffre, schema ou decision ecrite, jamais un paragraphe d'intention.
-3. Ecris en trois lignes ce que l'application a change par rapport a l'etat precedent, en citant le montant mensuel au palier median, avec sa date de releve.
+On te donne un système inconnu en trois lignes. Tu produis, en 20 minutes, chronomètre visible :
 
-## Critere binaire
+1. L'action représentative choisie et pourquoi.
+2. Les six postes, avec l'unité facturée de chacun.
+3. La facture d'ordre de grandeur à 10 000 utilisateurs.
+4. Le poste qui explosera en premier à 1 000 000, et le levier associé.
 
-REUSSI : l'artefact existe dans ton depot, il porte sur un cas neuf, et les trois lignes de comparaison citent le montant mensuel au palier median, avec sa date de releve.
-NON REUSSI : pas d'artefact, cas deja traite, ou comparaison sans ce chiffre.
+## Le système du jour
+
+« Une application de partage de photos entre amis : envoi d'images (2 Mo en moyenne), fil
+d'actualité, notifications par courriel, conservation illimitée. »
+
+## Correction attendue (à ne lire qu'après)
+
+Le poste dominant n'est ni le stockage ni le calcul : c'est **l'egress** des images consultées, sauf
+si un CDN et des vignettes existent. Deuxième poste : le stockage, à cause de la conservation
+illimitée — la rétention est ici une décision produit, pas technique.
+
+## Critère
+
+Réussi si l'egress apparaît dans les deux premiers postes et si l'unité facturée est nommée pour
+chaque ligne.

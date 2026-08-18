@@ -1,6 +1,5 @@
 ---
-stability: intemporel
-acte: restituer
+stability: stable
 ---
 
 # FIXTURE : MEMORY HUNTER
@@ -32,7 +31,7 @@ Question : laquelle des trois croît **linéairement sans borne** ?
 
 ### Étape 2 : Snapshot chirurgical (15 min)
 
-Suis le protocole de `02-CONSTRUCTION/05_memory_performance/01_gc/05_heap_snapshot_hands_on.md`.
+Suis le protocole de `08_memory_performance/01_gc/05_heap_snapshot_hands_on.md`.
 Snapshots à t=10s et t=60s. Compare. Le top 3 delta est ta liste de suspects. Note-la.
 
 ### Étape 3 : Fix + preuve (15 min)
@@ -48,12 +47,3 @@ compare `rss` à t=60s entre `leaky.js` et `fixed.js`. Consigne le delta dans
 - top 3 retainers avec chemin complet,
 - diff `leaky.js → fixed.js`,
 - courbe `rss` finale prouvant le fix.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION/02_mini_projects/13_memory_hunter/00_fixture` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-
-<!-- CONTENU-DOSSIER:fin -->

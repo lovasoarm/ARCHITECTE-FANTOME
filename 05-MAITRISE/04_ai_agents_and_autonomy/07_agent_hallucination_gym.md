@@ -1,8 +1,7 @@
 ---
-stability: perissable_2028
+stability: periss-2028
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # 07 : AGENT HALLUCINATION GYM
 Temps de lecture ~30 min

@@ -1,13 +1,10 @@
 ---
 stability: intemporel
-acte: restituer
 ---
 
 [PORTFOLIO]
 
 # ULTRAS DASHBOARD
-
-> Mode de vérification des exercices de ce module : critère binaire du `verification_pack` ([verification_pack/criteres.md](verification_pack/criteres.md)). Aucun exercice de ce module n'est corrigé par une IA.
 
 -> ~7 min
 
@@ -111,9 +108,9 @@ eventIngester.receive(rawEvent)
 
 | Module       | Où ça se voit                                |
 | ------------------ | ---------------------------------------------------------------------------- |
-| `03-PILOTAGE/05_observability` | `logger.ts` (JSON structuré, correlation ID), `tracer.ts`, `sentryClient.ts` |
-| `05-MAITRISE/02_scalability`  | rate limiting sur l'endpoint live, simulation de load horizontal       |
-| `02-CONSTRUCTION/12_typescript`  | `Event<T>`, `Pipeline<I,O>`, utility types sur les structs d'events     |
+| `26_observability` | `logger.ts` (JSON structuré, correlation ID), `tracer.ts`, `sentryClient.ts` |
+| `25_scalability`  | rate limiting sur l'endpoint live, simulation de load horizontal       |
+| `14_typescript`  | `Event<T>`, `Pipeline<I,O>`, utility types sur les structs d'events     |
 
 ---
 
@@ -152,7 +149,7 @@ trade-off chiffré :
 - **Ce que je n'ai pas mesuré** : (mémoire, DX, coût cloud…).
 
 Sans chiffres, ce n'est pas une décision, c'est une préférence.
-Voir `02-CONSTRUCTION/05_memory_performance/00_measure_first.md`.
+Voir `08_memory_performance/00_measure_first.md`.
 
 ## Pitch 3 lignes
 
@@ -171,7 +168,7 @@ Checklist minimum :
 
 ## Empreinte carbone (critère d'acceptation)
 
-Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `05-MAITRISE/06_annexes/03_finops_greenops.md`.
+Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
 
 ## THÈME NEUTRE (optionnel)
 
@@ -196,22 +193,3 @@ Un CI check impose la présence de `src/` et `tests/` avant validation.
 ## REPRODUCTIBILITÉ
 
 Installation canonique : `npm ci` (pas `npm install`). `npm ci` respecte strictement le `package-lock.json` : deux personnes qui clonent obtiennent exactement les mêmes versions. Committe toujours ton `package-lock.json`. Sans lui, un `npm install` 3 mois plus tard installera d'autres versions et tu debug un fantôme.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION/02_mini_projects/06_ultras_dashboard` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_SPEC_DRIFT.md](00_SPEC_DRIFT.md)
-- [POSTMORTEM.md](POSTMORTEM.md)
-- [RULES.md](RULES.md)
-- [SECURITY.md](SECURITY.md)
-- [SECURITY_GATE.md](SECURITY_GATE.md)
-- [SPEC_DRIFT_TRIGGERS.md](SPEC_DRIFT_TRIGGERS.md)
-- [TDD_JOURNAL.md](TDD_JOURNAL.md)
-- [cahierdescharges.md](cahierdescharges.md)
-- [ADR/](ADR/README.md)
-- [verification_pack/](verification_pack/README.md)
-
-<!-- CONTENU-DOSSIER:fin -->

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # EXERCICE DE TRANSFERT : mode d'emploi
@@ -25,10 +24,10 @@ toujours le même :
 
 | Après module     | Concept à transférer            | Cible suggérée   |
 |-----------------------|---------------------------------------------|---------------------|
-| 00-SOCLE/04_fundamentals    | Closure + scope lexical           | Python ou Rust   |
-| 01-CADRAGE/02_async       | Event loop / microtask           | Pseudo-Rust ou Go  |
-| 02-CONSTRUCTION/05_memory_performance | Cycle de vie objet + retainer        | Java (GC roots)   |
-| 02-CONSTRUCTION/06_data_structures  | Hash map avec collision           | C ou Zig      |
+| 01_fundamentals    | Closure + scope lexical           | Python ou Rust   |
+| 03_async       | Event loop / microtask           | Pseudo-Rust ou Go  |
+| 08_memory_performance | Cycle de vie objet + retainer        | Java (GC roots)   |
+| 09_data_structures  | Hash map avec collision           | C ou Zig      |
 | 13_design_patterns  | Observer OU Strategy            | Go (interfaces)   |
 | 17_architecture    | Injection de dépendance minimale      | Python (protocols) |
 

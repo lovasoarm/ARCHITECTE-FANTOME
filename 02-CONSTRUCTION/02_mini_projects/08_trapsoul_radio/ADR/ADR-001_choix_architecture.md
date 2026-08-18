@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # ADR-001 : clés de traduction typées en TypeScript avec erreur de compilation sur clé manquante
@@ -12,7 +11,7 @@ Accepté : 2026-01
 ## Contexte
 Trapsoul Radio doit fonctionner en 4 locales : français, anglais, japonais, malgache. Chaque string de l'interface (titre d'une piste, label d'un bouton, message d'erreur) a une traduction par locale. La question centrale : comment garantir qu'une clé de traduction manquante dans une locale est détectée avant la mise en prod, pas après qu'un auditeur japonais voit `[missing: ja.player.play]` s'afficher sur son écran ?
 
-Le projet couvre `02-CONSTRUCTION/12_typescript`, `03-PILOTAGE/02_web_inclusive/i18n`, `03-PILOTAGE/02_web_inclusive`. Le système de traduction est la colonne vertébrale de l'interface : une clé manquante brise silencieusement l'expérience de tous les auditeurs de cette locale.
+Le projet couvre `14_typescript`, `19_web_inclusive/i18n`, `19_web_inclusive`. Le système de traduction est la colonne vertébrale de l'interface : une clé manquante brise silencieusement l'expérience de tous les auditeurs de cette locale.
 
 ## Décision
 On type les clés de traduction en TypeScript : le dictionnaire de traductions est un objet dont les clés sont un type union exhaustif, et chaque locale doit implémenter toutes les clés : faute de quoi `tsc` refuse de compiler.
@@ -46,7 +45,7 @@ La fonction `t(key: TranslationKey)` ne peut recevoir qu'une clé du type union 
 **Bibliothèque i18next avec fichiers JSON de traduction**
 - Avantages : gestion des namespaces, pluralisation avancée, lazy loading des locales, plugin ecosystem
 - Limites : les clés JSON sont des strings : `i18next.t('player.plya')` ne produit aucune erreur de compilation, juste une string vide ou la clé brute au runtime ; la détection des clés manquantes nécessite un plugin supplémentaire ou un audit manuel
-- Rejeté parce que : le projet enseigne l'API native `Intl` (DateTimeFormat, NumberFormat, PluralRules) sans bibliothèque externe : utiliser i18next contourne l'apprentissage central du module `03-PILOTAGE/02_web_inclusive/i18n` ; et le typage natif TS sur les clés de traduction est précisément ce qu'on veut démontrer
+- Rejeté parce que : le projet enseigne l'API native `Intl` (DateTimeFormat, NumberFormat, PluralRules) sans bibliothèque externe : utiliser i18next contourne l'apprentissage central du module `19_web_inclusive/i18n` ; et le typage natif TS sur les clés de traduction est précisément ce qu'on veut démontrer
 
 **Fichiers de traduction JSON sans typage**
 - Avantages : format standard, lisible par des non-développeurs (traducteurs)

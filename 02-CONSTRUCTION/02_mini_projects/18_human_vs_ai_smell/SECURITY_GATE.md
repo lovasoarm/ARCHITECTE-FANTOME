@@ -1,7 +1,6 @@
 ---
 stability: intemporel
 gate: bloquante
-acte: appliquer
 ---
 
 # Security Gate : 18_human_vs_ai_smell

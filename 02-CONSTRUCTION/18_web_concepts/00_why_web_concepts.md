@@ -1,14 +1,13 @@
 ---
 perennite: evolutif
-stability: intemporel
+stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: HTTP/3, HTTPS, CORS : le stack web bouge par cycles.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : HTTP basics (02-CONSTRUCTION/19_api_craft — pas un prérequis : ce module en donne le strict nécessaire, le fond est enseigné là-bas plus tard), async (01-CADRAGE/02_async). Sécurité (03-PILOTAGE/04_security — pas un prérequis : ce module en donne le strict nécessaire, le fond est enseigné là-bas plus tard) : ce module pointe vers la distinction authentication/authorization, creusée en détail plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : HTTP basics (21_api_craft anticipé), async (03_async). Sécurité (22_security anticipé) : ce module pointe vers la distinction authentication/authorization, creusée en détail plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : WEB CONCEPTS
 
@@ -72,7 +71,7 @@ Les stratégies de cache ont aussi gagné en sophistication : on est passé d'un
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Prérequis explicite pour plusieurs modules majeurs : `04-EPREUVE/03_realtime` (prérequis `01-CADRAGE/02_async` complet + `02-CONSTRUCTION/18_web_concepts`), `02-CONSTRUCTION/19_api_craft` (prérequis `02-CONSTRUCTION/13_runtime_env` + `02-CONSTRUCTION/18_web_concepts` + `01-CADRAGE/04_error_handling`), et `03-PILOTAGE/04_security` (prérequis `02-CONSTRUCTION/19_api_craft` + `02-CONSTRUCTION/18_web_concepts`). C'est un module charnière qui conditionne ta capacité à construire des systèmes web sérieux et sécurisés.
+Prérequis explicite pour plusieurs modules majeurs : `20_realtime` (prérequis `03_async` complet + `17_web_concepts`), `21_api_craft` (prérequis `15_runtime_env` + `17_web_concepts` + `05_error_handling`), et `22_security` (prérequis `21_api_craft` + `17_web_concepts`). C'est un module charnière qui conditionne ta capacité à construire des systèmes web sérieux et sécurisés.
 
 ---
 
@@ -88,4 +87,4 @@ Un framework cache la complexité du web, mais ne la fait pas disparaître, et t
 
 Maintenant, ouvre `01_http_rest_basics.md`. Et apprends enfin à lire une requête comme un vrai ingénieur, pas juste comme quelqu'un qui copie un exemple de doc.
 
-> Ce module réutilise : l'asynchrone du module 03 (`01-CADRAGE/02_async`), la gestion d'erreurs du module 05 (`01-CADRAGE/04_error_handling`).
+> Ce module réutilise : l'asynchrone du module 03 (`03_async`), la gestion d'erreurs du module 05 (`05_error_handling`).

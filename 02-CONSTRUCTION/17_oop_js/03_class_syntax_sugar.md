@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # CLASS SYNTAX SUGAR : LA PREUVE QUE CLASS NE RÉINVENTE RIEN
 Temps de lecture ~10 min
@@ -185,7 +184,7 @@ class Ninja {
 
 `readonly` en TS n'existe que dans le compilateur. Il disparaît à la compilation. `#chakra` en JS existe vraiment au runtime : le moteur JS le connaît, il apparaît dans les stack traces, et il est vraiment inaccessible de l'extérieur.
 
-La règle : TypeScript ajoute des garanties **à la compilation**. JavaScript `#private` ajoute des garanties **au runtime**. Les deux ne sont pas interchangeables. En `02-CONSTRUCTION/17_oop_js/07_encapsulation_privacy`, on explore ça en détail.
+La règle : TypeScript ajoute des garanties **à la compilation**. JavaScript `#private` ajoute des garanties **au runtime**. Les deux ne sont pas interchangeables. En `18_oop_js/07_encapsulation_privacy`, on explore ça en détail.
 
 ## TIPS D'ÉVOLUTION
 

@@ -1,11 +1,8 @@
 ---
-stability: intemporel
-acte: restituer
+stability: stable
 ---
 
 # assets/ : charte visuelle
-
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
 
 Temps de lecture ~2 min
 
@@ -33,12 +30,3 @@ volontairement peu de choses : le curriculum est texte-first.
 3. Cite l'auteur et la licence dans un commentaire SVG ou dans un fichier
    `LICENSES.md` à côté si l'asset n'est pas produit maison.
 4. Documente son usage ici.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `06-ANNEXES-TRANSVERSES/assets` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-
-<!-- CONTENU-DOSSIER:fin -->

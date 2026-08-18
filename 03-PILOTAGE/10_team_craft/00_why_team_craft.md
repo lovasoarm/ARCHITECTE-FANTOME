@@ -3,7 +3,6 @@ perennite: evolutif
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Communication, revue de code, mentorat : intemporels.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
@@ -14,7 +13,7 @@ acte: restituer
 > - Tu peux lire vite (30 min les gros titres) OU tout (2h avec exercices).
 > - Si tu es solo tech lead en 2028, ce module est ta différence entre "projet vivant" et "projet zombie".
 
-> **CE MODULE RÉUTILISE** : revue de code et lecture de diff (01-CADRAGE/03_debugging, 02-CONSTRUCTION/11_refactoring), communication écrite (technical writing vu en amont dans le curriculum). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : revue de code et lecture de diff (04_debugging, 13_refactoring), communication écrite (technical writing vu en amont dans le curriculum). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI TEAM CRAFT MÉRITE TON TEMPS
 
@@ -140,11 +139,11 @@ Ce module se place en fin de curriculum pour une raison : il présuppose que tu 
 ```
 modules précédents qui rendent ce module concret
 -------------------------------------------------
-02-CONSTRUCTION/11_refactoring    --> tu sais ce qui mérite une review sérieuse
-00-SOCLE/05_problem_solving  --> tu sais pourquoi les décisions d'archi comptent
-02-CONSTRUCTION/12_typescript     --> tu as des types à documenter et des ADR à écrire
-02-CONSTRUCTION/13_runtime_env    --> tu as un environnement à configurer et à documenter
-02-CONSTRUCTION/19_api_craft     --> tu as des endpoints à documenter dans un README
+13_refactoring    --> tu sais ce qui mérite une review sérieuse
+02_problem_solving  --> tu sais pourquoi les décisions d'archi comptent
+14_typescript     --> tu as des types à documenter et des ADR à écrire
+15_runtime_env    --> tu as un environnement à configurer et à documenter
+21_api_craft     --> tu as des endpoints à documenter dans un README
 ```
 
 Si tu lis ce module au début du curriculum : tu comprends les concepts, mais ils restent abstraits. La douleur qu'ils résolvent, tu ne l'as pas encore vécue.
@@ -164,7 +163,7 @@ Mais ce module est plus utile si tu as déjà :
 
 ## CE QUI DEVIENT PLUS SIMPLE APRÈS CE MODULE
 
-**03-PILOTAGE/05_observability :** un runbook bien écrit s'appuie sur les mêmes réflexes que le technical writing. Les structured logs sont de la documentation machine.
+**26_observability :** un runbook bien écrit s'appuie sur les mêmes réflexes que le technical writing. Les structured logs sont de la documentation machine.
 
 **29_mini_projets :** chaque mini-projet a un `README.md`, un `ADR/`, un `POSTMORTEM.md`, un `TDD_JOURNAL.md`. Ce module t'apprend à remplir ces fichiers avec du sens, pas avec du remplissage.
 
@@ -236,4 +235,4 @@ Ce qui différencie : travailler dans un système complexe, avec des humains, su
 Team craft n'est pas un module de soft skills.
 C'est un module d'ingénierie collaborative avec un ROI direct sur la qualité du code produit.
 
-> Ce module réutilise : le refactoring du module 13 (`02-CONSTRUCTION/11_refactoring`), les tests du module 06 (`02-CONSTRUCTION/03_testing`).
+> Ce module réutilise : le refactoring du module 13 (`13_refactoring`), les tests du module 06 (`06_testing`).

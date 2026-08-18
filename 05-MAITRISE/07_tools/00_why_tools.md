@@ -1,9 +1,8 @@
 ---
 perennite: evolutif
-stability: perissable_2028
+stability: periss-2028
 duree_de_vie_estimee: 1-2 ans
 raison: Outils : bougent chaque année. Lis pour saisir la logique, pas pour mémoriser.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
@@ -14,7 +13,7 @@ acte: restituer
 > - Densité forte car périssable : privilégie la compréhension du **rôle** de chaque outil, pas la config du jour.
 > - En 2028, l'IA écrit le code. Ce sont **tes outils** qui te rendent plus rapide qu'elle.
 
-> **CE MODULE RÉUTILISE** : runtime (02-CONSTRUCTION/13_runtime_env), modules (00-SOCLE/04_fundamentals), et transversalement tout module ayant produit du code à builder/lint/packager. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : runtime (15_runtime_env), modules (01_fundamentals), et transversalement tout module ayant produit du code à builder/lint/packager. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
@@ -101,10 +100,10 @@ Sans scaffolder :
 Ce module vit PAS dans le flux normal de progression. Il vit À CÔTÉ, comme une caisse à outils qu'on ouvre chaque fois qu'on en a besoin.
 
 ```
-00-SOCLE/04_fundamentals --> 01-CADRAGE/02_async --> ... --> 02-CONSTRUCTION/02_mini_projects
+01_fundamentals --> 03_async --> ... --> 30_mini_projects
                        |
                        v
-                  [PIOCHE DANS 05-MAITRISE/07_tools]
+                  [PIOCHE DANS 32_tools]
                   à chaque fois que t'as besoin
                   de logger, mesurer, débugger,
                   ou scaffolder un nouveau projet
@@ -174,16 +173,16 @@ C'est un module utilitaire. Tu peux vivre sans, comme un campeur peut vivre sans
 
 ```
 prérequis avant ce module :
-00-SOCLE/04_fundamentals       --> fonctions, closures : la base pour construire des outils réutilisables
-02-CONSTRUCTION/05_memory_performance/04_profiling --> comprendre performance.now() AVANT de l'emballer dans un outil
-01-CADRAGE/04_error_handling      --> comprendre try/catch et les erreurs custom, utile pour le debug toolkit
-02-CONSTRUCTION/13_runtime_env/06_node_cli_scripts --> comprendre fs et process.argv, utile pour le scaffolder
+01_fundamentals       --> fonctions, closures : la base pour construire des outils réutilisables
+08_memory_performance/04_profiling --> comprendre performance.now() AVANT de l'emballer dans un outil
+05_error_handling      --> comprendre try/catch et les erreurs custom, utile pour le debug toolkit
+15_runtime_env/06_node_cli_scripts --> comprendre fs et process.argv, utile pour le scaffolder
 ```
 
 Ce qui devient plus simple après ce module :
 ```
-02-CONSTRUCTION/02_mini_projects   --> chaque projet démarre plus vite, se débugge plus vite, se mesure plus vite
-03-PILOTAGE/05_observability   --> tu as déjà manipulé un logger basique, le concept de correlation ID te parle déjà
+30_mini_projects   --> chaque projet démarre plus vite, se débugge plus vite, se mesure plus vite
+26_observability   --> tu as déjà manipulé un logger basique, le concept de correlation ID te parle déjà
 ```
 
 ---

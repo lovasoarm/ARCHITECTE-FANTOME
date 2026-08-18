@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # ADR-001 : SQLite embedded via better-sqlite3 comme base de données principale
@@ -43,7 +42,7 @@ src/
 **Persistance JSON (fichier ou mémoire)**
 - Avantages : zéro dépendance, lecture/écriture simple avec `fs.readFileSync`/`JSON.parse`
 - Limites : pas de relations, pas d'indexes, pas de transactions : si T-Bag injecte pendant qu'on écrit le fichier JSON, la corruption de données est plausible ; les requêtes "tous les logs de la section B dans les 24 dernières heures" deviennent du filtrage en mémoire O(n) sur tout le tableau
-- Rejeté parce que : le module `05-MAITRISE/01_databases` justifie SQL précisément pour les relations, les indexes et les transactions : ne pas utiliser SQL dans ce projet revient à ignorer la leçon principale de ce module
+- Rejeté parce que : le module `24_databases` justifie SQL précisément pour les relations, les indexes et les transactions : ne pas utiliser SQL dans ce projet revient à ignorer la leçon principale de ce module
 
 ## Conséquences
 

@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # RUNTIME RACE : O(n log n) VS O(n²) SUR 100K ÉLÉMENTS
 Temps de lecture ~10 min

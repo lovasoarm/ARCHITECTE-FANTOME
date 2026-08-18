@@ -1,14 +1,6 @@
----
-stability: stable
-acte: comprendre
-route: survie
----
-
 # Niveau 03 : MVP Split
 
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
-
-[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../01-PROBLEM-HUNT/README.md) | [Niveau suivant](../../02-CONSTRUCTION/01-USER-WIZARD/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Niveau précédent](../01-PROBLEM-HUNT/README.md) | [Niveau suivant](../../02-CONSTRUCTION/01-USER-WIZARD/README.md)
 
 **Ce niveau réutilise :** [02-PROBLEM-HUNT](../01-PROBLEM-HUNT/04-scope-and-non-goals.md) : les non-objectifs et la metrique de succes, qui donnent les bornes du decoupage en tranches.
 
@@ -22,7 +14,7 @@ route: survie
 [challenge](../01-PROBLEM-HUNT/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 03 une difficulté qui vient du niveau 02.
 
-**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) (règle de calcul : voir [_STYLE.md](../.meta/_STYLE.md), section « Durées »).
 
 ## Ce que c'est
 
@@ -81,22 +73,3 @@ technique du découpage arrive dans les niveaux suivants.
 
 Avant de continuer : passe par [RETRO-BLOC-1-CADRAGE.md](../RETRO-BLOC-1-CADRAGE.md), la
 rétrospective du bloc Cadrage que tu viens de terminer.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `01-CADRAGE/05-MVP-SPLIT` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_prereq_check.md](00_prereq_check.md)
-- [01-why-this-level.md](01-why-this-level.md)
-- [02-slicing-value.md](02-slicing-value.md)
-- [03-cut-lines.md](03-cut-lines.md)
-- [04-estimating-honestly.md](04-estimating-honestly.md)
-- [05-when-to-say-no.md](05-when-to-say-no.md)
-- [boss-fight.md](boss-fight.md)
-- [challenge.md](challenge.md)
-- [defense-orale.md](defense-orale.md)
-- [grimoire.md](grimoire.md)
-
-<!-- CONTENU-DOSSIER:fin -->

@@ -1,12 +1,11 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SYNTHÈSE A : LE PROTOCOLE DE GARO APRÈS LE BLACKOUT
 Temps de lecture ~6 min
 
-> Couvre : `00-SOCLE/04_fundamentals` + `01-CADRAGE/02_async` + `01-CADRAGE/04_error_handling` + `02-CONSTRUCTION/03_testing`
+> Couvre : `01_fundamentals` + `03_async` + `05_error_handling` + `06_testing`
 > Durée cible : 90 à 150 minutes
 > Pas un exercice de plus. Un point de contrôle : si ça casse ici, c'est que les fondations bougent encore.
 

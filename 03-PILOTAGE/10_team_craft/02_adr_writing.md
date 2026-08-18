@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # ADR : DOCUMENTER UNE DÉCISION AVANT QU'ELLE DEVIENNE UN MYSTÈRE

@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # REGEX : L'ARME QUE PERSONNE N'ENSEIGNE CORRECTEMENT
 Temps de lecture ~8 min

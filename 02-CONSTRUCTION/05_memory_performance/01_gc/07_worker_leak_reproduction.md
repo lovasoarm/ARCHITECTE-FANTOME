@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # WORKER LEAK : QUAND CHAQUE THREAD SAIGNE SEUL
 Temps de lecture ~25 min
@@ -100,4 +99,4 @@ Règle : jamais `new Worker` dans une boucle chaude. Pool + `terminate()` en shu
 process se ferme avec des heaps orphelines. En prod, `SIGTERM` sans grace period =
 mémoire perdue jusqu'au restart.
 
-Prochaine étape : approfondis le module mémoire (voir le grimoire `02-CONSTRUCTION/05_memory_performance/08_memory_perf_grimoire.md` et les autres exercices du dossier `01_gc/`).
+Prochaine étape : approfondis le module mémoire (voir le grimoire `08_memory_performance/09_memory_perf_grimoire.md` et les autres exercices du dossier `01_gc/`).

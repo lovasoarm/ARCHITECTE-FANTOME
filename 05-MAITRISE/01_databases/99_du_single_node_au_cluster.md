@@ -1,12 +1,11 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Du single-node au cluster : le pont vers le distribué
 Temps de lecture ~12 min
 
-Tu viens de voir (dans `05-MAITRISE/01_databases/01` à `05-MAITRISE/01_databases/06`) une base tourner sur une seule machine : un process, un disque, une horloge, une source de vérité. Le module `05-MAITRISE/02_scalability` va supposer que cette machine ne suffit plus : plusieurs répliques, plusieurs zones, plusieurs horloges. Entre les deux, il y a un pont conceptuel obligatoire que ce fichier tient : **CAP, réplication, partitioning, split-brain**.
+Tu viens de voir (dans `24_databases/01` à `24_databases/06`) une base tourner sur une seule machine : un process, un disque, une horloge, une source de vérité. Le module `25_scalability` va supposer que cette machine ne suffit plus : plusieurs répliques, plusieurs zones, plusieurs horloges. Entre les deux, il y a un pont conceptuel obligatoire que ce fichier tient : **CAP, réplication, partitioning, split-brain**.
 
 Où l'analogie casse : les analogies "ninja / foot" ci-dessous simplifient la synchronisation entre noeuds. Un vrai cluster subit des délais réseau non bornés, des pertes de messages, et des horloges qui divergent, choses qu'aucune analogie n'égale exactement.
 
@@ -92,7 +91,7 @@ Parades classiques :
 
 ## 6) LA CHECKLIST DE PASSAGE 24 → 25
 
-Avant d'attaquer `05-MAITRISE/02_scalability`, tu dois pouvoir répondre en 30 secondes chacune :
+Avant d'attaquer `25_scalability`, tu dois pouvoir répondre en 30 secondes chacune :
 
 1. Qu'est-ce que CAP force à choisir sous partition, et pourquoi CA n'existe pas ?
 2. Différence entre réplication synchrone, asynchrone, quorum ?
@@ -119,4 +118,4 @@ Tu as `N=5` répliques. Calcule tous les couples `(W, R)` valides pour `W + R > 
 
 ## RÉSUMÉ
 
-Passer du single-node au cluster impose de choisir sous partition (CAP), de décider comment on réplique (sync / async / quorum), de découper la donnée (partitioning), et de se prémunir contre le split-brain (quorum de leader, fencing). Sans ce socle, `05-MAITRISE/02_scalability` devient une liste de patterns sans le "pourquoi" qui les rend nécessaires.
+Passer du single-node au cluster impose de choisir sous partition (CAP), de décider comment on réplique (sync / async / quorum), de découper la donnée (partitioning), et de se prémunir contre le split-brain (quorum de leader, fencing). Sans ce socle, `25_scalability` devient une liste de patterns sans le "pourquoi" qui les rend nécessaires.

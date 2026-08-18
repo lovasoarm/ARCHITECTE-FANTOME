@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: produire
 ---
 
 # EXO LECTURE : 15-25 minutes (Scalabilite)
@@ -9,13 +8,13 @@ acte: produire
 >
 > **Budget lecture** : 460 lignes en 15 min chrono. Si tu dépasses, note pourquoi dans `MAP.md`. Objectif progressif : tu dois pouvoir tenir 500 lignes en 15 min à la fin du curriculum.
 >
-> **Protocole de cartographie** : suis `05-MAITRISE/06_annexes/reading/cartographie_15min.md` si tu ne sais pas par où entrer.
+> **Protocole de cartographie** : suis `31_annexes/reading/cartographie_15min.md` si tu ne sais pas par où entrer.
 
 Temps de lecture ~2 min
 
 Competence : lire du code reel que tu n'as pas ecrit et le comprendre AVANT de
 le modifier. C'est 80% du metier. Applique le protocole
-`05-MAITRISE/06_annexes/00_cartographier_codebase_inconnue.md` en version zoom.
+`31_annexes/00_cartographier_codebase_inconnue.md` en version zoom.
 
 ## L'extrait
 
@@ -57,7 +56,7 @@ Si tu veux "juste renommer une variable pour comprendre" : **note-le dans `HYPOT
 
 Ce bloc appartient a "Systeme web complet" / "Ingenierie senior".
 A la fin de cet EXO_LECTURE, tu produis un `MAP_15MIN.md` a cote de ce fichier,
-en suivant `02-CONSTRUCTION/02_mini_projects/_templates/06_MAP_15MIN_TEMPLATE.md`.
+en suivant `30_mini_projects/_templates/06_MAP_15MIN_TEMPLATE.md`.
 
 Critere binaire : 15 min chrono, cartographie + chemin critique + 3 points
 chauds + 3 hypotheses testables. Sans cet artefact, l'EXO_LECTURE n'est pas

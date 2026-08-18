@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # VSCODE SETUP : TON CAMP DE BASE, CONFIGURÉ POUR TENIR

@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # PACKAGE MANAGERS : NPM, YARN, PNPM, LES DIFFÉRENCES QUI COMPTENT VRAIMENT EN 2026

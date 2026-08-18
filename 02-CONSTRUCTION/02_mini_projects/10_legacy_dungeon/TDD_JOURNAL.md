@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # TDD JOURNAL : LEGACY DUNGEON
@@ -120,7 +119,7 @@ RÉSULTAT APRÈS CORRECTION : test VERT
 
 ### Pourquoi ce test précis et pas un autre
 
-Le choix du cas de test n'est jamais arbitraire. Ici : `"0"` est un edge case classique (cf. `05-MAITRISE/03_edge_cases`) parce qu'une vérification `if (!value)` traite `"0"` comme une string normale (truthy), mais un développeur qui ajoute plus tard une coercition numérique quelque part dans le pipeline peut transformer cette même valeur en `0` (falsy), créant un bug qui n'apparaît que dans certains chemins d'exécution. Documenter LE POURQUOI du choix du test fait partie du livrable, pas juste le test lui-même.
+Le choix du cas de test n'est jamais arbitraire. Ici : `"0"` est un edge case classique (cf. `28_edge_cases`) parce qu'une vérification `if (!value)` traite `"0"` comme une string normale (truthy), mais un développeur qui ajoute plus tard une coercition numérique quelque part dans le pipeline peut transformer cette même valeur en `0` (falsy), créant un bug qui n'apparaît que dans certains chemins d'exécution. Documenter LE POURQUOI du choix du test fait partie du livrable, pas juste le test lui-même.
 
 ---
 

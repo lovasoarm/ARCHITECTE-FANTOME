@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 04 : Reproduis avant de corriger
@@ -23,7 +22,7 @@ Temps de lecture ~5 min
 
 ## Exercice
 
-On te fournit [`flaky.js`](flaky.js) (15 lignes, autonome). Bug : environ 1 fois sur 100, `computeTotal([1,2,3])` renvoie `NaN`.
+On te fournit [`flaky.js`](./flaky.js) (15 lignes, autonome). Bug : environ 1 fois sur 100, `computeTotal([1,2,3])` renvoie `NaN`.
 - Reproduis **déterministe** (indice : seed le random, force la branche).
 - Écris le test qui casse à coup sûr.
 - Fix. Commit.
@@ -34,4 +33,4 @@ On te fournit [`flaky.js`](flaky.js) (15 lignes, autonome). Bug : environ 1 fois
 
 ---
 
-> Pour tout exercice de debugging : utilise le template [`HYPOTHESES_TEMPLATE.md`](15_HYPOTHESES_TEMPLATE.md). Pas de correction sans hypothèse écrite.
+> Pour tout exercice de debugging : utilise le template [`HYPOTHESES_TEMPLATE.md`](./16_HYPOTHESES_TEMPLATE.md). Pas de correction sans hypothèse écrite.

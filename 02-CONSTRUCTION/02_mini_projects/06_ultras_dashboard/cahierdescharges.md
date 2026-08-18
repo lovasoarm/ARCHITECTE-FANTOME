@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # CAHIER DES CHARGES : ULTRAS DASHBOARD
@@ -73,17 +72,17 @@ Ce projet teste une compétence que les juniors n'ont pas : savoir ce que fait s
 
 ## LES 3 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
-### `03-PILOTAGE/05_observability` : logging, tracing, métriques, Sentry
+### `26_observability` : logging, tracing, métriques, Sentry
 
 **Où ça se voit** : `src/observability/` entier.
 **Pourquoi c'est nécessaire ici** : sans observabilité, on ne sait pas ce que le pipeline fait en prod. Logging structuré en JSON pour chercher les events corrélés. Tracing pour suivre un event de l'ingestion à l'affichage. Métriques pour les seuils d'alerte. Sentry pour les exceptions.
 
-### `05-MAITRISE/02_scalability` : rate limiting, message queues, load balancing simulé
+### `25_scalability` : rate limiting, message queues, load balancing simulé
 
 **Où ça se voit** : `src/queue/`, `src/balancer/`, `src/middleware/rateLimiter.ts`.
 **Pourquoi c'est nécessaire ici** : 200 events par minute ça tient. 2000 events par minute si tous les ultras rafraîchissent en même temps : le pipeline doit absorber le pic sans tomber. La queue découple l'ingestion du traitement.
 
-### `02-CONSTRUCTION/12_typescript` : generics, utility types, types stricts sur tout le pipeline
+### `14_typescript` : generics, utility types, types stricts sur tout le pipeline
 
 **Où ça se voit** : tous les fichiers `.ts` du projet.
 **Pourquoi c'est nécessaire ici** : `Event<T>` permet de typer un event de match différemment d'un event de possession, tout en partageant la même infrastructure de traitement. `Pipeline<Input, Output>` décrit explicitement ce que chaque étape attend et retourne.
@@ -91,9 +90,9 @@ Ce projet teste une compétence que les juniors n'ont pas : savoir ce que fait s
 ### Résumé visuel
 
 ```
-03-PILOTAGE/05_observability --> src/observability/ (logger, tracer, metrics, sentry)
-05-MAITRISE/02_scalability  --> src/queue/ (message queue), src/balancer/ (round-robin simulé)
-02-CONSTRUCTION/12_typescript   --> generics Event<T>, Pipeline<I,O>, utility types sur les structs
+26_observability --> src/observability/ (logger, tracer, metrics, sentry)
+25_scalability  --> src/queue/ (message queue), src/balancer/ (round-robin simulé)
+14_typescript   --> generics Event<T>, Pipeline<I,O>, utility types sur les structs
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
@@ -394,7 +393,7 @@ Un test dans `node solution.js` (auto-verif ecrite par toi) doit prouver ces deu
 
 ## SURPRISE MI-PARCOURS (spec drift, obligatoire)
 
-Spec drift obligatoire, voir `02-CONSTRUCTION/02_mini_projects/synthese/spec_drift.md`
+Spec drift obligatoire, voir `30_mini_projects/synthese/spec_drift.md`
 (protocole unique, tirage aléatoire, déclenchement à 40 % d'avancement).
 
 ## RÔLE DES DOSSIERS (ne skippe pas)

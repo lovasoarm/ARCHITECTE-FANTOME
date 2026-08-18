@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Cahier des charges (extrait) : file-drop notifier supervise

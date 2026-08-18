@@ -1,14 +1,6 @@
----
-stability: stable
-acte: comprendre
-route: complete
----
-
 # Niveau 09 : Quality Shield
 
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
-
-[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../01-ROADMAP-RUN/README.md) | [Niveau suivant](../09-TEAM-QUEST/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Niveau précédent](../01-ROADMAP-RUN/README.md) | [Niveau suivant](../09-TEAM-QUEST/README.md)
 
 **Ce niveau réutilise :** [07-API-DOJO](../../02-CONSTRUCTION/20-API-DOJO/03-errors-and-idempotence.md) : les erreurs exploitables et l'idempotence, réutilisees pour decider quoi tester et quoi observer.
 
@@ -22,7 +14,7 @@ route: complete
 [challenge](../01-ROADMAP-RUN/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 09 une difficulté qui vient du niveau 08.
 
-**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) (règle de calcul : voir [_STYLE.md](../.meta/_STYLE.md), section « Durées »).
 
 ## Ce que c'est
 
@@ -68,22 +60,3 @@ Dans l'ordre. `02` et `03` sont la fondation (savoir ce qui casse, savoir le voi
 
 Ce niveau ne prône pas "100 % de couverture de tests" ni "logguer chaque ligne". Les deux
 sont des coûts. Ce niveau t'apprend à dépenser cet effort là où il rapporte.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `03-PILOTAGE/03-QUALITY-SHIELD` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_prereq_check.md](00_prereq_check.md)
-- [01-why-this-level.md](01-why-this-level.md)
-- [02-tests-that-pay.md](02-tests-that-pay.md)
-- [03-observability.md](03-observability.md)
-- [04-review-and-ci.md](04-review-and-ci.md)
-- [05-incidents-and-postmortem.md](05-incidents-and-postmortem.md)
-- [boss-fight.md](boss-fight.md)
-- [challenge.md](challenge.md)
-- [defense-orale.md](defense-orale.md)
-- [grimoire.md](grimoire.md)
-
-<!-- CONTENU-DOSSIER:fin -->

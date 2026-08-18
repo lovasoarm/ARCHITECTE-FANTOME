@@ -3,12 +3,11 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Tri, recherche, graphes : intemporels.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : structures de données (02-CONSTRUCTION/06_data_structures), récursion (00-SOCLE/04_fundamentals), async (01-CADRAGE/02_async). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : structures de données (09_data_structures), récursion (01_fundamentals), async (03_async). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ALGORITHMS
 
@@ -24,8 +23,8 @@ Les algorithmes, c'est une bibliothèque de patterns déjà résolus. Tu n'inven
 ## PRÉREQUIS
 
 Ce module suppose que tu maîtrises :
-- toutes les structures de `02-CONSTRUCTION/06_data_structures` : complet
-- analyse de complexité ligne par ligne : voir `02-CONSTRUCTION/05_memory_performance/03_complexity/02_complexity_analysis.md`
+- toutes les structures de `09_data_structures` : complet
+- analyse de complexité ligne par ligne : voir `08_memory_performance/03_complexity/02_complexity_analysis.md`
 
 Si ces bases ne sont pas là : reviens ici après.
 
@@ -87,7 +86,7 @@ La montée de l'IA générative a aussi changé la donne : un LLM peut générer
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Oui, explicitement : "07 + 08, Data Structures + Algos : sans ça, t'es limité". Ce module dépend entièrement de `02-CONSTRUCTION/06_data_structures` : tu ne peux pas comprendre Dijkstra sans comprendre les graphes et les heaps (`02-CONSTRUCTION/06_data_structures/05_heap` et `02-CONSTRUCTION/06_data_structures/08_graphs`), tu ne peux pas comprendre un tri efficace sans comprendre la notion de complexité vue en `02-CONSTRUCTION/05_memory_performance/03_complexity`. Si tu n'as pas ces modules derrière toi : finis-les d'abord.
+Oui, explicitement : "07 + 08, Data Structures + Algos : sans ça, t'es limité". Ce module dépend entièrement de `09_data_structures` : tu ne peux pas comprendre Dijkstra sans comprendre les graphes et les heaps (`09_data_structures/05_heap` et `09_data_structures/08_graphs`), tu ne peux pas comprendre un tri efficace sans comprendre la notion de complexité vue en `08_memory_performance/03_complexity`. Si tu n'as pas ces modules derrière toi : finis-les d'abord.
 
 ---
 

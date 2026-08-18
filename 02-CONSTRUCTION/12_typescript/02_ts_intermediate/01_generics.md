@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # GENERICS : ÉCRIRE UNE FOIS, UTILISER POUR N'IMPORTE QUEL TYPE

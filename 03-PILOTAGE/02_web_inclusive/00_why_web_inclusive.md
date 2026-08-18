@@ -1,9 +1,8 @@
 ---
 perennite: evolutif
-stability: intemporel
+stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: WCAG et normes RGPD bougent, la posture inclusive reste.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
@@ -11,12 +10,12 @@ acte: restituer
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ACCESSIBILITY (A11Y)
 
 
-> **Périmètre**. Ce fichier chapeau ouvre le module `03-PILOTAGE/02_web_inclusive` en entier : accessibilité (a11y) ET internationalisation (i18n). Le sous-module `i18n/` a son propre `00_why_i18n.md` pour son angle spécifique.
+> **Périmètre**. Ce fichier chapeau ouvre le module `19_web_inclusive` en entier : accessibilité (a11y) ET internationalisation (i18n). Le sous-module `i18n/` a son propre `00_why_i18n.md` pour son angle spécifique.
 
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : web concepts (02-CONSTRUCTION/18_web_concepts), tests (02-CONSTRUCTION/03_testing).
+> Ce module reutilise : web concepts (17_web_concepts), tests (06_testing).
 Temps de lecture ~8 min
 
 Ferme les yeux. Essaie de naviguer sur ton propre site avec juste le clavier, sans souris. Si tu n'arrives même pas à atteindre le bouton principal, ton app exclut directement les shinobis qui n'ont pas le choix de naviguer autrement : les personnes malvoyantes, les personnes avec un handicap moteur, les personnes qui utilisent un lecteur d'écran tous les jours.
@@ -78,7 +77,7 @@ Les outils ont aussi beaucoup progressé : avant, tester l'accessibilité demand
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Pas dans les 6 blocs prioritaires explicitement listés, mais c'est un module qui s'intègre directement dans des projets réels : le mini-projet `08_trapsoul_radio` combine `02-CONSTRUCTION/12_typescript`, `02-CONSTRUCTION/18_web_concepts`, `03-PILOTAGE/02_web_inclusive`, et `03-PILOTAGE/02_web_inclusive/i18n` pour construire une plateforme qui doit fonctionner "au clavier, à la souris, aux lecteurs d'écran, et en plusieurs langues" : l'accessibilité n'est pas optionnelle dans ce genre de projet, c'est une condition de livraison.
+Pas dans les 6 blocs prioritaires explicitement listés, mais c'est un module qui s'intègre directement dans des projets réels : le mini-projet `08_trapsoul_radio` combine `14_typescript`, `17_web_concepts`, `19_web_inclusive`, et `19_web_inclusive/i18n` pour construire une plateforme qui doit fonctionner "au clavier, à la souris, aux lecteurs d'écran, et en plusieurs langues" : l'accessibilité n'est pas optionnelle dans ce genre de projet, c'est une condition de livraison.
 
 ---
 
@@ -92,13 +91,13 @@ Les technologies d'assistance vont continuer d'évoluer, mais le principe fondam
 
 ## CE MODULE DANS LE CURRICULUM
 
-**Prérequis directs :** `02-CONSTRUCTION/18_web_concepts/02_browser_render_pipeline.md` (tu dois comprendre comment le DOM est construit et rendu avant de toucher ARIA et le focus management), `00-SOCLE/04_fundamentals/05_web_basics/01_dom_manipulation.md`.
+**Prérequis directs :** `17_web_concepts/02_browser_render_pipeline.md` (tu dois comprendre comment le DOM est construit et rendu avant de toucher ARIA et le focus management), `01_fundamentals/05_web_basics/01_dom_manipulation.md`.
 
-**Ce qui en dépend :** `02-CONSTRUCTION/02_mini_projects/08_trapsoul_radio` (l'interface de la radio doit passer l'audit a11y complet avant de sortir : ARIA roles, navigation clavier, contraste WCAG). Sans ce module, le mini-projet ne peut pas être livré.
+**Ce qui en dépend :** `30_mini_projects/08_trapsoul_radio` (l'interface de la radio doit passer l'audit a11y complet avant de sortir : ARIA roles, navigation clavier, contraste WCAG). Sans ce module, le mini-projet ne peut pas être livré.
 
-**Position dans la roadmap :** Module 19 sur 32. Il arrive après les web concepts (02-CONSTRUCTION/18_web_concepts) parce que l'accessibilité s'applique à une interface déjà structurée, pas au vide. Il précède directement l'i18n (sous-dossier `03-PILOTAGE/02_web_inclusive/i18n/` de ce même module, pas un module séparé) parce que les deux partagent la même philosophie : un jutsu qui ne fonctionne que pour certains n'est pas fini.
+**Position dans la roadmap :** Module 19 sur 32. Il arrive après les web concepts (17_web_concepts) parce que l'accessibilité s'applique à une interface déjà structurée, pas au vide. Il précède directement l'i18n (sous-dossier `19_web_inclusive/i18n/` de ce même module, pas un module séparé) parce que les deux partagent la même philosophie : un jutsu qui ne fonctionne que pour certains n'est pas fini.
 
-**Lien avec les autres modules :** `02-CONSTRUCTION/12_typescript` si tu types tes composants : les types ARIA (`AriaAttributes`, `AriaRole`) existent dans les types DOM TypeScript. `02-CONSTRUCTION/03_testing` : les tests d'accessibilité automatisés (axe-core, jest-axe) font partie des tests d'intégration.
+**Lien avec les autres modules :** `14_typescript` si tu types tes composants : les types ARIA (`AriaAttributes`, `AriaRole`) existent dans les types DOM TypeScript. `06_testing` : les tests d'accessibilité automatisés (axe-core, jest-axe) font partie des tests d'intégration.
 
 ---
 
@@ -108,4 +107,4 @@ Un site qui marche "pour toi" peut être totalement inutilisable pour quelqu'un 
 
 Maintenant, ouvre `01_a11y_why_it_matters.md`. Et regarde enfin ton interface du point de vue de quelqu'un qui ne la voit pas comme toi.
 
-> Ce module réutilise : les concepts web du module 17 (`02-CONSTRUCTION/18_web_concepts`), la testabilité du module 06 (`02-CONSTRUCTION/03_testing`).
+> Ce module réutilise : les concepts web du module 17 (`17_web_concepts`), la testabilité du module 06 (`06_testing`).

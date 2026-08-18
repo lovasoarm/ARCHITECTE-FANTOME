@@ -1,25 +1,25 @@
 ---
-stability: intemporel
-acte: restituer
+stability: chantier
+acte: a_ecrire
 ---
 
-# 01-CADRAGE
+<!-- CHANTIER-OUVERT : fichier reconstruit comme facade lors de la fusion en package unique.
+     Le contenu pedagogique reel reste a ecrire. Voir RESTE-A-FAIRE-ARCHITECTE-FANTOME.md. -->
 
-Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
+# README
 
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
+> **Chantier ouvert.** Ce fichier existe pour qu'aucun lien du depot ne soit casse.
+> Son contenu pedagogique n'est pas encore ecrit.
 
-## Contenu du dossier
+## Ce qui doit etre ecrit ici
 
-Liste generee : tout fichier de `01-CADRAGE` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
+Le contrat exact de ce fichier est decrit par les documents qui le citent :
 
-- [RETRO-BLOC-1-CADRAGE.md](RETRO-BLOC-1-CADRAGE.md)
-- [01-PROBLEM-HUNT/](01-PROBLEM-HUNT/README.md)
-- [02_async/](02_async/README.md)
-- [03_debugging/](03_debugging/README.md)
-- [04_error_handling/](04_error_handling/README.md)
-- [05-MVP-SPLIT/](05-MVP-SPLIT/README.md)
-- [BOSS-1/](BOSS-1/README.md)
-- [BOSS-2/](BOSS-2/README.md)
+- `README.md`
 
-<!-- CONTENU-DOSSIER:fin -->
+## Statut
+
+- [ ] contenu redige
+- [ ] exercice borne et verifiable
+- [ ] rattache au fil rouge
+- [ ] cite dans le README de son module

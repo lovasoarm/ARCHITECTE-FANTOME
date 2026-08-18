@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # ADR-001 : pourquoi ce code est ce qu'il est
@@ -72,7 +71,7 @@ Négatives (visibles aujourd'hui, en 2026, avec du recul) :
 
 Non, probablement pas de la même façon. Un framework conçu en 2026 partirait directement d'async/await comme modèle natif de gestion des erreurs, pas comme une extension ajoutée après coup à un système de callbacks. Le compromis "compatibilité avec l'historique" qui justifiait ce choix en a fait une dette technique visible : à un moment, le coût de la rétrocompatibilité dépasse les avantages, mais Express ne peut quasiment jamais traverser ce seuil sans casser une partie massive de son écosystème.
 
-C'est exactement ce que `03-PILOTAGE/10_team_craft/02_adr_writing.md` enseigne sur les conséquences négatives d'une ADR : elles ne sont pas une erreur de jugement au moment où la décision a été prise. Elles sont le prix qu'on accepte de payer plus tard pour un bénéfice obtenu plus tôt.
+C'est exactement ce que `27_team_craft/02_adr_writing.md` enseigne sur les conséquences négatives d'une ADR : elles ne sont pas une erreur de jugement au moment où la décision a été prise. Elles sont le prix qu'on accepte de payer plus tard pour un bénéfice obtenu plus tôt.
 
 ---
 

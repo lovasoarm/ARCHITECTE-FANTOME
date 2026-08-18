@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Pitch : "Pourquoi moi et pas une IA ?"
@@ -14,7 +13,7 @@ Trois pitchs types. Adapte, mais garde la structure.
 
 > "Une IA génère du code. Elle ne débugge pas un système en prod à 3h du matin quand la métrique s'effondre. Ma valeur, c'est de lire un stack trace, formuler une hypothèse, la vérifier, et écrire un post-mortem qu'un autre dev peut relire dans 6 mois. J'ai fait ça 5 fois dans MyFunnyJS, j'ai les ADR et les LEAK_REPORT pour le prouver."
 
-Preuve à sortir : `02-CONSTRUCTION/02_mini_projects/13_memory_hunter/LEAK_REPORT_*.md`.
+Preuve à sortir : `30_mini_projects/13_memory_hunter/LEAK_REPORT_*.md`.
 
 ---
 

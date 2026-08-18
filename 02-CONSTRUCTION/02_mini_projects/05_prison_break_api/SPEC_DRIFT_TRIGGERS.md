@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SPEC DRIFT TRIGGERS : 05_prison_break_api

@@ -1,8 +1,7 @@
 ---
-stability: perissable_2027
+stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # BIT MANIPULATION : MANIPULER LES DONNÉES À L'OS
 Temps de lecture ~9 min

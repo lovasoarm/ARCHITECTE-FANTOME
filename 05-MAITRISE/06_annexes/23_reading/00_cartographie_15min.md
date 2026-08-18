@@ -2,7 +2,6 @@
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Protocole indépendant du langage et des outils.
-acte: appliquer
 ---
 
 # Cartographie 15 min d'une codebase inconnue

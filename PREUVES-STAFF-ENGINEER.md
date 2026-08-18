@@ -49,7 +49,7 @@ Deux colonnes à distinguer, et ne jamais confondre :
 
 - Où ça s'apprend : les 19 fichiers `98_PORTAGE_MENTAL.md` des modules, qui portent le raisonnement d'un langage à l'autre, et [03-PILOTAGE/07_cloud_foundations/06_portage_multicloud.md](03-PILOTAGE/07_cloud_foundations/06_portage_multicloud.md) pour le passage d'un fournisseur à l'autre. Le chiffrage vient de [03-PILOTAGE/07_cloud_foundations/07_releve_tarifaire_reel.md](03-PILOTAGE/07_cloud_foundations/07_releve_tarifaire_reel.md).
 - Ce que tu montres : `PORTAGE.md` : un service du fil rouge réécrit dans un second langage et redéployé chez un second fournisseur, en trois sections — ce qui a été transféré tel quel, ce qui a dû être repensé, et l'écart de coût mensuel constaté entre les deux fournisseurs.
-- Modèle rempli : [PREUVES-MODELES/S7-PORTAGE.md](PREUVES-MODELES/S7-PORTAGE.md).
+- Modèle rempli : [06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S7-PORTAGE.md](./06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S7-PORTAGE.md).
 - Recroisement exigé : les prix viennent du même relevé que le budget S1, les invariants portés sont ceux de l'ADR S2, et le SLO tenu côté cible est celui de S3.
 - Pourquoi cette pièce compte plus que les autres pour un recruteur : les six premières prouvent que tu sais faire ici. Celle-ci prouve que ce que tu sais ne dépend ni du langage ni du fournisseur. C'est la seule que la plupart des candidats ne peuvent pas produire.
 

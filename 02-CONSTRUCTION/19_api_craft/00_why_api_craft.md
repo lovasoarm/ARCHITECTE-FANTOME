@@ -1,14 +1,13 @@
 ---
 perennite: evolutif
-stability: intemporel
+stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: REST, GraphQL, tRPC : formats bougent, contrats restent.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : HTTP (02-CONSTRUCTION/18_web_concepts), erreurs (01-CADRAGE/04_error_handling). Sécurité (03-PILOTAGE/04_security — pas un prérequis : ce module en donne le strict nécessaire, le fond est enseigné là-bas plus tard) : ce module touche à l'auth et aux headers de base, la profondeur (XSS, CSRF, injection) est vue plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : HTTP (17_web_concepts), erreurs (05_error_handling). Sécurité (22_security anticipé) : ce module touche à l'auth et aux headers de base, la profondeur (XSS, CSRF, injection) est vue plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : API CRAFT
 
@@ -25,9 +24,9 @@ Une API mal construite, c'est une dette qui se paie pour toujours, parce que des
 ## PRÉREQUIS
 
 Ce module suppose que tu maîtrises :
-- Node.js, process, streams : voir `02-CONSTRUCTION/13_runtime_env/`
-- HTTP, verbes, status codes, headers : voir `02-CONSTRUCTION/18_web_concepts/01_http_rest_basics.md`
-- gestion d'erreurs async : voir `01-CADRAGE/04_error_handling/04_async_error_traps.md`
+- Node.js, process, streams : voir `15_runtime_env/`
+- HTTP, verbes, status codes, headers : voir `17_web_concepts/01_http_rest_basics.md`
+- gestion d'erreurs async : voir `05_error_handling/04_async_error_traps.md`
 
 Si ces bases ne sont pas là : reviens ici après.
 
@@ -88,7 +87,7 @@ GraphQL a aussi introduit une alternative sérieuse à REST pour certains cas d'
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Oui, explicitement : "15 + 20, Architecture + API Craft : sans ça, t'es junior à vie". Prérequis direct : `02-CONSTRUCTION/13_runtime_env` + `02-CONSTRUCTION/18_web_concepts` + `01-CADRAGE/04_error_handling`. Tu ne peux pas construire une API sérieuse sans déjà savoir où ton code s'exécute, comment fonctionne HTTP, et comment gérer les erreurs proprement. C'est aussi un prérequis direct pour `03-PILOTAGE/04_security`.
+Oui, explicitement : "15 + 20, Architecture + API Craft : sans ça, t'es junior à vie". Prérequis direct : `15_runtime_env` + `17_web_concepts` + `05_error_handling`. Tu ne peux pas construire une API sérieuse sans déjà savoir où ton code s'exécute, comment fonctionne HTTP, et comment gérer les erreurs proprement. C'est aussi un prérequis direct pour `22_security`.
 
 ---
 
@@ -104,7 +103,7 @@ Une API n'est jamais juste "un endpoint qui marche" : c'est un contrat public do
 
 Maintenant, ouvre `01_express_from_scratch.md`. Et construis une API comme quelqu'un qui sait que d'autres vont en dépendre.
 
-> Ce module réutilise : les web concepts du module 17 (`02-CONSTRUCTION/18_web_concepts`), l'architecture en couches du module 16 (`02-CONSTRUCTION/14_architecture_patterns`).
+> Ce module réutilise : les web concepts du module 17 (`17_web_concepts`), l'architecture en couches du module 16 (`16_architecture_patterns`).
 
 ---
 

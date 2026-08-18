@@ -1,12 +1,11 @@
 ---
 stability: intemporel
 scope: portage mental (Pierre 6 : Pensee Transferable)
-acte: transférer
 ---
 
 # 98_PORTAGE_MENTAL.md : ce concept en Python / Go / Rust
 
-Module : **04-EPREUVE/03_realtime** : temps reel (WebSocket, SSE, streams).
+Module : **20_realtime** : temps reel (WebSocket, SSE, streams).
 
 Encart obligatoire (Pierre 6 : Pensee Transferable). 3 lignes.
 Objectif : prouver que ce que tu viens d'apprendre n'est pas _JS_, c'est

@@ -1,9 +1,8 @@
 ---
-stability: intemporel
-acte: produire
+stability: stable
 ---
 
-# EXO IA MENTEUSE : module 02-CONSTRUCTION/05_memory_performance
+# EXO IA MENTEUSE : module 08_memory_performance
 
 Temps : ~10 min. Format court, seul ou en binôme.
 

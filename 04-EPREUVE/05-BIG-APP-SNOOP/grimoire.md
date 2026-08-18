@@ -1,26 +1,34 @@
 # Grimoire : Big App Snoop
 
-Ce grimoire est un mémo à quatre colonnes exactes. La table de défense orale vit à côté, dans [defense-orale.md](defense-orale.md).
+Ce grimoire comporte deux tables : le mémo à 4 colonnes, puis la table de défense orale à
+3 colonnes (écart de format assumé, voir [_STYLE.md](../.meta/_STYLE.md)).
 
 Ouvre ce mémo avant de toucher à du code étranger dans un gros dépôt. Il te donne la méthode
 d'archéologie, pas un cours sur la lecture de code.
 
-| Terme | Définition | Code | Analogies | Limite |
-| --- | --- | --- | --- | --- |
-| Cartographie du terrain | Repérer la structure d'un dépôt (arborescence, dépendances, schéma DB) sans lire la logique métier. | `find . -maxdepth 2 -type d && cat package.json \| jq '.dependencies'` | un relevé de plan avant travaux / un survol de reconnaissance avant l'atterrissage | « un relevé de plan avant travaux » se rejoue à l'identique, le code non ; sur Cartographie du terrain, la frontière dessinée sur le schéma n'existe dans le code que si un mécanisme l'empêche d'être franchie. Date le schéma et fixe la prochaine relecture. |
-| Flux de bout en bout | Suivre un cas d'usage réel du clic jusqu'à l'écriture en base, sans dévier. | `rg -n "createTournee" --type ts` | urgences d'hôpital / atelier de menuiserie | « urgences d'hôpital » raconte le cas nominal ; sur Flux de bout en bout, un composant partagé par deux équipes appartient de fait à personne. Chiffre le coût de retour arrière avant de découper. |
-| Zone à risque | Fichier ou fonction à fort impact ou fort historique de modification. | `git log --name-only --pretty=format: > /tmp/touches.txt` puis comptage des occurrences | poste de cuisine où tout finit par passer, donc premier à saturer / passage étroit d'une voie que toutes les cordées empruntent | « poste de cuisine où tout finit par passer, donc premier à saturer » s'arrête à la première surprise ; sur Zone à risque, le schéma vieillit plus vite que le code qu'il décrit. Vérifie dans le code qu'un import interdit échoue vraiment. |
-| Contrainte reconstruite | Raison externe (légale, contractuelle, performance, équipe) qui explique un design en apparence mauvais. | `git log --follow -p -- chargeSplitter.ts \| head -80` | une porte murée qui cachait un escalier / un détour imposé par un pont trop bas | « une porte murée qui cachait un escalier » n'a ni facture ni horloge ; sur Contrainte reconstruite, le découpage optimise un critère (déploiement, équipe, donnée) et dégrade les autres. Écris l'ADR avec les options rejetées et la condition qui la rendrait obsolète. |
-| Dette délibérée vs dette subie | Distinction entre un compromis choisi consciemment et une dégradation non maîtrisée. | `git log --all --grep="TODO temporaire" -i --oneline` | navigation maritime / urgences d'hôpital | « navigation maritime » suppose un seul acteur à la fois ; sur Dette délibérée vs dette subie, un appel synchrone entre composants crée une dépendance de disponibilité invisible sur le diagramme. Vérifie dans le code qu'un import interdit échoue vraiment. |
-| Rayon d'impact | Ensemble des appelants, tests et données qui dépendent de ce que tu modifies. | `rg -n "from ['\"].*slotWindow" --type ts` | régie technique de spectacle / course en montagne | « régie technique de spectacle » décrit un monde où chaque étape se voit ; sur Rayon d'impact, le coût du réseau entre deux composants séparés est de plusieurs ordres de grandeur au-dessus d'un appel local. Écris l'ADR avec les options rejetées et la condition qui la rendrait obsolète. |
-| Test de caractérisation | Test qui documente le comportement actuel du code, bug inclus, avant toute modification. | `it("caracterise le comportement actuel", () => { expect(splitHeatingCost(oldBuilding, readings)).toEqual(snapshotActuel); })` | atelier de menuiserie / urgences d'hôpital | « atelier de menuiserie » n'a ni facture ni horloge ; sur Test de caractérisation, le schéma vieillit plus vite que le code qu'il décrit. Chiffre le coût de retour arrière avant de découper. |
-| Patch minimal | Le plus petit changement qui corrige le problème réel, sans nettoyage ni renommage mêlés. | `git diff --stat # verifie que le diff ne touche que la ligne du bug` | cuisine de restaurant en service / navigation maritime | « cuisine de restaurant en service » a une frontière visible à l'oeil ; sur Patch minimal, la réversibilité de la décision se paie au moment du découpage, pas après. Date le schéma et fixe la prochaine relecture. |
-| Non-régression | Preuve que ce qui marchait avant ton patch marche toujours après. | `npm test -- --run tests/chargeSplitter.spec.ts` | urgences d'hôpital / course en montagne | « urgences d'hôpital » n'a ni facture ni horloge ; sur Non-régression, la réversibilité de la décision se paie au moment du découpage, pas après. Chiffre le coût de retour arrière avant de découper. |
-| Données déjà écrites | Lignes en base ou fichiers créés sous l'ancien comportement, non concernées automatiquement par ton patch. | `SELECT count(*) FROM allocations WHERE created_at < '2026-01-01';` | atelier de menuiserie / régie technique de spectacle | « atelier de menuiserie » n'a ni facture ni horloge ; sur Données déjà écrites, la transaction distribuée n'existe pas : il reste des états intermédiaires observables. Écris l'ADR avec les options rejetées et la condition qui la rendrait obsolète. |
+| Terme | Définition | Code | Analogies |
+| --- | --- | --- | --- |
+| Cartographie du terrain | Repérer la structure d'un dépôt (arborescence, dépendances, schéma DB) sans lire la logique métier. | `find . -maxdepth 2 -type d && cat package.json | jq '.dependencies'` | course en montagne / navigation maritime |
+| Flux de bout en bout | Suivre un cas d'usage réel du clic jusqu'à l'écriture en base, sans dévier. | `rg -n "createTournee" --type ts` | urgences d'hôpital / atelier de menuiserie |
+| Zone à risque | Fichier ou fonction à fort impact ou fort historique de modification. | `git log --pretty=format: --name-only | sort | uniq -c | sort -rg | head -10` | régie technique de spectacle / course en montagne |
+| Contrainte reconstruite | Raison externe (légale, contractuelle, performance, équipe) qui explique un design en apparence mauvais. | `git log --follow -p -- chargeSplitter.ts | head -80` | atelier de menuiserie / cuisine de restaurant en service |
+| Dette délibérée vs dette subie | Distinction entre un compromis choisi consciemment et une dégradation non maîtrisée. | `git log --all --grep="TODO temporaire" -i --oneline` | navigation maritime / urgences d'hôpital |
+| Rayon d'impact | Ensemble des appelants, tests et données qui dépendent de ce que tu modifies. | `rg -n "from ['\"].*slotWindow" --type ts` | régie technique de spectacle / course en montagne |
+| Test de caractérisation | Test qui documente le comportement actuel du code, bug inclus, avant toute modification. | `it("caracterise le comportement actuel", () => { expect(splitHeatingCost(oldBuilding, readings)).toEqual(snapshotActuel); })` | atelier de menuiserie / urgences d'hôpital |
+| Patch minimal | Le plus petit changement qui corrige le problème réel, sans nettoyage ni renommage mêlés. | `git diff --stat # verifie que le diff ne touche que la ligne du bug` | cuisine de restaurant en service / navigation maritime |
+| Non-régression | Preuve que ce qui marchait avant ton patch marche toujours après. | `npm test -- --run tests/chargeSplitter.spec.ts` | urgences d'hôpital / course en montagne |
+| Données déjà écrites | Lignes en base ou fichiers créés sous l'ancien comportement, non concernées automatiquement par ton patch. | `SELECT count(*) FROM allocations WHERE created_at < '2026-01-01';` | atelier de menuiserie / régie technique de spectacle |
 
 ## Défense orale
 
-La table de défense orale a son propre fichier, pour que ce grimoire garde un format unique de quatre colonnes : [defense-orale.md](defense-orale.md).
+Pour la grille complète et chiffrée, va voir [./boss-fight.md](./boss-fight.md). Voici la matière
+reformulée pour t'entraîner à l'oral.
+
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+| --- | --- | --- |
+| Enquêter avant de juger | Un jugement esthétique prononcé avant l'enquête te fait rater une contrainte réelle et invisible au premier coup d'oeil. | Quelle méthode d'archéologie (commandes précises) suis-tu avant de conclure sur la qualité d'un code ? |
+| Formuler des hypothèses vérifiables | Présenter une supposition comme une certitude définitive empêche quiconque de la challenger plus tard. | Comment formules-tu une hypothèse de contrainte de façon à pouvoir la confirmer ou l'infirmer ? |
+| Assumer l'absence de preuve | Conclure d'une absence de preuve à une absence de besoin est le piège classique de ce niveau. | Que fais-tu quand la trace d'une contrainte (ticket, commit) a disparu pour de bon ? |
 
 ## La méthode en une page
 

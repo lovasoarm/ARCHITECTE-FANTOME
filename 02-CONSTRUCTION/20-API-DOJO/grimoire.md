@@ -1,29 +1,36 @@
----
-stability: perissable_2027
-acte: restituer
----
-
 # Grimoire : Niveau 07, API Dojo
 
-Ce grimoire est un mémo à quatre colonnes exactes. La table de défense orale vit à côté, dans [defense-orale.md](defense-orale.md).
+Ce grimoire comporte deux tables : le mémo à 4 colonnes, puis la table de défense orale à
+3 colonnes (écart de format assumé, voir [_STYLE.md](../.meta/_STYLE.md)).
 
 Mémo à ouvrir avant d'exposer ou de modifier un endpoint. Sert à vérifier le contrat, pas à
 réviser la liste des verbes HTTP.
 
-| Terme | Définition | Code | Analogies | Limite |
-| --- | --- | --- | --- | --- |
-| Contrat d'API | L'ensemble des garanties sur lesquelles un client a le droit de s'appuyer sans risquer une casse au prochain déploiement. | `openapi: 3.1.0\npaths:\n  /reservations:\n    get: {}` | menu affiché qui engage la cuisine sur ce qui est réellement servi / carte marine qui engage sur les hauts-fonds réellement présents | Cette analogie casse quand le message se perd ou arrive deux fois : l'image suppose un canal fiable, le reseau ne l'est pas. |
-| Compatibilité ascendante | Un client ancien continue de fonctionner face à un serveur nouveau. | `// champ ajoute, jamais retire : ancien client ignore le nouveau champ` | un vieux ticket de commande reste lisible même avec la nouvelle carte / un vieux plan de route reste valide même avec les nouvelles balises | « un vieux ticket de commande reste lisible même avec la nouvelle carte » a une frontière visible à l'oeil ; sur Compatibilité ascendante, la validation côté client ne protège rien, l'appel direct existe toujours. Valide l'entrée côté serveur, systématiquement. |
-| Compatibilité descendante | Un client nouveau continue de fonctionner face à un serveur ancien. | `// le nouveau client tolere l'absence du nouveau champ cote serveur` | la nouvelle recrue sait encore lire l'ancien système de tickets / le nouveau matelot sait encore lire le vieux livre de bord | « la nouvelle recrue sait encore lire l'ancien système de tickets » suppose que quelqu'un surveille ; sur Compatibilité descendante, la validation côté client ne protège rien, l'appel direct existe toujours. Valide l'entrée côté serveur, systématiquement. |
-| Idempotence | Une opération répétée produit le même résultat que l'exécution unique. | `if (dejaTraite(cle)) return reponsePrecedente(cle);` | un même bon de commande renvoyé deux fois ne fait pas deux plats / une même manœuvre rejouée ne double pas le nœud | « un même bon de commande renvoyé deux fois ne fait pas deux plats » s'arrête à la première surprise ; sur Idempotence, l'idempotence n'est pas gratuite : il faut une clé et un stockage pour la garantir. Versionne et annonce une date d'extinction dès la publication. |
-| Idempotency key | Identifiant généré côté client à l'intention, pas à chaque tentative réseau. | `const cle = crypto.randomUUID(); // genere une fois, avant tout retry` | numéro de ticket pris une fois en salle, pas à chaque passage en cuisine / numéro de manœuvre décidé une fois par le skipper, pas à chaque essai | « numéro de ticket pris une fois en salle, pas à chaque passage en... » s'arrête à la première surprise ; sur Idempotency key, la validation côté client ne protège rien, l'appel direct existe toujours. Écris le contrat avant l'implémentation, et teste-le des deux côtés. |
-| Authn / Authz | Authn vérifie qui appelle ; Authz vérifie ce que cet appelant a le droit de faire. | `if (!user) throw 401; if (!user.peut("annuler")) throw 403;` | badge du personnel vs droit d'accès à la réserve du chef / identité du matelot vs droit de toucher à la barre | Cette analogie casse face a un adversaire actif : l'image decrit un usage normal, la securite se juge sur l'usage hostile. |
-| Rate limiting | Limitation du débit d'appels d'un client. | `if (compteur(clientId) > seuilParSeconde) throw 429;` | cuisine qui refuse de prendre plus de commandes que sa cadence / port qui limite le nombre de bateaux entrant en même temps | « cuisine qui refuse de prendre plus de commandes que sa cadence » raconte le cas nominal ; sur Rate limiting, un champ retiré ou renommé casse silencieusement à l'appel suivant du consommateur. Mesure la latence de bout en bout, dépendances comprises. |
-| Latence perçue | Le temps d'attente ressenti, distinct du temps de réponse mesuré côté serveur. | `afficherAccuseReception(); await requeteReelle();` | accusé de réception immédiat en salle pendant que la cuisine prépare / retour radio immédiat pendant que la manœuvre s'exécute | Cette analogie casse quand le message se perd ou arrive deux fois : l'image suppose un canal fiable, le reseau ne l'est pas. |
+| Terme | Définition | Code | Analogies |
+| --- | --- | --- | --- |
+| Contrat d'API | L'ensemble des garanties sur lesquelles un client a le droit de s'appuyer sans risquer une casse au prochain déploiement. | `openapi: 3.1.0\npaths:\n  /reservations:\n    get: {}` | menu affiché qui engage la cuisine sur ce qui est réellement servi / carte marine qui engage sur les hauts-fonds réellement présents |
+| Compatibilité ascendante | Un client ancien continue de fonctionner face à un serveur nouveau. | `// champ ajoute, jamais retire : ancien client ignore le nouveau champ` | un vieux ticket de commande reste lisible même avec la nouvelle carte / un vieux plan de route reste valide même avec les nouvelles balises |
+| Compatibilité descendante | Un client nouveau continue de fonctionner face à un serveur ancien. | `// le nouveau client tolere l'absence du nouveau champ cote serveur` | la nouvelle recrue sait encore lire l'ancien système de tickets / le nouveau matelot sait encore lire le vieux livre de bord |
+| Idempotence | Une opération répétée produit le même résultat que l'exécution unique. | `if (dejaTraite(cle)) return reponsePrecedente(cle);` | un même bon de commande renvoyé deux fois ne fait pas deux plats / une même manœuvre rejouée ne double pas le nœud |
+| Idempotency key | Identifiant généré côté client à l'intention, pas à chaque tentative réseau. | `const cle = crypto.randomUUID(); // genere une fois, avant tout retry` | numéro de ticket pris une fois en salle, pas à chaque passage en cuisine / numéro de manœuvre décidé une fois par le skipper, pas à chaque essai |
+| Authn / Authz | Authn vérifie qui appelle ; Authz vérifie ce que cet appelant a le droit de faire. | `if (!user) throw 401; if (!user.peut("annuler")) throw 403;` | badge du personnel vs droit d'accès à la réserve du chef / identité du matelot vs droit de toucher à la barre |
+| Rate limiting | Limitation du débit d'appels d'un client. | `if (compteur(clientId) > seuilParSeconde) throw 429;` | cuisine qui refuse de prendre plus de commandes que sa cadence / port qui limite le nombre de bateaux entrant en même temps |
+| Latence perçue | Le temps d'attente ressenti, distinct du temps de réponse mesuré côté serveur. | `afficherAccuseReception(); await requeteReelle();` | accusé de réception immédiat en salle pendant que la cuisine prépare / retour radio immédiat pendant que la manœuvre s'exécute |
 
 ## Défense orale
 
-La table de défense orale a son propre fichier, pour que ce grimoire garde un format unique de quatre colonnes : [defense-orale.md](defense-orale.md).
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+| --- | --- | --- |
+| Contrat d'API | Un déploiement casse des clients qui faisaient confiance à un comportement jamais formalisé | Ton contrat est-il écrit quelque part, ou seulement implicite dans le code du serveur ? |
+| Compatibilité ascendante | Un client externe que tu ne contrôles pas casse à ton prochain déploiement | Un client qui n'a pas été mis à jour depuis six mois fonctionne-t-il encore avec ta dernière version ? |
+| Compatibilité descendante | Un déploiement progressif casse en plein rollout, entre ancienne et nouvelle version du serveur | Que se passe-t-il si ton client nouveau parle à un serveur pas encore mis à jour ? |
+| Idempotence | Un retry réseau duplique une commande, un paiement, un envoi | Quelles opérations de ton API sont idempotentes, et comment le garantis-tu pour les autres ? |
+| Idempotency key | Sans elle, chaque coupure réseau crée un doublon indétectable par le serveur | Ta clé d'idempotence est-elle générée à l'intention ou à chaque tentative réseau ? |
+| Authn / Authz | Un appelant identifié mais mal autorisé accède à des données hors de son périmètre | Ton système confond-il "je sais qui tu es" avec "je sais ce que tu as le droit de faire" ? |
+| Rate limiting | Un client mal configuré ou une attaque sature ton service sans limite | Que se passe-t-il concrètement si un client rejoue la même requête cent fois par seconde ? |
+| Latence perçue | On optimise le temps serveur sans jamais améliorer ce que l'utilisateur ressent réellement | Comment réduirais-tu la latence perçue sans forcément réduire le temps de réponse mesuré ? |
+
+Grille détaillée : voir [boss-fight.md](./boss-fight.md).
 
 ## Tableau des codes HTTP et de leur "retryabilite"
 

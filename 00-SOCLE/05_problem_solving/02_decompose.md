@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # DÉCOMPOSER UN SYSTÈME COMPLEXE

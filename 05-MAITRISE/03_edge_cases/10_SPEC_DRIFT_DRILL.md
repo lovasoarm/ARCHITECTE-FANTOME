@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SPEC_DRIFT_DRILL : 45 min
@@ -32,12 +31,12 @@ Tu as **20 minutes** pour livrer une V1 verte (au moins 3 tests qui passent).
 ## DRIFT (à ouvrir uniquement à la minute 20)
 
 <details>
-<summary>(!) N'ouvre pas avant la minute 20. Chronomètre-toi.</summary>
+<summary>(!)️ N'ouvre pas avant la minute 20. Chronomètre-toi.</summary>
 
 **Nouvelle contrainte, non négociable côté produit** :
 
 - Un `items[i]` peut désormais avoir `currency: 'EUR' | 'USD' | 'JPY'`
-  (mixte dans un même lot de messages autorisé).
+  (mixte dans un même panier autorisé).
 - `coupon` peut être `Array<Coupon>` (empilable, ordre significatif).
 - Le total doit être exprimé dans la devise du **premier** item.
 - Les taux de change sont fournis par une fonction `getRate(from, to)`

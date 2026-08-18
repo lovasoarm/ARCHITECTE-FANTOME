@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SPEC DRIFT TRIGGERS : 02_garo_no_kronika

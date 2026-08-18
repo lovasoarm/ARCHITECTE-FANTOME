@@ -1,7 +1,6 @@
 ---
 stability: intemporel
 scope: preuve d'employabilite immediate
-acte: appliquer
 ---
 
 # DAY_ONE_SIMULATION.md : 4h chrono, ton premier jour dans une equipe
@@ -38,9 +37,9 @@ depassement dans l'ADR.
 ## Contraintes non negociables
 
 1. **1 MAP_15MIN.md** : produit avec le template
-   `02-CONSTRUCTION/02_mini_projects/_templates/06_MAP_15MIN_TEMPLATE.md`. Rempli, pas ebauche.
+   `30_mini_projects/_templates/06_MAP_15MIN_TEMPLATE.md`. Rempli, pas ebauche.
 2. **1 HYPOTHESES.md** : template
-   `02-CONSTRUCTION/02_mini_projects/_templates/04_HYPOTHESES_TEMPLATE.md`. Trois hypotheses
+   `30_mini_projects/_templates/04_HYPOTHESES_TEMPLATE.md`. Trois hypotheses
    sur le comportement du legacy, chacune avec une commande de verification.
 3. **1 diff qui compile** : `git diff` propre, `node --test` reste vert. Si
    tu casses un test, tu revertes et tu documentes pourquoi la modif etait

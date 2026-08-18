@@ -1,9 +1,8 @@
 ---
 perennite: intemporel
-stability: perissable_2027
+stability: perissable
 duree_de_vie_estimee: 1-2 ans
 raison: Toolchains JS bougent en permanence.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | évolutif | **périssable**
 > Statut effectif de ce module : **périssable**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
@@ -154,23 +153,23 @@ Git      --> dès le jour 1, en parallèle de tout le reste
 VSCode setup --> dès le jour 1, c'est ton terrain de jeu quotidien
 package manager --> dès que tu installes ta première dépendance
 bundlers   --> après avoir compris modules ESM/CJS (module 06_modules)
-Docker    --> après avoir compris runtime Node (module 02-CONSTRUCTION/13_runtime_env)
-CI/CD     --> après avoir des tests à automatiser (module 02-CONSTRUCTION/03_testing)
+Docker    --> après avoir compris runtime Node (module 15_runtime_env)
+CI/CD     --> après avoir des tests à automatiser (module 06_testing)
 ```
 
 Prérequis avant d'attaquer ce module :
 ```
-00-SOCLE/04_fundamentals    --> tu dois savoir lire du JS sans effort
+01_fundamentals    --> tu dois savoir lire du JS sans effort
 06_modules      --> import/export, ESM vs CJS : indispensable pour comprendre les bundlers
-02-CONSTRUCTION/13_runtime_env    --> Node, process, filesystem : indispensable pour Docker et les scripts CI
-02-CONSTRUCTION/03_testing      --> sans tests, CI/CD c'est juste un déploiement automatisé aveugle
+15_runtime_env    --> Node, process, filesystem : indispensable pour Docker et les scripts CI
+06_testing      --> sans tests, CI/CD c'est juste un déploiement automatisé aveugle
 ```
 
 Ce qui devient plus simple après ce module :
 ```
-02-CONSTRUCTION/02_mini_projects    --> tu containerises et tu déploies tes projets sans bloquer dessus
+30_mini_projects    --> tu containerises et tu déploies tes projets sans bloquer dessus
 toute collaboration future --> Git devient un réflexe, pas un obstacle
-03-PILOTAGE/04_security      --> tu comprends déjà ce qu'est une image Docker, donc les surfaces d'attaque liées
+22_security      --> tu comprends déjà ce qu'est une image Docker, donc les surfaces d'attaque liées
 ```
 
 ---

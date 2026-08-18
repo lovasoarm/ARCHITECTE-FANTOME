@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # DOCKER BASICS : CONTAINERISER UNE APP NODE : DOCKERFILE, COMPOSE, MULTI-STAGE BUILDS

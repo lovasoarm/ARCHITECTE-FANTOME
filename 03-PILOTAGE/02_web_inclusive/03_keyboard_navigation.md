@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # NAVIGATION CLAVIER : QUAND LA SOURIS N'EST PAS UNE OPTION

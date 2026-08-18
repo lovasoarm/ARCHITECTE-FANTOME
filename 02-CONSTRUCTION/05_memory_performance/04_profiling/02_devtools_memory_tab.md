@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # 02 : DevTools Memory tab : le guide de terrain
 Temps de lecture ~5 min

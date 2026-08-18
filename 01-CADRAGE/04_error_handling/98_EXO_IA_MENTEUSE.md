@@ -1,9 +1,8 @@
 ---
-stability: intemporel
-acte: produire
+stability: stable
 ---
 
-# EXO IA MENTEUSE : module 01-CADRAGE/04_error_handling
+# EXO IA MENTEUSE : module 05_error_handling
 
 Temps : ~10 min. Format court, seul ou en binôme.
 

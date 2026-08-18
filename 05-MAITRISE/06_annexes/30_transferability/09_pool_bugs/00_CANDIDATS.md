@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # POOL DE BUGS : CANDIDATS CALIBRÉS

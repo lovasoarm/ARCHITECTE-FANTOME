@@ -1,6 +1,6 @@
 # CHALLENGE : LE IA-EN-PROD.md DE TA BRIQUE IA
 
-Ce challenge produit une pièce de preuve réelle, la famille S6 de [PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md). Compte 40 minutes, chrono lancé, sans IA. Le modèle de référence rempli est [PREUVES-MODELES/S6-IA-EN-PROD.md](../../PREUVES-MODELES/S6-IA-EN-PROD.md) : ouvre-le seulement après avoir écrit ta première version, sinon tu recopieras ses chiffres au lieu de trouver les tiens.
+Ce challenge produit une pièce de preuve réelle, la famille S6 de [PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md). Compte 40 minutes, chrono lancé, sans IA. Le modèle de référence rempli est [06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S6-IA-EN-PROD.md](../../06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S6-IA-EN-PROD.md) : ouvre-le seulement après avoir écrit ta première version, sinon tu recopieras ses chiffres au lieu de trouver les tiens.
 
 ## Le contexte narratif
 

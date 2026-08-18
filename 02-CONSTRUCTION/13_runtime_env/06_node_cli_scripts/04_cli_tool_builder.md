@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # CLI TOOL BUILDER : CONSTRUIRE UN VRAI OUTIL DISTRIBUABLE

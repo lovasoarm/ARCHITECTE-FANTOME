@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # portfolio.md : la sortie unique du curriculum
@@ -18,7 +17,7 @@ Temps de lecture ~2 min
 Après chaque mini-projet terminé, remplis sa ligne : coche la/les pierre(s),
 lie l'ADR décisif et le postmortem le plus instructif, note-toi de 0 à 5
 (0 = pas fait, 5 = je peux le défendre 6 mois après). Génère la version
-finale avec `05-MAITRISE/06_annexes/14_generate_portfolio_report.md`.
+finale avec `31_annexes/14_generate_portfolio_report.md`.
 
 ## Les six pierres (rappel)
 
@@ -50,11 +49,11 @@ P6 Pensée transférable.
 ## Les trois preuves non-remplaçables (à savoir raconter par cœur)
 
 1. **Diagnostic causal en prod dégradée** : quel bug, quelle décision-racine,
-   comment tu l'as prouvé (voir `01-CADRAGE/03_debugging/` + `13_memory_hunter/`).
+   comment tu l'as prouvé (voir `04_debugging/` + `13_memory_hunter/`).
 2. **Arbitrage architectural sous contraintes contradictoires** : quel ADR,
-   quels trade-offs (voir `14_system_design_lab/` + `05-MAITRISE/06_annexes/12_trade_off_arena.md`).
+   quels trade-offs (voir `14_system_design_lab/` + `31_annexes/12_trade_off_arena.md`).
 3. **Portage cross-langage d'un concept** : JS -> Python/Go (voir
-   `15_porte_rasengan_engine_multilang/` + `05-MAITRISE/06_annexes/transferability/`).
+   `15_porte_rasengan_engine_multilang/` + `31_annexes/transferability/`).
 
 ## Score global
 

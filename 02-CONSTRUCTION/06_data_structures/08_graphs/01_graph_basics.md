@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # GRAPHES : MODÉLISER CE QUI EST CONNECTÉ
 Temps de lecture ~8 min
@@ -242,18 +241,18 @@ Tu as un fichier de dépendances entre modules :
 
 ```js
 const deps = [
- ["01-CADRAGE/02_async",    "00-SOCLE/04_fundamentals"],
- ["03_testing",   "00-SOCLE/04_fundamentals"],
- ["03_testing",   "01-CADRAGE/02_async"],
- ["07_structures", "00-SOCLE/04_fundamentals"],
- ["02-CONSTRUCTION/07_algorithms", "07_structures"],
+ ["03_async",    "01_fundamentals"],
+ ["03_testing",   "01_fundamentals"],
+ ["03_testing",   "03_async"],
+ ["07_structures", "01_fundamentals"],
+ ["10_algorithms", "07_structures"],
  ["10_patterns",  "09_functional"],
- ["10_patterns",  "02-CONSTRUCTION/11_refactoring"],
+ ["10_patterns",  "13_refactoring"],
 ]
 // [module, prérequis] : pour installer module, il faut d'abord prérequis
 ```
 
-Construis un graphe dirigé. Implémente `canBuild(module)` : retourne `true` si le module est atteignable depuis "00-SOCLE/04_fundamentals" (toutes ses dépendances sont disponibles).
+Construis un graphe dirigé. Implémente `canBuild(module)` : retourne `true` si le module est atteignable depuis "01_fundamentals" (toutes ses dépendances sont disponibles).
 
 ---
 

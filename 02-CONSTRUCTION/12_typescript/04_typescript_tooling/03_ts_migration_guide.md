@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # TS MIGRATION GUIDE : MIGRER DU JS PUR VERS TYPESCRIPT : SANS TOUT RÉÉCRIRE EN UNE NUIT

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # DRILL 3 AUDIENCES : TU EXPLIQUES OU TU NE COMPRENDS PAS

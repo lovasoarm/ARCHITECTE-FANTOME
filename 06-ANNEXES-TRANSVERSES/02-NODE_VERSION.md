@@ -1,29 +1,25 @@
 ---
-stability: intemporel
-acte: appliquer
+stability: chantier
+acte: a_ecrire
 ---
 
-# NODE_VERSION.md : Politique de version Node (visible apprenant)
+<!-- CHANTIER-OUVERT : fichier reconstruit comme facade lors de la fusion en package unique.
+     Le contenu pedagogique reel reste a ecrire. Voir RESTE-A-FAIRE-ARCHITECTE-FANTOME.md. -->
 
-Fichier pedagogique volontairement conserve a la racine.
-Le fichier `.nvmrc` est **explicitement visible** dans le repo : c'est un
-support d'apprentissage, pas seulement un artefact d'outillage.
+# 02 NODE VERSION
 
-## Regle simple
+> **Chantier ouvert.** Ce fichier existe pour qu'aucun lien du depot ne soit casse.
+> Son contenu pedagogique n'est pas encore ecrit.
 
-- Cible : **Node 22 LTS** (`.nvmrc` = `v22`).
-- Plancher garanti : **tout code du curriculum doit tourner aussi sous Node 20 LTS**.
-- Formulation officielle : _"Node >= 22 recommande, tout code doit tourner sur 20 LTS et 22."_
+## Ce qui doit etre ecrit ici
 
-## Pourquoi c'est ecrit ici (et pas seulement dans un README)
+Le contrat exact de ce fichier est decrit par les documents qui le citent :
 
-Un apprenant qui ouvre `.nvmrc` doit pouvoir comprendre a quoi il sert.
-Detail complet : `05-MAITRISE/06_annexes/29_toolchain/08_NODE_VERSIONS.md`.
+- `06-ANNEXES-TRANSVERSES/README.md`
 
-## Commandes utiles
+## Statut
 
-```bash
-nvm install     # installe la version listee dans .nvmrc
-nvm use         # bascule sur cette version
-node -v         # doit afficher v22.x (ou v20.x accepte)
-```
+- [ ] contenu redige
+- [ ] exercice borne et verifiable
+- [ ] rattache au fil rouge
+- [ ] cite dans le README de son module

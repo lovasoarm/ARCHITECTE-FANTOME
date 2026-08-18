@@ -1,69 +1,51 @@
 ---
 stability: intemporel
-acte: restituer
-route: complete
+acte: construction
+noyau: oui
 ---
 
-# 02-CONSTRUCTION/16_ddd_contrats : langage, contextes bornés et contrats
+# 16 — DDD ET CONTRATS : LE LANGAGE AVANT LE CODE
 
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
+> Palier 2bis — Construction. Durée estimée : 9 h 45 (10 leçons numérotées, 1 boss fight, 1 défense orale).
+> Frontière de palier : `14_architecture_patterns` t'apprend **les formes** (couches, ports, hexagone).
+> `15-ARCHI-LAB` te fait **assembler** ces formes sur un cas. Ce module-ci travaille **le langage et les
+> contrats** : ce que les mots veulent dire, et ce que tu promets à l'extérieur. Trois modules, trois
+> objets différents : forme, assemblage, langage. Ne les confonds pas.
 
-Temps de lecture ~4 min
+## Ce que tu sauras faire en sortant
 
-## Ce que c'est
+1. Découper un domaine en contextes bornés à partir du vocabulaire réel des gens du métier.
+2. Écrire un contrat d'API versionné, avec sa date d'extinction annoncée.
+3. Séparer lecture et écriture (CQRS) sans inventer une infrastructure que personne ne demande.
+4. Refuser une architecture trop belle, par écrit, avec un chiffre.
 
-Le module qui traite la cause la plus fréquente des architectures qui pourrissent : le même mot
-qui désigne deux choses selon l'équipe. On y apprend à découper par langage plutôt que par couche
-technique, à séparer lecture et écriture quand la cohérence le justifie, et à rompre un contrat
-d'API avec un préavis et une date d'extinction plutôt qu'un jour de panique.
+## Prérequis
 
-## Structure du module
+Voir `00_prereq_check.md`. Si un seul point tombe, retourne le voir : ce module ne réexplique rien.
 
-- [00_prereq_check.md](00_prereq_check.md) : filtre anti-illusion avant d'entrer.
-- [00_why_ddd_contrats.md](00_why_ddd_contrats.md) : pourquoi ce module mérite ton temps.
-- [01_langage_contextes_bornes.md](01_langage_contextes_bornes.md) : découper par langage, pas par couche.
-- [02_cqrs_coherence_terme.md](02_cqrs_coherence_terme.md) : lecture, écriture, et cohérence à terme.
-- [03_contrats_migration.md](03_contrats_migration.md) : rompre un contrat avec préavis et date d'extinction.
-- [challenge.md](challenge.md) : challenge, le découpage de ton projet.
-- [04_exercice_architecture_trop_belle.md](04_exercice_architecture_trop_belle.md) : l'exercice qui punit la sur-conception.
-- [boss-fight.md](boss-fight.md) : boss fight, la rupture de contrat imposée.
-- [05_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md) : decider seul, IA coupee, puis mesurer l'ecart avec l'IA.
-- [verification_pack/criteres.md](verification_pack/criteres.md) : les trois drills et leurs criteres binaires.
-- [grimoire.md](grimoire.md) : mémo dense, à ouvrir après le reste.
+## Parcours du module
 
-## Comment lire ce module
+| Fichier | Objet | Durée |
+| --- | --- | --- |
+| `00_why_ddd_contrats.md` | pourquoi ce module mérite ton temps | 45 min |
+| `00_prereq_check.md` | contrôle d'entrée | 15 min |
+| `01_langage_contextes_bornes.md` | langage ubiquitaire, contextes bornés, carte de contextes | 45 min |
+| `02_cqrs_coherence_terme.md` | lecture / écriture, cohérence à terme, coût réel | 45 min |
+| `03_contrats_migration.md` | versionner, déprécier, éteindre | 45 min |
+| `04_exercice_architecture_trop_belle.md` | exercice : refuser par écrit | 45 min |
+| `05_expliquer_cqrs_a_3_publics.md` | junior, pair, direction | 45 min |
+| `06_EXO_JEUNE_IA.md` | corriger la sortie d'un agent | 45 min |
+| `grimoire.md` | les lignes à retenir | 30 min |
+| `challenge.md` | mise en pratique bornée | 1 h 30 |
+| `boss-fight.md` | épreuve de passage | 3 h |
+| `defense-orale.md` | soutenance de 12 minutes | 45 min |
 
-Dans l'ordre. Le grimoire se lit en dernier. Le challenge produit la matière de la famille S2 :
-le dossier `ADR/` de ton projet, dont l'exemplaire de référence est
-[PREUVES-MODELES/S2-ADR-PRINCIPAL.md](../../PREUVES-MODELES/S2-ADR-PRINCIPAL.md).
+## Livrables produits
 
-## Signal que tu es prêt pour la suite
+- `ADR/` : un ADR de découpage en contextes bornés, un ADR de rupture de contrat daté.
+- `contrats/` : le contrat d'API du fil rouge en v1 et v2, avec la période de double service.
+- Ces pièces alimentent la famille S2 de [PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md).
 
-Tu sais nommer deux contextes bornés de ton projet et le mot qu'ils ne comprennent pas de la même
-façon, et tu as écrit au moins un ADR dont une conséquence est chiffrée en coût ou en disponibilité.
+## Vérification
 
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION/16_ddd_contrats` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_prereq_check.md](00_prereq_check.md)
-- [00_why_ddd_contrats.md](00_why_ddd_contrats.md)
-- [01_langage_contextes_bornes.md](01_langage_contextes_bornes.md)
-- [02_cqrs_coherence_terme.md](02_cqrs_coherence_terme.md)
-- [03_contrats_migration.md](03_contrats_migration.md)
-- [04_exercice_architecture_trop_belle.md](04_exercice_architecture_trop_belle.md)
-- [05_expliquer_cqrs_a_3_publics.md](05_expliquer_cqrs_a_3_publics.md)
-- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
-- [boss-fight.md](boss-fight.md)
-- [challenge.md](challenge.md)
-- [defense-orale.md](defense-orale.md)
-- [grimoire.md](grimoire.md)
-- [verification_pack/](verification_pack/README.md)
-
-<!-- CONTENU-DOSSIER:fin -->
-- [05_expliquer_cqrs_a_3_publics.md](05_expliquer_cqrs_a_3_publics.md) — restitution orale de CQRS a trois publics, dont un CTO qui defend le CRUD.
-- [defense-orale.md](defense-orale.md) — trois objections a soutenir a voix haute avant de valider le module.
-
-> **Contexte d'entreprise manquant ?** Ce module suppose un comite qui conteste tes contrats. Protocole solo jouable, avec tirage au sort et verdict binaire : [SIMULATION-ENTREPRISE.md](../../06-ANNEXES-TRANSVERSES/08-SIMULATION-ENTREPRISE.md) (protocole 1).
+`verification_pack/criteres.md` fixe les critères de passage. Le boss fight ne se coche pas sans eux.

@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: produire
 ---
 # EXO : reimplemente une file de microtasks a la main (12.6)
 

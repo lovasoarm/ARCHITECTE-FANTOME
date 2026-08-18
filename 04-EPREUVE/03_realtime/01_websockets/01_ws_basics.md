@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 01_WS_BASICS : LE CYCLE DE VIE D'UNE WEBSOCKET

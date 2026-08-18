@@ -1,9 +1,8 @@
 ---
-stability: intemporel
-acte: produire
+stability: stable
 ---
 
-# EXO IA MENTEUSE : module 00-SOCLE/05_problem_solving
+# EXO IA MENTEUSE : module 02_problem_solving
 
 Temps : ~10 min. Format court, seul ou en binôme.
 

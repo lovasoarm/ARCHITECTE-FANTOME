@@ -1,29 +1,36 @@
----
-stability: perissable_2027
-acte: restituer
----
-
 # Grimoire : Niveau 14, Tool Cave
 
-Ce grimoire est un mémo à quatre colonnes exactes. La table de défense orale vit à côté, dans [defense-orale.md](defense-orale.md).
+Ce grimoire comporte deux tables : le mémo à 4 colonnes, puis la table de défense orale à
+3 colonnes (écart de format assumé, voir [_STYLE.md](../.meta/_STYLE.md)).
 
 Mémo à ouvrir avant une session de debug ou une revue de code généré par IA. Sert à
 vérifier la méthode, pas à réciter une liste d'outils.
 
-| Terme | Définition | Code | Analogies | Limite |
-| --- | --- | --- | --- | --- |
-| Hypothèse falsifiable | Une affirmation qui prédit un résultat observable différent selon qu'elle est vraie ou fausse. | `// si vrai: log X apparait ; si faux: log X absent` | diagnostic du chef qui prédit précisément le goût si l'ingrédient est en cause / hypothèse du skipper qui prédit précisément la dérive si le courant est en cause | « diagnostic du chef qui prédit précisément le goût si l'ingrédient... » suppose que quelqu'un surveille ; sur Hypothèse falsifiable, deux versions de l'outil ne produisent pas le même résultat sur le même dépôt. Relis la configuration par défaut avant de l'adopter. |
-| Bissection | Diviser l'espace de recherche en deux à chaque étape pour converger en O(log n). | `git bisect start && git bisect bad && git bisect good v1.2.0` | vérifier la moitié des plats du service pour isoler celui qui a raté / vérifier la moitié du parcours pour isoler où la corde a lâché | « vérifier la moitié des plats du service pour isoler celui qui a raté » n'a ni facture ni horloge ; sur Bissection, la chaîne d'outils masque l'étape qui échoue derrière une sortie agrégée. Rends le contrôle bloquant, sinon ne l'ajoute pas. |
-| Log ciblé | Une trace ajoutée pour trancher une question précise, retirée ensuite. | `console.log("DEBUG cle_idempotence=", cle); // a retirer avant merge` | note prise en cuisine juste pour vérifier une cuisson, jetée après / repère marqué juste pour vérifier un cap, effacé après | « note prise en cuisine juste pour vérifier une cuisson, jetée après » a une frontière visible à l'oeil ; sur Log ciblé, l'outil applique une configuration par défaut que personne n'a choisie. Teste la chaîne complète sur un dépôt propre. |
-| Cause racine vs symptôme | Le symptôme casse visiblement, la cause racine produit ce symptôme en amont. | `// corriger le calcul de stock, pas juste masquer l'alerte de rupture` | traiter la fièvre sans traiter l'infection aux urgences / colmater une fuite sans réparer la coque fissurée | « traiter la fièvre sans traiter l'infection aux urgences » se rejoue à l'identique, le code non ; sur Cause racine vs symptôme, un cache d'outil rend le résultat non reproductible d'une machine à l'autre. Fige la version de l'outil et vérifie qu'elle est la même en local et en intégration. |
-| Hypothèse silencieuse d'une réponse IA | Le choix implicite qu'un modèle fait pour compléter un prompt sous-spécifié. | `// le modele a suppose email unique sans qu'on le precise` | commis qui invente une quantité non précisée sur la commande / matelot qui invente un cap non précisé par le skipper | « commis qui invente une quantité non précisée sur la commande » suppose que quelqu'un surveille ; sur Hypothèse silencieuse d'une réponse IA, l'automatisation propage l'erreur à la vitesse de la machine. Relis la configuration par défaut avant de l'adopter. |
-| Compromis nommé et assumé | La décision qui dit explicitement ce qu'elle sacrifie et pourquoi c'est acceptable. | `// on sacrifie la validation stricte cette nuit, corrige avant lundi` | chef qui annonce assumer un plat de secours faute de temps / skipper qui annonce assumer une route plus longue faute de vent | « chef qui annonce assumer un plat de secours faute de temps » se corrige toute seule quand elle dérape ; sur Compromis nommé et assumé, le temps gagné par l'outil est repris par sa maintenance si personne ne la porte. Teste la chaîne complète sur un dépôt propre. |
-| Honnêteté sur l'incertitude | Nommer ce que tu n'as pas vérifié, plutôt que de le présenter comme un fait. | `// NON VERIFIE : cause probable, a confirmer avec les logs de prod` | chef qui dit ne pas être sûr du fournisseur en cause / skipper qui dit ne pas être sûr de la cause de la dérive | « chef qui dit ne pas être sûr du fournisseur en cause » se rejoue à l'identique, le code non ; sur Honnêteté sur l'incertitude, l'outil local et l'outil d'intégration continue divergent au premier écart de version. Rends le contrôle bloquant, sinon ne l'ajoute pas. |
-| Commit unitaire sans transaction globale | Un traitement par lot qui valide chaque élément séparément, sans rollback global. | `for (const item of lot) { await traiter(item); await marquerFait(item.id); }` | chaque plat du service facturé séparément, pas en un seul ticket global / chaque nœud vérifié séparément, pas en un seul geste global | « chaque plat du service facturé séparément, pas en un seul ticket... » se rejoue à l'identique, le code non ; sur Commit unitaire sans transaction globale, un contrôle ajouté sans blocage n'est qu'un avis, et il sera ignoré. Fige la version de l'outil et vérifie qu'elle est la même en local et en intégration. |
+| Terme | Définition | Code | Analogies |
+| --- | --- | --- | --- |
+| Hypothèse falsifiable | Une affirmation qui prédit un résultat observable différent selon qu'elle est vraie ou fausse. | `// si vrai: log X apparait ; si faux: log X absent` | diagnostic du chef qui prédit précisément le goût si l'ingrédient est en cause / hypothèse du skipper qui prédit précisément la dérive si le courant est en cause |
+| Bissection | Diviser l'espace de recherche en deux à chaque étape pour converger en O(log n). | `git bisect start && git bisect bad && git bisect good v1.2.0` | vérifier la moitié des plats du service pour isoler celui qui a raté / vérifier la moitié du parcours pour isoler où la corde a lâché |
+| Log ciblé | Une trace ajoutée pour trancher une question précise, retirée ensuite. | `console.log("DEBUG cle_idempotence=", cle); // a retirer avant merge` | note prise en cuisine juste pour vérifier une cuisson, jetée après / repère marqué juste pour vérifier un cap, effacé après |
+| Cause racine vs symptôme | Le symptôme casse visiblement, la cause racine produit ce symptôme en amont. | `// corriger le calcul de stock, pas juste masquer l'alerte de rupture` | traiter la fièvre sans traiter l'infection aux urgences / colmater une fuite sans réparer la coque fissurée |
+| Hypothèse silencieuse d'une réponse IA | Le choix implicite qu'un modèle fait pour compléter un prompt sous-spécifié. | `// le modele a suppose email unique sans qu'on le precise` | commis qui invente une quantité non précisée sur la commande / matelot qui invente un cap non précisé par le skipper |
+| Compromis nommé et assumé | La décision qui dit explicitement ce qu'elle sacrifie et pourquoi c'est acceptable. | `// on sacrifie la validation stricte cette nuit, corrige avant lundi` | chef qui annonce assumer un plat de secours faute de temps / skipper qui annonce assumer une route plus longue faute de vent |
+| Honnêteté sur l'incertitude | Nommer ce que tu n'as pas vérifié, plutôt que de le présenter comme un fait. | `// NON VERIFIE : cause probable, a confirmer avec les logs de prod` | chef qui dit ne pas être sûr du fournisseur en cause / skipper qui dit ne pas être sûr de la cause de la dérive |
+| Commit unitaire sans transaction globale | Un traitement par lot qui valide chaque élément séparément, sans rollback global. | `for (const item of lot) { await traiter(item); await marquerFait(item.id); }` | chaque plat du service facturé séparément, pas en un seul ticket global / chaque nœud vérifié séparément, pas en un seul geste global |
 
 ## Défense orale
 
-La table de défense orale a son propre fichier, pour que ce grimoire garde un format unique de quatre colonnes : [defense-orale.md](defense-orale.md).
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+| --- | --- | --- |
+| Hypothèse falsifiable | Tu tournes en rond en changeant du code au hasard, sans savoir si tu te rapproches | Donne un exemple d'hypothèse sur un bug vécu, et le résultat qui l'aurait infirmée |
+| Bissection | Tu inspectes les changements un par un, en O(n), tu perds un temps proportionnel au problème | Pourquoi une recherche par bissection sur 1000 commits prend au maximum 10 étapes ? |
+| Log ciblé | Tu ajoutes des logs génériques partout, tu noies le signal et tu oublies de les retirer | Quelle question précise ton dernier log de debug devait-il trancher ? |
+| Cause racine vs symptôme | Tu corriges le symptôme, le même bug revient sous une autre forme la semaine suivante | Cite un bug où corriger le symptôme sans corriger la cause aurait suffi à repasser les tests |
+| Hypothèse silencieuse d'une réponse IA | Tu livres un code qui répond à ta question mais pas à ton besoin réel | Comment repères-tu qu'un prompt était sous-spécifié après coup ? |
+| Compromis nommé et assumé | Tu prends une décision sous pression sans dire ce qu'elle coûte, personne ne peut la challenger | Sur ta dernière décision urgente, qu'as-tu sacrifié et pourquoi c'était le bon ordre de priorité ? |
+| Honnêteté sur l'incertitude | Une hypothèse non vérifiée se propage, d'autres construisent dessus sans la questionner | Sur ton dernier rapport de bug, quelle affirmation n'avait en réalité pas de preuve derrière elle ? |
+| Commit unitaire sans transaction globale | Une interruption laisse un état partiel, impossible à rejouer sans risquer un doublon | Pourquoi relancer un lot à commit unitaire depuis le début double le travail déjà validé ? |
+
+Grille détaillée : voir [boss-fight.md](./boss-fight.md).
 
 ## Méthode de debug, en une page
 

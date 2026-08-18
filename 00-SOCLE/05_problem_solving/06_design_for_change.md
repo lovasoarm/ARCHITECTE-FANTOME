@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CONCEVOIR POUR CE QUI VA CHANGER

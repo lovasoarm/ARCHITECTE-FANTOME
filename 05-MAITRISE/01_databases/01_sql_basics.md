@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Parler à une base relationnelle sans la supplier
@@ -101,7 +100,7 @@ Le risque réel : tu fais un `JOIN` sans `WHERE` ni `LIMIT` sur deux grosses tab
 
 Sans index, chercher une ligne dans une table de 1 million de lignes = lire les 1 million de lignes une par une (full table scan : scan complet de la table). C'est O(n).
 
-Un index, c'est une structure à part (souvent un B-Tree, vu en détail dans `02-CONSTRUCTION/06_data_structures/06_bst`) qui range les valeurs d'une colonne dans un ordre permettant une recherche en O(log n).
+Un index, c'est une structure à part (souvent un B-Tree, vu en détail dans `09_data_structures/06_bst`) qui range les valeurs d'une colonne dans un ordre permettant une recherche en O(log n).
 
 ```sql
 -- sans index sur ninja_name : la DB lit TOUTE la table
@@ -230,7 +229,7 @@ UPDATE missions SET status = 'expired' WHERE status = 'pending' AND assigned_at 
 
 ## TIPS D'ÉVOLUTION TECHNIQUE
 
-Avant, on écrivait du SQL brut partout dans le code applicatif, concaténé à la main avec les variables directement dans la string. Résultat : injection SQL ouverte par défaut (vu en détail dans `03-PILOTAGE/04_security/01_xss_injection`). Maintenant, on utilise des requêtes paramétrées (placeholders `$1`, `?`, ou un ORM/query builder comme vu dans `05_db_in_js`) presque partout. Le switch existe pour la sécurité, pas pour le style.
+Avant, on écrivait du SQL brut partout dans le code applicatif, concaténé à la main avec les variables directement dans la string. Résultat : injection SQL ouverte par défaut (vu en détail dans `22_security/01_xss_injection`). Maintenant, on utilise des requêtes paramétrées (placeholders `$1`, `?`, ou un ORM/query builder comme vu dans `05_db_in_js`) presque partout. Le switch existe pour la sécurité, pas pour le style.
 
 ```js
 // Avant (dangereux) : concaténation directe

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # ARIA : PARLER LA LANGUE DES LECTEURS D'ÉCRAN

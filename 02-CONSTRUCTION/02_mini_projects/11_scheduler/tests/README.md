@@ -1,6 +1,5 @@
 ---
-stability: intemporel
-acte: restituer
+stability: stable
 ---
 
 # Tests : 11_scheduler
@@ -34,12 +33,3 @@ le POSTMORTEM.
 - Assertions ciblées, pas de `assert.ok(true)` de remplissage.
 - Timing : si un test dépend de délais, utilise `setTimeout` avec des
   valeurs > 50 ms pour éviter les flakes.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION/02_mini_projects/11_scheduler/tests` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-
-<!-- CONTENU-DOSSIER:fin -->

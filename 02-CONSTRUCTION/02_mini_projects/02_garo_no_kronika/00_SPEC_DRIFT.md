@@ -1,7 +1,6 @@
 ---
 stability: mouvant
 scope: 02_garo_no_kronika
-acte: appliquer
 ---
 
 # 00_SPEC_DRIFT.md : spec drift **en cours de projet** (mouvant)

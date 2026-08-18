@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # ERROR STRATEGY : FAIL-FAST, FALLBACK, RETRY

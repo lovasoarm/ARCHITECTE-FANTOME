@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # POSTMORTEM
@@ -24,7 +23,7 @@ En < 20 lignes : pourquoi ce langage, quel angle mort il t'a exposé sur ta comp
 -
 
 ---
-stability: intemporel
+stability: stable
 
 ## Comment j'ai encaissé le drift
 
@@ -37,7 +36,7 @@ Une ligne par déclencheur activé (J+1, J+3, J+5) avec le coût réel payé.
 > Cette section est un **gate**. Un POSTMORTEM sans elle est rejete par le
 > la securite redevient un module theorique.
 >
-> Reference : `03-PILOTAGE/04_security/06_owasp_checklist.md`.
+> Reference : `22_security/06_owasp_checklist.md`.
 
 Pour chaque item OWASP Top 10, coche exactement une case :
 

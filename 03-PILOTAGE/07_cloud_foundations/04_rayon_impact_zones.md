@@ -39,7 +39,7 @@ La colonne "vu par l'utilisateur" est celle qu'on présente à un non-technicien
 ## 2 BIS. LA TOPOLOGIE, DESSINEE
 
 Ce schema est le diagramme exige au volet « diagrammes » du dossier final. Le meme
-dessin sert de reference dans [PREUVES-MODELES/S2-ADR-PRINCIPAL.md](../../PREUVES-MODELES/S2-ADR-PRINCIPAL.md).
+dessin sert de reference dans [06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S2-ADR-PRINCIPAL.md](../../06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S2-ADR-PRINCIPAL.md).
 
 ```text
                         REGION A (europe-ouest)

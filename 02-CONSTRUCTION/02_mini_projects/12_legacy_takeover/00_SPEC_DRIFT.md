@@ -1,7 +1,6 @@
 ---
 stability: mouvant
 scope: 12_legacy_takeover
-acte: appliquer
 ---
 
 # 00_SPEC_DRIFT.md : spec drift **en cours de projet** (mouvant)

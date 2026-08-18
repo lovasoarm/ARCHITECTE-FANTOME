@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CONTRACT TESTING : LA PAIX ENTRE LES ÉQUIPES

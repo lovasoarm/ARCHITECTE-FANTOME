@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CAHIER DES CHARGES : BALLON D'OR CLI
@@ -75,22 +74,22 @@ Ce projet teste la capacité à comprendre un codebase existant, à le corriger 
 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
-### `02-CONSTRUCTION/13_runtime_env` : CLI Node.js, process.argv, filesystem
+### `15_runtime_env` : CLI Node.js, process.argv, filesystem
 
 **Où ça se voit** : `src/cli.js`, `src/parser/argsParser.js`, `src/export/csvExporter.js`.
 **Pourquoi c'est nécessaire ici** : `process.argv` pour lire les flags (`--player`, `--points`). `process.exit(code)` pour le code de sortie. `fs.writeFileSync` pour l'export CSV. C'est le kit de base du CLI Node.
 
-### `02-CONSTRUCTION/11_refactoring` : SOLID sur du code CLI procédural
+### `13_refactoring` : SOLID sur du code CLI procédural
 
 **Où ça se voit** : tout le passage de `legacy/ballonDorV1.js` vers `src/`.
 **Pourquoi c'est nécessaire ici** : le v1 viole SRP (Single Responsibility Principle : une classe/fonction = une responsabilité) à chaque fonction. La v2 sépare le parsing des args, la validation des votes, l'agrégation des scores, et l'affichage. Chaque module peut changer sans toucher les autres.
 
-### `01-CADRAGE/04_error_handling` : custom errors, propagation, exit codes
+### `05_error_handling` : custom errors, propagation, exit codes
 
 **Où ça se voit** : `src/errors/`, les `try/catch` dans `cli.js`.
 **Pourquoi c'est nécessaire ici** : `InvalidVoteError`, `PlayerNotFoundError`, `QuotaExceededError` permettent de répondre différemment selon le type d'erreur. Un vote invalide = message d'erreur + exit 1. Un joueur introuvable = suggestion de correction + exit 1. Une erreur système = stacktrace sur stderr + exit 2.
 
-### `05-MAITRISE/06_annexes` : Git workflow, Docker, GitHub Actions
+### `31_annexes` : Git workflow, Docker, GitHub Actions
 
 **Où ça se voit** : `Dockerfile`, `.github/workflows/ci.yml`, conventions de commits.
 **Pourquoi c'est nécessaire ici** : un outil CLI sans containerisation ne peut pas être distribué à 180 journalistes avec des environnements différents. Sans CI : les tests passent en local, échouent chez les autres, personne ne sait.
@@ -98,10 +97,10 @@ Ce projet teste la capacité à comprendre un codebase existant, à le corriger 
 ### Résumé visuel
 
 ```
-02-CONSTRUCTION/13_runtime_env --> src/cli.js (argv), src/export/csvExporter.js (fs), src/store/jsonStore.js
-02-CONSTRUCTION/11_refactoring --> legacy/ -> src/ (SOLID, séparation des couches)
-01-CADRAGE/04_error_handling --> src/errors/ (custom errors), exit codes dans cli.js
-05-MAITRISE/06_annexes   --> Dockerfile, .github/workflows/ci.yml
+15_runtime_env --> src/cli.js (argv), src/export/csvExporter.js (fs), src/store/jsonStore.js
+13_refactoring --> legacy/ -> src/ (SOLID, séparation des couches)
+05_error_handling --> src/errors/ (custom errors), exit codes dans cli.js
+31_annexes   --> Dockerfile, .github/workflows/ci.yml
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE

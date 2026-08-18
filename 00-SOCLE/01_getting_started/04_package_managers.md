@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 04 : npm / pnpm : ne bloque pas au premier `install`

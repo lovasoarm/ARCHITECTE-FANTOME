@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: restituer
 ---
 
 [PORTFOLIO]
@@ -8,8 +7,6 @@ acte: restituer
 [ATELIER]
 
 # ORACLE GLITCH
-
-> Mode de vérification des exercices de ce module : critère binaire du `verification_pack` ([verification_pack/criteres.md](verification_pack/criteres.md)). Aucun exercice de ce module n'est corrigé par une IA.
 
 -> ~6 min
 
@@ -116,10 +113,10 @@ cli.js --> CodeAnalyzer.analyze(fichier)
 
 | Module | Où ça se voit |
 | ------------------ | ------------------------------------------------------------------------------ |
-| `04-EPREUVE/04_ai_native_dev` | Streaming Anthropic, validation Zod, prompt engineering |
-| `02-CONSTRUCTION/17_oop_js` | `CodeAnalyzer`, `PromptBuilder`, `OutputValidator` : classes, héritage, mixins |
-| `03-PILOTAGE/10_team_craft` | ADR pour chaque décision d'architecture, code review outillée |
-| `05-MAITRISE/03_edge_cases` | `NaN === NaN`, JSON tronqué, `0.1 + 0.2`, `undefined` dans un array |
+| `23_ai_native_dev` | Streaming Anthropic, validation Zod, prompt engineering |
+| `18_oop_js` | `CodeAnalyzer`, `PromptBuilder`, `OutputValidator` : classes, héritage, mixins |
+| `27_team_craft` | ADR pour chaque décision d'architecture, code review outillée |
+| `28_edge_cases` | `NaN === NaN`, JSON tronqué, `0.1 + 0.2`, `undefined` dans un array |
 
 ---
 
@@ -158,7 +155,7 @@ trade-off chiffré :
 - **Ce que je n'ai pas mesuré** : (mémoire, DX, coût cloud…).
 
 Sans chiffres, ce n'est pas une décision, c'est une préférence.
-Voir `02-CONSTRUCTION/05_memory_performance/00_measure_first.md`.
+Voir `08_memory_performance/00_measure_first.md`.
 
 ## Pitch 3 lignes
 
@@ -166,7 +163,7 @@ Ce projet démontre une compétence clé : lire du code inconnu, débugger sous 
 
 ## Empreinte carbone (critère d'acceptation)
 
-Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `05-MAITRISE/06_annexes/03_finops_greenops.md`.
+Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
 
 ## THÈME NEUTRE (optionnel)
 
@@ -191,22 +188,3 @@ Un CI check impose la présence de `src/` et `tests/` avant validation.
 ## REPRODUCTIBILITÉ
 
 Installation canonique : `npm ci` (pas `npm install`). `npm ci` respecte strictement le `package-lock.json` : deux personnes qui clonent obtiennent exactement les mêmes versions. Committe toujours ton `package-lock.json`. Sans lui, un `npm install` 3 mois plus tard installera d'autres versions et tu debug un fantôme.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION/02_mini_projects/09_oracle_glitch` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_SPEC_DRIFT.md](00_SPEC_DRIFT.md)
-- [POSTMORTEM.md](POSTMORTEM.md)
-- [RULES.md](RULES.md)
-- [SECURITY.md](SECURITY.md)
-- [SECURITY_GATE.md](SECURITY_GATE.md)
-- [SPEC_DRIFT_TRIGGERS.md](SPEC_DRIFT_TRIGGERS.md)
-- [TDD_JOURNAL.md](TDD_JOURNAL.md)
-- [cahierdescharges.md](cahierdescharges.md)
-- [ADR/](ADR/README.md)
-- [verification_pack/](verification_pack/README.md)
-
-<!-- CONTENU-DOSSIER:fin -->

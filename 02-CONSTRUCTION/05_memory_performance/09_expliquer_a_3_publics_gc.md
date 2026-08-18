@@ -1,27 +1,25 @@
 ---
-stability: perissable_2027
-last_reviewed: 2026-07
-depends_on_vendor: false
-acte: appliquer
+stability: chantier
+acte: a_ecrire
 ---
-# Garbage Collection : expliqué à 3 publics
 
--> ~10 min
+<!-- CHANTIER-OUVERT : fichier reconstruit comme facade lors de la fusion en package unique.
+     Le contenu pedagogique reel reste a ecrire. Voir RESTE-A-FAIRE-ARCHITECTE-FANTOME.md. -->
 
-## À UN ENFANT
+# 09 expliquer a 3 publics gc
 
-Imagine ta chambre pleine de jouets. Certains, tu joues avec toutes les semaines. D'autres, tu ne les as pas touchés depuis 6 mois. Une fois par mois, ta mère passe et range dans un carton tous ceux qui traînent et que personne n'utilise. Elle ne jette **jamais** un jouet auquel tu es encore attaché : mais tout ce qui n'a plus de lien avec personne part au grenier. Le GC en JS fait pareil avec la mémoire : il libère ce qui n'est plus référencé.
+> **Chantier ouvert.** Ce fichier existe pour qu'aucun lien du depot ne soit casse.
+> Son contenu pedagogique n'est pas encore ecrit.
 
-## À UN PAIR DEV
+## Ce qui doit etre ecrit ici
 
-Le GC de V8 est **generational** + **mark-and-sweep** + **incremental**. Concrètement :
+Le contrat exact de ce fichier est decrit par les documents qui le citent :
 
-- **New Space** (Scavenger) : objets fraîchement créés, GC toutes les 1-2 ms, très rapide.
-- **Old Space** (Major GC) : objets qui ont survécu 2 cycles, GC plus lourd (10-100 ms), incrémental pour ne pas geler la main thread.
-- **Racines** : globals, stack, closures actives. Tout objet joignable depuis une racine survit.
-- **Fuite typique** : `Map` ou array global qui accumule, closure sur DOM détaché, listener non détaché.
-- `WeakMap` / `WeakRef` : références qui **n'empêchent pas** la collecte.
+- `06-ANNEXES-TRANSVERSES/09-PEREMPTION-2027.md`
 
-## À UN CTO
+## Statut
 
-Le GC est invisible tant que la mémoire est saine. Il devient une catastrophe business quand : (1) GC pauses > 200 ms bloquent le event loop et cassent le SLO latence, (2) fuite lente (100 Ko/heure) fait OOM au bout de 3 semaines : donc en pleine prod, jamais reproductible en staging. Signal d'embauche mid/senior : sait poser `process.memoryUsage()` + heap snapshot et lire la différence. Junior : croit que "JS a un GC donc pas de souci mémoire".
+- [ ] contenu redige
+- [ ] exercice borne et verifiable
+- [ ] rattache au fil rouge
+- [ ] cite dans le README de son module

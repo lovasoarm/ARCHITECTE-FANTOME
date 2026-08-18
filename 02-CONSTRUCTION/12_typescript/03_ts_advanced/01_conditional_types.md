@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # CONDITIONAL TYPES : DES TYPES QUI DÉPENDENT D'AUTRES TYPES

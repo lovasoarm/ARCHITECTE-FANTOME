@@ -1,8 +1,7 @@
 ---
-stability: perissable_2028
+stability: periss-2028
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # 06 : Partition drill : ce que tu delegue a l'IA, ce que tu gardes
 -> ~30 min drill
@@ -41,14 +40,14 @@ Pour chaque sous-tache, coche **une** case et justifie en 1 phrase.
 
 **Garde pour toi quand :**
 - La decision engage l'architecture (choix de pattern, decoupage de module,
-  frontiere de service). Voir `05-MAITRISE/06_annexes/17_frontieres_modules.md`.
+  frontiere de service). Voir `31_annexes/17_frontieres_modules.md`.
 - Le code touche a la securite, l'auth, la crypto, la gestion des secrets.
 - Le bug est **flaky** ou **race condition** : l'IA voit un happy path,
   pas un ordonnancement.
 - Le contexte est **legacy** et tu n'as pas encore fait ton
-  `05-MAITRISE/06_annexes/00_cartographier_codebase_inconnue.md`.
+  `31_annexes/00_cartographier_codebase_inconnue.md`.
 - Il faut ecrire une hypothese falsifiable (voir
-  `01-CADRAGE/03_debugging/05_hypothesis_driven_debug.md`).
+  `04_debugging/05_hypothesis_driven_debug.md`).
 
 ## Le drill (30 min chrono)
 
@@ -84,6 +83,6 @@ les 4 semaines.
 
 ## Reference croisee
 
-- `04-EPREUVE/04_ai_native_dev/07b_solo_vs_copilot_drill.md`
+- `23_ai_native_dev/07_solo_vs_copilot_drill.md`
 - `DEPENDENCY_LEDGER.md`
 - `node solution.js` (auto-verif ecrite par toi)

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # DATES ET TIMEZONES : LE CAUCHEMAR ET COMMENT LE RÉSOUDRE
@@ -81,7 +80,7 @@ Même instant UTC --> formatteur Tokyo --> "16 juin 2026, 20:30"
 Même instant UTC --> formatteur Tana  --> "16 juin 2026, 14:30"
 ```
 
-Une seule vérité stockée (UTC), des affichages multiples calculés à la demande. C'est le principe de single source of truth du module 02-CONSTRUCTION/18_web_concepts appliqué aux dates.
+Une seule vérité stockée (UTC), des affichages multiples calculés à la demande. C'est le principe de single source of truth du module 17_web_concepts appliqué aux dates.
 
 ## 4) LE PIÈGE DU FUSEAU CÔTÉ CLIENT VS SERVEUR
 

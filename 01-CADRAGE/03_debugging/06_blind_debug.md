@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 06 : Blind Debug
@@ -18,11 +17,11 @@ Temps de lecture ~5 min
 
 ## 3 scénarios fournis (reproductibles, code fourni)
 
-Le code de chaque scénario est dans [`scenarios/`](scenarios) : celui qui **tient le code** ouvre le fichier, celui qui **debug** ne le voit jamais.
+Le code de chaque scénario est dans [`scenarios/`](./scenarios/) : celui qui **tient le code** ouvre le fichier, celui qui **debug** ne le voit jamais.
 
-1. Un `debounce` qui ne debounce pas -> [`scenarios/scenario_1_debounce.js`](scenarios/scenario_1_debounce.js)
-2. Une requête `POST` qui part deux fois -> [`scenarios/scenario_2_double_post.js`](scenarios/scenario_2_double_post.js)
-3. Un state React qui oublie une update -> [`scenarios/scenario_3_react_stale_state.jsx`](scenarios/scenario_3_react_stale_state.jsx)
+1. Un `debounce` qui ne debounce pas -> [`scenarios/scenario_1_debounce.js`](./scenarios/scenario_1_debounce.js)
+2. Une requête `POST` qui part deux fois -> [`scenarios/scenario_2_double_post.js`](./scenarios/scenario_2_double_post.js)
+3. Un state React qui oublie une update -> [`scenarios/scenario_3_react_stale_state.jsx`](./scenarios/scenario_3_react_stale_state.jsx)
 
 Les scénarios sont **reproductibles** : deux binômes différents jouent exactement le même bug, la comparaison de scores est valide.
 

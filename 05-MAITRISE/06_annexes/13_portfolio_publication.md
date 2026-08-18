@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Publier ton portfolio proprement
@@ -46,7 +45,3 @@ Un dépôt qui passe la checklist. Fais-le relire par un pair **avant** de le me
 | Peer-review reçue | 0 | 1 remarque | ≥ 3 remarques traitées |
 
 Note < 6/10 → tu ne passes pas au module suivant. Point.
-
-## Annexe declenchee ici
-
-- [10-COMMUNAUTE.md](../../06-ANNEXES-TRANSVERSES/10-COMMUNAUTE.md) : ou publier, a qui montrer, et comment recevoir une contradiction publique sans la transformer en debat d'opinion.

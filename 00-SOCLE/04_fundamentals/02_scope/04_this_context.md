@@ -2,14 +2,13 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # THIS : UN AVANT-GOÛT AVANT LE VRAI COURS
 Temps de lecture ~5 min
 
 > `this` est l'un des mots-clés les plus piégeux de JS. Il change de valeur selon comment et où tu appelles la fonction. Pas selon où elle est écrite : selon comment elle est appelée.
 
-Ce fichier est intentionnellement court. Pourquoi ? Parce que `this` est inséparable du système de prototype et des classes ES6 : tout ça est traité en profondeur dans `02-CONSTRUCTION/17_oop_js/04_this_keyword_rules.md`, au moment où tu auras tous les outils pour vraiment comprendre.
+Ce fichier est intentionnellement court. Pourquoi ? Parce que `this` est inséparable du système de prototype et des classes ES6 : tout ça est traité en profondeur dans `18_oop_js/04_this_keyword_rules.md`, au moment où tu auras tous les outils pour vraiment comprendre.
 
 Ici : juste les deux réflexes de survie pour la suite du curriculum.
 
@@ -60,7 +59,7 @@ Règle : dans un callback passé à `setTimeout`, `addEventListener`, `map`, etc
 
 ---
 
-> Pour la suite complète : `bind`, `call`, `apply`, le fonctionnement interne du `this` dans les classes, les pièges avec le prototype : tout ça est dans **`02-CONSTRUCTION/17_oop_js/04_this_keyword_rules.md`**. Tu reviendras ici après ce module et tout fera sens.
+> Pour la suite complète : `bind`, `call`, `apply`, le fonctionnement interne du `this` dans les classes, les pièges avec le prototype : tout ça est dans **`18_oop_js/04_this_keyword_rules.md`**. Tu reviendras ici après ce module et tout fera sens.
 
 ---
 
@@ -70,4 +69,4 @@ Règle : dans un callback passé à `setTimeout`, `addEventListener`, `map`, etc
 
 Dans un callback standard (pas arrow), `this` change selon l'appelant. Dans une arrow function, `this` est capturé à la création : il garde le `this` de la fonction englobante.
 
-Ce fichier couvre l'essentiel pour démarrer. Le comportement complet de `this` avec `bind`, `call`, `apply`, les classes et le prototype est dans `02-CONSTRUCTION/17_oop_js`.
+Ce fichier couvre l'essentiel pour démarrer. Le comportement complet de `this` avec `bind`, `call`, `apply`, les classes et le prototype est dans `18_oop_js`.

@@ -1,21 +1,13 @@
----
-stability: stable
-acte: comprendre
-route: complete
----
-
 # Niveau 15 : Bonus Vault
 
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
-
-[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../02-TOOL-CAVE/README.md) | Niveau suivant : aucun, c'est le dernier coffre
+[Sommaire](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Niveau précédent](../02-TOOL-CAVE/README.md) | Niveau suivant : aucun, c'est le dernier coffre
 
 **Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
 [le grimoire du niveau précédent](../02-TOOL-CAVE/grimoire.md) (20 minutes), puis refais son
 [challenge](../02-TOOL-CAVE/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 15 une difficulté qui vient du niveau 14.
 
-**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) (règle de calcul : voir [_STYLE.md](../.meta/_STYLE.md), section « Durées »).
 
 ## Ce que c'est
 
@@ -49,8 +41,7 @@ vrai incident (Niveaux 6 à 12).
 
 ```text
 15-BONUS-VAULT/
-+-- 01-why-this-level.md                   --> statut du coffre et ses trois cas d'usage
-+-- 01b-decision-templates.md              --> ADR, RFC, one-pager
++-- 01-decision-templates.md              --> ADR, RFC, one-pager
 +-- 02-checklists.md                      --> mise en prod, revue, incident, onboarding
 +-- 03-reading-list.md                    --> ressources durables, sans liens morts
 +-- 04-anti-patterns-hall-of-fame.md      --> catalogue commenté des erreurs qui reviennent
@@ -59,7 +50,7 @@ vrai incident (Niveaux 6 à 12).
 \-- grimoire.md                           --> mémo dense
 ```
 
-[01-why-this-level.md](01-why-this-level.md) | [01b-decision-templates.md](01b-decision-templates.md) | [02-checklists.md](02-checklists.md) |
+[01-decision-templates.md](01-decision-templates.md) | [02-checklists.md](02-checklists.md) |
 [03-reading-list.md](03-reading-list.md) | [04-anti-patterns-hall-of-fame.md](04-anti-patterns-hall-of-fame.md) |
 [05-security-cost-privacy.md](05-security-cost-privacy.md) |
 [challenge.md](challenge.md) | [grimoire.md](grimoire.md)
@@ -69,14 +60,14 @@ Ce niveau réutilise : Niveaux 6 à 12, en particulier le brief et le modèle de
 Auto-test d'entrée : (1) Sais-tu nommer un incident réel qu'une checklist de mise en prod
 aurait empêché ? (2) Sais-tu distinguer un ADR d'un RFC par l'audience visée, pas par la
 longueur ? (3) Sais-tu citer un anti-pattern que tu as toi-même commis récemment ?
-**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) (règle de calcul : voir [_STYLE.md](../.meta/_STYLE.md), section « Durées »).
 
 ## Écart au gabarit
 
-Ce niveau a désormais son [01-why-this-level.md](01-why-this-level.md), comme les 49 autres
-modules : la règle « un module, un why » est sans exception. Ce why ne justifie pas un coût en
-heures, il déclare un statut et trois cas d'usage. Le seul écart restant est l'absence de
-`boss-fight.md` : un
+Ce niveau n'a ni `01-why-this-level.md` ni `boss-fight.md`, contrairement au gabarit standard
+d'un niveau. Ce n'est pas un oubli : ce coffre n'enseigne aucune méthode nouvelle, il
+rassemble des formats déjà justifiés dans les niveaux 6 à 12, donc un fichier "pourquoi ce
+niveau existe" répéterait ce que ces niveaux ont déjà démontré en situation. De même, un
 boss-fight suppose une mise en situation adverse nouvelle : ce coffre n'a pas de mécanisme
 propre à tester en pression, il a un livrable de consultation et un livrable obligatoire
 (`challenge.md`), pas un affrontement. Le statut de ce niveau est donc double : c'est un
@@ -114,22 +105,3 @@ rétrospective du bloc Maîtrise que tu viens de terminer.
 Ce coffre ne remplace aucun niveau précédent. Un template d'ADR mal rempli par quelqu'un qui
 n'a jamais vécu une vraie décision contestée reste un exercice de style creux. Ce niveau
 donne la forme ; les niveaux précédents donnent le fond.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `04-EPREUVE/01-BONUS-VAULT` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_prereq_check.md](00_prereq_check.md)
-- [01-why-this-level.md](01-why-this-level.md)
-- [01b-decision-templates.md](01b-decision-templates.md)
-- [02-checklists.md](02-checklists.md)
-- [03-reading-list.md](03-reading-list.md)
-- [04-anti-patterns-hall-of-fame.md](04-anti-patterns-hall-of-fame.md)
-- [05-security-cost-privacy.md](05-security-cost-privacy.md)
-- [challenge.md](challenge.md)
-- [defense-orale.md](defense-orale.md)
-- [grimoire.md](grimoire.md)
-
-<!-- CONTENU-DOSSIER:fin -->

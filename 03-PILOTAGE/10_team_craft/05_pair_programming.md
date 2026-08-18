@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # PAIR PROGRAMMING : DEUX CERVEAUX, UN CLAVIER

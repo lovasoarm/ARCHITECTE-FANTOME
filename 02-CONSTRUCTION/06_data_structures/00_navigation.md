@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # NAVIGATION : DATA STRUCTURES EN 3 PALIERS
@@ -36,7 +35,7 @@ PALIER C : bonus
   09_advanced_bonus
 
   Optionnel dans une première passe. Reviens-y après avoir
-  pratiqué le module 02-CONSTRUCTION/07_algorithms : certaines structures
+  pratiqué le module 10_algorithms : certaines structures
   bonus ne prennent sens qu'avec un peu d'algo derrière.
 ```
 
@@ -57,5 +56,5 @@ trancher les confusions.
 ## Ce que ce fichier ne remplace pas
 
 `00_prereq_check.md` reste le gate d'entrée du module entier (basé sur ce
-que `02-CONSTRUCTION/05_memory_performance` t'a déjà enseigné). Cette navigation ne
+que `08_memory_performance` t'a déjà enseigné). Cette navigation ne
 remplace pas ce gate : elle organise ce qui vient après.

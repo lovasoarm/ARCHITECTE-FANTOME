@@ -1,40 +1,41 @@
 ---
-stability: perissable_2027
-acte: produire
+stability: evolutif
+acte: pilotage
+noyau: oui
+type: boss
 ---
 
-# BOSS FIGHT : RÉDUIRE LA FACTURE DE 30% CE TRIMESTRE
+# BOSS FIGHT — MODULE 07 : LA FACTURE A TRIPLÉ CE MOIS-CI
 
-> Relevé le 2026-08-14, source : pages tarifaires publiques des fournisseurs citées dans ce fichier, à revérifier avant 2027. Tout montant de ce fichier est un ordre de grandeur daté, jamais une vérité intemporelle.
+Durée : 3 h. Un essai par semaine.
 
-Compte 45 minutes, chrono lancé, sans IA. Tu écris tes décisions dans l'ordre, sans revenir corriger la précédente.
+## Le scénario
 
-## La situation
+La facture passe de 180 € à 560 € sans déploiement notable. La direction demande une réponse
+aujourd'hui : cause, correction, et engagement chiffré pour le mois prochain.
 
-Ton budget cloud validé au challenge est de 10 400 € par mois au palier atteint. La direction financière annonce une coupe : **30% de moins d'ici la fin du trimestre**, soit 3 120 € mensuels à trouver. Trois contraintes tombent avec l'annonce :
+## Les manches
 
-- Le SLO de 99,5% a été communiqué à trois clients par écrit. Le dégrader est possible, mais se négocie et se signe.
-- La ligne egress représente 1 620 €, la ligne journaux 640 €, la base de données 3 100 €, le calcul 4 800 €.
-- Une migration d'architecture est exclue : le trimestre ne le permet pas.
+1. **Instruire (45 min)** — décompose la facture par poste et trouve le poste responsable. Produis le
+   tableau avant/après, en unités facturées, pas en euros seulement.
+2. **Reproduire (30 min)** — écris la chaîne causale : quel changement de trafic ou de configuration
+   produit ce poste. Une hypothèse non vérifiable est rejetée.
+3. **Corriger (45 min)** — applique un levier réel sur ton projet (cache, rétention, extinction), et
+   **mesure** l'effet sur 24 h.
+4. **Engager (30 min)** — écris l'engagement du mois suivant : plafond, alerte de dépassement à 80 %,
+   et ce que tu arrêtes si le plafond est atteint.
+5. **Porter (30 min)** — chiffre le même mois chez un second fournisseur avec ton relevé daté, et
+   conclus : rester ou partir, avec le coût de sortie.
 
-## Les trois coups du boss
+## Conditions de passage
 
-**Coup 1 : le plan chiffré.** Écris le plan de réduction, poste par poste, avec pour chaque ligne : le montant économisé, l'effort, le risque, et l'effet sur le SLO. Total attendu : au moins 3 120 €. Interdiction d'écrire "optimiser" sans montant.
+- [ ] Poste responsable identifié avec des unités, pas des intuitions.
+- [ ] Levier appliqué **et** mesuré (avant/après, 24 h minimum).
+- [ ] Plafond + alerte à 80 % en place.
+- [ ] Relevé tarifaire personnel daté de moins de 30 jours.
+- [ ] Gate sécurité : la réduction de rétention ne casse aucune obligation de conservation ; écris-le.
 
-**Coup 2 : l'objection technique.** "Vos économies sur les journaux, c'est bien joli, mais l'équipe d'astreinte dit qu'elle ne pourra plus diagnostiquer les incidents. Vous économisez 400 € et vous ajoutez une heure à chaque RTO. Vous assumez ?" Réponds en chiffrant les deux côtés, y compris le coût d'une heure d'indisponibilité supplémentaire.
+## Échec automatique
 
-**Coup 3 : l'objection contractuelle.** "Passez le SLO à 99% et on gagne beaucoup plus, non ? Faites-le." Réponds : combien cela rapporte exactement, ce que cela change pour les trois clients signataires, et qui doit signer cette décision. Si tu refuses, chiffre ton refus.
-
-## Verdict
-
-- Les 3 120 € sont trouvés avec des montants ligne par ligne, l'arbitrage journaux est chiffré des deux côtés, et la question du SLO remonte à la personne qui a le pouvoir de signer : boss fight gagné.
-- Tu atteins le montant en dégradant le SLO sans nommer les clients ni le signataire : tu as pris seul une décision contractuelle. C'est le reproche le plus fréquent fait à un architecte, et le plus coûteux.
-- Tu proposes une migration d'architecture : hors contrainte, et cela signale que tu n'as pas exploité les leviers rapides de [02_modeles_cout.md](02_modeles_cout.md), section 5.
-
-## Où ça ressort
-
-Cette contrainte est exactement l'option 2 des contraintes imposées du dossier unique ([05-MAITRISE/08_maitrise_staff_engineer/01_dossier_unique.md](../../05-MAITRISE/08_maitrise_staff_engineer/01_dossier_unique.md)), et une objection du [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/07-CONTRADICTEUR.md), groupe 2.
-
-## ET APRÈS
-
-Module terminé. Le module suivant du bloc, [08_produit_cout_roi](../08_produit_cout_roi/00_why_produit_cout_roi.md), transforme ces montants en arbitrages de roadmap.
+Répondre en euros sans unité facturée. Recopier `RELEVE-REFERENCE-2026.md`. Promettre une baisse non
+mesurée.

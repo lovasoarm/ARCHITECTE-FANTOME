@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Frontieres entre 12 (Design Patterns), 13 (Refactoring), 16 (Architecture) et 18 (OOP JS)
@@ -48,7 +47,7 @@ verite absolue.
 
 ## Et 18 (OOP JS) dans tout ca ?
 
-`02-CONSTRUCTION/17_oop_js` traite du **mecanisme JS de l'orientation objet** (prototype chain,
+`18_oop_js` traite du **mecanisme JS de l'orientation objet** (prototype chain,
 `class`, `this`, heritage, mixins). C'est de la mecanique de langage, pas
 une strategie d'organisation :
 
@@ -66,9 +65,9 @@ Regle : **18 = COMMENT ca marche en JS. 12 = QUELLE intention j'exprime. 13 = CO
 
 ## Reference
 
-- `02-CONSTRUCTION/10_design_patterns/00_why_design_patterns.md`
-- `02-CONSTRUCTION/11_refactoring/00_why_refactoring.md`
-- `02-CONSTRUCTION/14_architecture_patterns/00_why_architecture_patterns.md`
+- `12_design_patterns/00_why_design_patterns.md`
+- `13_refactoring/00_why_refactoring.md`
+- `16_architecture_patterns/00_why_architecture_patterns.md`
 
 ---
 stability: intemporel
@@ -78,16 +77,16 @@ stability: intemporel
 
 | Geste concret                                | Module qui l'accueille          |
 | -------------------------------------------- | -------------------------------- |
-| Extraire une Strategy d'un `switch` géant    | 02-CONSTRUCTION/11_refactoring                   |
-| Reconnaître qu'un pattern Strategy existe    | 02-CONSTRUCTION/10_design_patterns               |
-| Décider d'un cœur pur + adaptateurs (hexa)   | 02-CONSTRUCTION/14_architecture_patterns         |
-| Renommer une variable pour clarifier         | 02-CONSTRUCTION/11_refactoring                   |
-| Introduire un Repository pour cacher l'ORM   | 02-CONSTRUCTION/10_design_patterns               |
-| Décider "on met un cache devant la DB"       | 02-CONSTRUCTION/14_architecture_patterns         |
-| Passer d'un callback à une promise          | 02-CONSTRUCTION/11_refactoring                   |
-| Choisir Observer vs polling                  | 02-CONSTRUCTION/10_design_patterns               |
-| Séparer read model et write model (CQRS)     | 02-CONSTRUCTION/14_architecture_patterns         |
-| Extraire une fonction pure d'un gros bloc    | 02-CONSTRUCTION/11_refactoring                   |
+| Extraire une Strategy d'un `switch` géant    | 13_refactoring                   |
+| Reconnaître qu'un pattern Strategy existe    | 12_design_patterns               |
+| Décider d'un cœur pur + adaptateurs (hexa)   | 16_architecture_patterns         |
+| Renommer une variable pour clarifier         | 13_refactoring                   |
+| Introduire un Repository pour cacher l'ORM   | 12_design_patterns               |
+| Décider "on met un cache devant la DB"       | 16_architecture_patterns         |
+| Passer d'un callback à une promise          | 13_refactoring                   |
+| Choisir Observer vs polling                  | 12_design_patterns               |
+| Séparer read model et write model (CQRS)     | 16_architecture_patterns         |
+| Extraire une fonction pure d'un gros bloc    | 13_refactoring                   |
 
 Règle mnémonique :
 - **Pattern** = outil tactique nommé.

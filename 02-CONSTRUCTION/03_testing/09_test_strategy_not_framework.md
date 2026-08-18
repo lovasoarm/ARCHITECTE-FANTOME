@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 09 : Stratégie de tests (pas framework)
@@ -40,7 +39,7 @@ d'intégration en mémoire (SQLite-in-mem, HTTP local), peu de vrai E2E.
 - **Faux négatif** : test rouge alors que le code est bon
  (assertion trop stricte, dépendance externe flaky).
 
-Un test flaky est **toujours** un des deux. Voir `01-CADRAGE/03_debugging/07_flaky_bugs.md`.
+Un test flaky est **toujours** un des deux. Voir `04_debugging/07_flaky_bugs.md`.
 
 ## Coût de maintenance
 
@@ -69,10 +68,3 @@ tant que le contrat externe ne bouge pas.**
 100% de couverture = 100% des lignes **exécutées** par les tests. Ça ne dit
 rien sur les **assertions**. Un test sans `assert` couvre sans vérifier.
 Coverage est un outil de détection, pas un objectif.
-
-## Ce que cette stratégie ne couvre pas encore
-
-Unitaire, intégration, contrat, e2e : ces quatre niveaux vérifient que ton système fait ce qu'il
-doit quand tout va bien et quand une entrée est mauvaise. Aucun ne vérifie ce qui se passe quand
-une dépendance entière disparaît sans prévenir en production, pas en test. Cette compétence
-arrive plus loin dans le parcours, sur ton projet fil rouge réel : [03-PILOTAGE/06_fiabilite_slo/05_panne_subie_sur_fil_rouge.md](../../03-PILOTAGE/06_fiabilite_slo/05_panne_subie_sur_fil_rouge.md).

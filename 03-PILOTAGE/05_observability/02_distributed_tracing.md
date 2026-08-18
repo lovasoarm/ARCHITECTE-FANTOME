@@ -1,12 +1,11 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # Suivre un Rasengan qui traverse 6 couches de chakra sans perdre le fil
 Temps de lecture ~10 min
 
-Un Rasengan tissé par Naruto passe par 6 couches de chakra internes : concentration, condensation, rotation, compression, projection, impact. Le jutsu met 3 secondes au lieu de 0.3 pour se former. Laquelle des 6 couches ralentit ? Le correlation ID (vu dans `03-PILOTAGE/05_observability/01_structured_logging`) te dit QUE ces flux de chakra appartiennent au même jutsu. Il ne te dit PAS où le temps a été perdu.
+Un Rasengan tissé par Naruto passe par 6 couches de chakra internes : concentration, condensation, rotation, compression, projection, impact. Le jutsu met 3 secondes au lieu de 0.3 pour se former. Laquelle des 6 couches ralentit ? Le correlation ID (vu dans `26_observability/01_structured_logging`) te dit QUE ces flux de chakra appartiennent au même jutsu. Il ne te dit PAS où le temps a été perdu.
 
 Le distributed tracing (traçage distribué) répond exactement à ça : il découpe une requête en segments mesurés (spans), organisés en arbre, pour voir précisément combien de temps chaque couche a pris, et dans quel ordre.
 
@@ -158,7 +157,7 @@ Le pourquoi cette lecture est immédiate : le span "Boucle de correction" prend 
 // alors que le flux continue bel et bien son chemin ailleurs
 ```
 
-La correction : faire de la propagation du contexte de trace une responsabilité du framework HTTP partagé (middleware commun), pas une chose que chaque dev doit se souvenir d'ajouter manuellement à chaque nouveau service. Une checklist d'intégration d'un nouveau service doit inclure "propage le traceId" au même titre que "expose un endpoint /health" (vu dans `05-MAITRISE/02_scalability/01_load_balancing` section 5).
+La correction : faire de la propagation du contexte de trace une responsabilité du framework HTTP partagé (middleware commun), pas une chose que chaque dev doit se souvenir d'ajouter manuellement à chaque nouveau service. Une checklist d'intégration d'un nouveau service doit inclure "propage le traceId" au même titre que "expose un endpoint /health" (vu dans `25_scalability/01_load_balancing` section 5).
 
 ---
 

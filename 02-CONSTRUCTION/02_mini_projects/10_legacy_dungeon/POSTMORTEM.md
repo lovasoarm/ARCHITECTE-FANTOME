@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # POSTMORTEM : LEGACY DUNGEON
@@ -30,7 +29,7 @@ Dans les autres mini-projets, le POSTMORTEM documente ce qui a coincé pendant l
 
 ### Une convention ou un pattern qui t'a surpris
 
-(à remplir : un nommage inhabituel, une façon de gérer les erreurs différente de ce que t'as appris dans `01-CADRAGE/04_error_handling`, une organisation de fichiers qui ne suit aucun pattern du curriculum)
+(à remplir : un nommage inhabituel, une façon de gérer les erreurs différente de ce que t'as appris dans `05_error_handling`, une organisation de fichiers qui ne suit aucun pattern du curriculum)
 
 **Résolution** : (comment t'as fini par accepter ou comprendre cette convention)
 
@@ -50,7 +49,7 @@ Dans les autres mini-projets, le POSTMORTEM documente ce qui a coincé pendant l
 
 ## CE QUI A VRAIMENT MARCHÉ
 
-(à remplir : qu'est-ce qui, dans la méthode de `03-PILOTAGE/10_team_craft/04_navigate_codebase.md`, t'a vraiment fait gagner du temps ? Le grep ciblé ? Les tests comme documentation ? Le fait de NE PAS tout lire linéairement ?)
+(à remplir : qu'est-ce qui, dans la méthode de `27_team_craft/04_navigate_codebase.md`, t'a vraiment fait gagner du temps ? Le grep ciblé ? Les tests comme documentation ? Le fait de NE PAS tout lire linéairement ?)
 
 ---
 
@@ -109,7 +108,7 @@ Une ligne par déclencheur activé (J+1, J+3, J+5) avec le coût réel payé.
 > Cette section est un **gate**. Un POSTMORTEM sans elle est rejete par le
 > la securite redevient un module theorique.
 >
-> Reference : `03-PILOTAGE/04_security/06_owasp_checklist.md`.
+> Reference : `22_security/06_owasp_checklist.md`.
 
 Pour chaque item OWASP Top 10, coche exactement une case :
 

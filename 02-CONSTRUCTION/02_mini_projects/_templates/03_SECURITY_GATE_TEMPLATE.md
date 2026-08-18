@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 
 # Security Gate Template : OWASP Top 10
@@ -12,7 +11,7 @@ acte: appliquer
 > test, log, config, ligne de code). `N/A` est autorisé mais **doit être
 > motivé** en une phrase : un `N/A` non motivé fait échouer la gate.
 
-Voir aussi : `03-PILOTAGE/04_security/06_owasp_checklist.md`.
+Voir aussi : `22_security/06_owasp_checklist.md`.
 
 ## Métadonnées
 

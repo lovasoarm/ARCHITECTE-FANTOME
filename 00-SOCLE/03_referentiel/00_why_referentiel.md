@@ -3,7 +3,6 @@ perennite: evolutif
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Cadre de posture d'ingénieur, indépendant des technos.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
@@ -40,9 +39,9 @@ les repères objectifs qui rendent tout le reste opposable.
 
 ## Règle précise sur `00_why_*.md`
 
-Chaque **module racine** (`00-SOCLE/04_fundamentals`, `00-SOCLE/05_problem_solving`, etc.)
+Chaque **module racine** (`01_fundamentals`, `02_problem_solving`, etc.)
 a obligatoirement son `00_why_<module>.md`. Ça, c'est non négociable :
-Tous les modules du fil le respectent.
+32/32 modules le respectent.
 
 Un **sous-dossier thématique interne** (`05_web_basics`, `i18n`,
 `04_typescript_tooling`...) n'a besoin de son propre `00_why` que s'il
@@ -52,7 +51,7 @@ l'héberge"). C'est le cas d'`i18n` (sous-domaine entier avec ses propres
 pièges) ou de `04_typescript_tooling` (bascule complète de registre,
 langage vers outillage). Ce n'est pas le cas d'un sous-dossier qui reste
 une simple étape de la progression interne du module (`05_web_basics`
-dans `00-SOCLE/04_fundamentals` répond déjà à la question "pourquoi" via
+dans `01_fundamentals` répond déjà à la question "pourquoi" via
 `00_why_fundamentals.md`).
 
 Si un sous-dossier grossit au point de devenir un module à part entière

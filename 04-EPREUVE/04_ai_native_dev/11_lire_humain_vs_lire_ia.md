@@ -1,13 +1,12 @@
 ---
-stability: perissable_2028
+stability: periss-2028
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # LIRE UN HUMAIN VS LIRE UNE IA : LES DEUX PIÈGES À NE PAS CONFONDRE
 Temps de lecture ~10 min
 
-> **Prérequis** : avoir fait `07b_solo_vs_copilot_drill.md`, `09_ai_hallucination_gym.md`, `10_ambiguous_ai_response.md`.
+> **Prérequis** : avoir fait `07_solo_vs_copilot_drill.md`, `09_ai_hallucination_gym.md`, `10_ambiguous_ai_response.md`.
 > **Objectif** : distinguer deux réflexes de lecture radicalement différents. Le code humain ment par incohérence ; le code IA ment par plausibilité. Confondre les deux, c'est se faire tuer par les deux.
 
 ---

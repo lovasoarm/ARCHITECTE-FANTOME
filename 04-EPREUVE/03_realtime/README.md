@@ -1,28 +1,43 @@
 ---
-stability: intemporel
-acte: restituer
-route: complete
+stability: evolutif
+acte: parcours
+noyau: oui
+genere_depuis: disque
 ---
 
-# 04-EPREUVE/03_realtime
+# MODULE 03 REALTIME
 
-Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
+> Palier `04-EPREUVE`. Duree estimee : **3 h 45** (6 fichiers de travail).
 
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
-## Contenu du dossier
+## Sommaire genere depuis le disque
 
-Liste generee : tout fichier de `04-EPREUVE/03_realtime` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
+| Fichier | Objet | Duree |
+| --- | --- | --- |
+| [`00_prereq_check.md`](00_prereq_check.md) | 00 : Prereq check : Realtime | 15 min |
+| [`00_why_realtime.md`](00_why_realtime.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : REAL-TIME | 45 min |
+| [`04_realtime_grimoire.md`](04_realtime_grimoire.md) | Page verrouillée | 30 min |
+| [`05_EXO_LECTURE.md`](05_EXO_LECTURE.md) | EXO LECTURE : 15-25 minutes (Realtime) | 45 min |
+| [`06_EXO_JEUNE_IA.md`](06_EXO_JEUNE_IA.md) | EXO [JEUNE IA] : 20_realtime | 45 min |
+| [`98_PORTAGE_MENTAL.md`](98_PORTAGE_MENTAL.md) | 98_PORTAGE_MENTAL.md : ce concept en Python / Go / Rust | 45 min |
 
-- [00_prereq_check.md](00_prereq_check.md)
-- [00_why_realtime.md](00_why_realtime.md)
-- [04_realtime_grimoire.md](04_realtime_grimoire.md)
-- [05_EXO_LECTURE.md](05_EXO_LECTURE.md)
-- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
-- [98_PORTAGE_MENTAL.md](98_PORTAGE_MENTAL.md)
-- [01_websockets/](01_websockets/README.md)
-- [02_sse/](02_sse/README.md)
-- [03_webrtc/](03_webrtc/README.md)
-- [verification_pack/](verification_pack/README.md)
+Total : **3 h 45**. Regle de calcul : lecon numerotee 45 min, controle de prerequis 15 min,
+grimoire 30 min, challenge 1 h 30, boss fight 3 h. Voir `.meta/_STYLE.md`, section « Durees ».
 
-<!-- CONTENU-DOSSIER:fin -->
+## Comment travailler ce module
+
+1. Ouvre d abord le fichier `00_why_*` s il existe : il dit pourquoi le module merite ton temps.
+2. Passe le controle de prerequis. Un prerequis manquant se repare en amont, jamais ici.
+3. Fais les lecons dans l ordre des numeros. Chaque lecon a un exercice borne : il se rend, il se date.
+4. Le grimoire se lit **apres** la pratique, jamais avant : c est une fiche de rappel, pas un cours.
+5. Le challenge, puis le boss fight, cochent le module. Sans eux, le module est lu, pas acquis.
+
+## Ce que ce module produit dans ton depot fil rouge
+
+Au moins un artefact date et verifiable. Si tu ne peux pas montrer de fichier a la sortie, le module
+n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
+
+## Verification
+
+- [ ] Tous les fichiers du tableau sont ouverts et leurs exercices rendus.
+- [ ] L artefact produit est cite dans ton journal de progression (`PROGRESSION.md`).

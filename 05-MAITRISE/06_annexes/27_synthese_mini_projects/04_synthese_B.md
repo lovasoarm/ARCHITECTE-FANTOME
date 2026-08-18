@@ -1,12 +1,11 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SYNTHÈSE B : OPTIMISER LA CHAÎNE DE DISTRIBUTION DE WALTER
 Temps de lecture ~6 min
 
-> Couvre : `02-CONSTRUCTION/05_memory_performance` + `02-CONSTRUCTION/06_data_structures` + `02-CONSTRUCTION/07_algorithms` + `02-CONSTRUCTION/09_functional_js`
+> Couvre : `08_memory_performance` + `09_data_structures` + `10_algorithms` + `11_functional_js`
 > Durée cible : 100 à 160 minutes
 > Le math_basics (05) est mobilisé en transverse, pas comme bloc séparé.
 

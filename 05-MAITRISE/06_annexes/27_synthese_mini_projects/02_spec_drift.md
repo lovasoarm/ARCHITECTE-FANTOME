@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SPEC DRIFT : la spec qui bouge en cours de route
@@ -14,15 +13,15 @@ Compétence visée : encaisser un changement de contrainte à 40% d'avancement s
 
 ## POURQUOI CE FICHIER EXISTE
 
-Les 18 cahiers des charges de `02-CONSTRUCTION/02_mini_projects/*` sont clairs à l'ouverture. C'est un mensonge pédagogique utile : tu apprends d'abord à décomposer, ensuite à absorber le flou. Ce fichier introduit **le flou mouvant** : après 40% d'avancement, une contrainte change. Tu dois t'adapter sans réécrire depuis zéro.
+Les 18 cahiers des charges de `30_mini_projects/*` sont clairs à l'ouverture. C'est un mensonge pédagogique utile : tu apprends d'abord à décomposer, ensuite à absorber le flou. Ce fichier introduit **le flou mouvant** : après 40% d'avancement, une contrainte change. Tu dois t'adapter sans réécrire depuis zéro.
 
 ## PROJETS ÉLIGIBLES
 
 Choisis UN projet parmi :
 
-- `02-CONSTRUCTION/02_mini_projects/05_prison_break_api/` (recommandé pour un premier drift : contrainte de sécurité qui apparaît en cours de route).
-- `02-CONSTRUCTION/02_mini_projects/06_ultras_dashboard/` (drift sur la volumétrie / temps réel).
-- `02-CONSTRUCTION/02_mini_projects/16_distributed_arena/` (drift sur la cohérence).
+- `30_mini_projects/05_prison_break_api/` (recommandé pour un premier drift : contrainte de sécurité qui apparaît en cours de route).
+- `30_mini_projects/06_ultras_dashboard/` (drift sur la volumétrie / temps réel).
+- `30_mini_projects/16_distributed_arena/` (drift sur la cohérence).
 
 Refait le drift 3 fois total, projets différents, pour couvrir 3 natures de changement.
 
@@ -58,7 +57,7 @@ Tu déclares "40%" toi-même : à peu près quand la structure squelette est en 
    - Ce que tu récupères.
 4. **TDD_JOURNAL** : ajoute les nouveaux tests d'acceptation avant tout code.
 5. **Puis** tu codes le drift. Objectif : dette technique visible, pas cachée.
-6. **INTERVIEW_DEFENSE_JOURNAL** (facultatif mais fortement recommandé) : oralise en 90 secondes "pourquoi j'ai choisi cette voie et pas l'autre" comme au scénario 4 de `05-MAITRISE/06_annexes/career/interview_defense.md`.
+6. **INTERVIEW_DEFENSE_JOURNAL** (facultatif mais fortement recommandé) : oralise en 90 secondes "pourquoi j'ai choisi cette voie et pas l'autre" comme au scénario 4 de `31_annexes/career/interview_defense.md`.
 
 ## GRILLE DE VALIDATION
 

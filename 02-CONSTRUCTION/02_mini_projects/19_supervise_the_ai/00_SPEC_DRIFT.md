@@ -1,7 +1,6 @@
 ---
 stability: mouvant
 scope: 19_supervise_the_ai
-acte: appliquer
 ---
 
 # 00_SPEC_DRIFT.md : spec drift **en cours de projet** (mouvant)

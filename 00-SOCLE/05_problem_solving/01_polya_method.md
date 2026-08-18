@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 01 : La méthode Polya (avant de toucher au clavier)

@@ -1,33 +1,35 @@
-# CHALLENGE : LA GRILLE D'AUTO-ÉVALUATION, SANS COMPLAISANCE
+---
+stability: intemporel
+acte: maitrise
+noyau: oui
+type: challenge
+---
 
-Temps de lecture ~8 min
+# CHALLENGE FINAL : ASSEMBLER LE DOSSIER UNIQUE
 
-Une auto-évaluation utile ne note pas un ressenti : elle exige une preuve datée. Pour chaque famille, un seul critère tranche : **le fichier existe-t-il dans ton dépôt, avec des chiffres sourcés ?**
+Durée : 1 h 30 (assemblage seulement — les pièces existent déjà).
 
-| Famille | Preuve exigée | Niveau 0 | Niveau 1 | Niveau 2 |
-| --- | --- | --- | --- | --- |
-| S1 | `BUDGET-CLOUD.md` | absent | un palier chiffré | trois paliers, egress, dates |
-| S2 | `ADR-PRINCIPAL.md` | absent | un ADR sans conséquence chiffrée | trois ADR, chacun chiffré en coût ou disponibilité |
-| S3 | `SLO.md` | absent | SLO écrit, RTO estimé | RTO mesuré et daté, budget en requêtes/semaine |
-| S4 | `DECISION-ARBITRAGE.md` | absent | une option | deux options chiffrées et un point mort |
-| S5 | revue + note | absent | l'un des deux | les deux, note sans jargon |
-| S6 | `IA-EN-PROD.md` | absent, ou famille remplacée par écrit | coût connu | plafond, timeout, SLO séparé, 20 cas |
+## Consigne
 
-Règle de notation : au moindre doute, on descend d'un niveau. Une preuve qu'il faut expliquer
-oralement pour qu'elle compte n'est pas une preuve.
+Tu n'écris aucun contenu neuf. Tu **assembles** et tu **contrôles**.
 
-## Le seuil de passage
+1. Ouvre les sept pièces de [../../PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md).
+2. Vérifie que chaque chemin cité dans ton dossier existe réellement dans ton dépôt.
+3. Vérifie que chaque chiffre apparaît de façon **identique** partout où il est cité. Un chiffre qui
+   diffère entre deux sections invalide les deux.
+4. Écris la table des matières et le résumé d'une demi-page en tête, lisible par un non-technique.
+5. Fais lire la section 6 à une personne non technique, et note sa reformulation mot pour mot.
 
-Quatre familles au niveau 2, dont S1 et S3 obligatoirement, et aucune famille au niveau 0 parmi
-les quatre retenues. Une famille peut être écartée par écrit (typiquement S6 sans brique IA),
-comme l'autorise [PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md).
+## Contrôle automatique conseillé
 
-## Exercice
+```bash
+grep -rno "[0-9][0-9.,]* *\(€\|ms\|Go\|%\)" DOSSIER.md | sort -k2 | uniq -c | sort -rn | head
+```
 
-**La notation à froid (20 min).** Remplis la grille pour ton projet aujourd'hui, avec le chemin
-exact du fichier en face de chaque niveau annoncé. Les cases vides sont ton plan des 90 jours
-([04_plan_90_jours.md](04_plan_90_jours.md)).
+Repère les nombres orphelins : un nombre cité une seule fois dans tout le dossier est souvent un
+nombre non recoupé.
 
-## ET APRÈS
+## Barème (12 points, 10 pour passer)
 
-[02_soutenance_solo.md](02_soutenance_solo.md).
+Neuf sections présentes (3) · sept pièces liées et existantes (3) · cohérence des chiffres (3) ·
+résumé compréhensible sans jargon (3).

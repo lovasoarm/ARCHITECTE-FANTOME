@@ -3,7 +3,6 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Les projets sont des supports, l'exercice de conception ne se démode pas.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
@@ -46,7 +45,7 @@ La tension entre ce que tu veux faire et ce que les contraintes permettent : c'e
 Chaque projet a la même structure :
 
 ```
-02-CONSTRUCTION/02_mini_projects/XX_nom_du_projet/
+30_mini_projects/XX_nom_du_projet/
 ├── cahierdescharges.md   <-- le contrat avant le code
 ├── README.md        <-- la doc du projet fini
 ├── TDD_JOURNAL.md     <-- la trace des décisions de test
@@ -211,9 +210,9 @@ Le code qu'on livre sans comprendre : c'est le code qu'on appelle à 3h du matin
 
 ---
 
-## PONT AVEC 05-MAITRISE/03_edge_cases
+## PONT AVEC 28_edge_cases
 
 Tu sors des cas limites théoriques et tu entres dans les projets où
 l'inattendu arrive en vrai : specs qui bougent, dépendances qui cassent,
-codebase inconnue. Les mini-projets sont l'arène où les modules du fil
+codebase inconnue. Les mini-projets sont l'arène où les 32 modules
 précédents se rencontrent : pas un module de plus, une intégration.

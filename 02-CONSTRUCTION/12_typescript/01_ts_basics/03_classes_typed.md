@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # CLASSES TYPESCRIPT : L'ARMURE AVANT LE COMBAT

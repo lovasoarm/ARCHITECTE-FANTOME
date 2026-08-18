@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # NAVIGUER UN CODEBASE INCONNU SANS SE PERDRE

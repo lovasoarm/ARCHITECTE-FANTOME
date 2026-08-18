@@ -1,8 +1,3 @@
----
-stability: perissable_2027
-acte: appliquer
----
-
 # Trouver le vrai besoin
 
 ## La scène

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Protéger ton API sans punir les gens honnêtes
@@ -10,7 +9,7 @@ T-Bag essaie de bruteforcer l'API de Fox River : 5000 tentatives par seconde sur
 
 Pourquoi ça compte : sans rate limiting, un seul client (malveillant ou juste buggé, genre une boucle infinie côté front) peut saturer ton serveur à lui seul, et empêcher TOUS les autres users d'accéder au service. C'est littéralement une porte ouverte au déni de service (DoS : denial of service).
 
-Avantage : protection contre l'abus, contrôle des coûts (vu aussi dans `04-EPREUVE/04_ai_native_dev/01_ai_workflow` pour les appels LLM qui coûtent cher).
+Avantage : protection contre l'abus, contrôle des coûts (vu aussi dans `23_ai_native_dev/01_ai_workflow` pour les appels LLM qui coûtent cher).
 Inconvénient : mal calibré, tu bloques des détenus légitimes du système et tu crées une mauvaise expérience.
 
 ---
@@ -29,7 +28,7 @@ Combien de requêtes déjà faites dans la fenêtre de temps actuelle ?
 ```
 
 ```js
-// Version naïve avec Redis (vu en détail dans 05-MAITRISE/01_databases/04_redis_caching)
+// Version naïve avec Redis (vu en détail dans 24_databases/04_redis_caching)
 async function isAllowed(userId) {
  const key = `ratelimit:${userId}`
  const count = await redis.incr(key) // incrémente, crée la clé à 1 si elle n'existe pas
@@ -149,7 +148,7 @@ app.use((req, res, next) => {
 })
 ```
 
-Le pourquoi : un statut `429 Too Many Requests` avec un header `Retry-After` permet au client (souvent un autre programme, une autre API) de savoir exactement quand retenter, au lieu de retenter en boucle immédiatement (ce qui aggrave le problème) ou d'abandonner complètement. C'est une question de design d'API autant que de protection, vu aussi dans `02-CONSTRUCTION/19_api_craft/05_error_handling_api`.
+Le pourquoi : un statut `429 Too Many Requests` avec un header `Retry-After` permet au client (souvent un autre programme, une autre API) de savoir exactement quand retenter, au lieu de retenter en boucle immédiatement (ce qui aggrave le problème) ou d'abandonner complètement. C'est une question de design d'API autant que de protection, vu aussi dans `21_api_craft/05_error_handling_api`.
 
 ---
 
@@ -172,7 +171,7 @@ La correction : combiner IP et identité applicative (user authentifié, clé AP
 
 ## TIPS D'ÉVOLUTION TECHNIQUE
 
-Avant, le rate limiting se codait souvent à la main, en mémoire locale du process (un simple objet JS qui compte). Ça casse immédiatement dès que tu scale out (vu dans `02_horizontal_vs_vertical`) : chaque serveur a SON propre compteur, donc la vraie limite globale devient (limite x nombre de serveurs) sans que personne s'en rende compte. Maintenant, le rate limiting passe systématiquement par un store partagé (Redis, vu dans `05-MAITRISE/01_databases/04_redis_caching`) ou un service dédié au niveau du load balancer/API gateway (voir `02-CONSTRUCTION/14_architecture_patterns/06_microservices_intro.md` pour la définition complète), pour que la limite reste vraie peu importe combien de serveurs traitent le trafic.
+Avant, le rate limiting se codait souvent à la main, en mémoire locale du process (un simple objet JS qui compte). Ça casse immédiatement dès que tu scale out (vu dans `02_horizontal_vs_vertical`) : chaque serveur a SON propre compteur, donc la vraie limite globale devient (limite x nombre de serveurs) sans que personne s'en rende compte. Maintenant, le rate limiting passe systématiquement par un store partagé (Redis, vu dans `24_databases/04_redis_caching`) ou un service dédié au niveau du load balancer/API gateway (voir `16_architecture_patterns/06_microservices_intro.md` pour la définition complète), pour que la limite reste vraie peu importe combien de serveurs traitent le trafic.
 
 ---
 

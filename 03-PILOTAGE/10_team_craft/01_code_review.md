@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CODE REVIEW : REVIEWER SANS ÉCRASER

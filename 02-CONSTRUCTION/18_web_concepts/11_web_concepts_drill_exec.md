@@ -1,6 +1,5 @@
 ---
-stability: mouvant
-acte: appliquer
+stability: évolutif
 ---
 
 # Web concepts : Drill exécutable

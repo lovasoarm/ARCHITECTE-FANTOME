@@ -1,72 +1,35 @@
 ---
 stability: intemporel
-acte: restituer
-route: survie
+acte: pilotage
+noyau: oui
 ---
 
-# 03-PILOTAGE/06_fiabilite_slo : fiabilité, SLO et reprise
+# 06 — FIABILITÉ ET SLO : PROMETTRE UN CHIFFRE, PUIS LE TENIR
 
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
+> Palier 3 — Pilotage. Durée estimée : 8 h 15 (6 leçons, 1 challenge, 1 boss fight).
+> Frontière : `05_observability` t'apprend à **voir**. Ce module t'apprend à **promettre** et à
+> **arbitrer** avec ce que tu vois. Voir sans promettre, c'est du dashboard décoratif.
 
-Temps de lecture ~4 min
+## Ce que tu sauras faire
 
-## Ce que c'est
+1. Écrire un SLI mesurable, un SLO daté, et le budget d'erreur qui en découle.
+2. Décider ce qui réveille un humain à 3 h du matin — et surtout ce qui ne le réveille pas.
+3. Chiffrer RPO et RTO, puis les **mesurer** chronomètre en main sur une restauration réelle.
+4. Encaisser une panne subie sur ton fil rouge et en sortir un post-mortem sans coupable.
 
-Le passage de "je vois ce qui se passe en production" à "j'ai promis quelque chose et je sais si je le tiens". Ce module fait écrire une promesse de service calculable, la traduit en budget d'erreur dépensable, la protège par des alertes qui réveillent vraiment quelqu'un, et la met à l'épreuve d'une restauration chronométrée.
+## Parcours
 
-## Structure du module
+| Fichier | Objet | Durée |
+| --- | --- | --- |
+| `00_why_fiabilite_slo.md` | pourquoi | 45 min |
+| `01_sli_slo_budget_erreur.md` | SLI, SLO, budget d'erreur | 45 min |
+| `02_alerting_astreinte.md` | alertes utiles, astreinte soutenable | 45 min |
+| `03_reprise_rpo_rto.md` | sauvegarde, restauration, RPO/RTO mesurés | 45 min |
+| `04_post_mortem_sans_coupable.md` | post-mortem | 45 min |
+| `05_panne_subie_sur_fil_rouge.md` | exercice de panne provoquée | 45 min |
+| `challenge.md` | mise en pratique | 1 h 30 |
+| `boss-fight.md` | épreuve de passage | 3 h |
 
-- [00_prereq_check.md](00_prereq_check.md) : filtre anti-illusion avant d'entrer.
-- [00_why_fiabilite_slo.md](00_why_fiabilite_slo.md) : pourquoi ce module mérite ton temps.
-- [01_sli_slo_budget_erreur.md](01_sli_slo_budget_erreur.md) : écrire un SLI, un SLO et un budget d'erreur qui tiennent.
-- [02_alerting_astreinte.md](02_alerting_astreinte.md) : alerter sur le symptôme, et le document d'astreinte d'une page.
-- [03_reprise_rpo_rto.md](03_reprise_rpo_rto.md) : RPO, RTO et la restauration mesurée au chronomètre.
-- [04_degradation_disjoncteur.md](04_degradation_disjoncteur.md) : dégrader plutôt que tomber (timeout, retry, disjoncteur, repli).
-- [05_panne_subie_sur_fil_rouge.md](05_panne_subie_sur_fil_rouge.md) : gate bloquante, une vraie panne provoquée sur ton fil rouge, chronométrée, postmortem signé.
-- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md) : decider seul, IA coupee, puis mesurer l'ecart avec l'IA.
-- [verification_pack/criteres.md](verification_pack/criteres.md) : les trois drills et leurs criteres binaires.
-- [grimoire.md](grimoire.md) : mémo dense, à ouvrir seulement après avoir fini le reste.
-- [challenge.md](challenge.md) : challenge, produire le `SLO.md` de ton projet.
-- [boss-fight.md](boss-fight.md) : boss fight, budget brûlé un vendredi à 16 h.
+## Livrable
 
-## Comment lire ce module
-
-Dans l'ordre. Le grimoire ne se lit qu'après les leçons et les exercices : le lire avant donne l'illusion de savoir. Le challenge produit une vraie pièce de preuve, il ne se saute pas.
-
-## RENVOI CROISÉ : ASYNC (01-CADRAGE/02_async)
-
-Les concepts de SLI/SLO, budget d'erreur et reprise s'appuient sur les
-mécanismes async posés dans `01-CADRAGE/02_async` (timeouts, retry,
-backpressure, event loop) : un retry non idempotent ou un timeout mal réglé
-consomme directement le budget d'erreur défini ici. Le mini-projet
-`02-CONSTRUCTION/02_mini_projects/16_distributed_arena` (dossier `INCIDENT/`
-obligatoire) illustre concrètement ce pont entre async et fiabilité.
-
-## Signal que tu es prêt pour le module suivant
-
-Ton `SLO.md` existe, son RTO est daté et mesuré, ton budget d'erreur est exprimé en requêtes ratées par semaine, tu as une politique écrite qui dit ce que tu arrêtes quand il fond, et le `POSTMORTEM.md` de [05_panne_subie_sur_fil_rouge.md](05_panne_subie_sur_fil_rouge.md) est signé : ce RTO a été mesuré sur une vraie panne, pas seulement écrit. Le boss fight passé sans basculer de fournisseur avant d'avoir corrigé le retry en est la preuve.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `03-PILOTAGE/06_fiabilite_slo` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_prereq_check.md](00_prereq_check.md)
-- [00_why_fiabilite_slo.md](00_why_fiabilite_slo.md)
-- [01_sli_slo_budget_erreur.md](01_sli_slo_budget_erreur.md)
-- [02_alerting_astreinte.md](02_alerting_astreinte.md)
-- [03_reprise_rpo_rto.md](03_reprise_rpo_rto.md)
-- [04_degradation_disjoncteur.md](04_degradation_disjoncteur.md)
-- [05_panne_subie_sur_fil_rouge.md](05_panne_subie_sur_fil_rouge.md)
-- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
-- [boss-fight.md](boss-fight.md)
-- [challenge.md](challenge.md)
-- [defense-orale.md](defense-orale.md)
-- [grimoire.md](grimoire.md)
-- [verification_pack/](verification_pack/README.md)
-
-<!-- CONTENU-DOSSIER:fin -->
-- [defense-orale.md](defense-orale.md) — trois objections a soutenir a voix haute avant de valider le module.
-
-> **Contexte d'entreprise manquant ?** Ce module suppose une astreinte reelle et des pannes que tu n'as pas ecrites. Protocole solo jouable, avec tirage au sort et verdict binaire : [SIMULATION-ENTREPRISE.md](../../06-ANNEXES-TRANSVERSES/08-SIMULATION-ENTREPRISE.md) (protocole 3).
+`SLO.md` dans ton fil rouge : famille S3 de [PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md).

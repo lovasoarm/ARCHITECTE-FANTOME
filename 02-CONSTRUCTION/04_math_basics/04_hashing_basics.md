@@ -1,8 +1,7 @@
 ---
-stability: perissable_2027
+stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # HASHING BASICS : L'EMPREINTE QUI NE MENT PAS
 Temps de lecture ~10 min

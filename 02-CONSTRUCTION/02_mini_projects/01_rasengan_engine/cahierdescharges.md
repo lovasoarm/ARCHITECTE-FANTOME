@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CAHIER DES CHARGES : RASENGAN ENGINE
@@ -63,17 +62,17 @@ Ce projet force à utiliser la programmation fonctionnelle comme outil réel, pa
 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
-### `00-SOCLE/04_fundamentals` : les bases qui tiennent
+### `01_fundamentals` : les bases qui tiennent
 
 **Où ça se voit** : partout. Les données de chaque ninja sont des objets JS. Les jutsus sont des fonctions. Les HOF (`map`, `filter`, `reduce`) remplacent toutes les boucles manuelles.
 **Pourquoi c'est nécessaire ici** : sans une vraie maîtrise des objets, des fonctions et des closures (une fonction qui mémorise une variable de son contexte parent, même après que ce contexte a disparu), le moteur devient un nid de bugs d'état.
 
-### `02-CONSTRUCTION/04_math_basics` : les maths qui servent vraiment
+### `07_math_basics` : les maths qui servent vraiment
 
 **Où ça se voit** : `src/utils/rng.js` (RNG = Random Number Generator, générateur de nombres aléatoires), `src/utils/cooldownCycle.js`.
 **Pourquoi c'est nécessaire ici** : les critiques, les esquives, les ratés sont pilotés par des probabilités. Les cooldowns des jutsus utilisent l'arithmétique modulaire (le modulo : reste de la division entière, utile pour créer des cycles). Sans ça, le combat est soit déterministe (ennuyeux), soit aléatoire sans logique (injuste).
 
-### `02-CONSTRUCTION/09_functional_js` : coder sans effets de bord
+### `11_functional_js` : coder sans effets de bord
 
 **Où ça se voit** : `src/engine/combat.js`, `src/engine/turnResolver.js`. Chaque tour retourne un nouvel état de combat. Jamais de mutation directe sur les stats.
 **Pourquoi c'est nécessaire ici** : si un ninja est muté directement à chaque tour, rejouer le combat depuis le tour 2 devient impossible. La testabilité exige l'immutabilité (le fait de ne jamais modifier un objet existant, de toujours en créer un nouveau).
@@ -86,9 +85,9 @@ Ce projet force à utiliser la programmation fonctionnelle comme outil réel, pa
 ### Résumé visuel
 
 ```
-00-SOCLE/04_fundamentals  --> structure des fighters, HOF dans combat.js
-02-CONSTRUCTION/04_math_basics   --> rng.js (probabilités), cooldownCycle.js (modulo)
-02-CONSTRUCTION/09_functional_js  --> turnResolver.js (immutabilité, pas de mutation d'état)
+01_fundamentals  --> structure des fighters, HOF dans combat.js
+07_math_basics   --> rng.js (probabilités), cooldownCycle.js (modulo)
+11_functional_js  --> turnResolver.js (immutabilité, pas de mutation d'état)
 13_design_patterns --> fighterFactory.js (Factory), jutsus/ (Strategy)
 ```
 
@@ -241,7 +240,7 @@ Règle : chaque fichier est testé avant de passer au suivant. Tu ne construis p
 | logger + index            | 1h            | Faible                                              |
 | Tests complets            | 2-3h          | Moyenne : tester le RNG sans le rendre déterministe |
 
-Le point de résistance majeur est `turnResolver.js`. C'est là que la tentation de muter l'état directement est la plus forte. Si tu sens que tu écris `fighter.chakra -= damages`, arrête-toi et relis le module `02-CONSTRUCTION/09_functional_js`.
+Le point de résistance majeur est `turnResolver.js`. C'est là que la tentation de muter l'état directement est la plus forte. Si tu sens que tu écris `fighter.chakra -= damages`, arrête-toi et relis le module `11_functional_js`.
 
 ## EXEMPLE DE TEST REMPLI
 

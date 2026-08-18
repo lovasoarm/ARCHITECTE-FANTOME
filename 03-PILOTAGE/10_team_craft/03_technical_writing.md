@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # TECHNICAL WRITING : ÉCRIRE POUR DES DEVS

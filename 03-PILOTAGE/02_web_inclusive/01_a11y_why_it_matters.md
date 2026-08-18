@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: restituer
 ---
 
 # L'ACCESSIBILITÉ N'EST PAS UNE OPTION
@@ -45,7 +44,7 @@ Réparer après coup        --> coût x10, refonte complète parfois
 Ignorer complètement       --> procès, perte de shinobis, mauvaise réputation
 ```
 
-L'accessibilité ressemble à la dette technique du module 02-CONSTRUCTION/11_refactoring : plus tu attends pour la traiter, plus la facture grossit. Sauf qu'ici, la "dette" exclut des humains réels de ton jutsu.
+L'accessibilité ressemble à la dette technique du module 13_refactoring : plus tu attends pour la traiter, plus la facture grossit. Sauf qu'ici, la "dette" exclut des humains réels de ton jutsu.
 
 ## 4) CE QUE LE RESTE DU MODULE COUVRE
 

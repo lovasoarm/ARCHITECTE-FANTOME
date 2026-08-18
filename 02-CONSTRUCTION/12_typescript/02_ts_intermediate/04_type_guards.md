@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # TYPE GUARDS : RÉTRÉCIR UN TYPE À RUNTIME

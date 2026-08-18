@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # STRATEGY PATTERN
 Temps de lecture ~8 min
@@ -124,7 +123,7 @@ function executeAttack(attacker, defender, strategyKey) {
 Goku (attacker) --> executeAttack --> strategy(attacker, defender) --> damage --> nouveau Vegeta (defender)
 ```
 
-Toujours zéro mutation : `executeAttack` retourne un NOUVEAU `defender`, jamais modifié sur place. Strategy + immutabilité = combo qui revient tout au long de `02-CONSTRUCTION/10_design_patterns`.
+Toujours zéro mutation : `executeAttack` retourne un NOUVEAU `defender`, jamais modifié sur place. Strategy + immutabilité = combo qui revient tout au long de `12_design_patterns`.
 
 ---
 

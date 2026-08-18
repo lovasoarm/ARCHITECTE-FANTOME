@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Interview Arena : 10 sujets + grilles
@@ -41,7 +40,7 @@ Temps de lecture ~5 min
 
 ## 6. Sécurité
 
-**Prompt** : "Cette route de vote du Ballon d'Or CLI est vulnérable. Trouve **trois** attaques."
+**Prompt** : "Cette route login est vulnérable. Trouve **trois** attaques."
 
 ## 7. SQL / DB
 
@@ -88,7 +87,7 @@ Explique-le à voix haute :
 - en 2 minutes (dev pair),
 - en 5 minutes (dev senior qui challenge).
 
-Voir `03-PILOTAGE/10_team_craft/12_three_audiences_intro.md` et `03-PILOTAGE/10_team_craft/13_three_audiences_drill.md`.
+Voir `27_team_craft/12_three_audiences_intro.md` et `27_team_craft/13_three_audiences_drill.md`.
 
 ### Simulation avec un pair
 

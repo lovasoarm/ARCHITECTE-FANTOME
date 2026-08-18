@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # Capturer l'erreur avant qu'un shinobi te l'envoie par email
@@ -39,10 +38,10 @@ const Sentry = require('@sentry/node')
 Sentry.init({
  dsn: process.env.SENTRY_DSN, // l'adresse unique de ton projet Sentry
  environment: process.env.NODE_ENV, // pour distinguer prod, staging, dev
- tracesSampleRate: 0.1 // sampling, vu dans `03-PILOTAGE/05_observability/02_distributed_tracing`
+ tracesSampleRate: 0.1 // sampling, vu dans `26_observability/02_distributed_tracing`
 })
 
-// Capture manuelle d'une erreur attrapée volontairement (vu dans `01-CADRAGE/04_error_handling`)
+// Capture manuelle d'une erreur attrapée volontairement (vu dans `05_error_handling`)
 try {
  await chargeChakra(amount)
 } catch (err) {
@@ -51,7 +50,7 @@ try {
 }
 ```
 
-Le pourquoi : Sentry ne remplace ni try/catch ni tes custom errors (vus dans `01-CADRAGE/04_error_handling/02_custom_errors`), il les complète. Ton code continue de décider comment réagir à l'erreur (retry, fallback, fail-fast), Sentry capture en parallèle ce qui s'est passé pour que l'équipe puisse l'analyser après coup, sans avoir eu besoin de reproduire le bug à la main.
+Le pourquoi : Sentry ne remplace ni try/catch ni tes custom errors (vus dans `05_error_handling/02_custom_errors`), il les complète. Ton code continue de décider comment réagir à l'erreur (retry, fallback, fail-fast), Sentry capture en parallèle ce qui s'est passé pour que l'équipe puisse l'analyser après coup, sans avoir eu besoin de reproduire le bug à la main.
 
 ---
 
@@ -100,7 +99,7 @@ Sentry.captureException(err, {
 })
 ```
 
-Le risque réel à l'inverse : si ton code génère des messages d'erreur dynamiques (genre incluant un ID unique à chaque fois, `Jutsu 48291 not found`, `Jutsu 48292 not found`...), Sentry par défaut peut créer une entrée DIFFÉRENTE pour chaque ID, alors que c'est en réalité LE MÊME bug. Il faut alors structurer le message d'erreur pour que le fingerprinting fonctionne (vu aussi dans `01-CADRAGE/04_error_handling/02_custom_errors` pour des erreurs nommées plutôt que des messages improvisés).
+Le risque réel à l'inverse : si ton code génère des messages d'erreur dynamiques (genre incluant un ID unique à chaque fois, `Jutsu 48291 not found`, `Jutsu 48292 not found`...), Sentry par défaut peut créer une entrée DIFFÉRENTE pour chaque ID, alors que c'est en réalité LE MÊME bug. Il faut alors structurer le message d'erreur pour que le fingerprinting fonctionne (vu aussi dans `05_error_handling/02_custom_errors` pour des erreurs nommées plutôt que des messages improvisés).
 
 ---
 
@@ -146,14 +145,14 @@ La correction : filtrer activement ce qui mérite d'être capturé (`beforeSend`
 
 ## TIPS D'ÉVOLUTION TECHNIQUE
 
-Avant, le suivi d'erreur en prod se résumait souvent à des emails d'alerte basiques envoyés à toute l'équipe à chaque exception, sans regroupement ni contexte, ce qui noyait vite tout le monde. Maintenant, des plateformes dédiées (Sentry, Rollbar, Bugsnag) regroupent intelligemment, attachent le contexte automatiquement (release, user, breadcrumbs : le fil des actions avant le crash), et s'intègrent avec l'alerting (vu dans `03-PILOTAGE/05_observability/03_metrics_alerting`). Le switch existe parce qu'un email par exception ne scale juste pas passé quelques shinobis, pas par mode.
+Avant, le suivi d'erreur en prod se résumait souvent à des emails d'alerte basiques envoyés à toute l'équipe à chaque exception, sans regroupement ni contexte, ce qui noyait vite tout le monde. Maintenant, des plateformes dédiées (Sentry, Rollbar, Bugsnag) regroupent intelligemment, attachent le contexte automatiquement (release, user, breadcrumbs : le fil des actions avant le crash), et s'intègrent avec l'alerting (vu dans `26_observability/03_metrics_alerting`). Le switch existe parce qu'un email par exception ne scale juste pas passé quelques shinobis, pas par mode.
 
 ---
 
 ## EXERCICES
 
 **EXO 1 : Enrichis le contexte**
-Pour une erreur qui survient pendant l'exécution d'un jutsu (vu aussi dans `02-CONSTRUCTION/19_api_craft/02_rest_crud_complete`), liste les 5 informations de contexte les plus utiles à attacher avant la capture, et explique pour chacune ce qu'elle permettrait de diagnostiquer plus vite. (15 minutes)
+Pour une erreur qui survient pendant l'exécution d'un jutsu (vu aussi dans `21_api_craft/02_rest_crud_complete`), liste les 5 informations de contexte les plus utiles à attacher avant la capture, et explique pour chacune ce qu'elle permettrait de diagnostiquer plus vite. (15 minutes)
 
 **EXO 2 : Corrige le fingerprinting**
 Une erreur "Jutsu 48291 not found", "Jutsu 48292 not found" apparaît comme des centaines d'entrées différentes dans Sentry, alors que c'est le même bug. Propose la correction technique exacte pour qu'elles soient regroupées en une seule entrée. (10 minutes)

@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # GREEDY EN CONDITIONS RÉELLES : CONTRAINTES, PRIORITÉS, DEADLINES
 Temps de lecture ~12 min

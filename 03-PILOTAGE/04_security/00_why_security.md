@@ -1,14 +1,13 @@
 ---
 perennite: evolutif
-stability: intemporel
+stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: Menaces évoluent, principes (least privilege, defense in depth) éternels.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : input validation (01-CADRAGE/04_error_handling), HTTP (02-CONSTRUCTION/18_web_concepts). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : input validation (05_error_handling), HTTP (17_web_concepts). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : SECURITY
 
@@ -72,7 +71,7 @@ Le hachage des mots de passe a aussi mûri : des algorithmes plus anciens et plu
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Prérequis direct et explicite : `03-PILOTAGE/04_security`, prérequis `02-CONSTRUCTION/19_api_craft` + `02-CONSTRUCTION/18_web_concepts`. Impossible de sécuriser une API sans déjà savoir la construire correctement et comprendre les mécanismes du web sous-jacents (CORS, headers, authentification). C'est aussi un module central du mini-projet `05_prison_break_api`, où la sécurité n'est pas un bonus mais une condition de survie du système face à des tentatives d'intrusion simulées.
+Prérequis direct et explicite : `22_security`, prérequis `21_api_craft` + `17_web_concepts`. Impossible de sécuriser une API sans déjà savoir la construire correctement et comprendre les mécanismes du web sous-jacents (CORS, headers, authentification). C'est aussi un module central du mini-projet `05_prison_break_api`, où la sécurité n'est pas un bonus mais une condition de survie du système face à des tentatives d'intrusion simulées.
 
 ---
 
@@ -88,7 +87,7 @@ Chaque donnée externe que ton code accepte est une porte d'entrée potentielle,
 
 Maintenant, ouvre `01_xss_injection.md`. Et arrête de faire confiance à n'importe quelle donnée qui vient de l'extérieur.
 
-> Ce module réutilise : l'API craft du module 21 (`02-CONSTRUCTION/19_api_craft`), la gestion d'erreurs du module 05 (`01-CADRAGE/04_error_handling`).
+> Ce module réutilise : l'API craft du module 21 (`21_api_craft`), la gestion d'erreurs du module 05 (`05_error_handling`).
 
 ---
 

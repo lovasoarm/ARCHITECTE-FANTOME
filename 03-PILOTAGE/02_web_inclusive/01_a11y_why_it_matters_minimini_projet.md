@@ -4,7 +4,7 @@ Projet fil rouge
 
 ## Niveau
 
-Difficulté : 3/5 (intermédiaire)
+🗸 Intermédiaire
 
 ## CONTEXTE
 

@@ -1,9 +1,8 @@
 ---
-stability: intemporel
-acte: produire
+stability: stable
 ---
 
-# EXO IA MENTEUSE : module 02-CONSTRUCTION/11_refactoring
+# EXO IA MENTEUSE : module 13_refactoring
 
 Temps : ~10 min. Format court, seul ou en binôme.
 

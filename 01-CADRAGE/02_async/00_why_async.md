@@ -3,12 +3,11 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Callbacks, promises, event loop : modèle de concurrence stable depuis 2015.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : fonctions et scope (00-SOCLE/04_fundamentals), structures de contrôle (00-SOCLE/04_fundamentals), try/catch synchrone (acquis du socle : [00-SOCLE/04_fundamentals/08b_try_catch_basics.md](../../00-SOCLE/04_fundamentals/08b_try_catch_basics.md)). Ce module te fait écrire du `try/catch` autour d'`await` dès la section async/await : tu l'as vu au socle, rien à sauter en avant. Le module 04_error_handling, juste après celui-ci, va au fond (erreurs personnalisées, propagation, stratégie). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : fonctions et scope (01_fundamentals), structures de contrôle (01_fundamentals), erreurs synchrones (05_error_handling anticipé). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ASYNC & EVENT LOOP
 
@@ -133,7 +132,7 @@ stability: intemporel
 ## TROIS PUBLICS : GRILLE D'AUTO-EVALUATION
 
 > Greffe P6 : un ingenieur qui ne sait pas expliquer a trois publics ne survit
-> pas a un entretien senior. Voir `03-PILOTAGE/10_team_craft/12_three_audiences_intro.md`.
+> pas a un entretien senior. Voir `27_team_craft/12_three_audiences_intro.md`.
 
 Prends le concept-cle du module. Explique-le **trois fois**, chronometre en main :
 
@@ -154,14 +153,3 @@ Trade-off, cout, quand NE PAS l'utiliser, impact business, alternative.
 
 Si une case n'est pas cochee : tu ne maitrises pas encore ce concept, tu le
 recites.
-
----
-
-## RENVOI CROISÉ : PILOTAGE DE FIABILITÉ (03-PILOTAGE/06_fiabilite_slo)
-
-Les notions posées ici (callbacks, promesses, event loop, backpressure,
-timeouts, retry) sont réutilisées telles quelles en pilotage de production
-dans `03-PILOTAGE/06_fiabilite_slo` : un timeout mal géré consomme du budget
-d'erreur, un retry non idempotent brûle un SLO. Le mini-projet
-`02-CONSTRUCTION/02_mini_projects/16_distributed_arena` (dossier `INCIDENT/`
-obligatoire) fait le pont concret entre les deux.

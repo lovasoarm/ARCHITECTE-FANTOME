@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # TS COMPILER CONFIG : TSCONFIG.JSON : CHAQUE OPTION EXPLIQUÉE AVEC SON IMPACT RÉEL

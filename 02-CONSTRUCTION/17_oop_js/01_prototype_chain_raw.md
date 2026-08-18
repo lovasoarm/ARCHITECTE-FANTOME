@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # PROTOTYPE CHAIN RAW : LA CHAÎNE BRUTE, SANS SUCRE
 Temps de lecture ~10 min
@@ -223,7 +222,7 @@ Array.prototype.dernierElement = function() {
 // mais tu viens de modifier un objet partagé par tout le runtime
 ```
 
-C'est pour ça que la pollution de prototype (voir `05-MAITRISE/03_edge_cases/04`) est traitée comme une vulnérabilité de sécurité, pas juste une mauvaise pratique.
+C'est pour ça que la pollution de prototype (voir `28_edge_cases/04`) est traitée comme une vulnérabilité de sécurité, pas juste une mauvaise pratique.
 
 ---
 

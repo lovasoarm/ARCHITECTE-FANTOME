@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: évaluer
 ---
 
 # 00 : Prereq check : Problem Solving
@@ -8,7 +7,7 @@ Temps de lecture ~5 min
 
 > Tu ne dois **pas** entrer dans ce module si tu ne peux pas répondre à ces questions
 > **sans regarder**. Ce n'est pas un test noté, c'est un filtre anti-illusion.
-> Ces questions portent sur `00-SOCLE/04_fundamentals`, le module que tu viens de finir :
+> Ces questions portent sur `01_fundamentals`, le module que tu viens de finir :
 > pas sur ce que tu vas apprendre ici.
 
 ## Questions
@@ -21,7 +20,7 @@ Temps de lecture ~5 min
 ## Verdict
 
 - **3+ réponses solides** → tu peux entrer.
-- **2 ou moins** → retour à `00-SOCLE/04_fundamentals/`, ou à sa synthèse `_recall_05.md`.
+- **2 ou moins** → retour à `01_fundamentals/`, ou à sa synthèse `_recall_05.md`.
 
 > Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
 

@@ -1,21 +1,33 @@
-# DÉFENSE ORALE : 16 DDD ET CONTRATS
+---
+stability: intemporel
+acte: construction
+noyau: oui
+type: defense
+---
 
-Ce module Staff est juge a l'oral, pas a la lecture : ce qui est evalue ici, c'est le decoupage en contextes bornes et la separation ecriture / lecture.
-Trois objections types, tirees de la banque de [06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md](../../06-ANNEXES-TRANSVERSES/07-CONTRADICTEUR.md),
-meme protocole : chrono de 5 minutes par objection, reponse a voix haute, aucune note
-pendant la reponse, grille du CONTRADICTEUR pour la notation.
+# DÉFENSE ORALE — MODULE 16
 
-| # | Objection posee en face | Ce qu'une reponse de Staff contient |
-| --- | --- | --- |
-| 1 | Pourquoi pas un CRUD ? Une seule table, une seule equipe, et personne n'a besoin d'apprendre le vocabulaire d'un livre de 2003. | Donner raison au CRUD tant qu'aucun fait mesure ne le disqualifie : citer TON lag de projection et TA contention observee, ou reconnaitre que le CRUD gagne ici. Voir 05_expliquer_cqrs_a_3_publics.md. |
-| 2 | Vos contextes bornes, c'est du decoupage pour le plaisir : deux equipes, deux bases, et une migration a chaque changement de champ. | Nommer la frontiere par le langage, pas par la technique : deux definitions differentes du meme mot metier = deux contextes. Puis chiffrer le cout du contrat (versionnage, periode de double ecriture) et l'assumer. |
-| 3 | Vous rompez un contrat public d'API : qui paie la casse chez les clients ? | Presenter la procedure ecrite : depreciation datee, double version servie, mesure du trafic residuel sur l'ancienne version, date de coupure annoncee. Sans ces quatre elements, la rupture n'est pas defendable. |
+12 minutes, enregistrées. Seul devant la caméra, ou face à un contradicteur.
 
-## Regle de validation (binaire, pas d'auto-notation complaisante)
+## Plan imposé
 
-- [ ] Les trois objections ont ete jouees chronometrees, a voix haute, sans notes.
-- [ ] Chaque reponse contient au moins un nombre releve et sa source datee.
-- [ ] Chaque reponse nomme la condition dans laquelle l'objection aurait raison.
+| Minute | Contenu |
+| --- | --- |
+| 0-2 | Le domaine en une phrase, et les trois mots ambigus trouvés. |
+| 2-5 | La carte de contextes, et le coût de chaque frontière. |
+| 5-8 | La rupture de contrat : ce qui cassait, la stratégie, la date. |
+| 8-10 | Le refus chiffré : ce que tu n'as pas construit, et à quelle condition tu le construirais. |
+| 10-12 | Trois questions hostiles, répondues. |
 
-Une case non cochee = la defense n'est pas passee. Grille detaillee et methode de tirage :
-[CONTRADICTEUR.md](../../06-ANNEXES-TRANSVERSES/07-CONTRADICTEUR.md). Critere binaire du module : [verification_pack/criteres.md](verification_pack/criteres.md).
+## Les trois questions hostiles obligatoires
+
+1. « Pourquoi pas un seul contexte ? Tu inventes de la complexité. »
+2. « Ta date d'extinction est arbitraire. Prouve-la. »
+3. « Un enum en sortie, c'est déjà un couplage. Qu'est-ce que tu fais à la sixième valeur ? »
+
+## Grille
+
+- Aucune réponse par nom de technologie (éliminatoire).
+- Un chiffre au minimum par réponse.
+- Une phrase d'aveu d'ignorance au moins, si elle est vraie
+  (voir `../../03-PILOTAGE/11_leadership_mentorat/06_aveu_ignorance.md`).

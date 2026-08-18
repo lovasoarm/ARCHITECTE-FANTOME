@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # ADR-001 : implémentation from scratch de tous les algorithmes sans bibliothèque externe
@@ -14,7 +13,7 @@ Breaking Cache modélise le réseau de distribution de Walter White : un graphe 
 
 La question centrale : utilise-t-on des bibliothèques qui fournissent ces structures (ex : `heap.js`, `graphlib`) ou implémente-t-on tout from scratch ?
 
-L'objectif pédagogique du projet est explicitement : `02-CONSTRUCTION/06_data_structures` + `02-CONSTRUCTION/07_algorithms` + `02-CONSTRUCTION/05_memory_performance`. Comprendre ces algorithmes de l'intérieur est le point.
+L'objectif pédagogique du projet est explicitement : `09_data_structures` + `10_algorithms` + `08_memory_performance`. Comprendre ces algorithmes de l'intérieur est le point.
 
 ## Décision
 Tous les algorithmes et structures de données sont implémentés from scratch. Aucune bibliothèque d'algorithmes externe. Le graphe, le heap, Dijkstra, BFS, DFS, les algorithmes de tri, et le solveur knapsack sont tous écrits dans `src/`. Chaque implémentation tourne sous `performance.now()` : pas d'algorithme non mesuré.

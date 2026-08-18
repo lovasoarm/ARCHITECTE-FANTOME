@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # DEBUG METHODOLOGY : QUATRE ÉTAPES, ZÉRO HASARD

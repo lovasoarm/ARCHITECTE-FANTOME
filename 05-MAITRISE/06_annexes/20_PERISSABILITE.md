@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # PÉRISSABILITÉ : vue consolidée
@@ -19,43 +18,43 @@ Chaque fichier `.md` du repo porte un tag `stability:` en front-matter. Ce fichi
 
 | Module                      | # fichiers périssables | Cause principale                     |
 | --------------------------- | ---------------------- | ------------------------------------ |
-| `02-CONSTRUCTION/12_typescript`             | 18                     | évolutions TS, strictness options    |
-| `04-EPREUVE/04_ai_native_dev`          | 13                     | outils IA, prompts, modèles          |
-| `05-MAITRISE/04_ai_agents_and_autonomy` | 11                     | agents IA, frameworks                |
-| `05-MAITRISE/07_tools`                  | 7                      | chaîne d'outils dev (bundlers, LSPs) |
-| `03-PILOTAGE/05_observability`          | 1                      | outillage OTLP en mouvement          |
-| `05-MAITRISE/06_annexes`                | 1                      | écosystème mouvant                   |
+| `14_typescript`             | 18                     | évolutions TS, strictness options    |
+| `23_ai_native_dev`          | 13                     | outils IA, prompts, modèles          |
+| `29_ai_agents_and_autonomy` | 11                     | agents IA, frameworks                |
+| `32_tools`                  | 7                      | chaîne d'outils dev (bundlers, LSPs) |
+| `26_observability`          | 1                      | outillage OTLP en mouvement          |
+| `31_annexes`                | 1                      | écosystème mouvant                   |
 
 ## MODULES 100% INTEMPORELS (aucune ligne périssable détectée)
 
-- `00-SOCLE/01_getting_started`
-- `00-SOCLE/03_referentiel`
-- `00-SOCLE/04_fundamentals`
-- `00-SOCLE/05_problem_solving`
-- `01-CADRAGE/02_async`
-- `01-CADRAGE/03_debugging`
-- `01-CADRAGE/04_error_handling`
-- `02-CONSTRUCTION/03_testing`
-- `02-CONSTRUCTION/04_math_basics`
-- `02-CONSTRUCTION/05_memory_performance`
-- `02-CONSTRUCTION/06_data_structures`
-- `02-CONSTRUCTION/07_algorithms`
-- `02-CONSTRUCTION/09_functional_js`
-- `02-CONSTRUCTION/10_design_patterns`
-- `02-CONSTRUCTION/11_refactoring`
-- `02-CONSTRUCTION/13_runtime_env`
-- `02-CONSTRUCTION/14_architecture_patterns`
-- `02-CONSTRUCTION/18_web_concepts`
-- `02-CONSTRUCTION/17_oop_js`
-- `03-PILOTAGE/02_web_inclusive`
-- `04-EPREUVE/03_realtime`
-- `02-CONSTRUCTION/19_api_craft`
-- `03-PILOTAGE/04_security`
-- `05-MAITRISE/01_databases`
-- `05-MAITRISE/02_scalability`
-- `03-PILOTAGE/10_team_craft`
-- `05-MAITRISE/03_edge_cases`
-- `02-CONSTRUCTION/02_mini_projects`
+- `00_getting_started`
+- `00_referentiel`
+- `01_fundamentals`
+- `02_problem_solving`
+- `03_async`
+- `04_debugging`
+- `05_error_handling`
+- `06_testing`
+- `07_math_basics`
+- `08_memory_performance`
+- `09_data_structures`
+- `10_algorithms`
+- `11_functional_js`
+- `12_design_patterns`
+- `13_refactoring`
+- `15_runtime_env`
+- `16_architecture_patterns`
+- `17_web_concepts`
+- `18_oop_js`
+- `19_web_inclusive`
+- `20_realtime`
+- `21_api_craft`
+- `22_security`
+- `24_databases`
+- `25_scalability`
+- `27_team_craft`
+- `28_edge_cases`
+- `30_mini_projects`
 
 ## DERNIER CHECK
 
@@ -67,7 +66,3 @@ Cette vue est générée depuis les tags `stability:` déjà présents dans chaq
 - Un fichier `perissable` de plus de 24 mois sans revue = candidat urgent à relecture.
 - Un fichier `intemporel` n'a besoin d'être touché que si le mécanisme sous-jacent change (rare).
 - Seules trois valeurs de tag sont valides : `intemporel`, `stable`, `perissable`. Toute autre valeur (variante, typo) casse ce comptage silencieusement : vérifie avec `grep -rh "^stability:" --include="*.md" . | sort -u` que seules ces trois valeurs apparaissent avant de faire confiance à ce fichier.
-
-## Annexe declenchee ici
-
-- [11-ANNEXE-perennite.md](../../06-ANNEXES-TRANSVERSES/11-ANNEXE-perennite.md) : la doctrine de perennite du depot, a lire une fois la grille intemporel/perissable comprise.

@@ -2,14 +2,13 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: évaluer
 ---
 # 00 : Prereq check : Fundamentals
 Temps de lecture ~2 min
 
 > **Important : ce fichier n'est PAS un gate comme les autres modules.**
-> `00-SOCLE/04_fundamentals` est le tout premier module de contenu technique du
-> curriculum (après le prélude `00-SOCLE/03_referentiel`). Il n'existe donc aucun
+> `01_fundamentals` est le tout premier module de contenu technique du
+> curriculum (après le prélude `00_referentiel`). Il n'existe donc aucun
 > module antérieur qui pourrait t'avoir enseigné `let`/`const`/`var`,
 > `typeof null`, les closures ou `==` vs `===` : ce sont justement les
 > notions que CE module va t'apprendre.

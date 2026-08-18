@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # DIJKSTRA : LE CHEMIN LE PLUS COURT QUI ALIMENTE TOUS LES GPS
 Temps de lecture ~10 min
@@ -11,7 +10,7 @@ Tout système de navigation tourne sur Dijkstra ou une variante. Google Maps, le
 
 La question à laquelle il répond : **dans un graphe pondéré avec des poids positifs, quel est le chemin le moins coûteux entre un point de départ et tous les autres ?**
 
-Prérequis : graphes (`02-CONSTRUCTION/06_data_structures/08_graphs`), heaps (`02-CONSTRUCTION/06_data_structures/05_heap`). Si c'est flou, réviser là-bas d'abord.
+Prérequis : graphes (`09_data_structures/08_graphs`), heaps (`09_data_structures/05_heap`). Si c'est flou, réviser là-bas d'abord.
 
 ---
 

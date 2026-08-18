@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # BST TRAVERSAL : LIRE L'ARBRE DANS LE BON SENS
 Temps de lecture ~8 min

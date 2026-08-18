@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: restituer
 ---
 
 [PORTFOLIO]
@@ -8,8 +7,6 @@ acte: restituer
 [ATELIER]
 
 # LEGACY DUNGEON
-
-> Mode de vérification des exercices de ce module : critère binaire du `verification_pack` ([verification_pack/criteres.md](verification_pack/criteres.md)). Aucun exercice de ce module n'est corrigé par une IA.
 
 -> ~7 min
 
@@ -91,9 +88,9 @@ Pas de `src/`, pas de `tests/` ici comme dans les autres mini-projets. Le "src" 
 
 | Module | Où ça se voit |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `03-PILOTAGE/10_team_craft` | navigation de codebase (`04_navigate_codebase.md`) appliquée pour de vrai, ADR rétrospective, technical writing dans MAP.md/POSTMORTEM.md |
+| `27_team_craft` | navigation de codebase (`04_navigate_codebase.md`) appliquée pour de vrai, ADR rétrospective, technical writing dans MAP.md/POSTMORTEM.md |
 
-Mobilisés en lecture, sans être le coeur du projet : `01-CADRAGE/03_debugging` (stack traces inconnues), `01-CADRAGE/04_error_handling` (comprendre une stratégie qu'on n'a pas choisie), `02-CONSTRUCTION/11_refactoring/03_code_smells` (reconnaître sans corriger), `02-CONSTRUCTION/03_testing` (lire des tests existants comme documentation).
+Mobilisés en lecture, sans être le coeur du projet : `04_debugging` (stack traces inconnues), `05_error_handling` (comprendre une stratégie qu'on n'a pas choisie), `13_refactoring/03_code_smells` (reconnaître sans corriger), `06_testing` (lire des tests existants comme documentation).
 
 ---
 
@@ -112,7 +109,7 @@ le second l'ouvre.
 **La panique.** 47 000 lignes que tu n'as jamais vues, un bug à trouver,
 un chrono qui tourne. Le réflexe de panique pousse à tout lire, ou à
 rien lire et tester au hasard. Aucun des deux ne marche. Le protocole de
-cartographie (`05-MAITRISE/06_annexes/00_cartographier_codebase_inconnue.md`) existe
+cartographie (`31_annexes/00_cartographier_codebase_inconnue.md`) existe
 justement pour remplacer la panique par une méthode : tu n'as pas besoin
 de tout comprendre, tu as besoin de savoir où chercher.
 
@@ -163,7 +160,7 @@ trade-off chiffré :
 - **Ce que je n'ai pas mesuré** : (mémoire, DX, coût cloud…).
 
 Sans chiffres, ce n'est pas une décision, c'est une préférence.
-Voir `02-CONSTRUCTION/05_memory_performance/00_measure_first.md`.
+Voir `08_memory_performance/00_measure_first.md`.
 
 ## Pitch 3 lignes
 
@@ -171,7 +168,7 @@ Ce projet démontre une compétence clé : lire du code inconnu, débugger sous 
 
 ## Empreinte carbone (critère d'acceptation)
 
-Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `05-MAITRISE/06_annexes/03_finops_greenops.md`.
+Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
 
 ---
 
@@ -188,23 +185,3 @@ Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un do
 ## REPRODUCTIBILITÉ
 
 Installation canonique : `npm ci` (pas `npm install`). `npm ci` respecte strictement le `package-lock.json` : deux personnes qui clonent obtiennent exactement les mêmes versions. Committe toujours ton `package-lock.json`. Sans lui, un `npm install` 3 mois plus tard installera d'autres versions et tu debug un fantôme.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION/02_mini_projects/10_legacy_dungeon` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_SPEC_DRIFT.md](00_SPEC_DRIFT.md)
-- [MAP_15MIN.md](MAP_15MIN.md)
-- [POSTMORTEM.md](POSTMORTEM.md)
-- [RULES.md](RULES.md)
-- [SECURITY.md](SECURITY.md)
-- [SECURITY_GATE.md](SECURITY_GATE.md)
-- [SPEC_DRIFT_TRIGGERS.md](SPEC_DRIFT_TRIGGERS.md)
-- [TDD_JOURNAL.md](TDD_JOURNAL.md)
-- [cahierdescharges.md](cahierdescharges.md)
-- [ADR/](ADR/README.md)
-- [verification_pack/](verification_pack/README.md)
-
-<!-- CONTENU-DOSSIER:fin -->

@@ -1,11 +1,8 @@
 ---
-stability: intemporel
-acte: restituer
+stability: stable
 ---
 
 # synthese : synthèses transverses des mini-projets
-
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../08_maitrise_staff_engineer/challenge.md](../../08_maitrise_staff_engineer/challenge.md)).
 
 Temps de lecture ~4 min
 
@@ -40,22 +37,3 @@ ce qui donne l'illusion de savoir sans le vécu.
 
 Ces trois exercices sont indépendants des synthèses A → G : ils s'appliquent
 à ton parcours complet, pas à un bloc précis.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `05-MAITRISE/06_annexes/27_synthese_mini_projects` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_chaos_day.md](00_chaos_day.md)
-- [01_portfolio.md](01_portfolio.md)
-- [02_spec_drift.md](02_spec_drift.md)
-- [03_synthese_A.md](03_synthese_A.md)
-- [04_synthese_B.md](04_synthese_B.md)
-- [05_synthese_C.md](05_synthese_C.md)
-- [06_synthese_D.md](06_synthese_D.md)
-- [07_synthese_E.md](07_synthese_E.md)
-- [08_synthese_F_bloc_25.md](08_synthese_F_bloc_25.md)
-- [09_synthese_G_bloc_30.md](09_synthese_G_bloc_30.md)
-
-<!-- CONTENU-DOSSIER:fin -->

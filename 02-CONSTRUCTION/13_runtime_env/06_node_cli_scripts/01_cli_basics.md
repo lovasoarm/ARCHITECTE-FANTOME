@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CLI BASICS : PARLER AU TERMINAL SANS BÉGAYER

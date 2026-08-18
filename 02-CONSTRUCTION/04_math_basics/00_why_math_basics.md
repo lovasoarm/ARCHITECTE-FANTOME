@@ -3,12 +3,11 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Bits, modulo, hashing, probabilité : maths de base éternelles.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : types primitifs (00-SOCLE/04_fundamentals), opérateurs (00-SOCLE/04_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : types primitifs (01_fundamentals), opérateurs (01_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : LES MATHS UTILES
 
@@ -77,7 +76,7 @@ Le hashing a aussi pris une place plus visible avec la montée des architectures
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Pas dans les "6 blocs prioritaires", mais c'est un module de soutien que tu vas croiser partout ensuite. `02-CONSTRUCTION/06_data_structures` : les hash tables reposent directement sur le hashing. `02-CONSTRUCTION/07_algorithms` : les probabilités et la combinatoire interviennent dans plusieurs patterns. `01_rasengan_engine` : l'arithmétique modulaire gère les cooldowns de chakra et les critiques, les probabilités calculent les esquives et les ratés. Sans ce module, ces mini-projets te demanderont d'inventer des roues déjà existantes.
+Pas dans les "6 blocs prioritaires", mais c'est un module de soutien que tu vas croiser partout ensuite. `09_data_structures` : les hash tables reposent directement sur le hashing. `10_algorithms` : les probabilités et la combinatoire interviennent dans plusieurs patterns. `01_rasengan_engine` : l'arithmétique modulaire gère les cooldowns de chakra et les critiques, les probabilités calculent les esquives et les ratés. Sans ce module, ces mini-projets te demanderont d'inventer des roues déjà existantes.
 
 ---
 

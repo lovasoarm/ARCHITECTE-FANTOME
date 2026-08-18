@@ -1,12 +1,11 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # I18N DANS UN VRAI PROJET : ORGANISATION, PERFORMANCE, DX
 Temps de lecture ~7 min
 
-Tu sais maintenant gérer les clés, les dates, les nombres, le pluriel. Reste la question que les tutos évitent : comment tout ça s'organise dans un VRAI projet, sans faire exploser le poids de ton bundle (le paquet de fichiers JS envoyé au navigateur) ni rendre la vie des devs infernale. L'i18n mal architecturée, c'est le genre de dette qui se paie cher six mois plus tard, exactement comme le code spaghetti du module 02-CONSTRUCTION/11_refactoring.
+Tu sais maintenant gérer les clés, les dates, les nombres, le pluriel. Reste la question que les tutos évitent : comment tout ça s'organise dans un VRAI projet, sans faire exploser le poids de ton bundle (le paquet de fichiers JS envoyé au navigateur) ni rendre la vie des devs infernale. L'i18n mal architecturée, c'est le genre de dette qui se paie cher six mois plus tard, exactement comme le code spaghetti du module 13_refactoring.
 
 ## 1) LE PIÈGE DU BUNDLE QUI GONFLE
 
@@ -19,7 +18,7 @@ import mg from './locales/mg.json';
 // 4 langues chargées même si l'utilisateur n'en lit qu'une seule
 ```
 
-Un utilisateur français télécharge aussi les traductions japonaises et malgaches qu'il n'utilisera jamais. Sur une grosse app avec 10 langues, ça peut représenter des centaines de Ko inutiles, ce qui touche directement le LCP (Largest Contentful Paint) du module 02-CONSTRUCTION/05_memory_performance.
+Un utilisateur français télécharge aussi les traductions japonaises et malgaches qu'il n'utilisera jamais. Sur une grosse app avec 10 langues, ça peut représenter des centaines de Ko inutiles, ce qui touche directement le LCP (Largest Contentful Paint) du module 08_memory_performance.
 
 ```js
 // Correct : chargement dynamique, seulement la langue active
@@ -89,7 +88,7 @@ const traductionsAuth = await chargerNamespace('fr', 'auth'); // (page de login 
 ```
 
 ```js
-// Script de vérification à lancer en CI (intégration continue, voir module 05-MAITRISE/06_annexes)
+// Script de vérification à lancer en CI (intégration continue, voir module 31_annexes)
 function verifierClesManquantes(traductionsBase, traductionsCible) {
  const clesBase = Object.keys(traductionsBase);
  const clesCible = Object.keys(traductionsCible);

@@ -3,14 +3,11 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Gérer l'échec est une posture d'ingénieur, pas une API.
-acte: restituer
 ---
-
-> **Rappel d'ouverture.** Le `try/catch` synchrone est un acquis du socle : [00-SOCLE/04_fundamentals/08b_try_catch_basics.md](../../00-SOCLE/04_fundamentals/08b_try_catch_basics.md). Tu l'as vu la-bas, on va maintenant au fond : erreurs personnalisees, propagation, pieges asynchrones, strategie.
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : try/catch (00-SOCLE/04_fundamentals), async & promises (01-CADRAGE/02_async). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : try/catch (01_fundamentals), async & promises (03_async). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ERROR HANDLING
 
@@ -77,7 +74,7 @@ La tendance actuelle va vers des erreurs typées et structurées : avec TypeScri
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Oui. Le curriculum le place explicitement dans le noyau dur : "sans ça, t'es imprudent". `01-CADRAGE/04_error_handling` dépend de `00-SOCLE/04_fundamentals` et `01-CADRAGE/02_async`, et c'est un prérequis direct pour `02-CONSTRUCTION/19_api_craft` et `03-PILOTAGE/04_security`. Un dev qui ne maîtrise pas ce module construit des APIs fragiles, des systèmes qui crashent en cascade, et des incidents de prod qui auraient pu être évités avec un `try/catch` bien placé.
+Oui. Le curriculum le place explicitement dans le noyau dur : "sans ça, t'es imprudent". `05_error_handling` dépend de `01_fundamentals` et `03_async`, et c'est un prérequis direct pour `21_api_craft` et `22_security`. Un dev qui ne maîtrise pas ce module construit des APIs fragiles, des systèmes qui crashent en cascade, et des incidents de prod qui auraient pu être évités avec un `try/catch` bien placé.
 
 ---
 
@@ -93,4 +90,4 @@ Une erreur non gérée n'est pas juste un bug : c'est un système qui ment sur s
 
 > Dans ce module, tu vas croiser des stack traces (la pile d'appels affichée quand une erreur remonte) dans les exemples. T'as pas besoin de savoir la lire couramment pour avancer : le module suivant (`05_debugging`) t'apprend à la décortiquer ligne par ligne. Ici, contente-toi de repérer qu'elle existe et qu'elle raconte un chemin d'exécution.
 
-Tu l'as vu au socle ([00-SOCLE/04_fundamentals/08b_try_catch_basics.md](../../00-SOCLE/04_fundamentals/08b_try_catch_basics.md)) : on va maintenant au fond. Ouvre `02_custom_errors.md` et apprends ce que `try/catch` attrape vraiment, et ce qu'il laisse filer.
+Maintenant, ouvre `01_try_catch_basics.md`. Et apprends ce que `try/catch` attrape vraiment, et ce qu'il laisse filer.

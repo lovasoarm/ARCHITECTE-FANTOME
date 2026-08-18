@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 02_SSE_LIVE_FEED : LE DASHBOARD DE MATCH EN TEMPS RÉEL
@@ -293,7 +292,7 @@ C'est de la plomberie serveur pure.
 
 ## 5) GESTION DE LA CHARGE : PREVIEW POUR 10K CLIENTS
 
-> **Note** : cette section anticipe des concepts traités en détail dans `05-MAITRISE/02_scalability`.
+> **Note** : cette section anticipe des concepts traités en détail dans `25_scalability`.
 > L'objectif ici est de voir le problème, pas d'implémenter la solution complète.
 
 Avec 10,000 clients SSE :
@@ -330,7 +329,7 @@ function broadcastEventBuffered(eventType, data) {
 ```
 
 Pour des volumes très élevés (100k+ clients) : Redis Pub/Sub + plusieurs instances Node.js.
-C'est exactement ce que couvre `05-MAITRISE/02_scalability/07_message_queues.md`.
+C'est exactement ce que couvre `25_scalability/07_message_queues.md`.
 
 ---
 

@@ -1,14 +1,13 @@
 ---
 perennite: evolutif
-stability: intemporel
+stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: Les runners changent (Jest, Vitest, Bun), les principes AAA restent.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : fonctions pures (00-SOCLE/04_fundamentals), async (01-CADRAGE/02_async), erreurs (01-CADRAGE/04_error_handling). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : fonctions pures (01_fundamentals), async (03_async), erreurs (05_error_handling). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : TESTING
 
@@ -155,7 +154,7 @@ Avec la montée du code généré par IA : qui peut sembler correct mais conteni
 
 ## 7) NOYAU DUR DU MÉTIER ?
 
-Oui, explicitement dans le noyau dur : "04 + 06, Error Handling + Testing : sans ça, t'es imprudent". `02-CONSTRUCTION/03_testing` dépend de `00-SOCLE/04_fundamentals` et `01-CADRAGE/02_async`, et il devient un prérequis implicite pour tout module de refactoring sérieux : tu ne peux pas refactorer en confiance sans filet de sécurité.
+Oui, explicitement dans le noyau dur : "04 + 06, Error Handling + Testing : sans ça, t'es imprudent". `06_testing` dépend de `01_fundamentals` et `03_async`, et il devient un prérequis implicite pour tout module de refactoring sérieux : tu ne peux pas refactorer en confiance sans filet de sécurité.
 
 ---
 

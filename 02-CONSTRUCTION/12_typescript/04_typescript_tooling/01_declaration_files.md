@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # DECLARATION FILES : .D.TS, ÉCRIRE LES TYPES POUR DU JS SANS TYPES

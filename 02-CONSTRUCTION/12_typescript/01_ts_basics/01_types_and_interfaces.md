@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # TYPES ET INTERFACES : PAS LES MÊMES ARMES

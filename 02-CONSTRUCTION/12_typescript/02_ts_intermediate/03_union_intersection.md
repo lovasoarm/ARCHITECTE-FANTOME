@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # UNION ET INTERSECTION : COMPOSER DES TYPES COMME DES ENSEMBLES

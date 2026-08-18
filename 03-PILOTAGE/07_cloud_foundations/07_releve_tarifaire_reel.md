@@ -61,7 +61,7 @@ Protocole de sourçage complet :
 ## Section 2 : l'écart avec le modèle du dépôt
 
 Le dépôt fournit un exemplaire rempli :
-[PREUVES-MODELES/S1-BUDGET-CLOUD.md](../../PREUVES-MODELES/S1-BUDGET-CLOUD.md). Ses montants
+[06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S1-BUDGET-CLOUD.md](../../06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S1-BUDGET-CLOUD.md). Ses montants
 sont des ordres de grandeur relevés le 2026-08-14 : ils illustrent la forme, ils ne font pas
 autorité sur ton budget.
 

@@ -12,7 +12,7 @@ function makeHeavy(id) {
   // 1 MB par entrée, mais on croit que MAX_ENTRIES suffit à borner
   const payload = Buffer.alloc(1024 * 1024, id % 256);
   const onEvent = () => payload[0]; // closure capture payload
-  listeners.push(onEvent); // ATTENTION : jamais nettoye
+  listeners.push(onEvent); // 🚨 jamais nettoyé
   return { id, payload, onEvent };
 }
 

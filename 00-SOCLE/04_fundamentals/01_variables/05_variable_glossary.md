@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # VARIABLE GRIMOIRE : LES MOTS QUE TU DOIS MAÎTRISER
 Temps de lecture ~5 min

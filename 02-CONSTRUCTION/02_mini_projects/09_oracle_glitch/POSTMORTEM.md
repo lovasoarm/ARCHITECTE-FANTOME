@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # POSTMORTEM : ORACLE GLITCH
@@ -42,7 +41,7 @@ Sur une connexion lente ou un modèle occupé, le streaming démarrait à 2.8s, 
 
 ### Les tests d'edge cases qui ne testaient pas les bons edge cases
 
-Les premiers tests de `edgeCases.test.js` vérifiaient surtout des cas de malformation JSON (`truncated`, `missing fields`). Les vrais edge cases JS (`NaN === NaN`, `0.1 + 0.2`, `undefined` dans un tableau) sont arrivés en deuxième passe, après une relecture du module `05-MAITRISE/03_edge_cases`.
+Les premiers tests de `edgeCases.test.js` vérifiaient surtout des cas de malformation JSON (`truncated`, `missing fields`). Les vrais edge cases JS (`NaN === NaN`, `0.1 + 0.2`, `undefined` dans un tableau) sont arrivés en deuxième passe, après une relecture du module `28_edge_cases`.
 
 **Résolution** : réécrit en TDD strict : les pièges JS d'abord, puis les cas de malformation API. L'ordre final dans le TDD_JOURNAL reflète ça.
 
@@ -110,7 +109,7 @@ Une ligne par déclencheur activé (J+1, J+3, J+5) avec le coût réel payé.
 > Cette section est un **gate**. Un POSTMORTEM sans elle est rejete par le
 > la securite redevient un module theorique.
 >
-> Reference : `03-PILOTAGE/04_security/06_owasp_checklist.md`.
+> Reference : `22_security/06_owasp_checklist.md`.
 
 Pour chaque item OWASP Top 10, coche exactement une case :
 

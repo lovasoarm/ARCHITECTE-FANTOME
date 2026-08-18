@@ -1,7 +1,6 @@
 ---
 stability: mouvant
 scope: 06_ultras_dashboard
-acte: appliquer
 ---
 
 # 00_SPEC_DRIFT.md : spec drift **en cours de projet** (mouvant)

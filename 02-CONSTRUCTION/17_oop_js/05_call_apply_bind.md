@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # CALL, APPLY, BIND : EMPRUNTER UNE FONCTION, FIGER THIS
 Temps de lecture ~10 min
@@ -110,7 +109,7 @@ scoreKage("Naruto") // "Naruto : 350 pts" (100 * 3 + 50)
 scoreKage("Sasuke") // "Sasuke : 350 pts" (this.base toujours naruto.base)
 ```
 
-C'est de la partial application (application partielle : fixer une partie des arguments d'une fonction pour créer une version spécialisée). Vu en détail dans `02-CONSTRUCTION/09_functional_js/05_partial_application.md`. `bind` est l'implémentation native en JS, sans bibliothèque.
+C'est de la partial application (application partielle : fixer une partie des arguments d'une fonction pour créer une version spécialisée). Vu en détail dans `11_functional_js/05_partial_application.md`. `bind` est l'implémentation native en JS, sans bibliothèque.
 
 ```
 fonction complete : fn(a, b, c)

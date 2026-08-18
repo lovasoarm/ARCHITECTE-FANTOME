@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 02_WEBRTC_DEMO : L'APPEL VIDÉO PEER-TO-PEER

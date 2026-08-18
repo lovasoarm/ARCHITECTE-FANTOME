@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # PLURALISATION : "1 RÉSULTAT" VS "2 RÉSULTATS" VS "MANY"

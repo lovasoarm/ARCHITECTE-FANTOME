@@ -1,24 +1,33 @@
 # Grimoire : Team Quest
 
-Ce grimoire est un mémo à quatre colonnes exactes. La table de défense orale vit à côté, dans [defense-orale.md](defense-orale.md).
+Ce grimoire comporte deux tables : le mémo à 4 colonnes, puis la table de défense orale à
+3 colonnes (écart de format assumé, voir [_STYLE.md](../.meta/_STYLE.md)).
 
 Ouvre ce mémo avant une réunion qui sent le conflit, ou juste après. Il te donne les réflexes de
 coordination d'équipe, pas le cours complet sur le travail en groupe.
 
-| Terme | Définition | Code | Analogies | Limite |
-| --- | --- | --- | --- | --- |
-| Working agreement | Règles explicites et vérifiables adoptées à l'avance pour régler ce qui, sinon, se joue sous pression. | `git log -1 --format="%ad" -- working-agreement.md # date de derniere revision` | atelier de menuiserie / régie technique de spectacle | « atelier de menuiserie » se rejoue à l'identique, le code non ; sur Working agreement, l'autorité formelle ne produit pas l'adhésion, seule la démonstration la produit. Vérifie que la règle est citée en revue, sinon elle est morte. |
-| Definition of Done | Liste vérifiable de conditions pour appeler une tâche "finie", indépendante de l'impression de son auteur. | `- [ ] tests verts\n- [ ] revue approuvee\n- [ ] deploye en staging\n- [ ] documente` | cuisine de restaurant en service / urgences d'hôpital | « cuisine de restaurant en service » s'arrête à la première surprise ; sur Definition of Done, un désaccord non tranché revient en incident trois sprints plus tard. Écris l'accord, date-le et relis-le en rétrospective. |
-| Trunk-based development | Flux Git où tout le monde part d'une branche unique, toujours déployable, avec des branches courtes. | `git checkout main && git pull && git checkout -b fix-alerte-temp && git push -u origin fix-alerte-temp` | navigation maritime / course en montagne | « navigation maritime » s'arrête à la première surprise ; sur Trunk-based development, l'information passe par les personnes présentes, pas par l'organigramme. Tranche par écrit plutôt que de laisser le désaccord ouvert. |
-| GitFlow | Flux Git avec branches séparées pour développement, releases en préparation et correctifs urgents. | `git checkout -b release/2026.03 develop` | atelier de menuiserie / régie technique de spectacle | « atelier de menuiserie » suppose que quelqu'un surveille ; sur GitFlow, un accord d'équipe que personne ne cite en revue n'est plus en vigueur. Mesure le délai de revue avant d'accuser la charge. |
-| Feature flag | Condition dans le code qui active ou désactive une fonctionnalité sans nouveau déploiement. | `if (flags.isEnabled("alerte_temperature_v2", unit.id)) { return computeV2(unit); }` | régie technique de spectacle / urgences d'hôpital | « régie technique de spectacle » suppose un seul acteur à la fois ; sur Feature flag, le temps de réponse à une revue conditionne le rythme de livraison plus que la vitesse d'écriture du code. Mesure le délai de revue avant d'accuser la charge. |
-| Escalade | Remonter un problème à quelqu'un qui a le pouvoir de le résoudre, avec des faits et une proposition. | `# message d'escalade type\necho "Blocage: X depuis 4h. Impact: Y. Proposition: Z. Besoin: validation avant 17h."` | course en montagne / urgences d'hôpital | « course en montagne » suppose que quelqu'un surveille ; sur Escalade, une règle non écrite se dissout au premier départ dans l'équipe. Écris l'accord, date-le et relis-le en rétrospective. |
-| Qui décide quoi | Table qui fixe, par type de décision, qui tranche en cas de désaccord. | `INSERT INTO decisions_owners (type, owner) VALUES ('architecture_partagee', 'lead-tech');` | navigation maritime / cuisine de restaurant en service | « navigation maritime » n'a ni facture ni horloge ; sur Qui décide quoi, un désaccord non tranché revient en incident trois sprints plus tard. Tranche par écrit plutôt que de laisser le désaccord ouvert. |
-| Signaux qu'un working agreement est mort | Plus personne ne le cite, ou une règle y figure alors que tout le monde la contourne. | `grep -c "trunk-based" working-agreement.md; git log --all --oneline \| grep -c "hotfix direct sur main"` | un sens interdit que tout le monde franchit / une règle de maison que plus personne ne récite | « un sens interdit que tout le monde franchit » s'arrête à la première surprise ; sur Signaux qu'un working agreement est mort, un accord d'équipe que personne ne cite en revue n'est plus en vigueur. Vérifie que la règle est citée en revue, sinon elle est morte. |
+| Terme | Définition | Code | Analogies |
+| --- | --- | --- | --- |
+| Working agreement | Règles explicites et vérifiables adoptées à l'avance pour régler ce qui, sinon, se joue sous pression. | `git log -1 --format="%ad" -- working-agreement.md # date de derniere revision` | atelier de menuiserie / régie technique de spectacle |
+| Definition of Done | Liste vérifiable de conditions pour appeler une tâche "finie", indépendante de l'impression de son auteur. | `- [ ] tests verts\n- [ ] revue approuvee\n- [ ] deploye en staging\n- [ ] documente` | cuisine de restaurant en service / urgences d'hôpital |
+| Trunk-based development | Flux Git où tout le monde part d'une branche unique, toujours déployable, avec des branches courtes. | `git checkout main && git pull && git checkout -b fix-alerte-temp && git push -u origin fix-alerte-temp` | navigation maritime / course en montagne |
+| GitFlow | Flux Git avec branches séparées pour développement, releases en préparation et correctifs urgents. | `git checkout -b release/2026.03 develop` | atelier de menuiserie / régie technique de spectacle |
+| Feature flag | Condition dans le code qui active ou désactive une fonctionnalité sans nouveau déploiement. | `if (flags.isEnabled("alerte_temperature_v2", unit.id)) { return computeV2(unit); }` | régie technique de spectacle / urgences d'hôpital |
+| Escalade | Remonter un problème à quelqu'un qui a le pouvoir de le résoudre, avec des faits et une proposition. | `# message d'escalade type\necho "Blocage: X depuis 4h. Impact: Y. Proposition: Z. Besoin: validation avant 17h."` | course en montagne / urgences d'hôpital |
+| Qui décide quoi | Table qui fixe, par type de décision, qui tranche en cas de désaccord. | `INSERT INTO decisions_owners (type, owner) VALUES ('architecture_partagee', 'lead-tech');` | navigation maritime / cuisine de restaurant en service |
+| Signaux qu'un working agreement est mort | Plus personne ne le cite, ou une règle y figure alors que tout le monde la contourne. | `grep -c "trunk-based" working-agreement.md; git log --all --oneline | grep -c "hotfix direct sur main"` | atelier de menuiserie / course en montagne |
 
 ## Défense orale
 
-La table de défense orale a son propre fichier, pour que ce grimoire garde un format unique de quatre colonnes : [defense-orale.md](defense-orale.md).
+Pour la grille complète et chiffrée, va voir [./boss-fight.md](./boss-fight.md). Voici la matière
+reformulée pour la préparer à l'oral.
+
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+| --- | --- | --- |
+| Trouver le vrai désaccord | Sans distinguer fait vérifiable et préférence, la discussion tourne en rond entre deux egos. | Quelle hypothèse vérifiable devrait trancher ton dernier désaccord technique ? |
+| Tenir la pression de deadline | Forcer une décision arbitraire pour "avancer" fait porter le risque à plus tard, plus cher. | Que proposes-tu quand le temps manque pour vérifier avant une échéance ferme ? |
+| Reconnaître le coût humain | Ignorer le travail déjà fourni par chacun casse la confiance même si la décision technique est juste. | Comment reconnais-tu l'effort de quelqu'un sans pour autant garder sa solution si elle est moins bonne ? |
+| Réflexe systémique | Ne régler que le conflit du jour garantit que le même doublon revient. | Quel changement du working agreement proposes-tu pour éviter que ce conflit se reproduise ? |
 
 ## La règle en une phrase
 

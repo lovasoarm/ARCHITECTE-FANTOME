@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CAHIER DES CHARGES : DISTRIBUTED ARENA
@@ -53,7 +52,7 @@ Un test dans `node solution.js` (auto-verif ecrite par toi) doit prouver ces deu
 
 ## SURPRISE MI-PARCOURS (spec drift, obligatoire)
 
-Spec drift obligatoire, voir `02-CONSTRUCTION/02_mini_projects/synthese/spec_drift.md`
+Spec drift obligatoire, voir `30_mini_projects/synthese/spec_drift.md`
 (protocole unique, tirage aléatoire, déclenchement à 40 % d'avancement).
 
 Note pour ce projet : la nature distribuée fait que le drift #4 (ordre par
@@ -182,4 +181,4 @@ describe("Leader election", () => {
 
 ## POURQUOI CE PROJET EST LE POINT DE CONVERGENCE
 
-Ce mini-projet est **la** pratique construite qui connecte les théories distribuées éparpillées dans le cursus (`05-MAITRISE/01_databases/99_du_single_node_au_cluster.md`, patterns d'archi de 16, back-pressure de 25). Sans ce projet, la théorie reste théorie. Prends-le au sérieux : c'est le mini-projet le plus signal-fort de ton portfolio pour un poste senior/staff.
+Ce mini-projet est **la** pratique construite qui connecte les théories distribuées éparpillées dans le cursus (`24_databases/99_du_single_node_au_cluster.md`, patterns d'archi de 16, back-pressure de 25). Sans ce projet, la théorie reste théorie. Prends-le au sérieux : c'est le mini-projet le plus signal-fort de ton portfolio pour un poste senior/staff.

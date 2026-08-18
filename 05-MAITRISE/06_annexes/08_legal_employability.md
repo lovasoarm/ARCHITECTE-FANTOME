@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # JURIDIQUE & EMPLOYABILITÉ : CE QU'ON T'A PAS DIT

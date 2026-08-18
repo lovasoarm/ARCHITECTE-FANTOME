@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CUSTOM ERRORS : LES ERREURS QUI RACONTENT UNE HISTOIRE

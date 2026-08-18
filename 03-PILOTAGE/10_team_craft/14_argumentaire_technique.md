@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # ARGUMENTAIRE TECHNIQUE : CONVAINCRE UN PAIR EN 1 PAGE

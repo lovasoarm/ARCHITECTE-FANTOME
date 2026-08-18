@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # MUTATION MINEFIELD : TOUCHER UN OBJET ET TOUT CASSER AILLEURS
 Temps de lecture ~9 min

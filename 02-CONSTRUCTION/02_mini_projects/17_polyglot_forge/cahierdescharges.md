@@ -1,13 +1,12 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
-# 17_polyglot_forge — cahier des charges
+# 17_polyglot_forge
 
 Temps de lecture ~2 min
 
-Mini-projet scoré : reprendre l'event loop de `01-CADRAGE/02_async/04_event_loop/` et le prouver équivalent en **deux langages** (JS + Python OU JS + Rust) via tests déterministes partagés. Deuxième livrable cross-language de MyFunnyJS (après `15_porte_rasengan_engine_multilang`), pour matérialiser la Pierre 6 "Pensée Transférable".
+Mini-projet scoré : reprendre l'event loop de `03_async/04_event_loop/` et le prouver équivalent en **deux langages** (JS + Python OU JS + Rust) via tests déterministes partagés. Deuxième livrable cross-language de MyFunnyJS (après `15_porte_rasengan_engine_multilang`), pour matérialiser la Pierre 6 "Pensée Transférable".
 
 ## Objectif verrouillé
 

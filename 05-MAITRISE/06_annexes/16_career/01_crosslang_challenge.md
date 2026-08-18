@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: produire
 ---
 
 # CHALLENGE CROSS-LANGUAGE : preuve de transferabilité
@@ -12,7 +11,7 @@ Temps de lecture ~3 min
 Compétence visée : prouver, par produit, que ton raisonnement d'ingénieur ne dépend pas de JavaScript. C'est la Pierre 6 (pensée transférable) qui cesse d'être une promesse pour devenir une preuve.
 
 > **CHECKPOINT BLOQUANT (v20.3)** : ce challenge est **obligatoire apres le module
-> `02-CONSTRUCTION/12_typescript`**. Tant qu'il n'est pas passe avec produit commite (algo + pattern
+> `14_typescript`**. Tant qu'il n'est pas passe avec produit commite (algo + pattern
 > dans un langage non-JS, tests verts sur `crosslang_compare.sh`), tu ne considere
 > pas le module 14 comme valide, meme si la roadmap continue. Raison : sans drill
 > valide dans un second langage, la Pierre 6 (pensee transferable) reste postulee,
@@ -23,16 +22,16 @@ Ce challenge complète et remplace la question ouverte "je saurais refaire ça a
 
 Renvois utiles :
 
-- `05-MAITRISE/06_annexes/transferability/` (exercices ciblés existants : `01_closure_in_python.md`, `03_event_loop_in_pseudorust.md`, `06_observer_in_go.md`, `08_final_cross_language_challenge.md`).
-- `02-CONSTRUCTION/02_mini_projects/15_porte_rasengan_engine_multilang/` (mini-projet cross-language de référence).
+- `31_annexes/transferability/` (exercices ciblés existants : `01_closure_in_python.md`, `03_event_loop_in_pseudorust.md`, `06_observer_in_go.md`, `08_final_cross_language_challenge.md`).
+- `30_mini_projects/15_porte_rasengan_engine_multilang/` (mini-projet cross-language de référence).
 - `node solution.js` (auto-verif ecrite par toi) (comparateur de sorties, fourni).
 
 ## LE CONTRAT
 
 Tu vas produire, dans **un langage non-JS au choix** (Python, Go, Rust, Java, C#) :
 
-1. **Un algorithme** issu de `02-CONSTRUCTION/07_algorithms/`. Choix libre : tri, recherche binaire, graphe (BFS/DFS/Dijkstra), programmation dynamique. Complexité annoncée identique à la version JS.
-2. **Un pattern** issu de `02-CONSTRUCTION/10_design_patterns/`. Choix libre parmi Strategy, Observer, Builder, Adapter, Decorator, State. Interface publique équivalente.
+1. **Un algorithme** issu de `10_algorithms/`. Choix libre : tri, recherche binaire, graphe (BFS/DFS/Dijkstra), programmation dynamique. Complexité annoncée identique à la version JS.
+2. **Un pattern** issu de `12_design_patterns/`. Choix libre parmi Strategy, Observer, Builder, Adapter, Decorator, State. Interface publique équivalente.
 
 Les deux livrables doivent :
 
@@ -45,7 +44,7 @@ Les deux livrables doivent :
 ```
 crosslang_challenge/
   algo_<nom>/
-    js/    (référence, extraite de 02-CONSTRUCTION/07_algorithms)
+    js/    (référence, extraite de 10_algorithms)
     <lang>/
       src/
       tests/
@@ -88,9 +87,9 @@ Un nouveau module aurait allongé le curriculum sans preuve additionnelle. Une g
 
 ## ENCHAÎNEMENT
 
-- Prérequis : `02-CONSTRUCTION/07_algorithms/` complet, `02-CONSTRUCTION/10_design_patterns/` complet, `05-MAITRISE/06_annexes/transferability/README.md` lu.
+- Prérequis : `10_algorithms/` complet, `12_design_patterns/` complet, `31_annexes/transferability/README.md` lu.
 - Ne pas commencer avant : la fin des mini-projets `01`, `05`, `15`. Sinon tu n'as pas la maturité pour comparer.
-- Après : passe à `05-MAITRISE/06_annexes/career/interview_defense.md` scénario 2. Tu défendras plus solidement.
+- Après : passe à `31_annexes/career/interview_defense.md` scénario 2. Tu défendras plus solidement.
 
 ---
 

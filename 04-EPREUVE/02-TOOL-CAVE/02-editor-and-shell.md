@@ -1,8 +1,3 @@
----
-stability: perissable_2027
-acte: appliquer
----
-
 # Éditeur et shell comme prothèses cognitives
 
 ## Le piège

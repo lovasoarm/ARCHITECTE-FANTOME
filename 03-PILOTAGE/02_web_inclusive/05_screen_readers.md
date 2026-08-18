@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # LECTEURS D'ÉCRAN : COMMENT ILS LISENT VRAIMENT TON CODE

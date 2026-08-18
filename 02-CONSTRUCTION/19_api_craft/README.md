@@ -1,45 +1,51 @@
 ---
-stability: intemporel
-acte: restituer
-route: survie
+stability: evolutif
+acte: parcours
+noyau: oui
+genere_depuis: disque
 ---
 
-# 02-CONSTRUCTION/19_api_craft
+# MODULE 19 API CRAFT
 
-Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
+> Palier `02-CONSTRUCTION`. Duree estimee : **9 h 45** (14 fichiers de travail).
 
-## Appel TECH-ILA 3 sur 6 : Niveau 3 Backend
 
-Tu ouvres la carte **maintenant**, dans ce module, pas a la retrospective. Elle apporte ici
-les cadres serveur, les couches d'acces aux donnees et les formats de contrat que ton API va devoir choisir maintenant, pas plus tard.
+## Sommaire genere depuis le disque
 
-- Carte : [Niveau 3 Backend](../../06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/03-niveau-3-backend.md)
-- Pourquoi ici : ce module est le premier endroit du parcours ou ces noms d'outils changent une
-  decision. Lue plus tard, la carte n'est plus qu'un catalogue.
-- Ce que tu produis avec : un contrat d'API publie, avec son cadre et sa couche de donnees nommes.
-- Regle : la carte est perissable, le module ne l'est pas. Si un nom d'outil a vieilli, on
-  remplace la carte en annexes sans toucher a ce module.
+| Fichier | Objet | Duree |
+| --- | --- | --- |
+| [`00_prereq_check.md`](00_prereq_check.md) | 00 : Prereq check : API Craft | 15 min |
+| [`00_why_api_craft.md`](00_why_api_craft.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : API CRAFT | 45 min |
+| [`01_express_from_scratch.md`](01_express_from_scratch.md) | EXPRESS FROM SCRATCH | 45 min |
+| [`02_rest_crud_complete.md`](02_rest_crud_complete.md) | REST CRUD COMPLET | 45 min |
+| [`02_rest_crud_complete_minimini_projet.md`](02_rest_crud_complete_minimini_projet.md) | 02 rest crud complete minimini projet | 45 min |
+| [`03_error_handling_api.md`](03_error_handling_api.md) | LES ERREURS D'API | 45 min |
+| [`04_auth_jwt.md`](04_auth_jwt.md) | JWT DE BOUT EN BOUT | 45 min |
+| [`05_graphql_basics.md`](05_graphql_basics.md) | GRAPHQL SANS LA MAGIE | 45 min |
+| [`06_api_versioning.md`](06_api_versioning.md) | VERSIONNER UNE API | 45 min |
+| [`07_openapi_swagger.md`](07_openapi_swagger.md) | OPENAPI ET SWAGGER | 45 min |
+| [`08_api_grimoire.md`](08_api_grimoire.md) | Page verrouillée | 30 min |
+| [`09_EXO_LECTURE.md`](09_EXO_LECTURE.md) | EXO LECTURE : 15-25 minutes (API Craft) | 45 min |
+| [`10_EXO_JEUNE_IA.md`](10_EXO_JEUNE_IA.md) | EXO [JEUNE IA] : 21_api_craft | 45 min |
+| [`98_PORTAGE_MENTAL.md`](98_PORTAGE_MENTAL.md) | 98_PORTAGE_MENTAL.md : ce concept en Python / Go / Rust | 45 min |
 
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
+Total : **9 h 45**. Regle de calcul : lecon numerotee 45 min, controle de prerequis 15 min,
+grimoire 30 min, challenge 1 h 30, boss fight 3 h. Voir `.meta/_STYLE.md`, section « Durees ».
 
-## Contenu du dossier
+## Comment travailler ce module
 
-Liste generee : tout fichier de `02-CONSTRUCTION/19_api_craft` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
+1. Ouvre d abord le fichier `00_why_*` s il existe : il dit pourquoi le module merite ton temps.
+2. Passe le controle de prerequis. Un prerequis manquant se repare en amont, jamais ici.
+3. Fais les lecons dans l ordre des numeros. Chaque lecon a un exercice borne : il se rend, il se date.
+4. Le grimoire se lit **apres** la pratique, jamais avant : c est une fiche de rappel, pas un cours.
+5. Le challenge, puis le boss fight, cochent le module. Sans eux, le module est lu, pas acquis.
 
-- [00_prereq_check.md](00_prereq_check.md)
-- [00_why_api_craft.md](00_why_api_craft.md)
-- [01_express_from_scratch.md](01_express_from_scratch.md)
-- [02_rest_crud_complete.md](02_rest_crud_complete.md)
-- [02_rest_crud_complete_minimini_projet.md](02_rest_crud_complete_minimini_projet.md)
-- [03_error_handling_api.md](03_error_handling_api.md)
-- [04_auth_jwt.md](04_auth_jwt.md)
-- [05_graphql_basics.md](05_graphql_basics.md)
-- [06_api_versioning.md](06_api_versioning.md)
-- [07_openapi_swagger.md](07_openapi_swagger.md)
-- [08_api_grimoire.md](08_api_grimoire.md)
-- [09_EXO_LECTURE.md](09_EXO_LECTURE.md)
-- [10_EXO_JEUNE_IA.md](10_EXO_JEUNE_IA.md)
-- [98_PORTAGE_MENTAL.md](98_PORTAGE_MENTAL.md)
-- [verification_pack/](verification_pack/README.md)
+## Ce que ce module produit dans ton depot fil rouge
 
-<!-- CONTENU-DOSSIER:fin -->
+Au moins un artefact date et verifiable. Si tu ne peux pas montrer de fichier a la sortie, le module
+n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
+
+## Verification
+
+- [ ] Tous les fichiers du tableau sont ouverts et leurs exercices rendus.
+- [ ] L artefact produit est cite dans ton journal de progression (`PROGRESSION.md`).

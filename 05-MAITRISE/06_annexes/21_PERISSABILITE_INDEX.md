@@ -23,12 +23,12 @@ Le tri place en haut ce qui va vieillir en premier. Un fichier qui porte des mon
 | Catégorie | Fichiers | Durée de vie attendue |
 | --- | --- | --- |
 | mouvant | 18 | quelques mois |
-| stable | 20 | jusqu'à 3 ans |
+| stable | 21 | jusqu'à 3 ans |
 | perissable_2027 | 133 | jusqu'à 2027 |
 | perissable_2028 | 46 | jusqu'à 2028 |
 | intemporel | 1370 | 5 ans et + |
 
-Total des fichiers portant un en-tête `stability:` : 1587.
+Total des fichiers portant un en-tête `stability:` : 1588.
 
 ## Index détaillé
 
@@ -70,6 +70,7 @@ Total des fichiers portant un en-tête `stability:` : 1587.
 | `04-EPREUVE/05-BIG-APP-SNOOP/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
 | `04-EPREUVE/06-CAPSTONE-ARENA/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
 | `05-MAITRISE/05-DAY-TO-LEGEND/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `99-COULISSES/archives/corrections/CORRECTION-LOT5.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
 | `99-COULISSES/archives/DECISION-DEDUPLICATION-OBSERVABILITE.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
 | `PROGRESSION.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
 | `00-SOCLE/04_fundamentals/04_types/03_type_transformers.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
@@ -196,14 +197,14 @@ Total des fichiers portant un en-tête `stability:` : 1587.
 | `06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/08-ia-exercices-marche-audit.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
 | `06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/09-mode-urgence.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
 | `06-ANNEXES-TRANSVERSES/10-COMMUNAUTE.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
+| `06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S1-BUDGET-CLOUD.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
+| `06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S2-ADR-PRINCIPAL.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
+| `06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S3-SLO.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
+| `06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S4-DECISION-ARBITRAGE.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
+| `06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S5-NOTE-DIRECTION-ET-REVUE.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
+| `06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S6-IA-EN-PROD.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
+| `06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S7-PORTAGE.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
 | `99-COULISSES/archives/DECISION-DETTE-ENTETES-HERITES.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
-| `PREUVES-MODELES/S1-BUDGET-CLOUD.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
-| `PREUVES-MODELES/S2-ADR-PRINCIPAL.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
-| `PREUVES-MODELES/S3-SLO.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
-| `PREUVES-MODELES/S4-DECISION-ARBITRAGE.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
-| `PREUVES-MODELES/S5-NOTE-DIRECTION-ET-REVUE.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
-| `PREUVES-MODELES/S6-IA-EN-PROD.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
-| `PREUVES-MODELES/S7-PORTAGE.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
 | `README.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
 | `02-CONSTRUCTION/03_testing/08_e2e_playwright_beast.md` | perissable_2028 | jusqu'à 2028 | cite des outils, des versions ou des offres qui vieillissent |
 | `03-PILOTAGE/11_leadership_mentorat/07_standards_pour_agents.md` | perissable_2028 | jusqu'à 2028 | cite des outils, des versions ou des offres qui vieillissent |

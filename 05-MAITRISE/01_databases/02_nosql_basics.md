@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # Quand ranger en tables fait plus de mal que de bien
@@ -104,7 +103,7 @@ réparties sur plusieurs noeuds (nodes) du cluster
 
 Le pourquoi : quand t'as 50 000 capteurs de surveillance du village qui écrivent une métrique par seconde, une DB relationnelle classique sature vite en écriture sur une seule machine. Une DB colonne large comme Cassandra est faite pour distribuer cette charge d'écriture sur plusieurs machines sans single point of failure (point unique de panne).
 
-Le risque réel : ces DB sacrifient souvent la cohérence forte (vu dans `05-MAITRISE/02_scalability`) pour la disponibilité et la vitesse. Tu peux lire une donnée légèrement périmée juste après une écriture (eventual consistency : cohérence éventuelle). Si ton métier ne tolère pas ça (transaction financière), c'est disqualifiant.
+Le risque réel : ces DB sacrifient souvent la cohérence forte (vu dans `25_scalability`) pour la disponibilité et la vitesse. Tu peux lire une donnée légèrement périmée juste après une écriture (eventual consistency : cohérence éventuelle). Si ton métier ne tolère pas ça (transaction financière), c'est disqualifiant.
 
 ---
 

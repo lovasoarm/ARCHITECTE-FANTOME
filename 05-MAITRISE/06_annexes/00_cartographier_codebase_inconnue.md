@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Cartographier une codebase inconnue en 15 minutes
@@ -91,7 +90,7 @@ apres 2 mois.
 ## Ou l'exercer
 
 - `EXO_LECTURE.md` de tous les modules qui en portent un (voir liste dans
-  `05-MAITRISE/06_annexes/ARBORESCENCE.md`).
-- Mini-projet `02-CONSTRUCTION/02_mini_projects/10_legacy_dungeon/` et
-  `02-CONSTRUCTION/02_mini_projects/12_legacy_takeover/` : le protocole est la premiere
+  `31_annexes/ARBORESCENCE.md`).
+- Mini-projet `30_mini_projects/10_legacy_dungeon/` et
+  `30_mini_projects/12_legacy_takeover/` : le protocole est la premiere
   chose a executer avant toute modification.

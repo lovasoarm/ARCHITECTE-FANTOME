@@ -3,14 +3,13 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: GC, complexité, profilage : concepts stables au-delà du moteur V8.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : closures (00-SOCLE/04_fundamentals), async (01-CADRAGE/02_async), bits & représentation (02-CONSTRUCTION/04_math_basics). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : closures (01_fundamentals), async (03_async), bits & représentation (07_math_basics). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
-> **AVANT D'OUVRIR CE MODULE** : si tu n'as pas lu `02-CONSTRUCTION/04_math_basics/99_PONT_avant_02-CONSTRUCTION-05_memory_performance.md` (le pont bits-mémoire), fais-le d'abord. Sans cette image mentale, ce qui suit reste des mots.
+> **AVANT D'OUVRIR CE MODULE** : si tu n'as pas lu `07_math_basics/99_PONT_avant_module_08_memory.md` (le pont bits-mémoire), fais-le d'abord. Sans cette image mentale, ce qui suit reste des mots.
 
 Temps de lecture ~8 min
 
@@ -80,13 +79,13 @@ La tendance forte : poser un budget de performance dès le départ et le faire r
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Indirectement, oui : ce module est un prérequis explicite pour `02-CONSTRUCTION/06_data_structures` ("prérequis : 00-SOCLE/04_fundamentals + 02-CONSTRUCTION/05_memory_performance/03_complexity"). Tu ne peux pas comprendre pourquoi une hash table bat un tableau pour certaines opérations si tu ne comprends pas déjà la notion de complexité algorithmique. Ce module est le pont obligatoire entre les fondamentaux et tout ce qui touche aux structures de données et aux algorithmes. Il ouvre aussi la porte à `03-PILOTAGE/05_observability`, où mesurer et surveiller les performances en prod devient le quotidien.
+Indirectement, oui : ce module est un prérequis explicite pour `09_data_structures` ("prérequis : 01_fundamentals + 08_memory_performance/03_complexity"). Tu ne peux pas comprendre pourquoi une hash table bat un tableau pour certaines opérations si tu ne comprends pas déjà la notion de complexité algorithmique. Ce module est le pont obligatoire entre les fondamentaux et tout ce qui touche aux structures de données et aux algorithmes. Il ouvre aussi la porte à `26_observability`, où mesurer et surveiller les performances en prod devient le quotidien.
 
 ---
 
 ## 7) POURQUOI LES CORE WEB VITALS VIVENT ICI ET PAS DANS 16_WEB_CONCEPTS
 
-Les Core Web Vitals (LCP, INP, CLS) mesurent les conséquences directes de tes décisions techniques de performance. Un LCP lent, c'est souvent un rendu qui bloque parce qu'une ressource est trop grosse en mémoire. Un CLS élevé, c'est une mauvaise gestion des tailles avant et après le chargement. Ce sont des symptômes de perf, pas des concepts web. C'est pour ça qu'ils vivent ici, dans le module qui t'apprend à mesurer et à comprendre ce qui coûte cher : pas dans 02-CONSTRUCTION/18_web_concepts qui traite le protocole et le browser rendering comme des systèmes, pas comme des instruments de mesure.
+Les Core Web Vitals (LCP, INP, CLS) mesurent les conséquences directes de tes décisions techniques de performance. Un LCP lent, c'est souvent un rendu qui bloque parce qu'une ressource est trop grosse en mémoire. Un CLS élevé, c'est une mauvaise gestion des tailles avant et après le chargement. Ce sont des symptômes de perf, pas des concepts web. C'est pour ça qu'ils vivent ici, dans le module qui t'apprend à mesurer et à comprendre ce qui coûte cher : pas dans 17_web_concepts qui traite le protocole et le browser rendering comme des systèmes, pas comme des instruments de mesure.
 
 ---
 

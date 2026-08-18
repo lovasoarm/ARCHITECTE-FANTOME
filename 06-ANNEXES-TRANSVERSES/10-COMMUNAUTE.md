@@ -1,31 +1,26 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: chantier
+acte: a_ecrire
 ---
 
-# COMMUNAUTÉ MyFunnyJS
-Temps de lecture ~3 min
+<!-- CHANTIER-OUVERT : fichier reconstruit comme facade lors de la fusion en package unique.
+     Le contenu pedagogique reel reste a ecrire. Voir RESTE-A-FAIRE-ARCHITECTE-FANTOME.md. -->
 
-Tu apprends seul mais tu ne dois PAS rester isolé. La solitude tue plus de devs que les bugs.
+# 10 COMMUNAUTE
 
-## OÙ TROUVER DU MONDE
+> **Chantier ouvert.** Ce fichier existe pour qu'aucun lien du depot ne soit casse.
+> Son contenu pedagogique n'est pas encore ecrit.
 
-- **Discord CrazyDevs** : le canal principal. Peer-review, entraide, review des mini-projets.
-- **Reddit r/learnjavascript** : questions publiques, réponses parfois précieuses.
-- **Twitter/X #100DaysOfCode** : engagement public, tu poses ton progrès quotidien.
-- **Meetups locaux JS/Node** : un IRL par mois vaut 10 threads Discord.
+## Ce qui doit etre ecrit ici
 
-## LE PACT PEER-REVIEW (OBLIGATOIRE POUR VALIDER UN MINI-PROJET)
+Le contrat exact de ce fichier est decrit par les documents qui le citent :
 
-Avant de passer au module suivant :
-1. Push ton mini-projet sur GitHub.
-2. Poste le lien dans #peer-review.
-3. Review celui d'un autre (donne 3 remarques précises).
-4. Reçois 3 remarques sur le tien.
-5. Corrige au moins UNE remarque avant de continuer.
+- `06-ANNEXES-TRANSVERSES/09-PEREMPTION-2027.md`
+- `06-ANNEXES-TRANSVERSES/README.md`
 
-Sans peer-review, tu accumules tes propres angles morts.
+## Statut
 
-## SIGNAL D'ALARME
-
-Si tu passes plus de 3 jours SEUL sans parler à personne du projet : arrête, écris un post, demande.
+- [ ] contenu redige
+- [ ] exercice borne et verifiable
+- [ ] rattache au fil rouge
+- [ ] cite dans le README de son module

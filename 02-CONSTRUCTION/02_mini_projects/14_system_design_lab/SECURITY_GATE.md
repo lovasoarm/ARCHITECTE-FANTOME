@@ -1,7 +1,6 @@
 ---
 stability: intemporel
 gate: bloquante
-acte: appliquer
 ---
 
 # Security Gate : 14_system_design_lab

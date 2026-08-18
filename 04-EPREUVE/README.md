@@ -13,7 +13,7 @@ Ce palier ne se valide pas par un rendu de plus : il se valide par **un seul liv
 le portage d'un service du fil rouge dans un second langage et chez un second fournisseur.
 
 - Ce qui est attendu, section par section :
-  [PREUVES-MODELES/S7-PORTAGE.md](../PREUVES-MODELES/S7-PORTAGE.md).
+  [06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S7-PORTAGE.md](../06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S7-PORTAGE.md).
 - Où il s'inscrit dans le profil de sortie : septième entrée de
   [PREUVES-STAFF-ENGINEER.md](../PREUVES-STAFF-ENGINEER.md).
 - Condition d'entree au capstone : `PORTAGE.md` existe physiquement, ses tests de contrat

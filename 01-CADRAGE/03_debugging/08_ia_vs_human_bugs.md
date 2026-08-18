@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # BUGS IA vs BUGS HUMAINS : signatures distinctes

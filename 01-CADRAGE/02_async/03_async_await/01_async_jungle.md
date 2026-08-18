@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # ASYNC/AWAIT : LA JUNGLE
 Temps de lecture ~8 min

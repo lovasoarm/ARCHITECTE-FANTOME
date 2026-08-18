@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 05 : AI Famine Drill (ex-18bis) : simulation de survie technologique
@@ -44,10 +43,10 @@ set wlan0 down` (Linux) ou equivalent. Rebranche uniquement pour publier
 
 Un seul, choisi la veille sans y toucher :
 
-- **Facile** : `01-CADRAGE/02_async` (une Promise from scratch, un mini scheduler).
-- **Moyen** : `02-CONSTRUCTION/05_memory_performance` (un LRU cache + un heap profiler
+- **Facile** : `03_async` (une Promise from scratch, un mini scheduler).
+- **Moyen** : `08_memory_performance` (un LRU cache + un heap profiler
   minimal).
-- **Difficile** : `02-CONSTRUCTION/09_functional_js` (une lib fonctionnelle : `pipe`,
+- **Difficile** : `11_functional_js` (une lib fonctionnelle : `pipe`,
   `curry`, `map/filter/reduce` immuables, `Maybe`, `Either`).
 
 Le module choisi doit avoir ete etudie **avant** ce drill. Sinon ce n'est
@@ -99,9 +98,9 @@ sinon il perd son mordant.
 - Prerequis pedagogique : avoir termine le module cible **et** au moins un
   `EXO_JEUNE_IA.md` du meme module.
 - Suite recommandee : ecrire un post retour d'experience dans
-  `05-MAITRISE/06_annexes/16_career/00_guide.md` (annexe personnelle) et referencer le
+  `31_annexes/16_career/00_guide.md` (annexe personnelle) et referencer le
   POSTMORTEM.
-- Cousin en aval : ce drill nourrit `05-MAITRISE/06_annexes/16_career/03_plateau_playbook.md`
+- Cousin en aval : ce drill nourrit `31_annexes/16_career/03_plateau_playbook.md`
   si tu decouvres un plateau en le passant.
 
 ## RESUME

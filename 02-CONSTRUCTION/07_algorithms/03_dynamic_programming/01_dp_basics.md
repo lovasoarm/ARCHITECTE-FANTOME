@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # DYNAMIC PROGRAMMING : NE CALCULE JAMAIS DEUX FOIS LA MÊME CHOSE
 Temps de lecture ~9 min

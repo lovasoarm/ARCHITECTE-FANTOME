@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: évaluer
 ---
 
 # ADR-001 criteres detection smell

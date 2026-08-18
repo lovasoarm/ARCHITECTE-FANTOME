@@ -1,8 +1,7 @@
 ---
-stability: perissable_2027
+stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # NODE CPU PROFILING : TROUVER CE QUI BOUFFE LE CPU EN PROD
 Temps de lecture ~9 min
@@ -155,7 +154,7 @@ clinic bubbleprof -- node server.js
 
 Dans le rapport bubbleprof, tu vois le temps passé dans les callbacks async vs le temps bloqué en synchrone. Si la bulle "sync" est énorme : c'est ici que ça bloque.
 
-La solution : `worker_threads` pour sortir le calcul lourd du main thread (voir `02-CONSTRUCTION/13_runtime_env/05_worker_threads.md`).
+La solution : `worker_threads` pour sortir le calcul lourd du main thread (voir `15_runtime_env/05_worker_threads.md`).
 
 ---
 

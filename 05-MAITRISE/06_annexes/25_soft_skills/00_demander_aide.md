@@ -2,7 +2,6 @@
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Demander de l'aide efficacement est indépendant de la techno.
-acte: appliquer
 ---
 
 # Demander de l'aide efficacement
@@ -79,5 +78,5 @@ Reconnaître ça n'est pas faible. C'est du respect pour ton temps et celui des 
 
 ## OÙ CETTE FICHE S'ARTICULE
 
-- Amont : `01-CADRAGE/03_debugging/05_hypothesis_driven_debug.md` (formuler une hypothèse debug).
-- Aval : `03-PILOTAGE/10_team_craft/03_code_review.md` (recevoir et donner des retours).
+- Amont : `04_debugging/05_hypothesis_driven_debug.md` (formuler une hypothèse debug).
+- Aval : `27_team_craft/03_code_review.md` (recevoir et donner des retours).

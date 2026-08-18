@@ -1,13 +1,10 @@
 ---
-stability: perissable_2027
+stability: perissable
 duree_de_vie_estimee: 1-2 ans
 raison: Les styles IA évoluent avec les modèles.
-acte: restituer
 ---
 
 # 18_human_vs_ai_smell : reconnaître deux styles de bug
-
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
 
 Temps de lecture ~30 min
 
@@ -15,7 +12,7 @@ Temps de lecture ~30 min
 
 ## POURQUOI CE MINI-PROJET
 
-Le curriculum traite les deux angles séparément : `10_legacy_dungeon` pour le legacy humain, `04-EPREUVE/04_ai_native_dev/07_faux_positifs_ia.md` pour l'IA. Ici, on les met **côte à côte** sur le même problème. C'est le seul moyen de sentir la différence de texture.
+Le curriculum traite les deux angles séparément : `10_legacy_dungeon` pour le legacy humain, `23_ai_native_dev/07_faux_positifs_ia.md` pour l'IA. Ici, on les met **côte à côte** sur le même problème. C'est le seul moyen de sentir la différence de texture.
 
 ## LE PROBLÈME
 
@@ -57,20 +54,3 @@ Un piège de style humain se sent : incohérence, court-circuit "je verrai plus 
 ## REPRODUCTIBILITÉ
 
 Installation canonique : `npm ci` (pas `npm install`). `npm ci` respecte strictement le `package-lock.json` : deux personnes qui clonent obtiennent exactement les mêmes versions. Committe toujours ton `package-lock.json`. Sans lui, un `npm install` 3 mois plus tard installera d'autres versions et tu debug un fantôme.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION/02_mini_projects/18_human_vs_ai_smell` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_SPEC_DRIFT.md](00_SPEC_DRIFT.md)
-- [POSTMORTEM.md](POSTMORTEM.md)
-- [RULES.md](RULES.md)
-- [SECURITY_GATE.md](SECURITY_GATE.md)
-- [SPEC_DRIFT_TRIGGERS.md](SPEC_DRIFT_TRIGGERS.md)
-- [TDD_JOURNAL.md](TDD_JOURNAL.md)
-- [cahierdescharges.md](cahierdescharges.md)
-- [ADR/](ADR/README.md)
-
-<!-- CONTENU-DOSSIER:fin -->

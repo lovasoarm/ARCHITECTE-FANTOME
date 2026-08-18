@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: produire
 ---
 
 # REFACTO CHALLENGE

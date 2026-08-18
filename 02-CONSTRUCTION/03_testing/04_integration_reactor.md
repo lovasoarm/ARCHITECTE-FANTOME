@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # INTEGRATION REACTOR : QUAND L'ISOLATION NE SUFFIT PLUS

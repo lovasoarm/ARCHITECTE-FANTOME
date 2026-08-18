@@ -28,6 +28,7 @@ refuse la livraison si une entree n'est ni numerotee ni rattachee.
 | 11 | [11-ANNEXE-perennite.md](11-ANNEXE-perennite.md) | `05-MAITRISE/06_annexes/20_PERISSABILITE.md` | Apres la grille intemporel/perissable | La doctrine de perennite du depot |
 | 12 | [12-EPILOGUE.md](12-EPILOGUE.md) | `05-MAITRISE/RETRO-BLOC-5-MAITRISE.md` | Retro finale ecrite et signee | La fin du fil, sans felicitations creuses |
 | 13 | [13-ANNEXE-et-apres.md](13-ANNEXE-et-apres.md) | `05-MAITRISE/RETRO-BLOC-5-MAITRISE.md` | Apres l'epilogue | Ce qui vient apres le depot : marche, entretien, entretien du niveau |
+| 14 | [14-PREUVES-MODELES/](14-PREUVES-MODELES/README.md) | `04-EPREUVE/06-CAPSTONE-ARENA/00_prereq_check.md` et les modules Staff du palier 03 | Avant d'ecrire ta premiere piece de preuve | Les sept modeles de livrables Staff, forme attendue et criteres de refus |
 
 Hors numerotation, parce que ce ne sont pas des annexes appelees par un module : ce README
 (porte d'entree), `LICENSE-projectfunny` (licence heritee), `meta/` (gabarits de style) et
@@ -52,6 +53,7 @@ Liste generee : tout fichier de `06-ANNEXES-TRANSVERSES` est joignable depuis ic
 - [12-EPILOGUE.md](12-EPILOGUE.md)
 - [13-ANNEXE-et-apres.md](13-ANNEXE-et-apres.md)
 - [03-TECH-ILA/](03-TECH-ILA/README.md)
+- [14-PREUVES-MODELES/](14-PREUVES-MODELES/README.md)
 - [assets/](assets/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

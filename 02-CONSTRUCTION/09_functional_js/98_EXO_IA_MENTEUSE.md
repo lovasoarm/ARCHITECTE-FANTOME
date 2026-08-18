@@ -1,9 +1,8 @@
 ---
-stability: intemporel
-acte: produire
+stability: stable
 ---
 
-# EXO IA MENTEUSE : module 02-CONSTRUCTION/09_functional_js
+# EXO IA MENTEUSE : module 11_functional_js
 
 Temps : ~10 min. Format court, seul ou en binôme.
 

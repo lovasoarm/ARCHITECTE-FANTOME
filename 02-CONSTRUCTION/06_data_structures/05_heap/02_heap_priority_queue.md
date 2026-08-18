@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # PRIORITY QUEUE : LES URGENCES PASSENT DEVANT
 Temps de lecture ~9 min
@@ -291,4 +290,4 @@ Résultat attendu : distances minimales depuis A vers chaque station.
 
 ## RÉSUMÉ
 
-Une priority queue c'est un heap avec une interface métier. Enqueue avec une priorité, dequeue en ordre garanti. O(log n) dans les deux sens. À priorité égale, ajoute un critère secondaire (timestamp, deadline) pour stabiliser. La version min-heap est le moteur de Dijkstra : indispensable dans le module 02-CONSTRUCTION/07_algorithms.
+Une priority queue c'est un heap avec une interface métier. Enqueue avec une priorité, dequeue en ordre garanti. O(log n) dans les deux sens. À priorité égale, ajoute un critère secondaire (timestamp, deadline) pour stabiliser. La version min-heap est le moteur de Dijkstra : indispensable dans le module 10_algorithms.

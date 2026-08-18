@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # WORKER THREADS : PARALLÉLISER SANS BLOQUER L'EVENT LOOP

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Éthique & Licences (annexe indispensable)
@@ -60,7 +59,7 @@ avant de la vendorer.
  protégés. Documente les limites dans un "model card".
 - **Dark patterns** : refuse d'implémenter des interfaces qui trompent
  le shinobi (opt-out caché, faux boutons, honte du décochage).
-- **Impact énergétique** : voir `05-MAITRISE/06_annexes/03_finops_greenops.md`.
+- **Impact énergétique** : voir `31_annexes/03_finops_greenops.md`.
 
 ## 4. Checklist avant de publier
 

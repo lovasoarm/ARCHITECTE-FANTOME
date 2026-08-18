@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: produire
 ---
 
 # ÉPREUVE FINALE : DEBUG CROSS-LANGUAGE + ADR COMPARATIF EN 4H

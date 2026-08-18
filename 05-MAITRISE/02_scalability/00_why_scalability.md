@@ -1,14 +1,13 @@
 ---
 perennite: evolutif
-stability: intemporel
+stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: Patterns scaling stables, outils cloud bougent.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : mémoire (02-CONSTRUCTION/05_memory_performance), async (01-CADRAGE/02_async), DB (05-MAITRISE/01_databases), architecture (02-CONSTRUCTION/14_architecture_patterns), le test de charge que tu as déjà produit au [Temps 1 de 03-PILOTAGE/06_fiabilite_slo/05_panne_subie_sur_fil_rouge.md](../../03-PILOTAGE/06_fiabilite_slo/05_panne_subie_sur_fil_rouge.md). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : mémoire (08_memory_performance), async (03_async), DB (24_databases), architecture (16_architecture_patterns). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : SCALABILITY
 
@@ -25,10 +24,10 @@ La scalabilité, c'est la discipline qui te dit comment grandir sans tout recons
 ## PRÉREQUIS
 
 Ce module suppose que tu maîtrises :
-- une API REST fonctionnelle : voir `02-CONSTRUCTION/19_api_craft/`
-- sécurité de base (rate limiting, auth) : voir `03-PILOTAGE/04_security/`
-- comment les responsabilités se découpent entre services : voir `02-CONSTRUCTION/14_architecture_patterns/`
-- bases de l'observabilité : voir `03-PILOTAGE/05_observability/` : ou lire les deux en parallèle
+- une API REST fonctionnelle : voir `21_api_craft/`
+- sécurité de base (rate limiting, auth) : voir `22_security/`
+- comment les responsabilités se découpent entre services : voir `16_architecture_patterns/`
+- bases de l'observabilité : voir `26_observability/` : ou lire les deux en parallèle
 
 Sans API qui tourne et sans notion d'architecture, le load balancing et les queues de messages n'ont pas de contexte réel. Ces deux concepts sont des réponses à un problème qu'on ne voit que quand on a déjà un système en prod.
 
@@ -86,7 +85,7 @@ Les message queues ont aussi gagné en accessibilité : des solutions managées 
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Central dans le mini-projet `06_ultras_dashboard`, qui combine `03-PILOTAGE/05_observability`, `05-MAITRISE/02_scalability`, et `02-CONSTRUCTION/12_typescript` pour un système qui doit gérer des milliers d'utilisateurs connectés simultanément sans jamais tomber pendant un match en direct, ce qui rend la scalabilité une condition de survie du produit, pas un bonus technique.
+Central dans le mini-projet `06_ultras_dashboard`, qui combine `26_observability`, `25_scalability`, et `14_typescript` pour un système qui doit gérer des milliers d'utilisateurs connectés simultanément sans jamais tomber pendant un match en direct, ce qui rend la scalabilité une condition de survie du produit, pas un bonus technique.
 
 ---
 
@@ -100,11 +99,9 @@ Peu importe à quel point le matériel et le cloud deviennent puissants et acces
 
 Un système qui marche à petite échelle peut s'effondrer brutalement à grande échelle si personne n'a anticipé la croissance. Ça casse de trois façons sans cette discipline : serveur unique saturé, abus non limité qui dégrade tout, opérations lourdes qui bloquent tout le système. Ce problème reste permanent peu importe la puissance du matériel disponible.
 
-Ce module se termine par un geste obligatoire et unique dans tout le repo : [11_DRILL_MESURE_DE_CHARGE.md](11_DRILL_MESURE_DE_CHARGE.md), où une décision est tranchée par la mesure et non par le raisonnement, puis reliée au budget d'erreur du SLO.
-
 Maintenant, ouvre `01_load_balancing.md`. Et commence à penser ton système pour 10 fois la charge qu'il a aujourd'hui.
 
-> Ce module réutilise : la performance du module 08 (`02-CONSTRUCTION/05_memory_performance`), l'architecture du module 16 (`02-CONSTRUCTION/14_architecture_patterns`).
+> Ce module réutilise : la performance du module 08 (`08_memory_performance`), l'architecture du module 16 (`16_architecture_patterns`).
 
 ---
 

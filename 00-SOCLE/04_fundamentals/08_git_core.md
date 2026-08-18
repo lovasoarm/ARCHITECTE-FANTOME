@@ -2,13 +2,12 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # GIT SURVIVAL : placé dans le noyau, pas dans l'annexe
 Temps de lecture ~5 min
 
-> (attention) Ce fichier vit toujours dans `05-MAITRISE/06_annexes/toolchain/01_git_survival.md`, mais il
-> est promu **noyau** : tu ne peux pas finir `00-SOCLE/04_fundamentals` sans savoir faire ces
+> (attention) Ce fichier vit toujours dans `31_annexes/toolchain/01_git_survival.md`, mais il
+> est promu **noyau** : tu ne peux pas finir `01_fundamentals` sans savoir faire ces
 > 6 gestes. Un pair review, un legacy, un onboarding sans git = tu es un touriste.
 
 ## LES 6 GESTES OBLIGATOIRES
@@ -22,8 +21,8 @@ Temps de lecture ~5 min
 
 ## VALIDATION
 
-Va dans `05-MAITRISE/06_annexes/toolchain/01_git_survival.md` faire l'atelier complet. Sans les
-6 gestes acquis, tu ne passes pas à `00-SOCLE/05_problem_solving`. Ce n'est pas un souhait,
+Va dans `31_annexes/toolchain/01_git_survival.md` faire l'atelier complet. Sans les
+6 gestes acquis, tu ne passes pas à `02_problem_solving`. Ce n'est pas un souhait,
 c'est un prérequis d'employabilité.
 
 ## POURQUOI C'EST PROMU NOYAU

@@ -1,6 +1,6 @@
 # Rétrospective de bloc : Bloc CONDUITE (niveaux 08 à 10)
 
-[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/06-ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
+[Sommaire](../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/05-ROADMAP.md) | [Style](.meta/_STYLE.md)
 
 Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opération précise : tu
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
@@ -9,12 +9,6 @@ est désormais faux, et pourquoi ce n'était pas visible à l'époque.
 Durée : 60 à 90 minutes. À faire après le boss-fight du niveau 10-TEAM-QUEST, avant d'ouvrir le bloc
 suivant. Ne saute pas cette étape : c'est la seule fois du parcours où tu juges ton propre
 travail passé avec des yeux différents.
-
-## Boss de palier (rythme deux modules, un Boss)
-
-Cette retrospective **est** le dernier Boss de son palier : elle ferme [leadership mentorat](11_leadership_mentorat/README.md). Il n'y a donc pas de dossier `BOSS-` supplementaire ici : le Boss final d'un
-palier, c'est la relecture qui decide si le palier se coche. Meme verdict binaire que les Boss
-intermediaires : passe, ou ne passe pas.
 
 ## Contrôle d'antériorité du bloc
 
@@ -29,9 +23,9 @@ relire ta solution. C'est deux heures. Elles valent les vingt heures du bloc sui
 
 ## Ce que tu rouvres
 
-- ton registre de risques du niveau 08 ([08-ROADMAP-RUN/challenge.md](01-ROADMAP-RUN/challenge.md)),
-- ta stratégie de tests du niveau 09 ([09-QUALITY-SHIELD/challenge.md](03-QUALITY-SHIELD/challenge.md)),
-- ton working agreement du niveau 10 ([10-TEAM-QUEST/challenge.md](09-TEAM-QUEST/challenge.md)).
+- ton registre de risques du niveau 08 ([08-ROADMAP-RUN/challenge.md](./01-ROADMAP-RUN/challenge.md)),
+- ta stratégie de tests du niveau 09 ([09-QUALITY-SHIELD/challenge.md](./03-QUALITY-SHIELD/challenge.md)),
+- ton working agreement du niveau 10 ([10-TEAM-QUEST/challenge.md](./09-TEAM-QUEST/challenge.md)).
 
 Tu les rouvres sans les corriger tout de suite. D'abord tu lis, ensuite tu annotes, enfin tu
 décides quoi reprendre.
@@ -126,17 +120,6 @@ Relis tes horodatages de boss-fight du bloc. Combien sont antérieurs à ta prem
 la grille ? Si moins de la moitié, refais-en un avant de continuer : une grille lue d'abord
 transforme un exercice de raisonnement en exercice de remplissage.
 
-## Verification du livrable TECH-ILA 4 sur 6
-
-> Depuis S-10, la carte n'est plus annoncee ici : elle a ete ouverte dans `05-MAITRISE/02_scalability`. Cette retrospective ne verifie qu'une chose, binaire : le livrable existe-t-il ? Attendu : une topologie dessinee avec ses briques nommees. Non produit = le bloc n'est pas ferme, meme si toutes les lecons sont lues.
-
-### Rappel de la carte (reference, pas decouverte) : Niveau 4 Systèmes (bloquant)
-
-Ce bloc t'a fait piloter la fiabilité, le cloud et le coût d'un système en production. Le
-[Niveau 4 Systèmes](../06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/04-niveau-4-systemes.md) de
-TECH-ILA prolonge ça hors de ton propre code : conteneurs, files d'attente, pool de connexions,
-ce qui reste vrai quel que soit le langage du service. Lecture avant d'ouvrir le bloc EPREUVE.
-
 ## Critères de réussite
 
 - Au moins 3 affirmations classées FAUX ou INCOMPLET, avec leur mécanisme nommé.
@@ -148,25 +131,5 @@ ce qui reste vrai quel que soit le langage du service. Lecture avant d'ouvrir le
 
 ## Si tu bloques
 
-Rouvre [08-ROADMAP-RUN/challenge.md](01-ROADMAP-RUN/challenge.md) et relis seulement sa section de critères de réussite : la plupart
+Rouvre [08-ROADMAP-RUN/challenge.md](./01-ROADMAP-RUN/challenge.md) et relis seulement sa section de critères de réussite : la plupart
 des FAUX se voient en comparant un livrable à ses propres critères, pas à ta mémoire.
-
-## Questions de rappel actif : modules Staff neufs de ce bloc
-
-- **`03-PILOTAGE/06_fiabilite_slo`** : sans le relire, écris le SLO chiffré
-  que tu as fixé (le pourcentage, la fenêtre de temps) et le budget d'erreur
-  qui en découle. Compare ensuite à ce que tu as réellement écrit : un chiffre
-  qui a changé dans ta tête révèle un SLO jamais vraiment intériorisé.
-- **`03-PILOTAGE/07_cloud_foundations`** : sans le relire, redonne le montant
-  et la date de ton budget cloud daté. Si tu ne peux pas donner les deux
-  (montant ET date), ton estimation n'était pas un engagement, c'était un
-  ordre de grandeur déguisé en décision.
-- **`03-PILOTAGE/08_produit_cout_roi`** : reprends un refus chiffré que tu as
-  produit dans ce module (une fonctionnalité écartée avec un coût ou un ROI
-  négatif à l'appui). Sans le relire, restitue le chiffre qui a justifié le
-  refus. Un refus qui ne tient plus au chiffre près est une INCOMPLÈTE.
-- **`03-PILOTAGE/11_leadership_mentorat`** : sans le relire, décris le
-  protocole d'ignorance que tu as écrit pour dire "je ne sais pas" à ton
-  équipe sans perdre leur confiance. Si tu ne retrouves plus les étapes
-  précises de ce protocole, tu l'as compris intellectuellement mais tu ne
-  l'as pas encore rendu actionnable.

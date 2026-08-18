@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CHOISIR UNE APPROCHE AVANT DE CODER
@@ -135,7 +134,7 @@ Le format minimal : trois lignes.
 ```
 
 Si la décision est importante : elle mérite un ADR (Architecture Decision Record).
-Le module `03-PILOTAGE/10_team_craft` couvre les ADR en détail.
+Le module `27_team_craft` couvre les ADR en détail.
 
 ---
 

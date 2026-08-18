@@ -1,8 +1,3 @@
----
-stability: perissable_2027
-acte: produire
----
-
 # Boss-fight : Tool Cave
 
 ## Contrainte de temps

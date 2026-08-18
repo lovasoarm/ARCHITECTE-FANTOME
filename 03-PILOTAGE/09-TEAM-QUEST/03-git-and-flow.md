@@ -1,8 +1,3 @@
----
-stability: perissable_2027
-acte: appliquer
----
-
 # Branches, PR, releases, feature flags
 
 ## Le piège

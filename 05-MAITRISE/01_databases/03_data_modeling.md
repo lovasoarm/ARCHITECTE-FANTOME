@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Le plan avant les murs
@@ -185,7 +184,7 @@ UUID :
 - plus lourd (16 bytes vs 4-8), index moins performant qu'un entier simple
 ```
 
-Le choix dépend du contexte : un outil interne, auto-incrément suffit. Un système distribué qui génère des IDs sur plusieurs serveurs avant même de toucher la DB (vu dans `05-MAITRISE/02_scalability`), UUID devient nécessaire.
+Le choix dépend du contexte : un outil interne, auto-incrément suffit. Un système distribué qui génère des IDs sur plusieurs serveurs avant même de toucher la DB (vu dans `25_scalability`), UUID devient nécessaire.
 
 ---
 
@@ -229,7 +228,7 @@ Le risque réel sans transaction : exactement le bug "Naruto perd ses ryos sans 
 // il faut parser le JSON dans chaque ligne, aucun index ne peut aider
 
 // exemple qui casse : un dev modifie la liste de jutsu en réécrivant tout le JSON,
-// un autre dev fait pareil en même temps --> race condition (vu dans 01-CADRAGE/02_async),
+// un autre dev fait pareil en même temps --> race condition (vu dans 03_async),
 // la dernière écriture gagne, le jutsu ajouté par l'autre disparaît silencieusement
 ```
 

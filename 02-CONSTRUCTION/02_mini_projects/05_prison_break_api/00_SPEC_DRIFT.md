@@ -1,7 +1,6 @@
 ---
 stability: mouvant
 scope: 05_prison_break_api
-acte: appliquer
 ---
 
 # 00_SPEC_DRIFT.md : spec drift **en cours de projet** (mouvant)

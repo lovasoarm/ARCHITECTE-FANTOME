@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # PROPAGATION D'ERREURS : QUI CATCH QUOI ET À QUEL NIVEAU

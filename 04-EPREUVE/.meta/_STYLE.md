@@ -1,0 +1,33 @@
+---
+stability: chantier
+acte: a_ecrire
+---
+
+<!-- CHANTIER-OUVERT : fichier reconstruit comme facade lors de la fusion en package unique.
+     Le contenu pedagogique reel reste a ecrire. Voir RESTE-A-FAIRE-ARCHITECTE-FANTOME.md. -->
+
+#  STYLE
+
+> **Chantier ouvert.** Ce fichier existe pour qu'aucun lien du depot ne soit casse.
+> Son contenu pedagogique n'est pas encore ecrit.
+
+## Ce qui doit etre ecrit ici
+
+Le contrat exact de ce fichier est decrit par les documents qui le citent :
+
+- `04-EPREUVE/01-BONUS-VAULT/README.md`
+- `04-EPREUVE/01-BONUS-VAULT/grimoire.md`
+- `04-EPREUVE/02-TOOL-CAVE/README.md`
+- `04-EPREUVE/02-TOOL-CAVE/grimoire.md`
+- `04-EPREUVE/05-BIG-APP-SNOOP/README.md`
+- `04-EPREUVE/05-BIG-APP-SNOOP/grimoire.md`
+- `04-EPREUVE/06-CAPSTONE-ARENA/README.md`
+- `04-EPREUVE/06-CAPSTONE-ARENA/grimoire.md`
+- `04-EPREUVE/RETRO-BLOC-4-EPREUVE.md`
+
+## Statut
+
+- [ ] contenu redige
+- [ ] exercice borne et verifiable
+- [ ] rattache au fil rouge
+- [ ] cite dans le README de son module

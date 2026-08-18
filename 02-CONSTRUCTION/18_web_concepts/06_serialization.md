@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SÉRIALISATION : TRANSPORTER LES DONNÉES SANS LES PERDRE

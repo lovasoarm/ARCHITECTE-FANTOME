@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # NODE VS BROWSER : MÊME JS, DEUX PLANÈTES

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # TEST-DRIVEN REFACTOR : CHANGER TOUT SANS RIEN CASSER

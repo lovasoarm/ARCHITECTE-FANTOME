@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # UNIT SNIPER : TESTER UNE FONCTION PRÉCISÉMENT

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 00 : Smell detection
@@ -23,7 +22,7 @@ Temps de lecture ~5 min
 
 ## Exercice : repérage guidé
 
-Ouvre `00-SOCLE/04_fundamentals/03_functions/` (ou n'importe quel module dense).
+Ouvre `01_fundamentals/03_functions/` (ou n'importe quel module dense).
 - Trouve **3 smells** dans le code d'exercices/solutions.
 - Pour chacun : nomme le smell, propose le refacto, écris pourquoi.
 

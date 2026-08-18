@@ -1,23 +1,14 @@
 # Rétrospective de bloc : Bloc BUILD (niveaux 04 à 07)
 
-[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/06-ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
+[Sommaire](../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/05-ROADMAP.md) | [Style](.meta/_STYLE.md)
 
 Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opération précise : tu
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
-est désormais faux, et pourquoi ce n'était pas visible à l'époque. Ce bloc compte 20 modules :
-si tu n'as pas fait la [mi-rétrospective](MI-RETRO-BLOC-2-BUILD.md) après le module 10, cette
-rétrospective couvre alors dix modules d'un coup en plus des dix seconds, compte plutôt 90 à
-120 minutes.
+est désormais faux, et pourquoi ce n'était pas visible à l'époque.
 
 Durée : 60 à 90 minutes. À faire après le boss-fight du niveau 07-API-DOJO, avant d'ouvrir le bloc
 suivant. Ne saute pas cette étape : c'est la seule fois du parcours où tu juges ton propre
 travail passé avec des yeux différents.
-
-## Boss de palier (rythme deux modules, un Boss)
-
-Cette retrospective **est** le dernier Boss de son palier : elle ferme [api craft](19_api_craft/README.md) et [API DOJO](20-API-DOJO/README.md). Il n'y a donc pas de dossier `BOSS-` supplementaire ici : le Boss final d'un
-palier, c'est la relecture qui decide si le palier se coche. Meme verdict binaire que les Boss
-intermediaires : passe, ou ne passe pas.
 
 ## Contrôle d'antériorité du bloc
 
@@ -32,10 +23,10 @@ relire ta solution. C'est deux heures. Elles valent les vingt heures du bloc sui
 
 ## Ce que tu rouvres
 
-- tes flux et états du niveau 04 ([04-USER-WIZARD/challenge.md](01-USER-WIZARD/challenge.md)),
-- ton modèle de données du niveau 05 ([05-DATA-SPELLS/challenge.md](08-DATA-SPELLS/challenge.md)),
-- ton ADR d'architecture du niveau 06 ([06-ARCHI-LAB/challenge.md](15-ARCHI-LAB/challenge.md)),
-- ta spec d'API du niveau 07 ([07-API-DOJO/challenge.md](20-API-DOJO/challenge.md)).
+- tes flux et états du niveau 04 ([04-USER-WIZARD/challenge.md](./01-USER-WIZARD/challenge.md)),
+- ton modèle de données du niveau 05 ([05-DATA-SPELLS/challenge.md](./08-DATA-SPELLS/challenge.md)),
+- ton ADR d'architecture du niveau 06 ([06-ARCHI-LAB/challenge.md](./15-ARCHI-LAB/challenge.md)),
+- ta spec d'API du niveau 07 ([07-API-DOJO/challenge.md](./20-API-DOJO/challenge.md)).
 
 Tu les rouvres sans les corriger tout de suite. D'abord tu lis, ensuite tu annotes, enfin tu
 décides quoi reprendre.
@@ -130,23 +121,6 @@ Relis tes horodatages de boss-fight du bloc. Combien sont antérieurs à ta prem
 la grille ? Si moins de la moitié, refais-en un avant de continuer : une grille lue d'abord
 transforme un exercice de raisonnement en exercice de remplissage.
 
-## Verification du livrable TECH-ILA 3 sur 6
-
-> Depuis S-10, la carte n'est plus annoncee ici : elle a ete ouverte dans `02-CONSTRUCTION/19_api_craft`. Cette retrospective ne verifie qu'une chose, binaire : le livrable existe-t-il ? Attendu : un contrat d'API publie, avec son cadre et sa couche de donnees nommes. Non produit = le bloc n'est pas ferme, meme si toutes les lecons sont lues.
-
-### Rappel de la carte (reference, pas decouverte) : Niveau 3 Backend (bloquant)
-
-Ce bloc t'a fait construire, tester, structurer des données et manier plusieurs paradigmes en
-JavaScript/TypeScript. Le
-[Niveau 3 Backend](../06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/03-niveau-3-backend.md) de
-TECH-ILA reprend ce socle et pose une seule question : ce que tu sais faire en Node tient-il
-si on change d'écosystème (un framework qui n'est pas Express, une couche d'accès aux données
-qui n'est pas la tienne) ?
-
-Point de passage, à écrire dans ta rétro avant d'ouvrir le bloc CONDUITE : trois lignes qui
-citent un mécanisme du Niveau 3 que ton fil rouge implémente déjà à sa façon, et un qu'il
-n'implémente pas du tout. Sans ces trois lignes, la rétro n'est pas terminée.
-
 ## Critères de réussite
 
 - Au moins 3 affirmations classées FAUX ou INCOMPLET, avec leur mécanisme nommé.
@@ -158,13 +132,5 @@ n'implémente pas du tout. Sans ces trois lignes, la rétro n'est pas terminée.
 
 ## Si tu bloques
 
-Rouvre [06-ARCHI-LAB/challenge.md](15-ARCHI-LAB/challenge.md) et relis seulement sa section de critères de réussite : la plupart
+Rouvre [06-ARCHI-LAB/challenge.md](./15-ARCHI-LAB/challenge.md) et relis seulement sa section de critères de réussite : la plupart
 des FAUX se voient en comparant un livrable à ses propres critères, pas à ta mémoire.
-
-## Question de rappel actif : module Staff neuf de ce bloc
-
-- **`02-CONSTRUCTION/16_ddd_contrats`** : reprends ton ADR de contexte borné ou
-  de cohérence à terme produit dans ce module. Sans le relire, explique en
-  cinq lignes pourquoi tu as tracé la frontière de contexte à cet endroit
-  précis, puis vérifie ta réponse contre l'ADR réel. Un écart entre les deux
-  se classe FAUX ou INCOMPLET dans la passe 2 ci-dessus.

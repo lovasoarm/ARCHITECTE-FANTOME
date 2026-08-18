@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # AUDITER UNE PAGE : LES OUTILS ET LA MÉTHODE

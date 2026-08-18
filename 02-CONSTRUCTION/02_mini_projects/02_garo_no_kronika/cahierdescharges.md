@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CAHIER DES CHARGES : GARO NO KRONIKA
@@ -71,22 +70,22 @@ Ce projet teste la maîtrise de l'asynchrone non pas en isolation mais sous cont
 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
-### `01-CADRAGE/02_async` : Promises, async/await, race, allSettled
+### `03_async` : Promises, async/await, race, allSettled
 
 **Où ça se voit** : `src/engine/dispatcher.js`, `src/engine/missionRunner.js`.
 **Pourquoi c'est nécessaire ici** : chaque mission est une Promise. Deux missions en parallèle = `Promise.allSettled`. Le timeout de 99,9 secondes = `Promise.race` entre le combat et un timer. Sans maîtrise de ces primitives async, le dispatcher bloque ou perd des missions.
 
-### `01-CADRAGE/04_error_handling` : propagation et stratégies d'erreur
+### `05_error_handling` : propagation et stratégies d'erreur
 
 **Où ça se voit** : `src/errors/`, les `try/catch` dans `missionRunner.js`.
 **Pourquoi c'est nécessaire ici** : `ArmorCollapseError`, `HorrorEscapeError`, `KnightDownError` sont des erreurs distinctes qui demandent des traitements distincts. Les absorber toutes dans un `catch (e) { console.log(e) }` est un crime. Le Conseil doit savoir exactement ce qui s'est passé.
 
-### `04-EPREUVE/03_realtime` : SSE (Server-Sent Events) : flux d'événements unidirectionnels
+### `20_realtime` : SSE (Server-Sent Events) : flux d'événements unidirectionnels
 
 **Où ça se voit** : `src/council/streamReceiver.js`, `src/knight/streamEmitter.js`.
 **Pourquoi c'est nécessaire ici** : le Conseil reçoit les événements de combat en temps réel, pas à la fin du combat. Chaque coup, chaque changement de statut, chaque seconde critique : streamé. C'est le pattern SSE (Server-Sent Events : flux d'événements envoyés du serveur vers le client, unidirectionnel) simulé en JS pur ici.
 
-### `02-CONSTRUCTION/14_architecture_patterns` : event-driven, module pattern
+### `16_architecture_patterns` : event-driven, module pattern
 
 **Où ça se voit** : toute la séparation entre `src/council/` et `src/knight/`. Le Conseil ne connaît pas l'implémentation des Chevaliers.
 **Pourquoi c'est nécessaire ici** : si le Conseil appelle directement les méthodes du Chevalier, tout est couplé. Si le Chevalier émet des événements et que le Conseil s'abonne, on peut changer l'implémentation d'un Chevalier sans toucher au Conseil. C'est le cœur de l'architecture event-driven.
@@ -94,9 +93,9 @@ Ce projet teste la maîtrise de l'asynchrone non pas en isolation mais sous cont
 ### Résumé visuel
 
 ```
-01-CADRAGE/02_async       --> dispatcher.js (allSettled), missionRunner.js (race + timeout)
-01-CADRAGE/04_error_handling  --> errors/ (custom errors), propagation dans missionRunner.js
-04-EPREUVE/03_realtime     --> streamEmitter.js (Chevalier émet), streamReceiver.js (Conseil écoute)
+03_async       --> dispatcher.js (allSettled), missionRunner.js (race + timeout)
+05_error_handling  --> errors/ (custom errors), propagation dans missionRunner.js
+20_realtime     --> streamEmitter.js (Chevalier émet), streamReceiver.js (Conseil écoute)
 15_architecture   --> découplage total Conseil / Chevalier via événements
 ```
 
@@ -242,7 +241,7 @@ tests/
 | council.js + index | 1h30          | Faible                                                    |
 | Tests complets     | 2-3h          | Moyenne : mocker des Promises qui résolvent ou reject     |
 
-Le point de résistance majeur est `missionRunner.js`. La combinaison de `Promise.race`, d'un timeout, et de la propagation d'erreurs typées dans un même bloc async est précisément ce que le module `01-CADRAGE/02_async` + `01-CADRAGE/04_error_handling` préparent. Si tu bloques ici, relis `01-CADRAGE/04_error_handling/03_error_propagation.md`.
+Le point de résistance majeur est `missionRunner.js`. La combinaison de `Promise.race`, d'un timeout, et de la propagation d'erreurs typées dans un même bloc async est précisément ce que le module `03_async` + `05_error_handling` préparent. Si tu bloques ici, relis `05_error_handling/03_error_propagation.md`.
 
 ## EXEMPLE DE TEST REMPLI
 

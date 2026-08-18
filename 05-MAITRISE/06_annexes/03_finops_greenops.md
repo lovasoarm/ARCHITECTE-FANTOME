@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # FINOPS ET GREENOPS : LE KI A UN COÛT, MÊME EN PROD

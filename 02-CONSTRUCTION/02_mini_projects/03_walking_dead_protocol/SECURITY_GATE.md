@@ -1,7 +1,6 @@
 ---
 stability: intemporel
 gate: bloquante
-acte: appliquer
 ---
 
 # Security Gate : 03_walking_dead_protocol

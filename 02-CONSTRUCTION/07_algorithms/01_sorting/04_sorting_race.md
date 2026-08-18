@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # SORTING RACE : BUBBLE VS MERGE VS QUICK SUR DES VRAIS VOLUMES
 Temps de lecture ~8 min

@@ -1,7 +1,6 @@
 ---
 stability: intemporel
 gate: bloquante
-acte: appliquer
 ---
 
 # Security Gate : 07_ballon_dor_cli

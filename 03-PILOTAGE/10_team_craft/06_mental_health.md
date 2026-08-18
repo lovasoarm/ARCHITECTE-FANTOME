@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 06 : Santé mentale du dev : même les Hokages prennent des jours off

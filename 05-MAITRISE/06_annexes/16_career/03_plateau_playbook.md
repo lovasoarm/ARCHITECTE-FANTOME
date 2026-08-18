@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # PLATEAU PLAYBOOK
@@ -30,8 +29,8 @@ Tu es sur MyFunnyJS depuis 3 mois. Depuis 15 jours, tu as l'impression de pataug
 
 ### Question 3 : "Est-ce un plateau de DEBUG ou de CONCEPTION ?"
 
-- **Debug** (mon code plante et je tourne en rond) : ouvre `01-CADRAGE/03_debugging/HYPOTHESES_TEMPLATE.md` et remplis-le au propre. Interdiction absolue de coder tant que le template n'est pas rempli sur 3 hypothèses. 90% du temps, la 2e hypothèse t'a débloqué avant même de coder. Fin.
-- **Conception** (je ne sais pas par où commencer) : ouvre `00-SOCLE/05_problem_solving/04_choose_an_approach.md`, applique Polya, découpe en 5 sous-problèmes. Attaque le plus petit. Fin.
+- **Debug** (mon code plante et je tourne en rond) : ouvre `04_debugging/HYPOTHESES_TEMPLATE.md` et remplis-le au propre. Interdiction absolue de coder tant que le template n'est pas rempli sur 3 hypothèses. 90% du temps, la 2e hypothèse t'a débloqué avant même de coder. Fin.
+- **Conception** (je ne sais pas par où commencer) : ouvre `02_problem_solving/04_choose_an_approach.md`, applique Polya, découpe en 5 sous-problèmes. Attaque le plus petit. Fin.
 
 ### Question 4 : "As-tu réduit tes sessions à < 30 min sur 3 jours de suite ?"
 
@@ -51,7 +50,7 @@ Tag `[JEUNE IA]` sur ta session : plus de copilote, plus d'auto-complétion agre
 Ouvre un fichier `PLATEAU_JOURNAL.md` à côté de ton `_spaced_repetition.md`. Une ligne par jour de plateau :
 
 ```
-2026-08-14 | Module en cours : 02-CONSTRUCTION/10_design_patterns | Blocage : Strategy vs State | Action : EXO_LECTURE sur 02-CONSTRUCTION/10_design_patterns/03_behavioral/state_pattern.md
+2026-08-14 | Module en cours : 12_design_patterns | Blocage : Strategy vs State | Action : EXO_LECTURE sur 12_design_patterns/03_behavioral/state_pattern.md
 ```
 
 Après 5 lignes, tu vois le pattern. Un plateau qui dure > 10 jours sans que la ligne change de rubrique = signal fort qu'il faut reculer de 2 modules.

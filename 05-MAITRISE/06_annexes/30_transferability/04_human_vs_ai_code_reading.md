@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # LIRE DU CODE HUMAIN vs LIRE DU CODE IA

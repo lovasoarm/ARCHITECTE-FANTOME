@@ -1,8 +1,3 @@
----
-stability: perissable_2027
-acte: appliquer
----
-
 # Penser en systèmes
 
 ## Le piège

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # GIT SURVIVAL : BRANCHES, REBASE, CONFLITS, BISECT

@@ -1,23 +1,31 @@
 # Grimoire : Roadmap Run
 
-Ce grimoire est un mémo à quatre colonnes exactes. La table de défense orale vit à côté, dans [defense-orale.md](defense-orale.md).
+Ce grimoire comporte deux tables : le mémo à 4 colonnes, puis la table de défense orale à
+3 colonnes (écart de format assumé, voir [_STYLE.md](../.meta/_STYLE.md)).
 
 Ouvre ce mémo quand un sponsor te pousse vers une date avant que tu aies vérifié quoi que ce soit. Il te donne le réflexe, pas la théorie complète : pour ça, relis les leçons du niveau.
 
-| Terme | Définition | Code | Analogies | Limite |
-| --- | --- | --- | --- | --- |
-| Jalon (milestone) | Point de vérification binaire, daté, rattaché à un artefact. Jamais un pourcentage. | `git tag -a jalon-demo-scenario-complet -m "2026-03-01: demo bout-en-bout avec donnees reelles"` | course en montagne / régie technique de spectacle | « course en montagne » s'arrête à la première surprise ; sur Jalon (milestone), l'arbitrage se joue sur ce qu'on refuse, jamais sur ce qu'on ajoute. Vérifie l'hypothèse de volume dans trois mois, calendrier en main. |
-| Tranche verticale | Découpage qui traverse toutes les couches pour un scénario réduit mais complet, plutôt que couche par couche. | `# scenario minimal complet, pas "toute la BDD" puis "tout le back"\ncurl -X POST /api/tournees -d '{"livreur":1,"colis":["A1"]}'` | atelier de menuiserie / cuisine de restaurant en service | « atelier de menuiserie » n'a ni facture ni horloge ; sur Tranche verticale, livrer plus vite déplace le coût vers l'exploitation, il ne disparaît pas. Note ce que tu refuses, pas seulement ce que tu retiens. |
-| Risque le plus cher | Hypothèse à la fois incertaine et coûteuse à corriger si elle est fausse. | `SELECT nom, incertitude, cout_si_faux, incertitude*cout_si_faux AS score FROM hypotheses ORDER BY score DESC LIMIT 1;` | navigation maritime / urgences d'hôpital | « navigation maritime » tient tant que rien ne tombe en route ; sur Risque le plus cher, le retour sur investissement suppose une hypothèse de volume qui se démode en un trimestre. Vérifie l'hypothèse de volume dans trois mois, calendrier en main. |
-| Dérive silencieuse | Écart entre avancement réel et avancement déclaré qui grossit sans être signalé. | `diff <(cat rapport-semaine-N.txt) <(cat rapport-semaine-N-1.txt)` | course en montagne / régie technique de spectacle | « course en montagne » suppose que quelqu'un surveille ; sur Dérive silencieuse, l'utilisateur qui parle n'est pas l'utilisateur moyen, et l'écart n'est jamais mesuré. Remonte de la solution demandée au problème réel avant de coder. |
-| Matrice de risque | Classement des hypothèses par incertitude x coût, pour décider quoi vérifier en premier. | `INSERT INTO risques (hypothese, incertitude, cout_si_faux) VALUES ('tantiemes totalisent 10000', 'elevee', 'eleve');` | atelier de menuiserie / navigation maritime | « atelier de menuiserie » se rejoue à l'identique, le code non ; sur Matrice de risque, le coût d'une fonctionnalité inclut sa maintenance, pas seulement sa construction. Écris le chiffre, sa date et sa source avant d'arbitrer. |
-| Signal : pourcentage répété | Le même chiffre d'avancement annoncé deux fois de suite signale un blocage caché. | `grep -c "80%" rapport-semaine-*.txt` | urgences d'hôpital / course en montagne | « urgences d'hôpital » se rejoue à l'identique, le code non ; sur Signal : pourcentage répété, un chiffre d'usage sans date ni source ne permet aucune décision reproductible. Écris le chiffre, sa date et sa source avant d'arbitrer. |
-| Signal : questions plus vagues | Des questions qui perdent en précision au fil des points d'équipe indiquent un blocage. | `git log --since="2 weeks ago" --grep="question" --oneline \| wc -l` | une voix qui baisse quand on n'est plus sûr / un brouillard qui monte sur un sentier connu | « une voix qui baisse quand on n'est plus sûr » a une frontière visible à l'oeil ; sur Signal : questions plus vagues, une demande formulée en solution cache le problème qu'elle prétend résoudre. Remonte de la solution demandée au problème réel avant de coder. |
-| Formule de la démo | Ne jamais demander "où en es-tu", toujours demander une démonstration avec des données réelles. | `curl -s https://staging.exemple.fr/api/factures/dernieres \| jq '.[0]'` | un essai routier plutôt qu'une fiche technique / goûter le plat plutôt que lire la recette | « un essai routier plutôt qu'une fiche technique » raconte le cas nominal ; sur Formule de la démo, l'arbitrage se joue sur ce qu'on refuse, jamais sur ce qu'on ajoute. Note ce que tu refuses, pas seulement ce que tu retiens. |
+| Terme | Définition | Code | Analogies |
+| --- | --- | --- | --- |
+| Jalon (milestone) | Point de vérification binaire, daté, rattaché à un artefact. Jamais un pourcentage. | `git tag -a jalon-demo-scenario-complet -m "2026-03-01: demo bout-en-bout avec donnees reelles"` | course en montagne / régie technique de spectacle |
+| Tranche verticale | Découpage qui traverse toutes les couches pour un scénario réduit mais complet, plutôt que couche par couche. | `# scenario minimal complet, pas "toute la BDD" puis "tout le back"\ncurl -X POST /api/tournees -d '{"livreur":1,"colis":["A1"]}'` | atelier de menuiserie / cuisine de restaurant en service |
+| Risque le plus cher | Hypothèse à la fois incertaine et coûteuse à corriger si elle est fausse. | `SELECT nom, incertitude, cout_si_faux, incertitude*cout_si_faux AS score FROM hypotheses ORDER BY score DESC LIMIT 1;` | navigation maritime / urgences d'hôpital |
+| Dérive silencieuse | Écart entre avancement réel et avancement déclaré qui grossit sans être signalé. | `diff <(cat rapport-semaine-N.txt) <(cat rapport-semaine-N-1.txt)` | course en montagne / régie technique de spectacle |
+| Matrice de risque | Classement des hypothèses par incertitude x coût, pour décider quoi vérifier en premier. | `INSERT INTO risques (hypothese, incertitude, cout_si_faux) VALUES ('tantiemes totalisent 10000', 'elevee', 'eleve');` | atelier de menuiserie / navigation maritime |
+| Signal : pourcentage répété | Le même chiffre d'avancement annoncé deux fois de suite signale un blocage caché. | `grep -c "80%" rapport-semaine-*.txt` | urgences d'hôpital / course en montagne |
+| Signal : questions plus vagues | Des questions qui perdent en précision au fil des points d'équipe indiquent un blocage. | `git log --since="2 weeks ago" --grep="question" --oneline | wc -l` | régie technique de spectacle / cuisine de restaurant en service |
+| Formule de la démo | Ne jamais demander "où en es-tu", toujours demander une démonstration avec des données réelles. | `curl -s https://staging.exemple.fr/api/factures/dernieres | jq '.[0]'` | navigation maritime / urgences d'hôpital |
 
 ## Défense orale
 
-La table de défense orale a son propre fichier, pour que ce grimoire garde un format unique de quatre colonnes : [defense-orale.md](defense-orale.md).
+Pour la grille complète et chiffrée, va voir [./boss-fight.md](./boss-fight.md). Voici la matière à réviser, reformulée pour que tu comprennes le mécanisme, pas la grille par coeur.
+
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+| --- | --- | --- |
+| Sang-froid sous pression | Tu cèdes une date de confort ou tu bloques sans rien proposer, dans les deux cas le sponsor perd confiance. | As-tu une alternative concrète à proposer dans l'heure qui suit une demande de date prématurée ? |
+| Traduction du risque en impact métier | Le jargon de planning ne convainc personne et cache la vraie conséquence pour l'utilisateur final. | Peux-tu formuler ton risque technique en une phrase compréhensible par un non-technicien ? |
+| Engagement daté | Une réponse vague ("je te recontacte") est vécue comme un refus déguisé. | Quelle date précise et quel livrable nommé donnes-tu en échange d'un délai de réflexion ? |
+| Cohérence de méthode | Donner une date sans avoir vérifié le risque le plus cher revient à deviner. | Ta date dépend-elle d'abord de la vérification de ton hypothèse la plus coûteuse ? |
 
 ## La règle en une phrase
 

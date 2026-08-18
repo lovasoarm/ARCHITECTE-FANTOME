@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # Les chiffres qui te préviennent avant que tout brûle

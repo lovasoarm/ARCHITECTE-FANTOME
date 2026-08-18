@@ -49,8 +49,8 @@ date s'y est glisse : c'est ce fait qu'il faut en sortir.
 | [03-PILOTAGE/07_cloud_foundations/README.md](../03-PILOTAGE/07_cloud_foundations/README.md) | `perissable_2027` |
 | [03-PILOTAGE/07_cloud_foundations/boss-fight.md](../03-PILOTAGE/07_cloud_foundations/boss-fight.md) | `perissable_2027` |
 | [03-PILOTAGE/07_cloud_foundations/challenge.md](../03-PILOTAGE/07_cloud_foundations/challenge.md) | `perissable_2027` |
-| [PREUVES-MODELES/S1-BUDGET-CLOUD.md](../PREUVES-MODELES/S1-BUDGET-CLOUD.md) | `perissable_2027` |
-| [PREUVES-MODELES/S7-PORTAGE.md](../PREUVES-MODELES/S7-PORTAGE.md) | `perissable_2027` |
+| [06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S1-BUDGET-CLOUD.md](./14-PREUVES-MODELES/S1-BUDGET-CLOUD.md) | `perissable_2027` |
+| [06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S7-PORTAGE.md](./14-PREUVES-MODELES/S7-PORTAGE.md) | `perissable_2027` |
 
 ## Cartes TECH-ILA (noms d'outils du marche) (9 fichiers)
 
@@ -143,7 +143,7 @@ date s'y est glisse : c'est ce fait qu'il faut en sortir.
 | [05-MAITRISE/04_ai_agents_and_autonomy/08_traces_pool/02_trace_C.md](../05-MAITRISE/04_ai_agents_and_autonomy/08_traces_pool/02_trace_C.md) | `perissable_2028` |
 | [05-MAITRISE/04_ai_agents_and_autonomy/09_EXO_LECTURE.md](../05-MAITRISE/04_ai_agents_and_autonomy/09_EXO_LECTURE.md) | `perissable_2028` |
 | [05-MAITRISE/04_ai_agents_and_autonomy/11_EXO_PARTITION_HUMAIN_IA.md](../05-MAITRISE/04_ai_agents_and_autonomy/11_EXO_PARTITION_HUMAIN_IA.md) | `perissable_2028` |
-| [PREUVES-MODELES/S6-IA-EN-PROD.md](../PREUVES-MODELES/S6-IA-EN-PROD.md) | `perissable_2027` |
+| [06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S6-IA-EN-PROD.md](./14-PREUVES-MODELES/S6-IA-EN-PROD.md) | `perissable_2027` |
 
 ## Autres elements perissables (97 fichiers)
 
@@ -245,10 +245,10 @@ date s'y est glisse : c'est ce fait qu'il faut en sortir.
 | [05-MAITRISE/08_maitrise_staff_engineer/03_trois_tensions.md](../05-MAITRISE/08_maitrise_staff_engineer/03_trois_tensions.md) | `perissable_2027` |
 | [06-ANNEXES-TRANSVERSES/COMMUNAUTE.md](./10-COMMUNAUTE.md) | `perissable_2027` |
 | [06-ANNEXES-TRANSVERSES/support.md](./01-support.md) | `perissable_2027` |
-| [PREUVES-MODELES/S2-ADR-PRINCIPAL.md](../PREUVES-MODELES/S2-ADR-PRINCIPAL.md) | `perissable_2027` |
-| [PREUVES-MODELES/S3-SLO.md](../PREUVES-MODELES/S3-SLO.md) | `perissable_2027` |
-| [PREUVES-MODELES/S4-DECISION-ARBITRAGE.md](../PREUVES-MODELES/S4-DECISION-ARBITRAGE.md) | `perissable_2027` |
-| [PREUVES-MODELES/S5-NOTE-DIRECTION-ET-REVUE.md](../PREUVES-MODELES/S5-NOTE-DIRECTION-ET-REVUE.md) | `perissable_2027` |
+| [06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S2-ADR-PRINCIPAL.md](./14-PREUVES-MODELES/S2-ADR-PRINCIPAL.md) | `perissable_2027` |
+| [06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S3-SLO.md](./14-PREUVES-MODELES/S3-SLO.md) | `perissable_2027` |
+| [06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S4-DECISION-ARBITRAGE.md](./14-PREUVES-MODELES/S4-DECISION-ARBITRAGE.md) | `perissable_2027` |
+| [06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S5-NOTE-DIRECTION-ET-REVUE.md](./14-PREUVES-MODELES/S5-NOTE-DIRECTION-ET-REVUE.md) | `perissable_2027` |
 | [README.md](../README.md) | `perissable_2027` |
 
 ## Relevé de référence cloud (ajouté en A5)

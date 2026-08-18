@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # JEST CRASH COURSE : DE ZÉRO À OPÉRATIONNEL

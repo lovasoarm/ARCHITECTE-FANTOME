@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # DECORATOR : AJOUTER DU COMPORTEMENT SANS TOUCHER À LA SOURCE
 Temps de lecture ~9 min

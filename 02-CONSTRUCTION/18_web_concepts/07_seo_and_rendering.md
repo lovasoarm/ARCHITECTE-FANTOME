@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SEO ET RENDERING : OÙ TON HTML NAÎT VRAIMENT

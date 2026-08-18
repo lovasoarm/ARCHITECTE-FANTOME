@@ -1,8 +1,7 @@
 ---
-stability: perissable_2028
+stability: periss-2028
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: produire
 ---
 
 # 00 : Bridge exo : reprends un edge case et laisse un agent le gérer
@@ -17,7 +16,7 @@ lister ce qui casse.
 
 ## PROTOCOLE
 
-1. Choisis un edge case de `05-MAITRISE/03_edge_cases/`.
+1. Choisis un edge case de `28_edge_cases/`.
 2. Écris un prompt d'agent qui autorise l'agent à modifier le code et lancer les tests.
 3. Observe : combien de rounds, quelles décisions muettes, quelles régressions.
 4. Livrable : `BRIDGE_EDGE_AGENT.md` listant les 5 façons dont l'agent a triché

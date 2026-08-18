@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # BROWSER RENDER PIPELINE : DE L'HTML BRUT AU PIXEL AFFICHÉ

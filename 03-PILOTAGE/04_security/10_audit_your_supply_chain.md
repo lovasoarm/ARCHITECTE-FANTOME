@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # EXERCICE : AUDITER TA PROPRE SUPPLY CHAIN

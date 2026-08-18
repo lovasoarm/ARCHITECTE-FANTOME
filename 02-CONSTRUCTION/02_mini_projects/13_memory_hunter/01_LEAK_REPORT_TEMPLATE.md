@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # LEAK_REPORT : <nom du service ou fixture>

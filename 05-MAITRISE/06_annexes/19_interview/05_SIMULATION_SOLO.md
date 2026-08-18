@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # SIMULATION SOLO : défense orale sous pression
@@ -15,7 +14,7 @@ Tu prends **une décision technique** d'un de tes mini-projets (un choix d'archi
 
 ## FORMAT
 
-1. Choisis une décision de ton portfolio (dans un `ADR/` de `02-CONSTRUCTION/02_mini_projects/`).
+1. Choisis une décision de ton portfolio (dans un `ADR/` de `30_mini_projects/`).
 2. Colle le prompt ci-dessous à une IA (ou à un binôme qui joue le rôle).
 3. Défends pendant 15 min chrono. Note tes hésitations.
 4. Debrief 10 min : où tu as flanché, quelle objection t'a fait douter, ce que tu changerais.

@@ -1,9 +1,8 @@
 ---
-stability: intemporel
-acte: produire
+stability: stable
 ---
 
-# EXO IA MENTEUSE : module 01-CADRAGE/03_debugging
+# EXO IA MENTEUSE : module 04_debugging
 
 Temps : ~10 min. Format court, seul ou en binôme.
 

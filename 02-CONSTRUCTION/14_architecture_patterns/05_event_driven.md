@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # EVENT-DRIVEN ARCHITECTURE : RÉAGIR, PAS ANTICIPER

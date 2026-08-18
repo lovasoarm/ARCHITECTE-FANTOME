@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: produire
 ---
 # EXO LECTURE : 15-25 minutes (les Fondamentaux JS)
 
@@ -10,7 +9,7 @@ acte: produire
 >
 > **Budget lecture** : 100 lignes en 15 min chrono. Si tu dépasses, note pourquoi dans `MAP.md`. Objectif progressif : tu dois pouvoir tenir 500 lignes en 15 min à la fin du curriculum.
 >
-> **Protocole de cartographie** : suis `05-MAITRISE/06_annexes/reading/cartographie_15min.md` si tu ne sais pas par où entrer.
+> **Protocole de cartographie** : suis `31_annexes/reading/cartographie_15min.md` si tu ne sais pas par où entrer.
 
 Temps de lecture ~2 min
 
@@ -18,7 +17,7 @@ Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT d
 
 ## L'extrait
 
-On te fournit un extrait 20-40 lignes mêlant closure, `this`, hoisting, coercion : issu de tes exercices ou d'un fichier de `00-SOCLE/04_fundamentals/`. 15-25 minutes de lecture, pas plus.
+On te fournit un extrait 20-40 lignes mêlant closure, `this`, hoisting, coercion : issu de tes exercices ou d'un fichier de `01_fundamentals/`. 15-25 minutes de lecture, pas plus.
 
 ## Le protocole (15 min chrono)
 
@@ -28,7 +27,7 @@ On te fournit un extrait 20-40 lignes mêlant closure, `this`, hoisting, coercio
 
 ## Livrable
 
-`LECTURE_<nom>.md` avec tes 3 sections remplies. Interdiction absolue de modifier l'extrait avant que les 3 sections soient écrites au propre. Cf `02-CONSTRUCTION/11_refactoring/06_do_not_touch_before_explain.md`.
+`LECTURE_<nom>.md` avec tes 3 sections remplies. Interdiction absolue de modifier l'extrait avant que les 3 sections soient écrites au propre. Cf `13_refactoring/07_do_not_touch_before_explain.md`.
 
 ## (attention) Ce que l'exo révèle
 

@@ -1,9 +1,8 @@
 ---
 perennite: perissable
-stability: perissable_2028
+stability: periss-2028
 duree_de_vie_estimee: 1-2 ans
 raison: Domaine en explosion, les patterns d'aujourd'hui seront réécrits.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
@@ -14,10 +13,10 @@ acte: restituer
 
 > **Durée de vie : 2-3 ans, revenir en 2028.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : IA native (04-EPREUVE/04_ai_native_dev), observabilite (03-PILOTAGE/05_observability).
+> Ce module reutilise : IA native (23_ai_native_dev), observabilite (26_observability).
 Temps de lecture ~10 min
 
-`04-EPREUVE/04_ai_native_dev` t'a appris à travailler avec un copilote qui te suggère du code
+`23_ai_native_dev` t'a appris à travailler avec un copilote qui te suggère du code
 une ligne à la fois. Ce module te prépare au **niveau au-dessus** : les agents
 autonomes multi-étapes (Devin, Cursor Composer, Claude Code, agents maison) qui
 prennent une intention (`"corrige ce bug de prod"`) et exécutent 40 actions
@@ -152,6 +151,6 @@ CONCEPTS survivront : bornage par tests, audit de trace, refus argumenté. Reste
 sur les concepts en lisant ce module. Chaque fichier isole ce qui est intemporel
 de ce qui est daté 2026-2028.
 
-Prérequis : `04-EPREUVE/04_ai_native_dev` complet, `02-CONSTRUCTION/03_testing`, `03-PILOTAGE/04_security`.
+Prérequis : `23_ai_native_dev` complet, `06_testing`, `22_security`.
 
-> Ce module réutilise : l'IA native du module 23 (`04-EPREUVE/04_ai_native_dev`), les tests du module 06 (`02-CONSTRUCTION/03_testing`), la sécurité du module 22 (`03-PILOTAGE/04_security`).
+> Ce module réutilise : l'IA native du module 23 (`23_ai_native_dev`), les tests du module 06 (`06_testing`), la sécurité du module 22 (`22_security`).

@@ -1,47 +1,59 @@
 ---
 stability: intemporel
-acte: produire
+last_reviewed: 2026-07
+depends_on_vendor: false
 ---
-
-# EXO [JEUNE IA] : 02-CONSTRUCTION/07_algorithms : algorithms sans IA
+# EXO [JEUNE IA] : 10_algorithms
 
 Temps de lecture ~2 min
 
-> Tag `[JEUNE IA]` : IA totalement coupee (Copilot, Claude, ChatGPT desactives).
-> Duree : 60 min chrono, en un seul bloc.
-> Mode de verification : critere binaire du `verification_pack` de ce module ([verification_pack/criteres.md](verification_pack/criteres.md)). Jamais une IA.
-> Auto-notation interdite : aucune case a cocher, aucune note que tu te donnes a toi-meme ne vaut verdict. Le verdict sort des drills, ou il n'existe pas.
 
-## Pourquoi ici et pas ailleurs
+> Tag `[JEUNE IA]` : IA totalement coupee (Copilot/Claude/ChatGPT desactives).
+> Duree : 45 min chrono. Auto-verifiable par le `verification_pack` du module.
+> Convention MyFunnyJS : le `drill_2` est le niveau intermediaire de chaque `verification_pack`, assez concret pour prouver la comprehension du concept-cle, sans etre un simple exercice de decouverte.
 
-Sur ce sujet, une reponse d'IA est plausible avant d'etre juste, et l'erreur ne plante pas : elle se defend en reunion. Le seul moyen de savoir ou tu en es vraiment, c'est de produire d'abord, de comparer ensuite, et de chiffrer l'ecart.
+## Consigne
+Sans aucune assistance IA, sans autocompletion generative, redige de memoire un mini-drill couvrant le concept-cle du module (definition d'une ligne, exemple minimal runnable, un piege classique qui casse). Ecris le critere binaire de reussite (une commande `node solution.js`, une sortie attendue exacte), puis lance-le.
 
-## Protocole en trois temps, sans exception
+## Critere de reussite (deterministe)
+```bash
+node solution.js
+# doit afficher exactement : drill 2 OK
+```
+Binaire : soit la sortie matche caractere pour caractere, soit non. Pas de zone grise. Ecris toi-meme le `console.log('drill 2 OK')` final quand ton drill valide toutes ses assertions internes.
 
-**Temps 1 : produire seul (35 min).** IA coupee de bout en bout. Reprends l'un des exercices deja faits de ce module et refais-le sur un cas neuf, de memoire :
+## Livrable
+- ta `solution.js` (aucun import IA, aucune completion generative acceptee).
+- capture d'ecran de ton editeur avec Copilot/IA off.
+- ton `HYPOTHESES.md` si tu as bloque > 10 min.
+- ton `TDD_JOURNAL.md` optionnel : temps ecoule, blocages, ce que tu as du re-comprendre.
 
-- [08_EXO_LECTURE.md](08_EXO_LECTURE.md)
-- [09_EXO_JEUNE_IA.md](09_EXO_JEUNE_IA.md)
-- [98_EXO_IA_MENTEUSE.md](98_EXO_IA_MENTEUSE.md)
+## Auto-evaluation (a cocher honnetement)
+- [ ] IA coupee de bout en bout (0 completion, 0 chat).
+- [ ] critere binaire passe en < 45 min.
+- [ ] Je peux expliquer le concept a un debutant en 3 minutes, sans notes.
 
-Ecris ton hypothese de depart avant de produire, dans `HYPOTHESES.md`, horodatee.
+## Pourquoi c'est vital
+Reecrire un tri, une recherche binaire ou un parcours de graphe sans IA, c'est verifier que tu peux raisonner sur la complexite au lieu de reciter un pattern. C'est la difference entre passer un test et comprendre pourquoi il passe.
 
-**Temps 2 : demander la meme chose a une IA (10 min).** Meme enonce, mot pour mot, sans lui montrer ta production. Conserve sa reponse telle quelle, dans un fichier a cote de la tienne.
+## Preuve tracable (proof-of-work)
 
-**Temps 3 : ecrire les trois ecarts (15 min).** Dix lignes maximum : les trois ecarts les plus importants, qui a raison pour chacun, et une justification chiffree. Au moins un des trois ecarts doit porter sur un chiffre mesure sur ta machine, pas sur une opinion.
+L'auto-evaluation ci-dessus repose sur ton honnetete. Pour transformer ca en preuve horodatee : demarre un chrono visible (`date` avant + `date` apres), colle les deux timestamps + un SHA256 de ta solution (`shasum -a 256 solution.js`) dans un fichier `FASTING.md` a cote de la solution. C'est ta ligne de progression : relis-la dans 3 mois pour voir la courbe.
 
-## Preuve a livrer
+---
+stability: intemporel
 
-- ta production seule, horodatee avant la reponse de l'IA ;
-- la reponse de l'IA, non modifiee ;
-- `ECARTS.md` : trois ecarts, trois verdicts, trois justifications chiffrees.
+## VERROU LOCK (obligatoire, principe generalise)
 
-Un `ECARTS.md` ou l'IA a raison trois fois sur trois sans que tu expliques pourquoi tu t'es trompe est non recevable : ce n'est pas un aveu, c'est une abdication.
+> Principe LOCK : interdiction de toucher au clavier tant que tu n'as pas
+> ecrit ton plan d'attaque. Le meme verrou que dans le mini-projet 18 et
+> dans `04_debugging/HYPOTHESES_*`. Il n'est pas negociable ici non plus.
 
-## Verdict
+Avant tout code :
+1. Ecris ton `HYPOTHESES.md` (une phrase par hypothese, chaque hypothese
+   testable en isolation).
+2. Ecris le critere binaire de reussite (une commande, une sortie attendue).
+3. Ensuite seulement, tu ouvres l'editeur.
 
-Correction par les drills du [verification_pack](verification_pack/criteres.md) de ce module, jamais par l'IA. Binaire : les trois ecarts sont nommes et chiffres, ou l'exercice est non reussi.
-
-## Interdiction d'auto-notation
-
-Cet exercice ne se valide jamais par une liste de cases cochees ni par une note que tu t'attribues. Le seul verdict opposable est le critere binaire du [verification_pack/criteres.md](verification_pack/criteres.md) de ce module : reussi ou non reussi, rien entre les deux. Une IA ne corrige pas ce fichier, et toi non plus tu ne le corriges pas au ressenti.
+Un exo `[JEUNE IA]` sans ces deux artefacts ecrits **avant** le premier
+caractere de code est considere invalide par le `verification_pack`.

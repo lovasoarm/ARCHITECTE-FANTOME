@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # BST : L'ARBRE QUI CHERCHE EN O(log n)
 Temps de lecture ~9 min
@@ -260,7 +259,7 @@ Recherche : O(n), pas O(log n)
 
 Walter White qui insère ses distributeurs par ordre alphabétique : son BST devient une file droite. Dijkstra pleure.
 
-Correction : utiliser un arbre équilibré (AVL, Red-Black Tree). Ce n'est pas couvert dans ce module : voir `02-CONSTRUCTION/07_algorithms` pour les arbres AVL. Pour l'instant, retiens que le BST de base ne se rééquilibre pas.
+Correction : utiliser un arbre équilibré (AVL, Red-Black Tree). Ce n'est pas couvert dans ce module : voir `10_algorithms` pour les arbres AVL. Pour l'instant, retiens que le BST de base ne se rééquilibre pas.
 
 ---
 

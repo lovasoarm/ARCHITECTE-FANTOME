@@ -7,6 +7,19 @@ acte: restituer
 
 Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
 
+## Ce bloc porte deux paliers, pas un
+
+Vingt modules d'affilee, c'est un plateau de plusieurs mois sans palier a cocher : c'est la ou l'on abandonne. Le bloc est donc annonce en deux paliers, sans qu'aucun dossier ne soit renumerote.
+
+| Palier annonce | Modules | Boss | Retrospective qui ferme le palier |
+| --- | --- | --- | --- |
+| Niveau 2 — Developpeur confirme | `01-USER-WIZARD` a `13_runtime_env` | BOSS-1 a BOSS-6 | [MI-RETRO-BLOC-2-ARCHI.md](MI-RETRO-BLOC-2-ARCHI.md) |
+| Niveau 2bis — Concepteur | `14_architecture_patterns` a `20-API-DOJO` | BOSS-7 a BOSS-9 | [RETRO-BLOC-2-BUILD.md](RETRO-BLOC-2-BUILD.md) |
+
+BOSS-7 est le Boss de charniere : il couvre 13 et 14, il est compte dans le niveau 2bis parce que c'est la qu'il se joue. [MI-RETRO-BLOC-2-BUILD.md](MI-RETRO-BLOC-2-BUILD.md) reste une respiration a mi-palier 2, elle ne coche rien.
+
+Tu coches le niveau 2 quand la retrospective de palier est signee et datee, jamais quand les fichiers sont lus.
+
 <!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier

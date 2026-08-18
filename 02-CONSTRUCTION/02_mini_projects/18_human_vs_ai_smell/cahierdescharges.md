@@ -1,8 +1,7 @@
 ---
-stability: perissable_2027
+stability: perissable
 duree_de_vie_estimee: 1-2 ans
 raison: Les styles IA évoluent avec les modèles.
-acte: appliquer
 ---
 
 # Cahier des charges : 18_human_vs_ai_smell

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # RULES : 03_walking_dead_protocol
@@ -14,7 +13,7 @@ Nombre minimum d'ADR à livrer dans `ADR/` : **3**
 
 Un ADR unique ("choix d'architecture") ne suffit pas. Décisions latérales attendues :
 données, frontières de module, stratégie de tests, choix async, sécurité, observabilité.
-Template canonique : `02-CONSTRUCTION/02_mini_projects/_templates/ADR_TEMPLATE.md`.
+Template canonique : `30_mini_projects/_templates/ADR_TEMPLATE.md`.
 
 ## SPEC_DRIFT_MODE
 

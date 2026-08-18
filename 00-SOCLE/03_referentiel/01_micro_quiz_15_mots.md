@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Micro-quiz : les 15 mots
@@ -91,7 +90,7 @@ Si tu rates plus de 3 questions par groupe, retourne au module concerne.
 ## Verdict
 
 - 13-15 : tu peux entrer dans le bloc 08 -> 14.
-- 10-12 : relis `01-CADRAGE/03_debugging/HYPOTHESES_TEMPLATE.md` et le glossaire de
+- 10-12 : relis `04_debugging/HYPOTHESES_TEMPLATE.md` et le glossaire de
   `START_HERE.md`, refais le quiz.
 - < 10 : retour aux 4-5 lecons ou tu as trebuche. Pas de honte, l'illusion
   de savoir coute plus cher.

@@ -2,7 +2,6 @@
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Un plan de migration est un produit durable, indépendant du contenu.
-acte: appliquer
 ---
 
 # MIGRATION_LEARNER : passer d'une version à l'autre sans casser ton parcours
@@ -23,23 +22,23 @@ Temps de lecture ~5 min
 
 ### Fichier
 
-- `03-PILOTAGE/02_web_inclusive/00_why_accessibility.md` -> `00_why_web_inclusive.md`. Le contenu s'étend à a11y + i18n.
-- `02-CONSTRUCTION/12_typescript/04_typescript_tooling/00_why_typescript_advanced.md` -> `00_why_typescript_tooling.md`. Le périmètre est clarifié : tooling ici, types avancés dans `03_ts_advanced/`.
-- 11 nouveaux ponts `99_PONT_*` ajoutés : voir `05-MAITRISE/06_annexes/PONTS_INTER_MODULES.md` pour la table complète.
-- 4 nouveaux fichiers : `04-EPREUVE/04_ai_native_dev/07_faux_positifs_ia.md`, `04-EPREUVE/04_ai_native_dev/08_prompt_safety.md`, `05-MAITRISE/06_annexes/soft_skills/demander_aide.md`, `05-MAITRISE/06_annexes/versioning/MIGRATION_LEARNER.md`.
+- `19_web_inclusive/00_why_accessibility.md` -> `00_why_web_inclusive.md`. Le contenu s'étend à a11y + i18n.
+- `14_typescript/04_typescript_tooling/00_why_typescript_advanced.md` -> `00_why_typescript_tooling.md`. Le périmètre est clarifié : tooling ici, types avancés dans `03_ts_advanced/`.
+- 11 nouveaux ponts `99_PONT_*` ajoutés : voir `31_annexes/PONTS_INTER_MODULES.md` pour la table complète.
+- 4 nouveaux fichiers : `23_ai_native_dev/07_faux_positifs_ia.md`, `23_ai_native_dev/08_prompt_safety.md`, `31_annexes/soft_skills/demander_aide.md`, `31_annexes/versioning/MIGRATION_LEARNER.md`.
 - Endpoints `/login` renommés en analogies autorisées (Naruto, DBZ, Walking Dead) dans les exemples d'auth.
 
 ### Concept
 
 - Frontmatter YAML `stability` ajouté à tous les `00_why_*.md` : intemporel, moderne, périssable.
 - Chaque grimoire a une ligne "durée de vie" en pied.
-- `01-CADRAGE/03_debugging/scenarios/` : `HYPOTHESES.md` désormais obligatoire avant tout édit (verrouillage par critere binaire ecrit avant tout code).
+- `04_debugging/scenarios/` : `HYPOTHESES.md` désormais obligatoire avant tout édit (verrouillage par critere binaire ecrit avant tout code).
 - `EXO_LECTURE.md` : chaque exo a un budget lecture chiffré et un LOCK "pas d'édition avant HYPOTHESES.md signé".
 
 ### À rejouer
 
 - Rien d'obligatoire. Les changements sont additifs : ton parcours v19 reste valide.
-- Si tu es en train de faire `04-EPREUVE/04_ai_native_dev/`, ajoute les leçons 07 et 08 à ta séquence.
+- Si tu es en train de faire `23_ai_native_dev/`, ajoute les leçons 07 et 08 à ta séquence.
 - Si tu as sauté un pont v19 parce qu'il n'existait pas, envisage de lire le nouveau pont correspondant (voir la table).
 
 ## RÈGLE DES BUMPS

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # STREAMS ET BUFFERS : LIRE SANS AVALER

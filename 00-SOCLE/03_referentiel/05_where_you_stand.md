@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # RÉFÉRENTIEL DE COMPÉTENCES : OÙ T'EN ES VRAIMENT
@@ -10,7 +9,7 @@ acte: appliquer
 > Pas un quiz. Pas une note sur 20. Une carte.
 > Tu l'ouvres quand tu veux savoir ce que tu maîtrises et ce qui te manque encore.
 
-Tu viens de lire `../START_HERE.md` et `../31_annexes/career/00_guide.md`. Avant d'attaquer `00-SOCLE/04_fundamentals`,
+Tu viens de lire `../START_HERE.md` et `../31_annexes/career/00_guide.md`. Avant d'attaquer `01_fundamentals`,
 un dernier arrêt : ce fichier te donne les 4 axes sur lesquels tu vas progresser. Pas pour
 le lire en entier maintenant, juste pour savoir qu'il existe. Premier vrai coup d'oeil utile :
 après ton bloc 01-04, pas avant. Pour l'instant, retiens juste qu'il est là.
@@ -53,7 +52,7 @@ N3  Tu sais tracer microtasks vs macrotasks sans te planter sur l'ordre
 N4  Tu sais lire un flamegraph et dire où le CPU part en fumée
 ```
 
-**Modules qui construisent cet axe :** `01-CADRAGE/02_async` (event loop, callbacks, promises), `02-CONSTRUCTION/05_memory_performance` (GC, profiling), `02-CONSTRUCTION/13_runtime_env` (Node vs navigateur).
+**Modules qui construisent cet axe :** `03_async` (event loop, callbacks, promises), `08_memory_performance` (GC, profiling), `15_runtime_env` (Node vs navigateur).
 
 **Test rapide pour savoir où tu te situes :**
 Tu donnes ce code à un pote, il doit dire l'ordre d'affichage sans l'exécuter :
@@ -81,7 +80,7 @@ N3  Tu repères la zone à risque dans un module avant de le toucher
 N4  Tu rentres dans un dépôt inconnu de 50k lignes et tu trouves le point d'entrée en moins de 10 minutes
 ```
 
-**Modules qui construisent cet axe :** `00-SOCLE/05_problem_solving` (décomposition, modélisation), `03-PILOTAGE/10_team_craft` (navigation de codebase).
+**Modules qui construisent cet axe :** `02_problem_solving` (décomposition, modélisation), `27_team_craft` (navigation de codebase).
 
 **Test rapide :**
 Ouvre un dépôt open-source que tu connais pas. Donne-toi 10 minutes pour répondre à : "ce projet fait quoi, et par où ça commence ?" sans lire le README.
@@ -101,7 +100,7 @@ N3  Tu sais isoler la cause avec un seul test ciblé, pas une fouille générale
 N4  Tu débuggue en prod sans reproduire localement (logs, snapshots, feature flags)
 ```
 
-**Modules qui construisent cet axe :** `01-CADRAGE/04_error_handling` (propagation, stratégies), `02-CONSTRUCTION/03_testing` (TDD, isolation), `03-PILOTAGE/05_observability` (debug en prod).
+**Modules qui construisent cet axe :** `05_error_handling` (propagation, stratégies), `06_testing` (TDD, isolation), `26_observability` (debug en prod).
 
 **Test rapide :**
 Prochaine fois qu'un bug apparaît, avant de toucher au code : écris en une phrase ce que tu penses qui se passe.
@@ -120,7 +119,7 @@ N3  Tu sais refuser un pattern parce qu'il complique plus qu'il résout
 N4  Tu conçois une architecture from scratch et tu anticipes ce qui va casser dans 6 mois
 ```
 
-**Modules qui construisent cet axe :** `02-CONSTRUCTION/10_design_patterns`, `02-CONSTRUCTION/11_refactoring`, `02-CONSTRUCTION/14_architecture_patterns`.
+**Modules qui construisent cet axe :** `12_design_patterns`, `13_refactoring`, `16_architecture_patterns`.
 
 **Test rapide :**
 On te propose d'ajouter un Singleton à ton projet. Tu sais lister 2 raisons de dire non avant de regarder le code ?
@@ -169,7 +168,7 @@ savoir pourquoi elle compte. Et un truc appris sans raison s'oublie vite.
 
 ### Comment gérer la charge mentale
 
-T'as le fil complet devant toi (la carte générée dit combien exactement). Si tu regardes la montagne entière, tu vas paniquer. Donc :
+T'as 32 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer. Donc :
 
 - **Un module à la fois, jusqu'au bout.** Pas trois modules en parallèle "pour varier".
  Le cerveau qui jongle entre plusieurs sujets non finis retient moins bien que celui qui
@@ -177,7 +176,7 @@ T'as le fil complet devant toi (la carte générée dit combien exactement). Si 
 - **Le grimoire en fin de module, c'est ton check de compréhension.** Si tu le lis et que
  des termes te paraissent flous, retourne dans le module. Pas grave de revenir en arrière.
  Grave de continuer en faisant semblant d'avoir compris.
-- **Les mini-projets (`02-CONSTRUCTION/02_mini_projects`) ne sont pas un bonus.** C'est là que les concepts
+- **Les mini-projets (`30_mini_projects`) ne sont pas un bonus.** C'est là que les concepts
  isolés deviennent un seul geste. Si tu sautes les mini-projets, tu sors avec des bouts de
  savoir qui ne se connectent pas entre eux.
 - **Stagner sur un concept, c'est normal.** Closures, event loop, prototype chain : tout le
@@ -190,11 +189,11 @@ T'as le fil complet devant toi (la carte générée dit combien exactement). Si 
  ton score. T'es le seul à le lire. Premier coup d'oeil utile : après le bloc 01-04, pas avant,
  sinon les 4 axes te parlent encore de rien de concret.
 - **L'event loop, le call stack, le cycle HTTP : tu vas les croiser dans plusieurs modules.**
- `05-MAITRISE/06_annexes/01_ascii_charte.md` regroupe les 8 schémas canoniques. Même schéma partout, pas
+ `31_annexes/01_ascii_charte.md` regroupe les 8 schémas canoniques. Même schéma partout, pas
  une version différente à chaque module. Si un dessin te paraît familier, c'est normal,
  c'est voulu.
 - **Tu cherches un fichier précis et tu sais pas dans quel module il est ?**
- `05-MAITRISE/06_annexes/ARBORESCENCE.md` liste tout, dossier par dossier, fichier par
+ `31_annexes/ARBORESCENCE.md` liste tout, dossier par dossier, fichier par
  fichier, avec son rôle en une ligne. Pas à lire d'une traite : à consulter au besoin.
 
 ### Repérer les modules denses (ralentis volontairement ici)
@@ -203,13 +202,13 @@ Tous les modules ne se valent pas en charge cognitive. Ceux-là méritent plus d
 une lecture en diagonale :
 
 ```
-01-CADRAGE/02_async       => l'event loop tord le cerveau la première fois, c'est normal
-02-CONSTRUCTION/05_memory_performance => beaucoup de mécanique invisible (GC, profiling) à visualiser sans la voir tourner
-02-CONSTRUCTION/06_data_structures  => 02-CONSTRUCTION/07_algorithms en dépend direct, bâcler l'un casse l'autre
-02-CONSTRUCTION/12_typescript     => le système de types a son propre raisonnement, différent de JS
-02-CONSTRUCTION/14_architecture_patterns => abstrait par nature, les exemples concrets sont indispensables ici
-03-PILOTAGE/04_security      => chaque sous-thème (XSS, CSRF, auth) est dense seul, ne pas les fusionner
-02-CONSTRUCTION/17_oop_js       => la chaîne de prototype clarifie tout, mais seulement si tu ne la survoles pas
+03_async       => l'event loop tord le cerveau la première fois, c'est normal
+08_memory_performance => beaucoup de mécanique invisible (GC, profiling) à visualiser sans la voir tourner
+09_data_structures  => 10_algorithms en dépend direct, bâcler l'un casse l'autre
+14_typescript     => le système de types a son propre raisonnement, différent de JS
+16_architecture_patterns => abstrait par nature, les exemples concrets sont indispensables ici
+22_security      => chaque sous-thème (XSS, CSRF, auth) est dense seul, ne pas les fusionner
+18_oop_js       => la chaîne de prototype clarifie tout, mais seulement si tu ne la survoles pas
 ```
 
 Sur ces modules-là : ralentis. Fais les trois niveaux d'exemple (minimal, réaliste, qui casse)

@@ -1,8 +1,7 @@
 ---
-stability: perissable_2028
+stability: periss-2028
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # 03 : LIRE UNE TRACE D'AGENT COMME UNE STACK TRACE
 
@@ -101,7 +100,7 @@ taux de reverts à 30 jours divise par 3.
 
 ## Exercice (35 min)
 
-Un dépôt d'exemple `05-MAITRISE/04_ai_agents_and_autonomy/traces_pool/`
+Un dépôt d'exemple `29_ai_agents_and_autonomy/traces_pool/`
 contient 3 traces réelles :
 
 - `trace_A.md` : agent qui a "amélioré" une fonction en cassant l'API publique.

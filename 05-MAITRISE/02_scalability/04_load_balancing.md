@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # Un seul serveur ne suffit jamais longtemps
@@ -104,7 +103,7 @@ requête 1 (login) --> Server A --> session stockée EN MÉMOIRE sur A
 requête 2 (profil) --> Server B --> Server B ne connaît pas cette session --> 401, déconnecté
 ```
 
-Le pourquoi du problème : si chaque serveur garde les sessions en mémoire locale (vu le piège similaire pour le cache dans `05-MAITRISE/01_databases/04_redis_caching`), et qu'un utilisateur atterrit sur un serveur différent à chaque requête, il perd sa session à chaque fois.
+Le pourquoi du problème : si chaque serveur garde les sessions en mémoire locale (vu le piège similaire pour le cache dans `24_databases/04_redis_caching`), et qu'un utilisateur atterrit sur un serveur différent à chaque requête, il perd sa session à chaque fois.
 
 ```js
 // Sticky session : le load balancer force le MÊME user vers le MÊME serveur
@@ -118,7 +117,7 @@ requête 1 (login) --> Server A --> cookie SERVERID=A posé
 requête 2 (profil) --> cookie lu --> forcé vers Server A --> session retrouvée, ça marche
 ```
 
-Le risque réel : sticky session résout le symptôme, pas la cause. Si Server A tombe, tous les utilisateurs "collés" à lui perdent leur session d'un coup, et le load balancer doit les réattribuer à un autre serveur qui ne connaît rien d'eux. La vraie solution durable (vue dans `05-MAITRISE/01_databases/04_redis_caching`) : sortir la session de la mémoire locale du serveur et la mettre dans un store partagé (Redis), accessible par TOUS les serveurs. Là, sticky session devient optionnel, pas vital.
+Le risque réel : sticky session résout le symptôme, pas la cause. Si Server A tombe, tous les utilisateurs "collés" à lui perdent leur session d'un coup, et le load balancer doit les réattribuer à un autre serveur qui ne connaît rien d'eux. La vraie solution durable (vue dans `24_databases/04_redis_caching`) : sortir la session de la mémoire locale du serveur et la mettre dans un store partagé (Redis), accessible par TOUS les serveurs. Là, sticky session devient optionnel, pas vital.
 
 ```
 Architecture stateless (sans état local) recommandée :
@@ -164,7 +163,7 @@ A et C absorbent temporairement toute la charge
 // 3 serveurs, health check toutes les 5 secondes, timeout 2 secondes
 
 // exemple réaliste : un déploiement amène un bug qui ralentit les réponses
-// (genre une requête DB sans index, vue dans 05-MAITRISE/01_databases/01_sql_basics)
+// (genre une requête DB sans index, vue dans 24_databases/01_sql_basics)
 // Server A devient lent (3 secondes par requête au lieu de 50ms)
 
 // exemple qui casse : le health check de A répond encore "200 OK" parce que
@@ -195,8 +194,6 @@ Le Conseil utilise un endpoint `/health` qui fait `return res.status(200).send('
 
 **EXO 3 : Les sessions de Honoo no Kokuin**
 L'appli du Conseil stocke l'état de chaque Chevalier (armure active, position, énergie restante) en mémoire locale sur son serveur dédié. Le trafic explose lors d'une invasion massive, on passe de 1 à 5 serveurs. Décris le bug exact qui va apparaître (un Chevalier perd son état en cours de mission), et les deux solutions possibles (sticky session vs store partagé via Redis), avec les compromis de chacune. (15 minutes)
-
-**EXO 4 : ton propre point de bascule (20 min).** Reprends la ligne de base chiffrée du Temps 1 de [03-PILOTAGE/06_fiabilite_slo/05_panne_subie_sur_fil_rouge.md](../../03-PILOTAGE/06_fiabilite_slo/05_panne_subie_sur_fil_rouge.md) : latence p95, taux d'erreur à froid, débit maximal avant dégradation, mesurés sur ton fil rouge, pas sur le QG des Chevaliers. À quel débit round-robin cesserait de suffire sur ton propre système, et pourquoi (une requête particulièrement lourde, un état en mémoire non partagé, une dépendance qui sature avant ton service) ? Réponds avec le chiffre réel, pas une estimation : si tu n'as pas encore fait cette mesure, fais-la maintenant plutôt que de deviner.
 
 ---
 

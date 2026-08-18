@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # LE MODÈLE MENTAL JS EN 1 IMAGE
 Temps de lecture ~10 min
@@ -69,4 +68,4 @@ console.log("D");
 - L'event loop ne pousse que sur pile vide.
 - Les I/O sont déléguées à l'OS, pas exécutées par JS.
 
-Prochain arrêt : [`04_event_loop/`](04_event_loop).
+Prochain arrêt : [`04_event_loop/`](04_event_loop/).

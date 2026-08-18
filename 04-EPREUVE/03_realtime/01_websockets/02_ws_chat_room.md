@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 02_WS_CHAT_ROOM : LE CHAT ROOM QUI TIENT EN PROD
@@ -339,7 +338,7 @@ Contrainte : pas de bibliothèque externe, juste Node.js + `ws`.
 **EXO 2 : L'historique persistant entre redémarrages**
 
 > **Dépendance** : cet exercice utilise `fs.promises` pour lire et écrire des fichiers.
-> Si tu n'as pas encore fait `02-CONSTRUCTION/13_runtime_env/06_node_cli_scripts/02_filesystem_ops.md`, lis au minimum la section sur `readFile` et `writeFile` avant de commencer.
+> Si tu n'as pas encore fait `15_runtime_env/06_node_cli_scripts/02_filesystem_ops.md`, lis au minimum la section sur `readFile` et `writeFile` avant de commencer.
 > L'exercice reste faisable sans le module complet : l'indice te donne les deux fonctions clés.
 
 Le système actuel perd l'historique si le serveur redémarre.

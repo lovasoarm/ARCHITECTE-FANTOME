@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # 00 : Mesure avant d'optimiser (règle non négociable)
 Temps de lecture ~5 min

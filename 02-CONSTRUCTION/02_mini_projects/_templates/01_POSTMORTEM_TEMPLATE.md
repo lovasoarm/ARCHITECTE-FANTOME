@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # POSTMORTEM : {nom du mini-projet}
@@ -41,7 +40,7 @@ Une seule. La plus douloureuse. Pas trois pour diluer.
 ## CE QUE TU NE SAIS PAS ENCORE (mais tu sais où regarder)
 
 > Cette section est un marqueur de maturité, pas de faiblesse. Voir
-> [`00-SOCLE/03_referentiel/JE_NE_SAIS_PAS_ENCORE.md`](../../../00-SOCLE/03_referentiel/03_JE_NE_SAIS_PAS_ENCORE.md)
+> [`00_referentiel/JE_NE_SAIS_PAS_ENCORE.md`](../../../00-SOCLE/03_referentiel/03_JE_NE_SAIS_PAS_ENCORE.md)
 > pour le pourquoi. Résumé : "je ne sais pas encore, mais je sais où
 > regarder si j'en ai besoin" bat "je fais semblant". Toujours.
 
@@ -95,7 +94,7 @@ avec un statut : `OK` / `NA (justifie)` / `TODO (bloquant)`.
 
 ### Reference
 
-- `03-PILOTAGE/04_security/` pour la theorie.
-- `00-SOCLE/01_getting_started/05_devsec_perso.md` pour l'hygiene minimale.
+- `22_security/` pour la theorie.
+- `00_getting_started/05_devsec_perso.md` pour l'hygiene minimale.
 - `SECURITY.md` du projet pour la version detaillee (celui-ci est le miroir
   de cloture).

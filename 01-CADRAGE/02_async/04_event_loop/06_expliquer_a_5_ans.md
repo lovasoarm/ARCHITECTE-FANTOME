@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # EXPLIQUER L'EVENT LOOP À UN ENFANT DE 5 ANS
 Temps de lecture ~4 min
@@ -15,7 +14,7 @@ Cette leçon n'ajoute pas de contenu technique. Elle t'oblige à en enlever.
 
 ## LE FORMAT IMPOSÉ
 
-Rédige (dans `01-CADRAGE/02_async/04_event_loop/mon_explication_5_ans.md`) une explication de 5 à 8 lignes, sans un seul mot technique. Interdits : `microtask`, `macrotask`, `queue`, `callback`, `thread`, `promise`, `stack`, `heap`, `synchrone`, `asynchrone`, `scheduler`. Autorisés : tout ce qui parlerait à un enfant qui regarde un dessin animé.
+Rédige (dans `03_async/04_event_loop/mon_explication_5_ans.md`) une explication de 5 à 8 lignes, sans un seul mot technique. Interdits : `microtask`, `macrotask`, `queue`, `callback`, `thread`, `promise`, `stack`, `heap`, `synchrone`, `asynchrone`, `scheduler`. Autorisés : tout ce qui parlerait à un enfant qui regarde un dessin animé.
 
 Puis vérifie que ton texte permet à un lecteur naïf de prédire correctement la sortie de :
 
@@ -51,4 +50,4 @@ Critère : trois lecteurs non-tech (colocataire, parent, ami) prédisent correct
 
 ---
 
-Voir aussi : `01-CADRAGE/02_async/04_event_loop/03_event_loop_grimoire.md`, `03-PILOTAGE/10_team_craft/13_three_audiences_drill.md`.
+Voir aussi : `03_async/04_event_loop/03_event_loop_grimoire.md`, `27_team_craft/13_three_audiences_drill.md`.

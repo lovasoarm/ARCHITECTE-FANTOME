@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # DRILL : L'event loop explique a un enfant de 5 ans, PUIS reconstruit en 20 lignes
 
@@ -74,7 +73,7 @@ run();
 - [ ] Ton `run()` termine sans stack overflow sur 10_000 macrotasks.
 - [ ] Tu peux nommer 3 differences avec le vrai event loop (I/O, timers, phases libuv).
 
-Ce module reutilise : les modeles mentaux de `01-CADRAGE/02_async/00_why_async.md`.
+Ce module reutilise : les modeles mentaux de `03_async/00_why_async.md`.
 
 
 > ATTENTION - ou cette analogie casse :

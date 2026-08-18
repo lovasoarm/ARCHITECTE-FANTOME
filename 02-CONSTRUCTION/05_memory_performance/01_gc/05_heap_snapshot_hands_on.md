@@ -1,8 +1,7 @@
 ---
-stability: perissable_2027
+stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # HEAP SNAPSHOT HANDS-ON
 Temps de lecture ~35 min
@@ -62,7 +61,7 @@ HTMLElement (det.)  47    0      +47    14 KB    <-- SUSPECT (DOM détaché)
 
 ## 4) MISSION (livrable)
 
-Prends la fixture `02-CONSTRUCTION/02_mini_projects/13_memory_hunter/fixture/`.
+Prends la fixture `30_mini_projects/13_memory_hunter/fixture/`.
 Exécute le protocole ci-dessus. Produis `LEAK_REPORT.md` (template dans le mini-projet)
 avec :
 

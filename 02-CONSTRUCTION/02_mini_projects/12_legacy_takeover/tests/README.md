@@ -1,6 +1,5 @@
 ---
-stability: intemporel
-acte: restituer
+stability: stable
 ---
 
 # Tests : 12_legacy_takeover
@@ -38,12 +37,3 @@ Un test d'origine était vert « par hasard » (mock trop laxiste, assertion
 imprécise). Tu le corriges pour qu'il devienne strict : le signaler dans
 le POSTMORTEM comme *découverte* (pas comme régression que tu aurais
 causée).
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION/02_mini_projects/12_legacy_takeover/tests` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-
-<!-- CONTENU-DOSSIER:fin -->

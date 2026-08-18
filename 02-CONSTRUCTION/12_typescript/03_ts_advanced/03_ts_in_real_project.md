@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # TS DANS UN VRAI PROJET : CONFIG, MIGRATION, BOUNDARIES, DÉCISIONS

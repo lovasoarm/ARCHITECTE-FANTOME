@@ -3,14 +3,13 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Encapsulation, héritage, polymorphisme : conceptuels.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : fonctions (00-SOCLE/04_fundamentals), closures (00-SOCLE/04_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : fonctions (01_fundamentals), closures (01_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
-> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`05-MAITRISE/06_annexes/17_frontieres_modules.md`](../../05-MAITRISE/06_annexes/17_frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
+> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/17_frontieres_modules.md`](../../05-MAITRISE/06_annexes/17_frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : OOP EN JS
 

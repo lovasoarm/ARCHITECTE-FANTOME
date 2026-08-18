@@ -1,39 +1,25 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: chantier
+acte: a_ecrire
 ---
 
-# PONT : de typer du code à connaître le sol sur lequel il tourne à l'environnement d'exécution
+<!-- CHANTIER-OUVERT : fichier reconstruit comme facade lors de la fusion en package unique.
+     Le contenu pedagogique reel reste a ecrire. Voir RESTE-A-FAIRE-ARCHITECTE-FANTOME.md. -->
 
--> ~10 min
+# 99 PONT avant 02 CONSTRUCTION 13 runtime env
 
-> **ARRÊTE-TOI ICI.** Ce fichier est un point de passage obligé entre `02-CONSTRUCTION/12_typescript` et `02-CONSTRUCTION/13_runtime_env`. Ne l'ouvre pas comme "encore un chapitre" : c'est un palier de respiration avant un saut de nature.
+> **Chantier ouvert.** Ce fichier existe pour qu'aucun lien du depot ne soit casse.
+> Son contenu pedagogique n'est pas encore ecrit.
 
-## POURQUOI CE PONT EXISTE
+## Ce qui doit etre ecrit ici
 
-TypeScript t'a donné une sécurité statique. Reste à comprendre où ton code s'exécute vraiment : Node, Bun, Deno, browser. Chaque runtime a ses APIs, ses limites, ses pièges. Un `require` casse dans Deno, un `Deno.readFile` n'existe pas ailleurs.
+Le contrat exact de ce fichier est decrit par les documents qui le citent :
 
-## CE QUE TU MAÎTRISES DÉJÀ
+- `06-ANNEXES-TRANSVERSES/09-PEREMPTION-2027.md`
 
-- Écrire un module TypeScript strict.
-- Séparer types et implémentation.
-- Lire un `tsconfig.json` sans peur.
+## Statut
 
-## VOCABULAIRE NOUVEAU QUI ARRIVE
-
-- **Runtime** : la machine qui exécute ton JS (V8, JavaScriptCore, SpiderMonkey).
-- **ESM vs CommonJS** : deux formats de modules incompatibles.
-- **Global objects** : `window` (browser), `global` (Node), `Deno` (Deno).
-- **Environment variables** : jamais dans le code, toujours au boot.
-
-## LE PIÈGE MENTAL TYPIQUE DU SAUT
-
-Croire que "JavaScript = JavaScript partout". `fetch` n'existait pas dans Node avant v18. `Buffer` n'existe pas dans le browser. Le socle change.
-
-## EXERCICE-CHARNIÈRE (5 min chrono)
-
-Écris un module qui lit un fichier. Fais-le tourner dans Node, puis dans Deno. Note les 3 différences que tu rencontres. `02-CONSTRUCTION/13_runtime_env/01_node_vs_deno.md` liste les principales.
-
-## SI TU BLOQUES
-
-Relis le module précédent avant de continuer. Ce pont existe précisément parce que sauter cette marche brise beaucoup d'apprenants. Aucune honte à revenir.
+- [ ] contenu redige
+- [ ] exercice borne et verifiable
+- [ ] rattache au fil rouge
+- [ ] cite dans le README de son module

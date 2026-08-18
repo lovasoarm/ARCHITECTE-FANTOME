@@ -1,8 +1,7 @@
 ---
-stability: perissable_2028
+stability: periss-2028
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # L'IA GÉNÈRE DES TESTS : TOI TU VÉRIFIES QU'ILS TESTENT VRAIMENT QUELQUE CHOSE
 Temps de lecture ~12 min

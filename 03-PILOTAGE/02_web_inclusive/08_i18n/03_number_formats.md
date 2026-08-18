@@ -1,11 +1,8 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # NUMBER FORMATS : 1,234.56 VS 1.234,56
-
-> Relevé le 2026-08-14, source : pages tarifaires publiques des fournisseurs citées dans ce fichier, à revérifier avant 2027. Tout montant de ce fichier est un ordre de grandeur daté, jamais une vérité intemporelle.
 Temps de lecture ~7 min
 
 Tu affiches un prix : `1234.56`. En France, ça doit s'écrire `1 234,56`. Aux États-Unis, `1,234.56`. En Allemagne, `1.234,56`. Même nombre, trois écritures différentes, et la virgule et le point n'ont pas le même rôle d'un pays à l'autre. Si tu codes ton format en dur, tu fabriques un bug visible dès que ton app sort de son pays d'origine.

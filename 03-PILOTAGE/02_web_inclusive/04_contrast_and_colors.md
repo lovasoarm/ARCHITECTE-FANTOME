@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CONTRASTE ET COULEURS : QUAND LE DESIGN DEVIENT ILLISIBLE

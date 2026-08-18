@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: restituer
+stability: intemporel
 ---
 
 # Fixtures : GC et fuites mémoire
@@ -49,12 +48,3 @@ Laisse tourner 60 secondes chacun. Compare les colonnes `rss=` et `cache=` :
 
 Réponses attendues consignées : `../../fixtures/CHECK_ANSWERS.md` (à créer par
 l'apprenant après avoir fait l'exercice, pas avant).
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION/05_memory_performance/01_gc/08_fixtures` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-
-<!-- CONTENU-DOSSIER:fin -->

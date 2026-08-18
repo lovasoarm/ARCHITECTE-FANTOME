@@ -1,14 +1,13 @@
 ---
 perennite: perissable
-stability: intemporel
+stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: WebSocket, SSE, WebRTC : APIs stables mais l'écosystème bouge.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : async (01-CADRAGE/02_async), event loop et backpressure (01-CADRAGE/02_async/06), réseau (02-CONSTRUCTION/18_web_concepts). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : async (03_async), event loop et backpressure (03_async/06), réseau (17_web_concepts). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : REAL-TIME
 
@@ -25,8 +24,8 @@ Le HTTP classique (requête, réponse, fin) ne suffit plus pour ça. Le temps r�
 ## PRÉREQUIS
 
 Ce module suppose que tu maîtrises :
-- tout `01-CADRAGE/02_async` : complet, event loop incluse
-- HTTP, headers, stateless : voir `02-CONSTRUCTION/18_web_concepts/01_http_rest_basics.md`
+- tout `03_async` : complet, event loop incluse
+- HTTP, headers, stateless : voir `17_web_concepts/01_http_rest_basics.md`
 
 Si ces bases ne sont pas là : reviens ici après.
 
@@ -85,7 +84,7 @@ Les attentes des utilisateurs ont aussi évolué : un délai de quelques seconde
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Prérequis explicite : `04-EPREUVE/03_realtime`, prérequis `01-CADRAGE/02_async` complet + `02-CONSTRUCTION/18_web_concepts`. Tu ne peux pas comprendre la gestion des connexions persistantes et des événements en flux sans déjà maîtriser l'event loop et les bases du protocole HTTP. Le mini-projet `02_garo_no_kronika` combine directement `01-CADRAGE/02_async`, `01-CADRAGE/04_error_handling`, `04-EPREUVE/03_realtime`, et `02-CONSTRUCTION/14_architecture_patterns` pour construire un système de dispatch d'alertes en temps réel avec gestion de timeout strict.
+Prérequis explicite : `20_realtime`, prérequis `03_async` complet + `17_web_concepts`. Tu ne peux pas comprendre la gestion des connexions persistantes et des événements en flux sans déjà maîtriser l'event loop et les bases du protocole HTTP. Le mini-projet `02_garo_no_kronika` combine directement `03_async`, `05_error_handling`, `20_realtime`, et `16_architecture_patterns` pour construire un système de dispatch d'alertes en temps réel avec gestion de timeout strict.
 
 ---
 
@@ -101,4 +100,4 @@ Le modèle HTTP classique ne suffit plus dès qu'une fonctionnalité doit semble
 
 Maintenant, ouvre `01_ws_basics.md`. Et arrête de faire semblant d'être en direct avec du polling.
 
-> Ce module réutilise : l'event loop du module 03 (`01-CADRAGE/02_async`), les web concepts du module 17 (`02-CONSTRUCTION/18_web_concepts`).
+> Ce module réutilise : l'event loop du module 03 (`03_async`), les web concepts du module 17 (`17_web_concepts`).

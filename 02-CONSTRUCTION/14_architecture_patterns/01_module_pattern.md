@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # MODULE PATTERN : ENCAPSULER, EXPOSER, CACHER
@@ -10,7 +9,7 @@ Tu as un vestiaire de football. Dedans : les maillots, les crampons, les tactiqu
 
 Sans encapsulation (séparation entre ce qui est public et ce qui est privé), chaque partie de ton codebase peut lire, modifier, ou casser une autre partie. C'est du code spaghetti en puissance. En prod, ça se passe mal.
 
-Prérequis : `00-SOCLE/04_fundamentals` complet, notamment les closures (01/02_closure_trap.md) et les fonctions (01/03_functions).
+Prérequis : `01_fundamentals` complet, notamment les closures (01/02_closure_trap.md) et les fonctions (01/03_functions).
 
 ---
 

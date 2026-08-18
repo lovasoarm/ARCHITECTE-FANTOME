@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: produire
 ---
 
 # EXO FRONTIÈRE : quel module aurait dû accueillir ce geste ?
@@ -8,7 +7,7 @@ acte: produire
 Temps ~30 min
 
 Pour chaque cas ci-dessous, indique **le module (12/13/16)** qui aurait dû l'accueillir,
-en justifiant en 2 lignes. Corrige-toi avec `05-MAITRISE/06_annexes/17_frontieres_modules.md`.
+en justifiant en 2 lignes. Corrige-toi avec `31_annexes/17_frontieres_modules.md`.
 
 1. Un dev extrait 3 branches d'un `switch(role)` en 3 fonctions `handleAdmin`,
    `handleGuest`, `handleGuard`, sans changer le comportement.

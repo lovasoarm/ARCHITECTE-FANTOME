@@ -20,26 +20,34 @@ Si un document en cite un autre, il est estampille **document historique d'avant
 ## L'echelle : six niveaux, pas 56 raisons de fuir
 
 ```text
-  [ ] Niveau 0 — Fondations            (00-SOCLE, 6 modules, 3 Boss)
-  [ ] Niveau 1 — Developpeur           (01-CADRAGE, 5 modules, 3 Boss)
-  [ ] Niveau 2 — Developpeur confirme  (02-CONSTRUCTION, 20 modules, 10 Boss)
-  [ ] Niveau 3 — Senior                (03-PILOTAGE, 11 modules, 6 Boss)
-  [ ] Niveau 4 — Lead                  (04-EPREUVE, 6 modules, 3 Boss)
-  [ ] Niveau 5 — Architecte            (05-MAITRISE, 8 modules, 4 Boss)
+  [ ] Niveau 0 —     Fondations            (00-SOCLE, 6 modules, 3 Boss, ~103 h)
+  [ ] Niveau 1 —     Developpeur           (01-CADRAGE, 5 modules, 2 Boss + 1 retrospective, ~81 h)
+  [ ] Niveau 2 —     Developpeur confirme  (02-CONSTRUCTION, 13 modules, 6 Boss + 1 retrospective, ~239 h)
+  [ ] Niveau 2bis —  Concepteur            (02-CONSTRUCTION, 7 modules, 3 Boss + 1 retrospective, ~73 h)
+  [ ] Niveau 3 —     Senior                (03-PILOTAGE, 11 modules, 5 Boss + 1 retrospective, ~126 h)
+  [ ] Niveau 4 —     Lead                  (04-EPREUVE, 6 modules, 2 Boss + 1 retrospective, ~60 h)
+  [ ] Niveau 5 —     Architecte            (05-MAITRISE, 8 modules, 3 Boss + 1 retrospective, ~140 h)
 
   Route survie (raccourci employabilite) : s'arrete au Boss de sortie du niveau 3 (employable, pas Staff).
 ```
 
-| Niveau | Ce que tu sais faire a la sortie | Ce que tu as produit | Ce qui te reste |
-| --- | --- | --- | --- |
-| 0 — Fondations | ecrire, lire et raisonner sur du code sans t'y perdre | ton environnement, ton plateau de suivi, tes premieres fonctions testees | les niveaux 1 a 5 |
-| 1 — Developpeur | choisir quoi construire et refuser par ecrit le reste | PROBLEM-HUNT, MVP-SPLIT et le projet fil rouge cadre | les niveaux 2 a 5 |
-| 2 — Developpeur confirme | construire un systeme dont les frontieres resistent au changement | mini-projets livres, tests, ADR de decoupage, API documentee | les niveaux 3 a 5 |
-| 3 — Senior | tenir un systeme en production et le chiffrer | BUDGET-CLOUD.md, SLO.md, revue de securite, standards d'equipe | les niveaux 4 a 5 |
-| 4 — Lead | livrer sous contrainte reelle quand la spec et la priorite bougent | capstone sous derive, decisions d'arbitrage datees | les niveaux 5 a 5 |
-| 5 — Architecte | concevoir ET defendre un systeme complet | le dossier unique Staff Engineer, soutenu sous contradiction | rien : tu soutiens |
+| Niveau | Heures estimees | Ce que tu sais faire a la sortie | Ce que tu as produit | Ce qui te reste |
+| --- | --- | --- | --- | --- |
+| 0 — Fondations | ~103 h | ecrire, lire et raisonner sur du code sans t'y perdre | ton environnement, ton plateau de suivi, tes premieres fonctions testees | les niveaux 1, 2, 2bis, 3, 4, 5 |
+| 1 — Developpeur | ~81 h | choisir quoi construire et refuser par ecrit le reste | PROBLEM-HUNT, MVP-SPLIT et le projet fil rouge cadre | les niveaux 2, 2bis, 3, 4, 5 |
+| 2 — Developpeur confirme | ~239 h | construire un systeme dont les frontieres resistent au changement | mini-projets livres, tests, refactorings sous test, code type | les niveaux 2bis, 3, 4, 5 |
+| 2bis — Concepteur | ~73 h | decouper un systeme sur le langage du metier et tenir ses contrats | ADR de decoupage, contextes bornes, API documentee et versionnee | les niveaux 3, 4, 5 |
+| 3 — Senior | ~126 h | tenir un systeme en production et le chiffrer | BUDGET-CLOUD.md, SLO.md, revue de securite, standards d'equipe | les niveaux 4, 5 |
+| 4 — Lead | ~60 h | livrer sous contrainte reelle quand la spec et la priorite bougent | capstone sous derive, decisions d'arbitrage datees | les niveaux 5 |
+| 5 — Architecte | ~140 h | concevoir ET defendre un systeme complet | le dossier unique Staff Engineer, soutenu sous contradiction | rien : tu soutiens |
 
-Rythme : deux modules, un Boss (dossiers `BOSS-*`) ; le dernier Boss d'un palier est sa retrospective.
+Total annonce : ~821 h. Chiffre calcule, jamais saisi : lecons numerotees x 45 min, plus 3 h par Boss et 1.5 h par retrospective de palier.
+Retrospective de palier : niveau 2 -> [MI-RETRO-BLOC-2-ARCHI.md](../../02-CONSTRUCTION/MI-RETRO-BLOC-2-ARCHI.md), niveau 2bis -> [RETRO-BLOC-2-BUILD.md](../../02-CONSTRUCTION/RETRO-BLOC-2-BUILD.md).
+Engagement hebdomadaire minimal : 4 h/semaine (rythme MARATHON de [06-ANNEXES-TRANSVERSES/06-ROADMAP-rythmes.md](../../06-ANNEXES-TRANSVERSES/06-ROADMAP-rythmes.md)) ; en dessous, le droit d'entree paye a chaque reprise mange la seance.
+
+> **Route survie** — si tu vises l'employabilite avant la maitrise, tu suis le meme fil filtre : il s'arrete au Boss de sortie du niveau 3. Tu es employable, tu n'es pas Staff, et tu peux reprendre le fil complet sans repartir de zero. Elle est decrite dans [00-SOCLE/01_getting_started/ROUTE-SURVIE.md](../../00-SOCLE/01_getting_started/ROUTE-SURVIE.md).
+
+Rythme : deux modules, un Boss (dossiers `BOSS-*`) ; la retrospective de bloc ferme le palier et est comptee a part, pour que le total se verifie par un simple `ls`.
 Un niveau se coche quand son **Boss de palier** est passe, jamais quand les fichiers sont lus.
 
 ## Les six paliers, palier par palier

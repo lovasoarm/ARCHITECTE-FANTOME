@@ -65,7 +65,7 @@ d'arbitrage non mesurable (« c'est plus propre », « c'est plus moderne »).
 
 ## Durée cible
 
-10 h, égal à la durée de ce niveau dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md). Si tu dépasses
+10 h, égal à la durée de ce niveau dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md). Si tu dépasses
 largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
 de bâcler la fin du livrable.
 

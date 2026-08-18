@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # DP SUR GRILLE 2D : QUAND L'ESPACE DEVIENT UN GRAPHE
 Temps de lecture ~11 min

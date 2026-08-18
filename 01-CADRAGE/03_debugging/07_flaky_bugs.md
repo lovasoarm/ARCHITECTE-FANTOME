@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 07 : Flaky bugs (les bugs non déterministes)

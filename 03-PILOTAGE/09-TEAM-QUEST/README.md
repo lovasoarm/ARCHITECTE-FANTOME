@@ -1,14 +1,6 @@
----
-stability: stable
-acte: comprendre
-route: complete
----
-
 # Niveau 10 : Team Quest
 
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
-
-[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../03-QUALITY-SHIELD/README.md) | [Niveau suivant](../../04-EPREUVE/05-BIG-APP-SNOOP/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Niveau précédent](../03-QUALITY-SHIELD/README.md) | [Niveau suivant](../../04-EPREUVE/05-BIG-APP-SNOOP/README.md)
 
 **Ce niveau réutilise :** [08-ROADMAP-RUN](../01-ROADMAP-RUN/04-tracking-reality.md) : les signaux de derive, réutilises pour reperer un desaccord d'equipe avant qu'il bloque un jalon.
 
@@ -22,7 +14,7 @@ route: complete
 [challenge](../03-QUALITY-SHIELD/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 10 une difficulté qui vient du niveau 09.
 
-**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) (règle de calcul : voir [_STYLE.md](../.meta/_STYLE.md), section « Durées »).
 
 ## Ce que c'est
 
@@ -70,21 +62,3 @@ doivent collaborer, avec ou sans manager dans la pièce.
 
 Avant de continuer : passe par [RETRO-BLOC-3-CONDUITE.md](../RETRO-BLOC-3-CONDUITE.md), la
 rétrospective du bloc Conduite que tu viens de terminer.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `03-PILOTAGE/09-TEAM-QUEST` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_prereq_check.md](00_prereq_check.md)
-- [01-why-this-level.md](01-why-this-level.md)
-- [02-working-agreements.md](02-working-agreements.md)
-- [03-git-and-flow.md](03-git-and-flow.md)
-- [04-communication-under-pressure.md](04-communication-under-pressure.md)
-- [boss-fight.md](boss-fight.md)
-- [challenge.md](challenge.md)
-- [defense-orale.md](defense-orale.md)
-- [grimoire.md](grimoire.md)
-
-<!-- CONTENU-DOSSIER:fin -->

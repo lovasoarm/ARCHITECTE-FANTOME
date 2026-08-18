@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: produire
 ---
 # ORCHESTRER SANS PERDRE LE FIL
 Temps de lecture ~9 min

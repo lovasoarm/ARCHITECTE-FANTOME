@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SIMULATION DE DÉFENSE ORALE : SEUL, SOUS OBJECTION
@@ -19,7 +18,7 @@ Google, sans notes, sans IA ».
 ## SCÉNARIO
 
 Tu défends ton **ADR-002** (celui du pivot multi-tenant du
-`02-CONSTRUCTION/02_mini_projects/14_system_design_lab/`) devant un CTO hostile. Il n'a pas
+`30_mini_projects/14_system_design_lab/`) devant un CTO hostile. Il n'a pas
 lu ton code. Il vient de lire ton ADR en diagonale. Il te donne 5 minutes
 pour justifier ton choix, puis 5 minutes de contre-feu, puis 5 minutes de
 verdict.
@@ -78,15 +77,15 @@ Score : /10.
 
 - **< 5** : tu ne tiens pas en entretien réel. Refais le drill dans 48h avec
   le même ADR, sans changer le fond.
-- **5-7** : tu tiens mais tu bavardes. Refais avec un timer plus serré (3 min
+- **5–7** : tu tiens mais tu bavardes. Refais avec un timer plus serré (3 min
   défense au lieu de 5).
-- **8-10** : tu peux passer à l'entretien réel. Garde la vidéo comme baseline.
+- **8–10** : tu peux passer à l'entretien réel. Garde la vidéo comme baseline.
 
 ## APRÈS LE DRILL
 
 - Compare ton auto-évaluation d'avant-replay et après-replay. L'écart est la
   vraie leçon : c'est la partie de toi que tu ne vois pas.
-- Copie ta note dans `05-MAITRISE/06_annexes/interview/JOURNAL.md` (crée le si absent).
+- Copie ta note dans `31_annexes/interview/JOURNAL.md` (crée le si absent).
   Trois drills = un pattern. Le pattern est ton axe de progrès.
 
 ## POURQUOI CE DRILL EST NON-NÉGOCIABLE

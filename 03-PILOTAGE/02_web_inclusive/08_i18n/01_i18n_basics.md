@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # I18N BASICS : PARLER TOUTES LES LANGUES SANS TOUT RÉÉCRIRE
@@ -83,7 +82,7 @@ t('auth.bienvenue');
 t('profil.titre');
 ```
 
-C'est le même principe que les modules de ce curriculum : tu ranges par dossier (`00-SOCLE/04_fundamentals`, `01-CADRAGE/02_async`) plutôt que de tout balancer dans un seul fichier de 10 000 lignes.
+C'est le même principe que les modules de ce curriculum : tu ranges par dossier (`01_fundamentals`, `03_async`) plutôt que de tout balancer dans un seul fichier de 10 000 lignes.
 
 ## 4) FALLBACKS : NE JAMAIS LAISSER UN TROU VIDE
 

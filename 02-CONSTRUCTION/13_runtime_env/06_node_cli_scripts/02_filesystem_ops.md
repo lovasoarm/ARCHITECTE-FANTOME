@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # FILESYSTEM : LIRE ET ÉCRIRE SANS S'ARRACHER LES CHEVEUX

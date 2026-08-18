@@ -4,7 +4,7 @@ Projet fil rouge
 
 ## Niveau
 
-Difficulté : 2/5 (fondamental)
+🗸 Fondamental
 
 ## CONTEXTE
 

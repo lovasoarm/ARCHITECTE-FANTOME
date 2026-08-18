@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # TRADE-OFF ARENA : 3 SCÉNARIOS, 0 BONNE RÉPONSE

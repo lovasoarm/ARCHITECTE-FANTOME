@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # ADR-002 : périmètre du portage (ce qu'on porte, ce qu'on laisse)

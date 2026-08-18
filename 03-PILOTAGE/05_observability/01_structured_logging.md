@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # Arrête d'écrire des logs que personne ne peut chercher
@@ -10,7 +9,7 @@ Le Conseil de Surveillance de Garo reçoit chaque nuit des milliers de lignes du
 
 Le structured logging (log structuré) dit : chaque log est un objet JSON, avec des champs fixes et cherchables, pas une phrase humaine improvisée.
 
-Pourquoi ça compte : sans structure, tu ne peux pas filtrer "tous les combats du Chevalier Léon, dans le quartier nord, entre minuit et 1h". Avec structure, c'est une simple requête dans ton outil de logs (Datadog, ELK, vu aussi dans `05-MAITRISE/01_databases/01_sql_basics` pour la logique de filtre).
+Pourquoi ça compte : sans structure, tu ne peux pas filtrer "tous les combats du Chevalier Léon, dans le quartier nord, entre minuit et 1h". Avec structure, c'est une simple requête dans ton outil de logs (Datadog, ELK, vu aussi dans `24_databases/01_sql_basics` pour la logique de filtre).
 
 Avantage : recherche et agrégation instantanées, corrélation entre plusieurs services.
 Inconvénient : un peu plus verbeux à écrire, demande une discipline d'équipe pour rester cohérent.
@@ -103,7 +102,7 @@ chaque log de cette alerte précise porte le même alertId : "alert-7f3a9b"
 --> tu filtres sur "alert-7f3a9b" et tu vois TOUT le parcours, du détecteur au Conseil
 ```
 
-Le pourquoi c'est puissant : ce concept est le socle de la leçon suivante, le distributed tracing (vu dans `03-PILOTAGE/05_observability/02_distributed_tracing`), qui va beaucoup plus loin que le simple ID, mais qui repose exactement sur cette même idée de fil qui traverse les services. Sans correlation ID dans tes logs structurés, le tracing distribué n'a rien à exploiter.
+Le pourquoi c'est puissant : ce concept est le socle de la leçon suivante, le distributed tracing (vu dans `26_observability/02_distributed_tracing`), qui va beaucoup plus loin que le simple ID, mais qui repose exactement sur cette même idée de fil qui traverse les services. Sans correlation ID dans tes logs structurés, le tracing distribué n'a rien à exploiter.
 
 ---
 
@@ -125,7 +124,7 @@ logger.info({ event: 'knight_status', knightId: 'leon_42', realHomeAddress: req.
 logger.info({ event: 'knight_status', knightId: 'leon_42', realHomeAddress: '[REDACTED]' })
 ```
 
-Le risque réel : un log fuité (accès non autorisé à l'outil de logs, mauvaise configuration de droits) avec une donnée sensible dedans, c'est une fuite de données aussi grave qu'une fuite de DB, sauf que personne ne pense à protéger les logs avec la même rigueur que la base de données principale (vue aussi dans `03-PILOTAGE/04_security/05_hashing_bcrypt` pour le même réflexe appliqué aux mots de passe).
+Le risque réel : un log fuité (accès non autorisé à l'outil de logs, mauvaise configuration de droits) avec une donnée sensible dedans, c'est une fuite de données aussi grave qu'une fuite de DB, sauf que personne ne pense à protéger les logs avec la même rigueur que la base de données principale (vue aussi dans `22_security/05_hashing_bcrypt` pour le même réflexe appliqué aux mots de passe).
 
 ---
 

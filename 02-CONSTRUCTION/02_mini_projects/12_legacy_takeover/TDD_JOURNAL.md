@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # TDD JOURNAL : LEGACY TAKEOVER

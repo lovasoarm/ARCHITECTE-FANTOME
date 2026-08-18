@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CHARTE ASCII : LA NORME UNIQUE
@@ -8,7 +7,7 @@ Temps de lecture ~8 min
 
 > Un seul style de schéma. Un seul vocabulaire. Pas de version maison par module.
 
-Tu vas croiser l'event loop dans `01-CADRAGE/02_async`, dans `02-CONSTRUCTION/05_memory_performance`, et encore dans `02-CONSTRUCTION/13_runtime_env`.
+Tu vas croiser l'event loop dans `03_async`, dans `08_memory_performance`, et encore dans `15_runtime_env`.
 Si chaque module dessine son propre schéma avec ses propres mots, ton cerveau doit réapprendre la lecture à chaque fois. C'est du gaspillage.
 
 Cette charte fixe 8 schémas canoniques. Quand un module a besoin d'un de ces 8 schémas : il pointe ici, ou il recopie le schéma identique. Pas de variante.
@@ -46,7 +45,7 @@ a()
 
 Si tu stack des appels sans jamais redescendre (récursion sans fin) : `RangeError: Maximum call stack size exceeded`. C'est littéralement la stack qui déborde.
 
-**Référencé dans :** `00-SOCLE/04_fundamentals/03_functions`, `01-CADRAGE/02_async/04_event_loop`, `05-MAITRISE/03_edge_cases`.
+**Référencé dans :** `01_fundamentals/03_functions`, `03_async/04_event_loop`, `28_edge_cases`.
 
 ---
 
@@ -72,7 +71,7 @@ Ordre d'exécution typique :
 synchrone --> toutes les microtasks --> une macrotask --> toutes les microtasks --> une macrotask --> ...
 ```
 
-**Référencé dans :** `01-CADRAGE/02_async/04_event_loop`, `02-CONSTRUCTION/05_memory_performance/04_profiling`, `04-EPREUVE/03_realtime`.
+**Référencé dans :** `03_async/04_event_loop`, `08_memory_performance/04_profiling`, `20_realtime`.
 
 ---
 
@@ -94,7 +93,7 @@ Muter obj.x modifie ce que obj2 voit aussi.
 
 C'est la racine de 90% des bugs "je touche un truc et un autre truc casse ailleurs".
 
-**Référencé dans :** `00-SOCLE/04_fundamentals/01_variables`, `02-CONSTRUCTION/05_memory_performance/02_copy_vs_ref`.
+**Référencé dans :** `01_fundamentals/01_variables`, `08_memory_performance/02_copy_vs_ref`.
 
 ---
 
@@ -123,7 +122,7 @@ await promise()
  --> si REJECTED : une exception levée, à catcher avec try/catch
 ```
 
-**Référencé dans :** `01-CADRAGE/02_async/02_promises`, `01-CADRAGE/02_async/03_async_await`, `01-CADRAGE/04_error_handling/04_async_error_traps`.
+**Référencé dans :** `03_async/02_promises`, `03_async/03_async_await`, `05_error_handling/04_async_error_traps`.
 
 ---
 
@@ -152,7 +151,7 @@ CLIENT (réponse)
 
 Chaque middleware peut couper la chaîne (`return` sans `next()`) ou laisser passer.
 
-**Référencé dans :** `02-CONSTRUCTION/19_api_craft/01_express_from_scratch`, `03-PILOTAGE/04_security`, `01-CADRAGE/04_error_handling/03_error_propagation`.
+**Référencé dans :** `21_api_craft/01_express_from_scratch`, `22_security`, `05_error_handling/03_error_propagation`.
 
 ---
 
@@ -172,7 +171,7 @@ Le principe de la clean architecture : le domaine (la logique métier) ne dépen
 
 La flèche entre Domaine et Infra pointe vers le HAUT : c'est l'infra qui implémente une interface définie par le domaine, pas le contraire. Si tu changes de DB, le domaine ne bouge pas d'une ligne.
 
-**Référencé dans :** `02-CONSTRUCTION/14_architecture_patterns/04_clean_architecture`, `02-CONSTRUCTION/11_refactoring/02_solid_principles`.
+**Référencé dans :** `16_architecture_patterns/04_clean_architecture`, `13_refactoring/02_solid_principles`.
 
 ---
 
@@ -198,7 +197,7 @@ CLIENT
 
 Plus la réponse vient de haut dans ce schéma (edge plutôt qu'origin), plus c'est rapide pour l'utilisateur.
 
-**Référencé dans :** `02-CONSTRUCTION/18_web_concepts/04_caching_strategies`, `05-MAITRISE/02_scalability/01_load_balancing`.
+**Référencé dans :** `17_web_concepts/04_caching_strategies`, `25_scalability/01_load_balancing`.
 
 ---
 
@@ -218,7 +217,7 @@ Le schéma générique de tout pipeline de traitement de données, du plus simpl
 
 Une erreur dans TRANSFORM doit jamais silencieusement corrompre ce qui arrive au SINK. D'où l'intérêt de valider à chaque étape, pas juste à la fin.
 
-**Référencé dans :** `02-CONSTRUCTION/09_functional_js/06_fp_challenge`, `04-EPREUVE/04_ai_native_dev/03_validate_ai_output`, `03-PILOTAGE/05_observability/01_structured_logging`.
+**Référencé dans :** `11_functional_js/06_fp_challenge`, `23_ai_native_dev/03_validate_ai_output`, `26_observability/01_structured_logging`.
 
 ---
 

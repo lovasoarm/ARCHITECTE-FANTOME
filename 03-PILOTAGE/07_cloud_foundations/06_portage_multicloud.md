@@ -45,4 +45,4 @@ Le multi-cloud ne se démontre pas en comparant deux grilles, il se démontre en
 
 Le [grimoire](grimoire.md) fige le vocabulaire, puis le [challenge](challenge.md) produit ton `BUDGET-CLOUD.md` complet, portage inclus.
 
-> Ce module fournit la moitie fournisseur du livrable note du palier 04-EPREUVE. L'autre moitie (second langage) vient des `98_PORTAGE_MENTAL.md`. Le livrable lui-meme et son exemplaire rempli : [PREUVES-MODELES/S7-PORTAGE.md](../../PREUVES-MODELES/S7-PORTAGE.md).
+> Ce module fournit la moitie fournisseur du livrable note du palier 04-EPREUVE. L'autre moitie (second langage) vient des `98_PORTAGE_MENTAL.md`. Le livrable lui-meme et son exemplaire rempli : [06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S7-PORTAGE.md](../../06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S7-PORTAGE.md).

@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # MAPPED TYPES : TRANSFORMER UN TYPE PROPRIÉTÉ PAR PROPRIÉTÉ

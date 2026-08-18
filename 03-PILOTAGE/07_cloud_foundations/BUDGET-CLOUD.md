@@ -7,7 +7,7 @@ acte: appliquer
 
 > Relevé le 2026-08-14, chez les fournisseurs cités dans ce fichier, unité indiquée par ligne, URL : pages tarifaires publiques, à revérifier avant 2027. Tout montant de ce fichier est un ordre de grandeur daté, jamais une vérité intemporelle. Protocole imposé : [../../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
 
-Format imposé du livrable de la famille S1. Copie ce fichier dans `PREUVES/BUDGET-CLOUD.md` de ton dépôt et remplis-le. L'exemplaire rempli de référence est [PREUVES-MODELES/S1-BUDGET-CLOUD.md](../../PREUVES-MODELES/S1-BUDGET-CLOUD.md).
+Format imposé du livrable de la famille S1. Copie ce fichier dans `PREUVES/BUDGET-CLOUD.md` de ton dépôt et remplis-le. L'exemplaire rempli de référence est [06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S1-BUDGET-CLOUD.md](../../06-ANNEXES-TRANSVERSES/14-PREUVES-MODELES/S1-BUDGET-CLOUD.md).
 
 ## 1. Hypothèses de trafic
 

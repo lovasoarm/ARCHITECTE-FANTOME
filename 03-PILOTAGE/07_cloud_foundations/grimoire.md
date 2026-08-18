@@ -1,14 +1,21 @@
-# GRIMOIRE : FONDATIONS CLOUD
+---
+stability: evolutif
+acte: pilotage
+noyau: oui
+type: grimoire
+---
 
-| Terme | Définition | Code | Analogies | Limite |
-| --- | --- | --- | --- | --- |
-| Région | Zone géographique regroupant plusieurs centres de données. | `region: "eu-west-3"` | un championnat national / un fuseau horaire | un championnat national a des frontières stables et publiques ; une région cloud est d'abord une unité de facturation et de latence : le même service n'a ni le même prix ni le même délai d'une région à l'autre, et changer de région après coup impose de repayer la sortie des données. |
-| Zone de disponibilité | Un centre de données isolé dans une région. | `az: "eu-west-3a"` | un stade parmi ceux du championnat / une salle d'un même immeuble | deux salles d'un même immeuble partagent le toit et l'alimentation ; deux zones de disponibilité sont conçues pour tomber séparément, mais elles restent reliées par un réseau facturé et par un plan de contrôle commun qui, lui, peut tomber pour les deux. |
-| Stockage objet | Garde des fichiers entiers, adressés par chemin. | `storage.put(path, buf)` | un vestiaire à casiers / un entrepôt à cartons numérotés | un vestiaire à casiers rend l'objet entier en une seconde et sans compter ; le stockage objet facture le stockage, la requête et la sortie séparément, et ne permet pas de modifier une partie d'un fichier : toute écriture réécrit l'objet complet. |
-| Service managé | Le fournisseur exploite, tu configures et tu paies. | `db: "cloud-sql"` | un taxi plutôt qu'une voiture / un plat livré plutôt que cuisiné | un taxi te laisse descendre où tu veux ; un service managé fixe la version, la fenêtre de maintenance et le format d'export : la reprise en main est possible sur le papier, mais le coût réel est celui de la migration des données, pas celui du code. |
-| Egress | Données qui sortent du cloud, facturées au volume. | `bytesOut * prix` | le péage à la sortie d'autoroute / les frais de virement sortant | un péage d'autoroute est annoncé avant l'entrée ; l'egress n'est facturé qu'à la sortie, au gigaoctet, et n'apparaît nulle part en développement : une architecture bavarde entre deux régions se découvre sur la facture du mois suivant. |
-| IAM | Le système qui décide qui a le droit de faire quoi. | `role.allow("s3:GetObject")` | le badge d'accès d'un bâtiment / la liste d'invités à l'entrée | un badge d'immeuble ouvre ou n'ouvre pas ; IAM combine des règles héritées du compte, du groupe et de la ressource, et l'effet réel d'une identité ne se lit pas dans une seule politique : il se simule avant d'être accordé. |
-| Moindre privilège | Exactement les droits de la tâche, pas un de plus. | `["read"]` | une clé qui n'ouvre qu'une porte / un laissez-passer limité à une zone | une clé qui n'ouvre qu'une porte reste telle quelle avec le temps ; un périmètre de droits, lui, s'élargit à chaque incident réglé en urgence et ne se rétracte jamais tout seul : sans revue datée, le moindre privilège devient un privilège maximal en six mois. |
-| Gestionnaire de secrets | Stocke et fait tourner les clés hors du dépôt. | `secrets.get("db_url")` | un coffre de banque / une planque connue de deux personnes | un coffre de banque protège un objet unique et immobile ; un gestionnaire de secrets protège une valeur qui doit tourner régulièrement et être lue par des machines : un secret jamais tourné est déjà compromis, même bien rangé. |
-| Autoscaling | Ajuster automatiquement la capacité à la charge. | `min:1, max:10` | des renforts qui arrivent à la mi-temps / un vigile de plus quand la file grossit | des renforts arrivent à la mi-temps parce que quelqu'un les a vus arriver ; l'autoscaling réagit à une métrique avec un délai de démarrage mesurable : la première minute du pic est toujours servie par la capacité d'avant. |
-| Rayon d'impact | Ce qui tombe quand un composant tombe. | `deps(service)` | l'onde d'une explosion / le nombre de joueurs affectés par un carton rouge | l'onde d'une explosion décroît avec la distance ; le rayon d'impact d'un composant partagé ne décroît pas, il s'arrête net à la frontière des dépendances : il se calcule en listant les appelants, pas en estimant la gravité. |
+# GRIMOIRE : CLOUD FOUNDATIONS
+
+| Règle | Analogie 1 | Analogie 2 |
+| --- | --- | --- |
+| L'unité facturée avant le prix. | le prix au kilo | le compteur d'eau |
+| Entrer est gratuit, sortir se paie. | un parking d'aéroport | une consigne de gare |
+| Une facture se prédit ou ne se maîtrise pas. | une facture d'électricité | un forfait de téléphone |
+| La rétention multiplie tout coût quotidien. | un grenier qu'on ne vide jamais | un abonnement oublié |
+| Le coût de sortie se calcule avant d'entrer. | un bail avec préavis | un billet aller-retour |
+| Trois paliers de trafic, sinon pas de chiffrage. | trois tailles de vêtement | trois maquettes d'échelle |
+| Un environnement de test allumé la nuit paie plein tarif. | une lumière laissée allumée | un moteur au ralenti |
+| Le cache au bord coupe le poste dominant. | une gourde plutôt qu'un aller-retour | un stock de proximité |
+| Un prix non daté n'est pas un prix. | un menu sans année | une photo sans légende |
+| Porter un service prouve ce que tu as compris. | traduire un texte | rejouer un morceau sur un autre instrument |

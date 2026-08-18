@@ -1,7 +1,6 @@
 ---
 stability: mouvant
 scope: 17_polyglot_forge
-acte: appliquer
 ---
 
 # 00_SPEC_DRIFT.md : spec drift **en cours de projet** (mouvant)

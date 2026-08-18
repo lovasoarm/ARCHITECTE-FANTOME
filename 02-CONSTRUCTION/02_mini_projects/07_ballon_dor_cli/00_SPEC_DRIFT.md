@@ -1,7 +1,6 @@
 ---
 stability: mouvant
 scope: 07_ballon_dor_cli
-acte: appliquer
 ---
 
 # 00_SPEC_DRIFT.md : spec drift **en cours de projet** (mouvant)

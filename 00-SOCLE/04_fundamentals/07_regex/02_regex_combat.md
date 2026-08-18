@@ -1,12 +1,9 @@
 ---
-stability: perissable_2027
+stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # REGEX COMBAT : VALIDER DES DONNÉES RÉELLES
-
-> Relevé le 2026-08-14, source : pages tarifaires publiques des fournisseurs citées dans ce fichier, à revérifier avant 2027. Tout montant de ce fichier est un ordre de grandeur daté, jamais une vérité intemporelle.
 Temps de lecture ~9 min
 
 La validation de formulaires, c'est un terrain de guerre. Les shinobis tapent n'importe quoi. Des espaces au début. Des points en trop. Des extensions bizarres. Des numéros avec des tirets, des espaces, des parenthèses.

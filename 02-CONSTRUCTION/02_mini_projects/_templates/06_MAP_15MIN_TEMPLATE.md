@@ -2,7 +2,6 @@
 stability: intemporel
 audience: apprenant
 scope: template MAP_15MIN : "lire 10x mieux qu'ecrire"
-acte: appliquer
 ---
 
 # MAP_15MIN.md : template standardise (livrable obligatoire)
@@ -14,11 +13,11 @@ de code, et tu produis cette carte.
 
 Livrable obligatoire dans :
 
-- `02-CONSTRUCTION/02_mini_projects/10_legacy_dungeon/`
-- `02-CONSTRUCTION/02_mini_projects/12_legacy_takeover/`
-- `EXO_LECTURE` des blocs "Systeme web complet" (02-CONSTRUCTION/18_web_concepts,
-  04-EPREUVE/03_realtime, 02-CONSTRUCTION/19_api_craft) et "Ingenierie senior" (05-MAITRISE/02_scalability,
-  03-PILOTAGE/05_observability, 03-PILOTAGE/10_team_craft).
+- `30_mini_projects/10_legacy_dungeon/`
+- `30_mini_projects/12_legacy_takeover/`
+- `EXO_LECTURE` des blocs "Systeme web complet" (17_web_concepts,
+  20_realtime, 21_api_craft) et "Ingenierie senior" (25_scalability,
+  26_observability, 27_team_craft).
 
 ## Regles de remplissage (chrono 15 min)
 

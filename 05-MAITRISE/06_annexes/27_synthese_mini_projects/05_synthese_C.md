@@ -1,12 +1,11 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SYNTHÈSE C : LA V2 DU SYSTÈME DE VOTE BALLON D'OR
 Temps de lecture ~7 min
 
-> Couvre : `02-CONSTRUCTION/10_design_patterns` + `02-CONSTRUCTION/11_refactoring` + `00-SOCLE/05_problem_solving` + `02-CONSTRUCTION/12_typescript`
+> Couvre : `12_design_patterns` + `13_refactoring` + `02_problem_solving` + `14_typescript`
 > Durée cible : 120 à 180 minutes
 > Cette synthèse part d'un code existant pourri. Pas d'un fichier vide.
 

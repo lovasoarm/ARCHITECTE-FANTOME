@@ -1,21 +1,17 @@
 ---
 stability: intemporel
-acte: restituer
+acte: construction
+noyau: renfort
 ---
 
-# 02-CONSTRUCTION/16_ddd_contrats/verification_pack
+# PACK DE VÉRIFICATION — MODULE 16
 
-Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
+Ce dossier ne s'ouvre qu'après le challenge et le boss fight.
 
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
+- `criteres.md` : la grille de passage, à cocher soi-même puis à faire contredire.
 
-## Contenu du dossier
+## Procédure
 
-Liste generee : tout fichier de `02-CONSTRUCTION/16_ddd_contrats/verification_pack` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [criteres.md](criteres.md)
-- [drill_1.md](drill_1.md)
-- [drill_2.md](drill_2.md)
-- [drill_3.md](drill_3.md)
-
-<!-- CONTENU-DOSSIER:fin -->
+1. Tu coches seul, honnêtement.
+2. Tu fais relire par un contradicteur (humain, ou la passe écrite du contradicteur).
+3. Tout critère coché sans preuve **liée par un chemin de fichier** est décoché d'office.

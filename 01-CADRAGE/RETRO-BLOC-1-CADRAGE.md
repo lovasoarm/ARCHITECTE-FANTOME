@@ -1,6 +1,6 @@
 # Rétrospective de bloc : Bloc CADRAGE (niveaux 00 à 03)
 
-[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/06-ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
+[Sommaire](../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/05-ROADMAP.md) | [Style](.meta/_STYLE.md)
 
 Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opération précise : tu
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
@@ -9,12 +9,6 @@ est désormais faux, et pourquoi ce n'était pas visible à l'époque.
 Durée : 60 à 90 minutes. À faire après le boss-fight du niveau 03-MVP-SPLIT, avant d'ouvrir le bloc
 suivant. Ne saute pas cette étape : c'est la seule fois du parcours où tu juges ton propre
 travail passé avec des yeux différents.
-
-## Boss de palier (rythme deux modules, un Boss)
-
-Cette retrospective **est** le dernier Boss de son palier : elle ferme [MVP SPLIT](05-MVP-SPLIT/README.md). Il n'y a donc pas de dossier `BOSS-` supplementaire ici : le Boss final d'un
-palier, c'est la relecture qui decide si le palier se coche. Meme verdict binaire que les Boss
-intermediaires : passe, ou ne passe pas.
 
 ## Contrôle d'antériorité du bloc
 
@@ -29,9 +23,9 @@ relire ta solution. C'est deux heures. Elles valent les vingt heures du bloc sui
 
 ## Ce que tu rouvres
 
-- ton cahier de problème du niveau 02 ([02-PROBLEM-HUNT/challenge.md](01-PROBLEM-HUNT/challenge.md)),
+- ton cahier de problème du niveau 02 ([02-PROBLEM-HUNT/challenge.md](./01-PROBLEM-HUNT/challenge.md)),
 - ta liste de non-objectifs du niveau 02,
-- ton découpage en tranches du niveau 03 ([03-MVP-SPLIT/challenge.md](05-MVP-SPLIT/challenge.md)).
+- ton découpage en tranches du niveau 03 ([03-MVP-SPLIT/challenge.md](./05-MVP-SPLIT/challenge.md)).
 
 Tu les rouvres sans les corriger tout de suite. D'abord tu lis, ensuite tu annotes, enfin tu
 décides quoi reprendre.
@@ -109,20 +103,6 @@ Relis tes horodatages de boss-fight du bloc. Combien sont antérieurs à ta prem
 la grille ? Si moins de la moitié, refais-en un avant de continuer : une grille lue d'abord
 transforme un exercice de raisonnement en exercice de remplissage.
 
-## Verification du livrable TECH-ILA 1 sur 6
-
-> Depuis S-10, la carte n'est plus annoncee ici : elle a ete ouverte dans `00-SOCLE/01_getting_started`. Cette retrospective ne verifie qu'une chose, binaire : le livrable existe-t-il ? Attendu : la fiche d'orientation remplie : quel outil tu utilises, pour quoi, depuis quelle version. Non produit = le bloc n'est pas ferme, meme si toutes les lecons sont lues.
-
-### Rappel de la carte (reference, pas decouverte) : Niveau 1 Socle (bloquant)
-
-Ce bloc t'a donné des réflexes JavaScript : async, debugging, gestion d'erreur. Le
-[Niveau 1 TECH-ILA](../06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/01-niveau-1-socle.md) reprend
-ce que tu viens de faire et pose la question suivante : ce que tu sais faire tient-il encore
-si on retire Node de l'équation (terminal nu, réseau, permissions système) ? Vingt minutes de
-lecture, puis point de passage à écrire dans ta rétro : deux lignes nommant une chose que le
-terminal nu fait et que tu déléguais à Node sans le savoir. Sans ces deux lignes, la rétro
-n'est pas terminée. Le premier livrable TECH-ILA, lui, arrive au bloc suivant.
-
 ## Critères de réussite
 
 - Au moins 3 affirmations classées FAUX ou INCOMPLET, avec leur mécanisme nommé.
@@ -132,5 +112,5 @@ n'est pas terminée. Le premier livrable TECH-ILA, lui, arrive au bloc suivant.
 
 ## Si tu bloques
 
-Rouvre [02-PROBLEM-HUNT/challenge.md](01-PROBLEM-HUNT/challenge.md) et relis seulement sa section de critères de réussite : la plupart
+Rouvre [02-PROBLEM-HUNT/challenge.md](./01-PROBLEM-HUNT/challenge.md) et relis seulement sa section de critères de réussite : la plupart
 des FAUX se voient en comparant un livrable à ses propres critères, pas à ta mémoire.

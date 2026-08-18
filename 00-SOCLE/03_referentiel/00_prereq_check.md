@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: évaluer
 ---
 
 # Prérequis du prélude "référentiel"
@@ -8,7 +7,7 @@ acte: évaluer
 Temps de lecture ~2 min
 
 Ce prélude n'a pas de prérequis technique : c'est le tout premier document
-que tu ouvres après `00-SOCLE/01_getting_started/`.
+que tu ouvres après `00_getting_started/`.
 
 Prérequis mental (5 min) :
 
@@ -17,6 +16,6 @@ Prérequis mental (5 min) :
 - s'être posé la question : « pourquoi j'apprends JS en 2026 ? ».
 
 Si l'une des réponses est floue, ferme ce dossier et va d'abord faire
-`00-SOCLE/01_getting_started/`.
+`00_getting_started/`.
 
 Rien à installer ici, rien à coder. Ouvre `00_why_referentiel.md` et lis.

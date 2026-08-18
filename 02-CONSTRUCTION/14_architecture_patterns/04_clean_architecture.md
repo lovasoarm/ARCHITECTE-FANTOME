@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CLEAN ARCHITECTURE : LE DOMAINE AU CENTRE
@@ -10,15 +9,15 @@ L'Armure de Garo ne dépend pas de la marque des bottes que León porte. Elle fo
 
 La question que ce pattern répond : comment écrire du code qui survit au changement d'outil ?
 
-Prérequis : `03_mvc_pattern.md`, `02-CONSTRUCTION/10_design_patterns/02_structural/02_adapter_pattern.md`, `02-CONSTRUCTION/11_refactoring/02_solid_principles.md`.
+Prérequis : `03_mvc_pattern.md`, `12_design_patterns/02_structural/02_adapter_pattern.md`, `13_refactoring/02_solid_principles.md`.
 
 > Ce module s'appuie sur le principe de Responsabilité Unique (SRP) et de découplage (couplage : degré de dépendance entre deux modules).
-> La source de vérité pour SRP et couplage est `02-CONSTRUCTION/11_refactoring/02_solid_principles.md`.
+> La source de vérité pour SRP et couplage est `13_refactoring/02_solid_principles.md`.
 > Ici on les applique à l'échelle d'un système entier. On ne les réexplique pas.
 
-> Ce fichier construit directement sur `02-CONSTRUCTION/13_runtime_env`.
+> Ce fichier construit directement sur `15_runtime_env`.
 > Si tu ne sais pas encore comment Node gère les modules et pourquoi ESM et CJS coexistent :
-> fais `02-CONSTRUCTION/13_runtime_env/01_node_vs_browser.md` + `02-CONSTRUCTION/13_runtime_env/03_commonjs_vs_esm.md` avant de continuer.
+> fais `15_runtime_env/01_node_vs_browser.md` + `15_runtime_env/03_commonjs_vs_esm.md` avant de continuer.
 
 ---
 

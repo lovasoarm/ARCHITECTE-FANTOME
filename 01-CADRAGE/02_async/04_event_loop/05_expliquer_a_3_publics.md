@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # Event loop : expliqué à 3 publics
 
@@ -48,8 +47,8 @@ Ce format t'entraîne aux trois registres avec un seul exercice.
 
 Crée le même fichier pour :
 
-- `closures` (dans `00-SOCLE/04_fundamentals/`)
-- `prototypes` (dans `02-CONSTRUCTION/17_oop_js/`)
-- `garbage collection` (dans `02-CONSTRUCTION/05_memory_performance/`)
+- `closures` (dans `01_fundamentals/`)
+- `prototypes` (dans `18_oop_js/`)
+- `garbage collection` (dans `08_memory_performance/`)
 
 Un fichier par concept, trois publics par fichier. C'est le format canon.

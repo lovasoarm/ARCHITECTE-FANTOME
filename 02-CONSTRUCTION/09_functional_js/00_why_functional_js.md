@@ -3,12 +3,11 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Pure functions, immutabilité, composition : paradigme durable.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : fonctions higher-order (00-SOCLE/04_fundamentals), immutabilité (00-SOCLE/04_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : fonctions higher-order (01_fundamentals), immutabilité (01_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : FUNCTIONAL JS
 
@@ -71,7 +70,7 @@ Le spread operator (`...`) et les méthodes comme `Object.freeze` ont rendu l'im
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Indirectement essentiel : `02-CONSTRUCTION/09_functional_js` dépend de `00-SOCLE/04_fundamentals/03_functions`, et devient à son tour le prérequis direct de `02-CONSTRUCTION/10_design_patterns`. Beaucoup de design patterns modernes (Strategy, par exemple) s'appuient sur des fonctions traitées comme des valeurs interchangeables, ce qui est un réflexe purement fonctionnel.
+Indirectement essentiel : `11_functional_js` dépend de `01_fundamentals/03_functions`, et devient à son tour le prérequis direct de `12_design_patterns`. Beaucoup de design patterns modernes (Strategy, par exemple) s'appuient sur des fonctions traitées comme des valeurs interchangeables, ce qui est un réflexe purement fonctionnel.
 
 ---
 

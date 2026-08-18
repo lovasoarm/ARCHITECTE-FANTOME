@@ -1,9 +1,8 @@
 ---
-stability: intemporel
-acte: produire
+stability: stable
 ---
 
-# EXO IA MENTEUSE : module 02-CONSTRUCTION/04_math_basics
+# EXO IA MENTEUSE : module 07_math_basics
 
 Temps : ~10 min. Format court, seul ou en binôme.
 

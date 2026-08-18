@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # TDD_JOURNAL : 18_human_vs_ai_smell

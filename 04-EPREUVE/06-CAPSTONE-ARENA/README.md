@@ -1,14 +1,6 @@
----
-stability: stable
-acte: comprendre
-route: complete
----
-
-[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../05-BIG-APP-SNOOP/README.md) | [Niveau suivant](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Niveau précédent](../05-BIG-APP-SNOOP/README.md) | [Niveau suivant](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md)
 
 # Niveau 12 : Capstone Arena
-
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
 
 ## Ce que c'est
 
@@ -24,7 +16,7 @@ quelle compétence utiliser à quel moment.
 [challenge](../05-BIG-APP-SNOOP/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 12 une difficulté qui vient du niveau 11.
 
-**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) (règle de calcul : voir [_STYLE.md](../.meta/_STYLE.md), section « Durées »).
 
 Prérequis : tous les niveaux 00 à 11 terminés, avec leurs challenges et boss fights validés.
 Ce niveau n'enseigne pas de méthode nouvelle, il vérifie que les précédentes tiennent
@@ -96,25 +88,3 @@ rétrospective du bloc Épreuve que tu viens de terminer.
 ## Ce qui ne se passe pas ici
 
 Personne ne va clarifier le brief à ta place. C'est le point.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `04-EPREUVE/06-CAPSTONE-ARENA` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_prereq_check.md](00_prereq_check.md)
-- [01-why-this-level.md](01-why-this-level.md)
-- [02-briefing.md](02-briefing.md)
-- [03-deliverables.md](03-deliverables.md)
-- [04-evaluation-grid.md](04-evaluation-grid.md)
-- [05-changement-de-spec.md](05-changement-de-spec.md)
-- [06-addendum-staff-engineer.md](06-addendum-staff-engineer.md)
-- [07-semaine-double-derive.md](07-semaine-double-derive.md)
-- [SCELLE-message-client-jalon-2.md](SCELLE-message-client-jalon-2.md)
-- [boss-fight.md](boss-fight.md)
-- [challenge.md](challenge.md)
-- [defense-orale.md](defense-orale.md)
-- [grimoire.md](grimoire.md)
-
-<!-- CONTENU-DOSSIER:fin -->

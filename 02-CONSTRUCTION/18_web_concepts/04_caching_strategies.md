@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CACHING STRATEGIES : METTRE EN CACHE SANS METTRE EN DANGER

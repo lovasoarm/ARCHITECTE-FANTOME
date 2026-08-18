@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # INTERVIEW DEFENSE : 10 scénarios d'objection
@@ -11,10 +10,10 @@ Compétence visée : défendre une décision technique à voix haute face à une
 
 Ce fichier est le **hub unique** de la défense orale. Il complète et référence :
 
-- `05-MAITRISE/06_annexes/interview/01_desaccord_cto.md` (mise en scène complète autour de `05_prison_break_api`).
-- `05-MAITRISE/06_annexes/interview/02_mock_interview_async.md` (défense sur le raisonnement asynchrone).
-- `03-PILOTAGE/10_team_craft/14_argumentaire_technique.md` (structure de l'argument).
-- `05-MAITRISE/06_annexes/templates/POSTMORTEM.md` (renvoi : chaque décision de POSTMORTEM doit pouvoir être défendue oralement).
+- `31_annexes/interview/01_desaccord_cto.md` (mise en scène complète autour de `05_prison_break_api`).
+- `31_annexes/interview/02_mock_interview_async.md` (défense sur le raisonnement asynchrone).
+- `27_team_craft/14_argumentaire_technique.md` (structure de l'argument).
+- `31_annexes/templates/POSTMORTEM.md` (renvoi : chaque décision de POSTMORTEM doit pouvoir être défendue oralement).
 
 ## RÈGLE DU JEU
 
@@ -52,16 +51,16 @@ Angle : cite 2 choses vérifiables que tu as faites et qu'une IA seule n'aurait 
 ### Scénario 3 : "Prouve que ta race condition est bien cette hypothèse et pas autre chose."
 
 Contexte : tu as diagnostiqué un bug asynchrone. Ton lead ne te croit pas.
-Angle : rappelle `01-CADRAGE/03_debugging/HYPOTHESES_EXEMPLE_REPRO_DETERMINISTE.md`. Reproduis la race de façon déterministe ; expose le protocole de falsification.
+Angle : rappelle `04_debugging/HYPOTHESES_EXEMPLE_REPRO_DETERMINISTE.md`. Reproduis la race de façon déterministe ; expose le protocole de falsification.
 
 ### Scénario 4 : "Ton architecture en couches est de la sur-ingénierie pour ce périmètre."
 
-Contexte : voir aussi `05-MAITRISE/06_annexes/interview/01_desaccord_cto.md` objection 4.
+Contexte : voir aussi `31_annexes/interview/01_desaccord_cto.md` objection 4.
 Angle : quel volume/vie du projet justifie ou disqualifie les couches ? Coût de la structure vs coût du désordre.
 
 ### Scénario 5 : "SQLite en prod ? Sérieusement ?"
 
-Contexte : voir aussi `05-MAITRISE/06_annexes/interview/01_desaccord_cto.md` objection 1.
+Contexte : voir aussi `31_annexes/interview/01_desaccord_cto.md` objection 1.
 Angle : périmètre, écritures concurrentes, chemin de migration. Nomme le seuil (~50 écritures/s soutenues) où tu bascules.
 
 ### Scénario 6 : "Pourquoi TypeScript ici ? C'est du bruit."
@@ -72,7 +71,7 @@ Angle : coût d'apprentissage vs bénéfice à la maintenance. Cite les 2 cas o�
 ### Scénario 7 : "Ta couverture de tests est à 92%. C'est du fétichisme."
 
 Contexte : le PO trouve que tu passes trop de temps sur les tests.
-Angle : distingue couverture de ligne (fétichisme) et couverture de comportement (utile). Cite `02-CONSTRUCTION/03_testing/00_why_testing.md` et mutation testing (`04-EPREUVE/04_ai_native_dev/*_ai_grimoire.md` "Mutation score").
+Angle : distingue couverture de ligne (fétichisme) et couverture de comportement (utile). Cite `06_testing/00_why_testing.md` et mutation testing (`23_ai_native_dev/*_ai_grimoire.md` "Mutation score").
 
 ### Scénario 8 : "Pourquoi cet ADR ? Une décision se prend, elle ne se documente pas."
 
@@ -81,7 +80,7 @@ Angle : coût de re-débattre une décision oubliée dans 6 mois vs 15 minutes d
 
 ### Scénario 9 : "Ton code utilise `Object.create(null)`. C'est du folklore."
 
-Contexte : revue de code, objection sur `05-MAITRISE/03_edge_cases/07_edge_cases_grimoire.md`.
+Contexte : revue de code, objection sur `28_edge_cases/07_edge_cases_grimoire.md`.
 Angle : prototype pollution. Cite un scénario concret. Chiffre : combien coûte une CVE contre 4 caractères de plus dans le code ?
 
 ### Scénario 10 : "Tu as refusé cette suggestion IA. Prouve qu'elle était fausse."

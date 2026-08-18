@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CHAOS INSTRUCTIONS : casser un projet volontairement pour s'entraîner

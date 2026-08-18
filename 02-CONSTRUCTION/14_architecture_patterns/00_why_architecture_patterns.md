@@ -3,18 +3,15 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Hexagonal, CQRS, event-driven : indépendants du langage.
-acte: restituer
 ---
-
-> **Frontière** : ce module ne traite pas le découpage d'un système existant en couches et en dépendances dirigées, traité en [`02-CONSTRUCTION/15-ARCHI-LAB`](../15-ARCHI-LAB/01-why-this-level.md), ni le critère de découpage par le langage du métier et la séparation lecture/écriture, traités en [`02-CONSTRUCTION/16_ddd_contrats`](../16_ddd_contrats/00_why_ddd_contrats.md). Ici, on travaille des formes d'architecture déjà nommées et leurs conséquences.
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `05-MAITRISE/06_annexes/17_frontieres_modules.md` : table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
+> **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `31_annexes/17_frontieres_modules.md` : table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
 
-> **CE MODULE RÉUTILISE** : patterns (02-CONSTRUCTION/10_design_patterns), async & I/O (01-CADRAGE/02_async), DB (05-MAITRISE/01_databases — pas un prérequis : ce module en donne le strict nécessaire, le fond est enseigné là-bas plus tard), refactoring (02-CONSTRUCTION/11_refactoring). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas. SOLID est enseigné directement dans ce module (`02_solid_principles.md`), pas ailleurs.
+> **CE MODULE RÉUTILISE** : patterns (12_design_patterns), async & I/O (03_async), DB (24_databases anticipé), refactoring (13_refactoring). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas. SOLID est enseigné directement dans ce module (`02_solid_principles.md`), pas ailleurs.
 
-> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`05-MAITRISE/06_annexes/17_frontieres_modules.md`](../../05-MAITRISE/06_annexes/17_frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
+> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/17_frontieres_modules.md`](../../05-MAITRISE/06_annexes/17_frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
 
 > **L'architecture a un seul but : rendre le changement moins coûteux.**
 
@@ -23,8 +20,8 @@ acte: restituer
 > ## CE MODULE VS LES DEUX AUTRES
 >
 > - **Ce module apporte** : decoupage systeme (MVC, Clean Architecture, event-driven), frontieres entre sous-systemes, couplage a l'echelle de l'application.
-> - **Vs 02-CONSTRUCTION/10_design_patterns** : les patterns resolvent un probleme local dans une classe. L'architecture resout un probleme global entre modules.
-> - **Vs 02-CONSTRUCTION/11_refactoring** : refactorer ameliore le detail. L'architecture decide de la carte du systeme avant que le detail existe.
+> - **Vs 12_design_patterns** : les patterns resolvent un probleme local dans une classe. L'architecture resout un probleme global entre modules.
+> - **Vs 13_refactoring** : refactorer ameliore le detail. L'architecture decide de la carte du systeme avant que le detail existe.
 > - **Non recouvrant** : ici on apprend a dessiner les grandes lignes avant que le code ne soit ecrit.
 
 ---
@@ -46,9 +43,9 @@ L'architecture, c'est la décision qui se prend une fois, mais qui détermine le
 
 Ce module suppose que tu maîtrises :
 
-- design patterns créationnels et structuraux : voir `02-CONSTRUCTION/10_design_patterns/`
-- principes SOLID (SRP, OCP, DIP) : voir `02-CONSTRUCTION/11_refactoring/02_solid_principles.md`
-- comment Node charge un module : voir `02-CONSTRUCTION/13_runtime_env/01_node_vs_browser.md` et `02-CONSTRUCTION/13_runtime_env/03_commonjs_vs_esm.md`
+- design patterns créationnels et structuraux : voir `12_design_patterns/`
+- principes SOLID (SRP, OCP, DIP) : voir `13_refactoring/02_solid_principles.md`
+- comment Node charge un module : voir `15_runtime_env/01_node_vs_browser.md` et `15_runtime_env/03_commonjs_vs_esm.md`
 
 Si ces bases ne sont pas là : reviens ici après.
 
@@ -104,17 +101,17 @@ La tendance microservices, elle, a suivi un cycle complet : adoption massive por
 
 ## FRONTIÈRE AVEC LES MODULES VOISINS
 
-Ce module N'EST PAS `02-CONSTRUCTION/10_design_patterns` : ici on organise un système entier (modules, couches, communication entre composants, frontières de contexte). Là-bas, on résout un problème récurrent à l'échelle d'une classe ou d'un petit groupe de classes.
+Ce module N'EST PAS `12_design_patterns` : ici on organise un système entier (modules, couches, communication entre composants, frontières de contexte). Là-bas, on résout un problème récurrent à l'échelle d'une classe ou d'un petit groupe de classes.
 Exemple : décider MVC vs Clean Architecture pour tout le back = architecture pattern. Choisir un Adapter pour brancher une librairie externe sur ton interface = design pattern.
 
-Ce module N'EST PAS `02-CONSTRUCTION/11_refactoring` : ici on prend des décisions structurantes qui engagent tout le code à venir, pas seulement du code déjà écrit. Là-bas, on améliore un code existant sans changer son comportement.
+Ce module N'EST PAS `13_refactoring` : ici on prend des décisions structurantes qui engagent tout le code à venir, pas seulement du code déjà écrit. Là-bas, on améliore un code existant sans changer son comportement.
 Exemple : découper un monolithe en 3 services autour de bounded contexts = décision d'architecture. Extraire la validation d'un contrôleur dans une couche à part sans casser les tests = refactoring.
 
 ---
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Oui, explicitement : "15 + 20, Architecture + API Craft : sans ça, t'es junior à vie". Le module a un prérequis combiné fort : `02-CONSTRUCTION/10_design_patterns` + `02-CONSTRUCTION/11_refactoring`. Tu ne peux pas construire une architecture solide sans déjà savoir reconnaître les patterns de structure et sans savoir nettoyer du code qui dérive.
+Oui, explicitement : "15 + 20, Architecture + API Craft : sans ça, t'es junior à vie". Le module a un prérequis combiné fort : `12_design_patterns` + `13_refactoring`. Tu ne peux pas construire une architecture solide sans déjà savoir reconnaître les patterns de structure et sans savoir nettoyer du code qui dérive.
 
 ---
 
@@ -134,7 +131,7 @@ Maintenant, ouvre `01_module_pattern.md`. Et commence à voir ton code comme un 
 
 > Distinction à ne jamais confondre : design patterns = échelle classe ; refactoring = transformer du code existant (SOLID) ; architecture = échelle système entier.
 
-> Ce module réutilise : la composition du module 30 (`02-CONSTRUCTION/17_oop_js`), le refactoring du module 13 (`02-CONSTRUCTION/11_refactoring`).
+> Ce module réutilise : la composition du module 30 (`18_oop_js`), le refactoring du module 13 (`13_refactoring`).
 
 ## AILLEURS QUE JS
 
@@ -148,7 +145,7 @@ stability: intemporel
 ## Frontière de ce module
 
 Ce module s'arrête aux **décisions structurelles engageant plusieurs modules**. Si tu vises :
-- une transformation locale à comportement identique -> `02-CONSTRUCTION/11_refactoring`
-- une décision structurelle multi-module -> `02-CONSTRUCTION/14_architecture_patterns`
-- l'usage d'un pattern nommé bien connu -> `02-CONSTRUCTION/10_design_patterns`
+- une transformation locale à comportement identique -> `13_refactoring`
+- une décision structurelle multi-module -> `16_architecture_patterns`
+- l'usage d'un pattern nommé bien connu -> `12_design_patterns`
 - au-delà, réfléchis avant d'y aller.

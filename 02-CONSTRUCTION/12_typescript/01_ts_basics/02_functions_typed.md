@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: appliquer
 ---
 
 # FONCTIONS TYPÉES : SIGNER UN CONTRAT AVANT D'EXÉCUTER

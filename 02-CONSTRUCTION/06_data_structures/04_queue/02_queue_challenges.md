@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: produire
 ---
 # QUEUE EN ACTION : LES VRAIS PROBLÈMES
 Temps de lecture ~11 min
@@ -180,7 +179,7 @@ Résultat : boucles infinies sur les graphes avec cycles.
 ## 3) CHEMIN LE PLUS COURT AVEC BFS
 
 BFS garantit le chemin le plus court en nombre d'arêtes (graphe non pondéré).
-Dijkstra c'est pour les graphes pondérés : on verra ça dans `02-CONSTRUCTION/07_algorithms`.
+Dijkstra c'est pour les graphes pondérés : on verra ça dans `10_algorithms`.
 Pour les grilles, les labyrinthes, les réseaux sans poids : BFS est la bonne arme.
 
 ```js

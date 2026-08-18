@@ -1,44 +1,43 @@
-# 06 : DIRE "JE NE SAIS PAS" SANS PERDRE LA SALLE
+---
+stability: intemporel
+acte: pilotage
+noyau: oui
+---
 
-Temps de lecture ~8 min
+# L'AVEU D'IGNORANCE
 
-La crédibilité d'un Staff Engineer ne vient pas de tout savoir : elle vient du fait que ce qu'il affirme s'avère vrai. Un seul bluff détecté annule dix analyses justes.
+Temps de lecture ~6 min
 
-## 1. LA FORMULE EN TROIS TEMPS
+## 1) POURQUOI C'EST UNE COMPÉTENCE
 
-> "Je ne sais pas. **Voici comment je le saurai** : [méthode]. **Je réponds** : [date et heure]."
+Le coût d'un « je crois que oui » faux est énorme : quelqu'un construit dessus. Le coût d'un « je ne
+sais pas » est nul si, et seulement si, il est **borné**.
 
-Sans les deuxième et troisième parties, l'aveu ressemble à une dérobade. Avec elles, il ressemble à une méthode, et c'est exactement ce qu'on attend du rôle.
+## 2) LE FORMAT EN TROIS PARTIES
 
-## 2. SÉPARER LES QUATRE REGISTRES
+```txt
+Je ne sais pas si <question précise>.
+Voici ce que je sais déjà : <fait 1, fait 2>.
+Je saurai <date/heure>, en <méthode : mesure, essai, lecture de la source>.
+```
 
-| Registre | Formulation | Exemple |
-| --- | --- | --- |
-| Fait mesuré | "j'ai mesuré" | "41 minutes, chrono en main, le 22/03" |
-| Estimation | "j'estime, méthode X, marge Y" | "environ 3 semaines, à plus ou moins une semaine" |
-| Hypothèse | "je fais l'hypothèse que" | "en supposant 120 requêtes par utilisateur" |
-| Inconnu | "je ne sais pas, voici comment le savoir" | "je mesure demain sur l'environnement de test" |
+Un aveu sans date est un abandon. Un aveu avec date est un engagement — c'est ce qui le transforme en
+crédit.
 
-Mélanger ces registres est la faute la plus coûteuse en réunion, parce qu'elle est invisible sur le moment et vérifiable plus tard.
+## 3) CE QU'IL FAUT DIRE À LA PLACE DES FORMULES MOLLES
 
-## 3. LA TENUE SOUS PRESSION
+| À éviter | À dire |
+| --- | --- |
+| « ça devrait marcher » | « je ne l'ai pas testé sur ce cas, je le teste avant 16 h » |
+| « c'est probablement la base » | « trois hypothèses, je les départage par cette mesure » |
+| « je vais voir » | « je reviens jeudi 10 h avec le chiffre » |
 
-Trois phrases qui tiennent quand on te pousse :
+## 4) VARIANTE SOLO
 
-- "Je peux vous donner un ordre de grandeur maintenant, ou un chiffre fiable jeudi. Lequel vous engage ?"
-- "Ce que j'affirme, c'est ceci. Ce que je suppose, c'est cela. La différence compte pour votre décision."
-- "Si je me trompe sur ce point, voici ce qui se passe, et voici comment on s'en aperçoit tôt."
+Tiens `JOURNAL-IGNORANCE.md` pendant sept jours : chaque fois que tu bluffes intérieurement, note la
+question, la date promise, et la réponse trouvée. Relis au bout d'une semaine : la moitié des
+questions avaient une réponse en dix minutes. C'est l'enseignement du module.
 
-Risque réel : le chiffre inventé sous pression devient un engagement cité pendant six mois, et c'est toujours à toi qu'on le rappelle.
+## Exercice (20 min)
 
-## 4. EXERCICE
-
-**Le tri des registres (15 min).** Reprends la dernière page que tu as écrite sur ton projet. Marque chaque affirmation d'un des quatre registres. Toute affirmation non marquable est à reformuler.
-
-## RÉSUMÉ
-
-"Je ne sais pas" se dit avec la méthode et la date. Les quatre registres, fait, estimation, hypothèse, inconnu, se nomment explicitement. Sous pression, on propose un choix entre vitesse et fiabilité au lieu d'inventer un nombre.
-
-## ET APRÈS
-
-[challenge.md](challenge.md).
+Écris trois aveux au format, sur des questions réelles et encore ouvertes de ton projet.

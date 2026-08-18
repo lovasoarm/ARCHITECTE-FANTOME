@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # 03 OBJECTION STORM : défense orale sous objection dynamique
@@ -16,7 +15,7 @@ personnelle. Ce drill simule ça.
 ## OBLIGATION : UN OBJECTION STORM PAR ADR DE MINI-PROJET
 
 **Non negociable (v20.3)** : chaque ADR ecrit dans un mini-projet
-(`02-CONSTRUCTION/02_mini_projects/*/ADR/ADR-XXX_*.md`) declenche **un objection storm dedie**,
+(`30_mini_projects/*/ADR/ADR-XXX_*.md`) declenche **un objection storm dedie**,
 minute par minute, chronometre. Aucun ADR n'est considere comme "signe" tant que
 son storm associe n'a pas produit un `REPONSES_ADR-XXX.md` complet et horodate.
 

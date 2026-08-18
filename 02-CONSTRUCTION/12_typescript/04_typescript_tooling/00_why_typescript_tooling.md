@@ -1,9 +1,8 @@
 ---
 perennite: evolutif
-stability: intemporel
+stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: tsconfig et outils évoluent, la logique de migration reste.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
@@ -147,14 +146,14 @@ migration JS vers TS --> périphérique si tu démarres toujours en greenfield, 
 
 ```
 prérequis avant ce module :
-02-CONSTRUCTION/12_typescript complet --> types, interfaces, generics, utility types : la base doit être solide
+14_typescript complet --> types, interfaces, generics, utility types : la base doit être solide
 06_modules       --> import/export, ESM vs CJS : indispensable pour comprendre la résolution de modules en TS
-02-CONSTRUCTION/13_runtime_env      --> comprendre Node et CommonJS aide à comprendre pourquoi certaines libs n'ont pas de types ESM propres
+15_runtime_env      --> comprendre Node et CommonJS aide à comprendre pourquoi certaines libs n'ont pas de types ESM propres
 ```
 
 Ce qui devient plus simple après ce module :
 ```
-03-PILOTAGE/04_security       --> tu lis et comprends les types stricts des libs de sécurité sans paniquer
+22_security       --> tu lis et comprends les types stricts des libs de sécurité sans paniquer
 n'importe quel projet en équipe --> tu négocies un tsconfig.json en connaissance de cause, pas à l'aveugle
 contribution open source --> tu sais écrire un .d.ts pour proposer des types à une lib qui n'en a pas
 ```

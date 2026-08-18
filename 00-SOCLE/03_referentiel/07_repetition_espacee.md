@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Répétition espacée : calendrier explicite sur les six pierres

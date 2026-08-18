@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # ARRAY METHODS BATTLE : map vs forEach vs for...of vs reduce
 Temps de lecture ~9 min

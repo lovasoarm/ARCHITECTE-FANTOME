@@ -1,14 +1,6 @@
----
-stability: stable
-acte: comprendre
-route: complete
----
-
 # Niveau 08 : Roadmap Run
 
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
-
-[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../../02-CONSTRUCTION/20-API-DOJO/README.md) | [Niveau suivant](../03-QUALITY-SHIELD/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Niveau précédent](../../02-CONSTRUCTION/20-API-DOJO/README.md) | [Niveau suivant](../03-QUALITY-SHIELD/README.md)
 
 **Ce niveau réutilise :** [03-MVP-SPLIT](../../01-CADRAGE/05-MVP-SPLIT/04-estimating-honestly.md) : l'estimation honnete et l'effet tunnel, réutilises pour batir un planning risk-first.
 
@@ -22,7 +14,7 @@ route: complete
 [challenge](../../02-CONSTRUCTION/20-API-DOJO/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 08 une difficulté qui vient du niveau 07.
 
-**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) (règle de calcul : voir [_STYLE.md](../.meta/_STYLE.md), section « Durées »).
 
 ## Ce que c'est
 
@@ -90,21 +82,3 @@ Tu sais construire, sur un projet réel de ton choix, un plan en tranches vertic
 première phase attaque explicitement le risque le plus cher, avec un jalon vérifiable daté.
 Tu sais aussi détecter, dans un point d'avancement, au moins un des trois signaux de dérive
 présentés dans ce niveau sans qu'on te les rappelle.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `03-PILOTAGE/01-ROADMAP-RUN` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_prereq_check.md](00_prereq_check.md)
-- [01-why-this-level.md](01-why-this-level.md)
-- [02-phases-and-milestones.md](02-phases-and-milestones.md)
-- [03-risk-first-planning.md](03-risk-first-planning.md)
-- [04-tracking-reality.md](04-tracking-reality.md)
-- [boss-fight.md](boss-fight.md)
-- [challenge.md](challenge.md)
-- [defense-orale.md](defense-orale.md)
-- [grimoire.md](grimoire.md)
-
-<!-- CONTENU-DOSSIER:fin -->

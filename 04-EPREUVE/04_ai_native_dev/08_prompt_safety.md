@@ -1,8 +1,7 @@
 ---
-stability: perissable_2028
+stability: periss-2028
 duree_de_vie_estimee: 1-2 ans
 raison: Les surfaces de fuite via prompt évoluent avec les produits IA.
-acte: appliquer
 ---
 
 # Prompt safety : ce que tu ne colles jamais
@@ -60,5 +59,5 @@ Traite chaque prompt comme un log qui pourrait finir sur pastebin. Si tu ne logu
 
 ## OÙ CET EXO S'ARTICULE
 
-- Amont : `03-PILOTAGE/04_security/03_secrets_management.md` (comment gérer les secrets côté code).
-- Aval : `03-PILOTAGE/10_team_craft/08_ai_governance.md` (comment poser la règle en équipe).
+- Amont : `22_security/03_secrets_management.md` (comment gérer les secrets côté code).
+- Aval : `27_team_craft/08_ai_governance.md` (comment poser la règle en équipe).

@@ -1,14 +1,13 @@
 ---
 perennite: perissable
-stability: perissable_2028
+stability: periss-2028
 duree_de_vie_estimee: 1-2 ans
 raison: L'écosystème IA bouge tous les 6 mois. La posture critique tient plus longtemps.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : debugging (01-CADRAGE/03_debugging), tests (02-CONSTRUCTION/03_testing), esprit critique (00-SOCLE/05_problem_solving). Team craft (03-PILOTAGE/10_team_craft — pas un prérequis : ce module en donne le strict nécessaire, le fond est enseigné là-bas plus tard) : la posture de code review complète est enseignée plus tard, ce module n'utilise que la checklist de base pour la pratique. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : debugging (04_debugging), tests (06_testing), esprit critique (02_problem_solving). Team craft (27_team_craft anticipé) : la posture de code review complète est enseignée plus tard, ce module n'utilise que la checklist de base pour la pratique. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : AI NATIVE DEV
 
@@ -25,7 +24,7 @@ Coder avec l'IA en 2026, ce n'est pas la laisser coder à ta place. C'est appren
 ## PRÉREQUIS
 
 Ce module n'a pas de prérequis bloquant.
-Il devient plus utile si tu as déjà fait `02-CONSTRUCTION/03_testing`, `02-CONSTRUCTION/19_api_craft`, et `03-PILOTAGE/04_security`.
+Il devient plus utile si tu as déjà fait `06_testing`, `21_api_craft`, et `22_security`.
 Mais il peut être attaqué dès que les fondamentaux sont solides : le contexte prod
 rend les exercices plus parlants, pas les concepts eux-mêmes.
 
@@ -81,7 +80,7 @@ La tendance qui se renforce : l'IA devient un partenaire de refactoring et de g�
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Pas listé dans les 6 blocs prioritaires historiques, mais devenu une compétence transversale incontournable. Le curriculum précise explicitement : `04-EPREUVE/04_ai_native_dev`, prérequis "aucun bloquant, profite de tout le reste". Cette absence de prérequis bloquant n'est pas un signe de faible importance : c'est au contraire le signe que cette compétence amplifie tout ce que tu as appris dans les autres modules, surtout `02-CONSTRUCTION/03_testing` et `02-CONSTRUCTION/12_typescript` qui te donnent les outils pour valider ce que l'IA produit.
+Pas listé dans les 6 blocs prioritaires historiques, mais devenu une compétence transversale incontournable. Le curriculum précise explicitement : `23_ai_native_dev`, prérequis "aucun bloquant, profite de tout le reste". Cette absence de prérequis bloquant n'est pas un signe de faible importance : c'est au contraire le signe que cette compétence amplifie tout ce que tu as appris dans les autres modules, surtout `06_testing` et `14_typescript` qui te donnent les outils pour valider ce que l'IA produit.
 
 ---
 
@@ -97,12 +96,12 @@ L'IA génère du code plausible, pas toujours du code correct, et la différence
 
 Maintenant, ouvre `01_ai_workflow.md`. Et apprends à diriger l'IA au lieu de la suivre les yeux fermés.
 
-> Ce module réutilise : le problem solving du module 02 (`00-SOCLE/05_problem_solving`), le debugging du module 04 (`01-CADRAGE/03_debugging`).
+> Ce module réutilise : le problem solving du module 02 (`02_problem_solving`), le debugging du module 04 (`04_debugging`).
 
 
 ---
 
-## PONT AVEC 03-PILOTAGE/04_security
+## PONT AVEC 22_security
 
 Tu viens de la sécurité classique (input validation, auth, injection, MITM).
 Ici tu changes de terrain : l'attaquant n'est plus un humain qui te sonde, c'est

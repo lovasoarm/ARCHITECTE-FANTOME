@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SECURITY : 08_trapsoul_radio
@@ -36,7 +35,7 @@ Ports / endpoints / fichiers I/O documentés : périmètre local uniquement (voi
 ## GATE SECURITE OBLIGATOIRE
 
 > Ce mini-projet ne peut pas etre marque termine tant que la
-> checklist `03-PILOTAGE/04_security/06_owasp_checklist.md` n'a pas ete
+> checklist `22_security/06_owasp_checklist.md` n'a pas ete
 > parcourue et reportee dans `POSTMORTEM.md` section
 > "OWASP PASSE". Un attaquant d'entretien qui demande
 > "as-tu passe la checklist OWASP ?" ne doit pas trouver de trou.

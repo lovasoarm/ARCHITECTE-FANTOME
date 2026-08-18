@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # SPEC DRIFT : la specification change en cours de projet
@@ -28,7 +27,7 @@ Nouvelle contrainte, imposee au milieu (ex : sprint J+3) :
 ## Ce qu'on attend de toi
 
 1. **Ne jette pas ton code**. Lis-le d'abord. Cartographie (voir
-   `05-MAITRISE/06_annexes/00_cartographier_codebase_inconnue.md`).
+   `31_annexes/00_cartographier_codebase_inconnue.md`).
 2. **Ecris une ADR** dans `ADR/` : "impact du drift, ce que je garde, ce
    que je jette, pourquoi".
 3. **Ecris une hypothese** dans `HYPOTHESES.md` local :

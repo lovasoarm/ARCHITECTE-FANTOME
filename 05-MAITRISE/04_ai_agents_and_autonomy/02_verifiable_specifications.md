@@ -1,8 +1,7 @@
 ---
-stability: perissable_2028
+stability: periss-2028
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # 02 : SPÉCIFICATIONS VÉRIFIABLES MACHINE
 
@@ -75,7 +74,7 @@ pas générer de tokens de test` : ce qui est infiniment plus utile.
 ### Après (B.O.R.N.É., agent contrôlable)
 
 ```
-B : POST /ninjas/{id}/missions {rang,cible} renvoie 201 + {missionId} ; les autres routes exigent
+B : POST /login {email,password} renvoie 200 + {token} ; les autres routes exigent
    header Authorization: Bearer <token> et renvoient 401 sinon.
 O : `npm test -- auth` passe. `curl -X GET /users` renvoie 401 sans header.
 R : tous les tests existants passent (`npm test` global).
@@ -121,7 +120,7 @@ fichier `borne_check.js`, lance `node borne_check.js`.
 ```js
 // borne_check.js
 const spec = {
-  behavior: /POST \/ninjas\/\{id\}\/missions.*renvoie 201/,
+  behavior: /POST \/login.*renvoie 200/,
   observability: /npm test -- auth/,
   regression: /npm test/,
   nonGoals: ["couche DB", "dépendance > 100 KB"],

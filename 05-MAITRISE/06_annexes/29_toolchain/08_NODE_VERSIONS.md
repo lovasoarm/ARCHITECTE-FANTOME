@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: perissable
 ---
 
 # NODE_VERSIONS.md
@@ -67,7 +66,7 @@ officiel Node).
 
 - Revalider tous les 6 mois.
 - Ne modifier `.nvmrc` que sur décision documentée dans
-  `00-SOCLE/03_referentiel/DEPENDENCY_LEDGER.md`.
+  `00_referentiel/DEPENDENCY_LEDGER.md`.
 - Fenêtre supportée : « LTS active `.nvmrc` + LTS suivante ». Au-delà, le
   lecteur doit adapter.
 

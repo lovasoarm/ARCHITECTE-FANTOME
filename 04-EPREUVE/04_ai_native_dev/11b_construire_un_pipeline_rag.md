@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CONSTRUIRE UN PIPELINE RAG : RÉCUPÉRER AVANT DE GÉNÉRER

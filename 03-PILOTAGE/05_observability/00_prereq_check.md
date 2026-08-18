@@ -1,6 +1,5 @@
 ---
 stability: perissable_2027
-acte: évaluer
 ---
 
 # 00 : Prereq check : Observability
@@ -8,7 +7,7 @@ Temps de lecture ~5 min
 
 > Tu ne dois **pas** entrer dans ce module si tu ne peux pas répondre à ces questions
 > **sans regarder**. Ce n'est pas un test noté, c'est un filtre anti-illusion.
-> Ces questions portent sur `05-MAITRISE/02_scalability`, le module que tu viens de finir.
+> Ces questions portent sur `25_scalability`, le module que tu viens de finir.
 
 ## Questions
 
@@ -20,7 +19,7 @@ Temps de lecture ~5 min
 ## Verdict
 
 - **3+ réponses solides** → tu peux entrer.
-- **2 ou moins** → retour à `05-MAITRISE/02_scalability/`, ou à sa synthèse en fin de module.
+- **2 ou moins** → retour à `25_scalability/`, ou à sa synthèse en fin de module.
 
 > Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
 

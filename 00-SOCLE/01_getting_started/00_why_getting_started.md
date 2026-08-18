@@ -1,9 +1,8 @@
 ---
 perennite: evolutif
-stability: intemporel
+stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: Les outils d'installation (Node, npm, VS Code) évoluent mais les principes restent.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
@@ -49,7 +48,7 @@ exhaustive de Node. C'est un tunnel : entrée = machine vierge, sortie =
 
 Tu tapes `node -v` sans réfléchir, tu vois `v20.x.x` ou plus, tu ouvres
 un `.js`, tu lances `node fichier.js`, tu vois la sortie. Tu peux passer
-à `../START_HERE.md` puis au module `00-SOCLE/04_fundamentals`.
+à `../START_HERE.md` puis au module `01_fundamentals`.
 
 ## Signal que tu dois y rester encore un peu
 

@@ -1,6 +1,5 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # DEVTOOLS DEBUGGER : LIRE LE CODE EN TRAIN DE S'EXÉCUTER

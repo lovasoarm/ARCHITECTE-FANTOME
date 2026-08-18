@@ -3,24 +3,23 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: GoF depuis 1994, toujours pertinent.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `05-MAITRISE/06_annexes/17_frontieres_modules.md` : table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
+> **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `31_annexes/17_frontieres_modules.md` : table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
 
-> **CE MODULE RÉUTILISE** : FP (02-CONSTRUCTION/09_functional_js), fonctions (00-SOCLE/04_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : FP (11_functional_js), fonctions (01_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
-> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`05-MAITRISE/06_annexes/17_frontieres_modules.md`](../../05-MAITRISE/06_annexes/17_frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
+> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/17_frontieres_modules.md`](../../05-MAITRISE/06_annexes/17_frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DESIGN PATTERNS
 
 > ## CE MODULE VS LES DEUX AUTRES
 >
 > - **Ce module apporte** : vocabulaire partage pour reconnaitre des solutions eprouvees a des problemes de conception recurrents (Observer, Strategy, Factory).
-> - **Vs 02-CONSTRUCTION/11_refactoring** : refactoring change du code existant qui sent mauvais. Les patterns donnent la cible vers laquelle refactorer.
-> - **Vs 02-CONSTRUCTION/14_architecture_patterns** : les patterns vivent a l'echelle d'une classe ou d'un module. L'architecture vit a l'echelle du systeme entier.
+> - **Vs 13_refactoring** : refactoring change du code existant qui sent mauvais. Les patterns donnent la cible vers laquelle refactorer.
+> - **Vs 16_architecture_patterns** : les patterns vivent a l'echelle d'une classe ou d'un module. L'architecture vit a l'echelle du systeme entier.
 > - **Non recouvrant** : ici on apprend a nommer une intention de conception, pas a la deployer ni a la reparer.
 
 ---
@@ -89,17 +88,17 @@ La tendance actuelle privilégie aussi la composition plutôt que l'héritage po
 
 ## FRONTIÈRE AVEC LES MODULES VOISINS
 
-Ce module N'EST PAS `02-CONSTRUCTION/11_refactoring` : ici on choisit une structure de code au moment de la concevoir (recette réutilisable pour un problème récurrent). Là-bas, on transforme du code existant qui marche déjà mais qui a mal vieilli.
+Ce module N'EST PAS `13_refactoring` : ici on choisit une structure de code au moment de la concevoir (recette réutilisable pour un problème récurrent). Là-bas, on transforme du code existant qui marche déjà mais qui a mal vieilli.
 Exemple : décider d'implémenter un Observer pour découpler UI et logique = design pattern. Extraire une fonction de 200 lignes en 3 fonctions plus courtes sans changer son comportement = refactoring.
 
-Ce module N'EST PAS `02-CONSTRUCTION/14_architecture_patterns` : ici on parle de l'échelle d'une classe ou d'un petit groupe de classes. Là-bas, on parle de l'organisation macro d'un système entier (modules, couches, frontières de contexte).
+Ce module N'EST PAS `16_architecture_patterns` : ici on parle de l'échelle d'une classe ou d'un petit groupe de classes. Là-bas, on parle de l'organisation macro d'un système entier (modules, couches, frontières de contexte).
 Exemple : un Factory pour créer les instances d'un objet = design pattern. Décider MVC vs Clean Architecture pour tout le back = architecture pattern.
 
 ---
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Oui, explicitement : "10 + 11, Design Patterns + Refacto : sans ça, t'es un risque pour ton équipe". Ce module dépend directement de `02-CONSTRUCTION/09_functional_js` (beaucoup de patterns s'appuient sur le traitement des fonctions comme valeurs), et il devient à son tour un prérequis de `02-CONSTRUCTION/14_architecture_patterns`.
+Oui, explicitement : "10 + 11, Design Patterns + Refacto : sans ça, t'es un risque pour ton équipe". Ce module dépend directement de `11_functional_js` (beaucoup de patterns s'appuient sur le traitement des fonctions comme valeurs), et il devient à son tour un prérequis de `16_architecture_patterns`.
 
 ---
 
@@ -127,7 +126,7 @@ stability: intemporel
 ## Frontière de ce module
 
 Ce module s'arrête aux **outils tactiques nommés (Strategy, Observer, etc.)**. Si tu vises :
-- une transformation locale à comportement identique -> `02-CONSTRUCTION/11_refactoring`
-- une décision structurelle multi-module -> `02-CONSTRUCTION/14_architecture_patterns`
-- l'usage d'un pattern nommé bien connu -> `02-CONSTRUCTION/10_design_patterns`
+- une transformation locale à comportement identique -> `13_refactoring`
+- une décision structurelle multi-module -> `16_architecture_patterns`
+- l'usage d'un pattern nommé bien connu -> `12_design_patterns`
 - au-delà, réfléchis avant d'y aller.

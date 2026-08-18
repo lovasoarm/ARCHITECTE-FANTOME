@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # LE CHAOS DES RÉFÉRENCES
 Temps de lecture ~5 min

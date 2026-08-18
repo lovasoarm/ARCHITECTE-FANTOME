@@ -1,14 +1,6 @@
----
-stability: stable
-acte: comprendre
-route: complete
----
-
 # Niveau 06 : Archi-Lab
 
-> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
-
-[Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../08-DATA-SPELLS/README.md) | [Niveau suivant](../20-API-DOJO/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Niveau précédent](../08-DATA-SPELLS/README.md) | [Niveau suivant](../20-API-DOJO/README.md)
 
 **Ce niveau réutilise :** [05-DATA-SPELLS](../08-DATA-SPELLS/03-relations-and-normalization.md) : normalisation et source de vérité d'une donnée, réutilisees pour poser les frontieres entre couches.
 
@@ -22,7 +14,7 @@ route: complete
 [challenge](../08-DATA-SPELLS/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au niveau 06 une difficulté qui vient du niveau 05.
 
-**Durée :** source unique dans [CURRICULUM.md](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) (règle de calcul : voir [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) (règle de calcul : voir [_STYLE.md](../.meta/_STYLE.md), section « Durées »).
 
 ## Ce que c'est
 
@@ -75,22 +67,3 @@ DDD tactique...) au sens catalogue. Il t'apprend les forces sous-jacentes que to
 frameworks essaient de dompter. Une fois ces forces comprises, n'importe quel nom de pattern
 que tu croiseras plus tard se lira en cinq minutes au lieu de te sembler être une nouvelle
 religion à apprendre par cœur.
-
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
-
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION/15-ARCHI-LAB` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [00_prereq_check.md](00_prereq_check.md)
-- [01-why-this-level.md](01-why-this-level.md)
-- [02-boundaries-and-coupling.md](02-boundaries-and-coupling.md)
-- [03-layers-and-flow.md](03-layers-and-flow.md)
-- [04-state-and-truth.md](04-state-and-truth.md)
-- [05-choosing-architecture.md](05-choosing-architecture.md)
-- [boss-fight.md](boss-fight.md)
-- [challenge.md](challenge.md)
-- [defense-orale.md](defense-orale.md)
-- [grimoire.md](grimoire.md)
-
-<!-- CONTENU-DOSSIER:fin -->

@@ -1,11 +1,8 @@
 ---
-stability: perissable_2027
-acte: appliquer
+stability: intemporel
 ---
 
 # CSRF ET CORS
-
-> Relevé le 2026-08-14, source : pages tarifaires publiques des fournisseurs citées dans ce fichier, à revérifier avant 2027. Tout montant de ce fichier est un ordre de grandeur daté, jamais une vérité intemporelle.
 Temps de lecture ~9 min
 
 Deux acronymes. Deux problèmes complètement différents. Un seul point commun : si tu les confonds ou tu les misconfigures (mal configurer), tu ouvres une faille que tu ne verras pas venir.

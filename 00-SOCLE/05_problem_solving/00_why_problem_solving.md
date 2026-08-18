@@ -3,7 +3,6 @@ perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Modéliser avant de coder ne se démode pas.
-acte: restituer
 ---
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
@@ -67,7 +66,7 @@ Ce qui a évolué, c'est l'urgence de cette compétence à l'ère de l'IA géné
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Pas listé explicitement dans les "6 blocs prioritaires", mais c'est une compétence transversale qui rend tous les autres modules plus efficaces. `00-SOCLE/05_problem_solving` n'a aucun prérequis bloquant listé, ce qui en fait un module qu'on peut renforcer en parallèle de presque tout le reste du curriculum, et qui améliore directement la qualité de ce que tu produis dans `02-CONSTRUCTION/10_design_patterns`, `02-CONSTRUCTION/14_architecture_patterns`, et `04-EPREUVE/04_ai_native_dev`.
+Pas listé explicitement dans les "6 blocs prioritaires", mais c'est une compétence transversale qui rend tous les autres modules plus efficaces. `02_problem_solving` n'a aucun prérequis bloquant listé, ce qui en fait un module qu'on peut renforcer en parallèle de presque tout le reste du curriculum, et qui améliore directement la qualité de ce que tu produis dans `12_design_patterns`, `16_architecture_patterns`, et `23_ai_native_dev`.
 
 ---
 

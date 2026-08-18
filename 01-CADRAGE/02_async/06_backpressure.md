@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # 05b : Backpressure : quand le producteur va plus vite que le consommateur
 Temps de lecture ~5 min

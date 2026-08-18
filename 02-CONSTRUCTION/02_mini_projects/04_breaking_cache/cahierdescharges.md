@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # CAHIER DES CHARGES : BREAKING CACHE
@@ -68,17 +67,17 @@ Ce projet force à travailler avec des structures de données non triviales dans
 
 ## LES 3 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
-### `02-CONSTRUCTION/06_data_structures` : graphe et min-heap
+### `09_data_structures` : graphe et min-heap
 
 **Où ça se voit** : `src/graph/`, `src/heap/`.
 **Pourquoi c'est nécessaire ici** : le réseau de distribution est un graphe. Les urgences sont une priority queue (file de priorité) basée sur un min-heap. Ces deux structures ne peuvent pas être remplacées par des tableaux sans exploser la complexité.
 
-### `02-CONSTRUCTION/07_algorithms` : Dijkstra, BFS/DFS, tri comparatif, DP
+### `10_algorithms` : Dijkstra, BFS/DFS, tri comparatif, DP
 
 **Où ça se voit** : `src/algorithms/`.
 **Pourquoi c'est nécessaire ici** : trouver la route optimale = Dijkstra. Détecter une route compromise = BFS. Trier les lots = Merge Sort vs Quick Sort avec mesure. Optimiser le stock sous budget = knapsack (problème du sac à dos, algorithme de programmation dynamique).
 
-### `02-CONSTRUCTION/05_memory_performance` : profilage réel sur chaque algo
+### `08_memory_performance` : profilage réel sur chaque algo
 
 **Où ça se voit** : `src/profiler/benchmarks.js`, `logs/benchmarks.json`.
 **Pourquoi c'est nécessaire ici** : un algorithme sans mesure est une hypothèse. Chaque algo dans ce projet est wrappé dans un benchmark. Les résultats sont loggés. Walter ne valide aucune décision sans chiffres.
@@ -86,8 +85,8 @@ Ce projet force à travailler avec des structures de données non triviales dans
 ### Résumé visuel
 
 ```
-02-CONSTRUCTION/06_data_structures --> src/graph/ (graphe orienté pondéré), src/heap/ (min-heap)
-02-CONSTRUCTION/07_algorithms    --> src/algorithms/ (dijkstra, bfs, mergeSort, quickSort, knapsack)
+09_data_structures --> src/graph/ (graphe orienté pondéré), src/heap/ (min-heap)
+10_algorithms    --> src/algorithms/ (dijkstra, bfs, mergeSort, quickSort, knapsack)
 06_memory_perf   --> src/profiler/benchmarks.js, logs/benchmarks.json
 ```
 

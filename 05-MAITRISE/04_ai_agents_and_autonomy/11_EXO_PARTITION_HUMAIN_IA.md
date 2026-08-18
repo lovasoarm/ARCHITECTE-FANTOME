@@ -1,8 +1,7 @@
 ---
-stability: perissable_2028
+stability: periss-2028
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: produire
 ---
 # EXO : partitionne ce backlog entre toi et l'IA (9.5 / 17.5)
 

@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # Drill : spec floue + spec qui dérive (combo)
@@ -9,12 +8,12 @@ acte: appliquer
 > Il t'envoie les deux en même temps. Ce drill entraîne exactement ça.
 
 Complément à `10_SPEC_DRIFT_DRILL.md` (spec qui bouge seulement) et à
-`05-MAITRISE/06_annexes/25_soft_skills/01_spec_drift_vs_flou_statique.md` (typologie).
+`31_annexes/25_soft_skills/01_spec_drift_vs_flou_statique.md` (typologie).
 
 ## Prérequis
 
 - Avoir joué au moins une fois `10_SPEC_DRIFT_DRILL.md`.
-- Avoir lu `05-MAITRISE/06_annexes/25_soft_skills/01_spec_drift_vs_flou_statique.md`.
+- Avoir lu `31_annexes/25_soft_skills/01_spec_drift_vs_flou_statique.md`.
 
 ## Setup (5 min)
 
@@ -58,4 +57,4 @@ Seuil de passage : ≥ 7/10. Sous 7 : rejoue avec un autre mini-projet.
 ## Cadence
 
 Rejouable **mensuellement**, avec un mini-projet différent à chaque fois.
-Archiver le `POSTMORTEM.md` dans `05-MAITRISE/06_annexes/` pour tracer ta progression.
+Archiver le `POSTMORTEM.md` dans `31_annexes/` pour tracer ta progression.

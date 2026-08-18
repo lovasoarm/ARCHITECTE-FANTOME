@@ -2,7 +2,6 @@
 stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
-acte: appliquer
 ---
 # UNION-FIND : GROUPER CE QUI EST CONNECTÉ EN O(α(n))
 Temps de lecture ~8 min

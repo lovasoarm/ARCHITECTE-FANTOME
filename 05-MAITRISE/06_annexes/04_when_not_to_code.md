@@ -1,6 +1,5 @@
 ---
 stability: intemporel
-acte: appliquer
 ---
 
 # When NOT to code
@@ -15,7 +14,7 @@ Tu vas coder la mauvaise chose. **Retour au jutsu**. Une bonne question > 100 li
 
 ### 2. Le besoin existe déjà (mieux fait)
 Une lib mature, un outil CLI, un service managé. Écrire à la main = maintenance à vie.
-**Contre-piège** : dépendance douteuse (voir `03-PILOTAGE/04_security/09_supply_chain_sbom.md`).
+**Contre-piège** : dépendance douteuse (voir `22_security/09_supply_chain_sbom.md`).
 
 ### 3. La feature est un cache-misère
 Le vrai problème est UX, pas technique. Ajouter du code cache le symptôme, aggrave la dette.

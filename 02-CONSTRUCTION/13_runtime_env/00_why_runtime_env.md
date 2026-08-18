@@ -1,14 +1,13 @@
 ---
 perennite: intemporel
-stability: intemporel
+stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: Node/Bun/Deno bougent, les concepts (event loop, streams) tiennent.
-acte: restituer
 ---
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : event loop (01-CADRAGE/02_async), modules (00-SOCLE/04_fundamentals), mémoire (02-CONSTRUCTION/05_memory_performance). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : event loop (03_async), modules (01_fundamentals), mémoire (08_memory_performance). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : RUNTIME ENVIRONMENT
 
@@ -72,7 +71,7 @@ Les worker threads sont aussi relativement récents dans Node : avant leur arriv
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Ce module ouvre la porte à deux modules majeurs qui en dépendent directement : `02-CONSTRUCTION/19_api_craft` (prérequis `02-CONSTRUCTION/13_runtime_env` + `02-CONSTRUCTION/18_web_concepts` + `01-CADRAGE/04_error_handling`) et `03-PILOTAGE/05_observability` (prérequis `02-CONSTRUCTION/13_runtime_env` + `02-CONSTRUCTION/19_api_craft`). Impossible de construire une API Node solide ou un système d'observabilité sans comprendre d'abord dans quel environnement ce code va réellement s'exécuter.
+Ce module ouvre la porte à deux modules majeurs qui en dépendent directement : `21_api_craft` (prérequis `15_runtime_env` + `17_web_concepts` + `05_error_handling`) et `26_observability` (prérequis `15_runtime_env` + `21_api_craft`). Impossible de construire une API Node solide ou un système d'observabilité sans comprendre d'abord dans quel environnement ce code va réellement s'exécuter.
 
 ---
 
@@ -88,7 +87,7 @@ JS vit dans plusieurs mondes différents, et chaque monde a ses propres règles,
 
 Maintenant, ouvre `01_node_vs_browser.md`. Et arrête de mélanger deux mondes qui ne se parlent pas pareil.
 
-> Ce module réutilise : l'event loop du module 03 (`01-CADRAGE/02_async`), la mémoire du module 08 (`02-CONSTRUCTION/05_memory_performance`).
+> Ce module réutilise : l'event loop du module 03 (`03_async`), la mémoire du module 08 (`08_memory_performance`).
 
 ---
 
