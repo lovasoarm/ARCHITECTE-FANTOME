@@ -1,3 +1,9 @@
+---
+stability: stable
+acte: comprendre
+route: complete
+---
+
 # Niveau 09 : Quality Shield
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
@@ -63,7 +69,7 @@ Dans l'ordre. `02` et `03` sont la fondation (savoir ce qui casse, savoir le voi
 Ce niveau ne prône pas "100 % de couverture de tests" ni "logguer chaque ligne". Les deux
 sont des coûts. Ce niveau t'apprend à dépenser cet effort là où il rapporte.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

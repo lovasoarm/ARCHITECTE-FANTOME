@@ -5,7 +5,7 @@ acte: restituer
 
 # GRIMOIRE : PRODUIT, COÛT ET DÉCISION
 
-| Terme | Définition (max 2 lignes) | Code | Analogies | Limite |
+| Terme | Définition | Code | Analogies | Limite |
 | --- | --- | --- | --- | --- |
 | Hypothèse produit | Une croyance non vérifiée sur laquelle repose une ligne de roadmap. | `assume(usage > 100)` | un pari d'avant-match / une info de source unique | un pari sportif ne se corrige pas en cours de match, une hypothèse produit se révise dès la première mesure. |
 | Coût d'opportunité | Ce qu'on renonce à faire en faisant autre chose. | `autres.filter(nonFaits)` | le joueur laissé sur le banc / le samedi utilisé à déménager | le banc de touche a une valeur connue d'avance, le coût d'opportunité technique reste souvent invisible tant qu'on ne l'a pas chiffré. |

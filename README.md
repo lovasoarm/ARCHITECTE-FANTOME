@@ -14,12 +14,44 @@ acte: restituer
 
 # ARCHITECTE-FANTOME
 
-> Contenu releve le 2026-08-14 ; les elements perissables et leur procedure de rafraichissement sont listes dans [06-ANNEXES-TRANSVERSES/PEREMPTION-2027.md](06-ANNEXES-TRANSVERSES/PEREMPTION-2027.md).
+> Contenu releve le 2026-08-14 ; les elements perissables et leur procedure de rafraichissement sont listes dans [06-ANNEXES-TRANSVERSES/PEREMPTION-2027.md](./06-ANNEXES-TRANSVERSES/09-PEREMPTION-2027.md).
 
 
 Un seul parcours, six paliers, un seul fil de progression : de zéro jusqu'à un profil Staff Engineer / Principal Engineer à forte dimension Software / Solutions Architect.
 
 Le nom dit ce que devient le diplômé : un Staff Engineer influence tout le système sans être visible partout. Il laisse une empreinte d'architecture dans chaque décision sans avoir écrit chaque ligne.
+
+<!-- ECHELLE:debut (genere par 99-COULISSES/outillage/generer_carte.mjs) -->
+
+## Ou tu en es : six niveaux
+
+```text
+  [ ] Niveau 0 — Fondations            (00-SOCLE, 6 modules, 3 Boss)
+  [ ] Niveau 1 — Developpeur           (01-CADRAGE, 5 modules, 3 Boss)
+  [ ] Niveau 2 — Developpeur confirme  (02-CONSTRUCTION, 20 modules, 10 Boss)
+  [ ] Niveau 3 — Senior                (03-PILOTAGE, 11 modules, 6 Boss)
+  [ ] Niveau 4 — Lead                  (04-EPREUVE, 6 modules, 3 Boss)
+  [ ] Niveau 5 — Architecte            (05-MAITRISE, 8 modules, 4 Boss)
+
+  Route survie (raccourci employabilite) : s'arrete au Boss de sortie du niveau 3 (employable, pas Staff).
+```
+
+| Niveau | Ce que tu sais faire a la sortie | Ce que tu as produit | Ce qui te reste |
+| --- | --- | --- | --- |
+| 0 — Fondations | ecrire, lire et raisonner sur du code sans t'y perdre | ton environnement, ton plateau de suivi, tes premieres fonctions testees | les niveaux 1 a 5 |
+| 1 — Developpeur | choisir quoi construire et refuser par ecrit le reste | PROBLEM-HUNT, MVP-SPLIT et le projet fil rouge cadre | les niveaux 2 a 5 |
+| 2 — Developpeur confirme | construire un systeme dont les frontieres resistent au changement | mini-projets livres, tests, ADR de decoupage, API documentee | les niveaux 3 a 5 |
+| 3 — Senior | tenir un systeme en production et le chiffrer | BUDGET-CLOUD.md, SLO.md, revue de securite, standards d'equipe | les niveaux 4 a 5 |
+| 4 — Lead | livrer sous contrainte reelle quand la spec et la priorite bougent | capstone sous derive, decisions d'arbitrage datees | les niveaux 5 a 5 |
+| 5 — Architecte | concevoir ET defendre un systeme complet | le dossier unique Staff Engineer, soutenu sous contradiction | rien : tu soutiens |
+
+Rythme : deux modules, un Boss (dossiers `BOSS-*`) ; le dernier Boss d'un palier est sa retrospective.
+Un niveau se coche quand son **Boss de palier** est passe, jamais quand les fichiers sont lus.
+
+Carte detaillee : [00-SOCLE/02-PROLOGUE/03-the-map.md](00-SOCLE/02-PROLOGUE/03-the-map.md).
+Suivi personnel : [PROGRESSION.md](PROGRESSION.md).
+
+<!-- ECHELLE:fin -->
 
 ## La promesse
 
@@ -156,31 +188,30 @@ Le contenu ne suffit pas : le diplôme doit être ouvrable. Les six familles de 
 
 ## Traçabilité des corrections
 
-Les corrections d'audit livrées version par version sont tracées dans [CHANGELOG-CORRECTIONS.md](CHANGELOG-CORRECTIONS.md).
+Les corrections d'audit livrées version par version sont tracées dans [99-COULISSES/CHANGELOG-CORRECTIONS.md](99-COULISSES/CHANGELOG-CORRECTIONS.md).
 
 ## Preuves de qualite du depot
 
 Le depot se verifie en une minute, sans lire une ligne :
 
 ```bash
-node outils/verifier_numerotation.mjs .
-node outils/verifier_liens.mjs . --ecrire
-node outils/generer_perissabilite.mjs
-node outils/controle_livraison.mjs --strict
+node 99-COULISSES/outillage/verifier_numerotation.mjs .
+node 99-COULISSES/outillage/verifier_liens.mjs . --ecrire
+node 99-COULISSES/outillage/generer_perissabilite.mjs
+node 99-COULISSES/outillage/controle_livraison.mjs --strict
 ```
 
-- [VERIFICATION_LIENS.md](VERIFICATION_LIENS.md) : la preuve d'exhaustivité des liens, générée, avec fichiers parcourus, liens trouvés, liens résolus.
-- [outils/README.md](outils/README.md) : ce que chaque verrou refuse, et pourquoi.
+- [99-COULISSES/outillage/VERIFICATION_LIENS.md](99-COULISSES/outillage/VERIFICATION_LIENS.md) : la preuve d'exhaustivité des liens, générée, avec fichiers parcourus, liens trouvés, liens résolus.
+- [99-COULISSES/outillage/README.md](99-COULISSES/outillage/README.md) : ce que chaque verrou refuse, et pourquoi.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
 Liste generee : tout fichier de `.` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
 
-- [CHANGELOG-CORRECTIONS.md](CHANGELOG-CORRECTIONS.md)
 - [PREUVES-STAFF-ENGINEER.md](PREUVES-STAFF-ENGINEER.md)
-- [VERIFICATION_LIENS.md](VERIFICATION_LIENS.md)
+- [PROGRESSION.md](PROGRESSION.md)
 - [00-SOCLE/](00-SOCLE/README.md)
 - [01-CADRAGE/](01-CADRAGE/README.md)
 - [02-CONSTRUCTION/](02-CONSTRUCTION/README.md)
@@ -189,7 +220,6 @@ Liste generee : tout fichier de `.` est joignable depuis ici, aucun document n'e
 - [05-MAITRISE/](05-MAITRISE/README.md)
 - [06-ANNEXES-TRANSVERSES/](06-ANNEXES-TRANSVERSES/README.md)
 - [PREUVES-MODELES/](PREUVES-MODELES/README.md)
-- [outils/](outils/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
 

@@ -41,7 +41,7 @@ Un journal de décision horodaté, avec pour chaque point :
 
 ## Où ça ressort
 
-Ce scénario est rejoué sous une autre forme au [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md) et dans la section 8 du dossier unique, où la tension "budget d'erreur contre date de livraison annoncée" est un candidat direct pour l'une des trois tensions exigées.
+Ce scénario est rejoué sous une autre forme au [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/07-CONTRADICTEUR.md) et dans la section 8 du dossier unique, où la tension "budget d'erreur contre date de livraison annoncée" est un candidat direct pour l'une des trois tensions exigées.
 
 ## ET APRÈS
 

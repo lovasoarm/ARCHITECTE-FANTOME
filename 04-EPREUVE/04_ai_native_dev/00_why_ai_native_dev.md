@@ -8,7 +8,7 @@ acte: restituer
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : debugging (01-CADRAGE/03_debugging), tests (02-CONSTRUCTION/03_testing), esprit critique (00-SOCLE/05_problem_solving). Team craft (03-PILOTAGE/10_team_craft anticipé) : la posture de code review complète est enseignée plus tard, ce module n'utilise que la checklist de base pour la pratique. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : debugging (01-CADRAGE/03_debugging), tests (02-CONSTRUCTION/03_testing), esprit critique (00-SOCLE/05_problem_solving). Team craft (03-PILOTAGE/10_team_craft — pas un prérequis : ce module en donne le strict nécessaire, le fond est enseigné là-bas plus tard) : la posture de code review complète est enseignée plus tard, ce module n'utilise que la checklist de base pour la pratique. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : AI NATIVE DEV
 

@@ -1,6 +1,7 @@
 ---
 stability: intemporel
 acte: restituer
+route: complete
 ---
 
 # 02-CONSTRUCTION/16_ddd_contrats : langage, contextes bornés et contrats
@@ -41,7 +42,7 @@ le dossier `ADR/` de ton projet, dont l'exemplaire de référence est
 Tu sais nommer deux contextes bornés de ton projet et le mot qu'ils ne comprennent pas de la même
 façon, et tu as écrit au moins un ADR dont une conséquence est chiffrée en coût ou en disponibilité.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -65,4 +66,4 @@ Liste generee : tout fichier de `02-CONSTRUCTION/16_ddd_contrats` est joignable 
 - [05_expliquer_cqrs_a_3_publics.md](05_expliquer_cqrs_a_3_publics.md) — restitution orale de CQRS a trois publics, dont un CTO qui defend le CRUD.
 - [defense-orale.md](defense-orale.md) — trois objections a soutenir a voix haute avant de valider le module.
 
-> **Contexte d'entreprise manquant ?** Ce module suppose un comite qui conteste tes contrats. Protocole solo jouable, avec tirage au sort et verdict binaire : [SIMULATION-ENTREPRISE.md](../../06-ANNEXES-TRANSVERSES/SIMULATION-ENTREPRISE.md) (protocole 1).
+> **Contexte d'entreprise manquant ?** Ce module suppose un comite qui conteste tes contrats. Protocole solo jouable, avec tirage au sort et verdict binaire : [SIMULATION-ENTREPRISE.md](../../06-ANNEXES-TRANSVERSES/08-SIMULATION-ENTREPRISE.md) (protocole 1).

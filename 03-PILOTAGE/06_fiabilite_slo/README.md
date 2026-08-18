@@ -1,6 +1,7 @@
 ---
 stability: intemporel
 acte: restituer
+route: survie
 ---
 
 # 03-PILOTAGE/06_fiabilite_slo : fiabilité, SLO et reprise
@@ -45,7 +46,7 @@ obligatoire) illustre concrètement ce pont entre async et fiabilité.
 
 Ton `SLO.md` existe, son RTO est daté et mesuré, ton budget d'erreur est exprimé en requêtes ratées par semaine, tu as une politique écrite qui dit ce que tu arrêtes quand il fond, et le `POSTMORTEM.md` de [05_panne_subie_sur_fil_rouge.md](05_panne_subie_sur_fil_rouge.md) est signé : ce RTO a été mesuré sur une vraie panne, pas seulement écrit. Le boss fight passé sans basculer de fournisseur avant d'avoir corrigé le retry en est la preuve.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -59,7 +60,6 @@ Liste generee : tout fichier de `03-PILOTAGE/06_fiabilite_slo` est joignable dep
 - [04_degradation_disjoncteur.md](04_degradation_disjoncteur.md)
 - [05_panne_subie_sur_fil_rouge.md](05_panne_subie_sur_fil_rouge.md)
 - [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
-- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
 - [boss-fight.md](boss-fight.md)
 - [challenge.md](challenge.md)
 - [defense-orale.md](defense-orale.md)
@@ -69,4 +69,4 @@ Liste generee : tout fichier de `03-PILOTAGE/06_fiabilite_slo` est joignable dep
 <!-- CONTENU-DOSSIER:fin -->
 - [defense-orale.md](defense-orale.md) — trois objections a soutenir a voix haute avant de valider le module.
 
-> **Contexte d'entreprise manquant ?** Ce module suppose une astreinte reelle et des pannes que tu n'as pas ecrites. Protocole solo jouable, avec tirage au sort et verdict binaire : [SIMULATION-ENTREPRISE.md](../../06-ANNEXES-TRANSVERSES/SIMULATION-ENTREPRISE.md) (protocole 3).
+> **Contexte d'entreprise manquant ?** Ce module suppose une astreinte reelle et des pannes que tu n'as pas ecrites. Protocole solo jouable, avec tirage au sort et verdict binaire : [SIMULATION-ENTREPRISE.md](../../06-ANNEXES-TRANSVERSES/08-SIMULATION-ENTREPRISE.md) (protocole 3).

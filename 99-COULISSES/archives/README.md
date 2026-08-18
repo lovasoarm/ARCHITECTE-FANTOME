@@ -13,7 +13,7 @@ trace de la fusion entre ProjectFunny et MyFunnyJS, pas comme guide à suivre.
 
 Ce qui fait autorité à la place : le [README.md](../../README.md) racine pour la structure et la progression, et le [DEPENDENCY_LEDGER.md](../../00-SOCLE/03_referentiel/DEPENDENCY_LEDGER.md) pour les dépendances entre modules.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -23,6 +23,9 @@ Liste generee : tout fichier de `99-COULISSES/archives` est joignable depuis ici
 - [ARCHIVE-PROMPT-FUSION-V3.md](ARCHIVE-PROMPT-FUSION-V3.md)
 - [ARCHIVE-PROTOCOLE-AUDIT-MYFUNNYJS.md](ARCHIVE-PROTOCOLE-AUDIT-MYFUNNYJS.md)
 - [CURRICULUM-projectfunny.md](CURRICULUM-projectfunny.md)
+- [DECISION-DEDUPLICATION-OBSERVABILITE.md](DECISION-DEDUPLICATION-OBSERVABILITE.md)
+- [DECISION-DETTE-ENTETES-HERITES.md](DECISION-DETTE-ENTETES-HERITES.md)
+- [DECISION-GRIMOIRE-5-COLONNES.md](DECISION-GRIMOIRE-5-COLONNES.md)
 - [DECISION-PASSE-GRIMOIRES.md](DECISION-PASSE-GRIMOIRES.md)
 - [DECISION-ROADMAP-SUPPRIME.md](DECISION-ROADMAP-SUPPRIME.md)
 

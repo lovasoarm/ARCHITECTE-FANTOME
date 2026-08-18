@@ -32,7 +32,7 @@ t'écouter, donc sans aucune tolérance pour un chiffre annoncé sans source.
 
 1. **Une seule prise de 35 minutes**, aux quatre temps imposés par `03` : système et décision,
    traduction direction, cinq objections tirées au sort dans le
-   [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md), point faible assumé.
+   [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/07-CONTRADICTEUR.md), point faible assumé.
 2. **Moins de deux signaux d'échec** relevés à l'écoute à froid, le lendemain, sur la grille de
    `03`. Deux signaux ou plus : la prise est nulle, tu corriges le dossier, pas le discours, et tu
    refais une prise entière.

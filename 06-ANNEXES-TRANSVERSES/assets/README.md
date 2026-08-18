@@ -34,7 +34,7 @@ volontairement peu de choses : le curriculum est texte-first.
    `LICENSES.md` à côté si l'asset n'est pas produit maison.
 4. Documente son usage ici.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

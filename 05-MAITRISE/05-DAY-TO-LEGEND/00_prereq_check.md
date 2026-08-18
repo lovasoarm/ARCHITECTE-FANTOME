@@ -20,7 +20,7 @@ Ce module installe une routine de maintien sur douze semaines. Il suppose que tu
 | 2 | Je sais ecrire une specification verifiable, qu'une machine peut satisfaire ou rater sans ambiguite. | [02_verifiable_specifications.md](../04_ai_agents_and_autonomy/02_verifiable_specifications.md) |
 | 3 | Je sais lire une trace d'agent et dire ou elle a devie. | [03_reading_agent_traces.md](../04_ai_agents_and_autonomy/03_reading_agent_traces.md) |
 | 4 | J'ai deja refuse une trace d'agent, par ecrit, avec le motif du refus. | [04_refusing_a_trace.md](../04_ai_agents_and_autonomy/04_refusing_a_trace.md) |
-| 5 | Je tiens un journal de pratique date, et je peux montrer les quatre dernieres semaines. | [DEV_JOURNAL_HEBDO.md](../../06-ANNEXES-TRANSVERSES/DEV_JOURNAL_HEBDO.md) |
+| 5 | Je tiens un journal de pratique date, et je peux montrer les quatre dernieres semaines. | [DEV_JOURNAL_HEBDO.md](../../06-ANNEXES-TRANSVERSES/05-DEV_JOURNAL_HEBDO.md) |
 
 ## Consigne d'arrêt
 

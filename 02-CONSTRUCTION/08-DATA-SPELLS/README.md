@@ -1,3 +1,9 @@
+---
+stability: stable
+acte: comprendre
+route: complete
+---
+
 # Niveau 05 : Data Spells
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
@@ -121,7 +127,7 @@ triche :
 Signal d'alerte honnête : trois séances d'affilée sans une seule ligne de SQL exécutée. Ce n'est pas
 un manque de motivation, c'est un blocage d'outillage. Applique l'issue 1 le jour même.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

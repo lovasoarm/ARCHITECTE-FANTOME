@@ -1,0 +1,21 @@
+# Dependances
+node_modules/
+.pnpm-store/
+
+# Sorties d'outillage et rapports generes hors depot
+*.log
+/tmp/
+99-COULISSES/outillage/*.local.md
+
+# Artefacts d'editeur et de systeme
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Fichiers temporaires
+*.tmp
+*.bak
+.cache/

@@ -27,7 +27,7 @@ module.
 - Un ajout de template ici doit être précédé d'au moins deux modules qui
   en ont besoin (sinon il reste dans le module d'origine).
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

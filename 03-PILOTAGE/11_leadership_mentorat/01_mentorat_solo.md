@@ -9,7 +9,7 @@ Acte attendu : produire.
 
 Temps ~45 min
 
-Tout ce module suppose une équipe et un mentoré réels. Le public annoncé du parcours, lui, travaille souvent seul. Une preuve qui dépend d'un contexte que l'apprenant ne contrôle pas n'est pas une preuve : ce fichier rend la famille S5 jouable sans employeur, exactement comme [CONTRADICTEUR.md](../../06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md) rend jouable un comité hostile sans comité.
+Tout ce module suppose une équipe et un mentoré réels. Le public annoncé du parcours, lui, travaille souvent seul. Une preuve qui dépend d'un contexte que l'apprenant ne contrôle pas n'est pas une preuve : ce fichier rend la famille S5 jouable sans employeur, exactement comme [CONTRADICTEUR.md](../../06-ANNEXES-TRANSVERSES/07-CONTRADICTEUR.md) rend jouable un comité hostile sans comité.
 
 ## 1. Ton mentoré : Yuki, 14 mois d'expérience
 

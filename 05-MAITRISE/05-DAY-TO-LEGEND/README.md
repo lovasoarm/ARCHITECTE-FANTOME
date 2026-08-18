@@ -1,3 +1,9 @@
+---
+stability: stable
+acte: comprendre
+route: complete
+---
+
 # Niveau 13 : Day-to-Legend
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../08_maitrise_staff_engineer/challenge.md](../08_maitrise_staff_engineer/challenge.md)).
@@ -73,7 +79,7 @@ mécanismes d'apprentissage et de progression que ce niveau décrit n'ont pas ch
 que des humains apprennent des métiers complexes. C'est un pari volontaire sur ce qui reste
 vrai longtemps plutôt que sur ce qui est vrai cette année.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

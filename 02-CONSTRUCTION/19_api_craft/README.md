@@ -1,6 +1,7 @@
 ---
 stability: intemporel
 acte: restituer
+route: survie
 ---
 
 # 02-CONSTRUCTION/19_api_craft
@@ -12,14 +13,14 @@ Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-d
 Tu ouvres la carte **maintenant**, dans ce module, pas a la retrospective. Elle apporte ici
 les cadres serveur, les couches d'acces aux donnees et les formats de contrat que ton API va devoir choisir maintenant, pas plus tard.
 
-- Carte : [Niveau 3 Backend](../../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/03-niveau-3-backend.md)
+- Carte : [Niveau 3 Backend](../../06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/03-niveau-3-backend.md)
 - Pourquoi ici : ce module est le premier endroit du parcours ou ces noms d'outils changent une
   decision. Lue plus tard, la carte n'est plus qu'un catalogue.
 - Ce que tu produis avec : un contrat d'API publie, avec son cadre et sa couche de donnees nommes.
 - Regle : la carte est perissable, le module ne l'est pas. Si un nom d'outil a vieilli, on
   remplace la carte en annexes sans toucher a ce module.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

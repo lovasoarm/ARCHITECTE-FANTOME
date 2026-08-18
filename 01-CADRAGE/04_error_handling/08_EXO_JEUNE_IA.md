@@ -20,8 +20,8 @@ Sur ce sujet, une reponse d'IA est plausible avant d'etre juste, et l'erreur ne 
 
 **Temps 1 : produire seul (35 min).** IA coupee de bout en bout. Reprends l'un des exercices deja faits de ce module et refais-le sur un cas neuf, de memoire :
 
-- [01_try_catch_basics.md](01_try_catch_basics.md)
-- [01_try_catch_basics_minimini_projet.md](01_try_catch_basics_minimini_projet.md)
+- [08b_try_catch_basics.md](../../00-SOCLE/04_fundamentals/08b_try_catch_basics.md)
+- [08b_try_catch_basics_minimini_projet.md](../../00-SOCLE/04_fundamentals/08b_try_catch_basics_minimini_projet.md)
 - [02_custom_errors.md](02_custom_errors.md)
 
 Ecris ton hypothese de depart avant de produire, dans `HYPOTHESES.md`, horodatee.

@@ -87,7 +87,7 @@ Tant qu'il existera des jutsus qui visent plus d'un marché linguistique (et ça
 
 **Ce qui en dépend :** `02-CONSTRUCTION/02_mini_projects/08_trapsoul_radio` (4 locales à gérer : français, anglais, japonais, malgache : pluralisation, dates, formats numériques). Sans ce module, le mini-projet se limite à une seule langue.
 
-**Position dans la roadmap :** Sous-dossier du module 03-PILOTAGE/02_web_inclusive (sur 32 modules au total) : l'i18n n'est pas un module séparé, c'est le prolongement immédiat du chapitre accessibilité de ce même module 19. Placé juste après l'accessibilité parce que les deux répondent à la même question : "est-ce que ce jutsu fonctionne pour tous les shinobis ?". Avant le realtime (module 20) parce que les deux nécessitent une architecture définie tôt dans le projet ; ajouter l'i18n après coup sur une app en prod, c'est refactorer entièrement les couches d'affichage.
+**Position dans la roadmap :** Sous-dossier du module 03-PILOTAGE/02_web_inclusive (voir la carte générée pour le compte exact) : l'i18n n'est pas un module séparé, c'est le prolongement immédiat du chapitre accessibilité de ce même module 19. Placé juste après l'accessibilité parce que les deux répondent à la même question : "est-ce que ce jutsu fonctionne pour tous les shinobis ?". Avant le realtime (module 20) parce que les deux nécessitent une architecture définie tôt dans le projet ; ajouter l'i18n après coup sur une app en prod, c'est refactorer entièrement les couches d'affichage.
 
 **Lien avec les autres modules :** `02-CONSTRUCTION/12_typescript` : les clés de traduction typées en TypeScript (si une clé n'existe pas en traduction, erreur de compilation). `05-MAITRISE/01_databases` : les préférences de langue des shinobis sont souvent persistées en base.
 

@@ -1,6 +1,7 @@
 ---
 stability: perissable_2027
 acte: restituer
+route: complete
 ---
 
 # 03-PILOTAGE/07_cloud_foundations : les fondations cloud
@@ -38,7 +39,7 @@ Les montants cités dans [05_choisir_fournisseur.md](05_choisir_fournisseur.md) 
 
 Ton `BUDGET-CLOUD.md` existe, chiffré à trois paliers, egress inclus, chaque nombre daté, et tu sais dire en une phrase ce que coûte la neuvième suivante de ton SLO.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -55,7 +56,7 @@ Liste generee : tout fichier de `03-PILOTAGE/07_cloud_foundations` est joignable
 - [07_releve_tarifaire_reel.md](07_releve_tarifaire_reel.md)
 - [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
 - [BUDGET-CLOUD.md](BUDGET-CLOUD.md)
-- [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
+- [RELEVE-REFERENCE-2026.md](RELEVE-REFERENCE-2026.md)
 - [boss-fight.md](boss-fight.md)
 - [challenge.md](challenge.md)
 - [defense-orale.md](defense-orale.md)
@@ -65,4 +66,8 @@ Liste generee : tout fichier de `03-PILOTAGE/07_cloud_foundations` est joignable
 <!-- CONTENU-DOSSIER:fin -->
 - [defense-orale.md](defense-orale.md) — trois objections a soutenir a voix haute avant de valider le module.
 
-> **Contexte d'entreprise manquant ?** Ce module suppose une direction qui impose une contrainte budgetaire. Protocole solo jouable, avec tirage au sort et verdict binaire : [SIMULATION-ENTREPRISE.md](../../06-ANNEXES-TRANSVERSES/SIMULATION-ENTREPRISE.md) (protocole 2).
+> **Contexte d'entreprise manquant ?** Ce module suppose une direction qui impose une contrainte budgetaire. Protocole solo jouable, avec tirage au sort et verdict binaire : [SIMULATION-ENTREPRISE.md](../../06-ANNEXES-TRANSVERSES/08-SIMULATION-ENTREPRISE.md) (protocole 2).
+
+## Annexe declenchee ici
+
+- [09-PEREMPTION-2027.md](../../06-ANNEXES-TRANSVERSES/09-PEREMPTION-2027.md) : ce module est le plus perissable du depot. L'annexe dit quand reposer la question, a quelle source, et qui la repose.

@@ -1,3 +1,9 @@
+---
+stability: stable
+acte: comprendre
+route: complete
+---
+
 [Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md) | [Niveau suivant](../01-BONUS-VAULT/README.md)
 
 # Niveau 14 : Tool Cave
@@ -87,7 +93,7 @@ Ce niveau ne compare pas VSCode à Vim, ni GPT à un concurrent. Les guerres d'o
 bruit qui masque la vraie question : est-ce que ta méthode de travail est reproductible et
 transmissible, quel que soit l'outil que tu tiens dans la main.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

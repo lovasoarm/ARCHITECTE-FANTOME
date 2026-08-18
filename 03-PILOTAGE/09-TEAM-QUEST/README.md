@@ -1,3 +1,9 @@
+---
+stability: stable
+acte: comprendre
+route: complete
+---
+
 # Niveau 10 : Team Quest
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
@@ -65,7 +71,7 @@ doivent collaborer, avec ou sans manager dans la pièce.
 Avant de continuer : passe par [RETRO-BLOC-3-CONDUITE.md](../RETRO-BLOC-3-CONDUITE.md), la
 rétrospective du bloc Conduite que tu viens de terminer.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

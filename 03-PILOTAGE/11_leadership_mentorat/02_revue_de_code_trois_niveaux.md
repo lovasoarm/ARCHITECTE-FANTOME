@@ -42,9 +42,30 @@ Risque réel : la revue-cimetière, où quinze commentaires de style noient l'un
 
 **La revue à trois niveaux (20 min).** Reprends la dernière modification de ton fil rouge, relis-la comme si elle venait d'un autre, écris trois commentaires, un par niveau, avec le risque exact pour le bloquant. Garde-la : c'est une des deux pièces de la preuve S5.
 
-**Publiée, pas seulement écrite.** Une revue qui reste dans ton `JOURNAL.md` n'est vérifiable par personne : n'importe qui peut prétendre après coup avoir vu le bon niveau au bon endroit. La revue qui compte pour la preuve S5 est postée en commentaire réel sur la pull request publique déclarée dans [00_prereq_check.md](00_prereq_check.md), avec son URL. Si l'auteur de la PR répond, garde l'échange : un désaccord assumé publiquement vaut plus qu'un commentaire jamais contesté. Si trois jours passent sans réponse possible (PR déjà fermée, dépôt inactif), documente-le dans le `JOURNAL.md` avec la date de tentative : ce n'est pas un échec, c'est un fait à assumer, pas à maquiller en silence.
+**Publiée sur un dépôt open source public, vérifiable sans personne (obligatoire).** Une revue
+qui reste dans ton `JOURNAL.md` n'est vérifiable par personne. Et une revue qui exige la réponse
+d'un mainteneur fait dépendre ta preuve d'un inconnu qui n'a rien promis. La preuve S5 se produit
+donc **en solo**, en trois pièces qui ne dépendent que de toi :
 
-**Sous opposition, à l'oral (5 min).** Une revue écrite sans personne en face pour la contester ne prouve rien de plus qu'un exercice de rédaction. Tire l'objection 6.1 ou 6.2 du [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md), groupe 6 : quelqu'un conteste un de tes bloquants avec un vrai argument (code stable depuis deux ans, test automatisé jugé suffisant). Réponds à voix haute, 5 minutes, puis note-toi sur la grille du CONTRADICTEUR. Un bloquant qui ne survit pas à une seule objection sourcée n'était probablement pas un bloquant.
+1. **Un dépôt open source public, nommé, actif.** Tu choisis un dépôt dont tu comprends le
+   domaine. Tu notes son URL et sa licence.
+2. **Un commit ou une pull request réellement audité, lien permanent.** Pas « le dépôt » : un
+   `commit` précis, avec son SHA complet dans l'URL, pour que n'importe qui relise exactement le
+   diff que tu as relu.
+3. **Ta revue à trois niveaux, publiée là où elle est lisible publiquement** : en commentaire sur
+   la PR ou l'issue si le dépôt l'autorise, sinon dans `REVUE-CODE.md` de ton propre dépôt public,
+   citant le SHA et les numéros de ligne. Les deux voies valent la même chose : ce qui est exigé,
+   c'est qu'un tiers puisse ouvrir le diff et juger ta revue.
+
+Critère binaire : URL du dépôt + URL permanente du commit audité + trois commentaires, un par
+niveau, le bloquant portant un risque nommé. Sans le lien du commit, la revue n'est pas recevable.
+
+**La réponse du mainteneur est un bonus daté, plus jamais une condition.** Si quelqu'un te répond,
+tu colles l'échange avec sa date : un désaccord public assumé vaut plus qu'un commentaire jamais
+contesté. S'il ne répond pas, ta preuve est complète quand même. Aucun délai d'attente, aucune
+mention « en attente de réponse » : le silence d'un tiers n'est pas ton échec.
+
+**Sous opposition, à l'oral (5 min).** Une revue écrite sans personne en face pour la contester ne prouve rien de plus qu'un exercice de rédaction. C'est la **passe de contradiction S5**, décrite dans le [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/07-CONTRADICTEUR.md) : tu tires l'objection 6.1 ou 6.2, groupe 6, et tu joues les deux rôles à voix haute, seul : quelqu'un conteste un de tes bloquants avec un vrai argument (code stable depuis deux ans, test automatisé jugé suffisant). Réponds à voix haute, 5 minutes, puis note-toi sur la grille du CONTRADICTEUR. Un bloquant qui ne survit pas à une seule objection sourcée n'était probablement pas un bloquant.
 
 ## RÉSUMÉ
 

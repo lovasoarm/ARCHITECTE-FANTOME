@@ -130,7 +130,7 @@ dans `01-CADRAGE/02_async` (callbacks, promises, event loop, backpressure) et
 son usage en pilotage de fiabilité est prolongé dans
 `03-PILOTAGE/06_fiabilite_slo` (SLO, budget d'erreur, reprise).
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

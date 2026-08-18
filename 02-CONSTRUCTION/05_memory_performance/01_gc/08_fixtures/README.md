@@ -50,7 +50,7 @@ Laisse tourner 60 secondes chacun. Compare les colonnes `rss=` et `cache=` :
 Réponses attendues consignées : `../../fixtures/CHECK_ANSWERS.md` (à créer par
 l'apprenant après avoir fait l'exercice, pas avant).
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

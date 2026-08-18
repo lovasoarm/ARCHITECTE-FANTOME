@@ -1,6 +1,6 @@
 # Rétrospective de bloc : Bloc EPREUVE (niveaux 11 à 12)
 
-[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
+[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/06-ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
 
 Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opération précise : tu
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
@@ -9,6 +9,12 @@ est désormais faux, et pourquoi ce n'était pas visible à l'époque.
 Durée : 60 à 90 minutes. À faire après le boss-fight du niveau 12-CAPSTONE-ARENA, avant d'ouvrir le bloc
 suivant. Ne saute pas cette étape : c'est la seule fois du parcours où tu juges ton propre
 travail passé avec des yeux différents.
+
+## Boss de palier (rythme deux modules, un Boss)
+
+Cette retrospective **est** le dernier Boss de son palier : elle ferme [BIG APP SNOOP](05-BIG-APP-SNOOP/README.md) et [CAPSTONE ARENA](06-CAPSTONE-ARENA/README.md). Il n'y a donc pas de dossier `BOSS-` supplementaire ici : le Boss final d'un
+palier, c'est la relecture qui decide si le palier se coche. Meme verdict binaire que les Boss
+intermediaires : passe, ou ne passe pas.
 
 ## Contrôle d'antériorité du bloc
 
@@ -141,7 +147,7 @@ Trois réponses produites de mémoire, ou rappel non réussi.
 
 ### Rappel de la carte (reference, pas decouverte) : Niveau 5 Transfert (bloquant)
 
-Le [Niveau 5 Transfert](../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/05-niveau-5-transfert.md) de
+Le [Niveau 5 Transfert](../06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/05-niveau-5-transfert.md) de
 TECH-ILA contient un exercice de portage : prendre un service de 150 lignes de ton fil rouge,
 écrit en Node, et le porter dans un second langage serveur (FastAPI en Python, Spring Boot en
 Java, ou .NET selon la section choisie). Contrairement aux paliers précédents, celui-ci n'est

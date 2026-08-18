@@ -29,7 +29,7 @@ Un livrable chiffré sans colonne URL et sans date est refusé, quelle que soit 
 
 ## 4. Le verrou
 
-Le contrôle de livraison ([../../outils/controle_livraison.mjs](../../outils/controle_livraison.mjs)) refuse tout tableau contenant un montant en euros qui ne porte pas sa ligne de relevé datée et sourcée. Ce n'est pas une consigne d'écriture : c'est un refus mécanique.
+Le contrôle de livraison ([../outillage/controle_livraison.mjs](../outillage/controle_livraison.mjs)) refuse tout tableau contenant un montant en euros qui ne porte pas sa ligne de relevé datée et sourcée. Ce n'est pas une consigne d'écriture : c'est un refus mécanique.
 
 ## 5. Où le protocole s'applique en premier
 

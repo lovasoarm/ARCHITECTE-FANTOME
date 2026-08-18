@@ -6,7 +6,7 @@ acte: évaluer
 > **Document historique, ne pas suivre.** Archivé le 2026-08-16. Trace historique du
 > protocole d'audit appliqué au dépôt MyFunnyJS avant la fusion. Ce n'est pas la carte à
 > suivre : ce qui fait autorité aujourd'hui, c'est
-> [outils/controle_livraison.mjs](../../outils/controle_livraison.mjs) et le
+> [99-COULISSES/outillage/controle_livraison.mjs](../../99-COULISSES/outillage/controle_livraison.mjs) et le
 > [README.md](../../README.md) racine. Conservé ici pour qu'un audit futur puisse comparer
 > une régression à l'intention d'origine, voir [archives/README.md](README.md).
 

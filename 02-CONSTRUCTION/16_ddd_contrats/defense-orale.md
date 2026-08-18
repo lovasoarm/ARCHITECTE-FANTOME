@@ -1,7 +1,7 @@
 # DÉFENSE ORALE : 16 DDD ET CONTRATS
 
 Ce module Staff est juge a l'oral, pas a la lecture : ce qui est evalue ici, c'est le decoupage en contextes bornes et la separation ecriture / lecture.
-Trois objections types, tirees de la banque de [06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md](../../06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md),
+Trois objections types, tirees de la banque de [06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md](../../06-ANNEXES-TRANSVERSES/07-CONTRADICTEUR.md),
 meme protocole : chrono de 5 minutes par objection, reponse a voix haute, aucune note
 pendant la reponse, grille du CONTRADICTEUR pour la notation.
 
@@ -18,4 +18,4 @@ pendant la reponse, grille du CONTRADICTEUR pour la notation.
 - [ ] Chaque reponse nomme la condition dans laquelle l'objection aurait raison.
 
 Une case non cochee = la defense n'est pas passee. Grille detaillee et methode de tirage :
-[CONTRADICTEUR.md](../../06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md). Critere binaire du module : [verification_pack/criteres.md](verification_pack/criteres.md).
+[CONTRADICTEUR.md](../../06-ANNEXES-TRANSVERSES/07-CONTRADICTEUR.md). Critere binaire du module : [verification_pack/criteres.md](verification_pack/criteres.md).

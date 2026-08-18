@@ -1,6 +1,7 @@
 ---
 stability: intemporel
 acte: restituer
+route: survie
 ---
 
 # 02-CONSTRUCTION/02_mini_projects : 19 mini-projets appliqués
@@ -108,7 +109,7 @@ titre que le `POSTMORTEM.md` du projet. Il n'y a pas de version "bonus" ou
 pour considérer le projet livré. Voir
 `02-CONSTRUCTION/02_mini_projects/16_distributed_arena/README.md`.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

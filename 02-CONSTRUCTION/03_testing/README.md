@@ -1,6 +1,7 @@
 ---
 stability: intemporel
 acte: restituer
+route: survie
 ---
 
 # 02-CONSTRUCTION/03_testing
@@ -13,7 +14,7 @@ Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-d
 > tu y arbitres quoi tester sur ton fil rouge selon le coût réel d'une panne. Règle du couple :
 > [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Un seul traitement de référence par thème ».
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

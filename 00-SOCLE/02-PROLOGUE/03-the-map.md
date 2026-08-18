@@ -1,175 +1,145 @@
-# La carte : les 16 niveaux
+---
+stability: stable
+acte: comprendre
+---
 
-## La scène
+# La carte : six paliers, 56 modules, un seul fil
 
-Avant de partir en randonnée sur un itinéraire de plusieurs jours, tu regardes la carte
-entière, pas seulement le premier sentier. Tu repères où sont les cols difficiles, où tu
-pourras te ravitailler, où le dénivelé va te casser les jambes. Ce fichier est cette carte.
-Tu n'as pas besoin de la mémoriser, mais tu dois savoir qu'elle existe et pourquoi l'ordre
-n'est pas arbitraire.
+<!-- FICHIER GENERE par 99-COULISSES/outillage/generer_carte.mjs — ne pas editer a la main.
+     Tout chiffre structurel du depot vient de ce generateur, jamais d'une saisie manuelle. -->
 
-## Ce qui se passe vraiment
+## La scene
 
-Les 16 niveaux sont organisés en quatre arcs. Chaque arc construit une capacité que l'arc
-suivant présuppose. Sauter un arc, c'est arriver au niveau 10 sans savoir pourquoi le
-niveau 10 est nécessaire.
+Avant de partir en randonnee sur un itineraire de plusieurs jours, tu regardes la carte
+entiere, pas seulement le premier sentier. Ce fichier est cette carte. Tu n'as pas besoin de
+la memoriser : tu dois savoir qu'elle existe, et qu'elle dit la verite du disque.
 
-```text
-ARC I : FONDATIONS DE PENSEE (niveaux 00-03)
-  00 Prologue         --> les règles du jeu
-  01 Mindset          --> penser en systèmes, coût des décisions, incertitude
-  02 Modélisation     --> domaines métier, invariants, langage ubiquitaire
-  03 Données & état   --> cohérence, transactions, sources de vérité
+Un seul fil : six paliers, 56 modules pedagogiques. Il n'y a pas d'autre comptage dans ce depot.
+Si un document en cite un autre, il est estampille **document historique d'avant fusion**.
 
-ARC II : CONSTRUCTION (niveaux 04-08)
-  04 Architecture applicative   --> frontières, couches, dépendances
-  05 API & contrats             --> versioning, compatibilité, erreurs
-  06 Persistance avancée        --> migrations, index, requêtes coûteuses
-  07 Concurrence & parallélisme --> verrous, files, idempotence
-  08 Tests & vérification       --> pyramide de tests, mutation testing, contrats
-
-ARC III : SYSTEME EN PRODUCTION (niveaux 09-12)
-  09 Observabilité      --> logs, métriques, traces, alerting utile
-  10 Résilience & pannes --> dégradation, retries, circuit breakers
-  11 Performance         --> profiling, goulots d'étranglement, capacité
-  12 Sécurité appliquée  --> surface d'attaque, auth, secrets, audit
-
-ARC IV : INGENIEUR EN CONTEXTE (niveaux 13-15)
-  13 Travail en équipe technique --> revues, dette, standards partagés
-  14 Décision & influence        --> arbitrages produit/technique, négociation
-  15 Le boss final                --> construire un système complet sous contrainte réelle
-```
-
-Chaque niveau débloque une capacité précise, pas un vague "tu en sais plus". Voici ce que
-chaque arc rend possible concrètement.
-
-### Arc I : Fondations de pensée
-
-Sans cet arc, tu construis vite des systèmes qui s'effondrent dès que la réalité contredit
-les hypothèses implicites que tu n'as jamais explicitées. Ce que tu débloques : la capacité
-à modéliser un problème avant de coder, à évaluer le coût d'une décision avant de la prendre,
-et à distinguer une donnée qui doit rester cohérente d'une donnée qui peut être approximative.
-
-Exemple concret : à la fin de l'arc I, face à un système de gestion des adhésions d'un club
-d'escalade (adhésions, accès aux murs par créneaux, assurance obligatoire), tu sais identifier
-que "l'assurance valide" est un invariant qui doit bloquer l'accès en temps réel, alors que
-"le nombre total d'adhérents ce mois-ci" peut être calculé de façon asynchrone sans risque.
-
-### Arc II : Construction
-
-Sans cet arc, tu sais quoi construire mais tu le construis dans une structure qui rend chaque
-changement futur plus cher que le précédent. Ce que tu débloques : la capacité à découper un
-système en composants dont les frontières résistent au changement, à concevoir des APIs qui
-survivent à leurs propres évolutions, et à écrire des tests qui détectent de vraies
-régressions plutôt que de la friction.
-
-Exemple concret : sur un système de refacturation d'énergie pour un syndic d'immeubles, l'arc
-II te donne les outils pour distinguer le contrat d'API de calcul de charges (qui doit rester
-stable pour les intégrations comptables externes) de son implémentation interne (qui peut
-changer librement tant que le contrat tient).
-
-### Arc III : Système en production
-
-Sans cet arc, ton système fonctionne en local et s'effondre silencieusement en production,
-et tu l'apprends par un incident plutôt que par une mesure. Ce que tu débloques : la capacité
-à voir ce qui se passe réellement dans un système que tu ne peux pas observer directement, à
-concevoir pour l'échec plutôt que pour le cas nominal, et à raisonner sur la performance avec
-des chiffres plutôt que des intuitions.
-
-Exemple concret : sur un système de billetterie pour une régie de spectacle, l'arc III t'
-apprend à distinguer un pic de charge normal (ouverture des ventes) d'une dégradation
-anormale, et à concevoir la dégradation du système (afficher "complet provisoire" plutôt que
-planter) au lieu de subir une panne totale au pire moment possible.
-
-### Arc IV : Ingénieur en contexte
-
-Sans cet arc, tu es un bon technicien isolé qui n'influence rien au-delà de son propre code.
-Ce que tu débloques : la capacité à faire progresser une équipe entière (pas seulement toi),
-à défendre un choix technique face à une pression produit légitime, et à livrer un système
-complet, seul, sous une contrainte réelle et non simulée.
-
-### Comment lire cette carte si tu es pressé
-
-Certains lecteurs veulent sauter directement à l'arc qui les intéresse. Voici ce que ça coûte
-réellement, arc par arc, si tu sautes ce qui précède :
+## L'echelle : six niveaux, pas 56 raisons de fuir
 
 ```text
-   Sauter l'arc I et attaquer l'arc II directement
-        --> tu sais découper un système, mais tu découpes le mauvais système,
-            parce que tu n'as jamais appris à identifier les invariants métier
+  [ ] Niveau 0 — Fondations            (00-SOCLE, 6 modules, 3 Boss)
+  [ ] Niveau 1 — Developpeur           (01-CADRAGE, 5 modules, 3 Boss)
+  [ ] Niveau 2 — Developpeur confirme  (02-CONSTRUCTION, 20 modules, 10 Boss)
+  [ ] Niveau 3 — Senior                (03-PILOTAGE, 11 modules, 6 Boss)
+  [ ] Niveau 4 — Lead                  (04-EPREUVE, 6 modules, 3 Boss)
+  [ ] Niveau 5 — Architecte            (05-MAITRISE, 8 modules, 4 Boss)
 
-   Sauter l'arc II et attaquer l'arc III directement
-        --> tu sais observer un système, mais le système observé a des frontières
-            si floues que tes métriques ne pointent jamais vers une cause précise
-
-   Sauter l'arc III et attaquer l'arc IV directement
-        --> tu sais argumenter en réunion, mais tu défends des choix techniques
-            que tu n'as jamais vus se comporter sous charge réelle
+  Route survie (raccourci employabilite) : s'arrete au Boss de sortie du niveau 3 (employable, pas Staff).
 ```
 
-### Contre-exemple : quand piocher dans le désordre est légitime
+| Niveau | Ce que tu sais faire a la sortie | Ce que tu as produit | Ce qui te reste |
+| --- | --- | --- | --- |
+| 0 — Fondations | ecrire, lire et raisonner sur du code sans t'y perdre | ton environnement, ton plateau de suivi, tes premieres fonctions testees | les niveaux 1 a 5 |
+| 1 — Developpeur | choisir quoi construire et refuser par ecrit le reste | PROBLEM-HUNT, MVP-SPLIT et le projet fil rouge cadre | les niveaux 2 a 5 |
+| 2 — Developpeur confirme | construire un systeme dont les frontieres resistent au changement | mini-projets livres, tests, ADR de decoupage, API documentee | les niveaux 3 a 5 |
+| 3 — Senior | tenir un systeme en production et le chiffrer | BUDGET-CLOUD.md, SLO.md, revue de securite, standards d'equipe | les niveaux 4 a 5 |
+| 4 — Lead | livrer sous contrainte reelle quand la spec et la priorite bougent | capstone sous derive, decisions d'arbitrage datees | les niveaux 5 a 5 |
+| 5 — Architecte | concevoir ET defendre un systeme complet | le dossier unique Staff Engineer, soutenu sous contradiction | rien : tu soutiens |
 
-La carte n'interdit pas toute lecture non linéaire. Un ingénieur backend senior, déjà solide
-sur la concurrence et la persistance (arc II largement acquis par la pratique), mais qui n'a
-jamais eu à défendre un choix technique devant un product manager pressé, peut légitimement
-sauter directement au niveau 14 (Décision & influence) sans repasser par l'arc II en entier.
-Le risque existe quand même : il doit vérifier, avec l'auto-test d'entrée du niveau, que les
-notions amont supposées acquises le sont vraiment, plutôt que de le supposer par confort.
+Rythme : deux modules, un Boss (dossiers `BOSS-*`) ; le dernier Boss d'un palier est sa retrospective.
+Un niveau se coche quand son **Boss de palier** est passe, jamais quand les fichiers sont lus.
 
-```text
-   Profil A : junior généraliste                Profil B : senior spécialisé backend
-   --> suit les 16 niveaux dans l'ordre           --> passe l'auto-test d'entrée de
-       sans exception                                 chaque niveau amont à l'arc IV,
-                                                       saute ceux qu'il réussit sans effort
-```
+## Les six paliers, palier par palier
 
-### Combien de temps représente la carte entière
+| Palier | Modules | Capacite debloquee | Livrable produit |
+| --- | --- | --- | --- |
+| 00-SOCLE | 6 | a la fin de ce palier, tu sais ecrire, lire et raisonner sur du code sans t'y perdre | ton environnement, ton plateau de suivi, tes premieres fonctions testees |
+| 01-CADRAGE | 5 | a la fin de ce palier, tu sais choisir quoi construire et refuser par ecrit le reste | PROBLEM-HUNT, MVP-SPLIT et le projet fil rouge cadre |
+| 02-CONSTRUCTION | 20 | a la fin de ce palier, tu sais construire un systeme dont les frontieres resistent au changement | mini-projets livres, tests, ADR de decoupage, API documentee |
+| 03-PILOTAGE | 11 | a la fin de ce palier, tu sais tenir un systeme en production et le chiffrer | BUDGET-CLOUD.md, SLO.md, revue de securite, standards d'equipe |
+| 04-EPREUVE | 6 | a la fin de ce palier, tu sais livrer sous contrainte reelle quand la spec et la priorite bougent | capstone sous derive, decisions d'arbitrage datees |
+| 05-MAITRISE | 8 | a la fin de ce palier, tu sais concevoir ET defendre un systeme complet | le dossier unique Staff Engineer, soutenu sous contradiction |
 
-À titre d'ordre de grandeur (le calcul précis vit dans `CURRICULUM.md`, jamais recopié ici
-pour éviter deux sources de vérité qui divergent) : un parcours complet, lecture et exercices
-compris, à raison de 6 heures par semaine, représente entre 7 et 11 mois selon la vitesse de
-progression individuelle sur les boss-fights. Ce n'est pas un sprint. Un lecteur qui vise un
-entretien technique dans deux semaines n'utilisera pas ce curriculum comme préparation
-complète : il ciblera un ou deux niveaux précis correspondant à ses lacunes identifiées.
+## Le detail, genere depuis le disque
 
-## Compromis
+### 00-SOCLE — Niveau 0 : Fondations (6 modules)
 
-| Option                              | Coût                                    | Bénéfice                                                               | Quand choisir                                                                            |
-| ------------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| Suivre les 16 niveaux dans l'ordre  | Long (plusieurs mois selon rythme)      | Modèle mental complet et cumulatif                                     | Objectif : devenir un ingénieur senior généraliste solide                              |
-| Faire uniquement l'Arc I puis III   | Plus court, laisse des trous en Arc II  | Débloque vite le raisonnement critique sans maîtriser la construction | Tu es déjà bon technicien mais faible en modélisation et en lecture de systèmes en prod |
+- `01_getting_started` — **route survie**
+- `02-PROLOGUE`
+- `03_referentiel`
+- `04_fundamentals` — **route survie**
+- `05_problem_solving` — **route survie**
+- `06-MINDSET`
 
-## Pièges classiques
+### 01-CADRAGE — Niveau 1 : Developpeur (5 modules)
 
-- Vouloir sauter à l'Arc III (observabilité, résilience) parce que "c'est plus excitant" sans
-  avoir fait l'Arc II : le symptôme est de savoir nommer les concepts sans savoir les
-  appliquer à un système qu'on vient de construire soi-même.
-- Traiter l'Arc IV comme "optionnel, c'est du soft skill" : le symptôme est de rester bloqué
-  au rang d'exécutant senior sans jamais influencer les décisions d'équipe.
-- Refaire un niveau entier après un échec de boss-fight au lieu de cibler la leçon précise en
-  cause : perte de temps, et le symptôme est la démotivation par lassitude.
-- Croire que la carte se lit une seule fois : le symptôme est de perdre de vue, au niveau 11,
-  pourquoi le niveau 03 sur la cohérence des données reste pertinent pour un problème de
-  performance.
+- `01-PROBLEM-HUNT` — **route survie**
+- `02_async` — **route survie**
+- `03_debugging` — **route survie**
+- `04_error_handling` — **route survie**
+- `05-MVP-SPLIT` — **route survie**
 
-## Analogie
+### 02-CONSTRUCTION — Niveau 2 : Developpeur confirme (20 modules)
 
-Analogie : la carte des 16 niveaux est un plan de salle avant l'ouverture, et une carte d'itinéraire avec ses refuges.
-Où l'analogie casse : un plan de salle se change en cours de service, l'ordre des niveaux non.
+- `01-USER-WIZARD`
+- `02_mini_projects` — **route survie**
+- `03_testing` — **route survie**
+- `04_math_basics`
+- `05_memory_performance`
+- `06_data_structures`
+- `07_algorithms`
+- `08-DATA-SPELLS`
+- `09_functional_js`
+- `10_design_patterns`
+- `11_refactoring`
+- `12_typescript`
+- `13_runtime_env`
+- `14_architecture_patterns`
+- `15-ARCHI-LAB`
+- `16_ddd_contrats`
+- `17_oop_js`
+- `18_web_concepts`
+- `19_api_craft` — **route survie**
+- `20-API-DOJO`
 
-## Ce que tu dois savoir défendre
+### 03-PILOTAGE — Niveau 3 : Senior (11 modules)
 
-1. Pourquoi l'Arc I doit précéder l'Arc II, avec un exemple de ce qui casse si on inverse.
-2. Donne un exemple concret de capacité débloquée par l'Arc III que l'Arc II ne peut pas
-   donner, même en la faisant très sérieusement.
-3. Pourquoi l'Arc IV existe dans un curriculum technique : qu'est-ce qui casse chez un
-   ingénieur purement technique sans cet arc.
+- `01-ROADMAP-RUN`
+- `02_web_inclusive`
+- `03-QUALITY-SHIELD`
+- `04_security` — **route survie**
+- `05_observability` — **route survie**
+- `06_fiabilite_slo` — **route survie**
+- `07_cloud_foundations`
+- `08_produit_cout_roi`
+- `09-TEAM-QUEST`
+- `10_team_craft`
+- `11_leadership_mentorat`
 
-### Comment cette carte est utilisée dans le reste du curriculum
+### 04-EPREUVE — Niveau 4 : Lead (6 modules)
 
-Chaque README de niveau, à partir du niveau 01, ouvre avec une section "Ce niveau réutilise"
-qui pointe explicitement vers les niveaux amont concernés. Cette carte n'est donc pas un
-document isolé que tu lis une fois : elle est le squelette que ces renvois activent à chaque
-niveau. Si un renvoi te surprend ("pourquoi le niveau 11 sur la performance réutilise-t-il le
-niveau 03 sur la cohérence des données ?"), reviens à cette carte pour comprendre la logique
-d'ensemble avant de continuer.
+- `01-BONUS-VAULT`
+- `02-TOOL-CAVE`
+- `03_realtime`
+- `04_ai_native_dev`
+- `05-BIG-APP-SNOOP`
+- `06-CAPSTONE-ARENA`
+
+### 05-MAITRISE — Niveau 5 : Architecte (8 modules)
+
+- `01_databases`
+- `02_scalability`
+- `03_edge_cases`
+- `04_ai_agents_and_autonomy`
+- `05-DAY-TO-LEGEND`
+- `06_annexes`
+- `07_tools`
+- `08_maitrise_staff_engineer`
+
+## Tracabilite des origines
+
+Les etapes marquees **route survie** forment le raccourci employabilite decrit par
+[00-SOCLE/01_getting_started/ROUTE-SURVIE.md](../01_getting_started/ROUTE-SURVIE.md). C'est un filtre
+sur ce meme fil, jamais un second parcours.
+
+Origine : **[M]** module venu de MyFunnyJS, **[P]** niveau venu de ProjectFunny, **[N]** module
+nouveau, ecrit pour ce parcours fusionne. Le tableau ligne a ligne est porte par le
+[README racine](../../README.md), section « Le fil complet, avec sa tracabilite ».
+
+## Combien il m'en reste ?
+
+C'est la seule question qui compte quand le parcours est long. Elle a une reponse unique :
+ouvre [PROGRESSION.md](../../PROGRESSION.md). Aucun autre compteur n'existe dans ce depot.

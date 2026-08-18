@@ -28,6 +28,22 @@ Le dossier entier répond à cette contrainte. Ce n'est pas un rapport sur ton p
 | 7. Ce qu'on transmet | S5 | page de transfert du composant le plus fragile, bus factor | nomme les tests et alertes qui protègent la relève (S3) |
 | 8. Les trois tensions | toutes | trois contradictions réelles entre deux familles, et l'arbitrage retenu | c'est la section qui prouve le croisement |
 
+## Pièce jointe obligatoire : `STANDARDS-AGENTS.md`
+
+Le dossier n'est pas seulement huit sections : il porte une pièce jointe, produite en
+[03-PILOTAGE/11_leadership_mentorat/07_standards_pour_agents.md](../../03-PILOTAGE/11_leadership_mentorat/07_standards_pour_agents.md).
+
+| Vérification | Critère binaire | Verdict si absent |
+| --- | --- | --- |
+| `STANDARDS-AGENTS.md` joint, chemin cité dans le dossier | les 4 blocs remplis : décisions autonomes, validations requises, vérification de sortie (commande exécutable), coût plafond (un nombre + l'action au dépassement) | **dossier refusé**, sans examen des huit sections |
+
+Raison : « diriger des agents » est la seule compétence du bloc 5 qui n'était prouvée nulle part.
+Un dossier qui décrit un système construit avec des agents, sans dire ce que ces agents décident
+seuls ni à quel coût on les coupe, décrit un système que personne ne pilote.
+
+Cette pièce est relue en [RETRO-BLOC-5-MAITRISE.md](../RETRO-BLOC-5-MAITRISE.md) et citée dans les
+familles S5 et S6 de [PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md).
+
 ## Le test de validité, en une question
 
 Relis la section 8. Si tes trois tensions opposent bien deux familles différentes chacune, avec un chiffre de chaque côté et un arbitrage assumé, le dossier vaut. Si tes tensions sont du type "il faudrait faire mieux sur la sécurité", tu as écrit une liste de bonnes intentions : reprends la section 3 et la section 4, et cherche l'endroit exact où le budget et la promesse de service se contredisent. Cet endroit existe toujours.
@@ -52,4 +68,4 @@ La section 5 ne se contente pas d'être écrite : elle repasse par le même gate
 - Sans ce test automatisé cité par son chemin exact dans la section 5, le dossier est refusé : une revue de sécurité racontée sans preuve exécutable vaut la même chose qu'une absence de revue, exactement la règle déjà appliquée par `SECURITY_GATE.md` dans [02-CONSTRUCTION/02_mini_projects](../../02-CONSTRUCTION/02_mini_projects/README.md).
 - Ce gate est indépendant du niveau atteint sur la famille S3 dans [challenge.md](challenge.md) : S3 mesure le SLO et le RTO, ce gate mesure la sécurité au sens strict. Les deux sont exigés, aucun ne remplace l'autre.
 
-> **Contexte d'entreprise manquant ?** Ce module suppose un comite d'architecture qui objecte a ton dossier. Protocole solo jouable, avec tirage au sort et verdict binaire : [SIMULATION-ENTREPRISE.md](../../06-ANNEXES-TRANSVERSES/SIMULATION-ENTREPRISE.md) (protocole 1).
+> **Contexte d'entreprise manquant ?** Ce module suppose un comite d'architecture qui objecte a ton dossier. Protocole solo jouable, avec tirage au sort et verdict binaire : [SIMULATION-ENTREPRISE.md](../../06-ANNEXES-TRANSVERSES/08-SIMULATION-ENTREPRISE.md) (protocole 1).

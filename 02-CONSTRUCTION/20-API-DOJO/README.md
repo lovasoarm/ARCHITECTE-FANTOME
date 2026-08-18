@@ -1,3 +1,9 @@
+---
+stability: stable
+acte: comprendre
+route: complete
+---
+
 # Niveau 07 : API Dojo
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
@@ -89,7 +95,7 @@ changera au fil de ta carrière ; les problèmes de ce niveau ne changeront pas.
 Avant de continuer : passe par [RETRO-BLOC-2-BUILD.md](../RETRO-BLOC-2-BUILD.md), la
 rétrospective du bloc Build que tu viens de terminer.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

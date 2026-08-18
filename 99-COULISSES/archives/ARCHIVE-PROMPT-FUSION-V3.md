@@ -51,5 +51,5 @@ paliers, aucune duplication de contenu entre les deux dépôts d'origine.
 ## Ce que le prompt v3 n'a pas demandé
 
 - Le verrouillage automatisé de ses propres invariants. C'est ce que
-  [outils/controle_livraison.mjs](../../outils/controle_livraison.mjs) apporte depuis.
+  [99-COULISSES/outillage/controle_livraison.mjs](../../99-COULISSES/outillage/controle_livraison.mjs) apporte depuis.
 - L'entraînement de la décision dans la durée, ajouté depuis en clôture du dernier palier.

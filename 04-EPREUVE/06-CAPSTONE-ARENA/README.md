@@ -1,3 +1,9 @@
+---
+stability: stable
+acte: comprendre
+route: complete
+---
+
 [Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../05-BIG-APP-SNOOP/README.md) | [Niveau suivant](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md)
 
 # Niveau 12 : Capstone Arena
@@ -91,7 +97,7 @@ rétrospective du bloc Épreuve que tu viens de terminer.
 
 Personne ne va clarifier le brief à ta place. C'est le point.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -104,6 +110,7 @@ Liste generee : tout fichier de `04-EPREUVE/06-CAPSTONE-ARENA` est joignable dep
 - [04-evaluation-grid.md](04-evaluation-grid.md)
 - [05-changement-de-spec.md](05-changement-de-spec.md)
 - [06-addendum-staff-engineer.md](06-addendum-staff-engineer.md)
+- [07-semaine-double-derive.md](07-semaine-double-derive.md)
 - [SCELLE-message-client-jalon-2.md](SCELLE-message-client-jalon-2.md)
 - [boss-fight.md](boss-fight.md)
 - [challenge.md](challenge.md)

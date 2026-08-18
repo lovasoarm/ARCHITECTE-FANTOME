@@ -169,7 +169,7 @@ savoir pourquoi elle compte. Et un truc appris sans raison s'oublie vite.
 
 ### Comment gérer la charge mentale
 
-T'as 32 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer. Donc :
+T'as le fil complet devant toi (la carte générée dit combien exactement). Si tu regardes la montagne entière, tu vas paniquer. Donc :
 
 - **Un module à la fois, jusqu'au bout.** Pas trois modules en parallèle "pour varier".
  Le cerveau qui jongle entre plusieurs sujets non finis retient moins bien que celui qui

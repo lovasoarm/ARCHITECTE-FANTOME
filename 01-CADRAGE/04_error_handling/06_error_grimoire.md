@@ -29,7 +29,7 @@ Référence. Pas un cours. Chaque terme, sa définition, du code, deux analogies
 
 ---
 
-| Terme                         | Définition                                                                      | Code                                      | Analogies                                                                                              | Limite |
+| Terme | Définition | Code | Analogies | Limite |
 | ----------------------------- | ------------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------- |
 | **Error**                     | Classe de base de toutes les erreurs JS. Porte `name`, `message`, `stack`.      | `throw new Error("raison")`               | le carton rouge sans détail / l'alarme générique sans zone                                             | « le carton rouge sans détail » n'a ni facture ni horloge ; sur Error, une erreur récupérable et une erreur fatale se ressemblent au moment où on les attrape. Vérifie qu'un incident réel produit une trace exploitable, pas un « erreur inconnue ». |
 | **TypeError**                 | Levée quand une opération s'applique à un type incorrect.                       | `null.prop // TypeError`                  | passer un ballon à quelqu'un qui n'est pas là / demander le chakra d'un objet sans ninja               | « passer un ballon à quelqu'un qui n'est pas là » raconte le cas nominal ; sur TypeError, le chemin d'échec n'est presque jamais couvert par les tests, donc jamais exercé avant l'incident. Nomme l'erreur par sa cause, pas par son symptôme. |
@@ -145,7 +145,7 @@ Quand catch(e) DOIT re-throw plutôt qu'avaler :
 
 ## RÉFÉRENCES
 
-→ Leçon complète try/catch : `01_try_catch_basics.md`
+→ Leçon complète try/catch : `00-SOCLE/04_fundamentals/08b_try_catch_basics.md`
 → Leçon complète custom errors : `02_custom_errors.md`
 → Leçon complète propagation : `03_error_propagation.md`
 → Leçon complète async errors : `04_async_error_traps.md`

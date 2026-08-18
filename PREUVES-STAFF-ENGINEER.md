@@ -34,14 +34,16 @@ Deux colonnes à distinguer, et ne jamais confondre :
 ## S5 : Leadership et pédagogie
 
 - Où ça s'apprend : [03-PILOTAGE/11_leadership_mentorat](03-PILOTAGE/11_leadership_mentorat/00_why_leadership_mentorat.md), [03-PILOTAGE/10_team_craft](03-PILOTAGE/10_team_craft/00_why_team_craft.md), [03-PILOTAGE/09-TEAM-QUEST](03-PILOTAGE/09-TEAM-QUEST/README.md).
-- Ce que tu montres : deux pièces. Une revue de code écrite à trois niveaux annoncés, sur une contribution réelle. Et la note d'une page destinée à une direction non technique, section 6 du dossier final [05-MAITRISE/08_maitrise_staff_engineer/01_dossier_unique.md](05-MAITRISE/08_maitrise_staff_engineer/01_dossier_unique.md), sans un seul terme technique non expliqué.
-- Recroisement exigé : la note reprend les chiffres exacts de S1 et la promesse de service de S3.
+- Ce que tu montres : deux pièces, toutes deux productibles seul. Une revue de code écrite à trois niveaux annoncés, publiée sur un dépôt open source public, avec l'URL permanente du commit audité (SHA complet) et la passe de contradiction S5 jouée sur ton bloquant. Et la note d'une page destinée à une direction non technique, section 6 du dossier final [05-MAITRISE/08_maitrise_staff_engineer/01_dossier_unique.md](05-MAITRISE/08_maitrise_staff_engineer/01_dossier_unique.md), sans un seul terme technique non expliqué.
+- Troisième pièce, obligatoire depuis A16 : `STANDARDS-AGENTS.md` ([03-PILOTAGE/11_leadership_mentorat/07_standards_pour_agents.md](03-PILOTAGE/11_leadership_mentorat/07_standards_pour_agents.md)) — décisions autonomes de l'agent, validations requises, commande de vérification de sortie, coût plafond d'une tâche déléguée. Diriger des agents est un acte de leadership : sans ce fichier, S5 n'est pas couvert et le dossier unique est refusé.
+- Recroisement exigé : la note reprend les chiffres exacts de S1 et la promesse de service de S3, et le coût plafond de `STANDARDS-AGENTS.md` est cohérent avec le budget S1.
 
 ## S6 : IA et automatisation
 
 - Où ça s'apprend : [04-EPREUVE/04_ai_native_dev](04-EPREUVE/04_ai_native_dev/00_why_ai_native_dev.md), son pipeline RAG [04-EPREUVE/04_ai_native_dev/11b_construire_un_pipeline_rag.md](04-EPREUVE/04_ai_native_dev/11b_construire_un_pipeline_rag.md), l'ajout production [04-EPREUVE/04_ai_native_dev/90_ia_dans_le_livrable_staff.md](04-EPREUVE/04_ai_native_dev/90_ia_dans_le_livrable_staff.md), et [05-MAITRISE/04_ai_agents_and_autonomy](05-MAITRISE/04_ai_agents_and_autonomy/00_why_ai_agents.md). La preuve se produit au [challenge](04-EPREUVE/04_ai_native_dev/challenge.md) du module, combinée au [boss fight](04-EPREUVE/04_ai_native_dev/boss-fight.md).
 - Ce que tu montres : `IA-EN-PROD.md` : coût par utilisateur actif, plafond retenu, timeout et réponse dégradée, SLO séparé de la brique IA, et le jeu de 20 cas d'évaluation rejoué à chaque changement de modèle.
-- Recroisement exigé : le coût variable apparaît dans le budget S1, la sortie du modèle est validée selon les règles S3.
+- Pièce jointe partagée avec S5 : `STANDARDS-AGENTS.md`, qui borne ce que la brique IA et les agents décident sans toi.
+- Recroisement exigé : le coût variable apparaît dans le budget S1, la sortie du modèle est validée selon les règles S3, et le coût plafond de `STANDARDS-AGENTS.md` couvre les appels de cette brique.
 
 ## S7 : Pensée transférable (la septième pièce)
 
@@ -61,4 +63,4 @@ Une famille prouvée seule ne prouve rien pour ce profil. La pièce qui tranche 
 
 - Les six fichiers de preuve ci-dessus vivent dans TON dépôt de projet, pas ici. Tant qu'ils ne sont pas écrits, coche zéro famille.
 - La famille S6 est la seule dont la mise en pratique dépend d'un choix de projet : si ton fil rouge n'a aucune brique IA, remplace-la par S4 ou S5 dans les quatre familles exigées par le capstone, et note ce choix ici même.
-- La famille S5 ne peut pas être prouvée en solitaire de bout en bout : la revue de code écrite suppose une contribution d'un tiers, ou à défaut un dépôt open source réel. C'est pourquoi la revue de [02_revue_de_code_trois_niveaux.md](03-PILOTAGE/11_leadership_mentorat/02_revue_de_code_trois_niveaux.md) doit être postée en commentaire réel sur la PR publique, et la note de direction de la section 6 du dossier unique doit être publiée sur un espace public réel : les deux deviennent contredisibles par un inconnu, pas seulement écrites.
+- La famille S5 **se prouve intégralement en solo** (corrigé en A6). La revue de [02_revue_de_code_trois_niveaux.md](03-PILOTAGE/11_leadership_mentorat/02_revue_de_code_trois_niveaux.md) porte sur un dépôt open source public et cite l'URL permanente du commit audité : n'importe qui peut rouvrir le diff et juger la revue, sans que personne ait à te répondre. La contradiction, elle, vient de la passe S5 du [CONTRADICTEUR](06-ANNEXES-TRANSVERSES/07-CONTRADICTEUR.md), jouée seul. Une réponse de mainteneur ou un commentaire reçu sur la note de direction sont des bonus datés, jamais des conditions : aucune preuve du dépôt ne dépend de la bonne volonté d'un inconnu.

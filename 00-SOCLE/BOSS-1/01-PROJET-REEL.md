@@ -1,0 +1,22 @@
+---
+stability: intemporel
+acte: appliquer
+---
+
+[Boss 1 de 00-SOCLE](README.md)
+
+# Projet reel : getting started x PROLOGUE
+
+## Ce que tu livres
+
+- Aucun boss-fight n'existait pour ces deux modules. La commande : livre, sur ton projet fil rouge, un increment qui ne tient que si [getting started](../01_getting_started/README.md) et [PROLOGUE](../02-PROLOGUE/README.md) tiennent ensemble. Un increment qui passe en n'utilisant qu'un seul des deux modules ne compte pas.
+
+## La regle qui fait de ce Boss un Boss
+
+Le livrable sort dans **ton depot de fil rouge**, pas dans un fichier d'exercice. Il porte une
+date de debut et une date de rendu. Un livrable sans les deux dates n'a pas eu lieu.
+
+## Ce qui est explicitement hors sujet
+
+Reciter les deux modules. Le Boss ne demande aucune restitution : il demande un artefact qui
+casse si l'un des deux modules a ete survole.

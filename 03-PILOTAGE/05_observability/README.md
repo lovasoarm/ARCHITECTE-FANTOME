@@ -1,6 +1,7 @@
 ---
 stability: intemporel
 acte: restituer
+route: survie
 ---
 
 # 03-PILOTAGE/05_observability
@@ -14,7 +15,7 @@ Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-d
 > couple est dans
 > [_STYLE.md](../../06-ANNEXES-TRANSVERSES/meta/_STYLE.md), section « Un seul traitement de référence par thème ».
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

@@ -21,7 +21,7 @@ Projet fictif : **Lumen**, plateforme de réservation de créneaux pour ateliers
 
 ## 1. Hypothèses de trafic retenues
 
-> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, URL : pages tarifaires publiques du fournisseur, à revérifier avant 2027. Protocole : [../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
+> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, prix unitaires issus des 12 lignes sourcées (URL complète, date, devise, unité) de [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md), relevées le 2026-08-18 et à revérifier avant 2027-08-18. Protocole : [../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
 
 | Palier | Utilisateurs actifs/mois | Requêtes/s en pointe | Volume stocké |
 | --- | --- | --- | --- |
@@ -31,47 +31,47 @@ Projet fictif : **Lumen**, plateforme de réservation de créneaux pour ateliers
 
 ## 2. Facture mensuelle par catégorie, à 100 utilisateurs
 
-> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, URL : pages tarifaires publiques du fournisseur, à revérifier avant 2027. Protocole : [../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
+> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, prix unitaires issus des 12 lignes sourcées (URL complète, date, devise, unité) de [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md), relevées le 2026-08-18 et à revérifier avant 2027-08-18. Protocole : [../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
 
 | Catégorie | Service | Unité | Coût mensuel | Chez | Relevé le | URL |
 | --- | --- | --- | --- | --- | --- | --- |
-| Calcul | 1 instance conteneur, 0.5 vCPU | mois | 7 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
-| Base de données | instance managée, plus petit palier | mois | 15 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
-| Stockage objet | 500 Mo, requêtes faibles | mois | 1 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
-| Egress | 2 Go sortants | mois | 0,18 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
-| Observabilité | plan gratuit | mois | 0 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
+| Calcul | 1 instance conteneur, 0.5 vCPU | mois | 7 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
+| Base de données | instance managée, plus petit palier | mois | 15 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
+| Stockage objet | 500 Mo, requêtes faibles | mois | 1 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
+| Egress | 2 Go sortants | mois | 0,18 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
+| Observabilité | plan gratuit | mois | 0 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
 | **Total** | | mois | **23,18 €** | fournisseur A | 2026-08-14 | somme des lignes ci-dessus |
 
 ## 3. Facture mensuelle par catégorie, à 10 000 utilisateurs
 
-> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, URL : pages tarifaires publiques du fournisseur, à revérifier avant 2027. Protocole : [../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
+> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, prix unitaires issus des 12 lignes sourcées (URL complète, date, devise, unité) de [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md), relevées le 2026-08-18 et à revérifier avant 2027-08-18. Protocole : [../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
 
 | Catégorie | Service | Unité | Coût mensuel | Chez | Relevé le | URL |
 | --- | --- | --- | --- | --- | --- | --- |
-| Calcul | 3 instances, autoscaling 0.5 à 2 vCPU | mois | 140 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
-| Base de données | instance managée, palier intermédiaire, réplique de lecture | mois | 210 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
-| Stockage objet | 20 Go | mois | 4 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
-| Egress | 180 Go sortants | mois | 16 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
-| Observabilité | plan payant, 10 Go de logs/mois | mois | 25 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
+| Calcul | 3 instances, autoscaling 0.5 à 2 vCPU | mois | 140 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
+| Base de données | instance managée, palier intermédiaire, réplique de lecture | mois | 210 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
+| Stockage objet | 20 Go | mois | 4 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
+| Egress | 180 Go sortants | mois | 16 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
+| Observabilité | plan payant, 10 Go de logs/mois | mois | 25 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
 | **Total** | | mois | **395 €** | fournisseur A | 2026-08-14 | somme des lignes ci-dessus |
 
 ## 4. Facture mensuelle par catégorie, à 1 000 000 utilisateurs
 
-> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, URL : pages tarifaires publiques du fournisseur, à revérifier avant 2027. Protocole : [../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
+> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, prix unitaires issus des 12 lignes sourcées (URL complète, date, devise, unité) de [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md), relevées le 2026-08-18 et à revérifier avant 2027-08-18. Protocole : [../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
 
 | Catégorie | Service | Unité | Coût mensuel | Chez | Relevé le | URL |
 | --- | --- | --- | --- | --- | --- | --- |
-| Calcul | flotte autoscalée, pic à 40 vCPU cumulés | mois | 4 800 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
-| Base de données | cluster managé, 2 répliques de lecture, sauvegarde continue | mois | 3 100 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
-| Stockage objet | 2 To | mois | 46 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
-| Egress | 18 To sortants (poste dominant à cette échelle) | mois | 1 620 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
-| Observabilité | plan payant, 400 Go de logs/mois | mois | 640 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
-| CDN | mise en cache des assets statiques, non nécessaire aux paliers inférieurs | mois | 210 € | fournisseur A | 2026-08-14 | page tarifaire publique, adresse complète dans le dépôt de l'apprenant |
+| Calcul | flotte autoscalée, pic à 40 vCPU cumulés | mois | 4 800 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
+| Base de données | cluster managé, 2 répliques de lecture, sauvegarde continue | mois | 3 100 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
+| Stockage objet | 2 To | mois | 46 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
+| Egress | 18 To sortants (poste dominant à cette échelle) | mois | 1 620 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
+| Observabilité | plan payant, 400 Go de logs/mois | mois | 640 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
+| CDN | mise en cache des assets statiques, non nécessaire aux paliers inférieurs | mois | 210 € | fournisseur A | 2026-08-14 | prix unitaires sourcés : [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
 | **Total** | | mois | **10 416 €** | fournisseur A | 2026-08-14 | somme des lignes ci-dessus |
 
 ## 4bis. Portage chez le second fournisseur
 
-> Relevé le 2026-08-14, chez fournisseur B (fournisseur européen), unité indiquée par ligne, URL : pages tarifaires publiques du fournisseur, à revérifier avant 2027.
+> Relevé le 2026-08-14, chez fournisseur B (fournisseur européen), unité indiquée par ligne, prix unitaires issus des 12 lignes sourcées (URL complète, date, devise, unité) de [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md), relevées le 2026-08-18 et à revérifier avant 2027-08-18.
 
 | Catégorie | Unité | Coût mensuel au palier 10 000 | Chez | Relevé le | Ce qui change de nature |
 | --- | --- | --- | --- | --- | --- |

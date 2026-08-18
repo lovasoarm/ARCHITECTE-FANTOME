@@ -1,6 +1,7 @@
 ---
 stability: intemporel
 acte: restituer
+route: complete
 ---
 
 # 05-MAITRISE/08_maitrise_staff_engineer : le palier final
@@ -45,7 +46,7 @@ Quatre familles au niveau 2 dont S1 et S3, trois tensions au format imposé, une
 enregistrée avec moins de deux signaux d'échec, et [PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md)
 à jour avec les chemins de fichiers réels.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -58,7 +59,6 @@ Liste generee : tout fichier de `05-MAITRISE/08_maitrise_staff_engineer` est joi
 - [03_trois_tensions.md](03_trois_tensions.md)
 - [04_plan_90_jours.md](04_plan_90_jours.md)
 - [05_revisite_datee.md](05_revisite_datee.md)
-- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
 - [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
 - [boss-fight.md](boss-fight.md)
 - [challenge.md](challenge.md)

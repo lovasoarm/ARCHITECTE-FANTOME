@@ -1,6 +1,7 @@
 ---
 stability: intemporel
 acte: restituer
+route: complete
 ---
 
 # 04-EPREUVE/04_ai_native_dev
@@ -12,14 +13,14 @@ Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-d
 Tu ouvres la carte **maintenant**, dans ce module, pas a la retrospective. Elle apporte ici
 les briques IA que tu vas mettre en production (modeles, passerelles, bases vectorielles, evaluation) et ce qu'elles coutent.
 
-- Carte : [Niveau 6 IA](../../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/06-niveau-6-ia.md)
+- Carte : [Niveau 6 IA](../../06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/06-niveau-6-ia.md)
 - Pourquoi ici : ce module est le premier endroit du parcours ou ces noms d'outils changent une
   decision. Lue plus tard, la carte n'est plus qu'un catalogue.
 - Ce que tu produis avec : IA-EN-PROD.md, avec cout par utilisateur actif et jeu d'evaluation.
 - Regle : la carte est perissable, le module ne l'est pas. Si un nom d'outil a vieilli, on
   remplace la carte en annexes sans toucher a ce module.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

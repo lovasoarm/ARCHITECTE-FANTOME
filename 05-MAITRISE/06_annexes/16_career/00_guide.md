@@ -2984,7 +2984,7 @@ La suite logique :
 
 ```
 ../../00_referentiel/where_you_stand.md  ->  les 4 axes sur lesquels tu vas progresser (juste un coup d'oeil, pas une lecture complète)
-README.md        ->  la roadmap des 32 modules, dans l'ordre
+README.md        ->  la roadmap des modules, dans l'ordre
 00-SOCLE/04_fundamentals/     ->  le premier module, le vrai départ
 ```
 

@@ -42,7 +42,7 @@ les repères objectifs qui rendent tout le reste opposable.
 
 Chaque **module racine** (`00-SOCLE/04_fundamentals`, `00-SOCLE/05_problem_solving`, etc.)
 a obligatoirement son `00_why_<module>.md`. Ça, c'est non négociable :
-32/32 modules le respectent.
+Tous les modules du fil le respectent.
 
 Un **sous-dossier thématique interne** (`05_web_basics`, `i18n`,
 `04_typescript_tooling`...) n'a besoin de son propre `00_why` que s'il

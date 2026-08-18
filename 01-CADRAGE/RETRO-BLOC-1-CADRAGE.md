@@ -1,6 +1,6 @@
 # Rétrospective de bloc : Bloc CADRAGE (niveaux 00 à 03)
 
-[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
+[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/06-ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
 
 Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opération précise : tu
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
@@ -9,6 +9,12 @@ est désormais faux, et pourquoi ce n'était pas visible à l'époque.
 Durée : 60 à 90 minutes. À faire après le boss-fight du niveau 03-MVP-SPLIT, avant d'ouvrir le bloc
 suivant. Ne saute pas cette étape : c'est la seule fois du parcours où tu juges ton propre
 travail passé avec des yeux différents.
+
+## Boss de palier (rythme deux modules, un Boss)
+
+Cette retrospective **est** le dernier Boss de son palier : elle ferme [MVP SPLIT](05-MVP-SPLIT/README.md). Il n'y a donc pas de dossier `BOSS-` supplementaire ici : le Boss final d'un
+palier, c'est la relecture qui decide si le palier se coche. Meme verdict binaire que les Boss
+intermediaires : passe, ou ne passe pas.
 
 ## Contrôle d'antériorité du bloc
 
@@ -110,7 +116,7 @@ transforme un exercice de raisonnement en exercice de remplissage.
 ### Rappel de la carte (reference, pas decouverte) : Niveau 1 Socle (bloquant)
 
 Ce bloc t'a donné des réflexes JavaScript : async, debugging, gestion d'erreur. Le
-[Niveau 1 TECH-ILA](../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/01-niveau-1-socle.md) reprend
+[Niveau 1 TECH-ILA](../06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/01-niveau-1-socle.md) reprend
 ce que tu viens de faire et pose la question suivante : ce que tu sais faire tient-il encore
 si on retire Node de l'équation (terminal nu, réseau, permissions système) ? Vingt minutes de
 lecture, puis point de passage à écrire dans ta rétro : deux lignes nommant une chose que le

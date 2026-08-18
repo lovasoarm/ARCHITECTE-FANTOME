@@ -12,7 +12,7 @@ acte: restituer
 
 > **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `05-MAITRISE/06_annexes/17_frontieres_modules.md` : table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
 
-> **CE MODULE RÉUTILISE** : patterns (02-CONSTRUCTION/10_design_patterns), async & I/O (01-CADRAGE/02_async), DB (05-MAITRISE/01_databases anticipé), refactoring (02-CONSTRUCTION/11_refactoring). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas. SOLID est enseigné directement dans ce module (`02_solid_principles.md`), pas ailleurs.
+> **CE MODULE RÉUTILISE** : patterns (02-CONSTRUCTION/10_design_patterns), async & I/O (01-CADRAGE/02_async), DB (05-MAITRISE/01_databases — pas un prérequis : ce module en donne le strict nécessaire, le fond est enseigné là-bas plus tard), refactoring (02-CONSTRUCTION/11_refactoring). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas. SOLID est enseigné directement dans ce module (`02_solid_principles.md`), pas ailleurs.
 
 > **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`05-MAITRISE/06_annexes/17_frontieres_modules.md`](../../05-MAITRISE/06_annexes/17_frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
 

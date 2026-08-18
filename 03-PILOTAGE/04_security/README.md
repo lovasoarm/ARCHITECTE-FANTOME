@@ -1,13 +1,14 @@
 ---
 stability: intemporel
 acte: restituer
+route: survie
 ---
 
 # 03-PILOTAGE/04_security
 
 Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

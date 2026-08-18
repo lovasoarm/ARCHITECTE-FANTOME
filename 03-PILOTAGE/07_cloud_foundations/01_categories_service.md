@@ -32,7 +32,7 @@ requête utilisateur --> diffusion (CDN) --> calcul --> base
 // 24 h facturées pour 90 secondes de travail utile, tous les jours de l'année
 ```
 
-Intuition : dans One Piece, on ne sort pas le navire entier pour traverser une crique. La question n'est jamais "quel service est le plus puissant", mais "quel est le plus petit qui fait le travail sans réveiller personne".
+Intuition : en football, on ne fait pas monter toute la défense pour récupérer un ballon anodin. La question n'est jamais "quel service est le plus puissant", mais "quel est le plus petit qui fait le travail sans réveiller personne".
 
 ## 3. DONNÉES : QUATRE CONTENANTS À NE PAS CONFONDRE
 

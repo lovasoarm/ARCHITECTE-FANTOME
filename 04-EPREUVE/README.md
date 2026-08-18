@@ -28,14 +28,14 @@ endroit du parcours ou l'affirmation « je saurais le refaire ailleurs » devien
 Tu ouvres la carte **maintenant**, dans ce module, pas a la retrospective. Elle apporte ici
 le second langage et le second fournisseur du livrable PORTAGE.md : la carte sert a choisir la cible, pas a la decouvrir apres coup.
 
-- Carte : [Niveau 5 Transfert](../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/05-niveau-5-transfert.md)
+- Carte : [Niveau 5 Transfert](../06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/05-niveau-5-transfert.md)
 - Pourquoi ici : ce module est le premier endroit du parcours ou ces noms d'outils changent une
   decision. Lue plus tard, la carte n'est plus qu'un catalogue.
 - Ce que tu produis avec : PORTAGE.md, le livrable note du palier.
 - Regle : la carte est perissable, le module ne l'est pas. Si un nom d'outil a vieilli, on
   remplace la carte en annexes sans toucher a ce module.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -48,5 +48,7 @@ Liste generee : tout fichier de `04-EPREUVE` est joignable depuis ici, aucun doc
 - [04_ai_native_dev/](04_ai_native_dev/README.md)
 - [05-BIG-APP-SNOOP/](05-BIG-APP-SNOOP/README.md)
 - [06-CAPSTONE-ARENA/](06-CAPSTONE-ARENA/README.md)
+- [BOSS-1/](BOSS-1/README.md)
+- [BOSS-2/](BOSS-2/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

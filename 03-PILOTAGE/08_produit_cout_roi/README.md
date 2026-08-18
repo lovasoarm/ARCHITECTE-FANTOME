@@ -1,6 +1,7 @@
 ---
 stability: intemporel
 acte: restituer
+route: complete
 ---
 
 # 03-PILOTAGE/08_produit_cout_roi : produit, coût et ROI technique
@@ -37,7 +38,7 @@ Dans l'ordre. Le grimoire ne se lit qu'après avoir fini les leçons et les exer
 
 Tu sais construire une grille coût/risque/valeur sourcée sur un chantier réel, chiffrer un point mort, et tenir un refus écrit face à une objection budgétaire sans céder sans justification. Le boss fight passé sans céder sur au moins deux des trois objections en est la preuve.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -51,7 +52,6 @@ Liste generee : tout fichier de `03-PILOTAGE/08_produit_cout_roi` est joignable 
 - [04_dette_technique_declaree.md](04_dette_technique_declaree.md)
 - [05_spike_borne.md](05_spike_borne.md)
 - [06_refus_chiffre_direction_financiere.md](06_refus_chiffre_direction_financiere.md)
-- [07_EXO_JEUNE_IA.md](07_EXO_JEUNE_IA.md)
 - [07_EXO_JEUNE_IA.md](07_EXO_JEUNE_IA.md)
 - [boss-fight.md](boss-fight.md)
 - [challenge.md](challenge.md)

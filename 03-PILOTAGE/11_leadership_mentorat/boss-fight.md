@@ -31,7 +31,7 @@ Pour la réaction 3, la question de fond est la seule qui compte : **accepter qu
 
 ## Où ça ressort
 
-Ces trois profils sont ceux du [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md), groupes 1, 3 et 5. Rejoue le boss fight avec une objection tirée au sort dans cette banque.
+Ces trois profils sont ceux du [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/07-CONTRADICTEUR.md), groupes 1, 3 et 5. Rejoue le boss fight avec une objection tirée au sort dans cette banque.
 
 ## ET APRÈS
 

@@ -1,7 +1,7 @@
 Depose ici les prompts au format `NN_prompt.md` dans l'ordre chronologique.
 Chaque prompt cite en tete l'ADR qui l'a motive.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

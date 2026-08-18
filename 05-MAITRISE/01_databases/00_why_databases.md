@@ -8,7 +8,7 @@ acte: restituer
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : structures de données (02-CONSTRUCTION/06_data_structures), async (01-CADRAGE/02_async). Scalabilité (05-MAITRISE/02_scalability anticipé) : ce module pose les bases (index, requêtes), la vraie scalabilité de la couche données est vue plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : structures de données (02-CONSTRUCTION/06_data_structures), async (01-CADRAGE/02_async). Scalabilité (05-MAITRISE/02_scalability — pas un prérequis : ce module en donne le strict nécessaire, le fond est enseigné là-bas plus tard) : ce module pose les bases (index, requêtes), la vraie scalabilité de la couche données est vue plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DATABASES
 

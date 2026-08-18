@@ -7,7 +7,7 @@ acte: restituer
 
 Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -24,7 +24,6 @@ Liste generee : tout fichier de `03-PILOTAGE/02_web_inclusive/08_i18n` est joign
 - [05_i18n_in_project.md](05_i18n_in_project.md)
 - [06_i18n_grimoire.md](06_i18n_grimoire.md)
 - [07_i18n_drill_exec.md](07_i18n_drill_exec.md)
-- [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
 - [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
 - [verification_pack/](verification_pack/README.md)
 

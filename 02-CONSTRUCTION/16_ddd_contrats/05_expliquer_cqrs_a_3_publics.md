@@ -49,7 +49,7 @@ interface).
 ## À UN CTO QUI DÉFEND LE CRUD
 
 Ce troisième public n'est pas neutre : il est hostile, par expérience et à raison.
-Objections branchées sur [06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md](../../06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md),
+Objections branchées sur [06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md](../../06-ANNEXES-TRANSVERSES/07-CONTRADICTEUR.md),
 même méthode de tirage, même grille, chrono 5 minutes par objection.
 
 **Objection 1 — « Un CRUD sur une base bien indexée tient dix fois notre charge.

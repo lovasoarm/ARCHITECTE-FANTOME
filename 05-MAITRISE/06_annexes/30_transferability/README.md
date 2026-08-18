@@ -50,7 +50,7 @@ transfert se voit à ce que tu utilises `enumerate` en Python plutôt que
 `for (let i = 0; i < arr.length; i++)`. Si ton code Python ressemble à du
 JS déguisé, tu n'as pas transféré : tu as translittéré.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

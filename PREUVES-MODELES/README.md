@@ -38,7 +38,7 @@ pour une régression de sécurité (S6 contre S4). Si tes six pièces à toi ne 
 part, l'une d'elles n'a pas été chiffrée sérieusement : c'est exactement ce que la section 8 du
 [dossier unique](../05-MAITRISE/08_maitrise_staff_engineer/01_dossier_unique.md) va te demander.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -50,5 +50,6 @@ Liste generee : tout fichier de `PREUVES-MODELES` est joignable depuis ici, aucu
 - [S4-DECISION-ARBITRAGE.md](S4-DECISION-ARBITRAGE.md)
 - [S5-NOTE-DIRECTION-ET-REVUE.md](S5-NOTE-DIRECTION-ET-REVUE.md)
 - [S6-IA-EN-PROD.md](S6-IA-EN-PROD.md)
+- [S7-PORTAGE.md](S7-PORTAGE.md)
 
 <!-- CONTENU-DOSSIER:fin -->

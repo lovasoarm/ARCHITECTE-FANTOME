@@ -33,7 +33,7 @@ Une réponse écrite à chaque objection, dans l'ordre, sans revenir corriger la
 
 ## Où ça ressort
 
-Ce protocole de défense sous objections est le même que celui du [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md), groupe 2 (la direction financière) et groupe 5 (le produit). Rejoue-le régulièrement avec une objection tirée au sort dans cette banque, pas seulement celles écrites ici.
+Ce protocole de défense sous objections est le même que celui du [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/07-CONTRADICTEUR.md), groupe 2 (la direction financière) et groupe 5 (le produit). Rejoue-le régulièrement avec une objection tirée au sort dans cette banque, pas seulement celles écrites ici.
 
 ## ET APRÈS
 

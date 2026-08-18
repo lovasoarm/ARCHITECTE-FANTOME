@@ -36,7 +36,7 @@ Analogies pour retenir : c'est le prêt d'un joueur en fin de mercato, et c'est 
 DETTE-<numero>
   |
   +-- coupe      : "pas de reprise sur echec partiel dans l'export de nuit"
-  +-- ou         : outils/export_nuit.js, fonction exporterLot()
+  +-- ou         : 99-COULISSES/outillage/export_nuit.js, fonction exporterLot()
   +-- pourquoi   : date de bascule fixee au 12/03, non negociable
   +-- taux       : ~2 h/mois de reprise manuelle + risque de trou de donnees
   +-- echeance   : 30/06

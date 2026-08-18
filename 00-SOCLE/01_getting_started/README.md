@@ -1,6 +1,7 @@
 ---
 stability: intemporel
 acte: restituer
+route: survie
 ---
 
 # Lis-moi avant de coder
@@ -45,14 +46,14 @@ Rien (c'est le point d'entrée).
 Tu ouvres la carte **maintenant**, dans ce module, pas a la retrospective. Elle apporte ici
 les noms d'outils que ta machine vient d'installer (runtime, gestionnaire de paquets, editeur, terminal, git) et ce qu'ils recouvrent dans une equipe reelle.
 
-- Carte : [Niveau 1 Socle](../../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/01-niveau-1-socle.md)
+- Carte : [Niveau 1 Socle](../../06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/01-niveau-1-socle.md)
 - Pourquoi ici : ce module est le premier endroit du parcours ou ces noms d'outils changent une
   decision. Lue plus tard, la carte n'est plus qu'un catalogue.
 - Ce que tu produis avec : la fiche d'orientation remplie : quel outil tu utilises, pour quoi, depuis quelle version.
 - Regle : la carte est perissable, le module ne l'est pas. Si un nom d'outil a vieilli, on
   remplace la carte en annexes sans toucher a ce module.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -67,8 +68,13 @@ Liste generee : tout fichier de `00-SOCLE/01_getting_started` est joignable depu
 - [04_package_managers.md](04_package_managers.md)
 - [05_devsec_perso.md](05_devsec_perso.md)
 - [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
-- [06_EXO_JEUNE_IA.md](06_EXO_JEUNE_IA.md)
 - [PACKAGE_JSON_README.md](PACKAGE_JSON_README.md)
+- [ROUTE-SURVIE.md](ROUTE-SURVIE.md)
 - [verification_pack/](verification_pack/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+## Annexes declenchees ici
+
+- [01-support.md](../../06-ANNEXES-TRANSVERSES/01-support.md) : ou aller quand tu es bloque plus de trente minutes, avant d'abandonner ou de demander a une IA.
+- [02-NODE_VERSION.md](../../06-ANNEXES-TRANSVERSES/02-NODE_VERSION.md) : la version de Node supposee par tout le depot, a fixer le jour de l'installation.

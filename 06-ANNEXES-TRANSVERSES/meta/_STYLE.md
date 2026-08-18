@@ -2,7 +2,7 @@
 
 ## Les quatre règles de livraison, non négociables
 
-Ces quatre règles conditionnent toutes les autres. Un fichier qui en viole une n'est pas livrable, et le contrôle de livraison ([../../outils/controle_livraison.mjs](../../outils/controle_livraison.mjs)) les vérifie mécaniquement.
+Ces quatre règles conditionnent toutes les autres. Un fichier qui en viole une n'est pas livrable, et le contrôle de livraison ([../../99-COULISSES/outillage/controle_livraison.mjs](../../99-COULISSES/outillage/controle_livraison.mjs)) les vérifie mécaniquement.
 
 ### 1. Un mode de vérification déclaré par exercice, parmi trois et trois seulement
 
@@ -50,7 +50,7 @@ Ce fichier existe parce que plusieurs fichiers du parcours y renvoient. Il fige 
 - Zéro emoji, zéro décoration inutile.
 - Jargon technique expliqué entre parenthèses à sa première apparition dans chaque fichier.
 - Diagrammes en ASCII avec des flèches du type A --> B --> C quand un schéma aide.
-- Univers narratifs autorisés uniquement : Naruto, Dragon Ball Z, Garo Honoo no Kokuin, Avengers, football, country, trapsoul, rnb, Walking Dead, Prison Break, Breaking Bad, Banshee. La liste complète et ses règles d'usage sont dans [../UNIVERS_AUTORISES.md](../UNIVERS_AUTORISES.md).
+- Univers narratifs : la liste fait autorite dans un seul fichier, [../UNIVERS_AUTORISES.md](../04-UNIVERS_AUTORISES.md). Ce style ne la recopie pas (deux listes = aucune autorite) ; le lint `99-COULISSES/outillage/verifier_univers.mjs` lit ce meme fichier.
 - Exemples interdits : login, paiement, panier, commande, utilisateur générique, produit générique.
 
 ## Règles de fond
@@ -99,7 +99,7 @@ Règles :
 
 ## Regle de livraison : un titre de niveau 1 par dossier
 
-Deux fichiers du meme dossier ne peuvent pas porter le meme titre de niveau 1 (`# ...`). Deux titres identiques signifient soit un doublon, soit une variante non arbitree : dans les deux cas le lecteur choisit au hasard, et il choisit toujours la version la moins exigeante. Le controle de livraison ([../../outils/controle_livraison.mjs](../../outils/controle_livraison.mjs)) refuse le dossier fautif en nommant les deux fichiers. Corollaire applique aux exercices de jeune IA : un module a exactement un `NN_EXO_JEUNE_IA.md`, numerote a sa place dans la sequence locale, de 60 minutes, verifie par le critere binaire de son `verification_pack`, et sans auto-notation.
+Deux fichiers du meme dossier ne peuvent pas porter le meme titre de niveau 1 (`# ...`). Deux titres identiques signifient soit un doublon, soit une variante non arbitree : dans les deux cas le lecteur choisit au hasard, et il choisit toujours la version la moins exigeante. Le controle de livraison ([../../99-COULISSES/outillage/controle_livraison.mjs](../../99-COULISSES/outillage/controle_livraison.mjs)) refuse le dossier fautif en nommant les deux fichiers. Corollaire applique aux exercices de jeune IA : un module a exactement un `NN_EXO_JEUNE_IA.md`, numerote a sa place dans la sequence locale, de 60 minutes, verifie par le critere binaire de son `verification_pack`, et sans auto-notation.
 
 ## Un seul traitement de référence par thème
 
@@ -131,27 +131,20 @@ Tout nouveau thème traité deux fois rejoint ce tableau ou perd l'un de ses deu
 Un thème présent deux fois sans renvoi croisé est un défaut de livraison, au même titre qu'un
 lien cassé.
 
-## Le gabarit de grimoire : 4 colonnes en socle, 5 colonnes en Staff
+## Le gabarit de grimoire : cinq colonnes, sans exception
 
-Un grimoire est un memo de revision a voix haute, pas un glossaire. Deux gabarits
-coexistent, et le choix ne se fait pas au gout du redacteur :
+Un grimoire est un memo de revision a voix haute, pas un glossaire. Un seul gabarit,
+partout, socle compris :
 
-- **4 colonnes** (Terme / Definition / Code / Analogie) pour les modules ou le terme
-  designe un mecanisme du langage : la definition et un exemple executable suffisent a
-  lever l'ambiguite.
-- **5 colonnes** (Terme / Definition / Code / Analogies (exactement 2) / Limite) pour les
-  modules d'architecture, de pilotage et de posture Staff.
+`| Terme | Définition | Code | Analogies | Limite |`
 
-Justification pedagogique des deux colonnes ajoutees, a ne pas negocier :
+- **Définition** : deux lignes maximum.
+- **Code** : minimal et executable, jamais une paraphrase.
+- **Analogies** : exactement deux, de domaines differents (une metier reelle, une
+  narrative), separees par une barre oblique, suivies de « Ou l'analogie casse : ... ».
+- **Limite** : une condition observable de non-application, jamais « depend du contexte ».
 
-1. **Analogies (exactement 2)** : une seule analogie se confond avec le concept et devient
-   fausse des qu'on la pousse. Deux analogies issues de domaines differents forcent
-   l'apprenant a chercher ce qu'elles ont en commun, c'est-a-dire le concept lui-meme. Ni
-   une (dogme), ni trois (bavardage) : exactement deux.
-2. **Limite** : un concept d'architecture se juge sur le moment ou il cesse de s'appliquer.
-   La colonne nomme la condition de non-application, ce qui est exactement ce qu'un jury
-   ou un contradicteur ira chercher (`06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md`).
-
-Regles de livraison : un grimoire ne melange pas les deux gabarits dans la meme table ; la
-colonne Code contient du code executable, jamais une paraphrase ; la colonne Limite est
-une condition observable, jamais « depend du contexte ».
+La decision datee qui arbitre ce gabarit (et pourquoi les quatre colonnes ont ete
+abandonnees) est dans
+[99-COULISSES/archives/DECISION-GRIMOIRE-5-COLONNES.md](../../99-COULISSES/archives/DECISION-GRIMOIRE-5-COLONNES.md).
+Le controle de livraison refuse tout grimoire qui s'en ecarte.

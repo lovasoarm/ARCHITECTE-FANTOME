@@ -1,3 +1,9 @@
+---
+stability: stable
+acte: comprendre
+route: complete
+---
+
 [Sommaire](../../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Niveau précédent](../../03-PILOTAGE/09-TEAM-QUEST/README.md) | [Niveau suivant](../06-CAPSTONE-ARENA/README.md)
 
 # Niveau 11 : Big App Snoop
@@ -101,7 +107,7 @@ existant : pas la conception d'un système neuf. Si tu veux contribuer pour de v
 projet open source au-delà d'un petit patch d'entraînement, c'est une suite naturelle une
 fois ce niveau terminé, pas un objectif de ce niveau.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

@@ -1,15 +1,21 @@
 # Rétrospective de bloc : Bloc MAITRISE (niveaux 13 à 15)
 
-[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
+[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/06-ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
 
 Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opération précise : tu
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
 est désormais faux, et pourquoi ce n'était pas visible à l'époque.
 
 Durée : 60 à 90 minutes. À faire après avoir terminé le niveau 15-BONUS-VAULT, donc à la fin
-du parcours, avant d'ouvrir [EPILOGUE.md](../06-ANNEXES-TRANSVERSES/EPILOGUE.md). Ne saute pas cette étape : c'est la
+du parcours, avant d'ouvrir [EPILOGUE.md](../06-ANNEXES-TRANSVERSES/12-EPILOGUE.md). Ne saute pas cette étape : c'est la
 seule fois du parcours où tu juges tes propres habitudes de travail, et non un livrable
 technique isolé.
+
+## Boss de palier (rythme deux modules, un Boss)
+
+Cette retrospective **est** le dernier Boss de son palier : elle ferme [tools](07_tools/README.md) et [maitrise staff engineer](08_maitrise_staff_engineer/README.md). Il n'y a donc pas de dossier `BOSS-` supplementaire ici : le Boss final d'un
+palier, c'est la relecture qui decide si le palier se coche. Meme verdict binaire que les Boss
+intermediaires : passe, ou ne passe pas.
 
 ## Contrôle d'antériorité du bloc
 
@@ -111,9 +117,28 @@ transforme un exercice de raisonnement en exercice de remplissage.
 
 ### Rappel de la carte (reference, pas decouverte) : Niveau 6 IA (bloquant)
 
-Le [Niveau 6 IA](../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/06-niveau-6-ia.md) de TECH-ILA
+Le [Niveau 6 IA](../06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/06-niveau-6-ia.md) de TECH-ILA
 referme la boucle commencée au palier du bloc CADRAGE : la même question, portée cette fois sur
 l'usage de l'IA elle-même plutôt que sur un langage ou un framework. Lecture avant la soutenance.
+
+## Relecture du dossier unique (A15, bloquant)
+
+Cette rétro ne se valide pas tant qu'un « non » subsiste dans le tableau ci-dessous. Aucun item
+n'est une lecture : chacun se tranche en rouvrant un artefact et en y cherchant un chiffre.
+
+| # | Vérification binaire sur ton dossier unique | Si « non », tu reprends |
+| --- | --- | --- |
+| 1 | Les **trois tensions** sont-elles chiffrées **des deux côtés** (le coût de faire ET le coût de ne pas faire, en heures, en euros ou en points de SLO) ? | [08_maitrise_staff_engineer/03_trois_tensions.md](08_maitrise_staff_engineer/03_trois_tensions.md) |
+| 2 | Le **SLO** annoncé est-il tenable avec le budget relevé (même service, même unité, même devise) ? | [06_fiabilite_slo/01_sli_slo_budget_erreur.md](../03-PILOTAGE/06_fiabilite_slo/01_sli_slo_budget_erreur.md) recroisé avec [RELEVE-REFERENCE-2026.md](../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md) |
+| 3 | Chaque **ADR** du dossier chiffre-t-il au moins une conséquence (pas « risque modéré », un nombre) ? | [08_maitrise_staff_engineer/01_dossier_unique.md](08_maitrise_staff_engineer/01_dossier_unique.md) |
+| 4 | **STANDARDS-AGENTS.md** est-il présent dans les pièces du dossier, avec ses quatre blocs binaires ? | [11_leadership_mentorat/07_standards_pour_agents.md](../03-PILOTAGE/11_leadership_mentorat/07_standards_pour_agents.md) |
+
+Règle de verdict : un seul « non » et la rétro n'est pas signée. Tu rouvres le module nommé sur
+la ligne, tu corriges l'artefact, tu réponds « oui » avec la date de correction en face. Un
+« oui » sans date de relecture compte comme un « non ».
+
+Trace exigée, dans le dépôt du fil rouge :
+`RETRO-BLOC-5 : relecture dossier unique, items 1 a 4 OUI le <date>`.
 
 ## Critères de réussite
 
@@ -137,3 +162,7 @@ des FAUX se voient en comparant un livrable à ses propres critères, pas à ta 
   compare à la version réelle : toute pièce oubliée ou tout chiffre approximé
   de mémoire est un signal que le dossier n'est pas encore défendable devant
   un interlocuteur non technique.
+
+## Annexe declenchee ici
+
+- [13-ANNEXE-et-apres.md](../06-ANNEXES-TRANSVERSES/13-ANNEXE-et-apres.md) : a ouvrir apres l'epilogue, une fois la retro de ce bloc ecrite et signee.

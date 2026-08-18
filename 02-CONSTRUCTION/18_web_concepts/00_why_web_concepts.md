@@ -8,7 +8,7 @@ acte: restituer
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
 > Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : HTTP basics (02-CONSTRUCTION/19_api_craft anticipé), async (01-CADRAGE/02_async). Sécurité (03-PILOTAGE/04_security anticipé) : ce module pointe vers la distinction authentication/authorization, creusée en détail plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : HTTP basics (02-CONSTRUCTION/19_api_craft — pas un prérequis : ce module en donne le strict nécessaire, le fond est enseigné là-bas plus tard), async (01-CADRAGE/02_async). Sécurité (03-PILOTAGE/04_security — pas un prérequis : ce module en donne le strict nécessaire, le fond est enseigné là-bas plus tard) : ce module pointe vers la distinction authentication/authorization, creusée en détail plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : WEB CONCEPTS
 

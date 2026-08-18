@@ -41,7 +41,7 @@ ce qui donne l'illusion de savoir sans le vécu.
 Ces trois exercices sont indépendants des synthèses A → G : ils s'appliquent
 à ton parcours complet, pas à un bloc précis.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

@@ -19,6 +19,13 @@ Personne ne vérifie que tu as respecté cet ordre : c'est un déclencheur auto-
 valeur pédagogique dépend entièrement de ta discipline à le poser avant d'ouvrir le fichier,
 pas après.
 
+## Ce changement ne tombe pas seul
+
+En semaine 2 du jalon Livraison, ce changement de priorite business tombe **le meme jour
+simule** qu'une derive technique (exigence de P95), sur le meme livrable et a budget constant.
+Tu ne rends pas deux notes : tu rends une seule decision qui arbitre les deux. Le protocole est
+ecrit dans [07-semaine-double-derive.md](07-semaine-double-derive.md).
+
 ## Spec drift : de quoi on parle
 
 Le **spec drift** (dérive de spécification) est l'écart entre le périmètre validé au cadrage

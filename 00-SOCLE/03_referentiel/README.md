@@ -1,13 +1,14 @@
 ---
 stability: intemporel
 acte: restituer
+route: complete
 ---
 
 # 00-SOCLE/03_referentiel
 
 Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -24,7 +25,6 @@ Liste generee : tout fichier de `00-SOCLE/03_referentiel` est joignable depuis i
 - [07_repetition_espacee.md](07_repetition_espacee.md)
 - [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
 - [DEPENDENCY_LEDGER.md](DEPENDENCY_LEDGER.md)
-- [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
 - [PLATEAU_JOURNAL_EXEMPLE.md](PLATEAU_JOURNAL_EXEMPLE.md)
 - [verification_pack/](verification_pack/README.md)
 
@@ -35,4 +35,4 @@ Liste generee : tout fichier de `00-SOCLE/03_referentiel` est joignable depuis i
 Le référentiel dit où tu en es à un instant donné ; le journal hebdomadaire dit dans
 quel sens tu bouges. Les deux se lisent ensemble.
 
-- [Dev Journal hebdomadaire](../../06-ANNEXES-TRANSVERSES/DEV_JOURNAL_HEBDO.md) : gabarit vierge et exemple rempli, cinq minutes chaque vendredi.
+- [Dev Journal hebdomadaire](../../06-ANNEXES-TRANSVERSES/05-DEV_JOURNAL_HEBDO.md) : gabarit vierge et exemple rempli, cinq minutes chaque vendredi.

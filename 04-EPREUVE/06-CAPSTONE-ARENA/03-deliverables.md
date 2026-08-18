@@ -30,6 +30,11 @@ J2 Architecture   (J5 a J12,  budget 8h)   condition : schema de donnees fige + 
 
 J3 Livraison      (J13 a J32, budget 20h)  condition : POSTMORTEM.md redige + REVUE-DE-RISQUES.md
                                             signee et datee, seuil challenge.md >= 60/100
+   dont SEMAINE 2 (J20 a J26)              DOUBLE DERIVE, budget inchange : derive technique
+                                            (P95 < 100 ms) ET derive business (tarification
+                                            prioritaire) le meme jour simule, sur le meme
+                                            livrable -> une seule decision rendue,
+                                            DECISION-DOUBLE-DERIVE.md
 ```
 
 Un jalon ne s'ouvre jamais avant que la condition du précédent soit remplie **et datée** dans
@@ -234,3 +239,10 @@ datée.
 ## Ajout ARCHITECTE-FANTOME : les quatre pièces Staff Engineer
 
 En plus des livrables ci-dessus, le capstone du fil fusionné exige quatre pièces croisées sur le même projet : ADR d'architecture, budget cloud chiffré, SLO écrit avec son budget d'erreur, et une famille au choix parmi produit, leadership et IA. Les règles exactes et la section obligatoire "Les trois tensions" sont dans [06-addendum-staff-engineer.md](06-addendum-staff-engineer.md).
+
+## Livrable 6 : DECISION-DOUBLE-DERIVE.md (semaine 2 du jalon Livraison)
+
+La semaine 2 de J3 fait tomber la derive technique et la derive business le meme jour simule,
+sur le meme livrable, a budget constant. Tu rends **une seule** decision ecrite qui absorbe les
+deux et nomme la contradiction. Protocole complet et criteres binaires :
+[07-semaine-double-derive.md](07-semaine-double-derive.md).

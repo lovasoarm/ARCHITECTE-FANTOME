@@ -165,3 +165,7 @@ Où l'analogie casse : à l'atelier une règle protège un doigt, ici elle prot�
    : donne un exemple des deux sur un même choix technique.
 3. Comment sais-tu, sans replonger dans ta mémoire, qu'une vieille décision technique mérite
    d'être réexaminée aujourd'hui.
+
+## Annexe declenchee ici
+
+- [04-UNIVERS_AUTORISES.md](../../06-ANNEXES-TRANSVERSES/04-UNIVERS_AUTORISES.md) : la liste blanche des univers narratifs utilisables dans tes exemples. Ouvre-la avant d'ecrire ton premier exercice ; le lint refuse tout univers hors liste.

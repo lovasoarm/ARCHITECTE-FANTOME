@@ -1,13 +1,14 @@
 ---
 stability: intemporel
 acte: restituer
+route: survie
 ---
 
 # 01-CADRAGE/04_error_handling
 
 Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -15,8 +16,6 @@ Liste generee : tout fichier de `01-CADRAGE/04_error_handling` est joignable dep
 
 - [00_prereq_check.md](00_prereq_check.md)
 - [00_why_error_handling.md](00_why_error_handling.md)
-- [01_try_catch_basics.md](01_try_catch_basics.md)
-- [01_try_catch_basics_minimini_projet.md](01_try_catch_basics_minimini_projet.md)
 - [02_custom_errors.md](02_custom_errors.md)
 - [02_custom_errors_minimini_projet.md](02_custom_errors_minimini_projet.md)
 - [03_error_propagation.md](03_error_propagation.md)

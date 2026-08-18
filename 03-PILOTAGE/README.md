@@ -7,7 +7,7 @@ acte: restituer
 
 Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -25,5 +25,10 @@ Liste generee : tout fichier de `03-PILOTAGE` est joignable depuis ici, aucun do
 - [09-TEAM-QUEST/](09-TEAM-QUEST/README.md)
 - [10_team_craft/](10_team_craft/README.md)
 - [11_leadership_mentorat/](11_leadership_mentorat/README.md)
+- [BOSS-1/](BOSS-1/README.md)
+- [BOSS-2/](BOSS-2/README.md)
+- [BOSS-3/](BOSS-3/README.md)
+- [BOSS-4/](BOSS-4/README.md)
+- [BOSS-5/](BOSS-5/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

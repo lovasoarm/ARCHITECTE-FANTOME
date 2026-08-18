@@ -7,7 +7,7 @@ acte: évaluer
 
 Acte attendu : évaluer.
 
-[Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Première mi-rétro](MI-RETRO-BLOC-2-BUILD.md)
+[Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/06-ROADMAP-rythmes.md) | [Première mi-rétro](MI-RETRO-BLOC-2-BUILD.md)
 
 Ce bloc porte vingt positions, la moitié du parcours. La première mi-rétro respire après la position 10 : dix positions plus loin arrivent les deux plus abstraites du repo, le découpage par le langage du métier et la séparation lecture/écriture, exactement au moment où l'attention est la plus basse. Cette seconde mi-rétro existe pour que DDD et CQRS soient abordés après une consolidation, jamais en fin de plateau.
 

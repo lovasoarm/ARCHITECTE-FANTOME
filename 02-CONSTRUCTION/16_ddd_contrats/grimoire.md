@@ -2,7 +2,7 @@
 
 Cinq colonnes : le terme, ce qu'il veut dire, le code minimal qui le montre, deux analogies pour l'accrocher en mémoire, et où l'analogie casse. Rappel (modèle `00-SOCLE/04_fundamentals/06_modules/03_modules_grimoire.md`) : une analogie simplifie pour comprendre vite, elle ne définit rien. Quand tu dois décider, retourne au mécanisme réel.
 
-| Terme | Définition (max 2 lignes) | Code | Analogies | Limite |
+| Terme | Définition | Code | Analogies | Limite |
 | --- | --- | --- | --- | --- |
 | Domaine | Le métier réel que ton logiciel sert. Pas ta base de données, pas ton framework. | `const domaine = "evasion"` | le terrain avant le match / le scénario avant le tournage | un terrain de match ne change pas de règles en cours de partie ; le domaine métier, si (une loi change, le vocabulaire du métier change avec elle). |
 | Langage ubiquitaire | Un mot du métier = un mot du code, sans traduction mentale. | `evasion.statut` | le jargon d'un vestiaire / le code radio d'une équipe d'intervention | un jargon de vestiaire tolère l'ambiguïté entre coéquipiers qui se connaissent ; le code ne tolère aucune ambiguïté, un nom mal choisi casse silencieusement à la relecture six mois plus tard. |

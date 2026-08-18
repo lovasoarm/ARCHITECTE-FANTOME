@@ -110,4 +110,4 @@ Si tu es sur MySQL ou SQLite, lis quand même le niveau 05, mais installe un Pos
 exercices : sinon la moitié des exercices est infaisable, et ce n'est pas ta faute.
 
 Les ressources externes et leur date de vérification sont dans
-[ANNEXE-perennite.md](../../06-ANNEXES-TRANSVERSES/ANNEXE-perennite.md).
+[ANNEXE-perennite.md](../../06-ANNEXES-TRANSVERSES/11-ANNEXE-perennite.md).

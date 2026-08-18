@@ -1,6 +1,7 @@
 ---
 stability: intemporel
 acte: restituer
+route: complete
 ---
 
 # 03-PILOTAGE/11_leadership_mentorat : influence sans autorité
@@ -38,7 +39,7 @@ Dans l'ordre affiché ci-dessus, pas dans l'ordre des numéros de fichiers : le 
 
 Les trois drills du [verification_pack](verification_pack/criteres.md) sont REUSSI, et tu as écrit une revue à trois niveaux avec un risque nommé, une note d'une page sans jargon avec des chiffres sourcés, et tu as tenu un standard face à trois oppositions sans t'appuyer sur une autorité hiérarchique.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -53,7 +54,6 @@ Liste generee : tout fichier de `03-PILOTAGE/11_leadership_mentorat` est joignab
 - [05_expliquer_trois_publics.md](05_expliquer_trois_publics.md)
 - [06_aveu_ignorance.md](06_aveu_ignorance.md)
 - [07_standards_pour_agents.md](07_standards_pour_agents.md)
-- [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
 - [08_EXO_JEUNE_IA.md](08_EXO_JEUNE_IA.md)
 - [boss-fight.md](boss-fight.md)
 - [challenge.md](challenge.md)

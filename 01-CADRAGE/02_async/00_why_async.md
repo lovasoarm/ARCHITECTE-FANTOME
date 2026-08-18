@@ -8,7 +8,7 @@ acte: restituer
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : fonctions et scope (00-SOCLE/04_fundamentals), structures de contrôle (00-SOCLE/04_fundamentals), try/catch synchrone (01-CADRAGE/04_error_handling/01_try_catch_basics.md). Ce dernier point n'est pas un simple rappel : ce module te fait écrire du `try/catch` autour d'`await` dès la section async/await. **Lis [01_try_catch_basics.md](../04_error_handling/01_try_catch_basics.md) maintenant si tu ne l'as pas encore fait** (6 min) : le module 04_error_handling complet t'attend juste après celui-ci pour la suite (erreurs personnalisées, propagation, stratégie), mais cette brique de base ne peut pas attendre. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : fonctions et scope (00-SOCLE/04_fundamentals), structures de contrôle (00-SOCLE/04_fundamentals), try/catch synchrone (acquis du socle : [00-SOCLE/04_fundamentals/08b_try_catch_basics.md](../../00-SOCLE/04_fundamentals/08b_try_catch_basics.md)). Ce module te fait écrire du `try/catch` autour d'`await` dès la section async/await : tu l'as vu au socle, rien à sauter en avant. Le module 04_error_handling, juste après celui-ci, va au fond (erreurs personnalisées, propagation, stratégie). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ASYNC & EVENT LOOP
 

@@ -76,7 +76,7 @@ Le mini-projet **n'est pas termine** si :
 - Aucun impact sur les modules 01 -> 29 : greffe pure sur
   `02-CONSTRUCTION/02_mini_projects/`.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

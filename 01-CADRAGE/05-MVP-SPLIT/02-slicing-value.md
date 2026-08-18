@@ -55,7 +55,7 @@ les 5 entités (5 jours), frontend complet (6 jours). Premier retour terrain pos
 au mieux, si rien ne dérape. En pratique, un projet de ce type dérape de 30 à 50% quand il n'a
 jamais été confronté à un utilisateur réel avant la fin : la modélisation de la base a supposé
 des choses que seul un bénévole en action aurait pu corriger (par exemple : deux cordes
-identiques prêtées par erreur au même membre, un cas que personne n'avait anticipé).
+identiques prêtées par erreur au même membre, un cas que personne n'avait — pas un prérequis : ce module en donne le strict nécessaire, le fond est enseigné là-bas plus tard).
 
 Découpage vertical sur le même projet : tranche 1 (emprunt simple) en 3 jours, testée en
 conditions réelles au créneau suivant du club. Tranche 2 (retour et relance) en 3 jours,

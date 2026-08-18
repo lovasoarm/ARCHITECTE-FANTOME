@@ -7,7 +7,7 @@ acte: restituer
 
 Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -22,5 +22,8 @@ Liste generee : tout fichier de `05-MAITRISE` est joignable depuis ici, aucun do
 - [06_annexes/](06_annexes/README.md)
 - [07_tools/](07_tools/README.md)
 - [08_maitrise_staff_engineer/](08_maitrise_staff_engineer/README.md)
+- [BOSS-1/](BOSS-1/README.md)
+- [BOSS-2/](BOSS-2/README.md)
+- [BOSS-3/](BOSS-3/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

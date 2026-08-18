@@ -1,0 +1,126 @@
+---
+statut: revu
+last_reviewed: 2026-08
+last_counted: 2026-08
+proprietaire: mainteneur TECH-ILA
+revue: trimestrielle
+companion: MyFunnyJS
+acte: restituer
+---
+
+# TECH-ILA
+
+> Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
+
+> **MyFunnyJS enseigne le cerveau. TECH-ILA montre où ce cerveau s'utilise.**
+> Les exercices vérifient la compréhension. Les mini-projets prouvent la capacité d'action. Le portfolio montre les décisions prises.
+
+> **Attention : lu seul, ce document ment sur ta compétence.**
+> Lu sans MyFunnyJS, ce document produit un faux sentiment de compétence. Tu reconnaîtrais des gestes, des noms d'outils, des tableaux de comparaison : sans jamais avoir touché le mécanisme qu'ils supposent acquis. Avant d'ouvrir le niveau 1, fais au minimum ces trois modules :
+>
+> - [00-SOCLE/01_getting_started/00_why_getting_started.md](../../00-SOCLE/01_getting_started/00_why_getting_started.md) : installation, terminal, premier jour.
+> - [00-SOCLE/03_referentiel/00_why_referentiel.md](../../00-SOCLE/03_referentiel/00_why_referentiel.md) : le référentiel de compétences et la grille intemporel/périssable.
+> - [00-SOCLE/04_fundamentals/00_why_fundamentals.md](../../00-SOCLE/04_fundamentals/00_why_fundamentals.md) : variables, scope, fonctions : le socle sur lequel toute fiche de ce document s'appuie.
+
+> **Un seul document, dix fichiers.** Le cahier des charges demandait un unique `TECH-ILA.md`. Le corpus complet couvre les 32 modules d’origine MyFunnyJS (comptage historique d’avant fusion ; la carte vivante compte 6 paliers) et pèse 4 343 lignes réparties sur 10 fichiers (compté au 2026-08) : largement au-dessus du seuil de confort de lecture continue dans un éditeur Markdown ou sur GitHub, et contraire à deux autres règles du même cahier (« agréable à lire », « pas une encyclopédie »). Choix assumé : **un seul document logique, découpé en dix fichiers pour la lisibilité.** Lis-les dans l'ordre du sommaire ; chaque fichier renvoie ici.
+
+> **Porte d'entrée du module** : [00_why_tech_ila.md](./00_why_tech_ila.md) (pourquoi ce document existe et à quelle rétrospective chaque niveau est accroché), puis [00_prereq_check.md](./00_prereq_check.md) (le filtre à passer avant d'ouvrir un niveau).
+
+TECH-ILA n'est pas un second curriculum. C'est le **parcours technologique parallèle** de MyFunnyJS.
+
+MyFunnyJS te donne le runtime, la mémoire, l'asynchrone, le debugging, l'architecture. Excellent. Mais un diplômé qui comprend l'event loop et n'a jamais lu un `docker-compose.yml`, jamais ouvert une migration SQL, jamais vu un `guard` NestJS, reste bloqué au premier jour de mission.
+
+Ce document répond à une seule question, répétée des dizaines de fois :
+
+**"Ce que j'ai appris dans ce fichier MyFunnyJS, où est-ce que je vais le retrouver dans la vraie vie technologique ?"**
+
+---
+
+## Parcours parallele obligatoire : 6 jalons
+
+TECH-ILA n'est plus « a lire si tu veux ». C'est le parcours parallele **obligatoire** du depot,
+decoupe en six jalons. Chaque jalon est porte par le `verification_pack` d'un module du fil :
+le module n'est pas validable tant que son jalon n'est pas franchi, artefact et date a l'appui.
+La retrospective de bloc ne porte plus cette validation : elle la relit seulement.
+
+| Jalon | Niveau TECH-ILA | Module declencheur (chemin exact) | Niveau attendu, binaire |
+| --- | --- | --- | --- |
+| 1 | [Niveau 1 : Socle professionnel](tech-ila/01-niveau-1-socle.md) | `00-SOCLE/01_getting_started/verification_pack/criteres.md` | terminal, Git, Node, TypeScript, HTTP, SQL, Docker : une commande jouee et sa sortie collee pour chacun |
+| 2 | [Niveau 2 : Frontend](tech-ila/02-niveau-2-frontend.md) | `02-CONSTRUCTION/18_web_concepts/verification_pack/criteres.md` | une page servie, strategie de rendu nommee, un chiffre de perf mesure, un defaut d'accessibilite corrige |
+| 3 | [Niveau 3 : Backend](tech-ila/03-niveau-3-backend.md) | `02-CONSTRUCTION/19_api_craft/verification_pack/criteres.md` | une API qui tourne, authentification posee, cache ou file justifie, comportement en erreur decrit |
+| 4 | [Niveau 4 : Systemes professionnels](tech-ila/04-niveau-4-systemes.md) | `03-PILOTAGE/07_cloud_foundations/verification_pack/criteres.md` | une CI qui refuse un commit casse, une trace lue, un incident rejoue |
+| 5 | [Niveau 5 : Transfert](tech-ila/05-niveau-5-transfert.md) | `05-MAITRISE/02_scalability/verification_pack/criteres.md` | le meme service dans un second langage, transfere / repense separes |
+| 6 | [Niveau 6 : IA](tech-ila/06-niveau-6-ia.md) | `04-EPREUVE/04_ai_native_dev/verification_pack/criteres.md` | une sortie de modele refusee, regle de refus ecrite avant lecture |
+
+Trace unique, dans ton depot : `TECH-ILA jalon N franchi le <date> : <chemin de l'artefact>`.
+Un jalon sans artefact date n'a pas eu lieu, et le module appelant reste non valide.
+
+---
+
+## Sommaire
+
+Le contenu est découpé par niveau, un fichier par étape du parcours. Lis dans l'ordre ; chaque fichier est autonome et renvoie ici. En incident, ne lis rien dans l'ordre : ouvre directement le fichier 09.
+
+| #     | Fichier                                                                     | Section                            | Taille indicative | Ce que tu y gagnes                                  |
+| ----- | --------------------------------------------------------------------------- | ---------------------------------- | ----------------- | --------------------------------------------------- |
+| 0-3   | [00-orientation.md](./tech-ila/00-orientation.md)                             | Lire, classer, ordonner            | 221 lignes       | La méthode, la classification, la carte des niveaux |
+| 4     | [01-niveau-1-socle.md](./tech-ila/01-niveau-1-socle.md)                       | Niveau 1 : Socle professionnel     | 866 lignes       | Terminal, Git, Node, TS, HTTP, SQL, Docker          |
+| 5     | [02-niveau-2-frontend.md](./tech-ila/02-niveau-2-frontend.md)                 | Niveau 2 : Frontend                | 562 lignes       | React, état, stratégies de rendu, perf, a11y        |
+| 6     | [03-niveau-3-backend.md](./tech-ila/03-niveau-3-backend.md)                   | Niveau 3 : Backend                 | 676 lignes       | Express, NestJS, auth, Redis, files, temps réel     |
+| 7     | [04-niveau-4-systemes.md](./tech-ila/04-niveau-4-systemes.md)                 | Niveau 4 : Systèmes professionnels | 608 lignes       | CI/CD, cloud, observabilité, résilience             |
+| 8     | [05-niveau-5-transfert.md](./tech-ila/05-niveau-5-transfert.md)               | Niveau 5 : Transfert               | 485 lignes       | Python, Java/Spring, .NET                           |
+| 9     | [06-niveau-6-ia.md](./tech-ila/06-niveau-6-ia.md)                             | Niveau 6 : IA                      | 317 lignes       | Diriger, vérifier, refuser                          |
+| 10-11 | [07-cartes-myfunnyjs.md](./tech-ila/07-cartes-myfunnyjs.md)                   | Cartes MyFunnyJS ↔ technologies    | 311 lignes       | Le mapping module par module, et l'inverse          |
+| 12-14 | [08-ia-exercices-marche-audit.md](./tech-ila/08-ia-exercices-marche-audit.md) | Exercices, marché, audit           | 216 lignes       | Ce qui reste ton travail, la preuve, l'honnêteté    |
+| :     | [09-mode-urgence.md](./tech-ila/09-mode-urgence.md)                           | Mode urgence                       | 81 lignes        | Trouver la bonne page en incident en moins de 30 s  |
+
+Ces chiffres sont recomptés à chaque revue trimestrielle. S'ils sont faux, c'est un bug : signale-le.
+
+Le niveau 6 (fichier 06) intègre désormais l'ancienne section « angles morts de l'IA » : une seule doctrine de vérification, un seul endroit où la lire.
+
+---
+
+## Sections à surveiller
+
+Ce document ne date rien par principe (aucune version épinglée), mais il vieillit quand même. Les zones suivantes bougent plus vite que le reste du corpus. À chaque revue trimestrielle, ouvre-les en premier et pose-toi la question associée.
+
+| Section périssable              | Fichier                                                       | Question à se reposer chaque trimestre                                                                             |
+| ------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Next.js et stratégies de rendu  | [02-niveau-2-frontend.md](./tech-ila/02-niveau-2-frontend.md)   | App Router / Pages Router / RSC ont-ils encore la même forme, ou une nouvelle stratégie de rendu a-t-elle émergé ? |
+| Défaillances IA par technologie | [06-niveau-6-ia.md](./tech-ila/06-niveau-6-ia.md)               | Les modèles produisent-ils encore les mêmes erreurs types sur ces technos, ou la liste est-elle obsolète ?         |
+| Économie du serverless          | [04-niveau-4-systemes.md](./tech-ila/04-niveau-4-systemes.md)   | Les ordres de grandeur de coût donnés sont-ils encore réalistes chez les fournisseurs actuels ?                    |
+| Threads virtuels Java           | [05-niveau-5-transfert.md](./tech-ila/05-niveau-5-transfert.md) | Le statut (preview, stable, par défaut) a-t-il changé depuis la dernière revue ?                                   |
+| Express 4 vs 5                  | [03-niveau-3-backend.md](./tech-ila/03-niveau-3-backend.md)     | La version majeure recommandée par défaut a-t-elle changé ?                                                        |
+
+Ce tableau est aussi l'index des conditions de péremption : les fiches concernées portent un champ « Se périme si : » qui dit ce qui déclencherait leur révision.
+
+Chaque revue met à jour `last_reviewed` dans le front-matter du ou des fichiers concernés, et `last_counted` quand le rituel de recomptage a été exécuté en entier.
+
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
+
+## Contenu du dossier
+
+Liste generee : tout fichier de `06-ANNEXES-TRANSVERSES/03-TECH-ILA` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
+
+- [00_prereq_check.md](00_prereq_check.md)
+- [00_why_tech_ila.md](00_why_tech_ila.md)
+- [01_EXO_JEUNE_IA.md](01_EXO_JEUNE_IA.md)
+- [tech-ila/](tech-ila/README.md)
+- [verification_pack/](verification_pack/README.md)
+
+<!-- CONTENU-DOSSIER:fin -->
+
+## Six appels, six modules (depuis S-10)
+
+Ces cartes ne s'ouvrent plus a la retrospective : chaque niveau est appele depuis le module qui
+en a besoin au moment ou il en a besoin. Les cartes restent ici parce qu'elles sont perissables
+et doivent pouvoir etre remplacees sans toucher au fil.
+
+| Niveau | Appele depuis | Livrable verifie ensuite en retrospective |
+| --- | --- | --- |
+| 1 Socle | `00-SOCLE/01_getting_started` | fiche d'orientation outils |
+| 2 Frontend | `02-CONSTRUCTION/01-USER-WIZARD` | choix de rendu ecrit |
+| 3 Backend | `02-CONSTRUCTION/19_api_craft` | contrat d'API publie |
+| 4 Systemes | `05-MAITRISE/02_scalability` | topologie dessinee |
+| 5 Transfert | `04-EPREUVE` (livrable PORTAGE.md) | `PORTAGE.md` |
+| 6 IA | `04-EPREUVE/04_ai_native_dev` | `IA-EN-PROD.md` |

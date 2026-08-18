@@ -1,6 +1,6 @@
 # Rétrospective de bloc : Bloc BUILD (niveaux 04 à 07)
 
-[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
+[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/06-ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
 
 Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opération précise : tu
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
@@ -12,6 +12,12 @@ rétrospective couvre alors dix modules d'un coup en plus des dix seconds, compt
 Durée : 60 à 90 minutes. À faire après le boss-fight du niveau 07-API-DOJO, avant d'ouvrir le bloc
 suivant. Ne saute pas cette étape : c'est la seule fois du parcours où tu juges ton propre
 travail passé avec des yeux différents.
+
+## Boss de palier (rythme deux modules, un Boss)
+
+Cette retrospective **est** le dernier Boss de son palier : elle ferme [api craft](19_api_craft/README.md) et [API DOJO](20-API-DOJO/README.md). Il n'y a donc pas de dossier `BOSS-` supplementaire ici : le Boss final d'un
+palier, c'est la relecture qui decide si le palier se coche. Meme verdict binaire que les Boss
+intermediaires : passe, ou ne passe pas.
 
 ## Contrôle d'antériorité du bloc
 
@@ -132,7 +138,7 @@ transforme un exercice de raisonnement en exercice de remplissage.
 
 Ce bloc t'a fait construire, tester, structurer des données et manier plusieurs paradigmes en
 JavaScript/TypeScript. Le
-[Niveau 3 Backend](../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/03-niveau-3-backend.md) de
+[Niveau 3 Backend](../06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/03-niveau-3-backend.md) de
 TECH-ILA reprend ce socle et pose une seule question : ce que tu sais faire en Node tient-il
 si on change d'écosystème (un framework qui n'est pas Express, une couche d'accès aux données
 qui n'est pas la tienne) ?

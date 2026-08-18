@@ -28,7 +28,7 @@ Ces structures existent dans les systèmes à très haute performance (bases de 
 **Ne bloque pas ta progression pour ça.**
 Finis `02-CONSTRUCTION/07_algorithms` en entier. Reviens ici si tu veux aller plus loin.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

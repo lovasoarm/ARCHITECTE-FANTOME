@@ -8,7 +8,7 @@ acte: restituer
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : objets & tableaux (00-SOCLE/04_fundamentals), big-O (02-CONSTRUCTION/07_algorithms anticipé), mémoire (02-CONSTRUCTION/05_memory_performance). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : objets & tableaux (00-SOCLE/04_fundamentals), big-O (02-CONSTRUCTION/07_algorithms — pas un prérequis : ce module en donne le strict nécessaire, le fond est enseigné là-bas plus tard), mémoire (02-CONSTRUCTION/05_memory_performance). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 > **9 sous-dossiers dans ce module, c'est plus dense que la moyenne.**
 > Avant de foncer, lis `00_navigation.md` : il découpe la progression en 3

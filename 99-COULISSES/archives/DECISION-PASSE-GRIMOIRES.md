@@ -44,8 +44,8 @@ bien fait.
 
 ## Ce qui empeche la recidive
 
-Controles bloquants dans `outils/controle_livraison.mjs`
-(`node outils/controle_livraison.mjs --strict` refuse la livraison) :
+Controles bloquants dans `99-COULISSES/outillage/controle_livraison.mjs`
+(`node 99-COULISSES/outillage/controle_livraison.mjs --strict` refuse la livraison) :
 
 - aucune phrase de colonne « Limite » n'apparait plus de deux fois ;
 - toute ligne de grimoire a exactement 5 colonnes ;

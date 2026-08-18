@@ -10,7 +10,7 @@ Personne ne viendra t'interroger. Le substitut honnête est une soutenance enreg
 1. **10 min : le système et la décision.** Tu présentes ton dossier unique : contrainte imposée,
    décision retenue, chiffres. Sans notes lues mot à mot.
 2. **5 min : la traduction direction.** La même décision, sans un terme technique, chiffres sourcés.
-3. **15 min : les questions.** Tire cinq objections au sort dans le [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/CONTRADICTEUR.md)
+3. **15 min : les questions.** Tire cinq objections au sort dans le [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/07-CONTRADICTEUR.md)
    et réponds à chaud, sans pause, sans chercher.
 4. **5 min : le point faible.** Tu nommes toi-même la faiblesse la plus sérieuse de ton dossier,
    et ce que tu ferais avec deux semaines de plus.

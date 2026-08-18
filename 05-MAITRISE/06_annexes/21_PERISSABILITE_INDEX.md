@@ -7,7 +7,7 @@ acte: évaluer
 
 Acte attendu : restituer.
 
-> Ce fichier est produit par `node outils/generer_perissabilite.mjs` à partir des en-têtes `stability:` du dépôt. Ne le modifie jamais à la main : change l'en-tête du fichier concerné, puis rejoue la commande. Le contrôle de livraison refuse la livraison si l'index commité diffère de l'index régénéré.
+> Ce fichier est produit par `node 99-COULISSES/outillage/generer_perissabilite.mjs` à partir des en-têtes `stability:` du dépôt. Ne le modifie jamais à la main : change l'en-tête du fichier concerné, puis rejoue la commande. Le contrôle de livraison refuse la livraison si l'index commité diffère de l'index régénéré.
 
 ## Comment lire cet index
 
@@ -16,18 +16,19 @@ Acte attendu : restituer.
 - **perissable** : concepts qui vieillissent en trois ans environ.
 - **intemporel** : noyau dur, durable au-delà de cinq ans.
 
-Le tri place en haut ce qui va vieillir en premier. Un fichier qui porte des montants relève en plus du protocole de la donnée sourcée ([../../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md)).
+Le tri place en haut ce qui va vieillir en premier. Un fichier qui porte des montants relève en plus du protocole de la donnée sourcée ([../../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md)).
 
 ## Compte par catégorie
 
 | Catégorie | Fichiers | Durée de vie attendue |
 | --- | --- | --- |
-| mouvant | 19 | quelques mois |
-| perissable_2027 | 130 | jusqu'à 2027 |
-| perissable_2028 | 44 | jusqu'à 2028 |
-| intemporel | 1228 | 5 ans et + |
+| mouvant | 18 | quelques mois |
+| stable | 20 | jusqu'à 3 ans |
+| perissable_2027 | 133 | jusqu'à 2027 |
+| perissable_2028 | 46 | jusqu'à 2028 |
+| intemporel | 1370 | 5 ans et + |
 
-Total des fichiers portant un en-tête `stability:` : 1421.
+Total des fichiers portant un en-tête `stability:` : 1587.
 
 ## Index détaillé
 
@@ -50,8 +51,27 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `02-CONSTRUCTION/02_mini_projects/19_supervise_the_ai/00_SPEC_DRIFT.md` | mouvant | quelques mois | suit une pratique qui bouge en continu, à relire à chaque passage |
 | `02-CONSTRUCTION/18_web_concepts/11_web_concepts_drill_exec.md` | mouvant | quelques mois | suit une pratique qui bouge en continu, à relire à chaque passage |
 | `03-PILOTAGE/02_web_inclusive/08_i18n/07_i18n_drill_exec.md` | mouvant | quelques mois | suit une pratique qui bouge en continu, à relire à chaque passage |
-| `CHANGELOG-CORRECTIONS.md` | mouvant | quelques mois | suit une pratique qui bouge en continu, à relire à chaque passage |
-| `VERIFICATION_LIENS.md` | mouvant | quelques mois | suit une pratique qui bouge en continu, à relire à chaque passage |
+| `99-COULISSES/outillage/VERIFICATION_LIENS.md` | mouvant | quelques mois | suit une pratique qui bouge en continu, à relire à chaque passage |
+| `00-SOCLE/01_getting_started/ROUTE-SURVIE.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `00-SOCLE/02-PROLOGUE/03-the-map.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `00-SOCLE/02-PROLOGUE/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `00-SOCLE/06-MINDSET/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `01-CADRAGE/01-PROBLEM-HUNT/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `01-CADRAGE/05-MVP-SPLIT/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `02-CONSTRUCTION/01-USER-WIZARD/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `02-CONSTRUCTION/08-DATA-SPELLS/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `02-CONSTRUCTION/15-ARCHI-LAB/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `02-CONSTRUCTION/20-API-DOJO/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `03-PILOTAGE/01-ROADMAP-RUN/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `03-PILOTAGE/03-QUALITY-SHIELD/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `03-PILOTAGE/09-TEAM-QUEST/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `04-EPREUVE/01-BONUS-VAULT/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `04-EPREUVE/02-TOOL-CAVE/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `04-EPREUVE/05-BIG-APP-SNOOP/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `04-EPREUVE/06-CAPSTONE-ARENA/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `05-MAITRISE/05-DAY-TO-LEGEND/README.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `99-COULISSES/archives/DECISION-DEDUPLICATION-OBSERVABILITE.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
+| `PROGRESSION.md` | stable | jusqu'à 3 ans | cite des outils, des versions ou des offres qui vieillissent |
 | `00-SOCLE/04_fundamentals/04_types/03_type_transformers.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
 | `00-SOCLE/04_fundamentals/07_regex/02_regex_combat.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
 | `00-SOCLE/04_fundamentals/07_regex/03_regex_extractor.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
@@ -134,6 +154,7 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `03-PILOTAGE/07_cloud_foundations/BUDGET-CLOUD.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
 | `03-PILOTAGE/07_cloud_foundations/challenge.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
 | `03-PILOTAGE/07_cloud_foundations/README.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
+| `03-PILOTAGE/07_cloud_foundations/RELEVE-REFERENCE-2026.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
 | `03-PILOTAGE/08_produit_cout_roi/02_grille_cout_risque_valeur.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
 | `03-PILOTAGE/08_produit_cout_roi/03_roi_refactoring_point_mort.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
 | `03-PILOTAGE/08_produit_cout_roi/04_dette_technique_declaree.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
@@ -165,22 +186,24 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `05-MAITRISE/06_annexes/29_toolchain/07_toolchain_grimoire.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
 | `05-MAITRISE/06_annexes/29_toolchain/08_NODE_VERSIONS.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
 | `05-MAITRISE/08_maitrise_staff_engineer/03_trois_tensions.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
-| `06-ANNEXES-TRANSVERSES/COMMUNAUTE.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
-| `06-ANNEXES-TRANSVERSES/support.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/01-niveau-1-socle.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/02-niveau-2-frontend.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/03-niveau-3-backend.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/04-niveau-4-systemes.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/05-niveau-5-transfert.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/06-niveau-6-ia.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/08-ia-exercices-marche-audit.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/09-mode-urgence.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
+| `06-ANNEXES-TRANSVERSES/01-support.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/01-niveau-1-socle.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/02-niveau-2-frontend.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/03-niveau-3-backend.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/04-niveau-4-systemes.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/05-niveau-5-transfert.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/06-niveau-6-ia.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/08-ia-exercices-marche-audit.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/09-mode-urgence.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
+| `06-ANNEXES-TRANSVERSES/10-COMMUNAUTE.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
+| `99-COULISSES/archives/DECISION-DETTE-ENTETES-HERITES.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
 | `PREUVES-MODELES/S1-BUDGET-CLOUD.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
 | `PREUVES-MODELES/S2-ADR-PRINCIPAL.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
 | `PREUVES-MODELES/S3-SLO.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
 | `PREUVES-MODELES/S4-DECISION-ARBITRAGE.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
 | `PREUVES-MODELES/S5-NOTE-DIRECTION-ET-REVUE.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
 | `PREUVES-MODELES/S6-IA-EN-PROD.md` | perissable_2027 | jusqu'à 2027 | porte des montants datés, à re-relever selon le protocole de la donnée sourcée |
+| `PREUVES-MODELES/S7-PORTAGE.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
 | `README.md` | perissable_2027 | jusqu'à 2027 | cite des outils, des versions ou des offres qui vieillissent |
 | `02-CONSTRUCTION/03_testing/08_e2e_playwright_beast.md` | perissable_2028 | jusqu'à 2028 | cite des outils, des versions ou des offres qui vieillissent |
 | `03-PILOTAGE/11_leadership_mentorat/07_standards_pour_agents.md` | perissable_2028 | jusqu'à 2028 | cite des outils, des versions ou des offres qui vieillissent |
@@ -224,8 +247,11 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `05-MAITRISE/07_tools/04_cli_scaffolder.md` | perissable_2028 | jusqu'à 2028 | cite des outils, des versions ou des offres qui vieillissent |
 | `05-MAITRISE/07_tools/05_tools_grimoire.md` | perissable_2028 | jusqu'à 2028 | cite des outils, des versions ou des offres qui vieillissent |
 | `05-MAITRISE/07_tools/06_EXO_LECTURE.md` | perissable_2028 | jusqu'à 2028 | cite des outils, des versions ou des offres qui vieillissent |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/00_why_tech_ila.md` | perissable_2028 | jusqu'à 2028 | cite des outils, des versions ou des offres qui vieillissent |
-| `outils/README.md` | perissable_2028 | jusqu'à 2028 | cite des outils, des versions ou des offres qui vieillissent |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/00_why_tech_ila.md` | perissable_2028 | jusqu'à 2028 | cite des outils, des versions ou des offres qui vieillissent |
+| `99-COULISSES/CHANGELOG-CORRECTIONS.md` | perissable_2028 | jusqu'à 2028 | cite des outils, des versions ou des offres qui vieillissent |
+| `99-COULISSES/outillage/README.md` | perissable_2028 | jusqu'à 2028 | cite des outils, des versions ou des offres qui vieillissent |
+| `99-COULISSES/README.md` | perissable_2028 | jusqu'à 2028 | cite des outils, des versions ou des offres qui vieillissent |
+| `00-SOCLE/01_getting_started/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/01_getting_started/00_why_getting_started.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/01_getting_started/01_install.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/01_getting_started/02_day_one.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
@@ -241,6 +267,7 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `00-SOCLE/01_getting_started/verification_pack/drill_2.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/01_getting_started/verification_pack/drill_3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/01_getting_started/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/02-PROLOGUE/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/03_referentiel/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/03_referentiel/00_why_referentiel.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/03_referentiel/01_micro_quiz_15_mots.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
@@ -301,6 +328,7 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `00-SOCLE/04_fundamentals/07_regex/01_regex_basics.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/04_fundamentals/07_regex/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/04_fundamentals/08_git_core.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/04_fundamentals/08b_try_catch_basics.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/04_fundamentals/09_expliquer_a_3_publics_closures.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/04_fundamentals/10_EXO_LECTURE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/04_fundamentals/11_EXO_JEUNE_IA.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
@@ -331,7 +359,24 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `00-SOCLE/05_problem_solving/verification_pack/drill_2.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/05_problem_solving/verification_pack/drill_3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/05_problem_solving/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/06-MINDSET/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-1/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-1/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-1/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-1/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-1/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-2/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-2/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-2/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-2/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-2/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-3/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-3/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-3/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-3/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `00-SOCLE/BOSS-3/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `00-SOCLE/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `01-CADRAGE/01-PROBLEM-HUNT/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `01-CADRAGE/02_async/00_mental_model_js.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `01-CADRAGE/02_async/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `01-CADRAGE/02_async/00_why_async.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
@@ -399,7 +444,6 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `01-CADRAGE/03_debugging/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `01-CADRAGE/04_error_handling/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `01-CADRAGE/04_error_handling/00_why_error_handling.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `01-CADRAGE/04_error_handling/01_try_catch_basics.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `01-CADRAGE/04_error_handling/02_custom_errors.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `01-CADRAGE/04_error_handling/03_error_propagation.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `01-CADRAGE/04_error_handling/04_async_error_traps.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
@@ -415,7 +459,19 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `01-CADRAGE/04_error_handling/verification_pack/drill_2.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `01-CADRAGE/04_error_handling/verification_pack/drill_3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `01-CADRAGE/04_error_handling/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `01-CADRAGE/05-MVP-SPLIT/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `01-CADRAGE/BOSS-1/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `01-CADRAGE/BOSS-1/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `01-CADRAGE/BOSS-1/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `01-CADRAGE/BOSS-1/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `01-CADRAGE/BOSS-1/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `01-CADRAGE/BOSS-2/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `01-CADRAGE/BOSS-2/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `01-CADRAGE/BOSS-2/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `01-CADRAGE/BOSS-2/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `01-CADRAGE/BOSS-2/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `01-CADRAGE/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/01-USER-WIZARD/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/02_mini_projects/_templates/00_ADR_TEMPLATE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/02_mini_projects/_templates/01_POSTMORTEM_TEMPLATE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/02_mini_projects/_templates/02_TDD_JOURNAL_TEMPLATE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
@@ -903,6 +959,7 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `02-CONSTRUCTION/07_algorithms/verification_pack/drill_2.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/07_algorithms/verification_pack/drill_3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/07_algorithms/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/08-DATA-SPELLS/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/09_functional_js/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/09_functional_js/00_why_functional_js.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/09_functional_js/01_pure_functions.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
@@ -1033,8 +1090,10 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `02-CONSTRUCTION/14_architecture_patterns/verification_pack/drill_2.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/14_architecture_patterns/verification_pack/drill_3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/14_architecture_patterns/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/15-ARCHI-LAB/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/16_ddd_contrats/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/16_ddd_contrats/00_why_ddd_contrats.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/16_ddd_contrats/05_expliquer_cqrs_a_3_publics.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/16_ddd_contrats/06_EXO_JEUNE_IA.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/16_ddd_contrats/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/16_ddd_contrats/verification_pack/criteres.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
@@ -1098,8 +1157,55 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `02-CONSTRUCTION/19_api_craft/verification_pack/drill_2.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/19_api_craft/verification_pack/drill_3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/19_api_craft/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/20-API-DOJO/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-1/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-1/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-1/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-1/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-1/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-2/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-2/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-2/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-2/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-2/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-3/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-3/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-3/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-3/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-3/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-4/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-4/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-4/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-4/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-4/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-5/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-5/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-5/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-5/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-5/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-6/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-6/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-6/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-6/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-6/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-7/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-7/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-7/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-7/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-7/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-8/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-8/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-8/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-8/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-8/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-9/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-9/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-9/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-9/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `02-CONSTRUCTION/BOSS-9/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/MI-RETRO-BLOC-2-ARCHI.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `02-CONSTRUCTION/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/01-ROADMAP-RUN/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/02_web_inclusive/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/02_web_inclusive/00_why_web_inclusive.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/02_web_inclusive/01_a11y_why_it_matters.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
@@ -1132,6 +1238,7 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `03-PILOTAGE/02_web_inclusive/verification_pack/drill_2.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/02_web_inclusive/verification_pack/drill_3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/02_web_inclusive/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/03-QUALITY-SHIELD/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/04_security/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/04_security/00_why_security.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/04_security/01_xss_injection.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
@@ -1185,6 +1292,7 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `03-PILOTAGE/08_produit_cout_roi/verification_pack/drill_2.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/08_produit_cout_roi/verification_pack/drill_3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/08_produit_cout_roi/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/09-TEAM-QUEST/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/10_team_craft/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/10_team_craft/00_why_team_craft.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/10_team_craft/01_code_review.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
@@ -1221,8 +1329,35 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `03-PILOTAGE/11_leadership_mentorat/verification_pack/drill_2.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/11_leadership_mentorat/verification_pack/drill_3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/11_leadership_mentorat/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-1/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-1/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-1/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-1/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-1/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-2/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-2/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-2/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-2/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-2/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-3/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-3/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-3/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-3/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-3/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-4/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-4/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-4/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-4/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-4/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-5/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-5/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-5/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-5/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `03-PILOTAGE/BOSS-5/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `03-PILOTAGE/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/01-BONUS-VAULT/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `04-EPREUVE/01-BONUS-VAULT/01-why-this-level.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/02-TOOL-CAVE/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `04-EPREUVE/03_realtime/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `04-EPREUVE/03_realtime/00_why_realtime.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `04-EPREUVE/03_realtime/01_websockets/01_ws_basics.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
@@ -1252,6 +1387,19 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `04-EPREUVE/04_ai_native_dev/verification_pack/drill_2.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `04-EPREUVE/04_ai_native_dev/verification_pack/drill_3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `04-EPREUVE/04_ai_native_dev/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/05-BIG-APP-SNOOP/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/06-CAPSTONE-ARENA/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/06-CAPSTONE-ARENA/07-semaine-double-derive.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/BOSS-1/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/BOSS-1/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/BOSS-1/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/BOSS-1/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/BOSS-1/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/BOSS-2/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/BOSS-2/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/BOSS-2/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/BOSS-2/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `04-EPREUVE/BOSS-2/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `04-EPREUVE/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `05-MAITRISE/01_databases/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `05-MAITRISE/01_databases/00_why_databases.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
@@ -1320,6 +1468,7 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `05-MAITRISE/04_ai_agents_and_autonomy/verification_pack/drill_2.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `05-MAITRISE/04_ai_agents_and_autonomy/verification_pack/drill_3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `05-MAITRISE/04_ai_agents_and_autonomy/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/05-DAY-TO-LEGEND/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `05-MAITRISE/06_annexes/00_cartographier_codebase_inconnue.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `05-MAITRISE/06_annexes/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `05-MAITRISE/06_annexes/00_why_annexes.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
@@ -1434,23 +1583,41 @@ Total des fichiers portant un en-tête `stability:` : 1421.
 | `05-MAITRISE/08_maitrise_staff_engineer/verification_pack/drill_2.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `05-MAITRISE/08_maitrise_staff_engineer/verification_pack/drill_3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `05-MAITRISE/08_maitrise_staff_engineer/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-1/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-1/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-1/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-1/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-1/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-2/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-2/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-2/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-2/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-2/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-3/01-PROJET-REEL.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-3/02-CONTRAINTE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-3/03-DEFENSE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-3/04-VERDICT.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `05-MAITRISE/BOSS-3/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `05-MAITRISE/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/02-NODE_VERSION.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/01_EXO_JEUNE_IA.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/verification_pack/criteres.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/verification_pack/drill_1.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/verification_pack/drill_2.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/verification_pack/drill_3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/03-TECH-ILA/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/04-UNIVERS_AUTORISES.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/05-DEV_JOURNAL_HEBDO.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/08-SIMULATION-ENTREPRISE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/09-PEREMPTION-2027.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/assets/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `06-ANNEXES-TRANSVERSES/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `99-COULISSES/archives/ARCHIVE-PROMPT-FUSION-V3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `99-COULISSES/archives/ARCHIVE-PROTOCOLE-AUDIT-MYFUNNYJS.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/assets/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/DEV_JOURNAL_HEBDO.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `99-COULISSES/archives/DECISION-GRIMOIRE-5-COLONNES.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `99-COULISSES/archives/sources/README-source-myfunnyjs.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
+| `99-COULISSES/archives/sources/START_HERE-myfunnyjs.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
 | `99-COULISSES/meta/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/NODE_VERSION.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/README-source-myfunnyjs.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/START_HERE-myfunnyjs.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/00_prereq_check.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/01_EXO_JEUNE_IA.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/verification_pack/criteres.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/verification_pack/drill_1.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/verification_pack/drill_2.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/verification_pack/drill_3.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/TECH-ILA/verification_pack/README.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |
-| `06-ANNEXES-TRANSVERSES/UNIVERS_AUTORISES.md` | intemporel | 5 ans et + | noyau dur, durable au-delà de cinq ans |

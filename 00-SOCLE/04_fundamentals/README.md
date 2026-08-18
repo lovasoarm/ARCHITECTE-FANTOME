@@ -1,13 +1,14 @@
 ---
 stability: intemporel
 acte: restituer
+route: survie
 ---
 
 # 00-SOCLE/04_fundamentals
 
 Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -17,6 +18,8 @@ Liste generee : tout fichier de `00-SOCLE/04_fundamentals` est joignable depuis 
 - [00_why_fundamentals.md](00_why_fundamentals.md)
 - [08_git_core.md](08_git_core.md)
 - [08_git_core_minimini_projet.md](08_git_core_minimini_projet.md)
+- [08b_try_catch_basics.md](08b_try_catch_basics.md)
+- [08b_try_catch_basics_minimini_projet.md](08b_try_catch_basics_minimini_projet.md)
 - [09_expliquer_a_3_publics_closures.md](09_expliquer_a_3_publics_closures.md)
 - [10_EXO_LECTURE.md](10_EXO_LECTURE.md)
 - [11_EXO_JEUNE_IA.md](11_EXO_JEUNE_IA.md)

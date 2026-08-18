@@ -49,7 +49,7 @@ compare `rss` à t=60s entre `leaky.js` et `fixed.js`. Consigne le delta dans
 - diff `leaky.js → fixed.js`,
 - courbe `rss` finale prouvant le fix.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

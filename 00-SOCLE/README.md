@@ -7,7 +7,7 @@ acte: restituer
 
 Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -19,5 +19,8 @@ Liste generee : tout fichier de `00-SOCLE` est joignable depuis ici, aucun docum
 - [04_fundamentals/](04_fundamentals/README.md)
 - [05_problem_solving/](05_problem_solving/README.md)
 - [06-MINDSET/](06-MINDSET/README.md)
+- [BOSS-1/](BOSS-1/README.md)
+- [BOSS-2/](BOSS-2/README.md)
+- [BOSS-3/](BOSS-3/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

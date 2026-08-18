@@ -8,7 +8,7 @@ acte: restituer
 > **Statut de pérennité :** **intemporel** | évolutif | périssable
 > Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
-> **CE MODULE RÉUTILISE** : stack trace (00-SOCLE/04_fundamentals), async & event loop (01-CADRAGE/02_async), try/catch synchrone (01-CADRAGE/04_error_handling/01_try_catch_basics.md, vu en préalable du module 02_async). Ce module te donne juste assez pour lire une stack trace autour d'une erreur catchée, pas pour maîtriser la gestion d'erreur en profondeur : ça, c'est le reste du module 04_error_handling, juste après celui-ci. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : stack trace (00-SOCLE/04_fundamentals), async & event loop (01-CADRAGE/02_async), try/catch synchrone (acquis du socle : `00-SOCLE/04_fundamentals/08b_try_catch_basics.md`). Ce module te donne juste assez pour lire une stack trace autour d'une erreur catchée, pas pour maîtriser la gestion d'erreur en profondeur : ça, c'est le reste du module 04_error_handling, juste après celui-ci. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # 00 : Pourquoi le debugging
 

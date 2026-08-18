@@ -39,7 +39,7 @@ imprécise). Tu le corriges pour qu'il devienne strict : le signaler dans
 le POSTMORTEM comme *découverte* (pas comme régression que tu aurais
 causée).
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

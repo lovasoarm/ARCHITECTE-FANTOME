@@ -1,3 +1,9 @@
+---
+stability: stable
+acte: comprendre
+route: complete
+---
+
 # Niveau 00 : Prologue
 
 > Mode de vérification des exercices de ce module : défense orale enregistrée contre grille ([../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md](../../05-MAITRISE/08_maitrise_staff_engineer/challenge.md)).
@@ -54,7 +60,7 @@ Prérequis : aucun. C'est l'entrée du jeu.
 
 - Tu sais pourquoi "j'ai codé cette feature" n'est pas une compétence.
 - Tu sais comment utiliser ce curriculum sans le trahir (pas de shortcuts, pas de saut de niveau).
-- Tu connais la carte complète des 16 niveaux et ce que chacun débloque concrètement.
+- Tu connais la carte complète des six paliers et ce que chacun débloque concrètement.
 - Tu connais les 7 règles du joueur, celles qui reviennent dans chaque niveau suivant.
 - Tu as un grimoire de référence à relire quand tu doutes.
 
@@ -62,7 +68,7 @@ Prérequis : aucun. C'est l'entrée du jeu.
 
 - [01-why-this-level.md](01-why-this-level.md) : pourquoi la plupart des devs stagnent
 - [02-how-to-use-this-curriculum.md](02-how-to-use-this-curriculum.md) : règle du livrable, rythme, auto-évaluation
-- [03-the-map.md](03-the-map.md) : les 16 niveaux, ce qu'ils débloquent
+- [03-the-map.md](03-the-map.md) : les six paliers, ce qu'ils débloquent (carte générée depuis le disque)
 - [04-rules-of-the-game.md](04-rules-of-the-game.md) : les 7 règles du joueur
 - [challenge.md](challenge.md) : ton contrat de départ, le livrable daté du niveau
 - [grimoire.md](grimoire.md) : mémo dense
@@ -88,7 +94,7 @@ boss-fight suppose une compétence à mettre sous pression : il n'y en a pas enc
 Ce qui reste obligatoire ici : [challenge.md](challenge.md), parce que le choix du projet
 fil rouge est un vrai livrable daté, réutilisé par tous les niveaux suivants.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

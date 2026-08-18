@@ -67,3 +67,7 @@ Cette vue est générée depuis les tags `stability:` déjà présents dans chaq
 - Un fichier `perissable` de plus de 24 mois sans revue = candidat urgent à relecture.
 - Un fichier `intemporel` n'a besoin d'être touché que si le mécanisme sous-jacent change (rare).
 - Seules trois valeurs de tag sont valides : `intemporel`, `stable`, `perissable`. Toute autre valeur (variante, typo) casse ce comptage silencieusement : vérifie avec `grep -rh "^stability:" --include="*.md" . | sort -u` que seules ces trois valeurs apparaissent avant de faire confiance à ce fichier.
+
+## Annexe declenchee ici
+
+- [11-ANNEXE-perennite.md](../../06-ANNEXES-TRANSVERSES/11-ANNEXE-perennite.md) : la doctrine de perennite du depot, a lire une fois la grille intemporel/perissable comprise.

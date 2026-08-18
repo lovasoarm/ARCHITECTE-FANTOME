@@ -35,7 +35,7 @@ le POSTMORTEM.
 - Timing : si un test dépend de délais, utilise `setTimeout` avec des
   valeurs > 50 ms pour éviter les flakes.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 

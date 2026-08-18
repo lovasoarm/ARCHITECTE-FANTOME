@@ -49,6 +49,12 @@ Trois règles de recevabilité, non négociables :
 3. **Devise et unité explicites** : un prix à l'heure et un prix au mois ne se comparent pas
    sans conversion écrite.
 
+**Repli hors ligne, si et seulement si tu ne peux pas relever toi-même** : le dépôt fournit
+12 lignes réellement sourcées (fournisseur, poste, prix, devise, unité, date, URL complète) dans
+[RELEVE-REFERENCE-2026.md](RELEVE-REFERENCE-2026.md). Elles servent de garde-fou d'ordre de
+grandeur, jamais de réponse : un montant recopié de là sans avoir ouvert l'URL ne se défend pas
+en soutenance, et l'exercice reste non validé.
+
 Protocole de sourçage complet :
 [../../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md](../../99-COULISSES/meta/PROTOCOLE-DONNEE-SOURCEE.md).
 

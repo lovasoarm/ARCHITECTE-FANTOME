@@ -1,6 +1,6 @@
 # Mi-rétrospective : bloc CONSTRUCTION, première moitié (modules 01 à 10)
 
-[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
+[Sommaire](../99-COULISSES/archives/CURRICULUM-projectfunny.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/06-ROADMAP-rythmes.md) | [Style](../06-ANNEXES-TRANSVERSES/meta/_STYLE.md)
 
 Ce bloc compte 20 modules, le double de n'importe quel autre bloc du parcours. Une seule
 rétrospective en sortie, après le module 20, laisse dix modules sans jamais se retourner
@@ -39,7 +39,7 @@ petit, et surtout n'y touche pas encore : la correction vient après la passe 2,
 ### Rappel de la carte (reference, pas decouverte) : Niveau 2 Frontend (bloquant)
 
 Dix modules de construction plus tard, le
-[Niveau 2 Frontend](../06-ANNEXES-TRANSVERSES/TECH-ILA/tech-ila/02-niveau-2-frontend.md) de
+[Niveau 2 Frontend](../06-ANNEXES-TRANSVERSES/03-TECH-ILA/tech-ila/02-niveau-2-frontend.md) de
 TECH-ILA montre où ces mécanismes atterrissent côté interface : état, stratégies de rendu,
 performance perçue, accessibilité. Vingt minutes de lecture.
 

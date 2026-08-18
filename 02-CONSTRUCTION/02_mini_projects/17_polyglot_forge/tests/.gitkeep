@@ -1,0 +1,15 @@
+# Ce fichier existe pour que git transporte le dossier vide.
+# Arborescence attendue du mini-projet 17_polyglot_forge :
+#
+#   17_polyglot_forge/
+#     cahierdescharges.md   consigne
+#     RULES.md              contraintes non negociables
+#     SECURITY_GATE.md      porte securite, binaire
+#     src/                  ton code (ici)
+#     tests/                tes tests
+#     ADR/                  tes decisions datees
+#     verification_pack/    la grille qui valide
+#
+# Verification :
+#   node 99-COULISSES/outillage/controle_livraison.mjs --strict
+#   (puis la grille de 17_polyglot_forge/verification_pack/criteres.md)

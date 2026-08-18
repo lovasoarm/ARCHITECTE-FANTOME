@@ -7,7 +7,7 @@ acte: restituer
 
 Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
 
-<!-- CONTENU-DOSSIER:debut (genere par outils/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
 
 ## Contenu du dossier
 
@@ -36,5 +36,14 @@ Liste generee : tout fichier de `02-CONSTRUCTION` est joignable depuis ici, aucu
 - [18_web_concepts/](18_web_concepts/README.md)
 - [19_api_craft/](19_api_craft/README.md)
 - [20-API-DOJO/](20-API-DOJO/README.md)
+- [BOSS-1/](BOSS-1/README.md)
+- [BOSS-2/](BOSS-2/README.md)
+- [BOSS-3/](BOSS-3/README.md)
+- [BOSS-4/](BOSS-4/README.md)
+- [BOSS-5/](BOSS-5/README.md)
+- [BOSS-6/](BOSS-6/README.md)
+- [BOSS-7/](BOSS-7/README.md)
+- [BOSS-8/](BOSS-8/README.md)
+- [BOSS-9/](BOSS-9/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
