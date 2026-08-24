@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L3
+perturbation_modes: [constraints_injectees, regression]
+anti_recipe_key: constraints_injectees+regression
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+
 # Couplage, cohésion, modules, dépendances dirigées
+
+Temps de lecture ~7 min
 
 ## Le piège
 
@@ -113,7 +127,6 @@ Système sain (acyclique) :
   Le Domaine ne connaît ni l'UI ni l'Infra.
   --> on peut changer l'UI ou l'Infra sans toucher au Domaine.
 
-
 Système malade (cycle) :
 
   UI --> Domaine --> Infra --> UI
@@ -186,3 +199,7 @@ détails internes.
   et fonctionne en apparence.
 - Donne un exemple de couplage de contenu que tu as écrit ou vu, et comment le réécrire en
   couplage de donnée.
+
+## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
+
+Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.

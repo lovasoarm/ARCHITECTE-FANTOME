@@ -1,3 +1,14 @@
+---
+stability: stable
+cognitive_level: L3
+perturbation_modes: [temps_limite, decision_organisationnelle]
+anti_recipe_key: temps_limite+decision_organisationnelle
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : jauge de chakra :** optimiser sans mesurer, c'est demander à Naruto de vider son chakra sans regarder la jauge. D'abord la mesure, ensuite le coup de génie ; sinon tu optimises peut-être le mauvais ralentissement.
+
 # Pagination, rate limiting, cache HTTP, latence perçue
 
 ## La scène
@@ -50,7 +61,7 @@ Pagination par curseur (basée sur une clé stable, ex: dernier ID vu) :
 }
 ```
 
-Le choix par défaut raisonnable pour la plupart des API à volume croissant est le curseur, 
+Le choix par défaut raisonnable pour la plupart des API à volume croissant est le curseur,
 l'offset devient un piège de performance et de cohérence dès que le volume dépasse quelques
 milliers de lignes actives. La taille de page doit avoir un maximum imposé côté serveur
 (`size` plafonné, ex. 100), sinon un client peut demander `size=999999` et recréer
@@ -273,10 +284,10 @@ await fetch("/paiements", {
 
 ### Compromis pendant une partition
 
-| Option | Coût | Bénéfice | Quand choisir |
-| --- | --- | --- | --- |
-| A : refuser de répondre | Service indisponible pendant la partition | Aucune donnée fausse émise | Quand une donnée fausse coûte plus cher qu'une absence de service : comptage de capacité réglementaire, places restantes, solde |
-| B : répondre avec la dernière valeur connue | Décision possible sur donnée périmée | Service disponible, dégradé mais utile | Quand l'indisponibilité coûte plus cher que l'approximation : affichage d'un planning, liste de créneaux consultée |
+| Option                                      | Coût                                      | Bénéfice                               | Quand choisir                                                                                                                   |
+| ------------------------------------------- | ----------------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| A : refuser de répondre                     | Service indisponible pendant la partition | Aucune donnée fausse émise             | Quand une donnée fausse coûte plus cher qu'une absence de service : comptage de capacité réglementaire, places restantes, solde |
+| B : répondre avec la dernière valeur connue | Décision possible sur donnée périmée      | Service disponible, dégradé mais utile | Quand l'indisponibilité coûte plus cher que l'approximation : affichage d'un planning, liste de créneaux consultée              |
 
 Analogie : un appel radio sans accusé de réception en navigation maritime, et une commande
 criée au passe en cuisine pendant le coup de feu.
@@ -297,7 +308,7 @@ réel du serveur.
 1. Une IA te propose un retry avec backoff exponentiel sur un appel de paiement. Le code est
    propre. Qu'est-ce qui manque, et quel est le montant du bug ?
 2. Sur ton comptage de capacité du capstone
-   ([12-CAPSTONE-ARENA/03-deliverables.md](../../04-EPREUVE/06-CAPSTONE-ARENA/03-deliverables.md)), choisis
+   (../../04-EPREUVE/05-CAPSTONE-ARENA/03-deliverables.md)), choisis
    l'option A ou B pendant une partition, et dis ce que ton choix rend faux.
 3. Pourquoi un timeout court ne réduit-il pas le nombre d'opérations exécutées côté distant ?
 
@@ -336,3 +347,7 @@ réel du serveur.
   configurés que contre des attaques délibérées.
 - Donne un exemple de technique qui réduit la latence perçue sans réduire la latence réelle,
   et explique pourquoi ça compte quand même pour l'utilisateur.
+
+## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
+
+Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.

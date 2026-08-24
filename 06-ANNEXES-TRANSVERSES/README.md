@@ -5,55 +5,32 @@ acte: restituer
 
 # 06-ANNEXES-TRANSVERSES
 
-Porte d'entree du dossier. Une annexe n'est pas un chapitre : c'est une piece appelee par un
-module precis du fil, a un moment precis. Les entrees sont donc **numerotees par ordre d'appel**,
-pas par ordre alphabetique. Une annexe que plus aucun module n'appelle descend en
-`99-COULISSES/` : le lint [99-COULISSES/outillage/verifier_annexes.mjs](../99-COULISSES/outillage/verifier_annexes.mjs)
-refuse la livraison si une entree n'est ni numerotee ni rattachee.
+Porte d'entrée du dossier. Une annexe n'est pas un chapitre : c'est une pièce appelée par un module précis du fil, à un moment précis.
+
+L'index ci-dessous est la **carte canonique d'utilisation des annexes**. La colonne **Appel** indique quand ouvrir une annexe ; la colonne **Fichier** indique le chemin canonique. Il ne constitue pas une progression parallèle et ne remplace pas `PROGRESSION.md`.
 
 ## Index par ordre d'appel
 
-| N | Fichier | Module declencheur (chemin exact) | Moment d'ouverture | Ce que ca debloque |
-| --- | --- | --- | --- | --- |
-| 01 | [01-support.md](01-support.md) | `00-SOCLE/01_getting_started/README.md` | Premier blocage de plus de trente minutes | Ou chercher de l'aide, dans quel ordre, avant d'appeler une IA |
-| 02 | [02-NODE_VERSION.md](02-NODE_VERSION.md) | `00-SOCLE/01_getting_started/README.md` | Jour de l'installation | La version de Node supposee par tout le depot, fixee une fois |
-| 03 | [03-TECH-ILA/](03-TECH-ILA/README.md) | `00-SOCLE/01_getting_started/README.md` puis 5 autres modules | Parcours parallele obligatoire, 6 jalons | Ou les mecanismes appris se retrouvent dans les technologies reelles |
-| 04 | [04-UNIVERS_AUTORISES.md](04-UNIVERS_AUTORISES.md) | `00-SOCLE/02-PROLOGUE/04-rules-of-the-game.md` | Avant d'ecrire ton premier exemple | La liste blanche des univers narratifs, opposable par le lint |
-| 05 | [05-DEV_JOURNAL_HEBDO.md](05-DEV_JOURNAL_HEBDO.md) | `00-SOCLE/03_referentiel/README.md` | Fin de la premiere semaine | Le rituel de journal qui rend la progression mesurable |
-| 06 | [06-ROADMAP-rythmes.md](06-ROADMAP-rythmes.md) | `01-CADRAGE/RETRO-BLOC-1-CADRAGE.md` | Premiere retro de bloc | Trois rythmes de parcours tenables, et comment en changer |
-| 07 | [07-CONTRADICTEUR.md](07-CONTRADICTEUR.md) | `02-CONSTRUCTION/16_ddd_contrats/05_expliquer_cqrs_a_3_publics.md` | Premiere defense d'une decision | Le protocole d'objection solo, reutilise par tous les Boss |
-| 08 | [08-SIMULATION-ENTREPRISE.md](08-SIMULATION-ENTREPRISE.md) | `02-CONSTRUCTION/16_ddd_contrats/README.md` | Des qu'un module suppose une equipe | Trois protocoles solo : comite d'architecture, direction financiere, astreinte |
-| 09 | [09-PEREMPTION-2027.md](09-PEREMPTION-2027.md) | `03-PILOTAGE/07_cloud_foundations/README.md` | A l'ouverture du module le plus perissable | Ce qui perime, quand, et avec quelle source le reverifier |
-| 10 | [10-COMMUNAUTE.md](10-COMMUNAUTE.md) | `05-MAITRISE/06_annexes/13_portfolio_publication.md` | Au moment de publier | Ou publier et comment encaisser une contradiction publique |
-| 11 | [11-ANNEXE-perennite.md](11-ANNEXE-perennite.md) | `05-MAITRISE/06_annexes/20_PERISSABILITE.md` | Apres la grille intemporel/perissable | La doctrine de perennite du depot |
-| 12 | [12-EPILOGUE.md](12-EPILOGUE.md) | `05-MAITRISE/RETRO-BLOC-5-MAITRISE.md` | Retro finale ecrite et signee | La fin du fil, sans felicitations creuses |
-| 13 | [13-ANNEXE-et-apres.md](13-ANNEXE-et-apres.md) | `05-MAITRISE/RETRO-BLOC-5-MAITRISE.md` | Apres l'epilogue | Ce qui vient apres le depot : marche, entretien, entretien du niveau |
-| 14 | [14-PREUVES-MODELES/](14-PREUVES-MODELES/README.md) | `04-EPREUVE/06-CAPSTONE-ARENA/00_prereq_check.md` et les modules Staff du palier 03 | Avant d'ecrire ta premiere piece de preuve | Les sept modeles de livrables Staff, forme attendue et criteres de refus |
+| Appel | Fichier canonique | Module déclencheur | Moment d'ouverture | Ce que ça débloque |
+|---:|---|---|---|---|
+| 01 | [02-OU-CHERCHER-DE-L-AIDE.md](02-OU-CHERCHER-DE-L-AIDE.md) | `00-SOCLE/01-GETTING-STARTED/README.md` | Premier blocage de plus de trente minutes | Où chercher de l'aide, dans quel ordre, avant d'appeler une IA |
+| 02 | [03-NODE_VERSION.md](03-NODE_VERSION.md) | `00-SOCLE/01-GETTING-STARTED/README.md` | Jour de l'installation | La version de Node supposée par tout le dépôt |
+| 03 | [`04-TECH-ILA/`](04-TECH-ILA/README.md) | Jalons indiqués par TECH-ILA et les modules concernés | Compagnon intégré, selon le jalon | Relier les mécanismes aux technologies réelles |
+| 04 | [05-UNIVERS_AUTORISES.md](05-UNIVERS_AUTORISES.md) | `00-SOCLE/02-PROLOGUE/04-rules-of-the-game.md` | Avant le premier exemple | La liste blanche des univers narratifs |
+| 05 | [06-DEV_JOURNAL_HEBDO.md](06-DEV_JOURNAL_HEBDO.md) | `00-SOCLE/03-REFERENTIEL/README.md` | Fin de la première semaine | Le rituel de journal de progression |
+| 06 | [08-ROADMAP-rythmes.md](08-ROADMAP-rythmes.md) | `01-CADRAGE/02A-RETRO-BLOC-1-CADRAGE.md` | Première rétro de bloc | Les rythmes de parcours et leur changement |
+| 07 | [09-CONTRADICTEUR.md](09-CONTRADICTEUR.md) | `02-CONSTRUCTION/16-DDD-CONTRATS/07-expliquer_cqrs_a_3_publics.md` | Première défense d'une décision | Le protocole d'objection réutilisable |
+| 08 | [10-SIMULATION-ENTREPRISE.md](10-SIMULATION-ENTREPRISE.md) | `02-CONSTRUCTION/16-DDD-CONTRATS/README.md` | Premier contexte supposant une équipe | Les simulations d'architecture, finance et astreinte |
+| 09 | [11-PEREMPTION-2027.md](11-PEREMPTION-2027.md) | `03-PILOTAGE/07-CLOUD-FOUNDATIONS/README.md` | Ouverture du module le plus périssable | Ce qui doit être re-vérifié et quand |
+| 10 | [12-COMMUNAUTE.md](12-COMMUNAUTE.md) | `05-MAITRISE/06-ANNEXES/14-portfolio_publication.md` | Au moment de publier | Publication et contradiction publique |
+| 11 | [13-ANNEXE-perennite.md](13-ANNEXE-perennite.md) | `05-MAITRISE/06-ANNEXES/18-PERISSABILITE.md` | Après la grille intemporel/périssable | La doctrine de pérennité |
+| 12 | [14-EPILOGUE.md](14-EPILOGUE.md) | `05-MAITRISE/02A-RETRO-BLOC-5-MAITRISE.md` | Rétro finale | La sortie du fil |
+| 13 | [15-ANNEXE-et-apres.md](15-ANNEXE-et-apres.md) | `05-MAITRISE/02A-RETRO-BLOC-5-MAITRISE.md` | Après l'épilogue | La suite du parcours après le dépôt |
+| 14 | [`17-PREUVES-MODELES/`](17-PREUVES-MODELES/README.md) | `04-EPREUVE/05-CAPSTONE-ARENA/00-PREREQUIS.md` et modules Staff | Avant la première preuve Staff | Modèles et critères de refus des livrables |
+| 15 | [17A-PROTOCOLE-DONNEE-SOURCEE.md](17A-PROTOCOLE-DONNEE-SOURCEE.md) | `03-PILOTAGE/07-CLOUD-FOUNDATIONS/06A-BUDGET-CLOUD.md` | Premier livrable chiffré | Relevé daté et sourcé |
 
-Hors numerotation, parce que ce ne sont pas des annexes appelees par un module : ce README
-(porte d'entree), `LICENSE-projectfunny` (licence heritee), `meta/` (gabarits de style) et
-`assets/` (images).
+## Hors ordre d'appel
 
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
+Le `README.md` courant, `LICENSE`, `99-ASSETS-NON-LECTURE/` et [04A-CARTE-DU-PARCOURS.md](04A-CARTE-DU-PARCOURS.md) sont des infrastructures de navigation ou de licence. Ils ne sont pas des annexes déclenchées par une étape et ne reçoivent donc pas d'identifiant d'appel.
 
-## Contenu du dossier
-
-Liste generee : tout fichier de `06-ANNEXES-TRANSVERSES` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [01-support.md](01-support.md)
-- [02-NODE_VERSION.md](02-NODE_VERSION.md)
-- [04-UNIVERS_AUTORISES.md](04-UNIVERS_AUTORISES.md)
-- [05-DEV_JOURNAL_HEBDO.md](05-DEV_JOURNAL_HEBDO.md)
-- [06-ROADMAP-rythmes.md](06-ROADMAP-rythmes.md)
-- [07-CONTRADICTEUR.md](07-CONTRADICTEUR.md)
-- [08-SIMULATION-ENTREPRISE.md](08-SIMULATION-ENTREPRISE.md)
-- [09-PEREMPTION-2027.md](09-PEREMPTION-2027.md)
-- [10-COMMUNAUTE.md](10-COMMUNAUTE.md)
-- [11-ANNEXE-perennite.md](11-ANNEXE-perennite.md)
-- [12-EPILOGUE.md](12-EPILOGUE.md)
-- [13-ANNEXE-et-apres.md](13-ANNEXE-et-apres.md)
-- [03-TECH-ILA/](03-TECH-ILA/README.md)
-- [14-PREUVES-MODELES/](14-PREUVES-MODELES/README.md)
-- [assets/](assets/README.md)
-
-<!-- CONTENU-DOSSIER:fin -->
+La carte `04A-CARTE-DU-PARCOURS.md` reste volontairement distincte de l'index d'annexes : elle décrit le parcours global, tandis que cet index explique **quand ouvrir une annexe**.

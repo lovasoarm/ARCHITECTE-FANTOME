@@ -1,4 +1,27 @@
+---
+stability: stable
+cognitive_level: L3
+perturbation_modes: [regression, temps_limite]
+anti_recipe_key: regression+temps_limite
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : mur de siège :** le bug n'est pas “où ça a explosé ?”, mais “où la première fissure est-elle apparue ?”. Ici, chaque log, test et reproduction est une empreinte dans le mur.
+
 # Erreurs exploitables et idempotence
+
+<!-- AF-DIAGRAM:idempotence -->
+
+```text
+Request #1 ───────► [Operation] ───────► Effect E
+Request #2 ───────► [Operation] ───────► Effect E
+Request #3 ───────► [Operation] ───────► Effect E
+
+Résultat observable après répétition : E
+```
+
+Une opération idempotente produit le même effet observable malgré la répétition de la même requête.
 
 ## La scène
 
@@ -35,6 +58,19 @@ réseau anodine devient un échec permanent pour l'utilisateur, ce qui est pire.
 **"comment rendre le retry sans danger"**. C'est exactement ce que l'idempotence résout.
 
 ### Idempotence : la propriété qui rend un retry sûr
+
+<!-- AF-DIAGRAM:retry -->
+
+```text
+┌────────┐   fail   ┌─────────┐   wait   ┌────────┐
+│ call 1 │─────────►│ backoff │────────►│ call 2 │
+└────────┘          └─────────┘          └────┬───┘
+                                              │ fail
+                                              ▼
+                                        wait plus long
+```
+
+Un retry sain combine décision de retry, délai de backoff et limite d’essais pour éviter d’amplifier la panne.
 
 Une opération est idempotente si l'exécuter plusieurs fois produit le même résultat que
 l'exécuter une seule fois. Certaines opérations le sont par nature, d'autres ne le sont
@@ -225,3 +261,7 @@ d'idempotence, sinon deux appels identiques sont deux événements distincts pou
   pour un client qui doit réagir automatiquement à l'erreur.
 - Donne un exemple où retenter une requête sans backoff peut aggraver une panne au lieu de
   la résorber.
+
+## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
+
+Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.

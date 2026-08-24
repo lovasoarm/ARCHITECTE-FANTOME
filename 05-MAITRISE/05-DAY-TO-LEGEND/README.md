@@ -1,20 +1,27 @@
-# Niveau 13 : Day-to-Legend
+---
+stability: intemporel
+acte: comprendre
+route: complete
+---
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Niveau précédent](../../04-EPREUVE/06-CAPSTONE-ARENA/README.md) | [Niveau suivant](../../04-EPREUVE/02-TOOL-CAVE/README.md)
+# Module 05-MAITRISE/05-DAY-TO-LEGEND : Day-to-Legend
 
-**Ce niveau réutilise :** [12-CAPSTONE-ARENA](../../04-EPREUVE/06-CAPSTONE-ARENA/04-evaluation-grid.md) : la grille d'evaluation chiffrée, réutilisee comme modèle pour batir ton propre suivi de progression.
+[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../04-EPREUVE/05-CAPSTONE-ARENA/README.md) | [Niveau suivant](../../04-EPREUVE/02-TOOL-CAVE/README.md)
+
+**Ce niveau réutilise :** [12-CAPSTONE-ARENA](../../04-EPREUVE/05-CAPSTONE-ARENA/04-evaluation-grid.md) : la grille d'evaluation chiffrée, réutilisee comme modèle pour batir ton propre suivi de progression.
 
 **Auto-test d'entrée :**
+
 1. Qu'est-ce qu'un working agreement, et a quel probleme repond-il ?
 2. Cite deux flux Git differents et le critère qui fait choisir l'un plutôt que l'autre.
 3. Pourquoi dire non a une demande intenable ne doit-il pas casser la relation avec la personne qui demande ?
 
 **Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
-[le grimoire du niveau précédent](../../04-EPREUVE/06-CAPSTONE-ARENA/grimoire.md) (20 minutes), puis refais son
-[challenge](../../04-EPREUVE/06-CAPSTONE-ARENA/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
-trou amont, c'est attribuer au niveau 13 une difficulté qui vient du niveau 12.
+[le grimoire du niveau précédent](../../04-EPREUVE/05-CAPSTONE-ARENA/90-grimoire.md) (20 minutes), puis refais son
+[challenge](../../04-EPREUVE/05-CAPSTONE-ARENA/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
+trou amont, c'est attribuer au module `05-MAITRISE/05-DAY-TO-LEGEND` une difficulté qui vient du module `04-EPREUVE/05-CAPSTONE-ARENA`.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) (règle de calcul : voir [_STYLE.md](../.meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que c'est
 
@@ -28,7 +35,7 @@ confondent "travailler beaucoup" avec "s'entraîner". Ce niveau sépare les deux
 une routine concrète, tenable sur douze semaines, pour que ta courbe de compétence continue
 de monter après que ce curriculum soit fini.
 
-Prérequis : avoir terminé au moins le Niveau 12 (Capstone-Arena). Ce niveau parle de
+Prérequis : avoir terminé au moins le Module `04-EPREUVE/05-CAPSTONE-ARENA` (Capstone-Arena). Ce niveau parle de
 progression continue ; il faut d'abord avoir livré quelque chose de complet pour savoir ce
 qu'on cherche à améliorer.
 
@@ -47,13 +54,13 @@ qu'on cherche à améliorer.
 
 ## Structure du niveau
 
-- [01-why-this-level.md](01-why-this-level.md) : pourquoi la plupart des devs plafonnent après 3-5 ans
+- [01-01-why-this-level.md](01-01-why-this-level.md) : pourquoi la plupart des devs plafonnent après 3-5 ans
 - [02-daily-training.md](02-daily-training.md) : routine quotidienne : lecture, katas, journal
 - [03-learning-loops.md](03-learning-loops.md) : boucles de feedback, deliberate practice, sortir des plateaux
 - [04-career-and-craft.md](04-career-and-craft.md) : seniorité réelle, choix de projets, réputation technique
-- [challenge.md](challenge.md) : construire et tenir une routine 12 semaines
-- [boss-fight.md](boss-fight.md) : une évaluation de performance floue, sans métrique juste
-- [grimoire.md](grimoire.md) : mémo dense
+- [95-challenge.md](95-challenge.md) : construire et tenir une routine 12 semaines
+- [96-boss-fight.md](96-boss-fight.md) : une évaluation de performance floue, sans métrique juste
+- [90-grimoire.md](90-grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 
@@ -70,3 +77,29 @@ mode" à apprendre cette année. Les technologies changent tous les dix-huit moi
 mécanismes d'apprentissage et de progression que ce niveau décrit n'ont pas changé depuis
 que des humains apprennent des métiers complexes. C'est un pari volontaire sur ce qui reste
 vrai longtemps plutôt que sur ce qui est vrai cette année.
+
+<!-- PIECES-MODULE:debut -->
+
+## Les pièces de ce module
+
+- [`00-PREREQUIS.md`](00-PREREQUIS.md) : Auto-test d'entrée : à passer avant d'ouvrir le module
+- [`95-challenge.md`](95-challenge.md) : Challenge : l'épreuve du module
+- [`90-grimoire.md`](90-grimoire.md) : Grimoire : ce que tu dois pouvoir restituer
+- [`96-boss-fight.md`](96-boss-fight.md) : Boss : l'épreuve du palier, une seule fois
+
+<!-- PIECES-MODULE:fin -->
+
+## Contenu du dossier
+
+<!-- CONTENU-DOSSIER:debut -->
+
+- [Auto-test d'entrée : `05-DAY-TO-LEGEND`](00-PREREQUIS.md)
+- [Pourquoi ce niveau existe](01-01-why-this-level.md)
+- [La routine d'entraînement quotidienne](02-daily-training.md)
+- [Boucles de feedback, pratique délibérée, sortir des plateaux](03-learning-loops.md)
+- [Progression réelle, seniorité, choix de projets, réputation](04-career-and-craft.md)
+- [Boss Fight : L'entretien de promotion sans métrique claire](96-boss-fight.md)
+- [Challenge : Construire et tenir une routine 12 semaines](95-challenge.md)
+- [Grimoire : Day-to-Legend](90-grimoire.md)
+
+<!-- CONTENU-DOSSIER:fin -->

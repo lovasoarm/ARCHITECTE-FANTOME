@@ -1,3 +1,14 @@
+---
+stability: stable
+cognitive_level: L3
+perturbation_modes: [defaut_cache, solution_concurrente]
+anti_recipe_key: defaut_cache+solution_concurrente
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Modéliser le réel : entités, relations, invariants
 
 ## La scène
@@ -204,3 +215,7 @@ réalité bouge.
 - Prends un invariant du club d'escalade ou de la refacturation d'énergie et explique comment
   il pourrait être violé si on ne le traduit qu'en validation de formulaire, jamais en
   contrainte de base de données ni en règle de code testée.
+
+## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
+
+Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.

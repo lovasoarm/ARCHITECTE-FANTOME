@@ -1,0 +1,24 @@
+{
+  "documents": [
+    {
+      "id": "slo",
+      "text": "Le service cible un SLO de 99,5% sur une fenêtre de 30 jours. Le budget d'erreur est calculé en requêtes ratées par semaine."
+    },
+    {
+      "id": "security",
+      "text": "Les secrets ne doivent jamais apparaître dans les prompts persistés, les logs ou le contrôle de version. Les sorties du modèle sont validées avant usage."
+    },
+    {
+      "id": "cost",
+      "text": "Le budget IA comprend coût par appel, plafond par utilisateur actif, timeout et stratégie de réponse dégradée."
+    },
+    {
+      "id": "observability",
+      "text": "Chaque appel garde un identifiant de corrélation, la latence, le mode de réponse et le résultat de validation. Les métriques principales sont la latence, les erreurs et les métriques de mode."
+    },
+    {
+      "id": "refusal",
+      "text": "Une décision d'architecture critique est prise sans IA quand le contexte est insuffisant, quand la preuve est faible ou quand l'action est irréversible."
+    }
+  ]
+}

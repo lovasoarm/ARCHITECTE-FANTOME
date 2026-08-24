@@ -1,20 +1,27 @@
-# Niveau 06 : Archi-Lab
+---
+stability: intemporel
+acte: comprendre
+route: complete
+---
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Niveau précédent](../08-DATA-SPELLS/README.md) | [Niveau suivant](../20-API-DOJO/README.md)
+# Module 02-CONSTRUCTION/15-ARCHI-LAB : Archi-Lab
 
-**Ce niveau réutilise :** [05-DATA-SPELLS](../08-DATA-SPELLS/03-relations-and-normalization.md) : normalisation et source de vérité d'une donnée, réutilisees pour poser les frontieres entre couches.
+[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../08-DATA-SPELLS/README.md) | [Niveau suivant](../20-API-DOJO/README.md)
+
+**Ce niveau réutilise :** [08-DATA-SPELLS](../08-DATA-SPELLS/03-relations-and-normalization.md) : normalisation et source de vérité d'une donnée, réutilisees pour poser les frontieres entre couches.
 
 **Auto-test d'entrée :**
+
 1. Quelle est la différence entre normaliser un schéma et le dénormaliser sciemment ?
 2. Pourquoi une migration doit-elle etre reversible, meme sous pression de delai ?
 3. Qu'est-ce qui rend une requete lente a l'echelle alors qu'elle est rapide avec trois lignes de test ?
 
 **Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
-[le grimoire du niveau précédent](../08-DATA-SPELLS/grimoire.md) (20 minutes), puis refais son
-[challenge](../08-DATA-SPELLS/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
-trou amont, c'est attribuer au niveau 06 une difficulté qui vient du niveau 05.
+[le grimoire du niveau précédent](../08-DATA-SPELLS/90-grimoire.md) (20 minutes), puis refais son
+[challenge](../08-DATA-SPELLS/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
+trou amont, c'est attribuer au 15-ARCHI-LAB une difficulté qui vient du 08-DATA-SPELLS.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) (règle de calcul : voir [_STYLE.md](../.meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que c'est
 
@@ -25,7 +32,7 @@ façon est mauvaise. Une architecture n'est pas un schéma qu'on dessine avant d
 la conséquence de mille petites décisions de couplage prises sans y penser. Ce niveau te
 donne le vocabulaire et les réflexes pour prendre ces décisions consciemment.
 
-Prérequis : avoir livré au moins un projet qui dépasse le stade du prototype (Niveau 03,
+Prérequis : avoir livré au moins un projet qui dépasse le stade du prototype (Module `01-CADRAGE/05-MVP-SPLIT`,
 MVP-Split, complété). Tu dois avoir déjà senti la douleur d'un fichier de 800 lignes qui fait
 tout, sinon ces leçons resteront abstraites.
 
@@ -43,14 +50,15 @@ tout, sinon ces leçons resteront abstraites.
 
 ## Structure du niveau
 
-- [01-why-this-level.md](01-why-this-level.md) : ce qui casse sans architecture pensée
+- [01-01-why-this-level.md](01-01-why-this-level.md) : ce qui casse sans architecture pensée
 - [02-boundaries-and-coupling.md](02-boundaries-and-coupling.md) : couplage, cohésion, modules, dépendances dirigées
 - [03-layers-and-flow.md](03-layers-and-flow.md) : UI / cas d'usage / domaine / infra, inversion de dépendance
 - [04-state-and-truth.md](04-state-and-truth.md) : source de vérité, cache, duplication, cohérence éventuelle
 - [05-choosing-architecture.md](05-choosing-architecture.md) : monolithe modulaire vs services : critères, coûts réels
-- [challenge.md](challenge.md) : exercice appliqué et livrable noté
-- [boss-fight.md](boss-fight.md) : situation adverse réaliste + grille d'évaluation
-- [grimoire.md](grimoire.md) : mémo dense
+- [06-arbitrage-a-l-epreuve-du-temps.md](06-arbitrage-a-l-epreuve-du-temps.md) : mesurer après coup si le critère retenu a tenu
+- [95-challenge.md](95-challenge.md) : exercice appliqué et livrable noté
+- [96-boss-fight.md](96-boss-fight.md) : situation adverse réaliste + grille d'évaluation
+- [90-grimoire.md](90-grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 
@@ -58,7 +66,9 @@ Dans l'ordre, sans sauter. `02` et `03` sont le cœur théorique : tout le reste
 `04` est le piège le plus sournois de ce niveau : la plupart des bugs de production que tu
 verras dans ta carrière viennent de là. `05` referme la boucle en te donnant un cadre de
 décision, pas une religion ("microservices for ever" ou "monolithe for ever" sont deux sectes
-à fuir).
+à fuir). `06` referme une deuxième boucle, plus tardive : elle ne se fait pas le jour du
+challenge, mais deux semaines après, une fois que le critère de `05` a eu le temps d'être
+vrai ou faux.
 
 ## Ce qui ne se passe pas ici
 
@@ -67,3 +77,32 @@ DDD tactique...) au sens catalogue. Il t'apprend les forces sous-jacentes que to
 frameworks essaient de dompter. Une fois ces forces comprises, n'importe quel nom de pattern
 que tu croiseras plus tard se lira en cinq minutes au lieu de te sembler être une nouvelle
 religion à apprendre par cœur.
+
+<!-- PIECES-MODULE:debut -->
+
+## Les pièces de ce module
+
+- [`00-PREREQUIS.md`](00-PREREQUIS.md) : Auto-test d'entrée : à passer avant d'ouvrir le module
+- [`95-challenge.md`](95-challenge.md) : Challenge : l'épreuve du module
+- [`90-grimoire.md`](90-grimoire.md) : Grimoire : ce que tu dois pouvoir restituer
+- [`96-boss-fight.md`](96-boss-fight.md) : Boss : l'épreuve du palier, une seule fois
+
+<!-- PIECES-MODULE:fin -->
+
+## Contenu du dossier
+
+<!-- CONTENU-DOSSIER:debut -->
+
+- [Auto-test d'entrée : `15-ARCHI-LAB`](00-PREREQUIS.md)
+- [Pourquoi ce niveau existe](01-01-why-this-level.md)
+- [Couplage, cohésion, modules, dépendances dirigées](02-boundaries-and-coupling.md)
+- [UI, cas d'usage, domaine, infra : l'inversion de dépendance concrète](03-layers-and-flow.md)
+- [Source de vérité, cache, duplication, cohérence éventuelle](04-state-and-truth.md)
+- [Monolithe modulaire vs services : critères de décision, coûts réels](05-choosing-architecture.md)
+- [Arbitrage à l'épreuve du temps : mesurer, pas relire](06-arbitrage-a-l-epreuve-du-temps.md)
+- [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
+- [Boss Fight : Le refactoring sous deadline](96-boss-fight.md)
+- [Challenge : Refactorer un système couplé en modules sains](95-challenge.md)
+- [Grimoire : Module 02-CONSTRUCTION/15-ARCHI-LAB, Archi-Lab](90-grimoire.md)
+
+<!-- CONTENU-DOSSIER:fin -->

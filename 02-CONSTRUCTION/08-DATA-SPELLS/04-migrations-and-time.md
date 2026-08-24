@@ -1,3 +1,14 @@
+---
+stability: stable
+cognitive_level: L4
+perturbation_modes: [changement_contexte, decision_inversee]
+anti_recipe_key: changement_contexte+decision_inversee
+transfer_distance: medium
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+
 # Migrations, historique, suppression douce : faire évoluer un schéma vivant
 
 ## La scène
@@ -60,7 +71,7 @@ Motif "expand / contract" (étendre puis retirer), pour renommer une colonne san
 
 Chaque étape, prise seule, est réversible et sans risque de verrou long. Le prix : ce qui
 semblait être "une ligne de SQL" devient plusieurs déploiements coordonnés dans le temps. C'est
-le vrai coût, souvent ignoré, d'un renommage de colonne sur une table de production vivante, 
+le vrai coût, souvent ignoré, d'un renommage de colonne sur une table de production vivante,
 et c'est pour ça qu'un renommage "juste pour la lisibilité" sur une table critique n'est presque
 jamais gratuit.
 
@@ -257,3 +268,7 @@ requêtes lisent et écrivent en continu, sans aucune fenêtre de silence possib
   chaque étape prise isolément doit rester sûre même si le déploiement s'arrête au milieu.
 - Pourquoi un trigger d'audit SQL offre-t-il une garantie que le code applicatif seul ne peut
   pas offrir, et quel est le prix de cette garantie ?
+
+## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
+
+Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.

@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L4
+perturbation_modes: [fausse_piste, preuve_partielle]
+anti_recipe_key: fausse_piste+preuve_partielle
+transfer_distance: high
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Progression réelle, seniorité, choix de projets, réputation
+
+Temps de lecture ~7 min
 
 ## Le piège
 
@@ -47,7 +61,7 @@ demande.
 
 À compétence égale, deux offres de projet ou d'emploi ne se valent pas. Le critère de
 sélection le plus utile à long terme n'est ni le salaire seul, ni la marque de l'entreprise
-,  c'est la réponse honnête à trois questions :
+, c'est la réponse honnête à trois questions :
 
 1. Ce projet me confrontera-t-il à un type de problème que je n'ai jamais résolu (échelle,
    contrainte réglementaire, coordination d'équipe, domaine métier inconnu) ?
@@ -58,7 +72,7 @@ sélection le plus utile à long terme n'est ni le salaire seul, ni la marque de
 
 Un projet qui répond "non" aux trois questions peut rester un bon choix ponctuel (stabilité
 financière, période personnelle chargée), mais ne doit pas devenir la norme sur plusieurs
-années consécutives, sous peine de plateau silencieux (Niveau 13, leçon 01).
+années consécutives, sous peine de plateau silencieux (Module `05-MAITRISE/05-DAY-TO-LEGEND`, leçon 01).
 
 ### La réputation technique : preuve plutôt que déclaration
 
@@ -80,20 +94,20 @@ distribués"                                d'un problème réel que tu as réso
 ```
 
 Un portfolio de preuves ne demande pas de travail supplémentaire majeur si tu documentes ce
-que tu fais déjà (ADR du Niveau 01, post-mortems du Niveau 09) au lieu de le jeter après
+que tu fais déjà (ADR du Module `00-SOCLE/06-MINDSET`, post-mortems du Module `03-PILOTAGE/03-QUALITY-SHIELD`) au lieu de le jeter après
 usage. La discipline n'est pas d'en produire plus, c'est de ne pas les perdre.
 
 ### Le vrai coût de l'immobilité de confort
 
 Rester longtemps au même poste n'est pas une erreur en soi : l'expertise verticale profonde
-demande du temps et de la continuité (Niveau 13, leçon 01, compromis). L'erreur est de le
+demande du temps et de la continuité (Module `05-MAITRISE/05-DAY-TO-LEGEND`, leçon 01, compromis). L'erreur est de le
 faire par défaut, sans avoir vérifié régulièrement, via une checklist honnête, que ce poste
 continue de produire de la croissance et pas seulement du confort :
 
 ```text
 Checklist annuelle de vérité (à se poser seul, honnêtement, une fois par an) :
 
-[ ] Ai-je pris, cette année, au moins une décision technique dont je n'étais pas
+[ ] IA-je pris, cette année, au moins une décision technique dont je n'étais pas
     sûr d'avance, avec un vrai enjeu derrière ?
 [ ] Existe-t-il, dans mon environnement actuel, une personne dont j'apprends encore
     quelque chose régulièrement ?
@@ -123,7 +137,7 @@ Checklist annuelle de vérité (à se poser seul, honnêtement, une fois par an)
   l'offre la mieux payée, tu te retrouves après quelques années avec un salaire correct et
   un éventail de compétences étroit, difficile à valoriser ailleurs.
 - **La réputation qui repose uniquement sur la mémoire des autres.** Symptôme : tu comptes
-  sur le bouche-à-oreille de collègues qui, eux aussi, oublient les détails avec le temps, 
+  sur le bouche-à-oreille de collègues qui, eux aussi, oublient les détails avec le temps,
   sans artefact écrit, la preuve s'évapore avec les départs d'équipe.
 - **L'immobilité justifiée a posteriori.** Symptôme : tu restes cinq ans au même poste "parce
   que c'est confortable" et tu rationalises ce choix en "expertise" sans jamais avoir vérifié
@@ -174,3 +188,7 @@ t'accordent, pas seulement par le salaire ou la marque de l'entreprise. Document
 décisions au moment où tu les prends, jamais après coup : un portfolio de preuves ne se
 reconstruit pas de mémoire trois ans plus tard, il se construit décision après décision, au
 fil de l'eau, presque gratuitement si la discipline existe déjà.
+
+## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
+
+Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?

@@ -1,3 +1,14 @@
+---
+stability: stable
+cognitive_level: L4
+perturbation_modes: [fausse_piste, solution_concurrente]
+anti_recipe_key: fausse_piste+solution_concurrente
+transfer_distance: medium
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : conseil de Konoha :** cinq ingénieurs, cinq idées, une personne qui ne parle plus depuis dix minutes. Ton rôle n'est pas seulement de gagner l'argument : c'est de récupérer l'information que le silence est en train de faire disparaître.
+
 # Désaccords, escalade, dire non
 
 ## Le piège
@@ -210,7 +221,6 @@ croisée entre les trois publics.
 
 ## Compromis
 
-
 | Option                                                         | Coût                                                        | Bénéfice                                                        | Quand choisir                                                                       |
 | -------------------------------------------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | Éviter le désaccord, dire oui pour préserver la paix immédiate | Aucun coût visible tout de suite                            | Aucun réel, le conflit revient plus tard et plus cher           | Jamais comme stratégie répétée                                                      |
@@ -231,7 +241,7 @@ croisée entre les trois publics.
 - Laisser un désaccord non résolu se transformer en décision par défaut (celui qui code
   décide) : le symptôme est qu'une personne cesse de proposer des idées après avoir vu les
   siennes ignorées sans discussion réelle.
-- Ne jamais réviser une décision prise dans le désaccord, même quand les faits changent, 
+- Ne jamais réviser une décision prise dans le désaccord, même quand les faits changent,
   le symptôme est une règle appliquée par habitude longtemps après que sa justification a
   disparu.
 
@@ -248,3 +258,8 @@ Où l'analogie casse : le message radio a une syntaxe imposée, tes canaux d'éq
    concret différent de celui du cours.
 3. Explique la différence entre escalader trop tôt et escalader trop tard, et le symptôme
    observable qui permet de repérer chacune des deux erreurs après coup.
+
+## CHECKPOINT DE PROFONDEUR : variation A : prédire avant de réparer
+
+Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
+Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.

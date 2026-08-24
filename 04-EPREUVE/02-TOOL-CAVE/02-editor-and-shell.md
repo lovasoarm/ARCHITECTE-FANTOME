@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L4
+perturbation_modes: [decision_inversee, decision_organisationnelle]
+anti_recipe_key: decision_inversee+decision_organisationnelle
+transfer_distance: medium
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Éditeur et shell comme prothèses cognitives
+
+Temps de lecture ~6 min
 
 ## Le piège
 
@@ -135,7 +149,6 @@ Recherche historique Git  8                15s             440 minutes  (~7h20)
                                           Total cumule     ~22 heures/an, pour trois frictions seules
 ```
 
-
 ## Commandes que tu dois savoir taper sans réfléchir
 
 Il existe un noyau de commandes shell et Git qui reviennent des centaines de fois par
@@ -196,3 +209,8 @@ centaines de fois par jour, coûte plus cher sur une carrière qu'une friction p
 spectaculaire. Construis ta configuration par élimination incrémentale de frictions réelles
 observées chez toi, jamais par copie aveugle d'une configuration d'un tiers : ce que tu ne
 comprends pas dans ta propre config, tu ne sauras pas le réparer le jour où il casse.
+
+## CHECKPOINT DE PROFONDEUR : variation A : prédire avant de réparer
+
+Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
+Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.

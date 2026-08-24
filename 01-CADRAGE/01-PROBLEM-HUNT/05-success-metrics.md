@@ -1,3 +1,14 @@
+---
+stability: stable
+cognitive_level: L3
+perturbation_modes: [regression, fausse_piste]
+anti_recipe_key: regression+fausse_piste
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Métriques de succès et seuil d'échec
 
 ## La scène
@@ -123,11 +134,11 @@ gardé aucune trace exploitable.
 ## Compromis
 
 | Option                                                                        | Coût                                                | Bénéfice                                                                                      | Quand choisir                                                      |
-| --------------------------------------------------------------------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| ----------------------------------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | Métrique reliée directement au symptôme initial (conflits de créneaux évités) | Parfois plus difficile à instrumenter techniquement | Dit vraiment si le problème est résolu                                                        | Toujours en priorité, même si l'instrumentation demande du travail |
 | Métrique d'activité facile à mesurer (comptes créés, vues)                    | Rapide à obtenir dès le lancement                   | Se fait manipuler par n'importe quelle action marketing, ne dit rien sur l'utilité            | Uniquement en complément, jamais comme métrique de décision        |
-| Trois paliers de seuil (rouge / orange / vert) plutôt qu'un seuil binaire      | Demande un peu plus de réflexion en amont            | Évite l'arrondi de complaisance et donne une action pour chaque zone de résultat              | Dès que le produit touche plusieurs profils d'utilisateurs         |
-| Pas de seuil d'échec défini                                                   | Évite une conversation inconfortable en amont         | Chaque résultat se rationalise après coup, aucun produit n'est jamais officiellement un échec | Jamais                                                             |
+| Trois paliers de seuil (rouge / orange / vert) plutôt qu'un seuil binaire     | Demande un peu plus de réflexion en amont           | Évite l'arrondi de complaisance et donne une action pour chaque zone de résultat              | Dès que le produit touche plusieurs profils d'utilisateurs         |
+| Pas de seuil d'échec défini                                                   | Évite une conversation inconfortable en amont       | Chaque résultat se rationalise après coup, aucun produit n'est jamais officiellement un échec | Jamais                                                             |
 
 ## Pièges classiques
 
@@ -156,3 +167,7 @@ Où l'analogie casse : le thermomètre mesure une seule grandeur physique, une m
   premiers chiffres.
 - Comment choisir une métrique qui résiste à la manipulation facile (notification, rappel)
   plutôt qu'une métrique qui se laisse gonfler artificiellement.
+
+## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
+
+Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.

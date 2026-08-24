@@ -1,20 +1,43 @@
-# Niveau 07 : API Dojo
+---
+stability: intemporel
+acte: comprendre
+route: complete
+---
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Niveau précédent](../15-ARCHI-LAB/README.md) | [Niveau suivant](../../03-PILOTAGE/01-ROADMAP-RUN/README.md)
+# Module 02-CONSTRUCTION/20-API-DOJO : API Dojo
 
-**Ce niveau réutilise :** [06-ARCHI-LAB](../15-ARCHI-LAB/03-layers-and-flow.md) : les couches UI / cas d'usage / domaine / infra, réutilisees pour situer la frontiere publique d'un contrat d'API.
+<!-- AF-DIAGRAM:api_request -->
+
+```text
+┌────────┐  HTTP   ┌──────────┐  validate  ┌─────────┐
+│ Client │────────►│ Gateway  │───────────►│ Handler │
+└────────┘         └──────────┘            └────┬────┘
+                                                ▼
+                                           ┌─────────┐
+                                           │ Data    │
+                                           └────┬────┘
+                                                ▼
+                                           Response
+```
+
+Le cycle API relie transport, validation, logique métier, persistance et réponse observable.
+
+[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../15-ARCHI-LAB/README.md) | [Niveau suivant](../../03-PILOTAGE/01-ROADMAP-RUN/README.md)
+
+**Ce niveau réutilise :** [15-ARCHI-LAB](../15-ARCHI-LAB/03-layers-and-flow.md) : les couches UI / cas d'usage / domaine / infra, réutilisees pour situer la frontiere publique d'un contrat d'API.
 
 **Auto-test d'entrée :**
+
 1. Qu'est-ce qu'un couplage fort, et comment le reperer dans du code que tu n'as jamais vu ?
 2. Quelle couche a le droit de connaitre quelle autre, dans le modèle UI / cas d'usage / domaine / infra ?
 3. Pourquoi le choix entre monolithe modulaire et services doit-il etre chiffre plutôt que tranche par slogan ?
 
 **Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
-[le grimoire du niveau précédent](../15-ARCHI-LAB/grimoire.md) (20 minutes), puis refais son
-[challenge](../15-ARCHI-LAB/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
-trou amont, c'est attribuer au niveau 07 une difficulté qui vient du niveau 06.
+[le grimoire du niveau précédent](../15-ARCHI-LAB/90-grimoire.md) (20 minutes), puis refais son
+[challenge](../15-ARCHI-LAB/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
+trou amont, c'est attribuer au 20-API-DOJO une difficulté qui vient du 15-ARCHI-LAB.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) (règle de calcul : voir [_STYLE.md](../.meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que c'est
 
@@ -27,8 +50,8 @@ Une API n'est pas une fonction exposée sur le réseau. C'est une promesse écri
 et défendue dans le temps. Ce niveau te donne les réflexes pour tenir cette promesse sans
 que ton système ne s'effondre au premier appelant capricieux.
 
-Prérequis : avoir livré au moins une API HTTP qui fonctionne (Niveau 03 ou équivalent), et
-avoir complété le Niveau 06 : Archi-Lab. Tu dois savoir ce qu'est une couche domaine avant
+Prérequis : avoir livré au moins une API HTTP qui fonctionne (Module `01-CADRAGE/05-MVP-SPLIT` ou équivalent), et
+avoir complété le Module `02-CONSTRUCTION/15-ARCHI-LAB` : Archi-Lab. Tu dois savoir ce qu'est une couche domaine avant
 d'apprendre à protéger sa frontière publique ; sans ça, "contrat d'API" restera un mot vide.
 
 ## Ce que tu sais faire à la sortie
@@ -58,14 +81,14 @@ se contredire :
 
 ## Structure du niveau
 
-- [01-why-this-level.md](01-why-this-level.md) : ce qui casse sans discipline d'API
+- [01-01-why-this-level.md](01-01-why-this-level.md) : ce qui casse sans discipline d'API
 - [02-contracts-first.md](02-contracts-first.md) : contrat avant code, versionnage, compatibilité
 - [03-errors-and-idempotence.md](03-errors-and-idempotence.md) : codes, erreurs exploitables, retries, idempotency keys
 - [04-auth-and-trust.md](04-auth-and-trust.md) : authn vs authz, tokens, scopes, frontières de confiance
 - [05-performance-and-limits.md](05-performance-and-limits.md) : pagination, rate limiting, cache HTTP, latence perçue
-- [challenge.md](challenge.md) : exercice appliqué et livrable noté
-- [boss-fight.md](boss-fight.md) : situation adverse réaliste + grille d'évaluation
-- [grimoire.md](grimoire.md) : mémo dense
+- [95-challenge.md](95-challenge.md) : exercice appliqué et livrable noté
+- [96-boss-fight.md](96-boss-fight.md) : situation adverse réaliste + grille d'évaluation
+- [90-grimoire.md](90-grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 
@@ -84,5 +107,33 @@ protocole choisi : un contrat instable casse des clients en REST comme en gRPC, 
 d'idempotence manquante double une facture peu importe le framework. Le vocabulaire d'outil
 changera au fil de ta carrière ; les problèmes de ce niveau ne changeront pas.
 
-Avant de continuer : passe par [RETRO-BLOC-2-BUILD.md](../RETRO-BLOC-2-BUILD.md), la
-rétrospective du bloc Build que tu viens de terminer.
+Avant de continuer : passe par [04A-RETRO-BLOC-2BIS-ARCHI.md](../04A-RETRO-BLOC-2BIS-ARCHI.md), la
+rétrospective du bloc 2bis (Concepteur) que tu viens de terminer.
+
+<!-- PIECES-MODULE:debut -->
+
+## Les pièces de ce module
+
+- [`00-PREREQUIS.md`](00-PREREQUIS.md) : Auto-test d'entrée : à passer avant d'ouvrir le module
+- [`95-challenge.md`](95-challenge.md) : Challenge : l'épreuve du module
+- [`90-grimoire.md`](90-grimoire.md) : Grimoire : ce que tu dois pouvoir restituer
+- [`96-boss-fight.md`](96-boss-fight.md) : Boss : l'épreuve du palier, une seule fois
+
+<!-- PIECES-MODULE:fin -->
+
+## Contenu du dossier
+
+<!-- CONTENU-DOSSIER:debut -->
+
+- [Auto-test d'entrée : `20-API-DOJO`](00-PREREQUIS.md)
+- [Pourquoi ce niveau existe](01-01-why-this-level.md)
+- [Le contrat avant le code](02-contracts-first.md)
+- [Erreurs exploitables et idempotence](03-errors-and-idempotence.md)
+- [Authn vs authz, tokens, scopes, frontières de confiance](04-auth-and-trust.md)
+- [Pagination, rate limiting, cache HTTP, latence perçue](05-performance-and-limits.md)
+- [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
+- [Boss Fight : Le partenaire pressé et le token trop large](96-boss-fight.md)
+- [Challenge : Blinder une API existante](95-challenge.md)
+- [Grimoire : Module 02-CONSTRUCTION/20-API-DOJO, API Dojo](90-grimoire.md)
+
+<!-- CONTENU-DOSSIER:fin -->

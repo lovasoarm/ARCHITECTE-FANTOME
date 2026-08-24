@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L4
+perturbation_modes: [constraints_injectees, defaut_cache]
+anti_recipe_key: constraints_injectees+defaut_cache
+transfer_distance: medium
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : mission de rang S :** l'architecture la plus élégante peut perdre si elle arrive après la fenêtre business. Tu dois choisir ce que tu sacrifies avant que quelqu'un d'autre ne le fasse à ta place.
+
 # Découper par valeur, pas par couche
+
+Temps de lecture ~6 min
 
 ## La scène
 
@@ -55,7 +69,7 @@ les 5 entités (5 jours), frontend complet (6 jours). Premier retour terrain pos
 au mieux, si rien ne dérape. En pratique, un projet de ce type dérape de 30 à 50% quand il n'a
 jamais été confronté à un utilisateur réel avant la fin : la modélisation de la base a supposé
 des choses que seul un bénévole en action aurait pu corriger (par exemple : deux cordes
-identiques prêtées par erreur au même membre, un cas que personne n'avait anticipé).
+identiques prêtées par erreur au même membre, un cas que personne n'avait, approfondi plus loin dans le fil).
 
 Découpage vertical sur le même projet : tranche 1 (emprunt simple) en 3 jours, testée en
 conditions réelles au créneau suivant du club. Tranche 2 (retour et relance) en 3 jours,
@@ -106,7 +120,6 @@ Dans l'exemple du club, "emprunt simple" coche les deux cases : ça arrive à ch
 un bénévole peut le faire seul avec un formulaire minimal. "Statistiques d'utilisation" ne les
 coche pas : ça n'arrive jamais en direct pendant un créneau, ça peut attendre.
 
-
 ## Analogie
 
 Découper par tranche verticale, c'est comme un service en cuisine de restaurant qui sort une
@@ -119,11 +132,11 @@ construit assez solide pour être réutilisé sans construire une fondation comp
 
 ## Compromis
 
-| Option                                                           | Coût                                                                                                                       | Bénéfice                                                                                                             | Quand choisir                                                                                   |
-| ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Découpage vertical strict                                        | Duplique parfois du code entre tranches (une table réutilisée est étendue plutôt que reconstruite proprement dès le début) | Valeur livrée dès la première tranche, retour terrain rapide                                                         | Presque toujours, en particulier en début de projet ou avec un budget incertain                 |
-| Découpage horizontal complet avant toute livraison               | Rassure sur la propreté de l'architecture initiale                                                                         | Retarde tout retour terrain de plusieurs semaines, risque d'investir dans une architecture pour un besoin mal validé | Seulement quand le besoin est déjà validé à 100% par ailleurs et que le risque produit est nul   |
-| Mélange : fondations minimales communes puis tranches verticales | Demande de la discipline pour ne pas dériver vers "encore une fondation"                                                   | Bon compromis entre propreté et vitesse de livraison                                                                 | Projets où plusieurs tranches partageront un socle évident (authentification, par exemple)       |
+| Option                                                           | Coût                                                                                                                       | Bénéfice                                                                                                             | Quand choisir                                                                                  |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Découpage vertical strict                                        | Duplique parfois du code entre tranches (une table réutilisée est étendue plutôt que reconstruite proprement dès le début) | Valeur livrée dès la première tranche, retour terrain rapide                                                         | Presque toujours, en particulier en début de projet ou avec un budget incertain                |
+| Découpage horizontal complet avant toute livraison               | Rassure sur la propreté de l'architecture initiale                                                                         | Retarde tout retour terrain de plusieurs semaines, risque d'investir dans une architecture pour un besoin mal validé | Seulement quand le besoin est déjà validé à 100% par ailleurs et que le risque produit est nul |
+| Mélange : fondations minimales communes puis tranches verticales | Demande de la discipline pour ne pas dériver vers "encore une fondation"                                                   | Bon compromis entre propreté et vitesse de livraison                                                                 | Projets où plusieurs tranches partageront un socle évident (authentification, par exemple)     |
 
 ## Pièges classiques
 
@@ -148,3 +161,7 @@ construit assez solide pour être réutilisé sans construire une fondation comp
   début de projet, même si elle semble techniquement supérieure.
 - Comment vérifier, avant de coder une tranche, qu'elle sera réellement mesurable une fois
   livrée.
+
+## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
+
+Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.

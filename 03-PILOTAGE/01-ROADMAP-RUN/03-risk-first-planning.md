@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L4
+perturbation_modes: [defaut_cache, preuve_partielle]
+anti_recipe_key: defaut_cache+preuve_partielle
+transfer_distance: medium
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : mission de rang S :** l'architecture la plus élégante peut perdre si elle arrive après la fenêtre business. Tu dois choisir ce que tu sacrifies avant que quelqu'un d'autre ne le fasse à ta place.
+
 # Attaquer le risque le plus cher en premier
+
+Temps de lecture ~6 min
 
 ## Le piège
 
@@ -15,7 +29,7 @@ annexes. Le bénévole a commencé par ce qui était facile, pas par ce qui éta
 
 ## Ce qui se passe vraiment
 
-Tout projet a un risque qui, s'il se réalise, coûte plus cher que tous les autres réunis, 
+Tout projet a un risque qui, s'il se réalise, coûte plus cher que tous les autres réunis,
 souvent parce qu'il remet en cause une hypothèse sur laquelle tout le reste repose. Ce
 risque a trois caractéristiques qui permettent de le repérer avant de planifier :
 
@@ -172,3 +186,7 @@ inconnue continue d'attendre en silence.
    connais, et applique-la à trois hypothèses concrètes de ce projet.
 3. Pourquoi "attaquer" un risque veut dire produire une preuve empirique et pas écrire un
    document d'analyse : donne un exemple de preuve empirique rapide à produire.
+
+## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
+
+Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.

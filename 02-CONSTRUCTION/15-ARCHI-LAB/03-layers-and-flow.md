@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L3
+perturbation_modes: [temps_limite, changement_echelle]
+anti_recipe_key: temps_limite+changement_echelle
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+
 # UI, cas d'usage, domaine, infra : l'inversion de dépendance concrète
+
+Temps de lecture ~5 min
 
 ## Le piège
 
@@ -194,3 +208,7 @@ l'interface lui permet, et une dépendance dans le mauvais sens oblige à rééc
   les 4 couches, en précisant ce qui ne remonte jamais.
 - Explique l'inversion de dépendance à quelqu'un qui ne connaît pas le terme, sans utiliser
   le mot "interface" plus d'une fois.
+
+## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
+
+Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.

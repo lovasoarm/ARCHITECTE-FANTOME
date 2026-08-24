@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L4
+perturbation_modes: [changement_echelle, transmission]
+anti_recipe_key: changement_echelle+transmission
+transfer_distance: medium
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+
 # Penser en systèmes
+
+Temps de lecture ~7 min
 
 ## Le piège
 
@@ -139,10 +153,10 @@ notification de conflit a posteriori) suffit largement.
 
 ## Compromis
 
-| Option                                    | Coût                                     | Bénéfice                                                                          | Quand choisir                                                                  |
-| -------------------------------------------| ------------------------------------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
-| Un seul état partagé pour tout usage      | Simple à coder au départ                 | Risque de conditions de course dès que deux usages ont des exigences différentes | Prototype jetable, faible enjeu de cohérence                                       |
-| Séparer l'état par exigence de cohérence | Plus de code, plus de tables/structures  | Élimine une classe entière de bugs de concurrence                               | Dès qu'un même état sert à la fois de l'affichage et du calcul métier facturé      |
+| Option                                   | Coût                                    | Bénéfice                                                                         | Quand choisir                                                                 |
+| ---------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Un seul état partagé pour tout usage     | Simple à coder au départ                | Risque de conditions de course dès que deux usages ont des exigences différentes | Prototype jetable, faible enjeu de cohérence                                  |
+| Séparer l'état par exigence de cohérence | Plus de code, plus de tables/structures | Élimine une classe entière de bugs de concurrence                                | Dès qu'un même état sert à la fois de l'affichage et du calcul métier facturé |
 
 ## Pièges classiques
 
@@ -174,3 +188,7 @@ réflexe à construire : avant d'écrire du code, reformule la spec en termes d'
 touché, et d'effets de bord déclenchés, puis pose la question de la concurrence sur chaque
 état identifié. Ce travail prend cinq à dix minutes et coûte beaucoup moins cher que le bug
 de course découvert en production, trois semaines plus tard, sur un système déjà utilisé.
+
+## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
+
+Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.

@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L3
+perturbation_modes: [fausse_piste, solution_concurrente]
+anti_recipe_key: fausse_piste+solution_concurrente
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : vestiaire après match :** deux personnes peuvent être techniquement en désaccord sans devenir ennemies. Le vrai skill est de séparer le problème, le modèle, la décision… et l'ego.
+
 # Branches, PR, releases, feature flags
+
+Temps de lecture ~7 min
 
 ## Le piège
 
@@ -119,7 +133,7 @@ Semaine 3 : validation sur le pilote, flag activé progressivement sur les 40 im
 ## Pull requests : la revue comme angle mort couvert
 
 Une pull request n'est pas une formalité administrative avant de fusionner du code. C'est le
-mécanisme qui introduit un regard extérieur avant que le code rejoigne le travail commun, 
+mécanisme qui introduit un regard extérieur avant que le code rejoigne le travail commun,
 le même mécanisme qui manquait à Karim dans la leçon 01 du niveau Quality Shield. Une pull
 request efficace a des propriétés précises :
 
@@ -208,3 +222,7 @@ Où l'analogie casse : en cuisine on se croise en se parlant, sur Git on se croi
    plusieurs, avant même de regarder son contenu technique.
 3. Pourquoi GitFlow, malgré sa cérémonie plus lourde, reste le bon choix dans certains
    contextes réglementés ou contractuels, plutôt qu'un flux plus rapide.
+
+## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
+
+Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.

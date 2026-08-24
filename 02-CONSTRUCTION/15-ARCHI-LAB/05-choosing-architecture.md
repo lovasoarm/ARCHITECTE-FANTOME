@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L4
+perturbation_modes: [decision_inversee, changement_contexte]
+anti_recipe_key: decision_inversee+changement_contexte
+transfer_distance: high
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Monolithe modulaire vs services : critères de décision, coûts réels
+
+Temps de lecture ~8 min
 
 ## Le piège
 
@@ -77,7 +91,7 @@ services.
 Coût                          Ce que ça signifie concrètement
 -------------------------------------------------------------------------
 Réseau                        Chaque appel entre modules devient un appel HTTP/RPC,
-                               qui peut échouer, timeout, ou répondre lentement, 
+                               qui peut échouer, timeout, ou répondre lentement,
                                ce qui était une garantie (un appel de fonction ne
                                "timeout" jamais) devient une incertitude à gérer.
 
@@ -88,7 +102,7 @@ Cohérence distribuée          Une opération qui touchait plusieurs "modules" 
 
 Déploiement et versionnage    Chaque service a son propre cycle de version ; un
                                changement de contrat entre deux services doit gérer
-                               la compatibilité ascendante (cf. Niveau 07).
+                               la compatibilité ascendante (cf. Module `02-CONSTRUCTION/20-API-DOJO`).
 
 Observabilité                 Un bug qui traverse 3 services nécessite du tracing
                                distribué pour être compris : un simple débogueur
@@ -191,7 +205,7 @@ coût organisationnel durable. Scinder un système en services crée des fronti�
 - **L'extraction de service sans revoir le contrat.** Symptôme : un module extrait en service
   séparé garde exactement les mêmes appels de fonction, transformés mécaniquement en appels
   réseau : sans jamais repenser la gestion d'erreurs, de timeout, ni la granularité des
-  appels, ce qui produit un système lent et fragile (voir Niveau 07 sur les erreurs et
+  appels, ce qui produit un système lent et fragile (voir Module `02-CONSTRUCTION/20-API-DOJO` sur les erreurs et
   performances réseau).
 
 ## Ce que tu dois savoir défendre
@@ -252,4 +266,27 @@ compensation d'une étape, la frontière n'est pas prête à devenir un réseau.
 module interne, et durcis-la d'abord.
 
 Les mécanismes détaillés (codes d'erreur, clés d'idempotence, comportement des retries) sont
-traités dans [07-API-DOJO/03-errors-and-idempotence.md](../20-API-DOJO/03-errors-and-idempotence.md).
+traités dans [20-API-DOJO/03-errors-and-idempotence.md](../20-API-DOJO/03-errors-and-idempotence.md).
+
+## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+
+<!-- AF-DIAGRAM:transfer -->
+
+```text
+text
+Principe appris
+      │
+      ▼
+Nouveau contexte
+      │
+      ├── invariant ──► conserver
+      │
+      └── hypothèse cassée ─► adapter
+                                │
+                                ▼
+                             nouvelle décision
+```
+
+Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+
+Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.

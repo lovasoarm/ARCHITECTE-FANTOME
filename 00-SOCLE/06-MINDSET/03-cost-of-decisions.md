@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L4
+perturbation_modes: [changement_echelle, constraints_injectees]
+anti_recipe_key: changement_echelle+constraints_injectees
+transfer_distance: medium
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+
 # Le coût des décisions
+
+Temps de lecture ~6 min
 
 ## Le piège
 
@@ -38,7 +52,7 @@ Il y a deux formes de dette technique, et les confondre est une erreur fréquent
   de changement au moment de la décision. C'est une facture qui arrive sans qu'on ait signé
   de contrat.
 
-La dette volontaire, correctement documentée (règle 6 du Niveau 00), est un outil de gestion
+La dette volontaire, correctement documentée (règle 6 du Module `00-SOCLE/02-PROLOGUE`), est un outil de gestion
 du risque. La dette subie est un accident qui se répète tant que personne ne fait l'exercice
 d'estimer le coût de changement avant de trancher.
 
@@ -133,10 +147,10 @@ vient de lever des fonds avec un objectif de 10x en un an, si.
 
 ## Compromis
 
-| Option                                             | Coût                                            | Bénéfice                                       | Quand choisir                                                       |
-| ----------------------------------------------------| -------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------ |
-| Dette volontaire documentée                        | Coût de remboursement futur connu et planifié   | Vitesse de livraison immédiate, pari maîtrisé | Contexte incertain, besoin de valider vite une hypothèse produit        |
-| Investir dans une structure durable dès le départ | Coût immédiat plus élevé                        | Coût de changement futur réduit                | Le domaine est stable, les requêtes futures sont déjà prévisibles      |
+| Option                                            | Coût                                          | Bénéfice                                      | Quand choisir                                                     |
+| ------------------------------------------------- | --------------------------------------------- | --------------------------------------------- | ----------------------------------------------------------------- |
+| Dette volontaire documentée                       | Coût de remboursement futur connu et planifié | Vitesse de livraison immédiate, pari maîtrisé | Contexte incertain, besoin de valider vite une hypothèse produit  |
+| Investir dans une structure durable dès le départ | Coût immédiat plus élevé                      | Coût de changement futur réduit               | Le domaine est stable, les requêtes futures sont déjà prévisibles |
 
 ## Pièges classiques
 
@@ -174,3 +188,7 @@ réexamen. Ce n'est pas un document lourd, c'est un garde-fou contre l'oubli du 
    Signal de réexamen : premiere demande d'analyse recurrente (plus d'une fois par mois)
      sur l'historique, ou volume d'emprunts au dela de 500/mois.
 ```
+
+## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
+
+Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.

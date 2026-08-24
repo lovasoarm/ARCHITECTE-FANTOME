@@ -1,3 +1,9 @@
+---
+stability: stable
+---
+
+> **SCÈNE CRAZYDEVS : Garo :** la règle est simple jusqu'au jour où un état caché traverse une frontière. À partir de là, le “petit raccourci” devient le Horror qui te poursuit pendant trois heures.
+
 # Boucles de feedback, pratique délibérée, sortir des plateaux
 
 ## Le piège
@@ -76,6 +82,17 @@ zéro gain       |  progrès mesurable           |  aucun gain exploitable
 ```
 
 ### Le principe : ce qu'on apprend s'oublie, sauf rappel programmé
+
+<!-- AF-DIAGRAM:recall -->
+
+```text
+text
+J+1 ──► J+3 ──► J+7 ──► J+14 ──► J+28
+ │        │        │         │         │
+free    explain  diagnose   transfer  defend inverse
+```
+
+Le rappel distribué réactive la compétence sous des formes différentes au fil du temps.
 
 Une quatrième cause de plateau, invisible tant qu'on ne l'a pas mesurée, tient sur un fait
 neutre : la mémoire humaine oublie une information nouvelle selon une courbe très rapide au
@@ -195,11 +212,11 @@ notes jamais relues.
 ## Compromis
 
 | Option                                          | Coût                                         | Bénéfice                                                            | Quand choisir                                                                |
-| ----------------------------------------------- | --------------------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| ----------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | Boucle fermée (autocorrection)                  | Aucun coût logistique                        | Progrès rapide au début, plafonne vite                              | Phase de démarrage, avant d'avoir accès à un mentor ou une communauté        |
 | Boucle ouverte avec revue humaine ponctuelle    | Coût social (demander, parfois payer), délai | Correction d'angles morts invisibles seul                           | Dès que la boucle fermée plafonne (généralement 4-8 semaines)                |
 | Boucle ouverte avec production réelle mesurée   | Lent, dépend du contexte pro                 | Référence la plus fiable qui existe                                 | En continu, en parallèle de tout le reste, via le travail quotidien lui-même |
-| Rappel espacé formel (J+1 à J+35)               | Discipline de tenue d'un journal court        | Rétention réelle, évite de réapprendre la même chose plusieurs fois | Sur toute notion qui t'a coûté un vrai effort de compréhension               |
+| Rappel espacé formel (J+1 à J+35)               | Discipline de tenue d'un journal court       | Rétention réelle, évite de réapprendre la même chose plusieurs fois | Sur toute notion qui t'a coûté un vrai effort de compréhension               |
 | Changer de domaine d'application temporairement | Sensation de repartir de zéro                | Révèle des lacunes masquées par la routine, réactive la progression | Dès qu'un plateau dure plus de 4-6 semaines                                  |
 
 ## Pièges classiques

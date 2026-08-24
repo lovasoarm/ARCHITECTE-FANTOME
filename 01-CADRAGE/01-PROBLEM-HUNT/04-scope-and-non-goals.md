@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L3
+perturbation_modes: [temps_limite, changement_contexte]
+anti_recipe_key: temps_limite+changement_contexte
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Non-objectifs : écrire ce qu'on ne fera pas
+
+Temps de lecture ~6 min
 
 ## La scène
 
@@ -130,10 +144,10 @@ interface TripRequest {
 ## Compromis
 
 | Option                                            | Coût                                                        | Bénéfice                                                    | Quand choisir                                                  |
-| --------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------------- |
+| ------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------- |
 | Écrire des non-objectifs précis et vérifiables    | Demande une vraie décision, parfois inconfortable, en amont | Tranche les débats futurs sans reconvoquer tout le monde    | Systématiquement, dès qu'un risque de dérive de mission existe |
 | Écrire des non-objectifs vagues ("rester simple") | Rapide, ne froisse personne                                 | Ne sert à rien au moment où on en aurait besoin             | Jamais, sauf à vouloir se donner l'illusion d'avoir cadré      |
-| Ne pas écrire de non-objectifs du tout            | Semble faire gagner du temps de cadrage                     | Chaque demande de périmètre devient un débat de fond répété | Uniquement sur un prototype jetable sans suite                |
+| Ne pas écrire de non-objectifs du tout            | Semble faire gagner du temps de cadrage                     | Chaque demande de périmètre devient un débat de fond répété | Uniquement sur un prototype jetable sans suite                 |
 
 ## Pièges classiques
 
@@ -160,3 +174,7 @@ Où l'analogie casse : le trait de scie est irréversible, un non-objectif se re
 - Comment vérifier qu'un non-objectif écrit est réellement utile plutôt que décoratif.
 - Où et comment un non-objectif doit être documenté pour rester utilisable des mois plus tard,
   par des personnes qui n'étaient pas présentes à sa rédaction.
+
+## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
+
+Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.

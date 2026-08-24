@@ -1,25 +1,37 @@
 ---
-stability: chantier
-acte: a_ecrire
+stability: intemporel
+acte: restituer
 ---
 
-<!-- CHANTIER-OUVERT : fichier reconstruit comme facade lors de la fusion en package unique.
-     Le contenu pedagogique reel reste a ecrire. Voir RESTE-A-FAIRE-ARCHITECTE-FANTOME.md. -->
+# 01-CADRAGE : Niveau 1 : Développeur
 
-# README
+Porte d'entrée du palier. Cinq modules. Tu choisis **quoi** construire, et tu refuses le reste
+par écrit. Livrables : PROBLEM-HUNT, MVP-SPLIT, fil rouge cadré.
 
-> **Chantier ouvert.** Ce fichier existe pour qu'aucun lien du depot ne soit casse.
-> Son contenu pedagogique n'est pas encore ecrit.
+## Modules
 
-## Ce qui doit etre ecrit ici
+| Dossier                                          | Rôle                           | Mode Survie |
+| ------------------------------------------------ | ------------------------------ | ----------- |
+| [01-PROBLEM-HUNT](01-PROBLEM-HUNT/README.md)     | le problème avant la solution  | oui         |
+| [02-ASYNC](02-ASYNC/README.md)                   | attente, event loop, promesses | oui         |
+| [03-DEBUGGING](03-DEBUGGING/README.md)           | reproduire avant de corriger   | oui         |
+| [04-ERROR-HANDLING](04-ERROR-HANDLING/README.md) | erreurs comme contrat          | oui         |
+| [05-MVP-SPLIT](05-MVP-SPLIT/README.md)           | couper sans mentir             | oui         |
 
-Le contrat exact de ce fichier est decrit par les documents qui le citent :
+Retrospective qui ferme le palier : [02A-RETRO-BLOC-1-CADRAGE.md](02A-RETRO-BLOC-1-CADRAGE.md).
+Tu coches le niveau 1 quand elle est signée et datée.
 
-- `README.md`
+## Contenu du dossier
 
-## Statut
+<!-- CONTENU-DOSSIER:debut -->
 
-- [ ] contenu redige
-- [ ] exercice borne et verifiable
-- [ ] rattache au fil rouge
-- [ ] cite dans le README de son module
+- [`01-PROBLEM-HUNT/`](01-PROBLEM-HUNT/README.md)
+- [`02-ASYNC/`](02-ASYNC/README.md)
+- [`03-DEBUGGING/`](03-DEBUGGING/README.md)
+- [`04-ERROR-HANDLING/`](04-ERROR-HANDLING/README.md)
+- [`05-MVP-SPLIT/`](05-MVP-SPLIT/README.md)
+- [Rétrospective de bloc : Bloc CADRAGE (01-CADRAGE, modules `01-PROBLEM-HUNT` a `05-MVP-SPLIT`)](02A-RETRO-BLOC-1-CADRAGE.md)
+
+<!-- CONTENU-DOSSIER:fin -->
+
+> **Compagnons actifs :** [Code d'honneur CrazyDevs](../06-ANNEXES-TRANSVERSES/07-FUN-CODE-HONNEUR.md) · [Synchronisation TECH-ILA](../06-ANNEXES-TRANSVERSES/04-TECH-ILA/02-SYNCHRONISATION-PARCOURS.md)

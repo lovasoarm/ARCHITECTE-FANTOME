@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L4
+perturbation_modes: [decision_organisationnelle, regression]
+anti_recipe_key: decision_organisationnelle+regression
+transfer_distance: medium
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Source de vérité, cache, duplication, cohérence éventuelle
+
+Temps de lecture ~6 min
 
 ## Le piège
 
@@ -84,7 +98,6 @@ Duplication saine (une source de vérité, un dérivé) :
   reservations (source) --> écrit --> creneaux.placesRestantes (dérivé, recalculé)
        ^ toute écriture de réservation passe forcément par ici
 
-
 Duplication dangereuse (deux écritures indépendantes, aucune source claire) :
 
   Formulaire web  --> écrit directement --> creneaux.placesRestantes
@@ -169,3 +182,7 @@ qu'aucun d'eux ne le sache.
 - Explique pourquoi la cohérence éventuelle est acceptable pour un compteur de vues mais pas
   pour la dernière place disponible d'un événement.
 - Décris un mécanisme concret de réconciliation entre un dérivé et sa source de vérité.
+
+## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
+
+Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "slo-question",
+    "query": "Quel est le budget d'erreur et le SLO ?",
+    "expected": [
+      "slo"
+    ]
+  },
+  {
+    "id": "security-question",
+    "query": "Comment traiter les secrets dans les prompts et les logs ?",
+    "expected": [
+      "security"
+    ]
+  },
+  {
+    "id": "cost-question",
+    "query": "Quel est le budget d'appel IA ?",
+    "expected": [
+      "cost"
+    ]
+  },
+  {
+    "id": "observable-question",
+    "query": "Quelles métriques garder pour les appels ?",
+    "expected": [
+      "observability"
+    ]
+  },
+  {
+    "id": "refusal-question",
+    "query": "Quand ne faut-il pas utiliser l'IA pour une décision ?",
+    "expected": [
+      "refusal"
+    ]
+  }
+]

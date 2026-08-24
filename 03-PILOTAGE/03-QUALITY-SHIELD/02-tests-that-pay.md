@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L4
+perturbation_modes: [changement_echelle, preuve_partielle]
+anti_recipe_key: changement_echelle+preuve_partielle
+transfer_distance: medium
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Pyramide vs trophée, quoi tester selon le coût de la panne
+
+Temps de lecture ~7 min
 
 ## Le piège
 
@@ -17,7 +31,7 @@ protégé de ce qui comptait.
 
 La couverture de tests est une mesure de _quantité de code exécuté par des tests_, pas de
 _probabilité de détecter un bug coûteux_. Une équipe qui optimise la couverture optimise
-mécaniquement pour tester ce qui est facile à tester, pas ce qui coûte cher si ça casse, 
+mécaniquement pour tester ce qui est facile à tester, pas ce qui coûte cher si ça casse,
 parce que ce qui est facile à tester tire la métrique vers le haut plus vite.
 
 ```text
@@ -271,3 +285,7 @@ n'importe quel utilisateur, et son coût de maintenance est élevé.
    d'intégration avec données réelles).
 3. Explique la différence entre pyramide et trophée de tests, et quel facteur du système
    fait pencher le choix vers l'un ou l'autre.
+
+## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
+
+Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.

@@ -1,3 +1,14 @@
+---
+stability: stable
+cognitive_level: L4
+perturbation_modes: [temps_limite, decision_inversee]
+anti_recipe_key: temps_limite+decision_inversee
+transfer_distance: medium
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Écrire pour penser
 
 ## Le piège
@@ -186,3 +197,7 @@ Où l'analogie casse : le trait sur le bois est vérifiable à l'œil, une phras
    importante d'un ADR, plus que la section "Décision" elle-même.
 3. Prends un jugement ("cette architecture est plus simple") et transforme-le soit en fait
    vérifiable, soit en jugement explicitement assumé comme tel.
+
+## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
+
+Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.

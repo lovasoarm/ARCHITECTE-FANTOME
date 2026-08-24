@@ -1,3 +1,14 @@
+---
+stability: stable
+cognitive_level: L3
+perturbation_modes: [changement_echelle, transmission]
+anti_recipe_key: changement_echelle+transmission
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+
 # Trouver le vrai besoin
 
 ## La scène
@@ -116,7 +127,7 @@ Un signal faible est un indice discret qui annonce un problème avant qu'il devi
 dans les métriques officielles.
 
 | Signal faible                                                                                     | Ce qu'il révèle                                                               |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | Un tableur "de secours" maintenu à la main en parallèle du système officiel                       | Le système officiel ne couvre pas un besoin réel                              |
 | Un ticket de support qui revient sous des formulations différentes                                | Le vrai problème n'a jamais été traité, seulement ses symptômes               |
 | Une tâche que "seule une personne sait faire" dans l'équipe                                       | Un processus non documenté et fragile, souvent invisible du management        |
@@ -142,10 +153,10 @@ donnée qui a été confondu avec un problème de canal de notification.
 ## Compromis
 
 | Option                                                        | Coût                                                    | Bénéfice                                                                    | Quand choisir                                                    |
-| ------------------------------------------------------------- | ------------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| Interviewer plusieurs rôles avant de cadrer                   | Du temps, parfois perçu comme lent par le client pressé | Vision fidèle du besoin réel, évite un aller-retour coûteux après livraison | Toujours, sauf urgence vitale documentée                       |
+| ------------------------------------------------------------- | ------------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Interviewer plusieurs rôles avant de cadrer                   | Du temps, parfois perçu comme lent par le client pressé | Vision fidèle du besoin réel, évite un aller-retour coûteux après livraison | Toujours, sauf urgence vitale documentée                         |
 | Prendre la demande telle quelle et coder vite                 | Rapidité immédiate apparente                            | Risque élevé de livrer une solution au mauvais problème                     | Uniquement sur un prototype jetable, jamais sur un vrai livrable |
-| Se fier aux métriques déclaratives ("les gens disent que...") | Faible coût de collecte                                 | Fiable seulement pour des opinions, pas des comportements                   | Jamais comme seule source pour décider du scope                 |
+| Se fier aux métriques déclaratives ("les gens disent que...") | Faible coût de collecte                                 | Fiable seulement pour des opinions, pas des comportements                   | Jamais comme seule source pour décider du scope                  |
 
 ## Pièges classiques
 
@@ -175,3 +186,7 @@ Où l'analogie casse : le patient sent sa douleur, l'utilisateur, lui, te décri
   d'une interview de cadrage, et par quoi la remplacer.
 - Comment un contournement actuel (tableur fantôme, post-it) t'aide à prouver qu'un besoin
   existe réellement, avant même d'avoir écrit une ligne de code.
+
+## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
+
+Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.

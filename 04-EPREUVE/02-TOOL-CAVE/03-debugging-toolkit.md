@@ -1,4 +1,21 @@
+## perishability_id: PER-0067
+
+stability: perissable
+acte: comprendre
+cognitive_level: L4
+perturbation_modes: [constraints_injectees, decision_inversee]
+anti_recipe_key: constraints_injectees+decision_inversee
+transfer_distance: high
+assessment_role: diagnostic_mastery
+review_due: 2027-12-31
+
+---
+
+> **SCÈNE CRAZYDEVS : mur de siège :** le bug n'est pas “où ça a explosé ?”, mais “où la première fissure est-elle apparue ?”. Ici, chaque log, test et reproduction est une empreinte dans le mur.
+
 # Méthode de debug : bissection, hypothèses, profilers, logs
+
+Temps de lecture ~7 min
 
 ## Le piège
 
@@ -86,7 +103,9 @@ l'écrire : "à cet instant précis, quelle valeur doit valoir X si mon hypothè
 console.log("stock", stock);
 
 // Utile : log qui teste une hypothèse précise (race condition sur requêtes concurrentes)
-console.log(`[stock-check] req=${requestId} avant_lecture=${Date.now()} valeur_lue=${stock}`);
+console.log(
+  `[stock-check] req=${requestId} avant_lecture=${Date.now()} valeur_lue=${stock}`,
+);
 // --> si deux req logguent la même valeur_lue avant qu'aucune n'ait écrit, c'est une race
 //   condition confirmée, pas une supposition.
 ```
@@ -113,7 +132,7 @@ Piège 3 : optimiser la fonction la plus visible plutôt que la plus coûteuse
 ## Compromis
 
 | Option                                          | Coût                                               | Bénéfice                                           | Quand choisir                                                                    |
-| ------------------------------------------------ | --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| ----------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------------------------------- |
 | Tâtonnement intuitif                            | Rapide sur les bugs triviaux                       | Ne scale pas, aucune garantie de convergence       | Bug évident, une ligne, contexte que tu connais déjà bien                        |
 | Bissection systématique                         | Discipline, quelques étapes incompressibles        | Convergence garantie même sur du code inconnu      | Bug non local, régression apparue entre deux versions                            |
 | Logs ciblés par hypothèse                       | Temps de réflexion avant d'écrire le log           | Signal exploitable immédiatement, pas de bruit     | Bug intermittent, race condition, comportement dépendant du contexte d'exécution |
@@ -159,7 +178,7 @@ a menti.
 ### Le code fourni
 
 ```typescript
-// Node 20 LTS (verifie le 2026-08-03)
+// Node 22 LTS (verifie le 2026-08-03)
 // reservation.ts : service de réservation de créneaux du mur d'escalade
 
 type Creneau = { id: string; capacite: number; placesReservees: number };
@@ -203,7 +222,10 @@ test("le compteur ne dépasse jamais la capacité sous accès concurrent", async
   const creneau = getCreneau("mardi-19h")!;
   creneau.placesReservees = creneau.capacite - 1; // une seule place restante
 
-  const [r1, r2] = await Promise.all([reserverPlace("mardi-19h"), reserverPlace("mardi-19h")]);
+  const [r1, r2] = await Promise.all([
+    reserverPlace("mardi-19h"),
+    reserverPlace("mardi-19h"),
+  ]);
 
   expect([r1, r2].filter(Boolean).length).toBe(1); // échoue ~1 fois sur 50
   expect(getCreneau("mardi-19h")!.placesReservees).toBe(creneau.capacite);
@@ -322,3 +344,26 @@ un malaise sans en avoir observé une crise en conditions contrôlées, et la co
 de retenter un passage tant qu'elle n'a pas identifié la prise qui a lâché. Où l'analogie
 casse : aux urgences et en cordée, provoquer une crise ou une chute pour l'observer a une
 limite éthique. En informatique, provoquer le bug à volonté en test est obligatoire.
+
+## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+
+<!-- AF-DIAGRAM:transfer -->
+
+```text
+text
+Principe appris
+      │
+      ▼
+Nouveau contexte
+      │
+      ├── invariant ──► conserver
+      │
+      └── hypothèse cassée ─► adapter
+                                │
+                                ▼
+                             nouvelle décision
+```
+
+Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+
+Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.

@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L3
+perturbation_modes: [fausse_piste, solution_concurrente]
+anti_recipe_key: fausse_piste+solution_concurrente
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : conseil de Konoha :** cinq ingénieurs, cinq idées, une personne qui ne parle plus depuis dix minutes. Ton rôle n'est pas seulement de gagner l'argument : c'est de récupérer l'information que le silence est en train de faire disparaître.
+
 # Les règles qu'on écrit avant d'en avoir besoin
+
+Temps de lecture ~6 min
 
 ## Le piège
 
@@ -175,3 +189,8 @@ Où l'analogie casse : en cordée la sanction est immédiate et physique, une r�
    être répondue avant le désaccord, pas pendant.
 3. Donne un exemple de règle de working agreement mal formulée (non vérifiable) et
    reformule-la en règle vérifiable.
+
+## CHECKPOINT DE PROFONDEUR : variation A : prédire avant de réparer
+
+Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
+Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.

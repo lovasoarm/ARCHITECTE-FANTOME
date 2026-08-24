@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L3
+perturbation_modes: [fausse_piste, transmission]
+anti_recipe_key: fausse_piste+transmission
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Schéma, contraintes, index : normaliser puis dénormaliser sciemment
+
+Temps de lecture ~6 min
 
 ## La scène
 
@@ -188,3 +202,7 @@ LOWER(email) = ...` ignore un index sur `email` brut).
   actif par article", et comment un index partiel résout-il exactement ce problème ?
 - Donne un exemple où ajouter un index rendrait une lecture plus rapide mais dégraderait une
   écriture au point de ne pas valoir le coup : chiffre l'arbitrage même approximativement.
+
+## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
+
+Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.

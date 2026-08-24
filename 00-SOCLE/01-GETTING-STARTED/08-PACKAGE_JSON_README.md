@@ -1,0 +1,42 @@
+## perishability_id: PER-0003
+
+stability: perissable
+acte: comprendre
+review_due: 2027-12-31
+
+---
+
+> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+
+# `package.json` : mode d'emploi (2 min)
+
+Ce dossier contient un `package.json` minimal. **Ne lance PAS `npm install`
+tout de suite** : il n'y a aucune dependance a installer.
+
+## A quoi il sert
+
+- Declarer que ce dossier est un projet Node moderne (`"type": "module"`
+  active les `import`/`export` sans configuration).
+- Fournir 3 scripts pratiques :
+  - `npm start` -> `node index.js`
+  - `npm test` -> `node --test` (runner natif Node)
+  - `npm run watch` -> re-execute a chaque sauvegarde
+
+## Quand faire `npm install` ici
+
+- **Jamais**, tant qu'aucune dependance n'apparait dans la section
+  `dependencies` ou `devDependencies`.
+- Le jour ou tu ajoutes une lib (par exemple `zod`), tu fais
+  `npm install zod`, ce qui cree `node_modules/` et `package-lock.json`.
+
+## Requis Node
+
+`"engines"` demande Node 22.x ou plus récent. Le curriculum prend Node 22.23.2 comme référence de reproductibilité, mais les exercices fondamentaux restent compatibles avec Node 22.x.
+Verifie avec `node -v`.
+
+**Référence canonique du runtime AF : `22.23.2` (voir `.nvmrc`).**
+
+## Pourquoi ce fichier est utile meme vide
+
+Il te sert de reference : tu regardes comment un `package.json` est
+structure avant d'en generer un toi-meme avec `npm init -y`.

@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L3
+perturbation_modes: [defaut_cache, transmission]
+anti_recipe_key: defaut_cache+transmission
+transfer_distance: high
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Utilisateurs et jobs to be done
+
+Temps de lecture ~8 min
 
 ## La scène
 
@@ -51,7 +65,7 @@ qu'à illustrer une slide ou à donner un sentiment de rigueur méthodologique s
 quoi que ce soit dans le produit.
 
 | Test                                                                               | Persona utile                                                         | Persona décoratif                                                   |
-| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | "Si je supprime ce persona, est-ce que je changerais une décision de conception ?" | Oui : sans lui, on n'aurait pas pensé à l'usage mains libres          | Non : la fiche pourrait disparaître, rien ne change dans le produit |
 | Source de l'information                                                            | Observation ou interview réelle d'un utilisateur concret              | Extrapolation générique ("les jeunes aiment le mobile")             |
 | Niveau de détail utile                                                             | Contexte d'usage, contrainte physique ou organisationnelle, fréquence | Âge, loisirs, prénom inventé, photo stock                           |
@@ -124,12 +138,12 @@ n'existe que pendant les deux premières semaines d'activité.
 
 ## Compromis
 
-| Option                                                       | Coût                                  | Bénéfice                                                    | Quand choisir                                             |
-| ------------------------------------------------------------- | ------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| Construire des jobs to be done à partir d'interviews réelles | Demande du temps de terrain           | Base solide, résiste aux changements de profil utilisateur  | Systématiquement en début de cadrage                      |
-| Observer directement l'utilisateur en contexte réel          | Coûte une journée d'accompagnement    | Révèle des jobs invisibles même à l'utilisateur lui-même     | Dès que le job implique un contexte physique ou une urgence |
-| Utiliser des personas détaillés (âge, style de vie, photo)   | Rapide à produire en atelier          | Séduisant en réunion mais rarement actionnable              | Uniquement en complément d'un job to be done, jamais seul |
-| Ignorer les jobs et concevoir "pour tout le monde"           | Semble économiser du temps de cadrage | Produit une fonctionnalité diluée qui ne sert bien personne | Jamais, sauf produit jetable sans enjeu                   |
+| Option                                                       | Coût                                  | Bénéfice                                                    | Quand choisir                                               |
+| ------------------------------------------------------------ | ------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| Construire des jobs to be done à partir d'interviews réelles | Demande du temps de terrain           | Base solide, résiste aux changements de profil utilisateur  | Systématiquement en début de cadrage                        |
+| Observer directement l'utilisateur en contexte réel          | Coûte une journée d'accompagnement    | Révèle des jobs invisibles même à l'utilisateur lui-même    | Dès que le job implique un contexte physique ou une urgence |
+| Utiliser des personas détaillés (âge, style de vie, photo)   | Rapide à produire en atelier          | Séduisant en réunion mais rarement actionnable              | Uniquement en complément d'un job to be done, jamais seul   |
+| Ignorer les jobs et concevoir "pour tout le monde"           | Semble économiser du temps de cadrage | Produit une fonctionnalité diluée qui ne sert bien personne | Jamais, sauf produit jetable sans enjeu                     |
 
 ## Pièges classiques
 
@@ -156,3 +170,26 @@ Où l'analogie casse : une brigade est fixe, un utilisateur change de rôle en c
 - Comment tester si un persona donné est utile ou décoratif, avec un exemple concret.
 - Pourquoi un même utilisateur peut porter plusieurs jobs incompatibles en termes de
   contraintes d'interface, et ce que ça implique pour la conception.
+
+## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+
+<!-- AF-DIAGRAM:transfer -->
+
+```text
+text
+Principe appris
+      │
+      ▼
+Nouveau contexte
+      │
+      ├── invariant ──► conserver
+      │
+      └── hypothèse cassée ─► adapter
+                                │
+                                ▼
+                             nouvelle décision
+```
+
+Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+
+Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.

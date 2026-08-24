@@ -1,0 +1,16 @@
+{
+  "name": "parcours-sandbox",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Sandbox minimal pour les exercices du parcours.",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --test",
+    "watch": "node --watch index.js"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10"
+  }
+}

@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L3
+perturbation_modes: [changement_echelle, solution_concurrente]
+anti_recipe_key: changement_echelle+solution_concurrente
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+
 # Revue de code utile, CI, garde-fous automatiques
+
+Temps de lecture ~5 min
 
 ## Le piège
 
@@ -149,7 +163,7 @@ l'exécution en production.
   production.
 - Un test flaky ignoré et relancé systématiquement : le symptôme est que l'équipe finit par
   relancer aussi les échecs réels sans les regarder, pensant qu'ils sont "encore" flaky.
-- Une CI si lente que l'équipe la contourne (merge direct, ou attente en fin de journée), 
+- Une CI si lente que l'équipe la contourne (merge direct, ou attente en fin de journée),
   le symptôme est une accumulation de changements non vérifiés qui cassent ensemble.
 - Un garde-fou de sécurité (scan de dépendances, détection de secrets) absent de la CI,
   découvert seulement après une fuite ou un audit externe.
@@ -164,3 +178,8 @@ l'exécution en production.
    justifiant la différence par leur capacité à prévenir un vrai bug.
 3. Explique pourquoi un test flaky ignoré est plus dangereux qu'un test qui échoue toujours
    de façon prévisible.
+
+## CHECKPOINT DE PROFONDEUR : variation A : prédire avant de réparer
+
+Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
+Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.

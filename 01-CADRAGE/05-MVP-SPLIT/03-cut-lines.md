@@ -1,3 +1,14 @@
+---
+stability: stable
+cognitive_level: L3
+perturbation_modes: [transmission, solution_concurrente]
+anti_recipe_key: transmission+solution_concurrente
+transfer_distance: high
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : mission de rang S :** l'architecture la plus élégante peut perdre si elle arrive après la fenêtre business. Tu dois choisir ce que tu sacrifies avant que quelqu'un d'autre ne le fasse à ta place.
+
 # Où couper une feature sans la casser
 
 ## La scène
@@ -124,7 +135,6 @@ Cycle de vie malsain :
            chemin "actif" sans savoir que l'autre existe encore
 ```
 
-
 ## Analogie
 
 Trouver la ligne de coupe d'une feature, c'est comme un chef de cuisine qui retire un
@@ -138,7 +148,7 @@ deux endroits différents, avec des résultats incompatibles.
 ## Compromis
 
 | Option                                                                 | Coût                                                                            | Bénéfice                                                             | Quand choisir                                                              |
-| ----------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | Couper par réduction de portée (moins d'utilisateurs, moins de volume) | Demande d'identifier clairement l'invariant à préserver                         | Livraison rapide d'un scénario honnête et complet                    | Cas général, à privilégier par défaut                                      |
 | Couper en retirant une étape du scénario                               | Rapide à décider                                                                | Casse souvent l'intention de la feature, comme dans l'exemple du SMS | Seulement si l'étape retirée est réellement optionnelle pour l'utilisateur |
 | Utiliser un feature flag pour livrer en continu                        | Ajoute une petite complexité de configuration et de nettoyage ultérieur du flag | Réduit le risque de merge tardif et permet un test progressif        | Dès que plusieurs personnes travaillent sur le même code en parallèle      |
@@ -164,3 +174,26 @@ deux endroits différents, avec des résultats incompatibles.
   de découpage.
 - À quoi sert un feature flag concrètement, et quel est son coût caché si on ne le nettoie
   jamais après usage.
+
+## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+
+<!-- AF-DIAGRAM:transfer -->
+
+```text
+text
+Principe appris
+      │
+      ▼
+Nouveau contexte
+      │
+      ├── invariant ──► conserver
+      │
+      └── hypothèse cassée ─► adapter
+                                │
+                                ▼
+                             nouvelle décision
+```
+
+Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+
+Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.

@@ -1,3 +1,14 @@
+---
+stability: stable
+cognitive_level: L4
+perturbation_modes: [temps_limite, solution_concurrente]
+anti_recipe_key: temps_limite+solution_concurrente
+transfer_distance: high
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # La routine d'entraînement quotidienne
 
 ## Le piège
@@ -177,3 +188,7 @@ Où l'analogie casse : la mise en place se voit dans le service du soir, ton ent
   les deux entraînent des muscles différents.
 - Donne un exemple de motif que tu pourrais découvrir en relisant un mois de ton propre
   journal, s'il existait déjà.
+
+## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
+
+Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.

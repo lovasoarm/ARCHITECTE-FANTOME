@@ -1,20 +1,27 @@
-# Niveau 05 : Data Spells
+---
+stability: intemporel
+acte: comprendre
+route: complete
+---
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Niveau précédent](../01-USER-WIZARD/README.md) | [Niveau suivant](../15-ARCHI-LAB/README.md)
+# Module 02-CONSTRUCTION/08-DATA-SPELLS : Data Spells
 
-**Ce niveau réutilise :** [04-USER-WIZARD](../01-USER-WIZARD/03-states-and-empty-cases.md) : les états obligatoires d'un affichage (vide, chargement, erreur), qui deviennent des contraintes sur le modèle de données.
+[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../01-USER-WIZARD/README.md) | [Niveau suivant](../15-ARCHI-LAB/README.md)
+
+**Ce niveau réutilise :** [01-USER-WIZARD](../01-USER-WIZARD/03-states-and-empty-cases.md) : les états obligatoires d'un affichage (vide, chargement, erreur), qui deviennent des contraintes sur le modèle de données.
 
 **Auto-test d'entrée :**
+
 1. Cite les cinq états obligatoires de tout affichage de données.
 2. Pourquoi un double submit sur un formulaire peut-il creer deux fois la meme ressource si l'idempotence n'est pas geree ?
 3. Qu'est-ce qu'une UI optimiste, et quel est son risque principal ?
 
 **Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
-[le grimoire du niveau précédent](../01-USER-WIZARD/grimoire.md) (20 minutes), puis refais son
-[challenge](../01-USER-WIZARD/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
-trou amont, c'est attribuer au niveau 05 une difficulté qui vient du niveau 04.
+[le grimoire du niveau précédent](../01-USER-WIZARD/90-grimoire.md) (20 minutes), puis refais son
+[challenge](../01-USER-WIZARD/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
+trou amont, c'est attribuer au 08-DATA-SPELLS une difficulté qui vient du 01-USER-WIZARD.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) (règle de calcul : voir [_STYLE.md](../.meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce niveau en une phrase
 
@@ -55,14 +62,14 @@ domaines avec de vrais invariants temporels et une vraie concurrence d'accès.
 
 ## Plan du niveau
 
-- [01-why-this-level.md](01-why-this-level.md) : ce qui casse quand le modèle de données est pensé après le code.
+- [01-01-why-this-level.md](01-01-why-this-level.md) : ce qui casse quand le modèle de données est pensé après le code.
 - [02-model-the-domain.md](02-model-the-domain.md) : entités, invariants, clés naturelles vs techniques.
 - [03-relations-and-normalization.md](03-relations-and-normalization.md) : normaliser puis dénormaliser sciemment.
 - [04-migrations-and-time.md](04-migrations-and-time.md) : migrations réversibles, historique, soft delete, audit.
 - [05-queries-that-scale.md](05-queries-that-scale.md) : index, N+1, pagination par curseur, transactions et isolation.
-- [challenge.md](challenge.md) : exercice appliqué et critères de réussite mesurables.
-- [boss-fight.md](boss-fight.md) : situation adverse réaliste, avec grille d'évaluation.
-- [grimoire.md](grimoire.md) : mémo dense à garder sous la main.
+- [95-challenge.md](95-challenge.md) : exercice appliqué et critères de réussite mesurables.
+- [96-boss-fight.md](96-boss-fight.md) : situation adverse réaliste, avec grille d'évaluation.
+- [90-grimoire.md](90-grimoire.md) : mémo dense à garder sous la main.
 
 ## Trois paliers
 
@@ -84,7 +91,7 @@ au palier, pas au niveau.
 
 ## Prérequis
 
-Niveau 04, ou une expérience équivalente d'écriture d'API avec base de données relationnelle. Tu dois
+Module `02-CONSTRUCTION/01-USER-WIZARD`, ou une expérience équivalente d'écriture d'API avec base de données relationnelle. Tu dois
 savoir écrire une jointure SQL et une transaction basique avant d'attaquer la leçon 3.
 
 ## Comment progresser
@@ -108,13 +115,41 @@ triche :
 2. **Point de reprise après une pause.** Le niveau se coupe proprement en deux : les leçons 02 et 03
    (modéliser) forment un tout, les leçons 04 et 05 (faire évoluer, faire tenir la charge) en
    forment un autre. Reprends au début de la moitié non finie, jamais au début du niveau, et relis
-   d'abord [grimoire.md](grimoire.md). Protocole complet dans
-   [00-PROLOGUE/02-how-to-use-this-curriculum.md](../../00-SOCLE/02-PROLOGUE/02-how-to-use-this-curriculum.md),
+   d'abord [90-grimoire.md](90-grimoire.md). Protocole complet dans
+   [02-PROLOGUE/02-how-to-use-this-curriculum.md](../../00-SOCLE/02-PROLOGUE/02-how-to-use-this-curriculum.md),
    section « Reprendre après une pause longue ».
 3. **Continuer ou recommencer : le critère.** Recommence uniquement si tu ne peux pas répondre à la
    question « quel invariant métier mon schéma actuel laisse-t-il violer ? ». Si tu peux y répondre,
    même mal, tu continues : la suite du parcours va corriger le schéma de toute façon, c'est prévu
-   au niveau 06 et au capstone. Recommencer par confort est le piège le plus coûteux du parcours.
+   au 15-ARCHI-LAB et au capstone. Recommencer par confort est le piège le plus coûteux du parcours.
 
 Signal d'alerte honnête : trois séances d'affilée sans une seule ligne de SQL exécutée. Ce n'est pas
 un manque de motivation, c'est un blocage d'outillage. Applique l'issue 1 le jour même.
+
+<!-- PIECES-MODULE:debut -->
+
+## Les pièces de ce module
+
+- [`00-PREREQUIS.md`](00-PREREQUIS.md) : Auto-test d'entrée : à passer avant d'ouvrir le module
+- [`95-challenge.md`](95-challenge.md) : Challenge : l'épreuve du module
+- [`90-grimoire.md`](90-grimoire.md) : Grimoire : ce que tu dois pouvoir restituer
+- [`96-boss-fight.md`](96-boss-fight.md) : Boss : l'épreuve du palier, une seule fois
+
+<!-- PIECES-MODULE:fin -->
+
+## Contenu du dossier
+
+<!-- CONTENU-DOSSIER:debut -->
+
+- [Auto-test d'entrée : `08-DATA-SPELLS`](00-PREREQUIS.md)
+- [Pourquoi ce niveau existe](01-01-why-this-level.md)
+- [Modéliser le réel : entités, relations, invariants](02-model-the-domain.md)
+- [Schéma, contraintes, index : normaliser puis dénormaliser sciemment](03-relations-and-normalization.md)
+- [Migrations, historique, suppression douce : faire évoluer un schéma vivant](04-migrations-and-time.md)
+- [Requêtes qui tiennent à l'échelle : index, N+1, curseurs, transactions](05-queries-that-scale.md)
+- [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
+- [Boss Fight : La migration du vendredi et le tarif qui ne peut pas attendre](96-boss-fight.md)
+- [Challenge : Modéliser et faire tenir un domaine à l'échelle](95-challenge.md)
+- [Grimoire : Module 02-CONSTRUCTION/08-DATA-SPELLS, Data Spells](90-grimoire.md)
+
+<!-- CONTENU-DOSSIER:fin -->

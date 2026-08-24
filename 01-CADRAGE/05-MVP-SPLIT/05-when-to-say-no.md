@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L4
+perturbation_modes: [regression, fausse_piste]
+anti_recipe_key: regression+fausse_piste
+transfer_distance: high
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : coach du village :** tu n'as pas 40 matchs à préparer, tu en as trois cette semaine. La question n'est donc pas “que peut-on construire ?” mais “quel pari vaut le terrain maintenant ?”.
+
 # Savoir dire non sans passer pour l'obstacle
+
+Temps de lecture ~6 min
 
 ## La scène
 
@@ -18,7 +32,7 @@ Dire non efficacement ne consiste pas à refuser une demande, mais à rendre vis
 d'opportunité : ce qu'on sacrifie ailleurs si on l'accepte. La plupart des demandes de
 périmètre supplémentaire semblent gratuites parce que la personne qui les formule ne voit pas
 ce qu'elles déplacent. Le rôle de qui reçoit la demande n'est pas de juger si elle est
-légitime dans l'absolu : la facturation automatique est probablement une bonne idée un jour, 
+légitime dans l'absolu : la facturation automatique est probablement une bonne idée un jour,
 mais de rendre concret son prix, ici et maintenant, par rapport à ce qui était déjà engagé.
 
 ```text
@@ -55,7 +69,7 @@ maintenant, et voici pourquoi, et voici ce qui doit se passer avant que ce soit 
   (le coût             (la demande           (vraie idée, mauvais
    d'opportunité         viole un              moment : dette
    est acceptable,       non-objectif,          consciente à
-   arbitré               voir Niveau 02)        prévoir, pas à
+   arbitré               voir Module `01-CADRAGE/01-PROBLEM-HUNT`)        prévoir, pas à
    consciemment)                                subir)
 ```
 
@@ -85,7 +99,6 @@ Dette subie :
 
 La différence entre les deux n'est pas technique, elle est purement organisationnelle : est-ce
 que la décision a été écrite quelque part, avec sa raison et son échéance de remboursement.
-
 
 ## Analogie
 
@@ -176,3 +189,8 @@ bien d'avoir") d'une demande qui répond à un incident terrain déjà mesuré.
   que s'il s'accompagne d'une condition de réexamen concrète.
 - La différence entre dette technique assumée et dette technique subie, et pourquoi cette
   différence est organisationnelle plutôt que technique.
+
+## CHECKPOINT DE PROFONDEUR : variation A : prédire avant de réparer
+
+Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
+Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.

@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L4
+perturbation_modes: [changement_echelle, decision_inversee]
+anti_recipe_key: changement_echelle+decision_inversee
+transfer_distance: medium
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : coach du village :** tu n'as pas 40 matchs à préparer, tu en as trois cette semaine. La question n'est donc pas “que peut-on construire ?” mais “quel pari vaut le terrain maintenant ?”.
+
 # Avancement réel vs déclaré, signaux de dérive
+
+Temps de lecture ~7 min
 
 ## Le piège
 
@@ -17,7 +31,7 @@ confort, pas une observation.
 Un pourcentage d'avancement déclaré par la personne qui fait le travail souffre d'un biais
 structurel : elle ne peut pas mesurer objectivement ce qu'elle n'a pas encore rencontré. Le
 travail restant _paraît_ proche de la fin parce que le travail fait _jusqu'ici_ était facile
-,  rien ne garantit que ce qui reste l'est aussi.
+, rien ne garantit que ce qui reste l'est aussi.
 
 ```text
 Ce que la personne ressent               Ce qui se passe réellement
@@ -180,3 +194,7 @@ ou avec une cause qui change à chaque fois qu'on demande.
    ou plausible dans un projet que tu connais.
 3. Explique pourquoi demander une démonstration régulière n'est pas un acte de méfiance mais
    un service rendu à la personne qui risque d'être bloquée en silence.
+
+## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
+
+Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.

@@ -1,3 +1,14 @@
+---
+stability: stable
+cognitive_level: L3
+perturbation_modes: [decision_inversee, changement_echelle]
+anti_recipe_key: decision_inversee+changement_echelle
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : mission de rang S :** l'architecture la plus élégante peut perdre si elle arrive après la fenêtre business. Tu dois choisir ce que tu sacrifies avant que quelqu'un d'autre ne le fasse à ta place.
+
 # Découper en phases livrables, jalons vérifiables
 
 ## Le piège
@@ -166,3 +177,7 @@ investi dans le reste de l'écran de catalogue et de gestion de créneaux.
    vérifiable et daté.
 3. Pourquoi une tranche verticale coûte plus cher à démarrer qu'un découpage par couche, et
    pourquoi ce surcoût initial est rentable dès qu'il y a une incertitude d'intégration.
+
+## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
+
+Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.

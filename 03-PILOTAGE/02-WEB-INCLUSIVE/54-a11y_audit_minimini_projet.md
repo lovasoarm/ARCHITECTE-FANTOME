@@ -1,0 +1,65 @@
+---
+stability: intemporel
+acte: pratiquer
+cognitive_level: L4
+perturbation_modes: [decision_inversee, constraints_injectees]
+anti_recipe_key: decision_inversee+constraints_injectees
+transfer_distance: low
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : armure Garo :** une protection qui existe mais n'est jamais vérifiée est juste un costume brillant. Ici, chaque garde-fou doit être testable et attaquable.
+
+## TYPE
+
+Mini-projet
+
+## Niveau
+
+[OK] Avancé
+
+## CONTEXTE
+
+Un audit transforme des impressions en liste d'actions chiffrées, et se rejoue à chaque évolution du site.
+
+## OBJECTIF
+
+Ton score d'accessibilité est mesuré et amélioré.
+
+## APPLICATION
+
+- Lance un audit automatisé (Lighthouse ou axe) sur l'accueil et sur une fiche projet.
+- Parcours ensuite la page uniquement au clavier : une IA ne détecte pas tout.
+- Vérifie une lecture logique avec un lecteur d'écran si tu en as un à disposition.
+- Classe les problèmes trouvés : bloquant / important / amélioration.
+- Classe les résultats en trois catégories : à corriger, faux positif, hors scope.
+- Corrige tout ce qui est classé « à corriger » et relance l'audit.
+
+## Critère de réussite
+
+- [ ] Lance un audit automatisé (Lighthouse ou axe) sur l'accueil et sur une fiche projet.
+- [ ] Parcours ensuite la page uniquement au clavier.
+- [ ] Je peux expliquer le résultat obtenu sans relire le cours.
+
+## Vérification
+
+Quel problème l'outil a-t-il manqué que ta navigation clavier avait révélé ?
+
+## Preuve à conserver
+
+Après l'expérience, conserve :
+
+- le résultat observé ;
+- l'explication ;
+- la règle générale que tu en tires ;
+- une limite ou une exception connue.
+
+## Ce que tu viens de démontrer
+
+Dans ce scénario, tu as vérifié que : ton score d'accessibilité est mesuré et amélioré.
+
+Tu peux annoncer un chiffre vérifiable sur ton portfolio. Commit le rapport dans `docs/`.
+
+## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
+
+Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.

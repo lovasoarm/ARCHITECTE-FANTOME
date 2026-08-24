@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L3
+perturbation_modes: [solution_concurrente, decision_organisationnelle]
+anti_recipe_key: solution_concurrente+decision_organisationnelle
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Le contrat avant le code
+
+Temps de lecture ~6 min
 
 ## Le piège
 
@@ -191,3 +205,7 @@ les mains de clients qu'on ne peut pas convoquer pour leur annoncer la nouvelle 
   si aucun consommateur connu ne semble l'utiliser au moment du changement.
 - Donne les trois étapes minimales pour dépréciez une version d'API sans casser les
   consommateurs qui ne migrent pas immédiatement.
+
+## CHECKPOINT DE PROFONDEUR : variation B : défendre l'inverse
+
+Ferme la page et défends pendant quelques minutes une stratégie opposée à celle implicitement recommandée ici. Cherche son meilleur cas d'usage, puis montre le cas où elle casse. Reviens ensuite à la stratégie initiale et justifie le choix par des mécanismes, pas par le vocabulaire du cours.

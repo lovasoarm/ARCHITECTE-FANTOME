@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L3
+perturbation_modes: [transmission, temps_limite]
+anti_recipe_key: transmission+temps_limite
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : armure Garo :** une protection qui existe mais n'est jamais vérifiée est juste un costume brillant. Ici, chaque garde-fou doit être testable et attaquable.
+
 # Authn vs authz, tokens, scopes, frontières de confiance
+
+Temps de lecture ~5 min
 
 ## La scène
 
@@ -104,6 +118,24 @@ où le code tourne sur son appareil.
 
 ### Secrets : ce qu'on ne met jamais dans un contrat ni dans un dépôt
 
+<!-- AF-DIAGRAM:secrets -->
+
+```text
+text
+┌──────────────┐
+│ Secret store │
+└──────┬───────┘
+       │ inject
+       ▼
+┌──────────────┐      ✗ hardcode
+│ Runtime      │◄──────────────
+└──────┬───────┘
+       ▼
+   application
+```
+
+Un secret doit entrer dans le système au runtime et ne pas être figé dans le code ou l’image.
+
 ```text
 Jamais dans le code source, jamais dans un commit, même privé :
   - Clés d'API, secrets de signature JWT, mots de passe de base de données
@@ -159,3 +191,7 @@ scope ou l'expiration n'a pas été vérifié.
   la validation côté serveur.
 - Donne un exemple concret où un JWT auto-porteur pose un problème qu'un token opaque
   résout, et le coût que ce dernier introduit en échange.
+
+## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
+
+Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?

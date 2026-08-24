@@ -11,52 +11,51 @@ Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-d
 
 Vingt modules d'affilee, c'est un plateau de plusieurs mois sans palier a cocher : c'est la ou l'on abandonne. Le bloc est donc annonce en deux paliers, sans qu'aucun dossier ne soit renumerote.
 
-| Palier annonce | Modules | Boss | Retrospective qui ferme le palier |
-| --- | --- | --- | --- |
-| Niveau 2 — Developpeur confirme | `01-USER-WIZARD` a `13_runtime_env` | BOSS-1 a BOSS-6 | [MI-RETRO-BLOC-2-ARCHI.md](MI-RETRO-BLOC-2-ARCHI.md) |
-| Niveau 2bis — Concepteur | `14_architecture_patterns` a `20-API-DOJO` | BOSS-7 a BOSS-9 | [RETRO-BLOC-2-BUILD.md](RETRO-BLOC-2-BUILD.md) |
+| Palier annonce                  | Modules                                                  | Boss                    | Retrospective qui ferme le palier                                            |
+| ------------------------------- | -------------------------------------------------------- | ----------------------- | ---------------------------------------------------------------------------- |
+| Niveau 2 : Developpeur confirme | `01-USER-WIZARD` a `13-RUNTIME-ENV`                      | 02b-BOSS-1 a 13b-BOSS-6 | [03A-c-RETRO-BLOC-2-BUILD-CONFIRME.md](03A-c-RETRO-BLOC-2-BUILD-CONFIRME.md) |
+| Niveau 2bis : Concepteur        | `14-ARCHITECTURE-PATTERNS` à `21-CLIENT-SYSTEMS-FLUTTER` | 14b-BOSS-7 a 20b-BOSS-9 | [04A-RETRO-BLOC-2BIS-ARCHI.md](04A-RETRO-BLOC-2BIS-ARCHI.md)                 |
 
-BOSS-7 est le Boss de charniere : il couvre 13 et 14, il est compte dans le niveau 2bis parce que c'est la qu'il se joue. [MI-RETRO-BLOC-2-BUILD.md](MI-RETRO-BLOC-2-BUILD.md) reste une respiration a mi-palier 2, elle ne coche rien.
+14b-BOSS-7 est le Boss de charniere : il couvre 13 et 14, il est compte dans le niveau 2bis parce que c'est la qu'il se joue. [02A-c-MI-RETRO-BLOC-2-BUILD.md](02A-c-MI-RETRO-BLOC-2-BUILD.md) reste une respiration a mi-palier 2, elle ne coche rien.
 
 Tu coches le niveau 2 quand la retrospective de palier est signee et datee, jamais quand les fichiers sont lus.
 
-<!-- CONTENU-DOSSIER:debut (genere par 99-COULISSES/outillage/generer_index_dossiers.mjs) -->
+<!-- CONTENU-DOSSIER:debut -->
 
-## Contenu du dossier
-
-Liste generee : tout fichier de `02-CONSTRUCTION` est joignable depuis ici, aucun document n'est laisse sans porte d'entree.
-
-- [MI-RETRO-BLOC-2-ARCHI.md](MI-RETRO-BLOC-2-ARCHI.md)
-- [MI-RETRO-BLOC-2-BUILD.md](MI-RETRO-BLOC-2-BUILD.md)
-- [RETRO-BLOC-2-BUILD.md](RETRO-BLOC-2-BUILD.md)
-- [01-USER-WIZARD/](01-USER-WIZARD/README.md)
-- [02_mini_projects/](02_mini_projects/README.md)
-- [03_testing/](03_testing/README.md)
-- [04_math_basics/](04_math_basics/README.md)
-- [05_memory_performance/](05_memory_performance/README.md)
-- [06_data_structures/](06_data_structures/README.md)
-- [07_algorithms/](07_algorithms/README.md)
-- [08-DATA-SPELLS/](08-DATA-SPELLS/README.md)
-- [09_functional_js/](09_functional_js/README.md)
-- [10_design_patterns/](10_design_patterns/README.md)
-- [11_refactoring/](11_refactoring/README.md)
-- [12_typescript/](12_typescript/README.md)
-- [13_runtime_env/](13_runtime_env/README.md)
-- [14_architecture_patterns/](14_architecture_patterns/README.md)
-- [15-ARCHI-LAB/](15-ARCHI-LAB/README.md)
-- [16_ddd_contrats/](16_ddd_contrats/README.md)
-- [17_oop_js/](17_oop_js/README.md)
-- [18_web_concepts/](18_web_concepts/README.md)
-- [19_api_craft/](19_api_craft/README.md)
-- [20-API-DOJO/](20-API-DOJO/README.md)
-- [BOSS-1/](BOSS-1/README.md)
-- [BOSS-2/](BOSS-2/README.md)
-- [BOSS-3/](BOSS-3/README.md)
-- [BOSS-4/](BOSS-4/README.md)
-- [BOSS-5/](BOSS-5/README.md)
-- [BOSS-6/](BOSS-6/README.md)
-- [BOSS-7/](BOSS-7/README.md)
-- [BOSS-8/](BOSS-8/README.md)
-- [BOSS-9/](BOSS-9/README.md)
+- [`01-USER-WIZARD/`](01-USER-WIZARD/README.md)
+- [`02-MINI-PROJECTS/`](02-MINI-PROJECTS/README.md)
+- [`03-TESTING/`](03-TESTING/README.md)
+- [`04-MATH-BASICS/`](04-MATH-BASICS/README.md)
+- [`05-MEMORY-PERFORMANCE/`](05-MEMORY-PERFORMANCE/README.md)
+- [`06-DATA-STRUCTURES/`](06-DATA-STRUCTURES/README.md)
+- [`07-ALGORITHMS/`](07-ALGORITHMS/README.md)
+- [`08-DATA-SPELLS/`](08-DATA-SPELLS/README.md)
+- [`09-FUNCTIONAL-JS/`](09-FUNCTIONAL-JS/README.md)
+- [`10-DESIGN-PATTERNS/`](10-DESIGN-PATTERNS/README.md)
+- [`11-REFACTORING/`](11-REFACTORING/README.md)
+- [`12-TYPESCRIPT/`](12-TYPESCRIPT/README.md)
+- [`13-RUNTIME-ENV/`](13-RUNTIME-ENV/README.md)
+- [`14-ARCHITECTURE-PATTERNS/`](14-ARCHITECTURE-PATTERNS/README.md)
+- [`15-ARCHI-LAB/`](15-ARCHI-LAB/README.md)
+- [`16-DDD-CONTRATS/`](16-DDD-CONTRATS/README.md)
+- [`17-OOP-JS/`](17-OOP-JS/README.md)
+- [`18-WEB-CONCEPTS/`](18-WEB-CONCEPTS/README.md)
+- [`19-API-CRAFT/`](19-API-CRAFT/README.md)
+- [`20-API-DOJO/`](20-API-DOJO/README.md)
+- [`21-CLIENT-SYSTEMS-FLUTTER/`](21-CLIENT-SYSTEMS-FLUTTER/README.md)
+- [`02b-BOSS-1/`](02b-BOSS-1/README.md)
+- [`04b-BOSS-2/`](04b-BOSS-2/README.md)
+- [`07b-BOSS-3/`](07b-BOSS-3/README.md)
+- [`09b-BOSS-4/`](09b-BOSS-4/README.md)
+- [`11b-BOSS-5/`](11b-BOSS-5/README.md)
+- [`13b-BOSS-6/`](13b-BOSS-6/README.md)
+- [`14b-BOSS-7/`](14b-BOSS-7/README.md)
+- [`17b-BOSS-8/`](17b-BOSS-8/README.md)
+- [`20b-BOSS-9/`](20b-BOSS-9/README.md)
+- [MI-RÉTRO BLOC 2 BUILD : respiration à mi-palier 2](02A-c-MI-RETRO-BLOC-2-BUILD.md)
+- [Rétrospective du palier 2 : sortie de CONSTRUCTION, entrée en conception](03A-c-RETRO-BLOC-2-BUILD-CONFIRME.md)
+- [Rétrospective de bloc : palier 2bis (Concepteur) : `14-ARCHITECTURE-PATTERNS` à `21-CLIENT-SYSTEMS-FLUTTER`](04A-RETRO-BLOC-2BIS-ARCHI.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+> **Compagnons actifs :** [Code d'honneur CrazyDevs](../06-ANNEXES-TRANSVERSES/07-FUN-CODE-HONNEUR.md) · [Synchronisation TECH-ILA](../06-ANNEXES-TRANSVERSES/04-TECH-ILA/02-SYNCHRONISATION-PARCOURS.md)

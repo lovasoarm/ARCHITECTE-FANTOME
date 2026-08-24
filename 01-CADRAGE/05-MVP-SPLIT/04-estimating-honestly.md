@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L4
+perturbation_modes: [changement_contexte, constraints_injectees]
+anti_recipe_key: changement_contexte+constraints_injectees
+transfer_distance: medium
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : coach du village :** tu n'as pas 40 matchs à préparer, tu en as trois cette semaine. La question n'est donc pas “que peut-on construire ?” mais “quel pari vaut le terrain maintenant ?”.
+
 # Estimer honnêtement
+
+Temps de lecture ~6 min
 
 ## La scène
 
@@ -93,7 +107,6 @@ Le remède n'est pas d'estimer mieux du premier coup : c'est impossible avec de 
 réel : mais de prévoir des points de contrôle rapprochés où l'estimation se met à jour
 publiquement, en petits ajustements, plutôt qu'en un seul choc final.
 
-
 ## Analogie
 
 Estimer honnêtement, c'est comme un chef d'expédition en montagne qui annonce une fourchette
@@ -160,7 +173,7 @@ de la régie plutôt que de rester dans le flou jusqu'à la livraison.
   chiffre.
 - Estimer une tâche non découpée, ce qui masque systématiquement les sous-tâches invisibles
   (formats de données réels, cas dérogatoires, comportements de panne).
-- Rester silencieux quand un premier écart apparaît, en espérant le rattraper plus tard, 
+- Rester silencieux quand un premier écart apparaît, en espérant le rattraper plus tard,
   c'est exactement le mécanisme de l'effet tunnel.
 - Confondre "estimation optimiste" et "estimation malhonnête" : l'optimisme mesuré et assumé
   est acceptable, l'absence totale de fourchette ne l'est pas.
@@ -173,3 +186,7 @@ de la régie plutôt que de rester dans le flou jusqu'à la livraison.
   laisse invisibles.
 - Ce qu'est l'effet tunnel concrètement, et comment des points de contrôle rapprochés
   permettent de le prévenir plutôt que de le subir en fin de projet.
+
+## CHECKPOINT DE PROFONDEUR : variation B : défendre l'inverse
+
+Ferme la page et défends pendant quelques minutes une stratégie opposée à celle implicitement recommandée ici. Cherche son meilleur cas d'usage, puis montre le cas où elle casse. Reviens ensuite à la stratégie initiale et justifie le choix par des mécanismes, pas par le vocabulaire du cours.

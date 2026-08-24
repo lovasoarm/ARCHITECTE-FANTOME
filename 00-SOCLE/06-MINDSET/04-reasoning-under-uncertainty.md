@@ -1,3 +1,14 @@
+---
+stability: stable
+cognitive_level: L3
+perturbation_modes: [preuve_partielle, decision_organisationnelle]
+anti_recipe_key: preuve_partielle+decision_organisationnelle
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+
 # Raisonner sous incertitude
 
 ## Le piège
@@ -136,7 +147,7 @@ un seul.
 
 ## Pièges classiques
 
-- Construire une expérience si coûteuse qu'elle revient à construire la solution complète, 
+- Construire une expérience si coûteuse qu'elle revient à construire la solution complète,
   symptôme : le "prototype" prend autant de temps que la vraie fonctionnalité.
 - Formuler une hypothèse sans seuil chiffré : symptôme : après coup, tout le monde interprète
   le résultat dans le sens qui l'arrange.
@@ -161,3 +172,8 @@ Où l'analogie casse : le marin a un bulletin chiffré, toi tu inventes souvent 
    complète : pourquoi, dans ce cas précis, ne pas expérimenter était le bon choix.
 3. Explique la différence entre "le pari le moins cher" et "le pari le plus probable de
    réussir", avec un exemple où les deux mènent à des choix opposés.
+
+## CHECKPOINT DE PROFONDEUR : variation A : prédire avant de réparer
+
+Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
+Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.

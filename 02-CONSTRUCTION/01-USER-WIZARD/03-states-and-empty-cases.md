@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L4
+perturbation_modes: [temps_limite, regression]
+anti_recipe_key: temps_limite+regression
+transfer_distance: medium
+assessment_role: diagnostic_mastery
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Les cinq états obligatoires de tout affichage
+
+Temps de lecture ~4 min
 
 ## Le piège
 
@@ -191,3 +205,7 @@ Où l'analogie casse : la salle vide se voit d'un coup d'œil, un état vide non
 - Comment distingues-tu, dans ton code, un état "vide légitime" d'une erreur silencieuse ?
 - Pourquoi l'état "partiel" a-t-il besoin d'un traitement différent du succès total et de l'erreur
   totale ? Donne un exemple concret où le confondre coûte cher.
+
+## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
+
+Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.

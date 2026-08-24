@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L3
+perturbation_modes: [transmission, regression]
+anti_recipe_key: transmission+regression
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Accessibilité utile, perception de vitesse, et les dangers de l'optimisme
+
+Temps de lecture ~5 min
 
 ## Le piège
 
@@ -177,3 +191,7 @@ Où l'analogie casse : un balisage aide tout le monde de la même façon, une in
   réponse réel du serveur ?
 - Pourquoi une `div` avec un `onClick` est-elle un problème d'accessibilité concret, pas une
   question de conformité abstraite ?
+
+## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
+
+Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.

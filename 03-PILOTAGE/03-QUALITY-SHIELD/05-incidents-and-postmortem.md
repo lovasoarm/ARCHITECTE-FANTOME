@@ -1,4 +1,24 @@
+---
+stability: stable
+---
+
+> **SCÈNE CRAZYDEVS : traqueur de jutsu :** Naruto voit l'explosion finale et accuse le dernier fichier touché. Mauvais réflexe. Ton enquête doit remonter le flux, figer les hypothèses et retrouver la première trace qui ne colle plus.
+
 # Gestion d'incident, postmortem sans blâme
+
+<!-- AF-DIAGRAM:incident -->
+
+```text
+text
+Signal
+  │
+  ▼
+Triage ─► Mitigation ─► Recovery ─► Postmortem
+  ▲                                  │
+  └────────────── learning ─────────┘
+```
+
+La gestion d’incident transforme un signal de panne en restauration puis en apprentissage durable.
 
 ## Le piège
 

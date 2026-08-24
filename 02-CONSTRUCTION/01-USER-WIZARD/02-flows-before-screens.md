@@ -1,4 +1,18 @@
+---
+stability: intemporel
+acte: comprendre
+cognitive_level: L3
+perturbation_modes: [regression, solution_concurrente]
+anti_recipe_key: regression+solution_concurrente
+transfer_distance: medium
+assessment_role: instructional_checkpoint
+---
+
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
 # Dessiner le parcours avant l'écran
+
+Temps de lecture ~5 min
 
 ## Le piège
 
@@ -89,7 +103,6 @@ L'état `INCERTAIN` est celui que 90% des équipes oublient. C'est pourtant l'é
 juste après un timeout : on ne sait pas si le serveur a traité la demande ou non. Le traiter comme
 une erreur classique ("réessaie") crée les doublons du jeudi 17h50.
 
-
 ## Analogie
 
 Dessiner le graphe d'états avant l'écran, c'est comme un chef de cuisine qui prépare son plan de
@@ -134,7 +147,10 @@ type ReservationState =
   | { status: "sending"; slotId: string }
   | { status: "uncertain"; slotId: string } // timeout : ne pas renvoyer sans vérifier
   | { status: "confirmed"; reservationId: string }
-  | { status: "error"; reason: "slot_taken" | "validation" | "session_expired" };
+  | {
+      status: "error";
+      reason: "slot_taken" | "validation" | "session_expired";
+    };
 ```
 
 Avec cette forme, un état "uncertain && confirmed" en même temps devient tout simplement
@@ -170,3 +186,7 @@ typage, il faudrait le réintroduire volontairement.
   classique est dangereux ?
 - Donne un exemple où deux utilisateurs agissant en même temps sur la même ressource doit changer
   le design de l'écran, pas seulement la base de données.
+
+## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
+
+Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.

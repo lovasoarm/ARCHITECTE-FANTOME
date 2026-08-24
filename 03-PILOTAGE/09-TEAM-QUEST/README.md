@@ -1,20 +1,27 @@
-# Niveau 10 : Team Quest
+---
+stability: intemporel
+acte: comprendre
+route: complete
+---
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) | [Niveau précédent](../03-QUALITY-SHIELD/README.md) | [Niveau suivant](../../04-EPREUVE/05-BIG-APP-SNOOP/README.md)
+# Module 03-PILOTAGE/09-TEAM-QUEST : Team Quest
+
+[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../03-QUALITY-SHIELD/README.md) | [Niveau suivant](../../04-EPREUVE/04-BIG-APP-SNOOP/README.md)
 
 **Ce niveau réutilise :** [08-ROADMAP-RUN](../01-ROADMAP-RUN/04-tracking-reality.md) : les signaux de derive, réutilises pour reperer un desaccord d'equipe avant qu'il bloque un jalon.
 
 **Auto-test d'entrée :**
+
 1. Sur quel critère choisis-tu quoi tester : une règle de couverture ou le coût réel d'une panne ?
 2. Qu'est-ce qu'un postmortem sans blame, et pourquoi cette contrainte existe-t-elle ?
 3. Que doit permettre une bonne observabilite sans avoir a se connecter en SSH ?
 
 **Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
-[le grimoire du niveau précédent](../03-QUALITY-SHIELD/grimoire.md) (20 minutes), puis refais son
-[challenge](../03-QUALITY-SHIELD/challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
-trou amont, c'est attribuer au niveau 10 une difficulté qui vient du niveau 09.
+[le grimoire du niveau précédent](../03-QUALITY-SHIELD/90-grimoire.md) (20 minutes), puis refais son
+[challenge](../03-QUALITY-SHIELD/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
+trou amont, c'est attribuer au module `03-PILOTAGE/09-TEAM-QUEST` une difficulté qui vient du module `03-PILOTAGE/03-QUALITY-SHIELD`.
 
-**Durée :** source unique dans [CURRICULUM.md](../../06-ANNEXES-TRANSVERSES/03-CURRICULUM-HISTORIQUE.md) (règle de calcul : voir [_STYLE.md](../.meta/_STYLE.md), section « Durées »).
+**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que c'est
 
@@ -26,7 +33,7 @@ en friction qu'en bugs. Ce niveau construit les règles implicites qui doivent d
 explicites, le flux Git qui absorbe le travail parallèle sans collision, et la communication
 qui tient sous pression sans dégénérer en silence ou en conflit ouvert.
 
-Prérequis : Niveau 08 (Roadmap Run) : les accords d'équipe n'ont de sens que rapportés à un
+Prérequis : Module `03-PILOTAGE/01-ROADMAP-RUN` (Roadmap Run) : les accords d'équipe n'ont de sens que rapportés à un
 plan et des jalons partagés.
 
 ## Ce que tu sais faire à la sortie
@@ -42,13 +49,13 @@ plan et des jalons partagés.
 
 ## Structure du niveau
 
-- [01-why-this-level.md](01-why-this-level.md) : pourquoi de bons devs produisent une mauvaise équipe
+- [01-01-why-this-level.md](01-01-why-this-level.md) : pourquoi de bons devs produisent une mauvaise équipe
 - [02-working-agreements.md](02-working-agreements.md) : les règles qu'on écrit avant d'en avoir besoin
 - [03-git-and-flow.md](03-git-and-flow.md) : branches, PR, releases, feature flags
 - [04-communication-under-pressure.md](04-communication-under-pressure.md) : désaccords, escalade, dire non
-- [challenge.md](challenge.md) : rédiger et faire vivre un working agreement
-- [boss-fight.md](boss-fight.md) : un conflit de merge humain, pas technique
-- [grimoire.md](grimoire.md) : mémo dense
+- [95-challenge.md](95-challenge.md) : rédiger et faire vivre un working agreement
+- [96-boss-fight.md](96-boss-fight.md) : un conflit de merge humain, pas technique
+- [90-grimoire.md](90-grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 
@@ -60,5 +67,60 @@ pour quand le cadre ne suffit plus : parce qu'il ne suffit jamais complètement.
 Ce niveau n'enseigne pas le management au sens hiérarchique. Il s'adresse à des pairs qui
 doivent collaborer, avec ou sans manager dans la pièce.
 
-Avant de continuer : passe par [RETRO-BLOC-3-CONDUITE.md](../RETRO-BLOC-3-CONDUITE.md), la
+Avant de continuer : passe par [02A-RETRO-BLOC-3-CONDUITE.md](../02A-RETRO-BLOC-3-CONDUITE.md), la
 rétrospective du bloc Conduite que tu viens de terminer.
+
+<!-- PIECES-MODULE:debut -->
+
+## Les pièces de ce module
+
+- [`00-PREREQUIS.md`](00-PREREQUIS.md) : Auto-test d'entrée : à passer avant d'ouvrir le module
+- [`95-challenge.md`](95-challenge.md) : Challenge : l'épreuve du module
+- [`90-grimoire.md`](90-grimoire.md) : Grimoire : ce que tu dois pouvoir restituer
+- [`96-boss-fight.md`](96-boss-fight.md) : Boss : l'épreuve du palier, une seule fois
+
+<!-- PIECES-MODULE:fin -->
+
+## Contenu du dossier
+
+<!-- CONTENU-DOSSIER:debut -->
+
+- [Auto-test d'entrée : `09-TEAM-QUEST`](00-PREREQUIS.md)
+- [Pourquoi de bons devs produisent une mauvaise équipe](01-01-why-this-level.md)
+- [Les règles qu'on écrit avant d'en avoir besoin](02-working-agreements.md)
+- [Branches, PR, releases, feature flags](03-git-and-flow.md)
+- [Désaccords, escalade, dire non](04-communication-under-pressure.md)
+- [Boss Fight : Un conflit de merge humain, pas technique](96-boss-fight.md)
+- [Challenge : Rédiger et faire vivre un working agreement](95-challenge.md)
+- [Grimoire : Team Quest](90-grimoire.md)
+
+<!-- CONTENU-DOSSIER:fin -->
+
+## Frontière avec TEAM-CRAFT
+
+TEAM-QUEST = travailler ensemble quand les priorités, dépendances et responsabilités se frottent.
+
+## Extension CORE : influence cross-team
+
+<!-- AF-DIAGRAM:influence -->
+
+```text
+text
+                 ┌───────────┐
+                 │ Decision  │
+                 └─────┬─────┘
+          ┌────────────┼────────────┐
+          ▼            ▼            ▼
+       Product       SRE        Security
+          │            │            │
+          └──── objections / feedback ───┘
+                         │
+                         ▼
+                      adoption
+```
+
+L’influence traverse des parties prenantes aux objectifs différents avant d’aboutir à l’adoption.
+
+La sortie Staff de ce niveau ne s’arrête pas à « savoir bien communiquer ». Utilise [22-SIMULATION-CROSS-TEAM.md](../../06-ANNEXES-TRANSVERSES/22-SIMULATION-CROSS-TEAM.md) pour simuler un problème porté par plusieurs équipes avec intérêts légitimes mais contradictoires.
+
+La preuve porte sur l’alignement, le compromis, l’adoption et la mesure d’impact : pas seulement sur la qualité du texte technique.
