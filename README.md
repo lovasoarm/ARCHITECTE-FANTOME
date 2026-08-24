@@ -2,6 +2,16 @@
 stability: stable
 ---
 
+<div align="center">
+
+<img src="./assets/brand/architecte-fantome-logo.png" alt="ARCHITECTE-FANTOME" width="520" />
+
+<br>
+
+> _Construire. Casser. Réparer. Concevoir. Exploiter. Arbitrer. Diriger._
+
+</div>
+
 # ARCHITECTE-FANTOME
 
 > **Construire. Casser. Réparer. Concevoir. Exploiter. Arbitrer. Diriger.**
@@ -12,7 +22,7 @@ ARCHITECTE-FANTOME est un parcours CrazyDevs d’ingénierie logicielle. Il part
 
 Les documents du parcours utilisent une numérotation lisible. Les dossiers de modules portent les préfixes numériques ; les artefacts transverses comme `PROGRESSION.md` et `PREUVES-STAFF-ENGINEER.md` sont des noms canoniques sans préfixe pour éviter toute collision de namespace. Les README servent de portes d’entrée locales ; les noms techniques de code et de configuration gardent leurs conventions. **00 prérequis → 01 pourquoi → 02+ leçons → 50+ pratique/minimini-projets → 90 grimoires → 95 challenge → 96 boss → 97 vérifications → 99 portage → 99A ponts**.
 
-Tu n'as donc pas à deviner “quel fichier ouvrir maintenant”. Les doublons de préfixes sont interdits dans un même dossier, y compris entre fichiers et dossiers. Les suffixes alphabétiques (`01A-...`, `97A-...`) sont réservés aux artefacts auxiliaires qui partagent le rang d’un dossier pédagogique sans concurrencer son rang canonique. Les fichiers techniques nécessaires à l'apprentissage gardent leurs noms canoniques ; Le runtime de référence est fixé par `.nvmrc`.
+Tu n'as donc pas à deviner “quel fichier ouvrir maintenant”. Les doublons de préfixes sont interdits dans un même dossier, y compris entre fichiers et dossiers. Les suffixes alphabétiques (`01A-...`, `97A-...`) sont réservés aux artefacts auxiliaires qui partagent le rang d’un dossier pédagogique sans concurrencer son rang canonique. Les fichiers techniques nécessaires à l'apprentissage gardent leurs noms canoniques ; le runtime de référence est fixé par `.nvmrc`.
 
 ### Règle CrazyDevs
 
