@@ -56,6 +56,44 @@ Le parcours suit une seule boucle :
 
 Chaque module contient une explication, une pratique et un livrable. Les challenges vérifient une compétence. Les Boss demandent une production complète et une défense. Les rétrospectives ferment chaque niveau. La sortie finale n'est pas un simple certificat de lecture : elle exige un portfolio `PREUVES/` construit dans ton dépôt fil rouge et validé par le gate de sortie Staff.
 
+## Repère cognitif : ce que tu es réellement en train de faire 
+
+Lire une leçon ne signifie pas maîtriser son contenu. 
+
+AF utilise un repère simple inspiré de la taxonomie de Bloom révisée pour 
+distinguer le type d’activité cognitive demandé : 
+
+| Action | Ce que cela signifie dans AF | 
+|---|---| 
+| Mémoriser | Reconnaître, rappeler ou nommer une notion | 
+| Comprendre | Expliquer son sens avec tes propres mots | 
+| Appliquer | Utiliser une méthode, une procédure ou un principe dans une situation donnée | 
+| Analyser | Décomposer, relier les éléments et identifier causes, dépendances ou structure | 
+| Évaluer | Juger avec des critères, des preuves, des limites et des compromis | 
+| Créer | Concevoir, planifier, produire ou reconstruire une solution cohérente | 
+
+Une activité peut commencer par comprendre puis demander d’appliquer, d’analyser, 
+d’évaluer ou de créer. Ce n’est pas une échelle automatique : créer une solution 
+sans compréhension ni critères solides peut rester faible. 
+
+AF vise souvent l’analyse, l’évaluation et la création, car un ingénieur doit 
+progressivement apprendre à décomposer un problème, comparer des options, 
+défendre une décision et construire une solution cohérente. Mémoriser et 
+comprendre restent nécessaires : ils sont les fondations du raisonnement. 
+
+Le transfert n’est pas un septième niveau de Bloom. Dans AF, il vérifie qu’un 
+principe reste utile dans un contexte différent et qu’il peut être adapté lorsque 
+les contraintes changent. 
+
+Bloom est seulement un vocabulaire simple. AF utilise aussi ses propres échelles 
+cognitives pour préciser la profondeur de preuve, de diagnostic, d’arbitrage, 
+de transfert, de révision et de reconstruction. Voir 
+[Échelle cognitive adaptative](06-ANNEXES-TRANSVERSES/32-ECHELLE-COGNITIVE-ADAPTATIVE.md). 
+
+Un échec à une épreuve ne signifie pas « tu es incapable » : il indique qu’une 
+compétence, une hypothèse ou une stratégie doit être réactivée, approfondie ou 
+testée autrement. 
+
 Tu gardes un **projet fil rouge** dès le cadrage. Les notions apprises reviennent ensuite sous une autre contrainte : c’est volontaire. Le but n’est pas de collectionner des fichiers, mais de constater que tu prends de meilleures décisions.
 
 ## Où commencer ?
