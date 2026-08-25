@@ -17,7 +17,7 @@ Une promotion réelle dépend ensuite du scope, des conséquences de décisions 
 
 ## 2. Les noyaux réellement non négociables
 
-### N1 — Software engineering fondamental
+### N1 : Software engineering fondamental
 
 Tu dois pouvoir expliquer et utiliser sans dépendre d'une recette :
 
@@ -34,7 +34,7 @@ Tu dois pouvoir expliquer et utiliser sans dépendre d'une recette :
 
 **Preuve attendue :** produire, diagnostiquer, modifier sans casser, expliquer le compromis et revenir sur une décision quand une observation la contredit.
 
-### N2 — Systèmes et informatique sous-jacente
+### N2 : Systèmes et informatique sous-jacente
 
 Tu dois posséder un modèle mental suffisant de :
 
@@ -52,7 +52,7 @@ Tu dois posséder un modèle mental suffisant de :
 
 Il n'est pas nécessaire de devenir ingénieur kernel pour être Staff Architect, mais une abstraction qui casse sous incident ne peut pas être remplacée par du vocabulaire.
 
-### N3 — Architecture et conception
+### N3 : Architecture et conception
 
 Tu dois pouvoir :
 
@@ -66,7 +66,7 @@ Tu dois pouvoir :
 - intégrer sécurité, fiabilité, coût et opérabilité dans l'architecture ;
 - défendre une décision puis produire le meilleur argument contre elle.
 
-### N4 — Fiabilité, sécurité et exploitation
+### N4 : Fiabilité, sécurité et exploitation
 
 Tu dois pouvoir raisonner sur :
 
@@ -79,7 +79,7 @@ Tu dois pouvoir raisonner sur :
 - déploiement, rollback et changement progressif ;
 - observabilité utile à une décision.
 
-### N5 — Données, performance et économie
+### N5 : Données, performance et économie
 
 Tu dois pouvoir relier :
 
@@ -104,7 +104,7 @@ Le noyau comprend :
 - ROI et coût d'opportunité ;
 - FinOps / GreenOps lorsque pertinent.
 
-### N6 — Intelligence artificielle : littératie mathématique et systèmes
+### N6 : Intelligence artificielle : littératie mathématique et systèmes
 
 Pour un Staff / Principal Software Architect, l'objectif n'est pas de devenir chercheur ML. Il faut cependant comprendre suffisamment le mécanisme pour **architecturer, évaluer et refuser correctement** une solution IA.
 
@@ -192,7 +192,7 @@ et distinguer :
 
 Le pont détaillé est dans [`41-PONT-MATHS-IA-ML-LLM.md`](41-PONT-MATHS-IA-ML-LLM.md).
 
-### N7 — Produit, communication et influence
+### N7 : Produit, communication et influence
 
 Tu dois pouvoir :
 
@@ -205,7 +205,7 @@ Tu dois pouvoir :
 - mentoriser avec un objectif observable ;
 - transformer une décision technique en preuve réutilisable.
 
-### N8 — Jugement Staff
+### N8 : Jugement Staff
 
 Le vrai noyau Staff est la capacité à tenir une décision quand l'information est incomplète.
 
@@ -231,7 +231,7 @@ transfert
 
 C'est ici que les preuves D1–D8 deviennent déterminantes. Bloom explique le type d'action cognitive ; D1–D8 mesure une profondeur de preuve propre à AF.
 
-### N9 — Transfert
+### N9 : Transfert
 
 Une compétence Staff n'est pas attachée à une stack particulière.
 
@@ -249,7 +249,7 @@ adaptation
 nouvelle preuve
 ```
 
-### N10 — Principal : stratégie et portée temporelle
+### N10 : Principal : stratégie et portée temporelle
 
 Principal n'est pas « Staff avec davantage de fichiers ». Le saut est surtout un changement de portée.
 
@@ -310,6 +310,6 @@ La bonne question finale n'est pas :
 
 mais :
 
-> « Peux-tu comprendre un système inconnu, formuler des hypothèses, mesurer, diagnostiquer, choisir, défendre, exploiter, transférer et réviser ton modèle quand les contraintes changent — y compris lorsqu'une partie du système est pilotée par l'IA ? »
+> « Peux-tu comprendre un système inconnu, formuler des hypothèses, mesurer, diagnostiquer, choisir, défendre, exploiter, transférer et réviser ton modèle quand les contraintes changent : y compris lorsqu'une partie du système est pilotée par l'IA ? »
 
 Pour la décision de sortie, l'autorité reste [`37-STAFF-READINESS-GATE.md`](37-STAFF-READINESS-GATE.md), avec les preuves et matrices déjà définies par AF.
