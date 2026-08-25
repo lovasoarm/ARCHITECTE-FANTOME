@@ -27,7 +27,7 @@ route: survie
 | [`54-error_strategy_minimini_projet.md`](54-error_strategy_minimini_projet.md)       | 05 error strategy minimini projet                       | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                                                   | Page verrouillée                                        | 30 min |
 | [`07-EXO_LECTURE.md`](07-EXO_LECTURE.md)                                             | EXO LECTURE : 15-25 minutes (Error Handling)            | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                   | EXO [JEUNE IA] : 01-CADRAGE/04-ERROR-HANDLING           | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                   | EXO [JEUNE IA] : 01-CADRAGE/04-ERROR-HANDLING           | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                   | EXO IA MENTEUSE : module 01-CADRAGE/04-ERROR-HANDLING   | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                                         | PONT : de prévoir l'échec à le prouver à les tests      | 45 min |
 

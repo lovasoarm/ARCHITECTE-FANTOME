@@ -27,6 +27,7 @@ route: complete
 | `03-rayon_impact_zones.md`             | régions, zones, rayon d'impact            | 45 min |
 | `04-choisir_fournisseur.md`            | grille de choix et critère de sortie      | 45 min |
 | `99-PORTAGE-MENTAL.md`                 | portage, preuve de transférabilité        | 45 min |
+| [`06-reference-portability/README.md`](06-reference-portability/README.md) | laboratoire de portabilité AWS/GCP | selon le jalon |
 | `05-releve_tarifaire_reel.md`          | relevé personnel daté (anti-copie)        | 45 min |
 | `07-RELEVE-REFERENCE-2026.md`          | relevé de référence, à ne jamais recopier | 20 min |
 | `90-grimoire.md`                       | lignes à retenir                          | 30 min |
@@ -64,6 +65,7 @@ route: complete
 - [BOSS FIGHT : MODULE 07 : LA FACTURE A TRIPLÉ CE MOIS-CI](96-boss-fight.md)
 - [95-challenge.md](95-challenge.md)
 - [Grimoire : cloud foundations](90-grimoire.md)
+- [`06-reference-portability/`](06-reference-portability/README.md) : laboratoire de portabilité AWS/GCP
 - [`97-CHECKPOINT-PACK/`](97-CHECKPOINT-PACK/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->

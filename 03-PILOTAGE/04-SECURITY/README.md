@@ -29,7 +29,7 @@ route: survie
 | [`08-supply_chain_sbom.md`](08-supply_chain_sbom.md)                           | 09 : Supply chain & SBOM                                                              | 45 min |
 | [`09-audit_your_supply_chain.md`](09-audit_your_supply_chain.md)               | EXERCICE : AUDITER TA PROPRE SUPPLY CHAIN                                             | 45 min |
 | [`10-EXO_LECTURE.md`](10-EXO_LECTURE.md)                                       | EXO LECTURE : 15-25 minutes (Securite)                                                | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                             | EXO [JEUNE IA] : 03-PILOTAGE/04-SECURITY                                              | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                             | EXO [JEUNE IA] : 03-PILOTAGE/04-SECURITY                                              | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                             | EXO IA MENTEUSE : module 03-PILOTAGE/04-SECURITY                                      | 45 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                 | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust                               | 45 min |
 | `99A-PONT.md`                                                                  | PONT : de sécuriser du code humain à sécuriser du code IA à le développement natif IA | 45 min |

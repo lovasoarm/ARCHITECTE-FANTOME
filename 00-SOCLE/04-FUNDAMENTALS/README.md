@@ -43,7 +43,7 @@ route: survie
 | [`50-git_core_minimini_projet.md`](50-git_core_minimini_projet.md)               | 08 git core minimini projet                            | 45 min |
 | [`03A-expliquer_a_3_publics_closures.md`](03A-expliquer_a_3_publics_closures.md) | Closures : expliqué à 3 publics                        | 45 min |
 | [`04A-EXO_LECTURE.md`](04A-EXO_LECTURE.md)                                       | EXO LECTURE : 15-25 minutes (les Fondamentaux JS)      | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                               | EXO [JEUNE IA] : 00-SOCLE/04-FUNDAMENTALS              | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                               | EXO [JEUNE IA] : 00-SOCLE/04-FUNDAMENTALS              | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                               | EXO [IA MENTEUSE] : fundamentals (closures)            | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                                     | PONT : des fondamentaux à la résolution de problème    | 45 min |
 

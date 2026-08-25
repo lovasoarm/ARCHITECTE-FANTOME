@@ -35,7 +35,7 @@ Une décision qui ne peut pas être falsifiée est considérée comme une opinio
 
 ## Contrat des familles et du transfert
 
-La sortie Staff exige la fermeture de **S1–S6**, les six familles du référentiel de preuves. **S7 : pensée transférable : est une preuve transversale obligatoire, mais n’est pas une septième famille.** Le capstone peut alimenter plusieurs familles et le transfert, mais il ne remplace jamais le Staff Readiness Gate.
+La sortie Staff exige la fermeture de **S1–S6**, les six familles du référentiel de preuves. **S7 — pensée transférable — est une preuve transversale obligatoire, mais n’est pas une septième famille.** Le capstone peut alimenter plusieurs familles et le transfert, mais il ne remplace jamais le Staff Readiness Gate.
 
 ## Critère d'influence
 

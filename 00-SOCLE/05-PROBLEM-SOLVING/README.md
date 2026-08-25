@@ -29,7 +29,7 @@ route: survie
 | [`55-design_for_change_minimini_projet.md`](55-design_for_change_minimini_projet.md)             | 06 design for change minimini projet                                    | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                                                               | Page verrouillée                                                        | 30 min |
 | [`08-EXO_LECTURE.md`](08-EXO_LECTURE.md)                                                         | EXO LECTURE : 15-25 minutes (Problem Solving)                           | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                               | EXO [JEUNE IA] : 00-SOCLE/05-PROBLEM-SOLVING                            | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                               | EXO [JEUNE IA] : 00-SOCLE/05-PROBLEM-SOLVING                            | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                               | EXO IA MENTEUSE : module 00-SOCLE/05-PROBLEM-SOLVING                    | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                                                     | PONT : de modéliser un problème à raisonner sur le temps à l'asynchrone | 45 min |
 

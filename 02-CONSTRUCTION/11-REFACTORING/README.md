@@ -29,7 +29,7 @@ route: complete
 | [`08-smell_hunter.md`](08-smell_hunter.md)                                           | 08 : Smell hunter : chasser le code mort et puant               | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                                                   | Page verrouillée                                                | 30 min |
 | [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                                             | EXO LECTURE : 15-25 minutes (Refactoring)                       | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                   | EXO [JEUNE IA] : 02-CONSTRUCTION/11-REFACTORING                 | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                   | EXO [JEUNE IA] : 02-CONSTRUCTION/11-REFACTORING                 | 45 min |
 | [`10-EXO_CHASSE_AU_CODE_MORT.md`](10-EXO_CHASSE_AU_CODE_MORT.md)                     | EXO : chasse au code mort (15.4)                                | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                   | EXO IA MENTEUSE : module 02-CONSTRUCTION/11-REFACTORING         | 45 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                       | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust         | 45 min |

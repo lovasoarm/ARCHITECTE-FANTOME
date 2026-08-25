@@ -25,7 +25,7 @@ route: complete
 | [`08-geometry_for_dev.md`](08-geometry_for_dev.md)               | GÉOMÉTRIE POUR DÉVELOPPEUR                              | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                               | Page verrouillée                                        | 30 min |
 | [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                         | EXO LECTURE : 15-25 minutes (Math Basics)               | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)               | EXO [JEUNE IA] : 02-CONSTRUCTION/04-MATH-BASICS         | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)               | EXO [JEUNE IA] : 02-CONSTRUCTION/04-MATH-BASICS         | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)               | EXO IA MENTEUSE : module 02-CONSTRUCTION/04-MATH-BASICS | 45 min |
 | [`10-PONT-MEMORY-PERFORMANCE.md`](10-PONT-MEMORY-PERFORMANCE.md) | PONT BITS ET MÉMOIRE                                    | 45 min |
 

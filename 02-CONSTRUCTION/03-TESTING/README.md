@@ -33,7 +33,7 @@ route: survie
 | [`56-test_strategy_not_framework_minimini_projet.md`](56-test_strategy_not_framework_minimini_projet.md) | 09 test strategy not framework minimini projet                                  | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                                                                       | Page verrouillée                                                                | 30 min |
 | [`11-EXO_LECTURE.md`](11-EXO_LECTURE.md)                                                                 | EXO LECTURE : 15-25 minutes (Testing)                                           | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                                       | EXO [JEUNE IA] : 02-CONSTRUCTION/03-TESTING                                     | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                                       | EXO [JEUNE IA] : 02-CONSTRUCTION/03-TESTING                                     | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                                       | EXO IA MENTEUSE : module 02-CONSTRUCTION/03-TESTING                             | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                                                             | PONT : de prouver du code à raisonner sur les nombres à les bases mathématiques | 45 min |
 

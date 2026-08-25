@@ -17,7 +17,7 @@ route: complete
 | [`01A-00-why-design-patterns.md`](01A-00-why-design-patterns.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : DESIGN PATTERNS                           | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                               | Page verrouillée                                                                | 30 min |
 | [`02A-EXO_LECTURE.md`](02A-EXO_LECTURE.md)                       | EXO LECTURE : 15-25 minutes (Design Patterns)                                   | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)               | EXO [JEUNE IA] : 02-CONSTRUCTION/10-DESIGN-PATTERNS                             | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)               | EXO [JEUNE IA] : 02-CONSTRUCTION/10-DESIGN-PATTERNS                             | 45 min |
 | [`03A-EXO_FRONTIERE.md`](03A-EXO_FRONTIERE.md)                   | EXO FRONTIÈRE : quel module aurait dû accueillir ce geste ?                     | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)               | EXO [IA MENTEUSE] : design_patterns (singleton qui fuit)                        | 45 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                   | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust                         | 45 min |

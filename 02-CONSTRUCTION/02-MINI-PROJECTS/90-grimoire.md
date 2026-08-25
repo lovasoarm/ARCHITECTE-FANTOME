@@ -122,7 +122,7 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [TDD JOURNAL : LEGACY DUNGEON](10_legacy_dungeon/02-TDD-JOURNAL.md)
 - [CAHIER DES CHARGES : LEGACY DUNGEON](10_legacy_dungeon/00-CAHIER-DES-CHARGES.md)
 - [06-SPEC-DRIFT-DRILL.md : spec drift **en cours de projet** (mouvant)](11_scheduler/06-SPEC-DRIFT-DRILL.md)
-- [ADR-001 : décision d’architecture](11_scheduler/ADR/ADR-002_decision.md)
+- [ADR-002 : décision d’architecture](11_scheduler/ADR/ADR-002_decision.md)
 - [ADR-002 : décision d’architecture](11_scheduler/ADR/ADR-002_decision.md)
 - [POSTMORTEM : SCHEDULER](11_scheduler/08-POSTMORTEM.md)
 - [11 : SCHEDULER (obligatoire, pas optionnel)](11_scheduler/README.md)
@@ -134,8 +134,8 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [CAHIER DES CHARGES : SCHEDULER](11_scheduler/00-CAHIER-DES-CHARGES.md)
 - [Tests : 11_scheduler](11_scheduler/tests/README.md)
 - [06-SPEC-DRIFT-DRILL.md : spec drift **en cours de projet** (mouvant)](12_legacy_takeover/06-SPEC-DRIFT-DRILL.md)
-- [ADR-001 : décision d’architecture](12_legacy_takeover/ADR/ADR-003_decision.md)
-- [ADR-002 : décision d’architecture](12_legacy_takeover/ADR/ADR-003_decision.md)
+- [ADR-003 : décision d’architecture](12_legacy_takeover/ADR/ADR-003_decision.md)
+- [ADR-003 : décision d’architecture](12_legacy_takeover/ADR/ADR-003_decision.md)
 - [ADR-003 : décision d’architecture](12_legacy_takeover/ADR/ADR-003_decision.md)
 - [09-DAY-ONE-SIMULATION.md : 4h chrono, ton premier jour dans une equipe](12_legacy_takeover/07-DAY-ONE-SIMULATION.md)
 - [MAP_15MIN.md : template standardise (livrable obligatoire, a copier depuis `97-templates/`)](97-templates/08-MAP_15MIN_TEMPLATE.md)
@@ -151,7 +151,7 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [06-SPEC-DRIFT-DRILL.md : spec drift **en cours de projet** (mouvant)](13_memory_hunter/06-SPEC-DRIFT-DRILL.md)
 - [FIXTURE : MEMORY HUNTER](13_memory_hunter/00_fixture/README.md)
 - [LEAK_REPORT : <nom du service ou fixture>](13_memory_hunter/09-LEAK-REPORT-TEMPLATE.md)
-- [ADR-001 : décision d’architecture](13_memory_hunter/ADR/ADR-002_decision.md)
+- [ADR-002 : décision d’architecture](13_memory_hunter/ADR/ADR-002_decision.md)
 - [ADR-002 : décision d’architecture](13_memory_hunter/ADR/ADR-002_decision.md)
 - [POSTMORTEM : MEMORY HUNTER](13_memory_hunter/08-POSTMORTEM.md)
 - [13 : MEMORY HUNTER](13_memory_hunter/README.md)
@@ -162,8 +162,8 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [TDD JOURNAL : MEMORY HUNTER](13_memory_hunter/02-TDD-JOURNAL.md)
 - [CAHIER DES CHARGES : MEMORY HUNTER](13_memory_hunter/00A-CAHIER-DES-CHARGES.md)
 - [SPEC DRIFT : 14_system_design_lab](14_system_design_lab/06-SPEC-DRIFT-DRILL.md)
-- [ADR-001 : décision d’architecture](14_system_design_lab/ADR/ADR-003_decision.md)
-- [ADR-002 : décision d’architecture](14_system_design_lab/ADR/ADR-003_decision.md)
+- [ADR-003 : décision d’architecture](14_system_design_lab/ADR/ADR-003_decision.md)
+- [ADR-003 : décision d’architecture](14_system_design_lab/ADR/ADR-003_decision.md)
 - [ADR-003 : décision d’architecture](14_system_design_lab/ADR/ADR-003_decision.md)
 - [POSTMORTEM : SYSTEM DESIGN LAB](14_system_design_lab/08-POSTMORTEM.md)
 - [14 : SYSTEM DESIGN LAB](14_system_design_lab/README.md)
@@ -174,7 +174,7 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [TDD JOURNAL : SYSTEM DESIGN LAB](14_system_design_lab/02-TDD-JOURNAL.md)
 - [CAHIER DES CHARGES : SYSTEM DESIGN LAB](14_system_design_lab/00-CAHIER-DES-CHARGES.md)
 - [06-SPEC-DRIFT-DRILL.md : spec drift **en cours de projet** (mouvant)](15_porte_rasengan_engine_multilang/06-SPEC-DRIFT-DRILL.md)
-- [ADR-001 : décision d’architecture](15_porte_rasengan_engine_multilang/ADR/ADR-002_decision.md)
+- [ADR-002 : décision d’architecture](15_porte_rasengan_engine_multilang/ADR/ADR-002_decision.md)
 - [ADR-002 : décision d’architecture](15_porte_rasengan_engine_multilang/ADR/ADR-002_decision.md)
 - [POSTMORTEM : PORTAGE RASENGAN ENGINE](15_porte_rasengan_engine_multilang/08-POSTMORTEM.md)
 - [15 : PORTAGE RASENGAN ENGINE (JS → Python OU Go)](15_porte_rasengan_engine_multilang/README.md)
@@ -185,7 +185,7 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [TDD JOURNAL : PORTAGE RASENGAN ENGINE](15_porte_rasengan_engine_multilang/02-TDD-JOURNAL.md)
 - [CAHIER DES CHARGES : PORTAGE RASENGAN ENGINE](15_porte_rasengan_engine_multilang/00-CAHIER-DES-CHARGES.md)
 - [SPEC DRIFT : la specification change en cours de projet](16_distributed_arena/06-SPEC-DRIFT-DRILL.md)
-- [ADR-001 : décision d’architecture](16_distributed_arena/ADR/ADR-002_decision.md)
+- [ADR-002 : décision d’architecture](16_distributed_arena/ADR/ADR-002_decision.md)
 - [ADR-002 : décision d’architecture](16_distributed_arena/ADR/ADR-002_decision.md)
 - [POSTMORTEM : DISTRIBUTED ARENA](16_distributed_arena/08-POSTMORTEM.md)
 - [16 : DISTRIBUTED ARENA](16_distributed_arena/README.md)
@@ -205,26 +205,29 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [SPEC DRIFT TRIGGERS : 17_polyglot_forge](17_polyglot_forge/05-SPEC-DRIFT-TRIGGERS.md)
 - [TDD_JOURNAL](17_polyglot_forge/02-TDD-JOURNAL.md)
 - [17_polyglot_forge](17_polyglot_forge/00-CAHIER-DES-CHARGES.md)
-- 06-SPEC-DRIFT-DRILL.md : spec drift **en cours de projet** (mouvant)
-- ADR-001 : décision d’architecture
-- ADR-002 : décision d’architecture
-- ADR-003 : décision d’architecture
-- POSTMORTEM : 18_human_vs_ai_smell
-- 18_human_vs_ai_smell : reconnaître deux styles de bug
-- RULES : 18_human_vs_ai_smell
-- Security Gate : 18_human_vs_ai_smell
-- SPEC DRIFT TRIGGERS
-- TDD_JOURNAL : 18_human_vs_ai_smell
-- Cahier des charges : 18_human_vs_ai_smell
-- 06-SPEC-DRIFT-DRILL.md : spec drift **en cours de projet** (mouvant)
-- ADR : 19_supervise_the_ai
-- POSTMORTEM (a remplir en fin de projet)
-- 19 : SUPERVISE THE IA
-- Regles de supervision (non negociables)
-- Security (template a remplir)
-- Security Gate : 19_supervise_the_ai
-- TDD Journal (supervision)
-- Cahier des charges (extrait) : file-drop notifier supervise
-- consigne : 19_supervise_the_ai
-- Reviews : 19_supervise_the_ai
-- src/ : code de l'apprenant
+- [06-SPEC-DRIFT-DRILL.md : spec drift **en cours de projet** (mouvant)](18_human_vs_ai_smell/06-SPEC-DRIFT-DRILL.md)
+- [ADR-001 : décision d’architecture](18_human_vs_ai_smell/ADR/ADR-001_decision.md)
+- [ADR-002 : décision d’architecture](18_human_vs_ai_smell/ADR/ADR-002_decision.md)
+- [ADR-003 : décision d’architecture](18_human_vs_ai_smell/ADR/ADR-003_decision.md)
+- [ADR-004 : décision d’architecture](18_human_vs_ai_smell/ADR/ADR-004_decision.md)
+- [POSTMORTEM : 18_human_vs_ai_smell](18_human_vs_ai_smell/08-POSTMORTEM.md)
+- [18_human_vs_ai_smell : reconnaître deux styles de bug](18_human_vs_ai_smell/README.md)
+- [RULES : 18_human_vs_ai_smell](18_human_vs_ai_smell/01-RULES.md)
+- [Security : 18_human_vs_ai_smell](18_human_vs_ai_smell/03-SECURITY.md)
+- [Security Gate : 18_human_vs_ai_smell](18_human_vs_ai_smell/04-SECURITY-GATE.md)
+- [SPEC DRIFT TRIGGERS : 18_human_vs_ai_smell](18_human_vs_ai_smell/05-SPEC-DRIFT-TRIGGERS.md)
+- [TDD_JOURNAL : 18_human_vs_ai_smell](18_human_vs_ai_smell/02-TDD-JOURNAL.md)
+- [Cahier des charges : 18_human_vs_ai_smell](18_human_vs_ai_smell/00-CAHIER-DES-CHARGES.md)
+- [06-SPEC-DRIFT-DRILL.md : spec drift **en cours de projet** (mouvant)](19_supervise_the_ai/06-SPEC-DRIFT-DRILL.md)
+- [ADR : 19_supervise_the_ai](19_supervise_the_ai/ADR/README.md)
+- [POSTMORTEM (à remplir en fin de projet)](19_supervise_the_ai/08-POSTMORTEM.md)
+- [19 : SUPERVISE THE AI](19_supervise_the_ai/README.md)
+- [Règles de supervision (non négociables)](19_supervise_the_ai/01-RULES.md)
+- [Security : 19_supervise_the_ai](19_supervise_the_ai/03-SECURITY.md)
+- [Security Gate : 19_supervise_the_ai](19_supervise_the_ai/04-SECURITY-GATE.md)
+- [TDD Journal (supervision)](19_supervise_the_ai/02-TDD-JOURNAL.md)
+- [Cahier des charges (extrait) : file-drop notifier supervise](19_supervise_the_ai/00-CAHIER-DES-CHARGES.md)
+- [Consigne : 19_supervise_the_ai](19_supervise_the_ai/prompts/README.md)
+- [Reviews : 19_supervise_the_ai](19_supervise_the_ai/reviews/README.md)
+- [src/ : documentation du code](19_supervise_the_ai/src/README.md)
+- [Tests : scenario.sh](19_supervise_the_ai/tests/scenario.sh)

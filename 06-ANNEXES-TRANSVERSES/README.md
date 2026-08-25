@@ -28,6 +28,7 @@ L'index ci-dessous est la **carte canonique d'utilisation des annexes**. La colo
 | 13 | [15-ANNEXE-et-apres.md](15-ANNEXE-et-apres.md) | `05-MAITRISE/02A-RETRO-BLOC-5-MAITRISE.md` | Après l'épilogue | La suite du parcours après le dépôt |
 | 14 | [`17-PREUVES-MODELES/`](17-PREUVES-MODELES/README.md) | `04-EPREUVE/05-CAPSTONE-ARENA/00-PREREQUIS.md` et modules Staff | Avant la première preuve Staff | Modèles et critères de refus des livrables |
 | 15 | [17A-PROTOCOLE-DONNEE-SOURCEE.md](17A-PROTOCOLE-DONNEE-SOURCEE.md) | `03-PILOTAGE/07-CLOUD-FOUNDATIONS/06A-BUDGET-CLOUD.md` | Premier livrable chiffré | Relevé daté et sourcé |
+| 16 | [`19-PRODUIT-IA-REFERENCE/`](19-PRODUIT-IA-REFERENCE/README.md) | `04-EPREUVE/05-CAPSTONE-ARENA/06-addendum-staff-engineer.md` | Quand une preuve S6 de référence est utile | Laboratoire IA de référence, évaluable sans clé LLM |
 
 ## Hors ordre d'appel
 

@@ -31,7 +31,7 @@ route: complete
 | [`15-argumentaire_technique.md`](15-argumentaire_technique.md) | ARGUMENTAIRE TECHNIQUE : CONVAINCRE UN PAIR EN 1 PAGE               | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                             | Page verrouillée                                                    | 30 min |
 | [`16-EXO_LECTURE.md`](16-EXO_LECTURE.md)                       | EXO LECTURE : 15-25 minutes (Team Craft)                            | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)             | EXO [JEUNE IA] : 03-PILOTAGE/10-TEAM-CRAFT                          | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)             | EXO [JEUNE IA] : 03-PILOTAGE/10-TEAM-CRAFT                          | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)             | EXO IA MENTEUSE : module 03-PILOTAGE/10-TEAM-CRAFT                  | 45 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                 | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust             | 45 min |
 

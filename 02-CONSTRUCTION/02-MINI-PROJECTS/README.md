@@ -151,8 +151,8 @@ ADR non defendu = projet non livre.
 - [`15_porte_rasengan_engine_multilang/`](15_porte_rasengan_engine_multilang/README.md)
 - [`16_distributed_arena/`](16_distributed_arena/README.md)
 - [`17_polyglot_forge/`](17_polyglot_forge/README.md)
-- `18_human_vs_ai_smell/`
-- `19_supervise_the_ai/`
+- [`18_human_vs_ai_smell/`](18_human_vs_ai_smell/README.md)
+- [`19_supervise_the_ai/`](19_supervise_the_ai/README.md)
 - [EXO LECTURE : 15-25 minutes (02-CONSTRUCTION/02-MINI-PROJECTS)](02A-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/02-mini-projects](97A-EXO-VERIFICATION.md)
 - [`97-templates/`](97-templates/README.md)

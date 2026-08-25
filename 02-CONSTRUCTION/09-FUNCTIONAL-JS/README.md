@@ -30,7 +30,7 @@ route: complete
 | [`95-challenge.md`](95-challenge.md)                                                     | FP CHALLENGE : LE PIPELINE QUI PROUVE QUE C'EST PAS QUE THÉORIQUE     | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                                                       | Page verrouillée                                                      | 30 min |
 | [`08-EXO_LECTURE.md`](08-EXO_LECTURE.md)                                                 | EXO LECTURE : 15-25 minutes (Programmation fonctionnelle)             | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                       | EXO [JEUNE IA] : 02-CONSTRUCTION/09-FUNCTIONAL-JS                     | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                       | EXO [JEUNE IA] : 02-CONSTRUCTION/09-FUNCTIONAL-JS                     | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                       | EXO IA MENTEUSE : module 02-CONSTRUCTION/09-FUNCTIONAL-JS             | 45 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                           | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust               | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                                             | PONT : de la pensée fonctionnelle aux design patterns                 | 45 min |

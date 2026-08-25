@@ -17,7 +17,7 @@ Temps de lecture ~2 min
 
 ## Procédure
 
-1. Copie [`../97-templates/06-SECURITY_GATE_TEMPLATE.md`](../97-templates/05-SECURITY-GATE.md) dans ce dossier sous le nom `SECURITY_GATE_FILLED.md`.
+1. Copie [`../97-templates/05-SECURITY-GATE.md`](../97-templates/05-SECURITY-GATE.md) dans ce dossier sous le nom `SECURITY_GATE_FILLED.md`.
 2. Renseigne **chaque** item A01→A10 avec une **preuve** (fichier:ligne, test, config, log). `N/A` n'est autorisé qu'avec une phrase de motivation.
 3. Signe (`nom : date`) en fin de fichier.
 4. Ajoute le lien vers `SECURITY_GATE_FILLED.md` dans le `README.md` du projet, section **Publication**.

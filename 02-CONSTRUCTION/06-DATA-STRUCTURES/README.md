@@ -18,7 +18,7 @@ route: complete
 | [`01A-00-why-data-structures.md`](01A-00-why-data-structures.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : DATA STRUCTURES       | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                               | Page verrouillée                                            | 30 min |
 | [`03A-EXO_LECTURE.md`](03A-EXO_LECTURE.md)                       | EXO LECTURE : 15-25 minutes (Structures de donnees)         | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)               | EXO [JEUNE IA] : 02-CONSTRUCTION/06-DATA-STRUCTURES         | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)               | EXO [JEUNE IA] : 02-CONSTRUCTION/06-DATA-STRUCTURES         | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)               | EXO IA MENTEUSE : module 02-CONSTRUCTION/06-DATA-STRUCTURES | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                     | PONT : de stocker à traiter à les algorithmes               | 45 min |
 

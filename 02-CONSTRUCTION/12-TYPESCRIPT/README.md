@@ -17,7 +17,7 @@ route: complete
 | [`01A-00-why-typescript.md`](01A-00-why-typescript.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : TYPESCRIPT                                              | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                     | Page verrouillée                                                                              | 30 min |
 | [`02A-EXO_LECTURE.md`](02A-EXO_LECTURE.md)             | EXO LECTURE : 15-25 minutes (TypeScript)                                                      | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)     | EXO [JEUNE IA] : 02-CONSTRUCTION/12-TYPESCRIPT                                                | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)     | EXO [JEUNE IA] : 02-CONSTRUCTION/12-TYPESCRIPT                                                | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)     | EXO IA MENTEUSE : module 02-CONSTRUCTION/12-TYPESCRIPT                                        | 45 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)         | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust                                       | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                           | PONT : de typer du code à connaître le sol sur lequel il tourne à l'environnement d'exécution | 45 min |

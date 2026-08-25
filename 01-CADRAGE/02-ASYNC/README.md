@@ -83,7 +83,7 @@ Un système offline conserve des changements locaux puis négocie leur synchroni
 | [`05-shared_memory_concurrency.md`](05-shared_memory_concurrency.md)             | CONCURRENCE MÉMOIRE : SharedArrayBuffer & Atomics                                 | 45 min |
 | [`06-event_loop_drill_5ans.md`](06-event_loop_drill_5ans.md)                     | DRILL : L'event loop explique a un enfant de 5 ans, PUIS reconstruit en 20 lignes | 45 min |
 | [`07-EXO_LECTURE.md`](07-EXO_LECTURE.md)                                         | EXO LECTURE : 15-25 minutes (Asynchrone)                                          | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                               | EXO [JEUNE IA] : 01-CADRAGE/02-ASYNC                                              | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                               | EXO [JEUNE IA] : 01-CADRAGE/02-ASYNC                                              | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                               | EXO [IA MENTEUSE] : async (forEach + await)                                       | 45 min |
 | [`08-EXO_MICROTASK_A_LA_MAIN.md`](08-EXO_MICROTASK_A_LA_MAIN.md)                 | EXO : reimplemente une file de microtasks a la main (12.6)                        | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                                     | PONT : de l'async au debugging                                                    | 45 min |

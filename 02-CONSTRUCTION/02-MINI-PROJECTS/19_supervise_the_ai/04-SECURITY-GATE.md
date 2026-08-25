@@ -13,7 +13,7 @@ gate: bloquante
 
 ## Procedure
 
-1. Copie `../_templates/06-SECURITY_GATE_TEMPLATE.md` dans ce dossier
+1. Copie `../97-templates/05-SECURITY-GATE.md` dans ce dossier
    sous le nom `SECURITY_GATE_FILLED.md`.
 2. Renseigne **chaque** item A01 -> A10 avec une **preuve** (ADR, prompt,
    review, test, log). `N/A` n'est autorise qu'avec une phrase de

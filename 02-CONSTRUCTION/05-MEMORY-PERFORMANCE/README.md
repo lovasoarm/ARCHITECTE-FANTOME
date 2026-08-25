@@ -38,7 +38,7 @@ Le GC peut récupérer ce qui n’est plus atteignable depuis les racines du run
 | [`90-grimoire.md`](90-grimoire.md)                                     | Page verrouillée                                                                         | 30 min |
 | [`04A-expliquer_a_3_publics_gc.md`](04A-expliquer_a_3_publics_gc.md)   | Garbage Collection : expliqué à 3 publics                                                | 45 min |
 | [`05A-EXO_LECTURE.md`](05A-EXO_LECTURE.md)                             | EXO LECTURE : 15-25 minutes (Memoire & Perf)                                             | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                     | EXO [JEUNE IA] : 02-CONSTRUCTION/05-MEMORY-PERFORMANCE                                   | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                     | EXO [JEUNE IA] : 02-CONSTRUCTION/05-MEMORY-PERFORMANCE                                   | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                     | EXO IA MENTEUSE : module 02-CONSTRUCTION/05-MEMORY-PERFORMANCE                           | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                           | PONT : de mesurer une ressource à choisir la bonne structure à les structures de données | 45 min |
 

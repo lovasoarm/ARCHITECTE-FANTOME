@@ -17,7 +17,7 @@ route: complete
 | [`01A-00-why-algorithms.md`](01A-00-why-algorithms.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : ALGORITHMS       | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                     | Page verrouillée                                       | 30 min |
 | [`02A-EXO_LECTURE.md`](02A-EXO_LECTURE.md)             | EXO LECTURE : 15-25 minutes (Algorithmes)              | 45 min |
-| [`97-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)     | EXO [JEUNE IA] : 02-CONSTRUCTION/07-ALGORITHMS         | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)     | EXO [JEUNE IA] : 02-CONSTRUCTION/07-ALGORITHMS         | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)     | EXO IA MENTEUSE : module 02-CONSTRUCTION/07-ALGORITHMS | 45 min |
 
 Total : **3 h 45**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) et le boss (3 h) sont des évaluations séparées et ne sont pas ajoutés au Total sauf s’ils apparaissent comme lignes du tableau.
