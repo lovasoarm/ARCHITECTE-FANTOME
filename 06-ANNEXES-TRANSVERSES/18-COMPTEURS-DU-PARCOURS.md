@@ -17,7 +17,7 @@ Ces repères décrivent le volume du parcours. Ils servent à comprendre l’éc
 | Mini-projets | **19** |
 | `99-PORTAGE-MENTAL.md` | **38** |
 | Familles Staff | **S1–S6** |
-| Pièce de transfert | **S7** |
+| Preuve transversale obligatoire | **S7** |
 
 ## Les 19 mini-projets
 

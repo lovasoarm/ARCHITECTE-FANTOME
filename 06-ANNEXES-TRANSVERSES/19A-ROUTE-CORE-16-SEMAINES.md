@@ -88,7 +88,7 @@ Projet CORE : `01_rasengan_engine` en **slice 8 h**.
 
 ### S04 : Runtime, concurrence, backpressure
 
-CORE : runtime + async avancé + `03_walking_dead_protocol` en **slice 10 h**.
+CORE : runtime + async avancé + `03_walking_dead_protocol` en **slice 8 h**.
 
 ### S05 : API, sécurité et frontières
 
@@ -100,7 +100,7 @@ Projet CORE : `05_prison_break_api` en **slice 8 h**.
 
 CORE : performance + observabilité de base + client systems.
 
-Projet CORE : `06_ultras_dashboard` en **slice 10 h**.
+Projet CORE : `06_ultras_dashboard` en **slice 8 h**.
 
 ### S07 : Legacy et évolution sans casser
 
@@ -112,7 +112,7 @@ Projet CORE : `10_legacy_dungeon` en **slice 8 h**.
 
 CORE : DDD, modularité, contrats, ADR, trade-offs.
 
-Projet CORE : `14_system_design_lab` en **slice 12 h**.
+Projet CORE : `14_system_design_lab` en **slice 9 h**.
 
 ### S09 : Systèmes distribués et fiabilité
 
@@ -128,7 +128,7 @@ CORE : cloud foundations + produit/coût/ROI + FinOps.
 
 ### S11 : Reprise d'un système vivant
 
-Projet CORE : `12_legacy_takeover` en **slice 12 h**.
+Projet CORE : `12_legacy_takeover` en **slice 9 h**.
 
 Épreuve : reproduire avant de modifier ; une décision de refonte doit être chiffrée.
 
@@ -167,9 +167,13 @@ Le transfert teste ce qui survit du principe et ce qui doit être révisé dans 
 
 Projet CORE : `19_supervise_the_ai` en **slice 5 h**.
 
+Référence cognitive IA : [`41-PONT-MATHS-IA-ML-LLM.md`](41-PONT-MATHS-IA-ML-LLM.md). Elle ne crée aucun créneau supplémentaire : elle sert de support interne pour expliquer, pendant la preuve existante, le mécanisme IA pertinent (données → modèle → évaluation ; et, pour un LLM, tokenisation → embeddings → attention/Transformer → inférence) ainsi que ses limites.
+
 Épreuve : revue aveugle de provenance + transfert négatif + arrêt explicite d'une automatisation mal adaptée.
 
 ### S15 : Capstone sous double dérive
+
+Capstone CORE : **5 h de production / intégration** en S15. Les **5 h restantes** sont consommées en S16 pendant la finalisation et la préparation de défense. Avec les **70 h de slices mini-projets**, cela ferme exactement les **80 h de production/pratique CORE** sans dépasser les 192 h.
 
 Capstone : architecture + changement de spécification + contrainte organisationnelle + incident + nouvelle information.
 
@@ -177,7 +181,7 @@ Objectif : aucune indication sur « quelle compétence utiliser ».
 
 ### S16 : Défense, synthèse et vérité de sortie
 
-Soutenance : décision, contradiction, changement d'avis, coût, sécurité, transfert, limites.
+Finalisation Capstone : **5 h** de production/intégration, puis soutenance : décision, contradiction, changement d'avis, coût, sécurité, transfert, limites.
 
 Le diplômé produit aussi une page **« ce que ce diplôme prouve / ce qu'il ne prouve pas »**.
 
@@ -197,7 +201,7 @@ Pour chaque slice :
 
 ## Matrice de preuve
 
-La fermeture des six familles Staff suit [27-MATRICE-PREUVES-CORE.md](27-MATRICE-PREUVES-CORE.md). Une famille n’est pas « couverte » parce qu’elle possède des leçons : elle doit produire, subir une perturbation, transférer et défendre.
+La fermeture des **six familles Staff S1–S6** suit [27-MATRICE-PREUVES-CORE.md](27-MATRICE-PREUVES-CORE.md). **S7 est une preuve transversale obligatoire de transfert, pas une septième famille.** Une famille n’est pas « couverte » parce qu’elle possède des leçons : elle doit produire, subir une perturbation, transférer et défendre.
 
 ## Ce qui se passe après 16 semaines
 

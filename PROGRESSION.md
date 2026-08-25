@@ -22,6 +22,10 @@ Avant chaque leçon CORE, applique [26-PROTOCOLE-LECON-PROFONDE.md](06-ANNEXES-T
 - Dernière preuve produite :
 - Blocage actuel :
 
+### Référence de maîtrise durable
+
+Utilise [NOYAU DUR STAFF / PRINCIPAL 2035+](06-ANNEXES-TRANSVERSES/40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md) pour distinguer les capacités qui doivent devenir durables des spécialisations DEPTH/VAULT. Cette carte n’ajoute aucune heure au CORE : elle précise ce que les preuves existantes doivent permettre de démontrer.
+
 ## Parcours
 
 ### 00 : SOCLE

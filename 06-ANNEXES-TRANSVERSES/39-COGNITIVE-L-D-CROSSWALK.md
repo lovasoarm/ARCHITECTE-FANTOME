@@ -8,9 +8,10 @@ acte: référencer
 
 `L1…L9` et `D1…D8` ne désignent pas la même chose et ne doivent pas être fusionnés.
 
-- **L1–L4** : niveau pédagogique local (connaître → appliquer → diagnostiquer → arbitrer).
+- **L0–L4** : niveau pédagogique local conforme à `32-ECHELLE-COGNITIVE-ADAPTATIVE.md` : Recall → Explain → Apply → Diagnose → Discriminate.
 - **L5–L6** : pratique/maîtrise contextuelle (problème ouvert, perturbation, justification). Ces niveaux peuvent **alimenter** une preuve D3–D5 selon la production réellement observée.
 - **L7–L8** : niveau de transfert et d’adaptation. Ils peuvent **alimenter** une preuve D5–D7 selon le contexte, la perturbation et la qualité de la révision.
+- **D2 et D6** sont des marqueurs de transition utilisés uniquement pour le crosswalk ; ils ne constituent ni des niveaux de certification autonomes ni des gates de sortie. Les fermetures de preuve restent gouvernées par les matrices D1, D3, D4, D5, D7 et D8.
 - **L9** : niveau de difficulté locale réservé aux situations de maîtrise Staff. Il peut **contribuer** à une preuve D7 ou D8, mais ne valide jamais D7/D8 à lui seul.
 
 ## Règle de clôture

@@ -97,29 +97,21 @@ pas un capstone recevable, indépendamment de la qualité du code.
 | Note à une direction non technique (S5)              | 20  | `PREUVES/NOTE-DIRECTION.md` tient en une page, sans un seul terme technique non expliqué, et annonce la décision, la valeur utilisateur, le coût (un nombre repris exactement du budget S1), le risque, le SLO et l'option refusée. Un chiffre qui ne correspond pas au budget fait tomber ce critère à 8/20 au maximum : l'incohérence entre les deux documents est le défaut que ce critère cherche. |
 | Décision refusée, chiffrée par écrit (S4)            | 20  | Un ADR de refus (`ADR/ADR-REFUS-*.md`) nomme l'option écartée, le chiffre du refus (en euros, sur une période nommée), la perte acceptée et le **seuil de réouverture**. Un « on verra plus tard », ou un refus sans chiffre ni seuil, vaut 0/20 : ce n'est pas une décision, c'est un report.                                                                                                         |
 
-## Familles Staff exigées (condition de titre, pas de bonus)
+## Familles Staff représentées dans le capstone
 
-Les six familles de preuve sont définies dans
-[`PREUVES-STAFF-ENGINEER.md`](../../PREUVES-STAFF-ENGINEER.md) (S1 systèmes/cloud, S2
-architecture, S3 sécurité/fiabilité, S4 produit/business, S5 leadership/pédagogie, S6
-IA/automatisation). Le capstone en exige **quatre sur six**, dont **S1 et S3 obligatoirement**
-— parce que budget et fiabilité sont les deux familles qu'aucun autre livrable du parcours ne
-prouve à ta place. Si ton fil rouge n'a aucune brique IA, S6 se remplace par S4 ou S5, et ce
-choix est écrit dans `PREUVES-STAFF-ENGINEER.md` comme le prévoit sa section « État actuel des
-preuves ».
+Les six familles de preuve sont définies dans [`PREUVES-STAFF-ENGINEER.md`](../../PREUVES-STAFF-ENGINEER.md) : S1 systèmes/cloud, S2 architecture, S3 sécurité/fiabilité, S4 produit/business, S5 leadership/pédagogie, S6 IA/automatisation. **Le capstone peut fournir des pièces pour plusieurs familles, mais il ne détermine pas à lui seul le statut Staff.**
 
 ```text
-4 familles sur 6, dont S1 et S3, chacune prouvee par un fichier date
-   -> capstone valide comme preuve Staff (titre : capstone Staff Engineer)
-
-3 familles, ou 4 familles sans S1 ou sans S3
-   -> capstone valide comme projet complet et exercice de derive
-      titre reellement obtenu : capstone de livraison, PAS preuve Staff
-      la difference s'ecrit noir sur blanc dans ton auto-evaluation
-
-moins de 3 familles
-   -> capstone non valide, quel que soit le score de la grille
+capstone complet
+   ↓
+pièces de preuve S1–S6 + S7 selon ce qui a réellement été démontré
+   ↓
+Staff Readiness Gate
+   ↓
+READY seulement si S1–S6 sont fermées et S7 (transfert) est prouvée
 ```
+
+L’absence d’une brique IA dans le fil rouge ne supprime donc pas S6 : la preuve S6 peut être produite par le mini-projet CORE `19_supervise_the_ai` et/ou par un autre terrain explicitement accepté dans le dossier de preuves. Le capstone n’octroie jamais, à lui seul, un titre professionnel Staff Engineer.
 
 Une famille ne compte comme prouvée que si son fichier de preuve est présent, daté, et cité
 dans l'auto-évaluation avec le critère de la grille qui la note. Se déclarer « couvert sur

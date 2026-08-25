@@ -224,7 +224,7 @@ daté : tu en produiras plusieurs dizaines.
 
 ## Reprendre après une pause longue
 
-Le parcours réaliste dure 8 à 9 mois. Tu t'arrêteras. Six semaines d'arrêt ne sont pas un
+Le corpus complet peut s’étaler sur plusieurs mois selon le rythme, les interruptions et la profondeur choisie. La route CORE intensive est, elle, fixée à 16 semaines / 192 h ; cette durée ne prétend pas convertir une année d’expérience réelle en quatre mois. Tu t'arrêteras. Six semaines d'arrêt ne sont pas un
 incident, c'est la norme statistique de l'autoformation. Ce qui tue, ce n'est pas la pause,
 c'est la reprise mal faite : relire depuis le début, se lasser, abandonner pour de bon.
 

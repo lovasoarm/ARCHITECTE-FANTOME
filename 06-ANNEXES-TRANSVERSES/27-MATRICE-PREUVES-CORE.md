@@ -7,7 +7,7 @@ route_family: core
 
 # 27 : MATRICE DES PREUVES CORE
 
-> Le diplôme ne se valide pas par couverture documentaire. Chaque famille Staff doit traverser **production → perturbation → transfert → défense**.
+> La sortie Staff ne se valide pas par couverture documentaire. Les six familles **S1–S6** doivent traverser **production → perturbation → transfert → défense**. **S7 est une preuve transversale obligatoire de transfert, pas une septième famille.**
 
 | Famille               | Production                     | Perturbation                  | Transfert               | Défense                                |
 | --------------------- | ------------------------------ | ----------------------------- | ----------------------- | -------------------------------------- |
@@ -17,6 +17,7 @@ route_family: core
 | S4 Produit/coût       | décision chiffrée              | budget ou priorité modifiée   | autre marché            | sacrifice assumé                       |
 | S5 Leadership         | stratégie + message            | partie prenante opposée       | autre organisation      | objection en direct                    |
 | S6 IA                 | prompts + reviews + garde-fous | proposition IA contradictoire | autre fournisseur/outil | pourquoi ne pas déléguer               |
+| S7 Transfert (transversal) | portage hors stack         | contrainte cassant un invariant | nouveau contexte     | ce qui reste invariant / ce qui change |
 
 ## Gate de compétence
 

@@ -42,6 +42,8 @@ Le parcours vise un profil **Staff / Principal Engineer + Software / Solutions A
 
 Le parcours contient donc trois terrains supplémentaires sans créer trois spécialisations fermées : `21-CLIENT-SYSTEMS-FLUTTER` pour le client, `12-PLATFORM-ENGINEERING` pour la plateforme multi-équipe, et le lab CMS dans `08-PRODUIT-COUT-ROI` pour exercer le choix produit sans sacraliser une technologie.
 
+Pour la carte canonique des compétences qui restent indispensables au-delà des outils, consulte [NOYAU DUR STAFF / PRINCIPAL 2035+](06-ANNEXES-TRANSVERSES/40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md). Pour la fondation mathématique et IA, le pont [MATHS → IA → ML → DEEP LEARNING → LLM](06-ANNEXES-TRANSVERSES/41-PONT-MATHS-IA-ML-LLM.md) sert de référence DEPTH sans ajouter d'heures CORE.
+
 ## Pourquoi ?
 
 Parce que savoir écrire du code n’est qu’un morceau du métier. Le vrai travail apparaît quand les contraintes arrivent : exigences floues, bugs difficiles à reproduire, données imparfaites, trafic, incidents, coûts, sécurité, désaccords et décisions irréversibles.

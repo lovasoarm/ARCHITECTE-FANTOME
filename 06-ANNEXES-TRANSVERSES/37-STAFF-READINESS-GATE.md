@@ -23,6 +23,8 @@ Le niveau Staff d'AF ne se mesure pas au nombre de chapitres terminés. Il se me
 | G8   | IA/automatisation     | délégation, validation, rollback, gouvernance                                     |
 | G9   | Transfert             | nouvel environnement où la première solution n’est pas transportable telle quelle |
 
+**Clarification IA :** G8 n’exige pas une spécialisation de recherche en ML. Lorsqu'une solution IA est utilisée, le candidat doit pouvoir expliquer le mécanisme pertinent, les hypothèses, les limites, les métriques, le coût, la sécurité et les conditions d'arrêt. Le [pont mathématiques → IA → ML → deep learning → LLM](41-PONT-MATHS-IA-ML-LLM.md) reste une référence DEPTH ; la route CORE exige une littératie IA architecturale minimale et une preuve de supervision via S6. Le [Noyau dur Staff / Principal 2035+](40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md) décrit la portée durable.
+
 ## Critère de profondeur
 
 Chaque gate doit montrer au moins une chaîne complète :
@@ -30,6 +32,10 @@ Chaque gate doit montrer au moins une chaîne complète :
 **hypothèse → décision → résultat → observation → contradiction → révision**.
 
 Une décision qui ne peut pas être falsifiée est considérée comme une opinion documentée, pas comme une preuve d'ingénierie.
+
+## Contrat des familles et du transfert
+
+La sortie Staff exige la fermeture de **S1–S6**, les six familles du référentiel de preuves. **S7 : pensée transférable : est une preuve transversale obligatoire, mais n’est pas une septième famille.** Le capstone peut alimenter plusieurs familles et le transfert, mais il ne remplace jamais le Staff Readiness Gate.
 
 ## Critère d'influence
 

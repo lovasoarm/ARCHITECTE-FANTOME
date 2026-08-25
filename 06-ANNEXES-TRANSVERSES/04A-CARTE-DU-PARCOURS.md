@@ -63,7 +63,7 @@ Après `07-CLOUD-FOUNDATIONS`, le parcours réutilise le cloud dans `12-PLATFORM
 | Mini-projets                  |     19 |
 | Pièces `99-PORTAGE-MENTAL.md` |     38 |
 | Familles Staff                |  S1–S6 |
-| Pièce de transfert            |     S7 |
+| Preuve transversale obligatoire | S7 |
 
 ## 4. Carte des mini-projets
 
@@ -82,7 +82,7 @@ S3  sécurité / fiabilité / observabilité
 S4  produit / coût / valeur / décision
 S5  leadership / mentorat / communication
 S6  IA / automatisation / supervision
-S7  transfert multi-langage + multi-fournisseur
+S7  transfert transversal multi-langage + multi-fournisseur
               ↓
         fil rouge + capstone
               ↓
@@ -92,7 +92,5 @@ S7  transfert multi-langage + multi-fournisseur
 La couche de **maturation décisionnelle** du palier `08-MAITRISE-STAFF-ENGINEER` ajoute une exigence différente : l’apprenant doit montrer comment il change d’avis, encaisse la contradiction, reconnaît une erreur, arbitre sous pression et compense ses propres biais.
 
 ## 6. Prérequis et topologie
-
-Une relation `CE MODULE RÉUTILISE` doit toujours être satisfaite dans l’ordre public. Si un module suppose une compétence non encore acquise, retourne au prérequis avant de poursuivre.
 
 Une relation `CE MODULE RÉUTILISE` doit toujours être satisfaite dans l’ordre public. Si un module suppose une compétence non encore acquise, retourne au prérequis avant de poursuivre.
