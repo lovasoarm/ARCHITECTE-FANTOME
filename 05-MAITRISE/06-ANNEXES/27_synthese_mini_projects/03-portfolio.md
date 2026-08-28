@@ -28,6 +28,34 @@ lie l'ADR décisif et le postmortem le plus instructif, note-toi de 0 à 5
 (0 = pas fait, 5 = je peux le défendre 6 mois après). Génère la version
 finale avec `05-MAITRISE/06-ANNEXES/15-generate_portfolio_report.md`.
 
+
+## 1A. Lecture professionnelle honnête
+
+Ce portfolio ne donne pas automatiquement un titre Staff Engineer. Il sépare la **preuve pédagogique**, la **preuve terrain** et la **preuve revue par une personne externe**. Utilise la ligne de statut suivante pour chaque pièce :
+
+```text
+SIMULATION  = produit dans AF ou dans un environnement contrôlé
+TERRAIN     = utilisé / maintenu avec une contrainte extérieure réelle
+REVIEW      = relu par un pair, mainteneur, client ou reviewer externe
+IMPACT      = résultat observable documenté ; ne pas inventer de KPI absents
+```
+
+Pour les familles Staff, renseigne la preuve principale S1–S6 dans ton dossier final. Une preuve peut être multi-familles, mais le reviewer doit pouvoir distinguer ce qui est réellement démontré de ce qui reste à faire. Utilise le [Pont preuve terrain](../../../06-ANNEXES-TRANSVERSES/43-PONT-PREUVE-TERRAIN.md) pour faire évoluer progressivement les simulations vers T1, T2, T3 ou T4.
+
+### Fiche rapide pour un reviewer
+
+| Champ | Contenu à montrer |
+|---|---|
+| Contexte | problème, utilisateur/équipe, contraintes |
+| Décision | choix et alternatives réellement considérées |
+| Preuve | lien vers code, ADR, test, incident ou démo |
+| Statut | SIMULATION / TERRAIN / REVIEW / IMPACT |
+| Résultat | observation mesurée ou résultat observable |
+| Limites | ce qui n'a pas été prouvé |
+| Suite | prochaine amélioration concrète |
+
+Une lecture en moins de dix minutes doit permettre de comprendre ce qui est **produit**, ce qui est **réellement utilisé**, ce qui a été **revu**, et ce qui reste **non démontré**.
+
 ## Les six pierres (rappel)
 
 P1 Runtime · P2 Mémoire · P3 Asynchrone · P4 Architecture · P5 Debugging ·

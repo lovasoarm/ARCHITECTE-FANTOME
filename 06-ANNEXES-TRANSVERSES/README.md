@@ -35,3 +35,13 @@ L'index ci-dessous est la **carte canonique d'utilisation des annexes**. La colo
 Le `README.md` courant, `LICENSE`, `99-ASSETS-NON-LECTURE/` et [04A-CARTE-DU-PARCOURS.md](04A-CARTE-DU-PARCOURS.md) sont des infrastructures de navigation ou de licence. Ils ne sont pas des annexes déclenchées par une étape et ne reçoivent donc pas d'identifiant d'appel.
 
 La carte `04A-CARTE-DU-PARCOURS.md` reste volontairement distincte de l'index d'annexes : elle décrit le parcours global, tandis que cet index explique **quand ouvrir une annexe**.
+
+## Gouvernance du parcours vivant
+
+Ces trois pièces ne créent pas une progression parallèle. Elles prolongent les mécanismes existants :
+
+- [42-MESURE-IMPACT-PARCOURS.md](42-MESURE-IMPACT-PARCOURS.md) : mesurer la valeur du parcours sans promettre de causalité ou d'employabilité.
+- [43-PONT-PREUVE-TERRAIN.md](43-PONT-PREUVE-TERRAIN.md) : convertir progressivement les simulations et preuves AF en preuves terrain.
+- [44-REGISTRE-MAINTENANCE-ANNUELLE.md](44-REGISTRE-MAINTENANCE-ANNUELLE.md) : maintenir les 104 contenus périssables sans réauditer tout le corpus chaque année.
+
+Elles sont des supports de gouvernance et de maturation, pas des créneaux obligatoires supplémentaires du CORE.

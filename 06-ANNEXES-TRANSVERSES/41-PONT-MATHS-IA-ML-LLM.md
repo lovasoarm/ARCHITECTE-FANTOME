@@ -350,3 +350,7 @@ révision si nécessaire
 ```
 
 Pour la sortie Staff, les preuves IA restent gouvernées par `PREUVES-STAFF-ENGINEER.md` et `37-STAFF-READINESS-GATE.md`.
+
+## 11. Labs exécutables DEPTH
+
+Pour transformer ces mécanismes en intuition expérimentale sans ajouter de charge CORE, voir [45-LABS-IA-ML-DEPTH.md](45-LABS-IA-ML-DEPTH.md).

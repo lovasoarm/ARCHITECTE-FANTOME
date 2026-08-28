@@ -32,6 +32,33 @@ Quand tu as terminé ce dossier, ouvre **[le Prologue](../02-PROLOGUE/README.md)
 
 Tu y découvriras les règles du jeu, la carte du parcours et la manière dont les Boss valident ta progression.
 
+## 3A. Ton contrat des 7 premiers jours
+
+Ne cherche pas à parcourir le dépôt. Le résultat attendu de la première semaine est limité à des preuves visibles :
+
+| Jour | Action | Sortie minimale |
+|---|---|---|
+| J1 | Environnement + premier cycle écrire/exécuter/casser/réparer | commande fonctionnelle + première trace |
+| J2 | Auto-diagnostic du socle | une lacune nommée + prochaine ressource interne |
+| J3 | Problem solving | problème réel ou fil rouge cadré en quelques lignes |
+| J4 | Hypothèses + mesure | une hypothèse falsifiable + observation attendue |
+| J5 | Première modification contrôlée | un petit changement exécuté et vérifié |
+| J6 | Rappel à froid | explication sans notes + un piège identifié |
+| J7 | Première preuve visible | un artefact dans ton dépôt fil rouge, avec résultat et prochaine action |
+
+Tu n'as pas besoin d'avoir « fini » le corpus. À la fin de J7, tu dois surtout savoir montrer **ce que tu as produit**, **ce que tu sais encore expliquer** et **ce que tu vas faire ensuite**. Pour la première preuve, crée dans ton propre dépôt de travail une entrée `PREUVES/00-premiere-preuve.md` ou l'équivalent déjà utilisé par ton projet fil rouge.
+
+### Si tu bloques
+
+1. Lis la consigne et nomme exactement ce qui manque.
+2. Utilise [Où chercher de l'aide](../../06-ANNEXES-TRANSVERSES/02-OU-CHERCHER-DE-L-AIDE.md) avant une recherche externe.
+3. Réduis la tâche à une preuve courte et observable.
+4. Note le blocage dans ton journal, puis reprends à la prochaine action ; ne rattrape pas tout le corpus.
+
+### Le parcours vivant
+
+Après le CORE, transforme progressivement une preuve pédagogique en preuve de terrain avec le [Pont preuve terrain](../../06-ANNEXES-TRANSVERSES/43-PONT-PREUVE-TERRAIN.md), puis rassemble tes preuves dans la [sortie portfolio](../../05-MAITRISE/06-ANNEXES/27_synthese_mini_projects/03-portfolio.md). Le [registre de maintenance](../../06-ANNEXES-TRANSVERSES/44-REGISTRE-MAINTENANCE-ANNUELLE.md) concerne la maintenance du curriculum, pas une tâche d'étude à ajouter à ta semaine.
+
 ## 4. À la fin de cette première étape
 
 Tu dois avoir :

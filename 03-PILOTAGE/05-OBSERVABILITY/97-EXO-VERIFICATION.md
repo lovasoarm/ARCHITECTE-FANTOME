@@ -1,12 +1,13 @@
 ---
-stability: stable
+stability: perissable
+perishability_id: PER-0107
+review_due: 2027-12-31
 ---
 
 > **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.
 
 # EXO : Vérifier une IA séduisante
 
-stability: perissable_2027
 acte: pratiquer
 
 ---

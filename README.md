@@ -110,6 +110,8 @@ Pour comprendre l’échelle du parcours, consulte **[COMPTEURS DU PARCOURS](06-
 
 Pour vérifier ton propre niveau, utilise les critères du **[STAFF READINESS GATE](06-ANNEXES-TRANSVERSES/37-STAFF-READINESS-GATE.md)** : produire, défendre, transférer et réviser une décision compte davantage que terminer des fichiers.
 
+Pour transformer progressivement les preuves pédagogiques en preuves de terrain, consulte le [Pont preuve terrain](06-ANNEXES-TRANSVERSES/43-PONT-PREUVE-TERRAIN.md). Pour distinguer ce qui est produit, terrain, revu et réellement mesuré, utilise la [sortie portfolio](05-MAITRISE/06-ANNEXES/27_synthese_mini_projects/03-portfolio.md). La valeur du parcours peut être suivie sans promesse de carrière avec le [protocole de mesure d’impact](06-ANNEXES-TRANSVERSES/42-MESURE-IMPACT-PARCOURS.md). La maintenance des contenus périssables passe par le [registre annuel](06-ANNEXES-TRANSVERSES/44-REGISTRE-MAINTENANCE-ANNUELLE.md).
+
 Pour la qualité pédagogique avancée, consulte aussi **[ÉCHELLE COGNITIVE ADAPTATIVE](06-ANNEXES-TRANSVERSES/32-ECHELLE-COGNITIVE-ADAPTATIVE.md)** et **[ANTI-RECETTE ENGINE](06-ANNEXES-TRANSVERSES/33-ANTI-RECETTE-ENGINE.md)**. Elles empêchent que l’apprenant puisse progresser uniquement en reconnaissant la forme des exercices.
 
 ## Les niveaux

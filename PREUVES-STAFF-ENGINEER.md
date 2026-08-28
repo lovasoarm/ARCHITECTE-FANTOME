@@ -16,6 +16,10 @@ Deux colonnes à distinguer, et ne jamais confondre :
 - **Où ça s'apprend** : le fichier du parcours qui enseigne et fait pratiquer.
 - **Ce que tu montres** : le fichier que tu produis dans ton propre dépôt de projet fil rouge. Tant qu'il n'existe pas chez toi, la famille n'est pas prouvée, même si tu as lu le module.
 
+## Distinguer preuve pédagogique et preuve terrain
+
+Le [Pont preuve terrain](06-ANNEXES-TRANSVERSES/43-PONT-PREUVE-TERRAIN.md) définit les niveaux T0 à T4. Une simulation AF peut démontrer un raisonnement ; elle ne doit jamais être présentée comme une responsabilité de production que l'apprenant n'a pas réellement exercée.
+
 ## Contrat de sortie : `PREUVES/` dans le dépôt apprenant
 
 ARCHITECTE-FANTOME distingue volontairement **le curriculum** et **la preuve**.

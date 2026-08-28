@@ -1,12 +1,13 @@
 ---
-stability: stable
+stability: perissable
+perishability_id: PER-0105
+review_due: 2027-12-31
 ---
 
 > **SCÈNE CRAZYDEVS : clan des ninjas :** une abstraction peut être une technique secrète… ou une montagne de parchemins pour un problème de trois lignes. Ton défi est de savoir laquelle des deux tu construis.
 
 # EXO : Vérifier une IA séduisante
 
-stability: perissable_2027
 acte: pratiquer
 
 ---

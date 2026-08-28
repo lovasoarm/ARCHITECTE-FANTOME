@@ -1,12 +1,13 @@
 ---
-stability: stable
+stability: perissable
+perishability_id: PER-0106
+review_due: 2028-12-31
 ---
 
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 # EXO : Vérifier une IA séduisante
 
-stability: perissable_2028
 last_reviewed: 2026-07
 depends_on_vendor: false
 acte: pratiquer

@@ -22,6 +22,20 @@ Avant chaque leçon CORE, applique [26-PROTOCOLE-LECON-PROFONDE.md](06-ANNEXES-T
 - Dernière preuve produite :
 - Blocage actuel :
 
+## Preuve terrain : état de maturation
+
+La progression pédagogique et la progression professionnelle ne sont pas la même chose. Lorsque tu disposes d'un contexte extérieur, note le niveau atteint sans inventer d'expérience :
+
+```text
+T0 = simulation AF
+T1 = projet personnel vivant
+T2 = petit groupe / association / pair
+T3 = open source / mission / client
+T4 = production suivie avec responsabilité dans la durée
+```
+
+Le [Pont preuve terrain](06-ANNEXES-TRANSVERSES/43-PONT-PREUVE-TERRAIN.md) explique comment faire évoluer une preuve. Le portfolio doit conserver la distinction entre simulation, terrain, revue externe et impact. Cette maturation ne change pas la route CORE de 16 semaines / 192 h.
+
 ### Référence de maîtrise durable
 
 Utilise [NOYAU DUR STAFF / PRINCIPAL 2035+](06-ANNEXES-TRANSVERSES/40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md) pour distinguer les capacités qui doivent devenir durables des spécialisations DEPTH/VAULT. Cette carte n’ajoute aucune heure au CORE : elle précise ce que les preuves existantes doivent permettre de démontrer.

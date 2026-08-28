@@ -13,10 +13,10 @@ Les compteurs ci-dessous décrivent la répartition actuelle du parcours par niv
 | Statut | Fichiers |
 |---|---:|
 | intemporel | 1187 |
-| stable | 146 |
-| evolutif | 150 |
-| perissable | 104 |
-| **Total Markdown** | **1587** |
+| stable | 144 |
+| evolutif | 156 |
+| perissable | 107 |
+| **Total Markdown** | **1594** |
 
 Anciennes variantes normalisées : `mouvant → evolutif`, `perissable_2027/2028 → perissable` avec échéance conservée dans `review_due`.
 
@@ -56,6 +56,10 @@ Anciennes variantes normalisées : `mouvant → evolutif`, `perissable_2027/2028
 | `06-ANNEXES-TRANSVERSES/28-REFERENTIEL-EXTERNE-STAFF-2026.md` | 1 |
 | `06-ANNEXES-TRANSVERSES/36-RIGUEUR-SOURCES.md` | 1 |
 
+
+## Registre opérationnel
+
+La liste ci-dessus reste une vue consolidée. Pour une revue annuelle ciblée par `perishability_id`, utiliser le [registre de maintenance annuelle](../../06-ANNEXES-TRANSVERSES/44-REGISTRE-MAINTENANCE-ANNUELLE.md). Il permet de distinguer inventaire, validation de fond, obsolescence et action attendue sans réauditer tout le dépôt chaque année.
 
 ## CHECKPOINT DE PROFONDEUR
 

@@ -113,6 +113,10 @@ Chaque leçon est écrite pour que l'exemple soit remplaçable et le mécanisme,
 Les 6 paliers sont couverts nommément ci-dessus. Une ligne intemporel / périssable manquante est
 un défaut de cette annexe : ajoute-la, ne la déduis pas.
 
+## Registre opérationnel
+
+Les contenus périssables sont centralisés par `perishability_id` dans le [registre de maintenance annuelle](44-REGISTRE-MAINTENANCE-ANNUELLE.md). Le registre porte la responsabilité, l échéance, le statut et l action attendue. Une page `verified` a été revue contre sa source ; `inventory-checked` signifie seulement que le chemin et les métadonnées ont été inventoriés.
+
 ## Comment maintenir ce dépôt
 
 1. **Les leçons ne citent un outil que comme illustration.** Si une leçon devient fausse parce
