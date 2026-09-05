@@ -1,186 +1,268 @@
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1a1a2e,100:c9973a&height=120&section=header" />
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=c9973a&center=true&vCenter=true&width=760&lines=Hey%2C+I'm+Lovasoarm+aka+Aramis;Fundamentals+first.+Systems+second.;Building+from+scratch%2C+in+public.;Learning+to+engineer%2C+not+just+to+code.)](https://github.com/lovasoarm)
+
+![Profile Views](https://komarev.com/ghpvc/?username=lovasoarm&color=58a6ff&style=flat-square&label=profile+views)
+
+</div>
+
 ---
-stability: stable
+
+> Based in Madagascar.
+>
+> I am building my software engineering foundation in public, with a simple rule:
+> understand the system before reaching for the tool.
+>
+> My direction is **Staff Engineer / Principal Engineer**, with a strong **Software Architecture
+> and Solutions Architecture** dimension, grounded in full-stack and backend engineering,
+> cloud technologies, and AI integration.
+
+## Currently working on
+
+## Field-oriented practice
+
+Les exercices importants suivent un standard de pratique terrain :
+
+[`00-SOCLE/00-FIELD-ORIENTED-PRACTICE.md`](00-SOCLE/00-FIELD-ORIENTED-PRACTICE.md)
+
+Le parcours distingue explicitement simulation, observation, validation externe et expérience réelle.
+Pour les Boss et Capstones, utilisez aussi :
+
+[`04-EPREUVE/00-FIELD-EXIT-CARD.md`](04-EPREUVE/00-FIELD-EXIT-CARD.md)
+
+
+## Field-oriented practice
+
+Les exercices suivent un standard commun de pratique terrain :
+
+[`00-SOCLE/00-FIELD-ORIENTED-PRACTICE.md`](00-SOCLE/00-FIELD-ORIENTED-PRACTICE.md)
+
+Le curriculum distingue explicitement simulation, validation externe et experience terrain.
+Un scenario simule n'est jamais presente comme une experience professionnelle.
+
+
+## Avant de commencer
+
+Si tu ne sais pas par où commencer, lis d'abord :
+
+[`06-ANNEXES-TRANSVERSES/00-GUIDE.md`](06-ANNEXES-TRANSVERSES/00-GUIDE.md)
+
+Puis :
+
+[`06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md`](06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md)
+
+Ensuite, commence le parcours canonique avec `START HERE`.
+
+### ARCHITECTE-FANTOME
+
+**[ARCHITECTE-FANTOME](https://github.com/lovasoarm/ARCHITECTE-FANTOME)** is my main engineering project.
+
+It is a learning system built around the transition from writing code to making engineering decisions.
+
+The path moves through:
+
+```text
+Fundamentals
+    ↓
+Software Engineering
+    ↓
+Backend and Systems
+    ↓
+Architecture
+    ↓
+Cloud and Platform
+    ↓
+Reliability and Security
+    ↓
+Cost and Product Decisions
+    ↓
+AI-assisted Engineering
+    ↓
+Technical Leadership
+    ↓
+Staff Engineer track
+```
+
+The point is not to collect technologies.
+
+It is to learn how to:
+
+**understand → build → break → repair → design → operate → explain → transfer**
+
+a system under real constraints.
+
+### MyFunnyJS
+
+**[MyFunnyJS](https://github.com/lovasoarm/myFunnyJS)** is where I build my programming foundations, especially around JavaScript and TypeScript.
+
+It started from a simple frustration: beginners are often pushed toward frameworks before they understand the language and the machine underneath it.
+
+So I am building the foundations first.
+
+## What I am working toward
+
+**Professional direction**
+
+> **Staff Engineer / Principal Engineer**, with a strong **Software Architecture and
+> Solutions Architecture** dimension.
+
+The technical foundation underneath that direction is full-stack and backend engineering,
+with a focus on cloud technologies, reliability, security, and AI integration.
+
+**What I am training toward**
+
+Not a title claim.
+
+I am training toward the engineering scope behind these roles: technical judgment,
+system ownership, architecture, trade-offs, reliability, security, cost awareness,
+clear communication, and influence across teams.
+
+## How I learn
+
+I try to keep the loop simple:
+
+```text
+Learn
+  ↓
+Build
+  ↓
+Break
+  ↓
+Debug
+  ↓
+Measure
+  ↓
+Document
+  ↓
+Defend the decision
+  ↓
+Try it somewhere else
+```
+
+The goal is to understand mechanisms well enough that a change of language,
+framework or platform does not reset everything to zero.
+
+## Current focus
+
+- Software architecture
+- System design
+- Staff / Principal engineering practices
+- Solutions architecture
+- Backend engineering
+- JavaScript and TypeScript
+- APIs and databases
+- Cloud technologies
+- Reliability and observability
+- Security
+- Cost and architectural trade-offs
+- AI integration and supervised automation
+- Technical communication and technical leadership
+
+Full-stack engineering is part of the foundation, not the final positioning.
+I am learning React and Next.js after the underlying web and TypeScript foundations are solid.
+
+## Engineering principles
+
+> Fundamentals before abstraction.
+
+> Evidence before confidence.
+
+> Simple before clever.
+
+> Measure before optimizing.
+
+> Security is part of architecture.
+
+> A tool is not a design decision.
+
+> Knowing why to reject a technology matters as much as knowing how to use it.
+
+> Changing a decision after new evidence is good engineering.
+
+## Writing
+
+I am also building **00-GUIDE**, a practical orientation guide for people starting in software engineering.
+
+It covers the questions that usually arrive before the first serious project:
+
+- what programming actually is
+- how languages differ
+- how to choose a path
+- what software roles really do
+- how projects become systems
+- how careers evolve
+- what remains valuable when tools change
+
+[Read 00-GUIDE](https://github.com/lovasoarm/myFunnyJS/blob/main/00-guide.md)
+
+The guide is being kept separate from the technical curriculum because orientation and skill training are two different jobs.
+
+## Tech I am using or learning
+
+<p align="left">
+  <img src="https://skillicons.dev/icons?i=js,ts,dart,flutter,html,css,java,git,github,nodejs,react,nextjs" />
+</p>
+
+> This is a working list, not a claim of mastery.
+
+## One project at a time
+
+I am not trying to look experienced by listing everything I have touched.
+
+I would rather have fewer projects with:
+
+```text
+clear decisions
+real constraints
+measurable results
+documented failures
+useful trade-offs
+```
+
+than a long list of tutorials.
+
+## What comes later
+
+**CrazyDevs** is a future product direction, not an active project yet.
+
+For now, the priority is simpler:
+
+**build the foundations, build ARCHITECTE-FANTOME, and become a better engineer.**
+
+---
+
+## Streak
+
+<p align="center">
+  <img src="https://streak-stats.demolab.com?user=lovasoarm&theme=tokyonight&hide_border=true" />
+</p>
+
+## Contribution Snake
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/lovasoarm/lovasoarm/output/github-contribution-grid-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/lovasoarm/lovasoarm/output/github-contribution-grid-snake.svg" />
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/lovasoarm/lovasoarm/output/github-contribution-grid-snake.svg" />
+</picture>
+
+---
+
+## Find me
+
+<p align="left">
+  <a href="https://github.com/lovasoarm"><img src="https://img.shields.io/badge/GitHub-0d1117?style=for-the-badge&logo=github&logoColor=white" /></a>
+  <a href="https://www.linkedin.com/in/lovasoarm"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+  <a href="https://facebook.com/lovasoarm"><img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white" /></a>
+</p>
+
 ---
 
 <div align="center">
 
-<img src="./assets/brand/architecte-fantome-logo.png" alt="ARCHITECTE-FANTOME" width="520" />
+### Still learning. Still building. Still improving.
 
-<br>
-
-> _Construire. Casser. Réparer. Concevoir. Exploiter. Arbitrer. Diriger._
+**From fundamentals to systems to engineering judgment.**
 
 </div>
-
-# ARCHITECTE-FANTOME
-
-> **Construire. Casser. Réparer. Concevoir. Exploiter. Arbitrer. Diriger.**
-
-ARCHITECTE-FANTOME est un parcours CrazyDevs d’ingénierie logicielle. Il part du code que tu peux comprendre seul et t’emmène vers la conception de systèmes que tu peux expliquer, mesurer, exploiter et défendre sous contrainte.
-
-## Comment lire le parcours
-
-Les documents du parcours utilisent une numérotation lisible. Les dossiers de modules portent les préfixes numériques ; les artefacts transverses comme `PROGRESSION.md` et `PREUVES-STAFF-ENGINEER.md` sont des noms canoniques sans préfixe pour éviter toute collision de namespace. Les README servent de portes d’entrée locales ; les noms techniques de code et de configuration gardent leurs conventions. **00 prérequis → 01 pourquoi → 02+ leçons → 50+ pratique/minimini-projets → 90 grimoires → 95 challenge → 96 boss → 97 vérifications → 99 portage → 99A ponts**.
-
-Tu n'as donc pas à deviner “quel fichier ouvrir maintenant”. Les doublons de préfixes sont interdits dans un même dossier, y compris entre fichiers et dossiers. Les suffixes alphabétiques (`01A-...`, `97A-...`) sont réservés aux artefacts auxiliaires qui partagent le rang d’un dossier pédagogique sans concurrencer son rang canonique. Les fichiers techniques nécessaires à l'apprentissage gardent leurs noms canoniques ; le runtime de référence est fixé par `.nvmrc`.
-
-### Règle CrazyDevs
-
-Chaque concept pédagogique important doit avoir une empreinte mémorable : mission, piège, personnage, analogie, incident, conflit ou conséquence. Les références Naruto, Garo, Dragon Ball Z, Attack on Titan, football, Trap Soul/R&B et les autres univers autorisés servent à **ancrer le mécanisme**, jamais à remplacer l'explication technique.
-
-Les mini-projets restent volontairement **sans corrigé** : leurs décisions, tests, ADR, journal TDD et postmortem sont produits par l'apprenant.
-
-## Pour qui ?
-
-Pour quelqu’un qui veut progresser en JavaScript/TypeScript et en ingénierie logicielle au sens large : architecture, systèmes, fiabilité, sécurité, cloud, produit, coût, collaboration et leadership.
-
-Tu n’as pas besoin d’être déjà architecte. Tu dois accepter de pratiquer, de casser des choses et de justifier tes choix.
-
-## Le cerveau 2035+
-
-Le parcours vise un profil **Staff / Principal Engineer + Software / Solutions Architect**. Le noyau durable n’est pas une liste d’outils : c’est la capacité à comprendre un système inconnu, choisir sous contrainte, exploiter, sécuriser, chiffrer, transférer et superviser l’automatisation.
-
-Le parcours contient donc trois terrains supplémentaires sans créer trois spécialisations fermées : `21-CLIENT-SYSTEMS-FLUTTER` pour le client, `12-PLATFORM-ENGINEERING` pour la plateforme multi-équipe, et le lab CMS dans `08-PRODUIT-COUT-ROI` pour exercer le choix produit sans sacraliser une technologie.
-
-Pour la carte canonique des compétences qui restent indispensables au-delà des outils, consulte [NOYAU DUR STAFF / PRINCIPAL 2035+](06-ANNEXES-TRANSVERSES/40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md). Pour la fondation mathématique et IA, le pont [MATHS → IA → ML → DEEP LEARNING → LLM](06-ANNEXES-TRANSVERSES/41-PONT-MATHS-IA-ML-LLM.md) sert de référence DEPTH sans ajouter d'heures CORE.
-
-## Pourquoi ?
-
-Parce que savoir écrire du code n’est qu’un morceau du métier. Le vrai travail apparaît quand les contraintes arrivent : exigences floues, bugs difficiles à reproduire, données imparfaites, trafic, incidents, coûts, sécurité, désaccords et décisions irréversibles.
-
-La promesse du parcours est simple : apprendre à **raisonner avant de bricoler**, puis à faire tenir ce raisonnement dans un système réel.
-
-## Comment ça marche ?
-
-Le parcours suit une seule boucle :
-
-**Comprendre → Construire → Casser → Réparer → Concevoir → Exploiter → Arbitrer → Diriger**
-
-Chaque module contient une explication, une pratique et un livrable. Les challenges vérifient une compétence. Les Boss demandent une production complète et une défense. Les rétrospectives ferment chaque niveau. La sortie finale n'est pas un simple certificat de lecture : elle exige un portfolio `PREUVES/` construit dans ton dépôt fil rouge et validé par le gate de sortie Staff.
-
-## Repère cognitif : ce que tu es réellement en train de faire 
-
-Lire une leçon ne signifie pas maîtriser son contenu. 
-
-AF utilise un repère simple inspiré de la taxonomie de Bloom révisée pour 
-distinguer le type d’activité cognitive demandé : 
-
-| Action | Ce que cela signifie dans AF | 
-|---|---| 
-| Mémoriser | Reconnaître, rappeler ou nommer une notion | 
-| Comprendre | Expliquer son sens avec tes propres mots | 
-| Appliquer | Utiliser une méthode, une procédure ou un principe dans une situation donnée | 
-| Analyser | Décomposer, relier les éléments et identifier causes, dépendances ou structure | 
-| Évaluer | Juger avec des critères, des preuves, des limites et des compromis | 
-| Créer | Concevoir, planifier, produire ou reconstruire une solution cohérente | 
-
-Une activité peut commencer par comprendre puis demander d’appliquer, d’analyser, 
-d’évaluer ou de créer. Ce n’est pas une échelle automatique : créer une solution 
-sans compréhension ni critères solides peut rester faible. 
-
-AF vise souvent l’analyse, l’évaluation et la création, car un ingénieur doit 
-progressivement apprendre à décomposer un problème, comparer des options, 
-défendre une décision et construire une solution cohérente. Mémoriser et 
-comprendre restent nécessaires : ils sont les fondations du raisonnement. 
-
-Le transfert n’est pas un septième niveau de Bloom. Dans AF, il vérifie qu’un 
-principe reste utile dans un contexte différent et qu’il peut être adapté lorsque 
-les contraintes changent. 
-
-Bloom est seulement un vocabulaire simple. AF utilise aussi ses propres échelles 
-cognitives pour préciser la profondeur de preuve, de diagnostic, d’arbitrage, 
-de transfert, de révision et de reconstruction. Voir 
-[Échelle cognitive adaptative](06-ANNEXES-TRANSVERSES/32-ECHELLE-COGNITIVE-ADAPTATIVE.md). 
-
-Un échec à une épreuve ne signifie pas « tu es incapable » : il indique qu’une 
-compétence, une hypothèse ou une stratégie doit être réactivée, approfondie ou 
-testée autrement. 
-
-Tu gardes un **projet fil rouge** dès le cadrage. Les notions apprises reviennent ensuite sous une autre contrainte : c’est volontaire. Le but n’est pas de collectionner des fichiers, mais de constater que tu prends de meilleures décisions.
-
-## Où commencer ?
-
-Commence ici, sans ouvrir toute l’arborescence :
-
-**[START HERE](00-SOCLE/01-GETTING-STARTED/01-START_HERE.md)**
-
-Puis utilise **[PROGRESSION.md](PROGRESSION.md)** comme tableau de bord personnel.
-
-Pour comprendre l’échelle du parcours, consulte **[COMPTEURS DU PARCOURS](06-ANNEXES-TRANSVERSES/18-COMPTEURS-DU-PARCOURS.md)**.
-
-Pour vérifier ton propre niveau, utilise les critères du **[STAFF READINESS GATE](06-ANNEXES-TRANSVERSES/37-STAFF-READINESS-GATE.md)** : produire, défendre, transférer et réviser une décision compte davantage que terminer des fichiers.
-
-Pour transformer progressivement les preuves pédagogiques en preuves de terrain, consulte le [Pont preuve terrain](06-ANNEXES-TRANSVERSES/43-PONT-PREUVE-TERRAIN.md). Pour distinguer ce qui est produit, terrain, revu et réellement mesuré, utilise la [sortie portfolio](05-MAITRISE/06-ANNEXES/27_synthese_mini_projects/03-portfolio.md). La valeur du parcours peut être suivie sans promesse de carrière avec le [protocole de mesure d’impact](06-ANNEXES-TRANSVERSES/42-MESURE-IMPACT-PARCOURS.md). La maintenance des contenus périssables passe par le [registre annuel](06-ANNEXES-TRANSVERSES/44-REGISTRE-MAINTENANCE-ANNUELLE.md).
-
-Pour la qualité pédagogique avancée, consulte aussi **[ÉCHELLE COGNITIVE ADAPTATIVE](06-ANNEXES-TRANSVERSES/32-ECHELLE-COGNITIVE-ADAPTATIVE.md)** et **[ANTI-RECETTE ENGINE](06-ANNEXES-TRANSVERSES/33-ANTI-RECETTE-ENGINE.md)**. Elles empêchent que l’apprenant puisse progresser uniquement en reconnaissant la forme des exercices.
-
-## Les niveaux
-
-| Niveau                                                | Transformation                                                                                                   |
-| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| **00 : Socle**                                        | Comprendre le code et résoudre un problème sans se perdre.                                                       |
-| **01 : Cadrage**                                      | Choisir le bon problème, gérer l’asynchrone et diagnostiquer proprement.                                         |
-| **02 : Construction**                                 | Construire, tester, profiler, refactorer, poser des frontières solides et comprendre le client comme un système. |
-| **02bis : Architecture (sous-étape de Construction)** | Partir des contraintes, comparer des options et prendre des décisions d’architecture.                            |
-| **03 : Pilotage**                                     | Faire fonctionner le système : sécurité, observabilité, fiabilité, cloud, plateforme, produit et équipe.         |
-| **04 : Épreuve**                                      | Lire une grosse codebase, gérer le temps réel et défendre un système complet.                                    |
-| **05 : Maîtrise**                                     | Combiner les acquis, arbitrer sous contrainte et transmettre.                                                    |
-
-## Les trois profondeurs de parcours
-
-Le dépôt complet n’est pas une checklist de 1 500 fichiers. Il possède trois profondeurs :
-
-- **CORE** : route intensive de 16 semaines, 12 h/semaine, avec preuves, transfert et défense ;
-- **DEPTH** : contenu à ouvrir quand une compétence doit être approfondie ou quand une faiblesse est détectée ;
-- **VAULT** : référence durable, variantes, outils et documentation à consulter au besoin.
-
-Le détail de la route intensive est dans [19A-ROUTE-CORE-16-SEMAINES.md](06-ANNEXES-TRANSVERSES/19A-ROUTE-CORE-16-SEMAINES.md). Les durées affichées dans les modules servent de repères de travail. Les mini-projets sont cartographiés dans [25-CORE-MINI-PROJECT-MAP.md](06-ANNEXES-TRANSVERSES/25-CORE-MINI-PROJECT-MAP.md).
-
-Cette séparation ne retire rien du corpus. Elle évite seulement de confondre **richesse de référence** et **quantité à consommer**.
-
-## Comment progresser ?
-
-Ne coche pas parce que tu as lu. Coche quand tu peux **produire la preuve** demandée.
-
-Le rythme est volontairement irrégulier : certains sujets se traversent vite, d’autres exigent plusieurs essais. Quand tu bloques, reviens au prérequis, refais la pratique, puis retente le challenge.
-
-Le **Mode Survie** est une vue accélérée du même parcours canonique pour prioriser l’employabilité. La **Route CORE 16 semaines** définit le sprint intensif. **DEPTH/VAULT** classent la profondeur du même corpus. Aucun de ces modes ne crée une seconde progression ou un second système de certification.
-
-## Que produit l’apprenant ?
-
-Pas 500 pages de notes. Quelques preuves fortes et réutilisables :
-
-- décisions d’architecture et ADR ;
-- API et contrats ;
-- tests et stratégie de qualité ;
-- analyse de performance et de mémoire ;
-- sécurité et observabilité ;
-- SLI/SLO, récupération et continuité ;
-- choix cloud et budget ;
-- arbitrages produit/coût/risque ;
-- projet fil rouge et capstone ;
-- dossier final capable de raconter **problème → contraintes → options → décision → conséquences**.
-
-## Que signifie terminer ?
-
-Terminer ne veut pas dire atteindre le dernier dossier. Cela signifie que tu peux prendre un problème ambigu, construire une solution raisonnable, montrer ses limites, mesurer ce qui compte, récupérer après une panne, expliquer son coût et défendre tes choix devant quelqu’un qui n’est pas d’accord.
-
-Le dernier niveau ne te donne pas 300 notions de plus. Il te demande de **combiner intelligemment celles que tu as déjà rencontrées**, puis de défendre, invalider et transférer les décisions.
-
-La difficulté cognitive doit aussi monter : une compétence réellement maîtrisée doit survivre au diagnostic, à la décision, à la contradiction, à la révision et au transfert. Le passage par les mêmes formulaires n’est jamais considéré comme une preuve supplémentaire en soi.
-
-> **Diplôme AF ≠ Staff Engineer reconnu.** Le diplôme prouve une préparation intensive et des productions évaluables ; le scope, l’influence et les conséquences vécues sur plusieurs mois ou années restent de l’expérience professionnelle.
-
-## L’esprit CrazyDevs
-
-Le parcours est direct, pratique et parfois un peu sale dans son humour. Une punchline peut te faire retenir une idée. Elle ne remplace jamais la définition technique.
-
-> Voilà le problème. Voilà pourquoi il existe. Maintenant regarde la connerie qu’on pourrait faire. Voilà pourquoi elle casse. Maintenant fais mieux.
-
-## Gouvernance canonique du curriculum
-
-Les compteurs pédagogiques sont dérivés du filesystem et des frontmatters. Les contrôles structurels et preuves de release sont conservés hors du produit apprenant.
-
-```text
-Les contrôles de release sont exécutés hors du produit apprenant.
-```

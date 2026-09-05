@@ -1,72 +1,58 @@
 ---
 stability: stable
-acte: gouvernance
-noyau: oui
-route: staff-gate
+type: gate
 ---
 
-# 49 : TERRAIN MATURITY GATE : du curriculum au monde réel
+# 49 - TERRAIN MATURITY GATE
 
-## But
-
-Rendre impossible la confusion entre une excellente simulation et une expérience professionnelle réelle.
-
-## 1. Échelle canonique
-
-| Niveau | Preuve                                              | Ce qu'on peut dire                                       |
-| ------ | --------------------------------------------------- | -------------------------------------------------------- |
-| T0     | simulation AF                                       | preuve pédagogique                                       |
-| T1     | projet personnel réellement utilisé                 | usage externe limité                                     |
-| T2     | petit groupe / association / pair externe           | confrontation à des utilisateurs ou contraintes externes |
-| T3     | open source actif / mission / client                | contexte professionnel ou public réel                    |
-| T4     | production suivie avec responsabilité dans la durée | preuve forte d'exploitation et d'ownership               |
-
-**T0 ≠ T4.** Aucun titre professionnel ne doit être inféré automatiquement d'un niveau T0.
-
-## 2. Fiche de preuve
+## Niveaux
 
 ```text
-Preuve :
-Niveau terrain : T0 / T1 / T2 / T3 / T4
-Contexte :
-Qui a réellement utilisé le système ?
-Contrainte réelle :
-Signal observé :
-Décision prise :
-Résultat :
-Coût réel / proxy :
-Incident / surprise :
-Feedback externe :
-Artefact vérifiable :
-Limites :
-Prochaine itération :
+T0 - SIMULATION
+le système et ses conséquences sont contrôlés
+
+T1 - PROJET VIVANT
+le système fonctionne réellement, mais la dépendance externe est faible
+
+T2 - UTILISATEURS EXTERNES
+des personnes hors du projet l'utilisent
+
+T3 - OPEN SOURCE / MISSION / CLIENT
+un tiers peut accepter, refuser, demander ou prioriser
+
+T4 - PRODUCTION SUIVIE
+le système reste en usage avec maintenance et conséquences réelles
 ```
 
-## 3. Exigences Staff
+## Ce que chaque niveau prouve
 
-Un verdict `READY` du curriculum peut être accordé avec T0/T1 si toutes les autres preuves sont solides, mais il doit alors être libellé :
+```text
+T0 -> capacité de simulation
+T1 -> capacité d'exécution
+T2 -> capacité d'écoute et d'adaptation
+T3 -> capacité de travailler sous contrainte externe
+T4 -> capacité d'ownership (responsabilité durable d'un système)
+```
 
-> **READY : curriculum / Staff-track preparation**
+## Règle de langage
 
-et non :
+```text
+T0/T1 : préparation
+T2     : preuve externe utile
+T3     : preuve terrain crédible
+T4     : expérience de système vivant
+```
 
-> **preuve d'expérience professionnelle Staff**.
+Ne jamais appeler T0/T1 "expérience professionnelle".
 
-Pour déclarer une expérience Staff réelle, il faut des éléments de terrain compatibles avec T3/T4, le scope, la durée et le contexte d'organisation.
+## Minimum recommandé pour les preuves de haut niveau
 
-## 4. Production : seuils de preuve
-
-Pour une preuve annoncée comme « production » :
-
-- environnement réel ou explicitement identifié comme simulation ;
-- métriques accessibles ;
-- incidents ou changements observables ;
-- ownership identifié ;
-- période d'observation ;
-- résultat reproductible.
-
-**Interdiction :** transformer un déploiement de démonstration en « production » par simple vocabulaire.
-
-## 5. Pont professionnel
-
-Le [43-PONT-PREUVE-TERRAIN.md](43-PONT-PREUVE-TERRAIN.md) explique comment monter de T0 vers T4. Ce gate ne demande pas de créer des heures CORE supplémentaires : il impose une **étiquette de vérité** sur chaque preuve.
+```text
+BOSS / CAPSTONE
+      |
+      v
+T2 OU T3
+      |
+      v
+T4 quand le contexte le permet
+```
