@@ -2,7 +2,18 @@
 stability: mixte - fondamentaux durables, marche et outils perissables
 ---
 
-# 00-GUIDE : Orientation avant le parcours d'ingenierie
+# 00-GUIDE : Tu ne sais pas quoi faire ? Commence ici.
+
+> **Version CrazyDevs**
+>
+> Ce guide n'est pas Wikipedia avec une cravate.
+> C'est une carte de terrain pour quelqu'un qui arrive devant un ordinateur,
+> voit 500 technologies, 40 metiers, 200 tutos et pense :
+>
+> **"Ok... mais je commence par quoi ?"**
+>
+> Respire. On va remettre les pieces dans le bon ordre.
+
 
 Temps de lecture : environ 100 minutes. Guide dense : lis-le en plusieurs sessions. Ce document est une boussole d'orientation, pas un module CORE.
 
@@ -11,348 +22,333 @@ Temps de lecture : environ 100 minutes. Guide dense : lis-le en plusieurs sessio
 
 ## Sommaire
 
-0. [Si tu pars de zero](#0-si-tu-pars-de-zero)
+0. [Tu pars de zero ? Lis ceci d'abord](#0-tu-pars-de-zero--lis-ceci-dabord)
 1. [C'est quoi un langage de programmation ?](#1-cest-quoi-un-langage-de-programmation)
 2. [Les grands types de langages](#2-les-grands-types-de-langages)
 3. [Le paysage des langages en 2026](#3-le-paysage-des-langages-en-2026)
 4. [Comment choisir son langage ?](#4-comment-choisir-son-langage)
 5. [Debutant : par ou commencer ?](#5-debutant--par-ou-commencer)
-6. [J'ai une idee ou un cahier des charges : je fais quoi exactement ?](#6-jai-une-idee-ou-un-cahier-des-charges--je-fais-quoi-exactement)
-7. [Les verites qu'on te dira jamais en cours](#7-les-verites-quon-te-dira-jamais-en-cours)
-8. [Les metiers du logiciel et la trajectoire de carriere](#8-les-metiers-du-logiciel-et-la-trajectoire-de-carriere)
-9. [Le marche, l'argent et le levier remote](#9-le-marche-largent-et-le-levier-remote)
-10. [L'IA, le nouveau mode de travail](#10-lia-le-nouveau-mode-de-travail)
-11. [La trajectoire 2035+](#11-la-trajectoire-2035)
-12. [Conclusion](#12-conclusion)
-13. [Sources et regle de mise a jour](#13-sources-et-regle-de-mise-a-jour)
+6. [J'ai une idee : que faire maintenant ?](#6-jai-une-idee--que-faire-maintenant)
+7. [Les verites qu'on te dira rarement en cours](#7-les-verites-quon-te-dira-rarement-en-cours)
+8. [Les metiers du logiciel et la vraie trajectoire de carriere](#8-les-metiers-du-logiciel-et-la-vraie-trajectoire-de-carriere)
+9. [Le marche 2026 : ou est la valeur ?](#9-le-marche-2026--ou-est-la-valeur)
+10. [L'IA : nouvel outil, nouvelles regles](#10-lia--nouvel-outil-nouvelles-regles)
+11. [2035+ : construire une carriere qui survit aux outils](#11-2035--construire-une-carriere-qui-survit-aux-outils)
+12. [Conclusion : maintenant, tu fais quoi ?](#12-conclusion--maintenant-tu-fais-quoi)
+13. [Sources et entretien du guide](#13-sources-et-entretien-du-guide)
 
 ---
+## 0. Tu pars de zero ? Lis ceci d'abord
 
-> **Position dans ARCHITECTE-FANTOME**
->
-> `00-GUIDE.md` est une piece d'orientation placee avant le parcours. Elle n'ajoute pas un niveau
-> au curriculum et ne remplace aucun module technique.
->
-> Son role est de repondre a une question simple :
->
-> **"Je pars de presque rien. Qu'est-ce que je dois apprendre, dans quel ordre, pourquoi, et vers quel type d'ingenierie cela peut-il me conduire ?"**
->
-> La trajectoire professionnelle visee ici est :
->
-> `Staff Engineer / Principal Engineer`
->
-> avec une forte dimension :
->
-> `Software Architecture / Solutions Architecture`
->
-> et une base d'execution solide en :
->
-> `Full-Stack Software Engineering / Backend / Cloud / AI Integration`
->
-> Ce document ne promet pas un titre. Il explique une trajectoire de competence.
+Bienvenue.
 
-## 0. Si tu pars de zero
+Tu n'es pas en retard.
+Tu n'as pas besoin d'avoir "une logique de genie".
+Tu n'as pas besoin de connaitre Linux, Docker, React, Python, Git, AWS et toute la galaxie avant de commencer.
 
-Ce chapitre est pour la personne qui lit ce guide et pense :
+Tu as besoin d'un **premier pas suffisamment petit pour etre termine**.
 
-> "Je ne sais meme pas quoi installer. Je ne sais pas ce qu'est une API. Je ne sais pas si je dois apprendre Python, JavaScript, Flutter ou autre chose. Je vois des centaines de technologies et je ne sais pas laquelle choisir."
+### 0.1 Le probleme du debutant
 
-C'est normal.
-
-Ton premier objectif n'est pas de choisir la technologie parfaite. Ton premier objectif est de construire un modele mental suffisamment solide pour apprendre sans te perdre.
-
-### 0.1 La carte mentale minimale
+Le debutant voit ceci :
 
 ```text
-ORDINATEUR
-    |
-    +-- Systeme d'exploitation
-    |
-    +-- Programmes
-    |      |
-    |      +-- ton code
-    |      +-- bibliotheques
-    |      +-- frameworks
-    |
-    +-- Reseau
-    |      |
-    |      +-- HTTP
-    |      +-- DNS
-    |      +-- TCP/IP
-    |
-    +-- Donnees
-    |      |
-    |      +-- fichiers
-    |      +-- bases de donnees
-    |      +-- caches
-    |
-    +-- Utilisateur
-           |
-           +-- navigateur
-           +-- mobile
-           +-- desktop
+JavaScript  Python  Java  C#  Rust  Go  C++
+     |         |      |     |     |    |
+React     Django   Spring  .NET  Tokio ...
+     |         |      |     |     |
+Next.js   FastAPI   Kubernetes   AWS   Azure
+     |
+     +---- Docker
+     +---- Git
+     +---- SQL
+     +---- Redis
+     +---- Kafka
+     +---- Terraform
+     +---- LLM
+     +---- Agents
 ```
 
-Puis pense en couches :
+Son cerveau dit :
+
+> "Il faut tout apprendre."
+
+Non.
+
+La carte reelle ressemble plutot a ca :
 
 ```text
-PROBLEME
-   |
-   v
-PRODUIT
-   |
-   v
-SYSTEME
-   |
-   +--> interface
-   +--> logique metier
-   +--> donnees
-   +--> reseau
-   +--> infrastructure
-   +--> securite
-   +--> observabilite
-   |
-   v
-UTILISATION REELLE
-   |
-   v
-MESURE
-   |
-   v
-AMELIORATION
+               PROBLEME
+                  |
+                  v
+               CODE
+                  |
+                  v
+             LOGIQUE
+                  |
+                  v
+             SYSTEME
+                  |
+        +---------+---------+
+        |         |         |
+      reseau    donnees   machine
+        |         |         |
+        +---------+---------+
+                  |
+                  v
+             PRODUCTION
+       (quand de vrais gens
+        utilisent ton logiciel)
+                  |
+                  v
+             DECISIONS
+                  |
+                  v
+             ARCHITECTURE
 ```
 
-Tu n'as pas besoin de tout comprendre aujourd'hui. Tu dois simplement savoir que ces couches existent.
+Tu n'apprends pas tout en meme temps.
+Tu montes couche par couche.
 
-### 0.2 Ton premier mois
+### 0.2 Ton vrai premier objectif
 
-Ne construis pas une "plateforme revolutionnaire".
+Pas :
 
-Construis une boucle de travail.
+> "Devenir developpeur en 30 jours."
+
+Mais :
+
+> **devenir capable d'apprendre sans etre completement dependant d'un tutoriel.**
+
+Tu dois progressivement savoir faire cette boucle :
 
 ```text
-Semaine 1
----------
-Installer les outils
-Lire les bases du langage
-Faire de petits exercices
-Comprendre variables / conditions / fonctions
-Utiliser le terminal
+Je ne sais pas
+     |
+     v
+Je formule une question
+     |
+     v
+Je cherche
+     |
+     v
+Je teste
+     |
+     v
+Je me trompe
+     |
+     v
+Je debug
+     |
+     v
+Je comprends
+     |
+     v
+Je documente
+```
 
-Semaine 2
----------
-Collections
-Objets
-Erreurs
-Modules
-Fichiers
-Debugging
+Ca, c'est deja de l'ingenierie.
 
-Semaine 3
+### 0.3 Le kit de depart
+
+Tu peux commencer avec tres peu :
+
+```text
+VS Code          editeur de code
+Terminal         interface texte pour parler au systeme
+Git              outil de versioning (historique de tes changements)
+GitHub           depot distant (endroit ou ton code et son historique sont visibles)
+Navigateur       pour tester le web
+Node.js          environnement pour executer JavaScript cote serveur
+```
+
+Tout le reste arrive lorsqu'un projet le demande.
+
+### 0.4 Les 30 premiers jours
+
+```text
+JOURS 1-7
 ---------
-Git
+variables
+conditions
+boucles
+fonctions
+tableaux
+objets
+console
+petits exercices
+
+JOURS 8-14
+----------
+modules
+erreurs
+debugging
+fichiers
+terminal
+premier Git
+
+JOURS 15-21
+-----------
 GitHub
 README
-petits projets
-lire du code existant
-
-Semaine 4
----------
-Premier mini-produit
+petit projet
 tests simples
-documentation
-deploiement simple
-retour d'experience
+refactor (reorganiser du code sans changer son comportement)
+
+JOURS 22-30
+-----------
+finir le projet
+corriger les bugs
+documenter
+deployer simplement
+ecrire ce qui a ete difficile
 ```
 
-Le but du premier mois n'est pas d'etre employable.
+Un mois termine avec un petit projet fini vaut plus qu'un mois de playlists commencees et abandonnees.
 
-Le but est de devenir capable de **continuer seul sans te perdre**.
+### 0.5 Ton premier projet
 
-### 0.3 Les outils a installer
+Prends un probleme ridicule.
 
-Tu n'as pas besoin de vingt outils.
-
-```text
-Editeur             : VS Code
-Terminal            : PowerShell / Windows Terminal / terminal Linux
-Controle de version : Git
-Depot distant       : GitHub
-Navigateur          : Chrome ou Firefox
-Node.js             : si tu suis JavaScript / TypeScript
-Python              : si ton parcours le demande
-```
-
-Puis seulement quand le projet le justifie :
-
-```text
-Docker
-CI/CD
-cloud
-database server
-observability
-IaC
-```
-
-Ne commence pas par Kubernetes.
-
-### 0.4 Le premier projet doit etre petit
-
-Bon premier projet :
+Oui, ridicule.
 
 ```text
 Gestionnaire de taches
-
-Fonctions :
-- ajouter une tache
-- afficher les taches
-- terminer une tache
-- supprimer une tache
-- sauvegarder les donnees
+----------------------
+ajouter
+lister
+terminer
+supprimer
+sauvegarder
 ```
 
-Mauvais premier projet :
+Puis seulement :
 
 ```text
-Reseau social mondial
-+ microservices
-+ Kubernetes
-+ event streaming
-+ IA
-+ blockchain
-+ application mobile
-+ architecture multi-cloud
+v2 -> comptes utilisateurs
+v3 -> API (interface permettant a des programmes de communiquer)
+v4 -> base de donnees
+v5 -> deploiement
+v6 -> monitoring (surveillance du systeme)
 ```
 
-Le second projet a plus de technologies mais moins de chances de t'apprendre quelque chose de fiable.
+Tu viens de decouvrir la croissance naturelle d'un systeme sans avoir besoin de prononcer "microservices".
 
-### 0.5 Le premier objectif technique
+### 0.6 Le jour ou tu bloques
 
-Tu dois apprendre a parcourir cette boucle sans aide :
+Ne fais pas :
 
 ```text
-IDEe
+bug
  |
- v
-SPECIFICATION SIMPLE
+ +--> panique
  |
- v
-CODE
+ +--> change de framework
  |
- v
-ERREUR
+ +--> recommence le projet
  |
- v
-DEBUG
- |
- v
-TEST
- |
- v
-COMMIT
- |
- v
-README
- |
- v
-DEPLOIEMENT
+ +--> regarde 14 tutos
 ```
 
-Quand cette boucle devient normale, tu passes au niveau suivant.
-
-### 0.6 Comment savoir si tu progresses
-
-Ne mesure pas uniquement :
+Fais :
 
 ```text
-nombre de langages
-nombre de frameworks
-nombre de certificats
-nombre de tutoriels
+BUG
+ |
+ v
+Quel est le comportement attendu ?
+ |
+ v
+Qu'est-ce qui se passe vraiment ?
+ |
+ v
+Ou la difference apparait-elle ?
+ |
+ v
+Quelle hypothese explique cela ?
+ |
+ v
+Comment la tester ?
+ |
+ v
+Correction minimale
+ |
+ v
+Test de non-regression
 ```
 
-Mesure plutot :
+Un **test de non-regression** est un test qui verifie qu'une correction n'a pas casse quelque chose qui marchait deja.
+
+### 0.7 Quand utiliser une IA
+
+Tu peux demander :
 
 ```text
-Peux-tu expliquer ton code ?
-Peux-tu trouver un bug ?
-Peux-tu lire le code d'un autre ?
-Peux-tu ecrire un test ?
-Peux-tu utiliser Git sans copier les commandes ?
-Peux-tu deployer ?
-Peux-tu expliquer pourquoi tu as choisi cette solution ?
-Peux-tu expliquer pourquoi tu n'as PAS choisi une autre ?
-```
-
-Ce sont deja des signes d'ingenierie.
-
-### 0.7 La regle "ne rien comprendre"
-
-Lorsque quelque chose est incomprehensible, ne saute pas automatiquement vers un framework.
-
-```text
-"Je ne comprends pas les fonctions"
-        |
-        +--> je fais plus de fonctions
-        |
-        +--> je lis un exemple simple
-        |
-        +--> je debogue
-        |
-        +--> je demande une explication
-        |
-        +--> je reecris moi-meme
-```
-
-Le mauvais reflexe est :
-
-```text
-"Je ne comprends pas JavaScript"
-        ->
-"Je vais apprendre React"
-```
-
-React ne resout pas l'incomprehension de JavaScript.
-
-### 0.8 Quand utiliser une IA comme debutant
-
-Tu peux t'en servir.
-
-Mais ne lui demande pas :
-
-```text
-"Fais-moi toute mon application."
-```
-
-Demande plutot :
-
-```text
-"Explique-moi ce concept avec un exemple minimal."
-"Donne-moi un exercice, puis attends ma reponse."
-"Voici mon code. Trouve trois hypotheses de bug sans corriger a ma place."
-"Explique pourquoi cette solution fonctionne."
+"Explique ce concept avec un exemple minimal."
+"Donne-moi un exercice sans donner la reponse."
+"Voici mon code. Donne-moi des pistes de diagnostic."
+"Compare ces deux solutions."
 "Qu'est-ce que je dois verifier dans la documentation officielle ?"
 ```
 
-Le but est de faire progresser ton modele mental.
-
-### 0.9 Le plan quand tu es perdu
-
-Si tu ne sais vraiment plus quoi faire :
+Evite :
 
 ```text
-1. Reviens a ton objectif.
-2. Reduis le probleme.
-3. Choisis une seule technologie.
-4. Fais fonctionner un cas minimal.
-5. Mesure.
-6. Documente.
-7. Passe au probleme suivant.
+"Construis toute ma carriere."
+"Fais tout le projet."
+"Dis-moi juste quoi copier."
 ```
 
-Tu n'as pas besoin de connaitre toute l'industrie pour commencer.
+Une IA peut accelerer une personne qui comprend.
+Elle peut aussi permettre a une personne perdue de produire beaucoup de code qu'elle ne comprend pas.
 
----
+### 0.8 Le test "je peux continuer seul"
+
+Tu es pret pour la suite quand tu peux :
+
+```text
+lire une documentation
+chercher une erreur
+utiliser le terminal
+faire un commit
+expliquer ton code
+corriger un bug simple
+ecrire un test
+finir un petit projet
+```
+
+Tu n'as toujours pas besoin de tout connaitre.
+
+Tu dois simplement devenir moins fragile.
+
+### 0.9 Le mode anti-panique
+
+Quand tu ne sais plus quoi apprendre :
+
+```text
+OBJECTIF
+   |
+   v
+PROBLEME ACTUEL
+   |
+   v
+COMPETENCE MANQUANTE
+   |
+   v
+UNE seule ressource
+   |
+   v
+UN exercice
+   |
+   v
+UN petit projet
+```
+
+Pas dix cours.
+Pas quinze frameworks.
+
+Une marche.
+Puis la suivante.
 
 ## 1. C'est quoi un langage de programmation ?
 
@@ -793,117 +789,220 @@ Les concepts que tu apprends dans un langage se transfèrent.
 
 ---
 
-## 5. Débutant ou intermédiaire : par où commencer ?
+## 5. Debutant : par ou commencer ?
 
-### Si tu es complètement débutant
+Si tu vises a terme :
 
-Commence par un langage **simple à lire et à comprendre**, pour que ton cerveau se concentre sur la logique, pas sur la syntaxe.
+> **Staff Engineer / Principal Engineer avec une forte dimension Software Architecture / Solutions Architecture**
 
-Exemples:
+ne commence surtout pas par "architecture".
 
-- **Python** : super lisible, rapide à écrire, tu vois tout de suite ce que ton code fait.
-- **JavaScript** : si tu veux te lancer sur le web, voir le résultat direct dans le navigateur, c'est motivant et fun.
+C'est comme apprendre a dessiner les plans d'une maison sans savoir tenir une perceuse.
 
-> Astuce : Commence par Python si tu sais pas, c'est le point d'entrée le plus smooth. Mais si ton rêve c'est de créer des sites web ou des applis front, JS est ton ami. Les concepts que tu apprends (variables, boucles, fonctions) se réutilisent partout, peu importe le langage.
+### 5.1 Le chemin recommande
 
-```python
-# Python : tu lis, tu comprends immédiatement
-prenoms = ["Alice", "Bob", "Prometheus"]
-for prenom in prenoms:
-  print(f"Bonjour {prenom}")
+```text
+ETAPE 0
+-------
+Comprendre un ordinateur
+terminal
+fichiers
+processus
+reseau tres simple
+
+        |
+        v
+
+ETAPE 1
+-------
+JavaScript
+fondamentaux
+debugging
+Git
+petits projets
+
+        |
+        v
+
+ETAPE 2
+-------
+TypeScript
+SQL
+HTTP
+APIs
+backend
+tests
+
+        |
+        v
+
+ETAPE 3
+-------
+Full-stack
+frontend suffisamment solide
+backend plus profond
+auth
+data
+deploiement
+
+        |
+        v
+
+ETAPE 4
+-------
+Systems
+reseau
+concurrence (plusieurs tâches progressent en même temps)
+caches
+queues
+stockage
+performance
+
+        |
+        v
+
+ETAPE 5
+-------
+Cloud
+reliability
+security
+observability
+cost
+
+        |
+        v
+
+ETAPE 6
+-------
+Architecture
+ADR
+trade-offs
+capacity planning
+migration
+design de systemes
+
+        |
+        v
+
+ETAPE 7
+-------
+AI integration
+evaluation
+agents
+verification
+permissions
+gouvernance
+
+        |
+        v
+
+ETAPE 8
+-------
+Technical leadership
+cross-team
+mentoring
+strategie
+Staff / Principal
 ```
 
-```javascript
-// JavaScript : presque aussi lisible
-const prenoms = ["Alice", "Bob", "Prometheus"];
-prenoms.forEach(prenom => console.log(`Bonjour ${prenom}`));
+### 5.2 Pourquoi JavaScript / TypeScript ?
+
+Ce n'est pas parce que c'est "le meilleur langage".
+
+C'est parce que pour ton profil cible, il offre une voie pratique vers :
+
+```text
+web
+   |
+   +--> frontend
+   +--> backend
+   +--> APIs
+   +--> outils
+   +--> full-stack
 ```
 
-```java
-// Java : le même résultat, mais beaucoup plus de bruit
-import java.util.Arrays;
-import java.util.List;
+Tu peux donc apprendre une grosse partie de l'ingénierie logicielle sans changer de langage toutes les trois semaines.
 
-public class Main {
-  public static void main(String[] args) {
-    List<String> prenoms = Arrays.asList("Alice", "Bob", "Prometheus");
-    for (String prenom : prenoms) {
-      System.out.println("Bonjour " + prenom);
-    }
-  }
-}
+Puis tu peux apprendre Python, Go, Java, Rust ou autre quand le problème le justifie.
+
+### 5.3 Le principe "un noyau, plusieurs outils"
+
+```text
+             TON NOYAU
+                 |
+      +----------+----------+
+      |          |          |
+   langage    SQL/HTTP    Git
+      |          |          |
+      +----------+----------+
+                 |
+                 v
+             SYSTEMES
+                 |
+       +---------+---------+
+       |         |         |
+      cloud   security   reliability
+       |         |         |
+       +---------+---------+
+                 |
+                 v
+            ARCHITECTURE
 ```
 
-Ces trois programmes font la même chose. Mais en tant que débutant, tu veux comprendre la logique avant de te noyer dans le code. Python ou JS te donnent cette super-puissance.
+Le langage est une partie de la competence.
+Ce n'est pas la competence entiere.
 
----
+### 5.4 La regle anti-collection
 
-### Le parcours recommandé selon ton objectif
+Quand tu vois :
 
-```
-OBJECTIF : DEV WEB FULL-STACK
-:::::::::::::::::::::::::::::::::::::::::
- Début  --> HTML + CSS + JavaScript basique
- 3 mois  --> JavaScript (fonctions, objets, fetch/API)
- 6 mois  --> TypeScript + React ou Vue
- 1 an   --> Next.js ou Nuxt + DB (SQL ou NoSQL)
- 1 an+  --> Déploiement, Docker, CI/CD
- Résultat :  Dev web junior employable
-
-OBJECTIF : DEV MOBILE
-:::::::::::::::::::::::::::::::::::::::::
- Cross-platform :
-  Début  --> Dart basique
-  3 mois  --> Flutter (ou React Native)
-  6 mois  --> Firebase / Supabase
-  1 an   --> App sur Play Store / App Store
-
- Android natif :
-  Début  --> Kotlin basique + POO
-  3 mois  --> Jetpack Compose
-  6 mois  --> MVVM + Retrofit
-  1 an   --> App publiée
-
-OBJECTIF : DATA / IA
-:::::::::::::::::::::::::::::::::::::::::
- Début  --> Python basique
- 3 mois  --> NumPy + Pandas
- 6 mois  --> Matplotlib + Seaborn
- 1 an   --> Machine Learning avec scikit-learn
- 1 an+  --> Deep Learning (PyTorch ou TensorFlow)
-
-OBJECTIF : SYSTÈMES / PERFORMANCE
-:::::::::::::::::::::::::::::::::::::::::
- Début  --> C (mémoire, pointeurs)
- 6 mois  --> C++ ou Rust
- 1 an   --> Architecture bas niveau, OS, compilateurs
+```text
+React
+Vue
+Angular
+Svelte
+Next.js
+Nuxt
+Astro
+Solid
 ```
 
-> Choisis ton parcours comme un RPG : chaque étape = un niveau, chaque skill = une arme ou un sort pour ton futur métier.
+tu n'as pas besoin de tous les apprendre.
 
----
+Choisis-en un selon ton objectif.
+Apprends les concepts qui se transfèrent.
+Passe au suivant uniquement quand un vrai besoin apparait.
 
-### La règle des deux technologies
+### 5.5 Ton parcours n'est pas lineaire
 
-Ne cherche pas à tout apprendre en même temps. En 2026, la règle d'or c'est :
+Tu vas parfois revenir en arriere :
 
+```text
+Architecture
+    |
+    v
+"Pourquoi ca coute si cher ?"
+    |
+    v
+Cloud
+    |
+    v
+"Pourquoi c'est lent ?"
+    |
+    v
+Reseau
+    |
+    v
+"Pourquoi la DB fait ca ?"
+    |
+    v
+Storage / concurrency
 ```
-Maîtrise UN langage + maîtrise UN framework ou domaine spécifique.
 
-Exemples concrets :
- Python  + FastAPI  --> Dev backend API
- Python  + PyTorch  --> IA / Machine Learning
- JS/TS  + React   --> Dev front-end web
- JS/TS  + Next.js  --> Dev full-stack web
- Dart   + Flutter  --> Dev mobile cross-platform
- Kotlin  + Jetpack  --> Dev Android natif
- C#    + Unity   --> Dev jeu vidéo
- Go    + (rien)   --> Backend microservices (Go se suffit souvent)
-```
+C'est normal.
 
-> La profondeur bat la largeur. Un dev qui maîtrise vraiment React + TypeScript vaut plus qu'un dev qui connaît vaguement React, Vue, Angular, Svelte et Solid en même temps.
-
----
+Un bon parcours n'est pas un escalier parfait.
+C'est une boucle de curiosite de plus en plus profonde.
 
 ## 6. J'ai une idée ou un cahier des charges : je fais quoi exactement ?
 
@@ -974,7 +1073,7 @@ Travail en équipe     : Ce que tout le monde dans l'équipe sait déjà.
 Doit durer longtemps    : Java, C#, Rust : stables, maintenus sur le long terme.
                Évite les frameworks trop jeunes (ils disparaissent vite).
 
-Beaucoup d'utilisateurs  : Pense à la scalabilité. Go et Node.js gèrent bien la
+Beaucoup d'utilisateurs  : Pense à la scalabilité (capacité à supporter davantage de charge). Go et Node.js gèrent bien la
 potentiels          charge. PostgreSQL tient mieux que certaines bases
                NoSQL sous haute charge.
 
@@ -1573,7 +1672,7 @@ DONNÉES BRUTES --> DATA ENGINEER --> DONNÉES PROPRES ET ACCESSIBLES
 Langages   : Python, SQL, Scala
 Frameworks  : Apache Spark, Apache Kafka, dbt, Airflow
 Cloud     : BigQuery, Snowflake, Redshift, AWS S3
-Orchestration : Apache Airflow, Prefect, Dagster
+Orchestration (coordination de plusieurs tâches, outils ou agents) : Apache Airflow, Prefect, Dagster
 ```
 
 > Ne pas confondre avec : Data Scientist (qui analyse les données) ou ML Engineer (qui entraîne des modèles). Le Data Engineer construit l'infrastructure qui rend tout ça possible. Il est le plombier : invisible quand tout va bien, indispensable quand les tuyaux fuient.
@@ -2725,7 +2824,7 @@ est deja une competence concrete,
 alors que :
 
 ```text
-large-scale autonomous agent orchestration
+large-scale autonomous agent orchestration (coordination de plusieurs tâches, outils ou agents)
 ```
 
 reste plus experimental.
@@ -3197,191 +3296,249 @@ Tu accumules des preuves.
 
 ---
 
-## 12. Conclusion
+## 12. Conclusion : maintenant, tu fais quoi ?
 
-Si tu ne retiens que quelques idees de ce guide, retiens celles-ci.
+Tu viens peut-etre de lire une centaine de pages dans ta tete sans avoir encore ecrit une ligne.
 
-```text
-1. TU N'AS PAS BESOIN DE TOUT APPRENDRE
-   Tu as besoin d'un ordre d'apprentissage.
+Ce serait ironique.
 
-2. LE LANGAGE N'EST PAS LA CARRIERE
-   Le langage est une porte vers les concepts et les systemes.
+Alors voici la sortie.
 
-3. LA PROFONDEUR BAT LA COLLECTION
-   Un modele mental solide traverse plusieurs technologies.
-
-4. LE MARCHE 2026 EST POLARISE
-   L'execution facile subit plus de pression.
-   L'expertise appliquee a des problemes complexes devient plus interessante.
-
-5. L'IA N'EST PAS UN DIPLOME
-   L'utiliser n'est pas le meme niveau que savoir l'orchestrer,
-   la verifier, la securiser et la faire produire une valeur fiable.
-
-6. LE REMOTE EST UN LEVIER
-   Mais il ne remplace ni le niveau, ni la communication, ni les preuves.
-
-7. MADAGASCAR N'EST PAS UNE LIMITE TECHNIQUE
-   Le marche local est different du marche international.
-   Le bon objectif est de devenir exportable.
-
-8. 2035 N'EST PAS CONNU
-   Construis donc des competences qui survivent au changement :
-   fondamentaux, systemes, architecture, securite, fiabilite,
-   jugement, communication et leadership.
-
-9. STAFF / PRINCIPAL EST UNE TRAJECTOIRE
-   Ce n'est pas un titre que tu peux declarer.
-   Il se construit par l'impact, la responsabilite et la repetition
-   de bonnes decisions dans des contextes de plus en plus complexes.
-```
-
-### Le test le plus simple
-
-Quand tu apprends une nouvelle technologie, demande :
+### Si tu pars de zero aujourd'hui
 
 ```text
-Est-ce que je sais ce que cela resout ?
-Est-ce que je sais quand ne pas l'utiliser ?
-Est-ce que je peux expliquer son cout ?
-Est-ce que je peux expliquer son risque ?
-Est-ce que je peux la remplacer ?
-Est-ce que je peux verifier ce qu'une IA en dit ?
+ETAPE 1
+Choisis JavaScript.
+
+ETAPE 2
+Apprends les fondamentaux.
+
+ETAPE 3
+Fais un petit projet.
+
+ETAPE 4
+Apprends Git et GitHub.
+
+ETAPE 5
+Apprends TypeScript.
+
+ETAPE 6
+Apprends HTTP, SQL et les APIs.
+
+ETAPE 7
+Construis un backend.
+
+ETAPE 8
+Apprends a deployer.
+
+ETAPE 9
+Apprends systemes, cloud, security et reliability.
+
+ETAPE 10
+Commence ARCHITECTE-FANTOME comme parcours d'ingenierie.
 ```
 
-Si la reponse devient progressivement oui, tu avances.
+Pas besoin de passer 18 mois a preparer le moment ou tu commenceras.
 
-Et quand tu ne sais vraiment plus quoi faire :
+Commence.
+
+### Si tu es deja developpeur
+
+Ne cherche pas automatiquement un nouveau framework.
+
+Regarde tes trous :
 
 ```text
-PROBLEME
-   |
-   v
-REDUIRE
-   |
-   v
-COMPRENDRE
-   |
-   v
-CONSTRUIRE
-   |
-   v
-MESURER
-   |
-   v
-APPRENDRE
-   |
-   v
-TRANSFERER
+Je code bien, mais je ne comprends pas le reseau
+    -> reseau / HTTP
+
+Je construis, mais mes systemes cassent
+    -> reliability / observability
+
+Je sais deployer, mais je ne comprends pas le cout
+    -> cloud / FinOps
+
+Je sais coder, mais mes decisions sont faibles
+    -> architecture / ADR / trade-offs
+
+Je sais faire tout cela, mais je reste seul dans ma bulle
+    -> communication / mentoring / leadership
+
+Je sais utiliser l'IA, mais je ne sais pas verifier
+    -> evaluation / tests / supervision
 ```
 
-C'est une bonne boucle pour commencer.
+### Si tu vises Staff / Principal
 
-C'est aussi une bonne boucle pour devenir ingenieur.
+Ton objectif n'est pas :
 
----
+> "faire le projet le plus complique."
 
-## 13. Sources et regle de mise a jour
-
-Ce guide distingue volontairement deux categories.
-
-### Fondamentaux
-
-Ces parties peuvent rester longtemps sans changer :
+Ton objectif est :
 
 ```text
-programmation
-algorithmes
-structures de donnees
-debugging
-reseaux
-HTTP
-bases de donnees
-tests
-systemes
-architecture
-securite
-observabilite
-raisonnement
-communication
+probleme ambigu
+    |
+    v
+questions
+    |
+    v
+options
+    |
+    v
+trade-offs (compromis entre plusieurs objectifs)
+    |
+    v
+decision
+    |
+    v
+implementation
+    |
+    v
+measurement
+    |
+    v
+operation
+    |
+    v
+postmortem
+    |
+    v
+learning
+    |
+    v
+decision suivante
 ```
 
-### Marche et outils
+C'est cette boucle que tu veux devenir capable de porter a une equipe.
 
-Ces parties doivent etre revues regulierement :
+### Le test final CrazyDevs
+
+Devant n'importe quelle technologie, demande :
+
+```text
+Qu'est-ce qu'elle resout ?
+Pourquoi maintenant ?
+Pourquoi elle plutot qu'une autre ?
+Quel est son cout ?
+Quel est son risque ?
+Comment je mesure qu'elle fonctionne ?
+Que se passe-t-il si elle tombe ?
+Comment je la remplace ?
+Qu'est-ce que je peux automatiser ?
+Qu'est-ce que je dois absolument verifier moi-meme ?
+```
+
+Tu ne deviens pas meilleur parce que tu connais plus de noms.
+
+Tu deviens meilleur parce que tu poses de meilleures questions.
+
+> **C'est ca, le vrai debut de l'ingenierie.**
+
+## 13. Sources et entretien du guide
+
+### Comment lire les sources
+
+Les sources ne servent pas a prouver que "tel metier gagnera forcement".
+
+Elles servent a reduire l'aveuglement.
+
+```text
+source primaire
+    |
+    v
+donnee
+    |
+    v
+interpretation
+    |
+    v
+decision prudente
+```
+
+Une plateforme de recrutement mesure sa propre plateforme.
+Une enquete mesure ses repondants.
+Une projection depend de ses hypotheses.
+Un rapport d'entreprise a ses propres interets.
+
+Le guide essaie donc de croiser plusieurs angles.
+
+### Marche du travail et competences
+
+**U.S. Bureau of Labor Statistics - 2026**
+https://www.bls.gov/opub/mlr/2026/article/industry-and-occupational-employment-projections-overview.htm
+
+**Indeed Hiring Lab - 2026**
+https://hiringlab.indeed.com/2026/07/08/ai-and-job-postings-from-destruction-to-creation/
+
+**Upwork - In-Demand Skills 2026**
+https://www.upwork.com/research/in-demand-skills-2026
+
+**Upwork - In-Demand Skills press release**
+https://www.upwork.com/press/releases/upworks-in-demand-skills-2026-demand-for-top-ai-skills-more-than-doubles-as-ai-is-embedded-into-everyday-work
+
+**Upwork - AI-generated work creating more work for humans**
+https://www.upwork.com/research/ai-generated-work-is-creating-more-work-for-humans
+
+**World Economic Forum - Future of Jobs 2025**
+https://www.weforum.org/publications/the-future-of-jobs-report-2025/
+
+### IA et travail logiciel
+
+**Stack Overflow Developer Survey 2025 - AI**
+https://survey.stackoverflow.co/2025/ai
+
+**Stanford AI Index 2026 - Economy**
+https://hai.stanford.edu/ai-index/2026-ai-index-report/economy
+
+**Stanford AI Index 2026**
+https://hai.stanford.edu/ai-index/2026-ai-index-report
+
+### Afrique et Madagascar
+
+**World Bank - Madagascar**
+https://www.worldbank.org/en/country/madagascar
+
+**World Bank - Digital skills / Africa**
+https://documents1.worldbank.org/curated/en/099746512082541920/pdf/IDU-dcae1207-ed6e-4383-9c7f-1f2b2dbae522.pdf
+
+**GSMA - Mobile Economy Africa**
+https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-economy/africa/
+
+### Regle de maintenance
+
+Les parties suivantes doivent etre revues regulierement :
 
 ```text
 salaires
-emploi
-freelance
-remote
+offres d'emploi
 frameworks
 outils IA
 agents
-cloud products
 certifications
-technologies emergentes
+plateformes
+remote
 ```
 
-### Regle de mise a jour
+Les fondamentaux peuvent vivre beaucoup plus longtemps, mais meme eux doivent etre verifies
+lorsqu'une decision importante est prise.
 
-Avant de prendre une decision de carriere ou de technologie importante :
+### Derniere regle
 
-```text
-1. Cherche les donnees les plus recentes.
-2. Compare plusieurs sources.
-3. Prefere les sources primaires.
-4. Distingue faits, projections et opinions.
-5. Verifie les offres reelles du marche vise.
-6. Ne transforme jamais une projection 2035 en certitude.
-```
+> **Si une nouvelle information contredit ce guide, ne protege pas le guide. Verifie l'information.**
 
-### Sources principales utilisees pour cette edition
+Le but n'est pas d'avoir raison en 2026.
 
-```text
-World Economic Forum
-https://www.weforum.org/publications/the-future-of-jobs-report-2025/
+Le but est de savoir apprendre en 2026, puis en 2030, puis en 2035+.
 
-U.S. Bureau of Labor Statistics
-https://www.bls.gov/opub/mlr/2026/article/industry-and-occupational-employment-projections-overview.htm
 
-Stack Overflow Developer Survey
-https://survey.stackoverflow.co/2025/
+---
 
-Stanford AI Index 2026
-https://hai.stanford.edu/ai-index/2026-ai-index-report/economy
-
-Anthropic Economic Index
-https://www.anthropic.com/research/claude-code-expertise
-https://www.anthropic.com/research/economic-index-june-2026-report
-
-Upwork In-Demand Skills 2026
-https://www.upwork.com/research/in-demand-skills-2026
-
-Upwork Future Workforce Index 2026
-https://www.upwork.com/research/research-future-workforce-index-2026
-
-Upwork AI-generated work
-https://www.upwork.com/research/ai-generated-work-is-creating-more-work-for-humans
-
-Indeed Hiring Lab
-https://hiringlab.indeed.com/2026/07/08/ai-and-job-postings-from-destruction-to-creation/
-
-World Bank - Digital skills in Africa
-https://documents1.worldbank.org/curated/en/099746512082541920/pdf/IDU-dcae1207-ed6e-4383-9c7f-1f2b2dbae522.pdf
-
-GSMA - Mobile Economy Africa 2026
-https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-economy/africa/
-
-World Bank - Madagascar
-https://www.worldbank.org/en/country/madagascar/publication/madagascar-economic-update-bridging-the-productivity-divide
-
-Madagascar Digital Economy
-https://www.trade.gov/country-commercial-guides/madagascar-digital-economy
-```
-
-> Derniere regle :
+> **Statut**
 >
-> **Ne construis pas ta carriere sur une prediction. Construis-la sur ta capacite a t'adapter quand la prediction est fausse.**
-
+> `00-GUIDE` est une boussole.
+>
+> Le parcours canonique d'ARCHITECTE-FANTOME commence avec `START HERE`.
+>
+> Et le titre Staff / Principal se construit dans le monde reel : experience,
+> impact, responsabilite, influence et preuves independantes.
