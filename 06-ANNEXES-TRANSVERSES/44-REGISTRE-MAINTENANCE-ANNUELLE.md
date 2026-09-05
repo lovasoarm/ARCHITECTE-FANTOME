@@ -51,9 +51,9 @@ Aucune page intemporelle n'a à être réécrite simplement parce que l'année c
 - Une source primaire introuvable rend l'élément `blocked`.
 - Un contenu remplacé par un nouveau mécanisme devient `deprecated` et doit pointer vers son successeur interne.
 
-## 5. Registre des 107 éléments
+## 5. Registre des 112 éléments
 
-| ID | Fichier | Priorité | Dernière vérification | Prochaine revue | Responsable | Statut initial V15 | Source / action |
+| ID | Fichier | Priorité | Dernière vérification | Prochaine revue | Responsable | Statut initial V16 | Source / action |
 |---|---|---:|---|---|---|---|---|
 | PER-0001 | `00-SOCLE/01-GETTING-STARTED/02-install.md` | P2 | 2026-08-28 (inventaire; pas une validation de fond) | 2027-08-28 | Mainteneur curriculum | inventory-checked | Source officielle déjà référencée ; vérifier le contenu avant `verified`. |
 | PER-0002 | `00-SOCLE/01-GETTING-STARTED/03-day_one.md` | P2 | 2026-08-28 (inventaire; pas une validation de fond) | 2027-08-28 | Mainteneur curriculum | needs-source | Qualifier une source officielle adaptée au sujet avant la prochaine publication. |
@@ -163,7 +163,30 @@ Aucune page intemporelle n'a à être réécrite simplement parce que l'année c
 | PER-0106 | `05-MAITRISE/07-TOOLS/97-EXO-VERIFICATION.md` | P2 | 2026-08-28 (inventaire; pas une validation de fond) | 2028-12-31 | Mainteneur runtime/outillage | needs-source | Qualifier la source officielle de l'outil ou du concept concerné avant la prochaine publication. |
 | PER-0107 | `03-PILOTAGE/05-OBSERVABILITY/97-EXO-VERIFICATION.md` | P1 | 2026-08-28 (inventaire; pas une validation de fond) | 2027-12-31 | Mainteneur cloud/platform | needs-source | Qualifier une source officielle de l'observabilité et vérifier le drill avant la prochaine publication. |
 
+
+| PER-0108 | `06-ANNEXES-TRANSVERSES/46-MARKET-EVIDENCE-REGISTER.md` | P1 | 2026-09-05 (structure créée; validation de fond des données de marché à chaque revue) | 2027-03-05 | Mainteneur carrière/marché | inventory-checked | Rejouer le benchmark de postings et sourcer les données utilisées avant le prochain verdict marché. |
+| PER-0109 | `06-ANNEXES-TRANSVERSES/47-AI-RESILIENCE-BENCHMARK.md` | P0 | 2026-09-05 (protocole) | 2027-03-05 | Mainteneur IA | inventory-checked | Rejouer le benchmark avec outils réellement disponibles et dater les mesures. |
+| PER-0110 | `06-ANNEXES-TRANSVERSES/48-EXTERNAL-REVIEW-GATE.md` | P1 | 2026-09-05 (protocole) | 2027-09-05 | Mainteneur Staff | inventory-checked | Vérifier la grille après au moins trois revues externes. |
+| PER-0111 | `06-ANNEXES-TRANSVERSES/49-TERRAIN-MATURITY-GATE.md` | P1 | 2026-09-05 (protocole) | 2027-09-05 | Mainteneur preuves | inventory-checked | Vérifier la compatibilité avec les cas terrain réellement rencontrés. |
+| PER-0112 | `06-ANNEXES-TRANSVERSES/50-INCIDENT-COMMANDER-GATE.md` | P1 | 2026-09-05 (protocole) | 2027-09-05 | Mainteneur SRE/Staff | inventory-checked | Valider la grille sur des scénarios inédits et ajuster les seuils si nécessaire. |
+
 ## 6. Règle de publication
+
+
+### Gate de release V16
+
+Une release marquée **stable/canonique** doit afficher séparément :
+
+- nombre de P0 `verified` ;
+- nombre de P0 `needs-source` / `blocked` ;
+- état du benchmark marché ;
+- état du benchmark IA ;
+- disponibilité de la revue externe ;
+- niveau terrain maximal réellement atteint.
+
+Un P0 non `verified` n'interdit pas automatiquement toute release, mais interdit de présenter la zone concernée comme **source de vérité vérifiée**.
+
+**Le registre distingue désormais l'intégrité de navigation (inventory-checked) de la validation de fond (verified).**
 
 Avant une release, les P0 non `verified` doivent être signalés explicitement dans la checklist de validation. Un statut `inventory-checked` ne constitue jamais un feu vert de fond.
 

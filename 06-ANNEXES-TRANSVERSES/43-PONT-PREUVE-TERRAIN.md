@@ -9,6 +9,10 @@ route: extension
 
 Ce document ne remplace aucune preuve existante. Il explique comment convertir une preuve pédagogique en expérience progressivement réelle, sans prétendre qu'une simulation vaut une responsabilité professionnelle.
 
+## Convention de vérité
+
+Pour le niveau exact de preuve T0→T4 et les règles de formulation du portfolio, utilise [49-TERRAIN-MATURITY-GATE.md](49-TERRAIN-MATURITY-GATE.md). Une simulation reste une simulation tant qu'aucun tiers ou utilisateur externe ne l'a réellement confrontée au contexte.
+
 ## 1. Règle de réalité
 
 Une preuve AF est **pédagogique** tant qu'elle a été produite dans une simulation, un mini-projet ou un contexte contrôlé. Elle devient une **preuve terrain** seulement lorsqu'un utilisateur, un pair, un mainteneur, un client, une association ou une équipe réelle expose le système à des contraintes qui ne viennent pas de l'auteur seul.

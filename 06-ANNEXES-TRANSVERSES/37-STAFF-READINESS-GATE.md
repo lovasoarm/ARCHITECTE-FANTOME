@@ -25,6 +25,29 @@ Le niveau Staff d'AF ne se mesure pas au nombre de chapitres terminés. Il se me
 
 **Clarification IA :** G8 n’exige pas une spécialisation de recherche en ML. Lorsqu'une solution IA est utilisée, le candidat doit pouvoir expliquer le mécanisme pertinent, les hypothèses, les limites, les métriques, le coût, la sécurité et les conditions d'arrêt. Le [pont mathématiques → IA → ML → deep learning → LLM](41-PONT-MATHS-IA-ML-LLM.md) reste une référence DEPTH ; la route CORE exige une littératie IA architecturale minimale et une preuve de supervision via S6. Le [Noyau dur Staff / Principal 2035+](40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md) décrit la portée durable.
 
+## Contrôles de vérité ajoutés en V16
+
+Les neuf preuves restent le noyau. Elles doivent maintenant être lues avec quatre contrôles transversaux :
+
+- [46-MARKET-EVIDENCE-REGISTER.md](46-MARKET-EVIDENCE-REGISTER.md) : vérifier l'alignement avec des rôles réels, sans confondre mots-clés et compétence.
+- [47-AI-RESILIENCE-BENCHMARK.md](47-AI-RESILIENCE-BENCHMARK.md) : comparer humain, assistance IA et agentic workflow.
+- [48-EXTERNAL-REVIEW-GATE.md](48-EXTERNAL-REVIEW-GATE.md) : obtenir une contradiction indépendante et, lorsque possible, une revue R2.
+- [49-TERRAIN-MATURITY-GATE.md](49-TERRAIN-MATURITY-GATE.md) : étiqueter la preuve T0→T4 sans transformer une simulation en expérience professionnelle.
+
+Le [50-INCIDENT-COMMANDER-GATE.md](50-INCIDENT-COMMANDER-GATE.md) est la preuve intégratrice recommandée pour relier incident, sécurité, coût, produit et leadership.
+
+### Condition READY renforcée
+
+`READY` signifie désormais :
+
+1. G1–G9 fermés ;
+2. au moins une revue externe R1 ;
+3. benchmark IA exécuté au moins une fois ;
+4. provenance terrain explicitement étiquetée T0–T4 ;
+5. aucune prétention d'expérience Staff réelle ne repose uniquement sur des simulations.
+
+Lorsque l'expérience de terrain reste T0/T1, le verdict doit être formulé **READY : curriculum / Staff-track preparation**.
+
 ## Critère de profondeur
 
 Chaque gate doit montrer au moins une chaîne complète :
