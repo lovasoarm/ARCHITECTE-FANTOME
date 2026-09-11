@@ -15,6 +15,8 @@ review_due: 2027-12-31
 
 # 01 : Installation pas-à-pas (Windows / macOS / Linux)
 
+> **Voie zéro friction :** commence par le [`SETUP.md`](../../SETUP.md) racine, puis suis le `SETUP.md` le plus proche de l’activité. Ne bloque pas une première preuve sur Git, VSCode ou des extensions.
+
 Temps de lecture ~5 min
 
 > **INTEMPOREL** : les URLs changent, le protocole ne change pas :
@@ -90,13 +92,11 @@ Le fichier `.nvmrc` à la racine du repo donne la version canonique en cours.
 
 ---
 
-## 2. Git
+## 2. Git : utile, mais pas une barrière d’entrée
 
-- macOS : `xcode-select --install`
-- Linux : `sudo apt install git` (Debian/Ubuntu) ou équivalent
-- Windows : [git-scm.com](https://git-scm.com/)
+Git devient nécessaire dès que le chemin te demande un travail de versioning, d’ADR ou de diff. Pour une première séance de lecture ou un exercice Node autonome, tu peux continuer sans Git.
 
-Vérifie : `git --version`.
+Installe-le seulement au moment où le module concerné l’exige, puis vérifie : `git --version`.
 
 Configure une fois pour toutes :
 
@@ -110,13 +110,7 @@ git config --global init.defaultBranch main
 
 ## 3. Éditeur
 
-VSCode ([code.visualstudio.com](https://code.visualstudio.com/)) suffit.
-Extensions minimales utiles :
-
-- ESLint
-- Prettier
-- Error Lens
-- GitLens
+N’importe quel éditeur texte qui sait rechercher dans un dossier suffit pour démarrer. VSCode est recommandé mais **facultatif**. Les extensions ESLint, Prettier, Error Lens et GitLens sont des accélérateurs, pas des prérequis du parcours.
 
 Rien de plus au démarrage. Chaque plugin est une dette cognitive.
 

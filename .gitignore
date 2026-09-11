@@ -1,0 +1,17 @@
+# Runtime / dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local caches / generated reports
+.SETUP-OFFLINE-LOCAL/
+SETUP-OFFLINE/cache/npm/_logs/
+SETUP-OFFLINE/cache/npm/_cacache/
+.release-audit/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/*.log

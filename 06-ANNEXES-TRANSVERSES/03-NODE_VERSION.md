@@ -20,9 +20,12 @@ support d'apprentissage, pas seulement un artefact d'outillage.
 
 ## Règle simple
 
+> **État vérifié le 11 septembre 2026 :** Node 24.21.0 est la LTS courante et Node 26.8.2 est Current ; Node 22.23.2 reste disponible sur la branche 22. AF conserve volontairement **22.23.2** comme version canonique afin de ne pas changer la base d’exécution au milieu d’un curriculum déjà validé.
+
+
 - Cible reproductible du curriculum : **Node 22 LTS (22.23.2 pour la reproductibilité AF)** (`.nvmrc` = `22.23.2`).
 - Référence de reproductibilité : **Node 22.23.2** ; les contrôles de compatibilité acceptent le rail Node 22.x.
-- Support officiel distinct : à la date du **23 août 2026**, Node 24 LTS et Node 22 LTS (22.23.2 pour la reproductibilité AF) sont maintenus ; Node 20 est EOL. AF ne promet donc aucune compatibilité Node 20.
+- Support officiel distinct : la branche Node 24 est la LTS courante en septembre 2026, tandis que Node 22 est toujours disponible sur sa ligne LTS/Maintenance. Node 20 est EOL. AF ne promet donc aucune compatibilité Node 20.
 - Formulation officielle : _« le curriculum est validé sous Node 22 ; une validation sous une autre version LTS est une compatibilité supplémentaire, pas une précondition. »_
 
 La politique de version externe peut évoluer. Cette page doit être relue selon le registre de rigueur et sa date de péremption.

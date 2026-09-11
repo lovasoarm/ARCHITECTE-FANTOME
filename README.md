@@ -37,6 +37,18 @@ Le parcours entraîne les compétences et les preuves qui rendent cette trajecto
 L'expérience professionnelle, le scope réel, l'impact organisationnel et les conséquences vécues
 restent des dimensions du monde du travail.
 
+## Démarrage zéro friction
+
+Tu peux commencer sans compte cloud, sans API et sans installer dix outils. Le minimum est **Node 22.23.2 + un éditeur de texte**. Git et VSCode sont utiles ensuite, pas comme barrière d'entrée.
+
+Avant la première séance, lance le diagnostic :
+
+```bash
+Ouvre le `SETUP.md` de l’activité : il contient le contrôle de présence adapté.
+```
+
+Tu es offline ? Le même parcours fonctionne avec `SETUP.md`, puis le `SETUP.md` local de chaque activité, fournissent le contrat de secours offline et la procédure adaptée à la technologie.
+
 ## Avant de commencer
 
 Tu n'as pas besoin de comprendre les 1 600+ fichiers du dépôt.
