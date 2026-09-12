@@ -25,12 +25,12 @@ Le niveau Staff d'AF ne se mesure pas au nombre de chapitres terminés. Il se me
 
 **Clarification IA :** G8 n’exige pas une spécialisation de recherche en ML. Lorsqu'une solution IA est utilisée, le candidat doit pouvoir expliquer le mécanisme pertinent, les hypothèses, les limites, les métriques, le coût, la sécurité et les conditions d'arrêt. Le [pont mathématiques → IA → ML → deep learning → LLM](41-PONT-MATHS-IA-ML-LLM.md) reste une référence DEPTH ; la route CORE exige une littératie IA architecturale minimale et une preuve de supervision via S6. Le [Noyau dur Staff / Principal 2035+](40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md) décrit la portée durable.
 
-## Contrôles de vérité ajoutés en V16
+## Contrôles de vérité
 
 Les neuf preuves restent le noyau. Elles doivent maintenant être lues avec quatre contrôles transversaux :
 
-- [46-MARKET-EVIDENCE-REGISTER.md](46-MARKET-EVIDENCE-REGISTER.md) : vérifier l'alignement avec des rôles réels, sans confondre mots-clés et compétence.
-- [47-AI-RESILIENCE-BENCHMARK.md](47-AI-RESILIENCE-BENCHMARK.md) : comparer humain, assistance IA et agentic workflow.
+- L'alignement avec des rôles réels est vérifié dans les preuves de projet et de transfert, sans confondre mots-clés et compétence.
+- La supervision IA est vérifiée dans les exercices de gouvernance et d'automatisation du parcours.
 - [48-EXTERNAL-REVIEW-GATE.md](48-EXTERNAL-REVIEW-GATE.md) : obtenir une contradiction indépendante et, lorsque possible, une revue R2.
 - [49-TERRAIN-MATURITY-GATE.md](49-TERRAIN-MATURITY-GATE.md) : étiqueter la preuve T0→T4 sans transformer une simulation en expérience professionnelle.
 
@@ -47,6 +47,18 @@ Le [50-INCIDENT-COMMANDER-GATE.md](50-INCIDENT-COMMANDER-GATE.md) est la preuve 
 5. aucune prétention d'expérience Staff réelle ne repose uniquement sur des simulations.
 
 Lorsque l'expérience de terrain reste T0/T1, le verdict doit être formulé **READY : curriculum / Staff-track preparation**.
+
+## Contrôles transversaux
+
+Ils ne créent pas de nouvelles familles. Ils renforcent les neuf gates existants :
+
+1. **Specification integrity** : intention → invariants → tests → révision.
+2. **Organizational reasoning** : ambiguïté, parties prenantes, adoption et séquençage.
+3. **System ownership** : décision initiale → dérive → migration → observation.
+4. **Autonomy governance** : permissions minimales, évaluation, observabilité, arrêt et reprise.
+
+Une même preuve peut fermer plusieurs contrôles, à condition que chacun soit visible et vérifiable.
+
 
 ## Critère de profondeur
 

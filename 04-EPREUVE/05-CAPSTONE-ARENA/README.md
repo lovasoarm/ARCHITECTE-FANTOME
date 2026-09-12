@@ -129,6 +129,18 @@ rétrospective du bloc Épreuve que tu viens de terminer.
 
 Personne ne va clarifier le brief à ta place. C'est le point.
 
+## Fermeture Staff sans casser le Capstone
+
+Après la validation du capstone, utilise les quatre renforcements du module Staff :
+
+- [Spécification agentique](../../05-MAITRISE/08-MAITRISE-STAFF-ENGINEER/07-SPECIFICATION-AGENTIQUE.md)
+- [Organizational reasoning](../../05-MAITRISE/08-MAITRISE-STAFF-ENGINEER/08-ORGANIZATIONAL-REASONING.md)
+- [System ownership & migration](../../05-MAITRISE/08-MAITRISE-STAFF-ENGINEER/09-SYSTEM-OWNERSHIP-MIGRATION.md)
+- [Gouvernance des systèmes semi-autonomes](../../05-MAITRISE/08-MAITRISE-STAFF-ENGINEER/10-AUTONOMOUS-SYSTEM-GOVERNANCE.md)
+
+Ils ne remplacent ni les challenges, ni le boss, ni la revue externe. Ils rendent explicites quatre contrôles complémentaires : spécification, raisonnement organisationnel, ownership/migration et gouvernance de systèmes autonomes.
+
+
 <!-- PIECES-MODULE:debut -->
 
 ## Les pièces de ce module

@@ -232,6 +232,23 @@ transférer
 
 même lorsque les outils changent.
 
+## Le terminal devient résilient
+
+La route conserve ses fondamentaux et renforce la zone Staff autour de quatre capacités complémentaires :
+
+```text
+spécifier pour un constructeur autonome
+          +
+raisonner dans une organisation
+          +
+posséder et faire migrer un système dans le temps
+          +
+gouverner l’autonomie (permissions / évaluation / arrêt)
+          ↓
+PREUVE STAFF PLUS SOLIDE
+```
+
+
 ## La boucle du parcours
 
 ARCHITECTE-FANTOME suit une boucle unique :
@@ -336,7 +353,7 @@ architecture decisions
 
 Le standard est documenté dans :
 
-**[MINI-PROJECT FIELD PRACTICE STANDARD](02-CONSTRUCTION/02-MINI-PROJECTS/00-FIELD-PRACTICE-STANDARD.md)**
+**[MINI-PROJECT FIELD PRACTICE STANDARD](02-CONSTRUCTION/02-MINI-PROJECTS/00A-FIELD-PRACTICE-STANDARD.md)**
 
 et la répétition est cartographiée dans :
 
@@ -631,16 +648,6 @@ apprend
 prend une meilleure décision la prochaine fois
 ```
 
-## Gouvernance du curriculum
-
-Le contenu pédagogique et les contrôles de release sont séparés.
-
-Les compteurs sont dérivés du filesystem et des frontmatters.
-
-Les affirmations de marché, d'outils ou de pratiques qui vieillissent doivent être revues.
-
-Les standards de terrain, de revue externe et d'IA sont conçus comme des mécanismes de gouvernance,
-pas comme des décorations.
 
 ```text
 outil change
@@ -680,3 +687,8 @@ La capacité à changer d'avis quand les preuves changent fait partie de l'ingé
 _From fundamentals to systems to engineering judgment._
 
 </div>
+
+## Sortie visée
+
+Architecte-Fantôme mène de la compréhension des fondamentaux vers la construction, le pilotage, l'épreuve et la maîtrise de systèmes réels. La progression reste centrée sur les preuves produites par l'apprenant, la distinction T0→T4 et l'exercice du jugement technique.
+

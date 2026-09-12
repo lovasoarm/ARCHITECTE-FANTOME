@@ -20,3 +20,8 @@ Tout ou rien. Si une case est non, **n'entre pas**.
 - [ ] capstone + addendum Staff + gate fil rouge
 
 Détail : [01-00-why-this-level.md](01-00-why-this-level.md).
+
+## Contrôles de sortie Staff
+
+- [ ] `OWNERSHIP-LOOP.md` : boucle longitudinale avec changement + observation + revisite.
+- [ ] `STAFF-JUDGMENT.md` : ambiguïté, désaccord, meilleure proposition externe, coût politique, IA imparfaite.

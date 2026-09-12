@@ -9,7 +9,7 @@ route: complete
 
 Palier terminal. [Pourquoi](01-00-why-this-level.md) → [prereq](00-PREREQUIS.md) →
 [dossier unique](02-dossier_unique.md) → [tensions](03-trois_tensions.md) →
-[transfert](05A-transfert_hors_ecosysteme.md) → [IA en production : gouvernance](06-IA-GOVERNANCE-SECURITY.md) → [grimoire](90-grimoire.md) →
+[transfert](05A-transfert_hors_ecosysteme.md) → [IA en production : gouvernance](06-IA-GOVERNANCE-SECURITY.md) → [spécification agentique](07-SPECIFICATION-AGENTIQUE.md) → [organisation](08-ORGANIZATIONAL-REASONING.md) → [ownership & migration](09-SYSTEM-OWNERSHIP-MIGRATION.md) → [gouvernance autonome](10-AUTONOMOUS-SYSTEM-GOVERNANCE.md) → [ownership](11-PRODUCTION-OWNERSHIP-LOOP.md) → [jugement](12-STAFF-JUDGMENT-ARENA.md) → [grimoire](90-grimoire.md) →
 [challenge](95-challenge.md) → [boss fight](96-boss-fight.md) branché sur
 [09-CONTRADICTEUR.md](../../06-ANNEXES-TRANSVERSES/09-CONTRADICTEUR.md).
 

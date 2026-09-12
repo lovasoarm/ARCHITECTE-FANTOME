@@ -57,7 +57,7 @@ Tu n'as pas besoin d'avoir « fini » le corpus. À la fin de J7, tu dois surtou
 
 ### Le parcours vivant
 
-Après le CORE, transforme progressivement une preuve pédagogique en preuve de terrain avec le [Pont preuve terrain](../../06-ANNEXES-TRANSVERSES/43-PONT-PREUVE-TERRAIN.md), puis rassemble tes preuves dans la [sortie portfolio](../../05-MAITRISE/06-ANNEXES/27_synthese_mini_projects/03-portfolio.md). Le [registre de maintenance](../../06-ANNEXES-TRANSVERSES/44-REGISTRE-MAINTENANCE-ANNUELLE.md) concerne la maintenance du curriculum, pas une tâche d'étude à ajouter à ta semaine.
+Après le CORE, transforme progressivement une preuve pédagogique en preuve de terrain avec le [Pont preuve terrain](../../06-ANNEXES-TRANSVERSES/43-PONT-PREUVE-TERRAIN.md), puis rassemble tes preuves dans la [sortie portfolio](../../05-MAITRISE/06-ANNEXES/27_synthese_mini_projects/03-portfolio.md). 
 
 ## 4. À la fin de cette première étape
 

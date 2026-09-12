@@ -113,9 +113,9 @@ Chaque leçon est écrite pour que l'exemple soit remplaçable et le mécanisme,
 Les 6 paliers sont couverts nommément ci-dessus. Une ligne intemporel / périssable manquante est
 un défaut de cette annexe : ajoute-la, ne la déduis pas.
 
-## Registre opérationnel
+## Discipline de pérennité
 
-Les contenus périssables sont centralisés par `perishability_id` dans le [registre de maintenance annuelle](44-REGISTRE-MAINTENANCE-ANNUELLE.md). Le registre porte la responsabilité, l échéance, le statut et l action attendue. Une page `verified` a été revue contre sa source ; `inventory-checked` signifie seulement que le chemin et les métadonnées ont été inventoriés.
+Les contenus périssables sont revus à partir de leur identifiant `perishability_id` et de leur principe source. Le lecteur doit distinguer ce qui est stable du contenu technique qui peut évoluer. Une page n'est jamais considérée durable uniquement parce qu'elle est pratique ou récente.
 
 ## Comment maintenir ce dépôt
 

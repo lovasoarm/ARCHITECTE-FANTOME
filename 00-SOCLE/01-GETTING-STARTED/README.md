@@ -24,7 +24,7 @@ Raisons :
 
 1. `01-START_HERE.md` : porte d'entrée et ordre du premier passage.
 2. `01A-00-why-getting-started.md` : pourquoi cette mise en route et ce qu'elle prépare.
-3. `02-install.md` : Node 22 LTS, Git, éditeur. La release référence Node 22.23.2 ; la compatibilité déclarée du sandbox reste Node 22.x.
+3. `02-install.md` : Node 22 LTS, Git, éditeur. Le dépôt utilise Node 22.23.2 comme environnement de référence ; la compatibilité déclarée du sandbox reste Node 22.x.
 4. `03-day_one.md` : contexte du métier, poste de travail, premières lignes de JS.
 5. `04-shell_survival.md` : 12 commandes pour survivre.
 6. `05-git_101.md` : clone, add, commit, push, revert.

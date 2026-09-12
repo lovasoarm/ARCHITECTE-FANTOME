@@ -147,3 +147,12 @@ La profondeur D7→D8 exige de pouvoir abandonner puis reconstruire son propre m
 Avant la sortie Staff, joue [29-EPREUVE-D8-RECONSTRUCTION.md](06-ANNEXES-TRANSVERSES/29-EPREUVE-D8-RECONSTRUCTION.md). Cette épreuve vérifie explicitement la reconstruction d’un modèle sous contraintes nouvelles ; elle complète les Boss, le transfert et la perturbation sans fournir de solution d’architecture.
 
 > Pour les preuves de profondeur D7/D8 : [`Matrice D7→D8`](06-ANNEXES-TRANSVERSES/34-D7-D8-PROOF-MATRIX.md).
+
+## Renforcement du palier Staff
+
+Ce renforcement n'ajoute pas une nouvelle étape CORE. Il consolide la sortie du palier terminal avec deux preuves :
+
+- [Boucle d'ownership en production](05-MAITRISE/08-MAITRISE-STAFF-ENGINEER/11-PRODUCTION-OWNERSHIP-LOOP.md)
+- [Staff Judgment Arena](05-MAITRISE/08-MAITRISE-STAFF-ENGINEER/12-STAFF-JUDGMENT-ARENA.md)
+
+La préparation se lit à travers les gates Staff, le transfert T0→T4 et les preuves produites par l’apprenant.

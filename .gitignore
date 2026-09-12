@@ -9,7 +9,6 @@ pnpm-debug.log*
 .SETUP-OFFLINE-LOCAL/
 SETUP-OFFLINE/cache/npm/_logs/
 SETUP-OFFLINE/cache/npm/_cacache/
-.release-audit/
 
 # OS / editor noise
 .DS_Store

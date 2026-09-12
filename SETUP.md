@@ -43,3 +43,4 @@ Avant de commencer une activité :
 - [ ] je sais quoi faire si je suis offline ;
 - [ ] je connais la commande de première preuve ;
 - [ ] je n’installe rien qui n’est pas nécessaire à l’activité.
+
