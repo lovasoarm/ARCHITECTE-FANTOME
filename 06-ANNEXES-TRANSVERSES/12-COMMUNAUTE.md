@@ -20,17 +20,25 @@ Tu apprends seul mais tu ne dois PAS rester isolé. La solitude tue plus de devs
 - **Twitter/X #100DaysOfCode** : engagement public, tu poses ton progrès quotidien.
 - **Meetups locaux JS/Node** : un IRL par mois vaut 10 threads Discord.
 
-## LE PACT PEER-REVIEW (OBLIGATOIRE POUR VALIDER UN MINI-PROJET)
+## LE PACT DE CONTRADICTION (OBLIGATOIRE POUR VALIDER UNE PREUVE)
 
-Avant de passer au module suivant :
+Avant de déclarer une preuve complète, provoque une contradiction. Deux modes sont autorisés :
 
-1. Push ton mini-projet sur GitHub.
-2. Poste le lien dans #peer-review.
-3. Review celui d'un autre (donne 3 remarques précises).
-4. Reçois 3 remarques sur le tien.
-5. Corrige au moins UNE remarque avant de continuer.
+### Mode CORE / hors ligne
 
-Sans peer-review, tu accumules tes propres angles morts.
+1. Masque-toi la correction attendue et relis ta décision à froid.
+2. Utilise une checklist adversariale : hypothèse, invariant, cas limite, coût, sécurité, signal de révision.
+3. Écris au moins trois objections plausibles.
+4. Réponds à chacune avec une observation, un test ou une limite.
+5. Corrige au moins un point qui résiste à l'objection.
+
+### Mode externe / terrain
+
+Lorsque le jalon demande R1+ ou T2+, fais relire la preuve par un tiers indépendant, avec le protocole
+`48-EXTERNAL-REVIEW-GATE.md`. GitHub, Discord ou tout autre canal est un moyen de transmission,
+pas la compétence évaluée.
+
+La contradiction reste obligatoire. Le compte externe et le réseau, eux, ne le sont pas à chaque mini-projet.
 
 ## SIGNAL D'ALARME
 

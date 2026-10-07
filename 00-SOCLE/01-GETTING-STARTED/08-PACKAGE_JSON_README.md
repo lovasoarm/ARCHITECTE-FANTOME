@@ -1,4 +1,5 @@
-## perishability_id: PER-0003
+---
+perishability_id: PER-0003
 
 stability: perissable
 acte: comprendre
@@ -31,10 +32,10 @@ tout de suite** : il n'y a aucune dependance a installer.
 
 ## Requis Node
 
-`"engines"` demande Node 22.x ou plus récent. Le curriculum prend Node 22.23.2 comme référence de reproductibilité, mais les exercices fondamentaux restent compatibles avec Node 22.x.
+`"engines"` demande Node 22.x ou plus récent. Le curriculum prend Node 22.23.3 comme référence de reproductibilité, mais les exercices fondamentaux restent compatibles avec Node 22.x.
 Verifie avec `node -v`.
 
-**Référence canonique du runtime AF : `22.23.2` (voir `.nvmrc`).**
+**Référence canonique du runtime AF : `22.23.3` (voir `.nvmrc`).**
 
 ## Pourquoi ce fichier est utile meme vide
 

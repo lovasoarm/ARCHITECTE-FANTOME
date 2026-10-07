@@ -14,12 +14,12 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~5 min
 
-Ton laptop dev, c'est un coffre. Dedans : tes clés SSH, tes tokens GitHub, tes `.env` avec des vraies clés API. Le premier vol de compte dev, c'est presque toujours l'auteur qui a merdé.
+Ton laptop dev, c'est un coffre. Dedans : tes clés SSH, tes tokens de forge (GitHub par exemple), tes `.env` avec des vraies clés API. Le premier vol de compte dev, c'est presque toujours l'auteur qui a merdé.
 
 ## Le socle
 
 1. **SSH keys** : `ssh-keygen -t ed25519 -C "toi@mail"`. Passphrase **obligatoire**.
-2. **2FA GitHub** : app authenticator, pas SMS. Backup codes stockés hors ligne.
+2. **2FA de ta forge** (GitHub par exemple) : app authenticator, pas SMS. Backup codes stockés hors ligne.
 3. **`.gitignore` global** :
 
 ```bash
@@ -41,7 +41,7 @@ grep -rE "(api[_-]?key|secret|password)\s*=\s*['\"]" --include="*.js" .
 
 ## Mission
 
-Configure `.gitignore` global, active 2FA GitHub, régénère une clé SSH ed25519 avec passphrase.
+Configure `.gitignore` global, protège le compte de forge que tu utilises avec 2FA, et régénère une clé SSH ed25519 avec passphrase. En mode local/offline, documente simplement la protection attendue pour le jour où une forge distante sera utilisée.
 
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 

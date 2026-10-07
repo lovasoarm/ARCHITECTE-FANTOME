@@ -46,7 +46,7 @@ $ node src/cli.js consume --resource food --amount 3
 ## INSTALLATION
 
 ```text
-Node.js    : v22.23.2
+Node.js    : v22.23.3
 npm      : v10+
 Outils externes: Playwright (installé via npm install)
 ```

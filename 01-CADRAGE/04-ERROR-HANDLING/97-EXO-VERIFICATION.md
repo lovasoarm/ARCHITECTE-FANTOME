@@ -40,7 +40,7 @@ Prends 5 minutes. Écris ta réponse **sans** relancer l'IA. Nomme :
 
 ## Pourquoi cet exo
 
-En 2026, l'IA génère du code **plausible** plus vite qu'elle ne le vérifie.
+En 2026, une IA peut produire du code **plausible** plus vite que tu ne peux en vérifier les hypothèses.
 Le métier n'est plus d'écrire ; c'est de **repérer la faille** dans une
 suggestion qui a l'air correcte. Ce drill de 10 min, une fois par module,
 te transforme de consommateur en pilote.

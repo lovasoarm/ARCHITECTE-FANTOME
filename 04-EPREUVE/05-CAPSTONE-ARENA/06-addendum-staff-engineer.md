@@ -1,4 +1,5 @@
-## perishability_id: PER-0068
+---
+perishability_id: PER-0068
 
 stability: perissable
 acte: epreuve

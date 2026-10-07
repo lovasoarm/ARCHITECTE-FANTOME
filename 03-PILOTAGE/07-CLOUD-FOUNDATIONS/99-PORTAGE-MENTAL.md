@@ -1,4 +1,5 @@
-## perishability_id: PER-0063
+---
+perishability_id: PER-0063
 
 stability: perissable
 acte: transférer

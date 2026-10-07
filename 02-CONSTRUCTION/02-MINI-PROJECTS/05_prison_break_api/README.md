@@ -47,7 +47,7 @@ $ curl -X POST http://localhost:3000/evasion/badge \
 ## INSTALLATION
 
 ```text
-Node.js    : v22.23.2
+Node.js    : v22.23.3
 npm      : v10+
 Variables env : PORT (optionnel, défaut 3000)
 Outils externes: aucun (SQLite embedded via better-sqlite3)

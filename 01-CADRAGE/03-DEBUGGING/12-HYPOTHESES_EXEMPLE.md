@@ -1,4 +1,5 @@
-## perishability_id: PER-0007
+---
+perishability_id: PER-0007
 
 stability: perissable
 acte: comprendre
@@ -20,7 +21,7 @@ Temps de lecture ~2 min
 ## Contexte
 
 - symptome : la RAM du process node passe de 80 Mo a 900 Mo en 20 min sous charge.
-- environnement : Node 22.23.2, prod-like, 100 req/s.
+- environnement : Node 22.23.3, prod-like, 100 req/s.
 - reproductible : oui, `autocannon -c 50 -d 300` reproduit a 100 %.
 
 ## Hypothese 1 : fuite via listener non retire

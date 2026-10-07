@@ -1,4 +1,5 @@
-## perishability_id: PER-0101
+---
+perishability_id: PER-0101
 
 stability: perissable
 last_reviewed: 2026-08

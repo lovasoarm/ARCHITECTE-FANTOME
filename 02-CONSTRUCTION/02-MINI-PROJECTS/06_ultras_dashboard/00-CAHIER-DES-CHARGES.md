@@ -13,7 +13,7 @@ Temps de lecture ~14 min
 ## PRÉREQUIS
 
 ```text
-Node.js    : v22.23.2
+Node.js    : v22.23.3
 npm      : v10+
 TypeScript   : v5+ (installé comme dépendance locale via npm install)
 Variables env : aucune

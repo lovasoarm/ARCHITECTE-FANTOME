@@ -85,6 +85,7 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [`00-PREREQUIS.md`](00-PREREQUIS.md) : Auto-test d'entrée : à passer avant d'ouvrir le module
 - [`95-challenge.md`](95-challenge.md) : Challenge : l'épreuve du module
 - [`90-grimoire.md`](90-grimoire.md) : Grimoire : ce que tu dois pouvoir restituer
+- [91-90-grimoire.md](91-90-grimoire.md) : pont de compatibilité conservé pour la restitution
 
 <!-- PIECES-MODULE:fin -->
 

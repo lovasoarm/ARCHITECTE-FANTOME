@@ -1,3 +1,4 @@
+---
 perishability_id: PER-0102
 ---
 stability: perissable

@@ -1,4 +1,5 @@
-## perishability_id: PER-0065
+---
+perishability_id: PER-0065
 
 stability: perissable
 acte: comprendre
@@ -66,7 +67,7 @@ Une ligne qui explique ce que ça fait. Pas ce que c'est : ce que ça fait.
 
 ## Prérequis
 
-- Node 22.23.2
+- Node 22.23.3
 - PostgreSQL 15
 - Redis 7 (optionnel pour le cache)
 

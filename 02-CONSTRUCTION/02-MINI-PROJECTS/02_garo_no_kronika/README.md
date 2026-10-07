@@ -47,7 +47,7 @@ $ node src/index.js
 ## INSTALLATION
 
 ```text
-Node.js    : v22.23.2
+Node.js    : v22.23.3
 npm      : v10+
 Variables env : aucune
 Outils externes: aucun

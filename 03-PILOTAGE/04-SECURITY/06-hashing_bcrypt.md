@@ -1,4 +1,5 @@
-## perishability_id: PER-0042
+---
+perishability_id: PER-0042
 
 stability: perissable
 acte: comprendre

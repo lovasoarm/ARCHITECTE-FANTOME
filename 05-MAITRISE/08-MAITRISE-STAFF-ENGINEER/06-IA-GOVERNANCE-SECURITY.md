@@ -1,4 +1,5 @@
-## perishability_id: PER-0082
+---
+perishability_id: PER-0082
 
 stability: perissable
 acte: maitrise

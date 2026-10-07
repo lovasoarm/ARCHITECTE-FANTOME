@@ -1,4 +1,5 @@
-## perishability_id: PER-0006
+---
+perishability_id: PER-0006
 
 stability: perissable
 acte: comprendre
@@ -167,7 +168,7 @@ TypeError: Cannot read properties of null (reading 'armer')
   at envoyerAlerte (patrouille.js:3:24)
   at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 
-Node.js v22.23.2
+Node.js v22.23.3
 (Use `node --async-stack-traces` for better stack traces)
 ```
 

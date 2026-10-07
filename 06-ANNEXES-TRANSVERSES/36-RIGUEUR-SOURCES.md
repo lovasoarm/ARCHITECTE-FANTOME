@@ -1,4 +1,5 @@
-## perishability_id: PER-0104
+---
+perishability_id: PER-0104
 
 stability: perissable
 acte: pratiquer
@@ -43,7 +44,7 @@ Puis :
 
 ## Exemple : versions
 
-Le parcours est reproductible sur **Node.js 22.23.2**. Cette version est le point de référence de l’expérience AF ; elle ne signifie pas que toute autre version LTS est interdite. Une compatibilité avec une autre version doit être vérifiée séparément.
+Le parcours est reproductible sur **Node.js 22.23.3**. Cette version est le point de référence de l’expérience AF ; elle ne signifie pas que toute autre version LTS est interdite. Une compatibilité avec une autre version doit être vérifiée séparément.
 
 Pour les versions, les prix, les services fournisseurs ou toute donnée évolutive, écris toujours la date de vérification et privilégie la source primaire.
 

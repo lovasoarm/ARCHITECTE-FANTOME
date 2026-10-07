@@ -1,4 +1,5 @@
-## perishability_id: PER-0002
+---
+perishability_id: PER-0002
 
 stability: perissable
 acte: comprendre
@@ -34,7 +35,7 @@ Avant de continuer, réponds honnêtement à ces 5 questions :
 
 Ce quiz n'est pas technique JS. Il ne teste que **l'environnement**. Tu peux ne rien connaître à JS et cocher 5/5.
 
--> ~15 min
+Temps de pratique : ~15 min
 
 > **INTEMPOREL** : les outils changent, l'idée non. Un environnement
 > reproductible, la boucle _écrire -> exécuter -> lire l'erreur -> comprendre_,
@@ -81,14 +82,15 @@ Le pas-à-pas complet (Windows / macOS / Linux) est dans
 ```bash
 node -v   # voir 06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md pour la version attendue
 npm -v    # >= 10
-git --version
+git --version  # utile ici, mais pas bloquant pour le premier cycle
 ```
 
-Node : voir [06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md](../../06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md) (cible v22, cible v22.23.2).
+Node : voir [06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md](../../06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md) (cible v22, cible v22.23.3).
 
-Si l'une des trois requêtes échoue -> ouvre [`02-install.md`](02-install.md)
+Si `node -v` ou `npm -v` échoue -> ouvre [`02-install.md`](02-install.md)
 avant d'aller plus loin. **Ne bricole pas.** Un environnement bancal génère des
-bugs fantômes qui te feront perdre des semaines.
+bugs fantômes qui te feront perdre des semaines. Git devient requis au moment
+où une activité demande du versioning, une branche ou une revue.
 
 ### Éditeur
 

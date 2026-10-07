@@ -7,7 +7,7 @@ Ce document est le **contrat de démarrage commun** d’ARCHITECTE-FANTOME (AF).
 Pour lire le parcours et réaliser les exercices purement conceptuels :
 
 - un éditeur de texte ;
-- Node.js **22.23.2** pour les exercices JavaScript/Node ;
+- Node.js **22.23.3** pour les exercices JavaScript/Node ;
 - le ZIP décompressé ;
 - aucun compte en ligne requis pour le contenu documentaire.
 

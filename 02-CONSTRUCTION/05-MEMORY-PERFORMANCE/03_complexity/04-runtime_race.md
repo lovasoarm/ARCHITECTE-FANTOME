@@ -96,7 +96,7 @@ for (const n of sizes) {
 }
 ```
 
-Résultats typiques (machine standard, Node 22.23.2) :
+Résultats typiques (machine standard, Node 22.23.3) :
 
 ```
 ── n = 100 ──

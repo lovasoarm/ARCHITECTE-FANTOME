@@ -19,6 +19,22 @@ Lis d’abord le [`SETUP.md`](../../SETUP.md) le plus proche dans l’arborescen
 
 `flutter --version` doit répondre sans télécharger de composant.
 
+### 3.1 Cible de plateforme
+
+Ne prépare que les plateformes réellement visées par l’exercice. Le cœur du lab reste identique ; seul l’outillage natif change.
+
+| Cible | Environnement à vérifier | Première preuve |
+|---|---|---|
+| Android | Android SDK + émulateur ou appareil physique | `flutter devices` puis lancement sur la cible choisie |
+| iOS | macOS + Xcode + simulateur ou appareil iOS | `flutter devices` puis lancement sur la cible choisie |
+| Windows desktop | outils desktop Windows compatibles Flutter | `flutter devices` puis lancement sur Windows |
+| macOS desktop | macOS + outils desktop macOS compatibles Flutter | `flutter devices` puis lancement sur macOS |
+| Linux desktop | outils desktop Linux compatibles Flutter | `flutter devices` puis lancement sur Linux |
+
+**Point important** : iOS nécessite macOS et Xcode. Ne transforme pas l’absence d’un environnement natif en bug du code Flutter. Choisis une cible disponible et documente les autres comme non testées.
+
+Avant une séance offline, précharge les composants de la plateforme ciblée pendant une séance connectée (par exemple avec `flutter precache --android` pour Android). N’exécute pas une commande de préchargement sur une machine isolée en espérant qu’elle télécharge ce qui manque.
+
 ## 4. Première preuve
 
 1. Vérifier les prérequis ci-dessus.

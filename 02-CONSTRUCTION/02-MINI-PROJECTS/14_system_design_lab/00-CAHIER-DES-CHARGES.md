@@ -27,7 +27,7 @@ Construire un mini-écosystème (front + broker + worker) avec retry, idempotenc
 
 ## LIVRABLE
 
-`ARCHITECTURE.md`, ADRs, code fonctionnel, chaos test, `08-POSTMORTEM.md`, dépôt GitHub public.
+`ARCHITECTURE.md`, ADRs, code fonctionnel, chaos test, `08-POSTMORTEM.md`, dépôt Git versionné. Une forge publique (GitHub par exemple) peut être ajoutée comme preuve externe lorsqu’un jalon la demande.
 
 ## SÉCURITÉ (gate obligatoire)
 

@@ -15,7 +15,9 @@ stability: mixte - fondamentaux durables, marche et outils perissables
 > Respire. On va remettre les pieces dans le bon ordre.
 
 
-Temps de lecture : environ 100 minutes. Guide dense : lis-le en plusieurs sessions. Ce document est une boussole d'orientation, pas un module CORE.
+Première passe : environ 15–20 minutes. La lecture complète est volontairement progressive :
+tu peux revenir aux sections longues après le démarrage. Ce document est une boussole
+d’orientation, pas un module CORE.
 
 
 ---
@@ -566,7 +568,7 @@ La plupart des langages modernes supportent plusieurs paradigmes. Python est imp
 
 **Full-stack** : tu fais les deux. Le dev qui fait le front ET le back.
 
-**JavaScript / TypeScript** est le seul langage que tu peux utiliser partout : navigateur, serveur, mobile. C'est pour ça qu'il est si dominant.
+**JavaScript / TypeScript** fait partie des familles les plus polyvalentes : navigateur et serveur directement, et mobile via des frameworks. Cette polyvalence explique une partie de sa place sur le marché.
 
 **Mobile natif** :
 
@@ -578,8 +580,8 @@ Android : Kotlin
 **Mobile cross-platform** (une seule codebase pour iOS + Android) :
 
 ```
-Flutter   : Dart (poussé par Google, très solide en 2026)
-React Native : JavaScript (le plus ancien, encore très utilisé)
+Flutter   : Dart (ecosysteme cross-platform soutenu par Google)
+React Native : JavaScript / TypeScript (ecosysteme cross-platform etabli)
 ```
 
 ---
@@ -617,8 +619,8 @@ Question
 
 ### Ce que les donnees permettent de dire
 
-Stack Overflow 2025 signale une forte progression de Python, notamment dans les usages lies a l'IA, a la data et au backend. L'enquete ne doit toutefois pas etre transformee en "Python est le meilleur langage". Elle mesure des usages de repondants, pas la totalite du marche mondial.
-Source : https://survey.stackoverflow.co/2025/
+Le Stack Overflow Developer Survey 2026 place JavaScript en tete des langages utilises (62 % des repondants), tandis que SQL, HTML/CSS et Python sont a 58 %. Le survey permet de decrire les usages de ses repondants ; il ne constitue pas un classement universel du marche mondial.
+Source : https://survey.stackoverflow.co/
 
 Le Web reste structure autour de JavaScript et TypeScript. TypeScript est aujourd'hui une competence tres pertinente pour les applications web professionnelles, mais il ne faut pas confondre popularite et universalite.
 
@@ -708,7 +710,7 @@ Une app mobile iOS        :  Swift
 Une app mobile Android      :  Kotlin
 Une app mobile iOS + Android   :  Flutter (Dart) ou React Native (JS)
 Un jeu vidéo           :  C# (Unity) / C++ (Unreal) / GDScript (Godot)
-De l'IA ou de la data       :  Python (et rien d'autre en 2026)
+De l'IA ou de la data       :  Python principalement, avec d'autres langages selon le système
 Des outils système / performance :  C, C++, Rust
 Des scripts d'automatisation   :  Python, Go, Bash
 Des applications d'entreprise   :  Java, C#, Kotlin
@@ -762,13 +764,16 @@ Plus la communauté est grande, plus tu as :
 - Des tutos YouTube gratuits
 ```
 
-**Classement des communautés en 2026 :**
+**Repères de taille des écosystèmes en 2026 (indicatifs) :**
 
 ```
-Énorme          : Python, JavaScript, Java
-Grande          : TypeScript, C#, C/C++, Rust
-Moyenne         : Go, Kotlin, Swift, PHP
-Plus petite mais solide : Ruby, Dart, Scala
+Très grands écosystèmes : Python, JavaScript, Java
+Grands écosystèmes      : TypeScript, C#, C/C++, Rust
+Écosystèmes établis     : Go, Kotlin, Swift, PHP
+Plus petits mais solides: Ruby, Dart, Scala
+
+Ces repères ne constituent pas un classement mondial strict ; ils servent à éviter
+de confondre un instant de popularité avec une garantie de carrière.
 ```
 
 ---
@@ -1697,7 +1702,7 @@ ML Engineer   : prend le modèle et le rend utilisable en production :
 **Technologies typiques** :
 
 ```
-Langages   : Python (exclusivement ou presque)
+Langages   : Python principalement, avec d’autres langages selon le service et le runtime
 Frameworks ML : PyTorch, TensorFlow, JAX, scikit-learn
 Serving    : FastAPI, Triton Inference Server, TorchServe
 MLOps     : MLflow, Weights & Biases, DVC, Kubeflow
@@ -1721,7 +1726,7 @@ Réponse aux incidents     CVE, exploits, social engineering
 SOC (Security Operations)   Rapport de vulnérabilités
 ```
 
-Les security engineers sont parmi les mieux payés de l'industrie. La demande explose. L'offre de profils qualifiés reste très faible.
+Les profils de securite restent tres recherches dans de nombreux marches. La demande et la remuneration varient fortement selon la specialite, le pays, l'experience et le secteur.
 
 ---
 
@@ -2168,7 +2173,7 @@ Technologies : HTML, CSS, JS/TS, React, Next.js, Vue, Node.js, PostgreSQL. Ce qu
 
 La majorité des gens utilisent leur téléphone plus que leur PC. C'est un marché énorme.
 
-Technologies : Flutter/Dart, React Native/JS, Swift, Kotlin. Ce qui différencie les tops : performances natives, animations fluides (60fps), gestion de la batterie, offline-first. En 2026, Flutter continue sa progression : les apps cross-platform sont de plus en plus indiscernables des apps natives.
+Technologies : Flutter/Dart, React Native/JS, Swift, Kotlin. Ce qui différencie les tops : performances natives, animations fluides (60fps), gestion de la batterie, offline-first. En 2026, Flutter reste une option importante pour le cross-platform ; la qualité peut approcher le natif dans de nombreux cas, avec des compromis qui dépendent du produit et de la plateforme.
 
 ---
 
@@ -2182,7 +2187,7 @@ Technologies : AWS/GCP/Azure, Kubernetes, Terraform, Docker, CI/CD. Ce qui diff�
 
 #### IA / Machine Learning
 
-Le champ le plus en feu de 2026. La demande dépasse massivement l'offre de profils qualifiés.
+Un champ en forte expansion en 2026. La demande est élevée, mais varie fortement selon le niveau, le métier, la géographie et le contexte d'entreprise.
 
 Technologies : Python, PyTorch, TensorFlow, Hugging Face, LangChain. Ce qui différencie les tops : maths (algèbre linéaire, stats, calcul), compréhension théorique des architectures. Les vrais postes ML demandent souvent un Master ou un PhD. Mais les postes "AI Engineer" (qui utilisent des APIs et déploient des modèles existants) sont accessibles sans.
 
@@ -2742,25 +2747,35 @@ Une entreprise peut utiliser ChatGPT tous les jours sans avoir une architecture 
 
 ### 10.1 Ce que les developpeurs font deja
 
-Le Stack Overflow Developer Survey 2025 indique :
+Le **Stack Overflow Developer Survey 2026**, publie le 6 octobre 2026, montre que l'IA est
+desormais integree au travail logiciel courant :
 
 ```text
-84 % des repondants
-utilisent ou prevoient d'utiliser des outils IA
-dans leur processus de developpement.
+73 % des repondants qui utilisent
+des assistants/agents IA de developpement
+les utilisent quotidiennement.
+
+66 % utilisent des coding agents
+63 % utilisent des chatbots
+
+79 % veulent renforcer leurs competences IA
+52 % continuent a apprendre de nouvelles competences de programmation
 ```
 
-Mais :
+Le meme survey montre aussi ou l'IA est encore principalement employee :
 
 ```text
-46 % disent ne pas faire confiance a la precision
-des sorties IA.
+generation de code dans des zones familieres   67 %
+debugging                                      61 %
+deploiement / operations / troubleshooting prod 20 %
 ```
 
-Et une majorite ne travaille pas encore avec des agents autonomes de facon reguliere.
+Le signal utile pour AF n'est donc plus « l'IA va-t-elle arriver ? ». Elle est deja là. La
+question d'ingenierie devient : comment cadrer, verifier, securiser, mesurer et exploiter ce
+travail sans confier le jugement au systeme ?
 
 Source :
-https://survey.stackoverflow.co/2025/ai
+https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/
 
 Le signal est tres important :
 
@@ -2769,12 +2784,15 @@ ADOPTION
    haute
     |
     v
-CONFIANCE
-   plus basse
+USAGE
+  quotidien
     |
     v
-VERIFICATION
-   necessaire
+VERIFICATION + CONTEXTE
+       necessaires
+    |
+    v
+RESPONSABILITE HUMAINE
 ```
 
 ### 10.2 Les agents ne rendent pas l'expertise inutile
@@ -3007,7 +3025,7 @@ Stack Overflow rapporte que la frustration la plus frequente face aux outils IA 
 une difficulte importante.
 
 Source :
-https://survey.stackoverflow.co/2025/
+https://survey.stackoverflow.co/
 
 Le bon ingenieur n'est donc pas celui qui produit le plus de code avec IA.
 
@@ -3485,8 +3503,8 @@ https://www.weforum.org/publications/the-future-of-jobs-report-2025/
 
 ### IA et travail logiciel
 
-**Stack Overflow Developer Survey 2025 - AI**
-https://survey.stackoverflow.co/2025/ai
+**Stack Overflow Developer Survey 2026**
+https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/
 
 **Stanford AI Index 2026 - Economy**
 https://hai.stanford.edu/ai-index/2026-ai-index-report/economy

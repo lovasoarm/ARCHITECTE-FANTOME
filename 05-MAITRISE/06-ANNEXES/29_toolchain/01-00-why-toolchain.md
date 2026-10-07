@@ -1,4 +1,5 @@
-## perishability_id: PER-0071
+---
+perishability_id: PER-0071
 
 perennite: intemporel
 stability: perissable

@@ -1,4 +1,5 @@
-## perishability_id: PER-0010
+---
+perishability_id: PER-0010
 
 stability: perissable
 duree_de_vie_estimee: 1-2 ans

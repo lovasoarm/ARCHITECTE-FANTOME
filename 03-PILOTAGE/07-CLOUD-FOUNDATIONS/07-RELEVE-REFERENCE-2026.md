@@ -1,4 +1,5 @@
-## perishability_id: PER-0062
+---
+perishability_id: PER-0062
 
 stability: perissable
 acte: pilotage

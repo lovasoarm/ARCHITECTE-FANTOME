@@ -46,7 +46,7 @@ Résultat :
 ## INSTALLATION
 
 ```text
-Node.js : v22.23.2
+Node.js : v22.23.3
 npm : v10+
 Variables env : ANTHROPIC_API_KEY (obligatoire pour les appels réels)
 Outils externes: aucun

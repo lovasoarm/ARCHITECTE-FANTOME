@@ -1,4 +1,5 @@
-## perishability_id: PER-0103
+---
+perishability_id: PER-0103
 
 stability: perissable
 acte: annexe

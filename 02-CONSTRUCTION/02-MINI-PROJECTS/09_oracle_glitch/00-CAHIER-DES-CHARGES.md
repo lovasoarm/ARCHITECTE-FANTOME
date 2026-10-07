@@ -13,7 +13,7 @@ Temps de lecture ~15 min
 ## PRÉREQUIS
 
 ```text
-Node.js    : v22.23.2
+Node.js    : v22.23.3
 npm      : v10+
 Variables env : ANTHROPIC_API_KEY (obligatoire pour les appels API réels)
 Outils externes: aucun

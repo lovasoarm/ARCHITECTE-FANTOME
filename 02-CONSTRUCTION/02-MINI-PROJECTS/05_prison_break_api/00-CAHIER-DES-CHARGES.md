@@ -17,7 +17,7 @@ Temps de lecture ~13 min
 ## PRÉREQUIS
 
 ```text
-Node.js    : v22.23.2
+Node.js    : v22.23.3
 npm      : v10+
 Variables env : PORT (optionnel, défaut : 3000)
 Outils externes: aucun (SQLite est embedded, pas de serveur à démarrer séparément)

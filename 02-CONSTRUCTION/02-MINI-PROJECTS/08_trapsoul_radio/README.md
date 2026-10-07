@@ -44,7 +44,7 @@ $ npx tsc --noImplicitAny --noEmit
 ## INSTALLATION
 
 ```text
-Node.js : v22.23.2
+Node.js : v22.23.3
 npm : v10+
 TypeScript : v5+
 Outils externes: axe-cli, Lighthouse CLI

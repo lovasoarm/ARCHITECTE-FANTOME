@@ -27,7 +27,7 @@ Temps de lecture ~2 min
 
 ## Contraintes
 
-- Node 22.23.2, zéro dépendance externe (ni `i18next` ni autre). L'idée est de comprendre le mécanisme, pas d'utiliser une lib.
+- Node 22.23.3, zéro dépendance externe (ni `i18next` ni autre). L'idée est de comprendre le mécanisme, pas d'utiliser une lib.
 - Le script doit sortir un rapport JSON sur stdout :
 
   ```json

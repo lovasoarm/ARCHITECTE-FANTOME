@@ -165,7 +165,7 @@ const donnéesBrutes = [
 //   rang: 1,
 //   nom: "Haaland",
 //   categorie: "Ballon d'Or",
-//   score: 72.4,
+//   score: 69.2,
 //   details: "60 buts · 8 passes · Champions League "
 //  }
 
@@ -211,17 +211,16 @@ const donnéesBrutes = [
 ```js
 // rapport (après pipeline) :
 [
- { rang: 1, nom: "Haaland",  categorie: "Ballon d'Or", score: 72.4, details: "60 buts · 8 passes · Champions League " },
- { rang: 2, nom: "Mbappé",  categorie: "Top 5",    score: 37.2, details: "52 buts · 15 passes · Champions League " },
- { rang: 3, nom: "De Bruyne", categorie: "Top 5",    score: 40.2, details: "22 buts · 35 passes · Champions League " },
- { rang: 4, nom: "Messi",   categorie: "Ballon d'Or", score: 56.0, details: "45 buts · 20 passes · Champions League " }
- // ordre exact selon ton implémentation du scoring
+ { rang: 1, nom: "Haaland",   categorie: "Ballon d'Or", score: 69.2, details: "60 buts · 8 passes · Champions League" },
+ { rang: 2, nom: "Messi",     categorie: "Ballon d'Or", score: 65.0, details: "45 buts · 20 passes · Champions League" },
+ { rang: 3, nom: "De Bruyne", categorie: "Top 5",       score: 57.2, details: "22 buts · 35 passes · Champions League" },
+ { rang: 4, nom: "Mbappé",    categorie: "Top 5",       score: 37.2, details: "52 buts · 15 passes · Champions League" }
 ]
 
 // sommaire :
 {
  totalCandidats: 4,
- moyenneScore: ...,
+ moyenneScore: 57.2,
  ballonDorCandidat: "Haaland",
  categorieDistribution: { "Ballon d'Or": 2, "Top 5": 2, "Nominé": 0, "Hors course": 0 }
 }

@@ -1,4 +1,5 @@
-## perishability_id: PER-0012
+---
+perishability_id: PER-0012
 
 stability: perissable
 acte: évaluer

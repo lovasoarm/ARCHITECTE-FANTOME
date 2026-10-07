@@ -1,4 +1,5 @@
-## perishability_id: PER-0001
+---
+perishability_id: PER-0001
 
 stability: perissable
 acte: comprendre
@@ -86,7 +87,7 @@ node -e 'if (!process.versions.node.startsWith("22.")) { console.error("Node 22.
 Si la commande échoue avec `Node 22.x requis` :
 
 - Utilise une version Node 22 LTS.
-- La référence de reproductibilité AF reste `22.23.2`, mais une autre version 22.x est une compatibilité à vérifier séparément.
+- La référence de reproductibilité AF reste `22.23.3`, mais une autre version 22.x est une compatibilité à vérifier séparément.
 
 Le fichier `.nvmrc` à la racine du repo donne la version canonique en cours.
 
@@ -120,7 +121,7 @@ Rien de plus au démarrage. Chaque plugin est une dette cognitive.
 
 ```bash
 node -e "console.log('node ok')"
-npm -e "console.log('npm ok')" 2>/dev/null || npm --version
+npm --version
 git --version
 ```
 

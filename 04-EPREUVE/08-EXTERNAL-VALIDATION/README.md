@@ -29,6 +29,10 @@ R5 - PRODUCTION
 un système vivant est utilisé, mesuré et maintenu
 ```
 
+## Support
+
+- [00-REVIEW-PACK.md](00-REVIEW-PACK.md) : formulaire et protocole de revue indépendante réutilisables lorsque le parcours demande explicitement une preuve externe ; il n'est pas requis pour chaque mini-projet CORE.
+
 ## Protocole de review
 
 ```text

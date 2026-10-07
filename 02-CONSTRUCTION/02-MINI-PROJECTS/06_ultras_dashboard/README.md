@@ -43,7 +43,7 @@ $ npm start
 ## INSTALLATION
 
 ```text
-Node.js    : v22.23.2
+Node.js    : v22.23.3
 npm      : v10+
 TypeScript   : v5+ (installé via npm install)
 Variables env : SENTRY_DSN (optionnel pour l'env de dev)

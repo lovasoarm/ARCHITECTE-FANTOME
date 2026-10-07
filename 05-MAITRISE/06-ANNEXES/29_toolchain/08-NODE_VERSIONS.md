@@ -1,4 +1,5 @@
-## perishability_id: PER-0072
+---
+perishability_id: PER-0072
 
 stability: perissable
 acte: comprendre
@@ -21,12 +22,12 @@ Temps de lecture ~4 min
 > Node de référence. Ce document explique la politique, les minimums historiques
 > et la procédure de mise à jour. En cas de doute, `.nvmrc` fait foi.
 >
-> **Dernière revue : 2026-08-22.**
+> **Dernière revue : 2026-10-07.**
 
 ## Version courante
 
-- `.nvmrc` : **Node 22 (22.23.2 pour AF) LTS (`v22`)**
-- Ligne de référence du curriculum : **Node 22 (22.23.2 pour AF) LTS**
+- `.nvmrc` : **Node 22 (22.23.3 pour AF) LTS (`v22`)**
+- Ligne de référence du curriculum : **Node 22 (22.23.3 pour AF) LTS**
 - Node 20 est **EOL depuis le 24 mars 2026** et n'est plus une version de
   référence, de CI ou de support du curriculum.
 
@@ -41,20 +42,20 @@ nvm use
 
 ## Minimum par module
 
-Le curriculum est désormais évalué sur **Node 22 (22.23.2 pour AF)**. Les minimums historiques
+Le curriculum est désormais évalué sur **Node 22 (22.23.3 pour AF)**. Les minimums historiques
 ci-dessous ne constituent pas des versions de support indépendantes : ils
 indiquent seulement l'ancien niveau d'API requis par les exercices.
 
 | Module           | Minimum pédagogique historique |         Référence d'exécution |
 | ---------------- | -----------------------------: | ----------------------------: |
-| 01 → 07          |                             18 |     Node 22 (22.23.2 pour AF) |
-| 08 memory        |                             20 |     Node 22 (22.23.2 pour AF) |
-| 14 typescript    |                             20 |     Node 22 (22.23.2 pour AF) |
-| 15 runtime_env   |                             20 |     Node 22 (22.23.2 pour AF) |
-| 20 realtime      |                             20 |     Node 22 (22.23.2 pour AF) |
-| 23 ai_native_dev |                             20 |     Node 22 (22.23.2 pour AF) |
-| 24 → 28          |                             20 |     Node 22 (22.23.2 pour AF) |
-| 30 mini_projects |                             20 | Node 22 (22.23.2 pour AF) LTS |
+| 01 → 07          |                             18 |     Node 22 (22.23.3 pour AF) |
+| 08 memory        |                             20 |     Node 22 (22.23.3 pour AF) |
+| 14 typescript    |                             20 |     Node 22 (22.23.3 pour AF) |
+| 15 runtime_env   |                             20 |     Node 22 (22.23.3 pour AF) |
+| 20 realtime      |                             20 |     Node 22 (22.23.3 pour AF) |
+| 23 ai_native_dev |                             20 |     Node 22 (22.23.3 pour AF) |
+| 24 → 28          |                             20 |     Node 22 (22.23.3 pour AF) |
+| 30 mini_projects |                             20 | Node 22 (22.23.3 pour AF) LTS |
 
 Les scripts et la CI doivent utiliser `.nvmrc` plutôt qu'une plage vague
 du type `>=20` ou `>=22` pour choisir le runtime d'exécution.
@@ -63,7 +64,7 @@ du type `>=20` ou `>=22` pour choisir le runtime d'exécution.
 
 ## Politique de version
 
-**État au 23/08/2026 :** Node 22 (22.23.2 pour AF) est une ligne LTS encore supportée. La
+**État au 07/10/2026 :** Node 22 (22.23.3 pour AF) est une ligne LTS en phase de maintenance et reste supportée jusqu’au 30/04/2027. La
 référence du cursus reste `v22`, afin de préserver la reproductibilité de la
 fusion et du corpus source.
 
@@ -82,7 +83,7 @@ La politique est volontairement simple :
 
 Node 20 est désormais EOL. Conserver Node 20 comme référence créerait une
 contradiction entre la reproductibilité pédagogique et la maintenance du
-runtime. Node 22 (22.23.2 pour AF) reste LTS au moment de cette édition ; le choix `v22` est donc
+runtime. Node 22 (22.23.3 pour AF) reste une ligne LTS supportée au moment de cette édition ; le choix `v22` est donc
 cohérent avec la source ARCHITECTE-FANTOME et avec la correction demandée par l'audit.
 
 ---
@@ -92,7 +93,7 @@ cohérent avec la source ARCHITECTE-FANTOME et avec la correction demandée par 
 Avant de publier une version d'ARCHITECTE-FANTOME :
 
 - `test -f .nvmrc`
-- `cat .nvmrc` retourne `v22`
+- `cat .nvmrc` retourne `22.23.3`
 - les workflows CI utilisent `node-version-file: '.nvmrc'` ou un équivalent
 - aucun script ne traite l'absence de `.nvmrc` comme un état normal
 - les tests ciblés du mini-projet 17 ne produisent aucun `[WARN]` de version

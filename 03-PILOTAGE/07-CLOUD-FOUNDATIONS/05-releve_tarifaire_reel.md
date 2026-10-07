@@ -1,4 +1,5 @@
-## perishability_id: PER-0059
+---
+perishability_id: PER-0059
 
 stability: perissable
 acte: produire

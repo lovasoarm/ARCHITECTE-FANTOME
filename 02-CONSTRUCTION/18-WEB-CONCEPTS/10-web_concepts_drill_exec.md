@@ -27,7 +27,7 @@ Temps de lecture ~2 min
 
 ## Contraintes
 
-- Node 22.23.2, zéro dépendance externe (utilise `fetch` global et `node:fs`).
+- Node 22.23.3, zéro dépendance externe (utilise `fetch` global et `node:fs`).
 - Sortie JSON stdout :
 
   ```json

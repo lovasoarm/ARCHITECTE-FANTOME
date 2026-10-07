@@ -13,7 +13,7 @@ Temps de lecture ~15 min
 ## PRÉREQUIS
 
 ```text
-Node.js    : v22.23.2
+Node.js    : v22.23.3
 npm      : v10+ (pas obligatoire d'installer les deps du repo cloné)
 Variables env : aucune
 Outils externes: git

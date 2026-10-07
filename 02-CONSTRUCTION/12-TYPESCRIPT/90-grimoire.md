@@ -1,4 +1,5 @@
-## perishability_id: PER-0036
+---
+perishability_id: PER-0036
 
 stability: perissable
 acte: restituer

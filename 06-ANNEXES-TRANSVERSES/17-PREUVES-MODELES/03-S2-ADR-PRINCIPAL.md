@@ -1,4 +1,5 @@
-## perishability_id: PER-0097
+---
+perishability_id: PER-0097
 
 stability: perissable
 acte: appliquer

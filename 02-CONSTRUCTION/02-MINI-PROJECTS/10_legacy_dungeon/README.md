@@ -59,7 +59,7 @@ $ find . -name "*.js" -o -name "*.ts" | grep -v node_modules | xargs wc -l | tai
 ## INSTALLATION
 
 ```text
-Node.js : v22.23.2
+Node.js : v22.23.3
 npm : v10+
 Variables env : aucune
 Outils externes: git

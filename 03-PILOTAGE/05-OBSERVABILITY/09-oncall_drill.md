@@ -1,4 +1,5 @@
-## perishability_id: PER-0053
+---
+perishability_id: PER-0053
 
 stability: perissable
 acte: pratiquer

@@ -14,7 +14,7 @@ assessment_role: diagnostic_mastery
 
 Temps de lecture ~5 min
 
-## Checklist par projet GitHub
+## Checklist par projet publié
 
 - [ ] `README.md` : problème résolu, démo (GIF/screenshot), stack, `npm start` en 3 lignes.
 - [ ] `ADR/` : au moins 1 décision documentée.
@@ -32,15 +32,16 @@ Temps de lecture ~5 min
 
 ## Livrable
 
-Un dépôt qui passe la checklist. Fais-le relire par un pair **avant** de le mettre sur ton CV.
+Si tu choisis de publier le projet, le dépôt passe la checklist et sa publication est relue avant d’être utilisée comme preuve publique. La publication elle-même n’est pas une condition de validation de chaque mini-projet.
 
 ---
 
-## RÈGLES DURCIES v2026.1
+## RÈGLES DE PREUVE v2026.2
 
-- **Publication GitHub OBLIGATOIRE** pour chaque mini-projet avant de passer au module suivant.
-- **Peer-review OBLIGATOIRE** : voir `COMMUNAUTE.md`.
-- **Lien du dépôt** à inscrire dans le `09-DEPENDENCY_LEDGER.md`.
+- La **publication GitHub n’est pas obligatoire** pour chaque mini-projet : une preuve locale, versionnée dans ton dépôt fil rouge, suffit lorsque le jalon ne demande pas de preuve externe.
+- La **contradiction est obligatoire**, mais elle peut être locale et hors ligne pendant le CORE : revue aveugle, checklist adversariale et objection écrite.
+- Une **preuve externe** devient obligatoire seulement lorsqu’un gate la demande explicitement (R1+ / T2+ / sortie terrain). Voir `COMMUNAUTE.md` et `48-EXTERNAL-REVIEW-GATE.md`.
+- Le lien du dépôt public et le `09-DEPENDENCY_LEDGER.md` sont des éléments de portfolio, pas des barrières techniques d’entrée.
 
 ## GRILLE D'AUTO-ÉVALUATION (10 points)
 
@@ -50,9 +51,9 @@ Un dépôt qui passe la checklist. Fais-le relire par un pair **avant** de le me
 | Tests                              | 0      | quelques-uns | couverture des cas critiques |
 | POSTMORTEM                         | absent | brouillon    | publié                       |
 | ADR (si projet ≥ moyen)            | 0      | 1            | 1 par décision majeure       |
-| Peer-review reçue                  | 0      | 1 remarque   | ≥ 3 remarques traitées       |
+| Relecture contradictoire           | 0      | 1 objection  | ≥ 3 objections traitées     |
 
-Note < 6/10 → tu ne passes pas au module suivant. Point.
+Note < 6/10 → reviens sur le point faible avant de déclarer la preuve complète. La publication externe n’entre en jeu que si le jalon la demande.
 
 ## CHECKPOINT DE PROFONDEUR : variation A : prédire avant de réparer
 

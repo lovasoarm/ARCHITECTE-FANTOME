@@ -1,4 +1,5 @@
-## perishability_id: PER-0074
+---
+perishability_id: PER-0074
 
 perennite: evolutif
 stability: perissable

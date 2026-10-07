@@ -16,7 +16,7 @@ Mini-projet
 
 ## Niveau
 
-� Fondamental
+Niveau : Fondamental
 
 ## CONTEXTE
 
@@ -42,7 +42,7 @@ Ta carte projet a une hiérarchie claire.
 
 Si deux variables portent le même nom dans deux portées imbriquées, laquelle gagne et pourquoi ?
 
-## Preuve à conserverem-
+## Preuve à conserver
 
 Après l'expérience, conserve :
 

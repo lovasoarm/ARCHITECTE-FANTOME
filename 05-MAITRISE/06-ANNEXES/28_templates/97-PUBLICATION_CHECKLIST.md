@@ -45,10 +45,10 @@ public (mini-projet, RFC publiée, article, talk).
 
 ## 5. Diffusion
 
-- [ ] Lien du dépôt public : `https://github.com/<toi>/<projet>`
+- [ ] Lien du dépôt public : `https://github.com/<toi>/<projet>` **si publication choisie ou demandée par un jalon**.
 - [ ] Lien du billet de blog (si rédigé) : ...
 - [ ] Date de publication : ...
-- [ ] Peer-review reçue de : `@pseudo` (au moins un relecteur externe).
+- [ ] Relecture externe reçue de : `@pseudo` (si la publication sert de preuve R1+ / T2+). Sinon, consigner la relecture contradictoire locale dans le journal de preuve.
 
 ## 6. Après publication
 

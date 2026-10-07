@@ -32,7 +32,7 @@ requête, une extension VSCode absente. Ce dossier existe pour tuer ces
 
 Un débutant "super nul" doit pouvoir :
 
-- installer Node **22.23.2** sur Windows, macOS ou Linux ;
+- installer Node **22.23.3** sur Windows, macOS ou Linux ;
 - vérifier son installation avec une requête unique ;
 - ouvrir un premier fichier `.js`, le lancer, voir la sortie ;
 - comprendre ce qu'est un terminal, un shell, un dossier de projet.

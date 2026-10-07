@@ -1,4 +1,5 @@
-## perishability_id: PER-0094
+---
+perishability_id: PER-0094
 
 stability: perissable
 acte: annexe

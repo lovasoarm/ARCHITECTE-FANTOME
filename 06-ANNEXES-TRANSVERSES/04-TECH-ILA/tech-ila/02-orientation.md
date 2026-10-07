@@ -1,4 +1,5 @@
-## perishability_id: PER-0086
+---
+perishability_id: PER-0086
 
 statut: revu
 last_reviewed: 2026-08

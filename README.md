@@ -39,7 +39,7 @@ restent des dimensions du monde du travail.
 
 ## Démarrage zéro friction
 
-Tu peux commencer sans compte cloud, sans API et sans installer dix outils. Le minimum est **Node 22.23.2 + un éditeur de texte**. Git et VSCode sont utiles ensuite, pas comme barrière d'entrée.
+Tu peux commencer sans compte cloud, sans API et sans installer dix outils. Le minimum est **Node 22.23.3 + un éditeur de texte**. Git et VSCode sont utiles ensuite, pas comme barrière d'entrée.
 
 Avant la première séance, lance le diagnostic :
 

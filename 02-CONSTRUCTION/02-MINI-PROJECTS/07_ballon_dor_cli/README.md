@@ -49,7 +49,7 @@ $ node src/cli.js export --format csv
 ## INSTALLATION
 
 ```text
-Node.js    : v22.23.2
+Node.js    : v22.23.3
 npm      : v10+
 Docker     : v24+ (optionnel, pour la containerisation)
 Variables env : aucune

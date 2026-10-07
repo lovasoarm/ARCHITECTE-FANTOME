@@ -47,7 +47,7 @@ Contraintes non négociables :
 3. Code fonctionnel + `docker-compose up` qui marche du premier coup.
 4. **Chaos test** : tue le worker en plein traitement, tue le broker 30 s, coupe le réseau front↔broker. Vérifie que rien n'est perdu ni dupliqué.
 5. `08-POSTMORTEM.md` : ce qui a cassé, ce que t'as appris, ce que tu changerais.
-6. Dépôt GitHub public, lien dans le `09-DEPENDENCY_LEDGER.md`.
+6. Dépôt Git versionné et reproductible. Une forge distante publique (GitHub par exemple) peut servir de vitrine ; elle devient nécessaire seulement si le jalon demande une preuve externe.
 
 ## CE QUE LE PROJET CACHE
 
@@ -62,8 +62,8 @@ Pense "mission assignée → notification au utilisateur". Même problème, mêm
 - [ ] Chaos test survécu 3 scénarios sur 3
 - [ ] Trace_id visible bout en bout
 - [ ] Pas de duplication après retry
-- [ ] POSTMORTEM publié
-- [ ] Peer-review reçue avant merge final
+- [ ] POSTMORTEM rédigé
+- [ ] Relecture contradictoire effectuée avant le verdict final
 
 ## VARIANTE CHAOS (obligatoire)
 
