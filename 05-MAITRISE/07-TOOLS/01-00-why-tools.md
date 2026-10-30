@@ -11,10 +11,12 @@ perturbation_modes: [fausse_piste, constraints_injectees]
 anti_recipe_key: fausse_piste+constraints_injectees
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-review_due: 2028-12-31
-
+freshness_registry_id: PER-0074
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-01-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 > **Statut de pérennité :** intemporel | **évolutif** | périssable

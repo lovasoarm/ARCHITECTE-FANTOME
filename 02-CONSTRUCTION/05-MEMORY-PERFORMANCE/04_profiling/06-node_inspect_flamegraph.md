@@ -54,3 +54,11 @@ Prends `02-CONSTRUCTION/02-MINI-PROJECTS/11_scheduler` (ou n'importe quel script
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « 03 : Node : flamegraph avec clinic / 0x », puis conserve le résultat et explique tout écart.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

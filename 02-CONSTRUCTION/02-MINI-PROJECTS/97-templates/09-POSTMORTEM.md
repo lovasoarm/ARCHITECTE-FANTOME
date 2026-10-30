@@ -10,7 +10,6 @@ acte: comprendre
 <!-- AF-DIAGRAM:incident -->
 
 ```text
-text
 Signal
   │
   ▼

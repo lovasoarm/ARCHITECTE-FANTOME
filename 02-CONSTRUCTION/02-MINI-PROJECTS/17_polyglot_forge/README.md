@@ -55,3 +55,27 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## État des tests et point de départ (référence AF)
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Tests verts dès le départ :** aucun test d'équivalence n'est validé par défaut.
+- **Harnais volontairement incomplet/rouge :** `tests/run_all.sh` exige `tests/expected.txt`, `src/loop.js` et un second moteur (`src/loop.py` ou `src/loop.rs`). Ces fichiers ne sont pas présents. Le script est un harnais de scénario à compléter ; il échoue explicitement tant que les artefacts manquent.
+- **Tests à créer :** tests unitaires propres à chaque implémentation, puis comparaison des sorties JS et langage secondaire sur `tests/scenario.json`.
+- **Validation finale :** créer `tests/expected.txt`, au moins deux implémentations et lancer `bash tests/run_all.sh` depuis ce dossier. Vérifier également le contrat commun et les écarts de types/temps.
+
+Ne pas interpréter le message de prérequis manquant comme un défaut du runner : c'est l'état scaffold documenté. Vérifier le script et le scénario avant d'ajouter les implémentations.
+
+### Détails d’implémentation et de validation à la réception
+
+- **Code fourni :** `tests/run_all.sh` et `tests/scenario.json` sont présents. `src/loop.js`, `src/loop.py` ou `src/loop.rs`, et `tests/expected.txt` ne sont pas fournis.
+- **Tests de référence verts :** aucun test de parité au démarrage.
+- **Échec volontairement prévu :** `bash tests/run_all.sh` doit d'abord échouer avec le message `tests/expected.txt manquant`. Après ajout de ce fichier, le script attend `src/loop.js` puis une implémentation Python ou Rust.
+- **Prérequis :** Bash, Node 22.x, et Python 3 ou Rust selon le second moteur choisi. Le script vérifie le major Node par défaut ; `STRICT_RUNTIME=1` exige le pin exact du `.nvmrc`.
+- **Tests à créer :** tests unitaires propres à chaque langue, contrat de scénario, ordre et normalisation des sorties, cas limites, et divergence de types/timeouts.
+- **Validation finale :** créer la trace attendue indépendamment des deux implémentations, implémenter les deux moteurs, puis `bash tests/run_all.sh`. Le message `POLYGLOT PARITY OK` ne prouve que la fixture choisie ; compléter avec plusieurs fixtures et cas d'erreur.

@@ -8,8 +8,11 @@ perturbation_modes: [changement_contexte, decision_organisationnelle]
 anti_recipe_key: changement_contexte+decision_organisationnelle
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0027
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-01-28
+review_status: a_verifier_date_absente
 ---
 
 **SCÈNE CRAZYDEVS : Garo :** ton armure ne rend pas le combat correct. Elle rend les erreurs plus difficiles à cacher. Le typage sert à la même chose : rendre les contradictions visibles tôt.
@@ -354,3 +357,11 @@ Crée l'union `OperationLog`, écris `logToString(log: OperationLog): string`, e
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « Union et intersection : composer des types comme des ensembles » à un producteur ancien qui cohabite avec un nouveau contrat. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

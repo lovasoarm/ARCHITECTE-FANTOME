@@ -1,6 +1,6 @@
 ---
 stability: intemporel
-last_reviewed: 2026-07
+last_reviewed: 2026-10
 depends_on_vendor: false
 acte: comprendre
 cognitive_level: L3
@@ -14,21 +14,25 @@ assessment_role: instructional_checkpoint
 
 # Chaîner des opérations async sans perdre les erreurs en route
 
-<!-- AF-DIAGRAM:offline_sync -->
+<!-- AF-DIAGRAM:promise-chain -->
 
 ```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
+Promise initiale
+      │
+      ▼
+ .then(étape A) ── valeur retournée ──► .then(étape B) ──► étape C
+      │                                      │
+      └── throw / rejet ─────────────────────┴──────────────┐
+                                                            ▼
+                                                    .catch(handler)
+                                                     │           │
+                                           retourne fallback   throw err
+                                                     │           │
+                                                     ▼           ▼
+                                               chaîne reprise  rejet propagé
 ```
 
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
+Une chaîne de Promises transmet la valeur retournée d'une étape à la suivante. Une exception ou une Promise rejetée saute les handlers de réussite jusqu'au prochain handler de rejet. Un `catch` peut récupérer l'erreur en retournant une valeur, ou la propager en lançant une nouvelle erreur.
 
 Temps de lecture ~8 min
 
@@ -84,7 +88,7 @@ C'est la force du chain reactor : une seule sortie d'urgence pour tout le pipeli
        └───────────┘
 ```
 
-Une Promise évolue d’un état en attente vers un résultat résolu ou rejeté, puis déclenche ses handlers.
+Une Promise a trois états observables : `pending`, `fulfilled` ou `rejected`. Une Promise en attente finit par être fulfilled avec une valeur ou rejected avec une raison. Le terme « résolue » est souvent employé à l’oral, mais une Promise résolue peut adopter l’état d’une autre Promise : ce n’est pas un quatrième état observable.
 
 La règle : ce que tu `return` dans un `.then()` devient la valeur du `.then()` suivant.
 
@@ -108,7 +112,7 @@ Erreur classique : oublier le `return`.
 
 ```js
 .then(n => {
- fetchBonus(n)        // oublié le return => la chaîne passe à None
+ fetchBonus(n)        // oublié le return => la chaîne passe à `undefined`
 })
 .then(resultat => {
  console.log(resultat)    // undefined. fetchBonus a tourné mais personne l'a attendu.
@@ -141,17 +145,18 @@ obtenirFinancement()
   });
 ```
 
-Ce que `.catch()` fait quand il retourne une valeur : il transforme une rejection en resolution.
-La chaîne reprend comme si de rien n'était.
+Ce que `.catch()` fait quand son handler retourne une valeur : il transforme le rejet en réussite et la chaîne reprend avec cette valeur.
 
-Si tu veux que l'erreur continue à se propager : ne retourne rien, ou re-throw.
+**Attention : ne rien retourner ne propage pas l'erreur.** Un handler qui termine sans `return` renvoie implicitement `undefined` : la chaîne reprend donc avec `undefined`. Pour propager le rejet après l'avoir journalisé, fais un `throw` explicite :
 
 ```js
-.catch(err => {
- console.log("logged :", err.message)
- throw err  // re-throw => la prochaine étape voit toujours une erreur
-})
+.catch((err) => {
+  console.error("logged :", err.message);
+  throw err; // le prochain handler de rejet reçoit encore l'erreur
+});
 ```
+
+Pour récupérer volontairement l'erreur, retourne un fallback explicite et assure-toi que ce fallback respecte le contrat attendu par l'étape suivante.
 
 ---
 
@@ -162,19 +167,27 @@ Walter White nettoie le labo. Peu importe si la cuisson s'est bien passée ou pa
 ```js
 preparerLot()
   .then((lot) => livrerLot(lot))
-  .catch((err) => console.log("lot perdu :", err.message))
+  .catch((err) => {
+    console.log("lot perdu :", err.message);
+    throw err; // journaliser n'est pas récupérer : l'échec reste visible
+  })
   .finally(() => {
-    // cleanup garanti : connexions fermées, logs écrits, ressources libérées
+    // Si le premier appel lève une exception, le second ne sera pas appelé.
     nettoyerLaboratoire();
     fermerConnexionDB();
   });
 ```
 
+Cet exemple suppose des fonctions de nettoyage synchrones et sans erreur. Une vraie orchestration doit aussi définir le comportement si un nettoyage échoue.
+
 `finally` :
 
-- ne reçoit pas de valeur (ni le résultat, ni l'erreur)
-- ne modifie pas le résultat de la chaîne
-- tourne toujours, resolved ou rejected
+- ne reçoit ni la valeur réussie ni la raison du rejet ;
+- s'exécute lorsque la chaîne atteint ce point, après réussite comme après rejet ;
+- préserve normalement le résultat précédent si son callback se termine correctement ;
+- peut toutefois remplacer le résultat final si son callback lance une exception ou retourne une Promise rejetée.
+
+Le callback de nettoyage doit lui-même être fiable. Si la première fonction de nettoyage lève une exception dans l'exemple ci-dessus, la seconde ne sera pas appelée ; lorsque les deux nettoyages sont impératifs, protège chacun d'eux avec `try/finally` ou une stratégie explicite de collecte d'erreurs.
 
 ---
 
@@ -203,8 +216,7 @@ obtenirFinancement()
   .catch((err) => console.log(err.message));
 ```
 
-La version imbriquée casse la propagation d'erreur. Chaque niveau a ses propres erreurs isolées.
-Un `.catch()` global en bas ne voit rien de ce qui se passe à l'intérieur.
+Dans cette version, les Promises internes ne sont ni retournées ni chaînées à la Promise extérieure. Le `.catch()` final de la chaîne extérieure ne récupère donc pas automatiquement un rejet provenant de ces appels internes. Les erreurs peuvent devenir des rejets non gérés et le résultat final peut arriver trop tôt. Retourner chaque Promise relie les étapes et rétablit la propagation attendue.
 
 ---
 
@@ -285,16 +297,133 @@ Construis la chaîne complète avec la récupération partielle sur le troisièm
 
 ## RÉSUMÉ
 
-Chaque `.then()` transforme et passe.
-Chaque `.catch()` intercepte et peut relancer ou récupérer.
-`.finally()` nettoie, sans conditions, sans données.
+Chaque `.then()` peut transformer la valeur ou relier une opération asynchrone à la chaîne.
+Chaque `.catch()` peut récupérer le rejet avec un fallback, ou le propager avec `throw`.
+`.finally()` permet de lancer le nettoyage, mais ce nettoyage peut lui-même échouer et changer le résultat final.
 
-Erreur la plus fréquente : oublier de `return` une Promise dans un `.then()`.
-La chaîne continue avec `undefined`. Le bug est silencieux.
+Erreur fréquente : oublier de `return` une Promise dans un `.then()`. La chaîne extérieure continue alors avec `undefined` sans attendre l'opération interne ; ses rejets ne sont pas automatiquement transmis au `.catch()` extérieur.
 
-Règle simple : si tu fais un appel async dans un `.then()`, tu le `return`.
-Toujours.
+Règle pratique : si l'étape suivante dépend du résultat d'un appel asynchrone, retourne sa Promise. Si l'appel est volontairement indépendant, traite explicitement ses erreurs et explique pourquoi il n'appartient pas à la chaîne.
 
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+## CORRIGÉS INDICATIFS : À LIRE APRÈS UNE PREMIÈRE TENTATIVE
+
+Ces corrigés illustrent la propagation des valeurs et des erreurs ; adapte-les aux signatures réelles des fonctions de ton exercice. Ils ne remplacent pas les tests de cas limites.
+
+### Exercice 1 : pipeline de votes
+
+```js
+function construireClassement() {
+  return fetchVotes()
+    .catch((err) => {
+      console.error("Votes indisponibles :", err.message);
+      return []; // récupération limitée à l'échec de fetchVotes
+    })
+    .then((votes) => {
+      const totals = new Map();
+      for (const vote of votes) {
+        if (
+          vote &&
+          typeof vote.joueur === "string" &&
+          vote.joueur.trim() !== "" &&
+          Number.isFinite(vote.points) &&
+          vote.points >= 1 &&
+          vote.points <= 10
+        ) {
+          const joueur = vote.joueur.trim();
+          totals.set(joueur, (totals.get(joueur) ?? 0) + vote.points);
+        }
+      }
+      return [...totals.entries()]
+        .map(([joueur, points]) => ({ joueur, points }))
+        .sort(
+          (a, b) =>
+            b.points - a.points || a.joueur.localeCompare(b.joueur, "fr"),
+        )
+        .slice(0, 10);
+    })
+    .then((classement) => afficherClassement(classement));
+}
+```
+
+Le `catch` est placé avant l'agrégation : il récupère la panne de chargement sans masquer une erreur de calcul ou d'affichage. Si `afficherClassement` retourne une Promise, son résultat et son éventuel rejet restent reliés à la chaîne.
+
+### Exercice 2 : étapes explicites et nettoyage
+
+```js
+const avecEtape = (nom, action) =>
+  Promise.resolve()
+    .then(action)
+    .catch((cause) => {
+      throw new Error(`Échec de l'étape « ${nom} »`, { cause });
+    });
+
+function preparerLot() {
+  let erreurOperation;
+  return avecEtape("initialiserEquipement", initialiserEquipement)
+    .then(() => avecEtape("preparerIngredients", preparerIngredients))
+    .then(() => avecEtape("cuire", cuire))
+    .then(() => avecEtape("conditionner", conditionner))
+    .catch((err) => {
+      erreurOperation = err;
+      console.error(err.message);
+      throw err;
+    })
+    .finally(() => {
+      const erreursNettoyage = [];
+      for (const [nom, action] of [
+        ["nettoyerLabo", nettoyerLabo],
+        ["fermerGaz", fermerGaz],
+      ]) {
+        try {
+          action();
+        } catch (cause) {
+          erreursNettoyage.push(new Error(`Échec de ${nom}`, { cause }));
+        }
+      }
+      if (erreursNettoyage.length) {
+        throw new AggregateError(
+          [...(erreurOperation ? [erreurOperation] : []), ...erreursNettoyage],
+          "L'opération ou son nettoyage a échoué",
+        );
+      }
+    });
+}
+```
+
+Ce corrigé suppose que les fonctions de nettoyage sont synchrones. Si elles retournent des Promises, il faut les attendre explicitement, par exemple avec `Promise.allSettled`, et décider quoi faire si l'une ou plusieurs échouent. Le code essaie chaque nettoyage même si le précédent lance une exception ; un échec de nettoyage est signalé plutôt que caché.
+
+### Exercice 3 : deux dépendances obligatoires, une facultative
+
+```js
+function construireMission() {
+  const equipementAvecFallback = charger("/mission/equipement").catch((err) => {
+    console.warn(
+      "Équipement indisponible ; utilisation du fallback :",
+      err.message,
+    );
+    return { armes: [], armures: [] };
+  });
+
+  return Promise.all([
+    charger("/mission/objectif"),
+    charger("/mission/equipe"),
+    equipementAvecFallback,
+  ]).then(([objectif, equipe, equipement]) => {
+    return afficherMission({ objectif, equipe, equipement });
+  });
+}
+```
+
+Le fallback est attaché uniquement à l'appel facultatif. Un rejet de `objectif` ou de `equipe` fait échouer `Promise.all`. `charger` et `afficherMission` sont des fonctions de l'exercice : leur implémentation doit elle aussi respecter leurs contrats.
+
+### Critères d'auto-correction
+
+- Une Promise dont dépend l'étape suivante est retournée ou attendue.
+- Le `catch` de récupération est placé au plus près de la panne que l'on accepte de compenser.
+- Les erreurs non récupérées restent des rejets ; aucun `catch` ne les transforme accidentellement en succès `undefined`.
+- Les tests couvrent une réussite, un rejet à chaque frontière importante, un fallback et un éventuel échec de nettoyage.
+- L'apprenant peut expliquer quelle Promise est attendue à chaque étape et quelle erreur chaque `catch` peut réellement observer.

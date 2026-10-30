@@ -11,7 +11,6 @@ route: survie
 <!-- AF-DIAGRAM:mvp -->
 
 ```text
-text
 Problem
   │
   ▼

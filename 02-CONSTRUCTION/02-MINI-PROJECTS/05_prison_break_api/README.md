@@ -11,9 +11,7 @@ acte: comprendre
 
 Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADRs réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables.
 
-
 > **Route CORE 16 semaines :** ce projet conserve son contenu complet. Pour le sprint intensif, consulte [la carte CORE](../../../06-ANNEXES-TRANSVERSES/25-CORE-MINI-PROJECT-MAP.md) pour le slice recommandé. Le passage CORE ajoute une perturbation, un transfert et un rappel à froid ; voir [Engine d’ambiguïté](../../../06-ANNEXES-TRANSVERSES/20-ENGINE-AMBIGUITE.md).
-
 
 -> ~6 min
 
@@ -44,20 +42,21 @@ $ curl -X POST http://localhost:3000/evasion/badge \
 
 ---
 
-## INSTALLATION
+## PRÉREQUIS ET ÉTAT INITIAL
 
-```text
-Node.js    : v22.23.3
-npm      : v10+
-Variables env : PORT (optionnel, défaut 3000)
-Outils externes: aucun (SQLite embedded via better-sqlite3)
-```
+- Node.js : `v22.23.4` (version de référence du dépôt AF) ; npm est fourni avec Node.js.
+- État de l’archive : Le projet cible `better-sqlite3`, une dépendance native. L’archive pédagogique ne contient ni `package.json`, ni code serveur, ni tests : aucun `npm install` ou `npm test` ne peut réussir à la réception. L’installation future devra être faite dans le dépôt apprenant, sur un environnement compatible avec le binaire natif.
+
+### Commandes disponibles dès réception
 
 ```bash
-npm install
-node src/server.js  # démarre l'API
-npm test       # tests (ne pas lancer le serveur en parallèle)
+node --version
+npm --version
 ```
+
+### Commandes après réalisation du scaffold
+
+Après création du dépôt applicatif : créer le manifeste, ajouter et verrouiller `better-sqlite3`, construire le serveur, puis déclarer le script de test adapté. `node src/server.js` n’est valide qu’après création du point d’entrée ; `npm test` seulement après configuration de la suite.
 
 ---
 
@@ -119,12 +118,12 @@ client
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module      | Où ça se voit                      |
-| ----------------- | -------------------------------------------------------- |
-| `02-CONSTRUCTION/19-API-CRAFT`  | Express complet, CRUD, error middleware, OpenAPI     |
-| `03-PILOTAGE/04-SECURITY`   | JWT, bcrypt, rate limiting, sanitization XSS/SQL     |
-| `05-MAITRISE/01-DATABASES`  | SQLite, modélisation, indexes, Redis cache sur les plans |
-| `02-CONSTRUCTION/18-WEB-CONCEPTS` | HTTP verbes, status codes, browser render pipeline    |
+| Module                            | Où ça se voit                                            |
+| --------------------------------- | -------------------------------------------------------- |
+| `02-CONSTRUCTION/19-API-CRAFT`    | Express complet, CRUD, error middleware, OpenAPI         |
+| `03-PILOTAGE/04-SECURITY`         | JWT, bcrypt, rate limiting, sanitization XSS/SQL         |
+| `05-MAITRISE/01-DATABASES`        | SQLite, modélisation, indexes, Redis cache sur les plans |
+| `02-CONSTRUCTION/18-WEB-CONCEPTS` | HTTP verbes, status codes, browser render pipeline       |
 
 ---
 
@@ -197,6 +196,16 @@ Un CI check impose la présence de `src/` et `tests/` avant validation.
 
 Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur dépôt apprenant. Si le projet utilise des dépendances npm, ton dépôt apprenant doit versionner `package.json` et `package-lock.json`, puis utiliser `npm ci` en CI pour installer exactement cet arbre. Si le projet est sans dépendances, consigne simplement la version de runtime et la commande de test réellement utilisée. La preuve de reproductibilité est la commande et la version relevées dans ton propre dépôt, pas une valeur inventée dans le curriculum.
 
+## Séquence de maîtrise exigée (contrats et sécurité)
+
+1. **Définir l'API** : liste les opérations, entrées valides, erreurs, identité nécessaire et données retournées.
+2. **Écrire des tests négatifs avant le correctif** : entrée mal formée, utilisateur non authentifié, utilisateur authentifié mais non autorisé, identifiant d'un autre tenant et dépendance indisponible.
+3. **Tracer la frontière de confiance** : montre où l'authentification devient une identité, où l'autorisation objet est décidée et où l'entrée devient une requête persistante.
+4. **Injecter un changement** : révoque l'accès ou réutilise une clé d'idempotence ; la suite doit détecter toute exposition ou double opération interdite.
+5. **Transférer** : applique la même politique à une seconde ressource et explique quelles règles sont communes et quelles règles restent métier.
+
+**Gate :** un statut HTTP correct ne suffit pas si le corps, le cache ou le log contient une donnée interdite. Aucun test ne doit être présenté comme preuve d'une base réelle s'il ne teste qu'un faux dépôt. Complète avec [65 : Données/API/transactions](../../../06-ANNEXES-TRANSVERSES/65-LAB-DONNEES-API-ET-TRANSACTIONS.md) et [66 : Sécurité/architecture](../../../06-ANNEXES-TRANSVERSES/66-LAB-SECURITE-ET-ARCHITECTURE.md).
+
 ## Contenu du dossier
 
 <!-- CONTENU-DOSSIER:debut -->
@@ -214,3 +223,31 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## Comprendre les tests avant de commencer : état exact du ZIP
+
+Référence : [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les exemples de sortie décrivent la cible, pas un logiciel livré, sauf mention contraire.
+
+- Code fourni : aucun serveur, schéma SQL, `package.json` ou test exécutable ; `src/README.md` et `tests/README.md` sont des emplacements.
+- Tests de référence verts : aucun. Tests volontairement rouges : aucun ; écris les tests de contrat avant les routes.
+- Tests à écrire : authn/authz par rôle et tenant, validation, paramètres SQL, injection, transactions, contraintes, migrations, erreurs HTTP, concurrence et restauration.
+- Validation finale : crée `package.json`, lockfile, base de test jetable et script `test`; ensuite seulement `npm ci && npm test`. Cette commande n'est pas disponible dans le ZIP initial.
+- Ordre : modèle de menace/schéma → migrations → tests tenant/auth → repository paramétré → cas d'usage → API → intégration depuis base vide. Preuve : traversée tenant refusée et tests indépendants des données personnelles.
+
+## Règles communes de progression et de preuve
+
+### Contrôle commun de la progression
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
+- **Tests verts de référence :** aucun.
+- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
+- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
+- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
+
+**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.

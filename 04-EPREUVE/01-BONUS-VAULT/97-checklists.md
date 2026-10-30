@@ -9,7 +9,6 @@ stability: stable
 <!-- AF-DIAGRAM:secrets -->
 
 ```text
-text
 ┌──────────────┐
 │ Secret store │
 └──────┬───────┘

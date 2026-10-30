@@ -8,10 +8,12 @@ perturbation_modes: [changement_echelle, changement_contexte]
 anti_recipe_key: changement_echelle+changement_contexte
 transfer_distance: low
 assessment_role: diagnostic_mastery
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0041
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-01-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Attack on Titan :** ta frontière de confiance est un mur. Le problème n'est pas seulement de savoir s'il tient ; il faut savoir **qui peut passer, par où, avec quelle preuve et que se passe-t-il quand le mur est percé**.
 
 # Prototype pollution
@@ -97,8 +99,9 @@ function deepMerge(target, source) {
 
 // L'attaquant envoie ce JSON dans le body d'une requête POST
 const maliciousInput = JSON.parse('{"__proto__": {"isAdmin": true}}');
-// --> maliciousInput.__proto__ est Object.prototype
-// --> deepMerge va assigner isAdmin = true sur Object.prototype
+// `__proto__` est ici une propriété propre dont la valeur vaut `{ isAdmin: true }`.
+// Dans le merge vulnérable, `target["__proto__"]` peut résoudre vers Object.prototype,
+// puis la récursion y assigne `isAdmin` : c'est cette mutation qui pollue le prototype.
 
 const config = {};
 deepMerge(config, maliciousInput); // POLLUTION : Object.prototype.isAdmin = true
@@ -140,65 +143,109 @@ Impact possible selon le contexte :
 
 ## 3) LES FIXES
 
-### Fix 1 : valider les clés avant de les utiliser
+### Fix 1 : refuser les clés dangereuses à chaque niveau
+
+Le correctif doit intervenir **avant toute fusion** et à chaque niveau récursif. Une liste noire aide à protéger un merge générique, mais une liste d'autorisation issue d'un schéma métier reste préférable.
 
 ```js
-function deepMerge(target, source) {
-  for (const key of Object.keys(source)) {
-    // bloquer les clés dangereuses avant de les traiter
-    if (key === "__proto__" || key === "constructor" || key === "prototype") {
-      continue; // ignorer silencieusement ces clés
+const forbiddenKeys = new Set(["__proto__", "prototype", "constructor"]);
+const isRecord = (value) => value !== null && typeof value === "object" &&
+  (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
+
+// Valider tout l'arbre avant de modifier la cible : aucune fusion partielle en cas de clé interdite.
+function assertSafeJson(value, path = "$") {
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => assertSafeJson(item, `${path}[${index}]`));
+    return;
+  }
+  if (isRecord(value)) {
+    for (const key of Object.keys(value)) {
+      if (forbiddenKeys.has(key)) throw new TypeError(`clé interdite à ${path}.${key}`);
+      assertSafeJson(value[key], `${path}.${key}`);
     }
-    if (typeof source[key] === "object" && source[key] !== null) {
-      if (!target[key]) target[key] = {};
-      deepMerge(target[key], source[key]);
+    return;
+  }
+  if (value === null || ["string", "number", "boolean"].includes(typeof value)) return;
+  throw new TypeError(`valeur JSON inattendue à ${path}`);
+}
+
+function cloneSafeJson(value) {
+  if (Array.isArray(value)) return value.map(cloneSafeJson);
+  if (isRecord(value)) {
+    const copy = Object.create(null);
+    for (const key of Object.keys(value)) {
+      Object.defineProperty(copy, key, {
+        value: cloneSafeJson(value[key]), enumerable: true, configurable: true, writable: true,
+      });
+    }
+    return copy;
+  }
+  return value;
+}
+
+function safeMergeJson(target, source) {
+  // Contrat : source est du JSON déjà parsé ; aucun getter/fonction n'est admis.
+  if (!isRecord(target) || !isRecord(source)) {
+    throw new TypeError("target et source doivent être des objets simples");
+  }
+  assertSafeJson(target);
+  assertSafeJson(source); // se déroule avant toute mutation de target
+  const safeSource = cloneSafeJson(source);
+  for (const key of Object.keys(safeSource)) {
+    const value = safeSource[key];
+    const existing = Object.hasOwn(target, key) && isRecord(target[key]) ? target[key] : null;
+    if (Array.isArray(value)) {
+      Object.defineProperty(target, key, { value, enumerable: true, configurable: true, writable: true });
+    } else if (isRecord(value)) {
+      const child = existing || Object.create(null);
+      Object.defineProperty(target, key, { value: child, enumerable: true, configurable: true, writable: true });
+      safeMergeJson(child, value);
     } else {
-      target[key] = source[key];
+      Object.defineProperty(target, key, { value, enumerable: true, configurable: true, writable: true });
     }
   }
   return target;
 }
+
+const hostile = JSON.parse('{"__proto__":{"canExecuteCode":true}}');
+const config = Object.create(null);
+try {
+  safeMergeJson(config, hostile);
+} catch (error) {
+  // Refus explicite ; la validation préalable empêche l'application d'une partie de l'entrée.
+  console.error(error.message);
+}
+console.assert(Object.prototype.canExecuteCode === undefined);
 ```
 
-### Fix 2 : Object.create(null) pour les objets de config
+Ce code illustre une défense en profondeur, pas une raison de préférer le merge à une validation de schéma. Dans une application, rejeter l'entrée complète (réponse HTTP 400) est souvent plus sûr que d'ignorer silencieusement une partie de la configuration. Pour les données de confiance limitée, ne mélange pas les données avec des objets ou des comportements internes.
+
+### Fix 2 : dictionnaires sans prototype pour les clés arbitraires
 
 ```js
-// Object.create(null) crée un objet sans prototype
-// --> il n'a pas de __proto__, pas de toString, pas d'isAdmin hérité
 const safeConfig = Object.create(null);
 safeConfig.timeout = 5000;
-
-safeConfig.__proto__; // undefined --> impossible de remonter la chaîne
-// --> même si une pollution arrive ailleurs, cet objet n'en hérite pas
+safeConfig.__proto__; // undefined : pas de prototype hérité
 ```
 
-### Fix 3 : Object.freeze sur Object.prototype
+Cela réduit certains risques liés aux dictionnaires, mais ne remplace ni le contrôle du schéma, ni les autorisations, ni une fusion sûre. Un objet sans prototype n'a pas non plus les méthodes héritées habituelles.
+
+### Fix 3 : ne pas compter sur Object.freeze comme réparation
+
+`Object.freeze(Object.prototype)` peut gêner une pollution directe dans certains scénarios, mais c'est un changement global de comportement. Il ne nettoie pas une pollution déjà présente, ne protège pas les objets propres dangereux et peut casser des dépendances. Ne l'utilise pas comme correctif générique d'une entrée non fiable.
+
+### Fix 4 : cloner ou parser n'est pas assainir
 
 ```js
-// Geler Object.prototype : plus aucune modification possible
-Object.freeze(Object.prototype);
-
-// Maintenant, même la fonction deepMerge vulnérable ne peut plus polluer
-const maliciousInput = JSON.parse('{"__proto__": {"isAdmin": true}}');
-const config = {};
-deepMerge(config, maliciousInput); // tente de modifier Object.prototype
-// --> silencieux en mode non-strict, TypeError en strict mode
-// --> dans les deux cas, Object.prototype.isAdmin reste undefined
+const cloned = structuredClone(input);
+const roundTripped = JSON.parse(JSON.stringify(input));
 ```
 
-### Fix 4 : structuredClone et JSON parse/stringify pour les merges simples
+Ces opérations peuvent être utiles pour d'autres raisons, mais **ne constituent pas un filtre de sécurité**. Un JSON tel que `{"__proto__":{"isAdmin":true}}` produit une propriété propre `__proto__` après `JSON.parse`; le clonage et l'aller-retour JSON ne garantissent pas que cette clé soit rejetée. Le danger dépend ensuite de la manière dont les données sont consommées (notamment les merges et écritures dynamiques).
 
-```js
-// Pour cloner un objet profondément sans risque de pollution
-const safeClone = (obj) => structuredClone(obj);
-// structuredClone (disponible depuis Node 17) sérialise et désérialise proprement
-// --> __proto__ n'est pas une propriété propre de l'objet, il n'est pas cloné
+La règle défendable : valider les entrées selon un schéma strict, rejeter les clés interdites dans les structures récursives, éviter les merges génériques avec des données non fiables et tester le chemin consommateur complet.
 
-// Alternativement, pour nettoyer un input externe avant merge
-const sanitize = (input) => JSON.parse(JSON.stringify(input));
-// --> JSON.stringify ignore __proto__ (non-enumerable en tant que propriété propre)
-// --> JSON.parse recrée un objet clean
-```
+Une démonstration exécutable et testée se trouve dans [`examples/safe-merge.mjs`](examples/safe-merge.mjs), avec ses tests de non-régression dans [`examples/safe-merge.test.mjs`](examples/safe-merge.test.mjs). Depuis la racine du dépôt, lance `node --test 03-PILOTAGE/04-SECURITY/examples/safe-merge.test.mjs`. L'exemple rejette aussi les cycles et les structures de profondeur excessive ; il reste un exemple pédagogique de JSON de confiance limitée, pas un remplacement de schéma métier strict ni une garantie de sécurité universelle.
 
 ### Fix 5 : schéma de validation strict sur les inputs
 
@@ -206,17 +253,17 @@ const sanitize = (input) => JSON.parse(JSON.stringify(input));
 import { z } from "zod"; // Zod : bibliothèque de validation et typage runtime
 
 const configSchema = z.object({
-  timeout: z.number().optional(),
-  retries: z.number().optional(),
-  // seules ces propriétés sont autorisées
-});
+  timeout: z.number().int().min(1).max(60_000).optional(),
+  retries: z.number().int().min(0).max(5).optional(),
+}).strict(); // les propriétés inconnues provoquent un refus
 
 app.post("/config", (req, res) => {
   const result = configSchema.safeParse(req.body);
   if (!result.success) {
     return res.status(400).json({ error: "Config invalide" });
   }
-  // result.data ne contient que timeout et retries, jamais __proto__
+  // Configurer explicitement les propriétés autorisées et ignorer les extras selon la politique choisie.
+  // Vérifier le comportement exact de la bibliothèque/version en usage.
   applyConfig(result.data);
 });
 ```
@@ -241,12 +288,14 @@ const checkPollution = () => {
   }
 };
 
-// Utiliser hasOwnProperty pour une vérification sûre
+// Une propriété propre n'est pas une preuve d'autorisation fiable.
 const user = getUser(id);
-if (Object.prototype.hasOwnProperty.call(user, "isAdmin") && user.isAdmin) {
-  // hasOwnProperty.call(user, 'isAdmin') : vérifie uniquement les propriétés propres de user
-  // --> pas les propriétés héritées via la chaîne prototype
-  grantAccess();
+const hasOwnAdminFlag = user != null && Object.prototype.hasOwnProperty.call(user, "isAdmin");
+if (hasOwnAdminFlag) {
+  // Cette lecture exclut seulement une valeur héritée ; elle ne fait pas de ce champ une preuve.
+}
+if (trustedServerPermissions(user).includes("admin:execute")) {
+  grantAccess(); // pseudocode : permissions issues d'un contexte d'authentification vérifié
 }
 ```
 
@@ -258,10 +307,11 @@ if (Object.prototype.hasOwnProperty.call(user, "isAdmin") && user.isAdmin) {
 Le projet Oracle Glitch merge les outputs LLM dans un objet de configuration global avec `deepMerge`. Un utilisateur malveillant a crafté (fabriqué) une réponse LLM contenant `{"__proto__": {"canExecuteCode": true}}`.
 Écrire la version sécurisée de `deepMerge` qui bloque la pollution. Ensuite, écrire un test qui vérifie que `Object.prototype.canExecuteCode` reste `undefined` après le merge.
 Contrainte : ne pas utiliser de bibliothèque externe, uniquement du JS natif.
+Vérifie au minimum les cas suivants : la clé interdite à la racine, `constructor.prototype` imbriqué, clé dangereuse dans un tableau d'objets, clé normale, entrée non objet et source dont les propriétés sont profondément imbriquées. Le test doit vérifier à la fois le refus et l'absence de mutation de `Object.prototype`. Une preuve positive ne suffit pas : ajoute un test qui aurait échoué avec le code vulnérable initial.
 
 **EXO 2 : La détection en prod**
 Écrire une fonction `auditPrototype()` qui vérifie si les propriétés `isAdmin`, `role`, `__secret`, `bypass` ont été injectées dans `Object.prototype`. La fonction doit logger une alerte structurée (JSON avec timestamp et la liste des propriétés polluées) et retourner `true` si une pollution est détectée.
-Contrainte : utiliser `Object.prototype.hasOwnProperty.call` correctement.
+Contrainte : utiliser `Object.prototype.hasOwnProperty.call` correctement, mais ne pas confondre une propriété propre avec une preuve d'autorisation fiable.
 
 **EXO 3 : La fortification du camp**
 Le Walking Dead Protocol utilise cette fonction pour merger les configs de camp (inventaire, sécurité, rations) :
@@ -270,13 +320,13 @@ Le Walking Dead Protocol utilise cette fonction pour merger les configs de camp 
 const mergeConfig = (base, override) => ({ ...base, ...override });
 ```
 
-Mais les configs peuvent être imbriquées sur plusieurs niveaux. Implémenter `safeDeepMerge` qui gère les objets imbriqués sans être vulnérable à la pollution, en combinant `Object.create(null)` pour les objets intermédiaires et la validation des clés.
+Mais les configs peuvent être imbriquées sur plusieurs niveaux. Implémenter `safeDeepMerge` qui gère les objets imbriqués sans être vulnérable à la pollution, en combinant `Object.create(null)` pour les objets intermédiaires et la validation des clés. Ajoute des tests adversariaux sur chaque niveau d'imbrication ; fais échouer l'opération complète si une clé interdite apparaît et vérifie que `Object.prototype` n'a pas changé. Le contrat exécutable de référence est disponible dans [l'exemple testé](examples/safe-merge.mjs). Ajoute des tests adversariaux sur chaque niveau d'imbrication ; fais échouer l'opération complète si une clé interdite apparaît et vérifie que `Object.prototype` n'a pas changé. Le contrat exécutable de référence est disponible dans [l'exemple testé](examples/safe-merge.mjs).
 
 ---
 
 ## RÉSUMÉ
 
-Prototype pollution exploite le fait que tous les objets JS partagent le même `Object.prototype`. Modifier ce prototype modifie tous les objets, y compris les vérifications de sécurité. La fix tient en quatre règles : bloquer les clés `__proto__`/`constructor`/`prototype` dans les merges, utiliser `Object.create(null)` pour les objets de config, geler `Object.prototype` au démarrage, et valider strictement tous les inputs externes. La dernière règle est la plus importante : un input qui n'est jamais mergé de façon récursive sans validation ne peut pas polluer.
+Prototype pollution devient possible quand des données contrôlées par une source non fiable sont interprétées par un chemin de mutation dangereux. La défense repose d'abord sur une validation de schéma stricte, le refus des clés interdites dans les structures récursives, l'absence de merge générique avec des données non fiables et des tests du consommateur final. `Object.create(null)` peut aider pour un dictionnaire de clés arbitraires. Geler `Object.prototype` n'est pas un correctif générique et ne doit pas être utilisé comme substitut à ces contrôles.
 
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 

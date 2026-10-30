@@ -15,7 +15,6 @@ assessment_role: diagnostic_mastery
 <!-- AF-DIAGRAM:recall -->
 
 ```text
-text
 J+1 ──► J+3 ──► J+7 ──► J+14 ──► J+28
  │        │        │         │         │
 free    explain  diagnose   transfer  defend inverse
@@ -51,3 +50,11 @@ Périmètre : API craft, security, IA-native dev, databases, scalability. Plus 2
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « \_recall_25.md : modules `02-CONSTRUCTION/19-API-CRAFT` a `05-MAITRISE/02-SCALABILITY` » à une codebase inconnue et un incident dont les symptômes sont incomplets. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

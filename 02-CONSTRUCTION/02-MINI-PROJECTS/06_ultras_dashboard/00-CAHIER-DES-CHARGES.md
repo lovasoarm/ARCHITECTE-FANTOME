@@ -10,31 +10,20 @@ route_family: core
 
 Temps de lecture ~14 min
 
-## PRÉREQUIS
+## PRÉREQUIS ET ÉTAT INITIAL DU ZIP
 
-```text
-Node.js    : v22.23.3
-npm      : v10+
-TypeScript   : v5+ (installé comme dépendance locale via npm install)
-Variables env : aucune
-Outils externes: aucun
+- Node.js `22.23.4` recommandé ; TypeScript 5+, `ts-node`, Jest et `ts-jest` sont les outils visés.
+- Le ZIP ne contient ni `package.json`, ni `tsconfig.json`, ni configuration Jest, ni source TypeScript ou test exécutable. La phrase « config fournie » ne s'applique donc pas à cette archive : tu dois créer et versionner ces fichiers.
 
-# Installation
-$ npm install
+Commandes disponibles dès réception :
 
-# Compiler et vérifier les types
-$ npx tsc --noImplicitAny --noEmit
-
-# Démarrer le serveur (ts-node pour le dev)
-$ npm start
-
-# Lancer les tests
-$ npm test
+```bash
+node --version
+npm --version
 ```
 
-`ts-jest` est utilisé pour exécuter les tests TypeScript directement sans étape de build séparée. La config `tsconfig.json` est fournie dans le projet. Si `npx tsc --noImplicitAny --noEmit` sort avec 0 erreurs, le typage est propre.
+Après création du manifeste, installation locale des outils et configuration de `tsconfig`/Jest : `npx tsc --noEmit`, `npm test` et `npm start` si le script de démarrage est défini. Ces commandes ne sont pas exécutables au premier déballage.
 
----
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 

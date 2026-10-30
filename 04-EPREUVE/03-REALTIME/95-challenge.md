@@ -36,3 +36,15 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+## Barème autonome : Realtime (20 points)
+
+- **Choix de transport (4 pts)** : SSE, WebSocket et WebRTC sont comparés selon sens, interaction, latence et infrastructure.
+- **Cycle de vie (4 pts)** : connexion, reconnexion, heartbeat, fermeture et expiration gérés explicitement.
+- **Charge (4 pts)** : fan-out, backpressure, limites de connexion et coût mémoire estimés.
+- **Sécurité (4 pts)** : origine, authentification, autorisation par canal et validation de message documentées.
+- **Diagnostic (4 pts)** : logs/métriques et tests de perte réseau permettent d'identifier une panne et de prouver la reprise.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : accepter un client connecté comme autorisé ou ne pas borner les buffers/connexions.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

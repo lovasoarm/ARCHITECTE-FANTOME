@@ -8,10 +8,12 @@ revue: trimestrielle
 companion: ce parcours
 stability: perissable
 acte: comprendre
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0092
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-04-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 [← Sommaire TECH-ILA](../README.md)
@@ -38,7 +40,6 @@ Un retry sain combine décision de retry, délai de backoff et limite d’essais
 <!-- AF-DIAGRAM:sharding -->
 
 ```text
-text
                  key
                   │
           ┌───────┼────────┐
@@ -53,7 +54,6 @@ Le sharding répartit les données selon une clé afin de distribuer stockage et
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -348,7 +348,7 @@ Technologie
 | Node : l'API entière ralentit                         | event loop bloquée                        | [`01-CADRAGE/02-ASYNC/04_event_loop/`](../../../01-CADRAGE/02-ASYNC/04_event_loop/)                                                                                                                                                                                                               | déporter le CPU en worker                                      |
 | Node : le client attend indéfiniment                  | rejet async non attrapé                   | [`01-CADRAGE/04-ERROR-HANDLING/05-async_error_traps.md`](../../../01-CADRAGE/04-ERROR-HANDLING/05-async_error_traps.md)                                                                                                                                                                           | fermer tous les chemins d'erreur                               |
 | Express : mon middleware d'erreur ne s'exécute jamais | promesse rejetée hors chaîne              | [`01-CADRAGE/04-ERROR-HANDLING/04-error_propagation.md`](../../../01-CADRAGE/04-ERROR-HANDLING/04-error_propagation.md)                                                                                                                                                                           | envelopper les handlers async                                  |
-| NestJS : `can't resolve dependencies`                 | graphe d'injection                        | [`02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/02_solid_principles.md`](../../../02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md)                                                                                                                                                     | lire un graphe de modules                                      |
+| NestJS : `can't resolve dependencies`                 | graphe d'injection                        | [`02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md`](../../../02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md)                                                                                                                                                     | lire un graphe de modules                                      |
 | NestJS : données d'un client vues par un autre        | état dans un singleton                    | [`00-SOCLE/04-FUNDAMENTALS/02_scope/04-closure_trap.md`](../../../00-SOCLE/04-FUNDAMENTALS/02_scope/04-closure_trap.md), [`../../../02-CONSTRUCTION/10-DESIGN-PATTERNS/01_creational/03-singleton_pattern.md`](../../../02-CONSTRUCTION/10-DESIGN-PATTERNS/01_creational/03-singleton_pattern.md) | placer l'état au bon endroit                                   |
 | SQL : rapide en dev, lent en prod                     | plan d'exécution / index                  | [`02-CONSTRUCTION/06-DATA-STRUCTURES/06_bst/`](../../../02-CONSTRUCTION/06-DATA-STRUCTURES/06_bst/), [`02-CONSTRUCTION/05-MEMORY-PERFORMANCE/03_complexity/`](../../../02-CONSTRUCTION/05-MEMORY-PERFORMANCE/03_complexity/)                                                                      | lire un `EXPLAIN ANALYZE`                                      |
 | SQL : doublons malgré la vérification                 | lecture-modification-écriture concurrente | [`../../../05-MAITRISE/03-EDGE-CASES/06-race_condition_hunter.md`](../../../05-MAITRISE/03-EDGE-CASES/06-race_condition_hunter.md)                                                                                                                                                                | poser une contrainte d'unicité en base                         |

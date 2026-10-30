@@ -8,10 +8,12 @@ perturbation_modes: [temps_limite, changement_contexte]
 anti_recipe_key: temps_limite+changement_contexte
 transfer_distance: high
 assessment_role: diagnostic_mastery
-review_due: 2028-12-31
-
+freshness_registry_id: PER-0079
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-01-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 # EXO LECTURE : 15-25 minutes (05-MAITRISE/07-TOOLS)
@@ -70,7 +72,6 @@ Si tu veux "juste renommer une variable pour comprendre" : **note-le dans `HYPOT
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

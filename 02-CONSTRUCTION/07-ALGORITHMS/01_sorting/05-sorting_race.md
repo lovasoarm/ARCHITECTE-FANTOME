@@ -10,8 +10,11 @@ perturbation_modes: [regression, changement_echelle]
 anti_recipe_key: regression+changement_echelle
 transfer_distance: low
 assessment_role: instructional_checkpoint
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0018
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-04-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
 
 > **SCÈNE CRAZYDEVS : coupe du monde :** un bon algorithme ne gagne pas parce qu'il connaît un mouvement célèbre ; il gagne parce qu'il réduit le nombre d'actions nécessaires quand le terrain explose.
@@ -248,3 +251,11 @@ Sur des données aléatoires de taille moyenne : Quick sort gagne sur Merge sort
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « Sorting race : bubble vs merge vs quick sur des vrais volumes » à un volume de données dix fois plus grand ou une mémoire dix fois plus petite. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

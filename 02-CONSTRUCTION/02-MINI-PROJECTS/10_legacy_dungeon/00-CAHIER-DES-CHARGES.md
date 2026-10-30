@@ -10,20 +10,26 @@ route_family: core
 
 Temps de lecture ~15 min
 
-## PRÉREQUIS
+## PRÉREQUIS ET ÉTAT INITIAL DU ZIP
 
-```text
-Node.js    : v22.23.3
-npm      : v10+ (pas obligatoire d'installer les deps du repo cloné)
-Variables env : aucune
-Outils externes: git
+- Git local : requis pour cloner la fixture et inspecter les commits.
+- Node.js `22.23.4` recommandé pour lancer le code local.
+- Le ZIP contient un bundle Git local `fixtures/legacy-billing.bundle` avec quatre commits, un `package.json` sans dépendance externe, du code et des données. Aucun accès réseau n'est requis pour le parcours de base.
+- `npm install` n'est pas requis. La fixture n'inclut volontairement pas de tests : l'apprenant doit écrire la caractérisation et la non-régression.
 
-# tu ne construis rien depuis zéro ici : tu clones, tu lis, tu corriges un point précis
+Commandes de départ :
+
+```bash
+git --version
+git clone fixtures/legacy-billing.bundle dungeon/
+cd dungeon
+git log --oneline --decorate -4
+git rev-parse HEAD
+node src/cli.js list
 ```
 
-Pas de `npm install` obligatoire sur le dépôt cloné. Ce projet, c'est lire, pas exécuter en continu. Tu lances `npm test` une fois pour ton bugfix, pas pour faire tourner toute l'app.
+Le dépôt public est une extension terrain facultative ; il ne doit pas être nécessaire pour terminer les livrables de base.
 
----
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
@@ -146,15 +152,28 @@ Documente ton choix final dans 08-POSTMORTEM.md, section "Décisions prises" : n
 
 ## LES 3 ÉTAPES, EN DÉTAIL
 
-### ÉTAPE 0 : CHOISIR ET CLONER (hors chrono)
+### ÉTAPE 0 : INITIALISER LE CODEBASE (hors chrono)
+
+**Deux emplacements à ne pas confondre :** le répertoire pédagogique `10_legacy_dungeon/` contient la consigne et la fixture ; le clone `dungeon/` contient le code legacy réellement exécuté. Les livrables de l'apprenant (`MAP.md`, `BUGFIX.md`, journal et ADR) sont produits dans le répertoire pédagogique ou dans un dépôt d'apprentissage séparé, selon la convention choisie et consignée.
+
+### Parcours autonome sans accès réseau
 
 ```bash
-git clone <url-du-repo-choisi> dungeon/
+git clone fixtures/legacy-billing.bundle dungeon/
 cd dungeon
-find . -name "*.js" -o -name "*.ts" | grep -v node_modules | xargs wc -l | tail -1
+git log --oneline --decorate -4
+git rev-parse HEAD
+git ls-files '*.js' '*.ts' | xargs -r wc -l | tail -n 1
+node src/cli.js list
 ```
 
-Tu mesures avant de juger. Pas d'estimation à l'œil. Cette étape n'est pas chronométrée : prends le temps qu'il faut pour valider les 4 critères avant de te lancer.
+La fixture contient quatre commits et un petit codebase legacy en JavaScript. Elle permet la cartographie, l'analyse d'historique, le bugfix et l'ADR sans service distant. Le SHA de départ doit être consigné dans `MAP.md`.
+
+### Extension terrain avec un dépôt public
+
+Tu peux remplacer la fixture par un dépôt tiers choisi selon les quatre critères ci-dessus. Vérifie sa licence, son commit exact, sa taille et ses prérequis avant de l'utiliser. Cette extension exige un accès réseau, mais n'est pas requise pour terminer le parcours de base.
+
+Tu mesures avant de juger. Pas d'estimation à l'œil. Cette étape n'est pas chronométrée : prends le temps qu'il faut pour valider le codebase avant de te lancer.
 
 ### ÉTAPE 1 : CARTOGRAPHIE (2H CHRONO, NON-NÉGOCIABLE)
 
@@ -225,7 +244,7 @@ Le point de résistance majeur est l'Étape 1. La tentation la plus forte : cont
 ## CAS LIMITES À NE PAS IGNORER
 
 1. **Si tu ne trouves aucun bug clair en 2h de cartographie** : ce n'est pas un échec. Documente-le dans 08-POSTMORTEM.md, puis donne-toi 30 minutes supplémentaires hors chrono spécifiquement pour chercher un candidat de bug, en t'appuyant sur les issues GitHub ouvertes si le repo en a.
-2. **Si le repo s'avère ne pas avoir de tests du tout** : ton ÉTAPE 2 doit alors créer le minimum de tooling nécessaire pour exécuter UN test (un `package.json` avec Jest ajouté si besoin), documenté comme tel dans BUGFIX.md. Ce n'est pas une ligne touchée "en dehors du nécessaire" : c'est un prérequis pour respecter le TDD de l'Étape 2.
+2. **Si le repo s'avère ne pas avoir de tests du tout** : pour la fixture locale, utilise `node:test` (déjà intégré à Node) et ajoute `"test": "node --test"` au `package.json` avec `npm pkg set "scripts.test=node --test"`. Pour un dépôt public, conserve le runner existant si possible ; n'ajoute Jest ou un autre outil que si le test minimal ne peut pas être exécuté autrement. Consigne le choix dans BUGFIX.md.
 3. **Si en cours de cartographie tu réalises que le repo ne coche en fait pas les 4 critères** (trop documenté, trop petit, trop récent) : note-le, change de repo, et documente ce changement dans 08-POSTMORTEM.md section "Décisions tenues ou abandonnées". Ce n'est pas une perte de temps, c'est une compétence réelle : savoir abandonner une mauvaise piste tôt plutôt que de s'entêter.
 
 ## LES RÈGLES QUE TU NE DOIS JAMAIS CASSER
@@ -292,8 +311,9 @@ Un test dans `node learner-verifier.js` (auto-verif ecrite par toi) doit prouver
 
 ## RÔLE DES DOSSIERS (ne skippe pas)
 
-- `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
-- `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
+- Dans le dossier AF `10_legacy_dungeon/`, `MAP.md`, `BUGFIX.md` et les livrables restent à créer par toi. Le code applicatif n'est pas copié à cet emplacement.
+- La baseline exécutable est clonée dans `dungeon/` depuis `fixtures/legacy-billing.bundle` : son `src/` contient le code legacy à cartographier et à corriger. Ne confonds pas ce code fourni avec ton espace de production AF.
+- `tests/` dans le dépôt cloné ne contient volontairement pas de tests de caractérisation. Crée-les avant de modifier `dungeon/src/`, puis suis Rouge → Vert → Refactor. Si aucun test n'est ajouté et exécuté, le bugfix n'est pas démontré.
 - `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
 - `08-POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
 - `02-TDD-JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.

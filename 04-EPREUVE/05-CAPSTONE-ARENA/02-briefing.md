@@ -15,7 +15,6 @@ assessment_role: diagnostic_mastery
 <!-- AF-DIAGRAM:recall -->
 
 ```text
-text
 J+1 ──► J+3 ──► J+7 ──► J+14 ──► J+28
  │        │        │         │         │
 free    explain  diagnose   transfer  defend inverse
@@ -26,7 +25,6 @@ Le rappel distribué réactive la compétence sous des formes différentes au fi
 <!-- AF-DIAGRAM:capstone -->
 
 ```text
-text
 Architecture ─┐
 Security ─────┤
 Cost ─────────┤

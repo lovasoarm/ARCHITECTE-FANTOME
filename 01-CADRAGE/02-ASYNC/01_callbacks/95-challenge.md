@@ -13,22 +13,6 @@ assessment_role: instructional_checkpoint
 
 # ORCHESTRER SANS PERDRE LE FIL
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 Temps de lecture ~9 min
 
 T'as compris ce qu'est un callback. T'as vu le labyrinthe.
@@ -271,7 +255,6 @@ chargerEnQueue(ids, 2, function (err, stats) {
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

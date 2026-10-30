@@ -62,7 +62,6 @@ Dans ce scénario, tu as vérifié que : la recherche est née d'une spécificat
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

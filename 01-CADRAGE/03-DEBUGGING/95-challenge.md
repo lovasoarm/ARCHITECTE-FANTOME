@@ -48,7 +48,6 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

@@ -10,7 +10,6 @@ acte: comprendre
 <!-- AF-DIAGRAM:capstone -->
 
 ```text
-text
 Architecture ─┐
 Security ─────┤
 Cost ─────────┤

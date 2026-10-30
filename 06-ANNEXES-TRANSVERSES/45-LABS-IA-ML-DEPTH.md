@@ -346,4 +346,4 @@ Ils ne demandent pas de devenir chercheur ML. Les sujets avancés (entraînement
  décision d'architecture
 ```
 
-Ces labs renforcent la compréhension pratique du modèle mental. Ils ne changent ni le contenu obligatoire du CORE, ni le budget de 192 h, ni les gates Staff/Principal.
+Ces labs renforcent la compréhension pratique du modèle mental. Ils approfondissent la formation complète au rythme des acquis. Ils ne sont pas des extensions promises à un budget fixe de 192 h ; la route CORE reste un sous-ensemble facultatif.

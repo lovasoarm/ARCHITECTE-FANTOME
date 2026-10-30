@@ -5,10 +5,12 @@ stability: perissable
 last_reviewed: 2026-08
 depends_on_vendor: true
 acte: appliquer
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0101
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-01-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **CrazyDevs : briefing de mission :** ce concept doit survivre au moment où quelqu’un te demande « pourquoi ? » en plein chaos. Garde l’explication technique exacte, puis donne-lui une image qu’on peut raconter demain.
 
 # MODÈLE S7 : PORTAGE.md : exemplaire de référence, anonymisé

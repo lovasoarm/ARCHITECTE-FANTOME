@@ -10,7 +10,6 @@ acte: pilotage
 <!-- AF-DIAGRAM:slo -->
 
 ```text
-text
 SLO
  │
  ├──► SLI mesuré ───► conformité

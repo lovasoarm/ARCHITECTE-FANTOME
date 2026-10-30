@@ -3,10 +3,12 @@ perishability_id: PER-0009
 
 stability: perissable
 acte: restituer
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0009
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : traqueur de jutsu :** Naruto voit l'explosion finale et accuse le dernier fichier touché. Mauvais réflexe. Ton enquête doit remonter le flux, figer les hypothèses et retrouver la première trace qui ne colle plus.
 
 # Page verrouillée

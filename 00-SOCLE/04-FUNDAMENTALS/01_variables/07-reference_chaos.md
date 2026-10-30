@@ -133,7 +133,6 @@ La règle à graver : en JS, les objets et les tableaux ne se copient jamais par
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

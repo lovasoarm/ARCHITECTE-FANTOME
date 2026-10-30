@@ -15,7 +15,6 @@ assessment_role: instructional_checkpoint
 <!-- AF-DIAGRAM:slo -->
 
 ```text
-text
 SLO
  │
  ├──► SLI mesuré ───► conformité
@@ -31,7 +30,6 @@ Le SLO définit la cible, le SLI mesure le service et l’error budget relie fia
 <!-- AF-DIAGRAM:capstone -->
 
 ```text
-text
 Architecture ─┐
 Security ─────┤
 Cost ─────────┤
@@ -61,7 +59,7 @@ Il n'y a pas de « presque ».
 | 1   | ADR principal, dont un ADR de découpage en contextes bornés                                                         | `PREUVES/ADR-PRINCIPAL.md`                                                 | [16-DDD-CONTRATS/01-00-why-ddd-contrats.md](../../02-CONSTRUCTION/16-DDD-CONTRATS/01-00-why-ddd-contrats.md)                                                                                                                                                                                                                                          | oui / non |
 | 2   | Budget cloud chiffré à trois échelles, prix relevés et datés                                                        | `PREUVES/06A-BUDGET-CLOUD.md` + `PREUVES/RELEVE-TARIFAIRE.md`              | [07-CLOUD-FOUNDATIONS/05-releve_tarifaire_reel.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/05-releve_tarifaire_reel.md)                                                                                                                                                                                                                                | oui / non |
 | 3   | SLO écrit par toi, budget d'erreur et RTO mesuré                                                                    | `PREUVES/SLO.md`                                                           | [06-FIABILITE-SLO/02-sli_slo_budget_erreur.md](../../03-PILOTAGE/06-FIABILITE-SLO/02-sli_slo_budget_erreur.md)                                                                                                                                                                                                                                        | oui / non |
-| 4   | Au moins une pièce parmi S4, S5, S6 (arbitrage chiffré, soutenance en quatre traductions, ou intégration IA bornée) | `PREUVES/ARBITRAGE.md`, `PREUVES/SOUTENANCE.md` ou `PREUVES/IA-EN-PROD.md` | [08-PRODUIT-COUT-ROI/02-grille_cout_risque_valeur.md](../../03-PILOTAGE/08-PRODUIT-COUT-ROI/02-grille_cout_risque_valeur.md), [11-LEADERSHIP-MENTORAT/01-00-why-leadership-mentorat.md](../../03-PILOTAGE/11-LEADERSHIP-MENTORAT/01-00-why-leadership-mentorat.md) ou 04-EPREUVE/04-BIG-APP-SNOOP/90_preuve de vérification dans le livrable staff.md | oui / non |
+| 4   | Au moins une pièce parmi S4, S5, S6 (arbitrage chiffré, soutenance en quatre traductions ou preuve de livraison/exploitation) | `PREUVES/ARBITRAGE.md`, `PREUVES/SOUTENANCE.md` ou `PREUVES/LIVRAISON-EXPLOITATION.md` | [08-PRODUIT-COUT-ROI/02-grille_cout_risque_valeur.md](../../03-PILOTAGE/08-PRODUIT-COUT-ROI/02-grille_cout_risque_valeur.md), [11-LEADERSHIP-MENTORAT/01-00-why-leadership-mentorat.md](../../03-PILOTAGE/11-LEADERSHIP-MENTORAT/01-00-why-leadership-mentorat.md) ou 04-EPREUVE/04-BIG-APP-SNOOP/90_preuve de vérification dans le livrable staff.md | oui / non |
 
 Les exemplaires de référence de ces quatre pièces sont dans
 [06-ANNEXES-TRANSVERSES/17-PREUVES-MODELES/README.md](../../06-ANNEXES-TRANSVERSES/17-PREUVES-MODELES/README.md) : ils montrent la forme attendue, ils ne

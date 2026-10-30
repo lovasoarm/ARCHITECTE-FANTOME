@@ -8,10 +8,12 @@ revue: trimestrielle
 companion: ce parcours
 stability: perissable
 acte: comprendre
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0088
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-04-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 [← Sommaire TECH-ILA](../README.md)
@@ -22,26 +24,9 @@ review_due: 2027-12-31
 
 # Niveau 2 : Frontend (section 5)
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 <!-- AF-DIAGRAM:tracing -->
 
 ```text
-text
 Request ─► Span A ─────► Span B ─────► Span C
              │             │              │
           service A     service B      service C

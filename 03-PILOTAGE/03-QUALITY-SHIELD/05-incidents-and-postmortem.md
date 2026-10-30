@@ -9,7 +9,6 @@ stability: stable
 <!-- AF-DIAGRAM:incident -->
 
 ```text
-text
 Signal
   │
   ▼

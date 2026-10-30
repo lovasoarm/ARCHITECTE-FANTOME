@@ -86,7 +86,6 @@ Un snapshot **fige** l'état ; il ne dit pas **pourquoi** l'objet est retenu. La
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

@@ -15,7 +15,7 @@ Lis d’abord le [`SETUP.md`](../../SETUP.md) le plus proche dans l’arborescen
 
 ## 3. Technologie / environnement
 
-**TypeScript** : utiliser Node 22.23.3 et le gestionnaire de dépendances/lockfile fourni par l’activité.
+**TypeScript** : utiliser Node 22.23.4 et le gestionnaire de dépendances/lockfile fourni par l’activité.
 
 `node --version` puis la commande de build/typecheck indiquée dans l’exercice constituent la preuve minimale.
 

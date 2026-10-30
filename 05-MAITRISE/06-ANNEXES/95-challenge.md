@@ -41,3 +41,15 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation B : défendre l'inverse
 
 Ferme la page et défends pendant quelques minutes une stratégie opposée à celle implicitement recommandée ici. Cherche son meilleur cas d'usage, puis montre le cas où elle casse. Reviens ensuite à la stratégie initiale et justifie le choix par des mécanismes, pas par le vocabulaire du cours.
+
+## Barème autonome : Annexes et transfert (20 points)
+
+- **Cartographie (4 pts)** : les annexes pertinentes sont sélectionnées selon une lacune précise, sans lire tout au hasard.
+- **Transfert (4 pts)** : un même mécanisme est comparé dans deux langages/environnements avec invariants et différences.
+- **Terrain (4 pts)** : interview/debug/chaos/portfolio produit une preuve attribuable et datée.
+- **Éthique et publication (4 pts)** : licences, données, santé de travail et divulgation sont traitées correctement.
+- **Révision (4 pts)** : la preuve est révisée à distance et les connaissances périssables sont revalidées avant usage.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : publier des secrets, données personnelles ou résultats d'équipe sans attribution/autorisation.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

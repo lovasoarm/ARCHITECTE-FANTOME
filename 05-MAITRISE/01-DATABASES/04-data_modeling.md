@@ -270,3 +270,11 @@ Modéliser des données, c'est choisir où va vivre chaque fait, et combien de f
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Écris une assertion sur l’invariant de « Le plan avant les murs », puis teste cas normal, concurrence/duplicat, interruption et reprise. Fournis la requête ou la trace et explique ce que le test ne démontre pas.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

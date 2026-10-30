@@ -132,7 +132,6 @@ axe et Lighthouse détectent les violations de balisage automatiquement (alt man
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

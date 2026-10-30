@@ -15,7 +15,6 @@ assessment_role: diagnostic_mastery
 <!-- AF-DIAGRAM:mvp -->
 
 ```text
-text
 Problem
   │
   ▼
@@ -34,7 +33,6 @@ Le MVP choisit la plus petite tranche capable de tester l’hypothèse important
 <!-- AF-DIAGRAM:capstone -->
 
 ```text
-text
 Architecture ─┐
 Security ─────┤
 Cost ─────────┤

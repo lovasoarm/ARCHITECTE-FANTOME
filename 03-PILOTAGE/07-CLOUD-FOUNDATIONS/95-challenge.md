@@ -41,3 +41,12 @@ et sourcé (3) · coût de sortie chiffré (2).
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+
+## Barrière de réussite non compensable
+
+Une erreur critique de sécurité, d'intégrité des données ou de falsification de preuve entraîne une reprise ciblée, même si le total de points atteint le seuil. Une simulation doit être nommée comme simulation ; elle ne vaut pas preuve de production.
+
+## Vérification papier / exécution cloud
+
+Sur papier, le challenge doit fournir un diagramme réseau, une matrice identité/permission, des frontières de données, un chemin de déploiement, un budget estimé avec région/date/source, un modèle de panne et une procédure de restauration. Une architecture qui ne mentionne pas l'identité de service, la sortie réseau, les sauvegardes et le coût de sortie est incomplète. Les prix ne doivent pas être figés sans date et région. La validation cloud réelle exige un environnement contrôlé, un budget plafond et un plan de destruction des ressources ; elle n'est pas déclarée exécutée par le présent audit.

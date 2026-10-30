@@ -16,7 +16,6 @@ assessment_role: instructional_checkpoint
 <!-- AF-DIAGRAM:slo -->
 
 ```text
-text
 SLO
  │
  ├──► SLI mesuré ───► conformité

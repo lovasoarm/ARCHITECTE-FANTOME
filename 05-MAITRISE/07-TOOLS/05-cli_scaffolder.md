@@ -10,10 +10,12 @@ perturbation_modes: [changement_contexte, defaut_cache]
 anti_recipe_key: changement_contexte+defaut_cache
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-review_due: 2028-12-31
-
+freshness_registry_id: PER-0078
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-01-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
@@ -218,3 +220,11 @@ Un scaffolder élimine le risque d'erreur humaine sur une structure de projet r�
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+## Transfert production : générateur idempotent et sûr
+
+**Exercice.** Un scaffold CLI crée un service standard. Ajoute `--dry-run`, refus d'écraser un fichier modifié, validation des noms, chemins confinés au dossier cible et sortie non nulle en cas d'erreur. Relance la commande deux fois.
+
+**Vérification.** Le second run ne détruit pas le premier résultat ; un chemin `../../` est rejeté ; dry-run ne modifie aucun octet ; chaque fichier généré a un test snapshot ou une comparaison de contenu. Documente le contrat de mise à jour d'un template existant.
+
+**Transfert.** Les mêmes protections s'appliquent aux scripts de migration et de déploiement : preview, périmètre borné, idempotence et rollback explicite.

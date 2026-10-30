@@ -72,3 +72,11 @@ Archiver le `08-POSTMORTEM.md` dans `05-MAITRISE/06-ANNEXES/` pour tracer ta pro
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+<!-- AF-P0-2026-10-30: missing_example -->
+
+### Exemple travaillé : cas métier
+
+Les événements peuvent arriver en retard, en double, hors ordre, avec une date ambiguë, une valeur absente ou une précision inattendue. Construis un cas minimal qui illustre « Drill : spec floue + spec qui dérive (combo) » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

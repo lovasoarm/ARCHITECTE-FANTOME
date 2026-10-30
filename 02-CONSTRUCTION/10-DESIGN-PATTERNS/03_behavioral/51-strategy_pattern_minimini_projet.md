@@ -60,3 +60,7 @@ Une vraie fonctionnalité utilisateur, extensible sans toucher l'UI. Commit.
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+## Transfert après l'exercice
+
+Ajoute une quatrième politique de calcul des frais, sélectionnée depuis une configuration validée. Fais tourner les mêmes tests de contrat sur les quatre stratégies. Si l'ajout impose de modifier chaque consommateur, la frontière de stratégie n'est pas au bon endroit ; si le choix n'évolue jamais, compare au coût d'une simple fonction.

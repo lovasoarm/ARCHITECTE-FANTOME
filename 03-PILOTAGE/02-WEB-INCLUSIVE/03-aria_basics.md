@@ -138,3 +138,11 @@ ARIA sert quand le HTML natif ne suffit pas : roles pour dire ce qu'est l'élém
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Fournis une preuve observable : critère mesurable avant exécution, résultat attendu, résultat obtenu et seuil d’échec. Teste aussi une condition dégradée. Une affirmation sans mesure ne valide pas « ARIA : parler la langue des lecteurs d'écran ».
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

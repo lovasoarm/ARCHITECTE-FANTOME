@@ -28,7 +28,6 @@ La preuve finale est produite dans le dépôt apprenant et recroisée avec
 <!-- AF-DIAGRAM:secrets -->
 
 ```text
-text
 ┌──────────────┐
 │ Secret store │
 └──────┬───────┘

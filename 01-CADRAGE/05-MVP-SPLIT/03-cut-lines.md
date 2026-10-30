@@ -180,7 +180,6 @@ deux endroits différents, avec des résultats incompatibles.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

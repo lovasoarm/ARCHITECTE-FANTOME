@@ -46,22 +46,6 @@ Et selon comment tu écris ta boucle, tu peux diviser ton temps d'exécution par
 
 ## 1) LA BASE : CE QUE `async/await` EST VRAIMENT
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 `async` transforme une fonction en une fonction qui retourne toujours une Promise.
 `await` suspend l'exécution de la fonction courante jusqu'à ce que la Promise soit résolue.
 

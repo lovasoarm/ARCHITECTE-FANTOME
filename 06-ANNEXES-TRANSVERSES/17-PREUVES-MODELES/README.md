@@ -20,8 +20,10 @@ qui se juge, pas leur beauté séparée.
 | S3 : sécurité et fiabilité | [04-S3-SLO.md](04-S3-SLO.md) | `PREUVES/SLO.md` |
 | S4 : produit et business | [05-S4-DECISION-ARBITRAGE.md](05-S4-DECISION-ARBITRAGE.md) | `PREUVES/DECISION-ARBITRAGE.md` |
 | S5 : leadership et pédagogie | [06-S5-NOTE-DIRECTION-ET-REVUE.md](06-S5-NOTE-DIRECTION-ET-REVUE.md) | `PREUVES/REVUE-DE-CODE.md` et `PREUVES/NOTE-DIRECTION.md` |
-| S6 : IA et automatisation | [07-S6-LIVRAISON-EXPLOITATION.md](07-S6-LIVRAISON-EXPLOITATION.md) | `PREUVES/IA-EN-PROD.md` |
+| S6 : livraison & exploitation | [07-S6-LIVRAISON-EXPLOITATION.md](07-S6-LIVRAISON-EXPLOITATION.md) | `PREUVES/LIVRAISON-EXPLOITATION.md` |
 | S7 : pensée transférable | [99-PORTAGE-MENTAL.md](99-PORTAGE-MENTAL.md) | `PREUVES/PORTAGE.md` |
+
+La preuve d’évaluation IA est une exigence transversale G8, distincte de S6 : elle peut être produite avec le [laboratoire IA de référence](../19-PRODUIT-IA-REFERENCE/README.md) dans `PREUVES/EVALUATION-IA.md`. Une pièce `PREUVES/IA-EN-PROD.md` s’ajoute seulement si le projet embarque réellement une brique IA en mode production-like.
 
 Le gabarit vivant de S1 est maintenu dans le module qui l'enseigne :
 [03-PILOTAGE/07-CLOUD-FOUNDATIONS/06A-BUDGET-CLOUD.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/06A-BUDGET-CLOUD.md).
@@ -41,7 +43,7 @@ sont écrites plutôt que masquées : le SLO à 99,5% qui interdit l'option d'ex
 (S3 contre S4), le multi-zone non financé (S1 contre S3), et la bascule de modèle IA suspendue
 pour une régression de sécurité (S6 contre S4). Si tes six pièces à toi ne se contredisent nulle
 part, l'une d'elles n'a pas été chiffrée sérieusement : c'est exactement ce que la section 8 du
-[dossier unique](../../05-MAITRISE/08-MAITRISE-STAFF-ENGINEER/02-dossier_unique.md) va te demander.
+[dossier unique](../../05-MAITRISE/08-MAITRISE-STAFF-ENGINEER/02-dossier_unique.md) va te demander. La tension autour du coût ou de la disponibilité d'une brique IA est pertinente seulement si ton système en possède une ; dans les autres cas, choisis une contradiction réelle entre S1–S6. La tension autour du coût ou de la disponibilité d'une brique IA est pertinente seulement si ton système en possède une ; dans les autres cas, choisis une contradiction réelle entre S1–S6.
 
 <!-- CONTENU-DOSSIER:debut -->
 
@@ -50,7 +52,7 @@ part, l'une d'elles n'a pas été chiffrée sérieusement : c'est exactement ce 
 - [MODÈLE S3 : SLO.md : exemplaire de référence, anonymisé](04-S3-SLO.md)
 - [MODÈLE S4 : DECISION-ARBITRAGE.md : exemplaire de référence, anonymisé](05-S4-DECISION-ARBITRAGE.md)
 - [MODÈLE S5 : la revue de code et la note direction : exemplaires de référence](06-S5-NOTE-DIRECTION-ET-REVUE.md)
-- [MODÈLE S6 : IA-EN-PROD.md : exemplaire de référence, anonymisé](07-S6-LIVRAISON-EXPLOITATION.md)
+- [MODÈLE S6 : LIVRAISON-EXPLOITATION.md : exemplaire de référence](07-S6-LIVRAISON-EXPLOITATION.md)
 - [MODÈLE S7 : PORTAGE.md : exemplaire de référence, anonymisé](99-PORTAGE-MENTAL.md)
 
 <!-- CONTENU-DOSSIER:fin -->

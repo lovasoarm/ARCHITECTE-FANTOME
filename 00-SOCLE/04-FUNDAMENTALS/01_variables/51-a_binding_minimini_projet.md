@@ -59,7 +59,6 @@ Tu viens d'éliminer la source n°1 des bugs « mon state ne se met pas à jour 
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

@@ -4,10 +4,12 @@ perishability_id: PER-0094
 stability: perissable
 acte: annexe
 noyau: oui
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0094
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 # Contradicteur : tenir une décision sous objection
@@ -58,7 +60,6 @@ par mois, ou si le p95 dépasse 400 ms à cause d'un module non isolable.
 <!-- AF-DIAGRAM:slo -->
 
 ```text
-text
 SLO
  │
  ├──► SLI mesuré ───► conformité
@@ -99,7 +100,7 @@ métier accepte 30 s de retard : ce qu'un index ne fait pas. Révision : p95 lec
 ### 5. Ta brique IA tombe : ton produit vaut encore quoi ?
 
 Décision : le parcours critique (réserver un créneau) survit sans IA. Hypothèse :
-l'IA suggère, elle n'écrit pas. Preuve : `IA-EN-PROD.md` §0 et §2, statut
+l'IA suggère, elle n'écrit pas. Preuve : `EVALUATION-IA.md` §3–5, statut
 `degraded_ai_quota`. Chiffre : 100 % des réservations restent possibles via le
 sélecteur ; SLO produit 99,9 % tenu ; SLO IA 99,5 % consommé. Valeur restante :
 le métier entier moins le confort de formulation libre. Révision : si plus de

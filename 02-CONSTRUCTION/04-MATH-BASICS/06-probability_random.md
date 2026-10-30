@@ -346,3 +346,13 @@ Box-Muller transform si t'as besoin d'une distribution normale depuis `Math.rand
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
+
+## Transfert vérifiable : aléatoire de production et simulation
+
+La probabilité décrit une distribution, pas une promesse sur un petit échantillon. Une probabilité de 1 % ne garantit pas exactement dix succès sur mille essais. Distingue trois besoins : tirage reproductible pour les tests (graine déterministe), simulation statistique (PRNG documenté) et secret imprévisible (CSPRNG fourni par une API cryptographique). `Math.random()` convient à une simulation ordinaire, pas à un jeton, une session ou un secret.
+
+**Exercice terrain.** Construis une fonction `chooseWeighted(options, rng)` injectable. Teste un RNG déterministe qui retourne une séquence connue, puis simule 20 000 choix avec une distribution 1:3. La fonction doit refuser poids négatifs, poids non finis et somme nulle.
+
+**Vérification.** Le test déterministe doit être exact ; le test statistique doit utiliser une tolérance annoncée et ne doit pas échouer à cause d'une graine différente ; le test de validation doit couvrir `NaN`, `Infinity` et somme nulle. N'utilise jamais une fréquence observée comme preuve de sécurité cryptographique.
+
+**Lien aval.** Les graines et distributions servent aux algorithmes et aux tests de charge ; les jetons et secrets relèvent des modules auth/sécurité, pas d'un PRNG de simulation.

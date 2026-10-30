@@ -12,22 +12,6 @@ assessment_role: instructional_checkpoint
 
 # MOCK INTERVIEW : DEBUG ASYNC EN DIRECT (solo)
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 Temps de lecture ~3 min
 
 Objectif : simuler seul un entretien technique où on te lâche un bug async et où on te regarde le résoudre à voix haute. En vrai, le recruteur juge ta MÉTHODE, pas la vitesse. Ce drill t'entraîne à penser fort, sous pression, sans IA.
@@ -91,7 +75,6 @@ Regarde ton enregistrement. Note : où tu as paniqué, où tu as menti (dit "je 
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

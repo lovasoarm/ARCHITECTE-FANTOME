@@ -170,3 +170,11 @@ Reprends l'exemple `Oiseau`/`Pingouin` de la section 5, mais sur le thème Narut
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « Composition vs inheritance : la vraie décision senior » à un troisième fournisseur dont l’API ne ressemble pas aux deux premiers. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

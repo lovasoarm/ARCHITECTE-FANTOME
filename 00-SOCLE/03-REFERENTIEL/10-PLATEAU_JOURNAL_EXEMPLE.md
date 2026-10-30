@@ -60,7 +60,6 @@ Rappel des seuils (voir `01-START_HERE.md`) :
 <!-- AF-DIAGRAM:recall -->
 
 ```text
-text
 J+1 ──► J+3 ──► J+7 ──► J+14 ──► J+28
  │        │        │         │         │
 free    explain  diagnose   transfer  defend inverse
@@ -84,3 +83,11 @@ Le rappel distribué réactive la compétence sous des formes différentes au fi
 2. Tu comptes **les jours consecutifs**. Pas la douleur, les jours.
 3. Tu declenches le playbook a J+7. Pas a J+3 (trop tot), pas a J+21
    (trop tard).
+
+<!-- AF-P0-2026-10-30: missing_practice -->
+
+### Pratique autonome : production attendue
+
+À partir de « 10-PLATEAU_JOURNAL_EXEMPLE.md : exemple rempli (anonymise) », produis une variante indépendante du cas suivant : Une documentation d’API change : sépare les concepts durables (HTTP, contrats, invariants) des détails périssables (version, commande, option fournisseur). Travaille sans recopier la solution de la leçon ; conserve l’entrée, les hypothèses, la sortie attendue et un artefact vérifiable (code, requête, schéma, trace ou décision).
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

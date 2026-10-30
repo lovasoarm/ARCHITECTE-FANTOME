@@ -8,10 +8,12 @@ perturbation_modes: [defaut_cache, solution_concurrente]
 anti_recipe_key: defaut_cache+solution_concurrente
 transfer_distance: low
 assessment_role: diagnostic_mastery
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0024
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Garo :** la règle est simple jusqu'au jour où un état caché traverse une frontière. À partir de là, le “petit raccourci” devient le Horror qui te poursuit pendant trois heures.
 
 # EXO LECTURE : 15-25 minutes (TypeScript)

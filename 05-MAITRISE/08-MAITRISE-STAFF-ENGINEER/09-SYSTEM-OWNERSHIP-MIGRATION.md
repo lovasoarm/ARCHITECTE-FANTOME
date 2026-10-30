@@ -79,3 +79,11 @@ Elle ne contient pas de rétrospective magique où l'auteur avait « déjà tout
 
 Ce module alimente G2, G3, G5, G6 et G9 et le niveau terrain `T3/T4` lorsqu'une expérience réelle
 est disponible.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « 09 : System Ownership & Migration : penser sur trois ans, pas sur trois heures » à une décision qui touche plusieurs équipes pendant plusieurs trimestres. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

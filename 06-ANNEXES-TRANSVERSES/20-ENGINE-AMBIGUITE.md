@@ -58,7 +58,6 @@ Injecter une seule contrainte : budget, délai, sécurité, trafic, équipe réd
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

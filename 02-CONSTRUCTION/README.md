@@ -5,6 +5,8 @@ acte: restituer
 
 # 02-CONSTRUCTION
 
+> **Route de maîtrise :** le parcours canonique est [58 : Route apprenant cohérente](../06-ANNEXES-TRANSVERSES/58-ROUTE-APPRENANT-COHERENTE.md). Les tests commencent pendant la conception et se poursuivent à chaque changement : l'ordre des dossiers n'est pas une consigne d'attendre la fin du développement pour tester.
+
 Porte d'entree du dossier. Le contenu detaille vit dans les fichiers listes ci-dessous.
 
 ## Ce bloc porte deux paliers, pas un

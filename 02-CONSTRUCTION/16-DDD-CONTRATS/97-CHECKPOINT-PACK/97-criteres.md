@@ -26,3 +26,11 @@ Chaque ligne se coche avec un chemin de fichier de **ton** dépôt en face. Sans
 | 10  | Défense orale enregistrée                                   | lien ou fichier local daté                              |
 
 Passage : 9 critères sur 10, dont obligatoirement 3, 4, 6 et 8.
+
+<!-- AF-P0-2026-10-30: missing_example -->
+
+### Exemple travaillé : cas métier
+
+Les équipes collecte, qualité de l’eau et maintenance ont des règles et des rythmes différents, mais échangent des événements contractuels. Construis un cas minimal qui illustre « Critères de passage : module 16 » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

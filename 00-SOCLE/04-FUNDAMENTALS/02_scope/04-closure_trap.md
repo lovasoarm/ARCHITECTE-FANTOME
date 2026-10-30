@@ -111,13 +111,15 @@ for (let i = 1; i <= 3; i++) {
 }
 ```
 
-`let` crée une nouvelle variable `i` à chaque itération. Chaque callback capture sa propre copie.
+Dans une boucle `for`, `let` crée une liaison lexicale distincte pour chaque itération. Chaque callback conserve l'accès à la liaison de son itération ; **ce n'est pas une copie générale des objets ou de leurs valeurs**.
 
 ```text
-BLOCK ENV #1 --> i = 1 <-- callback #1 capture ça
-BLOCK ENV #2 --> i = 2 <-- callback #2 capture ça
-BLOCK ENV #3 --> i = 3 <-- callback #3 capture ça
+ENVIRONNEMENT DE L'ITÉRATION 1 : liaison i = 1 <-- callback #1
+ENVIRONNEMENT DE L'ITÉRATION 2 : liaison i = 2 <-- callback #2
+ENVIRONNEMENT DE L'ITÉRATION 3 : liaison i = 3 <-- callback #3
 ```
+
+Contre-exemple important : une liaison distincte peut tout de même référencer le même objet mutable si cet objet est partagé. Modifier ses propriétés reste observable par les callbacks qui le référencent.
 
 **Solution 2 : IIFE pour capturer la valeur :**
 
@@ -131,7 +133,7 @@ for (var i = 1; i <= 3; i++) {
 }
 ```
 
-L'IIFE crée un nouveau scope à chaque itération et capture la valeur courante de `i` dans `j`. Vieux pattern, mais utile à comprendre.
+L'IIFE crée un environnement d'appel par itération et lie le paramètre `j` à la valeur courante de `i`. Cela isole cette liaison primitive ; si `j` recevait une référence vers un objet, l'objet ne serait pas cloné automatiquement. Vieux pattern, mais utile à comprendre.
 
 ---
 
@@ -219,7 +221,7 @@ Une closure est une fonction qui garde accès aux variables de son environnement
 
 Le piège classique avec `var` dans les boucles async : toutes les closures partagent la même variable `i` qui vaut sa valeur finale au moment de l'exécution. Avec `let`, chaque itération crée sa propre variable.
 
-Deux appels à la même factory = deux closures séparées = deux environnements mémoire distincts. Jamais partagés.
+Deux appels à une factory créent des environnements d'appel distincts pour leurs variables locales. En revanche, plusieurs closures créées pendant **un même appel** peuvent partager le même environnement lexical ; et deux environnements peuvent toujours référencer le même objet mutable si le programme leur transmet cet objet.
 
 ## Schéma : chaîne de portée en action
 

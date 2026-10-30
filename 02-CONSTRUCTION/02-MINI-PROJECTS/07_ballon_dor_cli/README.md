@@ -13,9 +13,7 @@ acte: comprendre
 
 Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADRs réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables.
 
-
 > **Route CORE 16 semaines :** ce projet conserve son contenu complet. Pour le sprint intensif, consulte [la carte CORE](../../../06-ANNEXES-TRANSVERSES/25-CORE-MINI-PROJECT-MAP.md) pour le slice recommandé. Le passage CORE ajoute une perturbation, un transfert et un rappel à froid ; voir [Engine d’ambiguïté](../../../06-ANNEXES-TRANSVERSES/20-ENGINE-AMBIGUITE.md).
-
 
 -> ~6 min
 
@@ -46,23 +44,21 @@ $ node src/cli.js export --format csv
 
 ---
 
-## INSTALLATION
+## PRÉREQUIS ET ÉTAT INITIAL
 
-```text
-Node.js    : v22.23.3
-npm      : v10+
-Docker     : v24+ (optionnel, pour la containerisation)
-Variables env : aucune
-Outils externes: aucun
-```
+- Node.js : `v22.23.4` (version de référence du dépôt AF) ; npm est fourni avec Node.js.
+- État de l’archive : Le moteur métier et la CLI restent à écrire : aucun `package.json`, source ou test exécutable n’est livré. Docker est une étape optionnelle de fin de projet ; aucun Dockerfile n’est fourni au départ.
+
+### Commandes disponibles dès réception
 
 ```bash
-npm install
-node src/cli.js rank      # classement actuel
-npm test            # tests complets
-docker build -t ballon-dor .  # après que les tests passent
-docker run ballon-dor rank
+node --version
+npm --version
 ```
+
+### Commandes après réalisation du scaffold
+
+Après création de `src/cli.js` et des tests : lancer le point d’entrée et la suite configurée. Ne lance `docker build` qu’après création et validation du Dockerfile ; Docker n’est pas un prérequis pour apprendre le modèle de classement.
 
 ---
 
@@ -124,12 +120,12 @@ cli.js --> parseArgs()
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module       | Où ça se voit                          |
-| ------------------- | --------------------------------------------------------------- |
-| `02-CONSTRUCTION/13-RUNTIME-ENV`  | `process.argv`, `fs`, Worker Threads pour la simulation     |
-| `02-CONSTRUCTION/11-REFACTORING`  | v1 spaghetti → v2 modulaire : SRP sur chaque commande   |
-| `01-CADRAGE/04-ERROR-HANDLING` | `InvalidVoteError`, `PlayerNotFoundError`, `QuotaExceededError` |
-| `05-MAITRISE/06-ANNEXES`    | Git workflow, Docker, CI/CD sur chaque push           |
+| Module                           | Où ça se voit                                                   |
+| -------------------------------- | --------------------------------------------------------------- |
+| `02-CONSTRUCTION/13-RUNTIME-ENV` | `process.argv`, `fs`, Worker Threads pour la simulation         |
+| `02-CONSTRUCTION/11-REFACTORING` | v1 spaghetti → v2 modulaire : SRP sur chaque commande           |
+| `01-CADRAGE/04-ERROR-HANDLING`   | `InvalidVoteError`, `PlayerNotFoundError`, `QuotaExceededError` |
+| `05-MAITRISE/06-ANNEXES`         | Git workflow, Docker, CI/CD sur chaque push                     |
 
 ---
 
@@ -219,3 +215,31 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## Comprendre les tests avant de commencer : état exact du ZIP
+
+Référence : [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les exemples de sortie décrivent la cible, pas un logiciel livré, sauf mention contraire.
+
+- Code fourni : aucun programme CLI et aucun test exécutable ; seuls les README des emplacements sont présents.
+- Tests de référence verts : aucun. Tests volontairement rouges : aucun.
+- Tests à écrire : validation des points, identité/idempotence du vote, règles d'égalité, classement déterministe, import/export CSV, erreurs et charge.
+- Validation finale : `node --test tests/*.test.js` après création des tests. `npm test` nécessite un manifeste et le script correspondant.
+- Ordre : modèle de vote → validation → agrégateur → classement → CLI → import/export. Preuve : classement reproductible et règles de correction d'un vote explicites.
+
+## Règles communes de progression et de preuve
+
+### Contrôle commun de la progression
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
+- **Tests verts de référence :** aucun.
+- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
+- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
+- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
+
+**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.

@@ -54,7 +54,6 @@ Un contrat mal lu est plus dangereux qu'un bug en prod. Le bug tu le fixes ; le 
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

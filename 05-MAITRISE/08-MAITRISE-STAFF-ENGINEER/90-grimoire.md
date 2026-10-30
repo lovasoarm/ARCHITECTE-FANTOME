@@ -21,7 +21,7 @@ analogies par ligne, jamais plus ; la cinquième colonne dit où l'image ment.
 | Décision refusée    | Option réelle écartée, avec le chiffre du refus et la condition de retour | `ADR refuse région 2 : 696 €/an`   | un procès-verbal / un non avec porte de sortie                                         | Un refus sans seuil se rejoue malhonnêtement              |
 | Transfert           | Invariant porté hors langage et hors fournisseur, écart mesuré            | `PORTAGE.md delta €/mois`          | une graine transplantée / une recette dans une autre cuisine                           | Copier la syntaxe n'est pas porter un contrat             |
 | Contradiction S5    | Vingt objections, dix lignes, chiffre si coût ou dispo                    | `09-CONTRADICTEUR.md`              | une soutenance / un contre-interrogatoire écrit                                        | Une réponse « ça dépend » sans mesure est irrecevable     |
-| Brique IA non CREUX | Coût calculé, plafond, dégradé, SLO séparé, 20 cas                        | `IA-EN-PROD.md`                    | un confort coupé / un phare qui s'éteint : le navire doit encore gouverner             | Un agent qui 500 sans fallback échoue le palier           |
+| Évaluation IA non CREUX | Cas versionnés, résultats, limites, coût/proxy, refus/fallback                 | `EVALUATION-IA.md`                 | un confort coupé / un phare qui s'éteint : le navire doit encore gouverner             | Une sortie plausible mais non vérifiée n'est pas une preuve |
 
 Deux analogies suffisent pour un junior. Aucune ne remplace la trace, le coût ou
 le SLO. Le dossier revient toujours à un fichier de `PREUVES/`.

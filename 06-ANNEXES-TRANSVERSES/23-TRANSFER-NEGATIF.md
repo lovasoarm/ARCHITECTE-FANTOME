@@ -10,7 +10,6 @@ route_family: transfer
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

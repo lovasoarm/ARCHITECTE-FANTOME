@@ -36,3 +36,15 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+
+## Barème autonome : Tools (20 points)
+
+- **Journalisation (4 pts)** : logs structurés contiennent niveau, horodatage, corrélation et contexte utile sans secret.
+- **Benchmark (4 pts)** : mesure répétable, warmup, répétitions et variabilité documentés.
+- **Debugging (4 pts)** : hypothèse et breakpoint/trace choisis pour réduire l'incertitude.
+- **CLI (4 pts)** : arguments, codes de sortie, chemins et erreurs ont un contrat testable.
+- **Maintenance (4 pts)** : outil documenté, testé, portable et plus simple que le travail manuel qu'il remplace.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : journaliser des tokens/données sensibles ou présenter un benchmark unique comme preuve.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

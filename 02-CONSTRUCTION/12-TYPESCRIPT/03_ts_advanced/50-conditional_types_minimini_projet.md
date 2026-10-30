@@ -62,7 +62,6 @@ Impossible d'utiliser la mauvaise variante par erreur. Commit si tu gardes, docu
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

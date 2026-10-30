@@ -95,3 +95,11 @@ Règle mnémonique :
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « Frontieres entre 12 (Design Patterns), 13 (Refactoring), 16 (Architecture) et 18 (OOP JS) », puis conserve le résultat et explique tout écart.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

@@ -45,3 +45,11 @@ Refacto par plaisir esthétique. Non. **Un smell + un test qui protège + un ref
 ## CHECKPOINT DE PROFONDEUR : variation B : défendre l'inverse
 
 Ferme la page et défends pendant quelques minutes une stratégie opposée à celle implicitement recommandée ici. Cherche son meilleur cas d'usage, puis montre le cas où elle casse. Reviens ensuite à la stratégie initiale et justifie le choix par des mécanismes, pas par le vocabulaire du cours.
+
+<!-- AF-P0-2026-10-30: missing_example -->
+
+### Exemple travaillé : cas métier
+
+Un moteur de règles mélange calcul, accès réseau, journalisation et règles métier ; une nouvelle règle provoque des régressions ailleurs. Construis un cas minimal qui illustre « 00 : Smell detection » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

@@ -60,7 +60,6 @@ l'IA optimise la vraisemblance, pas la vérité de ton schema.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

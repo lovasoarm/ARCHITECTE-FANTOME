@@ -181,7 +181,6 @@ Git c'est un graphe de snapshots, pas une ligne de commandes à mémoriser bête
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

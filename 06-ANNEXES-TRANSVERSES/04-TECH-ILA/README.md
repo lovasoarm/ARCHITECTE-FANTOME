@@ -36,7 +36,6 @@ L’Event Loop reprend le travail lorsque la pile est libérée, en drainant d�
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

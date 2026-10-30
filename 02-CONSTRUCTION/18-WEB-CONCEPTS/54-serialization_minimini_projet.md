@@ -62,7 +62,6 @@ Tu sais identifier quelles valeurs franchissent la frontière serveur → client
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

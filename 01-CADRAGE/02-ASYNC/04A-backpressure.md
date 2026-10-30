@@ -14,22 +14,6 @@ assessment_role: instructional_checkpoint
 
 # 05b : Backpressure : quand le producteur va plus vite que le consommateur
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 <!-- AF-DIAGRAM:backpressure -->
 
 ```text

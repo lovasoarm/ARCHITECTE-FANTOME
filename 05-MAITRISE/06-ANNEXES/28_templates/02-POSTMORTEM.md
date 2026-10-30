@@ -10,7 +10,6 @@ acte: comprendre
 <!-- AF-DIAGRAM:incident -->
 
 ```text
-text
 Signal
   │
   ▼
@@ -58,3 +57,11 @@ Vraiment. Nomme.
 Toute donnée réelle (users, clients, endpoints internes) doit être anonymisée. Un post-mortem circule.
 
 Check de publication : voir `PUBLICATION_CHECKLIST.md` dans ce même dossier.
+
+<!-- AF-P0-2026-10-30: missing_practice -->
+
+### Pratique autonome : production attendue
+
+À partir de « POSTMORTEM : {titre} », produis une variante indépendante du cas suivant : Tu rejoins une organisation qui possède plusieurs services, une documentation incomplète et un incident ouvert ; il faut comprendre avant de proposer. Travaille sans recopier la solution de la leçon ; conserve l’entrée, les hypothèses, la sortie attendue et un artefact vérifiable (code, requête, schéma, trace ou décision).
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

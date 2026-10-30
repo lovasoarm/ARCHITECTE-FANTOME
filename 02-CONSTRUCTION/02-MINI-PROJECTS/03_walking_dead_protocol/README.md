@@ -11,13 +11,11 @@ acte: comprendre
 
 Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADRs réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables.
 
-
 > **Route CORE 16 semaines :** ce projet conserve son contenu complet. Pour le sprint intensif, consulte [la carte CORE](../../../06-ANNEXES-TRANSVERSES/25-CORE-MINI-PROJECT-MAP.md) pour le slice recommandé. Le passage CORE ajoute une perturbation, un transfert et un rappel à froid ; voir [Engine d’ambiguïté](../../../06-ANNEXES-TRANSVERSES/20-ENGINE-AMBIGUITE.md).
-
 
 -> ~6 min
 
-Le groupe de Rick Grimes gère un camp : inventaire de ressources, rotations de garde, niveaux de sécurité par périmètre. Le code existe déjà dans `legacy/campV1.js` : écrit en pleine nuit sous pression, une fonction de 300 lignes, des variables globales partout, zéro test. Personne ne sait exactement ce qu'il fait.
+Le groupe de Rick Grimes gère un camp : inventaire de ressources, rotations de garde, niveaux de sécurité par périmètre. Le code fourni dans `legacy/campV1.js` est un petit monolithe procédural, mutable et sans tests ; il contient un défaut intentionnel que tu dois d'abord reproduire. Il ne s'agit pas d'un faux code de 300 lignes : la fixture est volontairement assez courte pour permettre une caractérisation complète.
 
 Ce projet n'ajoute aucune feature avant d'avoir des tests. Il refactore le legacy étape par étape, jamais d'un bloc, et construit une v2 propre sans jamais toucher au v1.
 
@@ -43,24 +41,34 @@ $ node src/cli.js consume --resource food --amount 3
 
 ---
 
-## INSTALLATION
+## PRÉREQUIS ET COMMANDES SELON L'ÉTAT RÉEL
 
-```text
-Node.js    : v22.23.3
-npm      : v10+
-Outils externes: Playwright (installé via npm install)
-```
+- Node.js : version de référence `22.23.4` (voir `.nvmrc` du dépôt AF).
+- Modules externes : aucun pour exécuter le legacy fourni.
+- Playwright : dépendance **optionnelle**, à ajouter localement seulement après création du `package.json` et de la suite E2E.
+- Le ZIP contient `legacy/campV1.js`, mais ne contient pas encore la v2 (`src/cli.js`), les tests ni un `package.json`.
+
+### Commandes exécutables dès réception
 
 ```bash
-npm install
-npx playwright install chromium  # navigateur pour les tests E2E
-
-node src/cli.js status  # interagir avec le camp
-npm test         # tests unitaires + intégration
-npm run test:e2e     # tests E2E Playwright
+node --version
+npm --version
+node legacy/campV1.js status
 ```
 
-Pas de serveur web : le camp se gère en ligne de commande. Playwright teste le CLI via des processus Node enfants, pas via un navigateur.
+Pour isoler les données de test sous Linux/macOS :
+
+```bash
+tmp=$(mktemp -d)
+CAMP_STATE_FILE="$tmp/camp.json" node legacy/campV1.js status
+CAMP_STATE_FILE="$tmp/camp.json" node legacy/campV1.js consume --resource food --amount -2
+```
+
+La seconde commande reproduit un défaut intentionnel. Ne lance pas les commandes de la v2 avant d'avoir créé ses fichiers.
+
+### Commandes disponibles après construction de la v2
+
+`npm install` n'est nécessaire qu'après avoir créé un `package.json` qui déclare réellement des dépendances. `node src/cli.js status`, `npm test` et `npm run test:e2e` ne deviennent valides qu'après création de `src/cli.js`, des tests, des scripts npm et des dépendances correspondantes. L'installation du navigateur Playwright intervient uniquement après cette configuration ; elle n'est pas un prérequis du legacy fourni.
 
 ---
 
@@ -105,12 +113,12 @@ node src/cli.js consume --resource food --amount 3
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module      | Où ça se voit                                    |
-| ---------------- | ------------------------------------------------------------------------------------ |
-| `02-CONSTRUCTION/03-TESTING`   | `tests/` (unit + intégration), `e2e/` (Playwright), `mocks/`             |
-| `02-CONSTRUCTION/11-REFACTORING` | legacy → src/, SOLID appliqué, code smells éliminés                 |
+| Module                           | Où ça se voit                                                                        |
+| -------------------------------- | ------------------------------------------------------------------------------------ |
+| `02-CONSTRUCTION/03-TESTING`     | `tests/` (unit + intégration), `e2e/` (Playwright), `mocks/`                         |
+| `02-CONSTRUCTION/11-REFACTORING` | legacy → src/, SOLID appliqué, code smells éliminés                                  |
 | `02-CONSTRUCTION/13-RUNTIME-ENV` | `cli.js` (argv), `fileStore.js` (fs.promises), `threatSimulator.js` (Worker Threads) |
-| `05-MAITRISE/07-TOOLS`    | `structuredLogger.js` (JSON), `scenarioReplayer.js` (replay de logs)         |
+| `05-MAITRISE/07-TOOLS`           | `structuredLogger.js` (JSON), `scenarioReplayer.js` (replay de logs)                 |
 
 ---
 
@@ -182,6 +190,16 @@ Un CI check impose la présence de `src/` et `tests/` avant validation.
 
 Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur dépôt apprenant. Si le projet utilise des dépendances npm, ton dépôt apprenant doit versionner `package.json` et `package-lock.json`, puis utiliser `npm ci` en CI pour installer exactement cet arbre. Si le projet est sans dépendances, consigne simplement la version de runtime et la commande de test réellement utilisée. La preuve de reproductibilité est la commande et la version relevées dans ton propre dépôt, pas une valeur inventée dans le curriculum.
 
+## Séquence de maîtrise exigée (legacy sans refonte aveugle)
+
+1. **Observer avant de toucher** : délimite le comportement actuel et note les zones inconnues du legacy.
+2. **Capturer le contrat** : écris des tests de caractérisation sur les comportements réellement observés, y compris un comportement gênant qu'il faut préserver jusqu'à décision contraire.
+3. **Provoquer une régression** : modifie temporairement une règle métier et démontre que la suite détecte le changement.
+4. **Refactorer par petites frontières** : après chaque changement, compare l'état, les sorties, les erreurs et les effets de bord avec la baseline.
+5. **Transférer** : traite un second défaut dans une zone différente sans recopier le même plan au mot près.
+
+**Gate :** aucun grand remplacement global ; la V1 demeure une référence si le cahier des charges le prescrit ; la preuve distingue comportement découvert, comportement attendu et décision métier. Complète avec [63 : Testing Engineering](../../../06-ANNEXES-TRANSVERSES/63-LAB-TESTING-ENGINEERING.md) et [67 : Gate de maîtrise](../../../06-ANNEXES-TRANSVERSES/67-GATE-MAITRISE-ET-CAPSTONE.md).
+
 ## Contenu du dossier
 
 <!-- CONTENU-DOSSIER:debut -->
@@ -195,7 +213,36 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [SPEC DRIFT TRIGGERS : 03_walking_dead_protocol](05-SPEC-DRIFT-TRIGGERS.md)
 - [TDD journal : walking dead protocol](02-TDD-JOURNAL.md)
 - [Cahier des charges : walking dead protocol](00-CAHIER-DES-CHARGES.md)
+- [`legacy/`](legacy/README.md) : fixture exécutable, à caractériser sans modification
 - [`src/`](src/README.md)
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## Comprendre les tests avant de commencer : état exact du ZIP
+
+Référence : [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les exemples de sortie décrivent la cible, pas un logiciel livré, sauf mention contraire.
+
+- Code fourni : `legacy/campV1.js`, fixture procédurale de référence ; la v2 dans `src/` reste à écrire.
+- Tests de référence verts : aucun. Tests volontairement rouges : aucun ; le comportement legacy doit d'abord être caractérisé par des tests écrits par toi.
+- Tests à écrire : status, consommation normale/insuffisante, rotation avec poste vacant, alertes multiples, menace, reset protégé, persistance et erreurs worker. Utilise `CAMP_STATE_FILE` pour isoler les essais.
+- Baseline réellement exécutable : `tmp=$(mktemp -d) && CAMP_STATE_FILE="$tmp/camp.json" node legacy/campV1.js status`. La seule cible immédiatement exécutable est la v1 ; `node src/cli.js`, `npm test` et Playwright ne sont disponibles qu'après construction de la v2, du manifeste et de la suite.
+- Ordre : caractériser v1 sans la modifier → tests → services purs → stockage/handlers/CLI → worker → E2E optionnel. Preuve : même comportement observable v1/v2 ou écarts documentés.
+
+## Règles communes de progression et de preuve
+
+### Contrôle commun de la progression
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
+- **Tests verts de référence :** aucun.
+- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
+- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
+- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
+
+**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.

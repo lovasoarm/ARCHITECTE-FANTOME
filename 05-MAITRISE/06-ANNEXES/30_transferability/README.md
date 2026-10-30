@@ -7,7 +7,6 @@ acte: comprendre
 
 <!-- AF-DIAGRAM:transfer -->
 ```text
-text
 Principe appris
       │
       ▼

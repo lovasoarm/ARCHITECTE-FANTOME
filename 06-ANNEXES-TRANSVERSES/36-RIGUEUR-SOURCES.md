@@ -4,9 +4,12 @@ perishability_id: PER-0104
 stability: perissable
 acte: pratiquer
 route_family: core
-
+freshness_registry_id: PER-0104
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 # 36 : Vérifier une affirmation technique
 
 Une affirmation technique n’est pas plus vraie parce qu’elle contient un chiffre, un nom d’outil ou une date.
@@ -44,7 +47,7 @@ Puis :
 
 ## Exemple : versions
 
-Le parcours est reproductible sur **Node.js 22.23.3**. Cette version est le point de référence de l’expérience AF ; elle ne signifie pas que toute autre version LTS est interdite. Une compatibilité avec une autre version doit être vérifiée séparément.
+Le parcours est reproductible sur **Node.js 22.23.4**. Cette version est le point de référence de l’expérience AF ; elle ne signifie pas que toute autre version LTS est interdite. Une compatibilité avec une autre version doit être vérifiée séparément.
 
 Pour les versions, les prix, les services fournisseurs ou toute donnée évolutive, écris toujours la date de vérification et privilégie la source primaire.
 

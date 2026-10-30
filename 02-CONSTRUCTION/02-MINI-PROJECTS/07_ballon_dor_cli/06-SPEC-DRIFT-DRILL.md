@@ -42,7 +42,6 @@ pas gravee, elle respire.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

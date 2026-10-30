@@ -1,0 +1,16 @@
+{
+  "name": "architecte-fantome-ai-reference-lab",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.23.4 <23"
+  },
+  "scripts": {
+    "start": "node src/server.mjs",
+    "cli": "node src/cli.mjs",
+    "test": "node --test src/*.test.mjs",
+    "eval:retrieval": "node eval/run.mjs",
+    "eval:load": "node eval/load.mjs"
+  }
+}

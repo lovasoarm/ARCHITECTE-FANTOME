@@ -101,8 +101,31 @@ CALL STACK       WEB APIs / Node APIs    TASK QUEUES
                puis UNE macrotask,
                puis recommence)
 
-Ordre de priorité : Microtask AVANT Macrotask, toujours.
-Une Promise résolue passe devant un setTimeout(fn, 0), sans exception.
+Règle précise : **quand une microtask est mise en file**, l'environnement JavaScript la traite lors du prochain point de contrôle des microtasks, avant de reprendre l'exécution normale des tasks suivantes. Mais une promesse n'est pas exécutée avant un timer si elle ne peut être résolue qu'au cours du callback de ce timer. Le moment où le travail est *planifié* compte autant que le type de callback.
+
+```js
+// Exemple A : la réaction de Promise est planifiée immédiatement.
+const ordreA = [];
+Promise.resolve().then(() => ordreA.push("reaction Promise"));
+setTimeout(() => ordreA.push("callback timer"), 0);
+setTimeout(() => console.log("A :", ordreA), 10);
+// A attendu : ["reaction Promise", "callback timer"] dans un script Node/browser standard.
+
+// Exemple B : la promesse ne peut être résolue qu'au passage du timer.
+const ordreB = [];
+const terminee = new Promise((resolve) => {
+  setTimeout(() => {
+    ordreB.push("callback timer qui résout");
+    resolve();
+  }, 0);
+});
+terminee.then(() => ordreB.push("reaction Promise après résolution"));
+setTimeout(() => console.log("B :", ordreB), 10);
+// B attendu : ["callback timer qui résout", "reaction Promise après résolution"].
+// Le callback timer doit d'abord s'exécuter pour résoudre la promesse.
+```
+
+Ne retiens donc pas « Promise toujours avant timer ». Demande-toi : **quand la réaction est-elle devenue éligible, et quel contexte d'exécution l'a mise en file ?** La comparaison entre navigateurs et Node peut en plus dépendre de la phase et du contexte d'où le code est lancé.
 ```
 
 ---
@@ -144,8 +167,7 @@ C'est là que le fun commence.
 
 ## 3) MICROTASK QUEUE : LA FILE VIP
 
-Les microtasks passent avant tout le monde.
-Une fois que la call stack est vide, l'event loop vide **toute** la microtask queue avant de toucher aux macrotasks.
+Les microtasks éligibles sont drainées au point de contrôle des microtasks avant que l'environnement reprenne les tâches ordinaires suivantes. Cela ne signifie pas qu'elles passent avant toute opération interne du runtime ni qu'une promesse non encore résolue devance un timer qui doit la résoudre.
 
 Sources de microtasks :
 
@@ -205,8 +227,7 @@ Ce qui se passe dans le moteur :
 6. queue vide       --> event loop peut passer aux macrotasks
 ```
 
-La microtask queue se vide entièrement avant que l'event loop passe à autre chose.
-Si une microtask en planifie une autre : cette nouvelle s'exécute dans le même tour.
+Au checkpoint pertinent, le runtime draine la file des microtasks jusqu'à ce qu'elle soit vide, y compris les microtasks ajoutées pendant ce drainage. Le moment exact de ce checkpoint dépend de l'environnement ; cela ne signifie pas que chaque microtask précède tout travail interne ou toute phase de Node.
 
 ---
 
@@ -298,27 +319,11 @@ setTimeout(() => console.log("7"), 0);
 Écris l'ordre attendu, puis lance le code et compare.
 Si tu t'es trompé : identifie exactement quelle règle tu as ratée.
 
-(indice : les setTimeout vont dans la macrotask queue : ils passent APRÈS toutes les microtasks)
+(indice : raisonne sur les microtasks déjà éligibles au point de contrôle pertinent ; un callback de timer nécessaire pour résoudre une promesse doit d'abord s'exécuter)
 
 ---
 
 ## EXO 2 : LA MISSION ASYNC DE SASUKE
-
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
 
 ```js
 async function sasuke(jutsu) {
@@ -374,7 +379,7 @@ pipeline();
 JS est mono-thread mais il a une file d'attente prioritaire pour les microtasks.
 Quand la call stack est vide : toutes les microtasks tournent d'abord, puis une macrotask, puis retour aux microtasks.
 `Promise.then()` et `await` créent des microtasks.
-`setTimeout`, `setInterval` créent des macrotasks : ils passent toujours après.
+`setTimeout` et `setInterval` planifient des callbacks de timer : ils ne s’exécutent pas avant l’expiration du délai minimal, et leur ordre relatif dépend du contexte d’exécution et du runtime. À un checkpoint de microtasks, les microtasks déjà en file sont traitées avant le retour à une nouvelle task ; ne transforme pas cela en règle universelle sur tous les callbacks.
 Prédire l'ordre d'exécution sans lancer le code : c'est le vrai test de compréhension du moteur JS.
 
 ## Schéma : timeline complète

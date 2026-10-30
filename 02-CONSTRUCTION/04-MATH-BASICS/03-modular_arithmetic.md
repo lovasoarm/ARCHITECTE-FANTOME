@@ -247,7 +247,6 @@ Le modulo calcule une position dans un cycle. C'est son vrai rôle : pas juste p
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

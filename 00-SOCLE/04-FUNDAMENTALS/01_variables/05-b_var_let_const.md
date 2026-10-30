@@ -52,7 +52,6 @@ Retape la boucle `setTimeout` avec `var` puis avec `let`. Prédis avant de lance
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

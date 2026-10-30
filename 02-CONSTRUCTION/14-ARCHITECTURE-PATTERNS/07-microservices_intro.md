@@ -311,3 +311,13 @@ Le principe à retenir : chaque service doit avoir un owner explicite de ses don
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+## Transfert en production : décider de séparer un service
+
+**Scénario.** Le module de facturation évolue à un rythme différent du catalogue mais partage sa base. Un microservice ne résout pas automatiquement ce couplage : la frontière doit inclure propriété des données, contrat et exploitation.
+
+**Exercice.** Compare trois options : rester dans un monolithe modulaire, extraire un service avec base propre, ou séparer uniquement le traitement asynchrone. Estime latence réseau, coûts d'astreinte, déploiement, sécurité, migration et plan de retour arrière.
+
+**Vérification.** Une ADR nomme le problème mesuré, l'option la plus simple rejetée, les dépendances, SLO et déclencheur de révision. Pas de microservice justifié uniquement par le nombre d'utilisateurs ou le mot « scalable ».
+
+**Transfert.** Cette décision utilise les frontières DDD et les arbitrages cloud/fiabilité ; commencer par un monolithe modulaire peut rester la meilleure option.

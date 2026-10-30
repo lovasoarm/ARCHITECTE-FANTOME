@@ -54,22 +54,6 @@ L’Event Loop reprend le travail lorsque la pile est libérée, en drainant d�
 
 Les microtasks sont traitées avant de passer à la prochaine task.
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 Temps de lecture ~10 min
 
 Avant de plonger dans l'event loop, tu dois avoir UNE image en tête. Si tu ne l'as pas, la suite est du bruit.

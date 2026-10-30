@@ -292,7 +292,6 @@ Note : avec des strings immutables, pas besoin de `push/pop`. La concaténation 
 <!-- AF-DIAGRAM:sharding -->
 
 ```text
-text
                  key
                   │
           ┌───────┼────────┐
@@ -480,3 +479,11 @@ Sudoku, word search, combination sum : trois arènes, trois prunings différents
 
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « BACKTRACKING ARENA : SUDOKU, WORD SEARCH, PROBLÈMES RÉELS » à un volume de données dix fois plus grand ou une mémoire dix fois plus petite. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

@@ -35,3 +35,15 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+## Barème autonome : Référentiel et progression (20 points)
+
+- **Auto-positionnement vérifiable (4 pts)** : les axes de compétence sont notés avec une preuve datée et un exemple observable, pas une impression.
+- **Diagnostic de blocage (4 pts)** : le journal distingue symptôme, hypothèse, test minimal, résultat et prochaine action.
+- **Dépendances (4 pts)** : le ledger relie chaque lacune à un prérequis et à une ressource canonique sans inventer de dépendance.
+- **Rappel espacé (4 pts)** : les rappels J+1/J+7/J+21/J+60 contiennent des questions sans notes et un résultat daté.
+- **Transfert et honnêteté (4 pts)** : l'apprenant donne un exemple de transfert, une limite et ce qui n'est pas encore maîtrisé.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : déclarer une compétence acquise sans artefact ou transformer une estimation personnelle en preuve.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

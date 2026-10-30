@@ -11,8 +11,11 @@ perturbation_modes: [regression, changement_echelle]
 anti_recipe_key: regression+changement_echelle
 transfer_distance: low
 assessment_role: instructional_checkpoint
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0062
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-01-28
+review_status: a_verifier_date_absente
 ---
 
 > **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.
@@ -65,3 +68,11 @@ se « met à peu près ».
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+<!-- AF-P0-2026-10-30: missing_example -->
+
+### Exemple travaillé : cas métier
+
+Des stations distantes envoient des mesures avec réseau intermittent ; le système doit absorber les reprises sans doubler les écritures. Compare une journée normale et un pic dix fois supérieur. Pour « Relevé de référence : ordres de grandeur 2026 », note le composant, le coût ou le risque qui varie, et le signal observable qui révèle la limite.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

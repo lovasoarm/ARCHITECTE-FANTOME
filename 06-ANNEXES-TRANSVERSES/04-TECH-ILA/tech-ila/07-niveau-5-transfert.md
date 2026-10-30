@@ -8,10 +8,12 @@ revue: trimestrielle
 companion: ce parcours
 stability: perissable
 acte: comprendre
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0091
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-04-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 [← Sommaire TECH-ILA](../README.md)
@@ -21,22 +23,6 @@ review_due: 2027-12-31
 > **Ensuite** : 06-niveau-6-IA.md
 
 # Niveau 5 : Transfert vers d'autres écosystèmes (section 8)
-
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
 
 <!-- AF-DIAGRAM:async_await -->
 
@@ -64,7 +50,6 @@ await suspend la reprise de la fonction async, pas l’ensemble du runtime.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -334,7 +319,7 @@ Ce que ce code démontre : l'entraînement n'est pas la partie difficile, c'est 
 
 #### Ce que ce parcours permet déjà de comprendre
 
-- [`02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/02_solid_principles.md`](../../../02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md) : l'inversion de dépendance est exactement ce que fait le conteneur Spring.
+- [`02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md`](../../../02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md) : l'inversion de dépendance est exactement ce que fait le conteneur Spring.
 - [`../../../02-CONSTRUCTION/10-DESIGN-PATTERNS/02_structural/02-decorator_pattern.md`](../../../02-CONSTRUCTION/10-DESIGN-PATTERNS/02_structural/02-decorator_pattern.md) : les annotations Spring ressemblent aux décorateurs : **où l'analogie casse** : un décorateur TypeScript s'exécute à la définition de la classe ; une annotation Java ne fait rien par elle-même, c'est le conteneur qui la lit par réflexion au démarrage et qui agit en conséquence. Chercher le bug "dans l'annotation" plutôt que "dans ce que le conteneur en a fait" est l'erreur de lecture la plus fréquente d'un développeur JS sur Spring.
 - [`../../../02-CONSTRUCTION/17-OOP-JS/10-composition_vs_inheritance.md`](../../../02-CONSTRUCTION/17-OOP-JS/10-composition_vs_inheritance.md) : le débat est identique en Java, avec des outils plus stricts.
 - [`00-SOCLE/04-FUNDAMENTALS/02_scope/04-closure_trap.md`](../../../00-SOCLE/04-FUNDAMENTALS/02_scope/04-closure_trap.md) : Java exige une variable capturée effectivement finale : le langage t'interdit le bug que JavaScript t'autorise.
@@ -486,7 +471,7 @@ Thread.ofVirtual().start(() -> {
 
 - [`01-CADRAGE/02-ASYNC/05-shared_memory_concurrency.md`](../../../01-CADRAGE/02-ASYNC/05-shared_memory_concurrency.md) : en C#, `await` n'implique pas un mono-thread ; la sécurité vis-à-vis de la concurrence redevient ton problème.
 - `02-CONSTRUCTION/12-TYPESCRIPT/` : génériques, nullabilité, unions : la parenté avec C# va jusqu'au vocabulaire.
-- [`02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/02_solid_principles.md`](../../../02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md) : la DI intégrée d'ASP.NET Core est le même principe qu'ailleurs.
+- [`02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md`](../../../02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md) : la DI intégrée d'ASP.NET Core est le même principe qu'ailleurs.
 - [`../../../05-MAITRISE/03-EDGE-CASES/03-floating_point.md`](../../../05-MAITRISE/03-EDGE-CASES/03-floating_point.md) : `decimal` existe et sert exactement à ce que tu as déjà vu échouer avec des flottants.
 
 | TypeScript         | C#                                                                       |

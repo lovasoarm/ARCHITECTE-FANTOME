@@ -2,32 +2,17 @@
 stability: stable
 ---
 
-**SCÈNE CRAZYDEVS : mission ouverte :** les contraintes viennent d’augmenter, l’information est incomplète et plusieurs solutions restent plausibles. Ne cherche pas encore la réponse : trouve d’abord ce qui pourrait casser.
-
 # Observability contract
 
-<!-- AF-DIAGRAM:observability -->
-
 ```text
-text
-                         System
-                           │
-             ┌─────────────┼─────────────┐
-             ▼             ▼             ▼
-           Logs         Metrics        Traces
-             │             │             │
-        events/text     trends/SLO    causality/path
+Client ── requestId ──> HTTP gateway ──> scoped retrieval ──> optional LLM
+  │                         │                  │                │
+  └── status/latency        ├── JSON logs      ├── retrieved IDs└── timeout/mode
+                            └── counters/p50/p95
 ```
 
-Logs, métriques et traces donnent trois angles complémentaires pour reconstruire le comportement d’un système.
+Chaque requête doit pouvoir être diagnostiquée sans enregistrer son contenu sensible. La réponse fournit un identifiant de corrélation ; les logs HTTP incluent méthode, chemin, code et latence, mais pas le token, la question, le contexte ni la réponse générée.
 
-Chaque run doit pouvoir répondre à six questions :
+Métriques disponibles sur `/metrics` (endpoint protégé) : nombre total de requêtes, erreurs HTTP, requêtes query, refus faute de preuve, modes dégradés, requêtes en cours, échantillon p50/p95 des latences HTTP. Ces p50/p95 sont des percentiles de l'échantillon glissant des 1 000 dernières réponses en mémoire, pas un histogramme Prometheus complet ni une base historique.
 
-1. Quelle question ?
-2. Quels documents ont été récupérés ?
-3. Quel score de retrieval ?
-4. Quel mode de génération : fallback, live ou degraded ?
-5. Quelle latence ?
-6. Pourquoi l'appel a-t-il échoué ou été refusé ?
-
-La même structure doit être reprise dans la preuve S6 de l'apprenant.
+Les métriques sont locales au processus : elles ne survivent pas au redémarrage et ne se combinent pas entre instances. Le laboratoire n'exporte pas de traces distribuées ni de SLO calculé à partir de données persistées. Pour une production, agréger ces signaux avec un collecteur/stockage adapté, ajouter taux d'erreur et SLI end-to-end, alertes et corrélation aux déploiements.

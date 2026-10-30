@@ -5,10 +5,12 @@ stability: perissable
 last_reviewed: 2026-07
 depends_on_vendor: false
 acte: restituer
-review_due: 2028-12-31
-
+freshness_registry_id: PER-0080
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-01-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.

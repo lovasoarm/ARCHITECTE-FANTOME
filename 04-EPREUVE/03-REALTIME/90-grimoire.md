@@ -36,7 +36,6 @@ Un retry sain combine décision de retry, délai de backoff et limite d’essais
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

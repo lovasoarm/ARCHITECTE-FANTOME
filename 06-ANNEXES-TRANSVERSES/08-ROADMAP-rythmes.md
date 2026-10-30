@@ -7,7 +7,9 @@ acte: annexe
 
 > **CrazyDevs : mission de rang S :** avant de foncer sur la solution, identifie ce qui fait réellement échouer la mission. Le piège est souvent dans la question, pas dans la réponse.
 
-# 06 : Roadmap : trois rythmes (arborescence réelle)
+# 06 : Roadmap : trois rythmes (vues facultatives de planification)
+
+> **La formation complète est sans durée prédéterminée.** Voir [FORMATION-COMPLETE-INGENIERIE.md](../FORMATION-COMPLETE-INGENIERIE.md). Les rythmes Sprint/Saison/Marathon sont des exemples d’organisation personnelle ; le Sprint 16 semaines / 192 h reste un sous-ensemble facultatif et ne doit pas remplacer les gates de maîtrise, la profondeur ou l’expérience terrain.
 
 Temps de lecture ~2 min
 
@@ -18,7 +20,7 @@ Ordre détaillé : [04A-CARTE-DU-PARCOURS.md](04A-CARTE-DU-PARCOURS.md).
 
 ## SPRINT : 12 h / semaine
 
-**Route CORE Staff : 16 semaines / 192 h.** Le Mode Survie reste disponible comme vue accélérée (~6 semaines), mais il réutilise les mêmes niveaux, Boss et preuves ; il ne constitue pas une seconde progression. La profondeur additionnelle reste dans le corpus sans être obligatoire pendant le sprint.
+**Exemple facultatif : route CORE vers des preuves initiales de préparation à des responsabilités élargies, 16 semaines / 192 h planifiées. Ce n’est pas une préparation Staff certifiée ni la route complète.** Le Mode Survie reste disponible comme vue accélérée (~6 semaines), mais il réutilise les mêmes niveaux, Boss et preuves ; il ne constitue pas une seconde progression. La profondeur additionnelle reste dans le corpus sans être obligatoire pendant le sprint.
 
 La règle n’est plus « terminer le maximum ». La règle devient : **produire les preuves CORE, réussir les transferts, puis ouvrir DEPTH selon les faiblesses observées**.
 
@@ -35,7 +37,6 @@ Plancher. 2 h lire / 2 h produire. En dessous : droit d'entrée à chaque repris
 <!-- AF-DIAGRAM:core -->
 
 ```text
-text
 16 semaines
 │
 ├─ pratique / projets ───────── 80 h
@@ -47,7 +48,7 @@ text
                                192 h
 ```
 
-La route CORE réserve 192 heures à une progression intensive et sélective, sans confondre DEPTH/VAULT avec l’obligatoire.
+La route CORE planifie 192 heures pour une progression intensive et sélective ; c'est une hypothèse à calibrer lors d'un pilote, pas une durée mesurée valable pour tous les profils. Aucun critère de compétence ne doit être contourné pour tenir le calendrier. DEPTH/VAULT reste distinct du parcours obligatoire.
 
 Le détail opérationnel est dans [19A-ROUTE-CORE-16-SEMAINES.md](19A-ROUTE-CORE-16-SEMAINES.md). Les 19 projets sont cartographiés dans [25-CORE-MINI-PROJECT-MAP.md](25-CORE-MINI-PROJECT-MAP.md).
 

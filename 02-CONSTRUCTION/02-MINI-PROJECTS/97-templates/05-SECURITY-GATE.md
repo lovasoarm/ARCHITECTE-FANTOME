@@ -14,7 +14,7 @@ acte: comprendre
 > test, log, config, ligne de code). `N/A` est autorisé mais **doit être
 > motivé** en une phrase : un `N/A` non motivé fait échouer la gate.
 
-Voir aussi : `03-PILOTAGE/04-SECURITY/97-owasp_checklist.md`.
+Voir aussi : `03-PILOTAGE/04-SECURITY/14-owasp_checklist.md`.
 
 ## Métadonnées
 

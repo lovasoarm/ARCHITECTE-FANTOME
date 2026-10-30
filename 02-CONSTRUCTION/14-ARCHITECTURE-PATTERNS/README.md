@@ -3,14 +3,19 @@ stability: evolutif
 acte: parcours
 noyau: oui
 route: complete
+paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
+expert_review: pending
+paper_audit_date: 2026-10-30
+terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 ---
 
 # MODULE 14 ARCHITECTURE PATTERNS
 
+> **État pédagogique : 30 octobre 2026 : structure documentaire revue.** Les contrôles de contenu ne remplacent pas une revue technique indépendante ni une validation terrain ; voir le [standard de complétude AF](../../06-ANNEXES-TRANSVERSES/69-STANDARD-COMPLETUDE-MODULE.md).
+
 <!-- AF-DIAGRAM:event_driven -->
 
 ```text
-text
 ┌────────────┐      event      ┌────────────┐
 │ Producer   │────────────────►│ Event Bus  │
 └────────────┘                 └────┬───────┘
@@ -45,11 +50,12 @@ Total : **8 h 15**. Le Total reprend exactement la somme du tableau. Le challeng
 
 ## Comment travailler ce module
 
-1. Ouvre d abord le fichier `00_why_*` s il existe : il dit pourquoi le module merite ton temps.
-2. Passe le controle de prerequis. Un prerequis manquant se repare en amont, jamais ici.
-3. Fais les lecons dans l ordre des numeros. Chaque lecon a un exercice borne : il se rend, il se date.
-4. Le grimoire se lit **apres** la pratique, jamais avant : c est une fiche de rappel, pas un cours.
-5. Le challenge, puis le boss fight, cochent le module. Sans eux, le module est lu, pas acquis.
+1. Commence par [`00-PREREQUIS.md`](00-PREREQUIS.md). Si un prérequis échoue, remonte vers la ressource indiquée au lieu de deviner.
+2. Lis la leçon « pourquoi ce module » lorsqu'elle figure dans le parcours, puis suis l'ordre du sommaire. Les sous-dossiers ont leur propre README lorsqu'un sous-parcours est nécessaire.
+3. Après chaque concept, réalise l'exercice ou le mini-projet explicitement associé. Une leçon peut intégrer sa pratique dans une section `EXERCICES` ; ne suppose pas qu'un fichier séparé existe.
+4. Avant toute exécution, lis [`SETUP.md`](SETUP.md) et vérifie la version, le dossier courant, les données de départ et la commande attendue. Lorsqu'un outil externe manque, utilise uniquement le mode papier/simulation décrit par l'activité et marque le résultat comme simulé.
+5. Fais le challenge `95-challenge.md`, puis le boss `96-boss-fight.md` **seulement s'il existe dans ce module**. À défaut de boss séparé, le challenge et les checkpoints/critères liés constituent la vérification annoncée : aucun boss non fourni n'est supposé.
+6. Le grimoire se lit après la pratique. Consigne la preuve, le résultat des vérifications, les limites non testées et la date dans ton journal de progression.
 
 ## Ce que ce module produit dans ton depot fil rouge
 
@@ -92,3 +98,25 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Grimoire : `14-ARCHITECTURE-PATTERNS`](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+## Standard de complétude et audit
+
+## Navigation complète des ressources
+
+Les liens ci-dessous donnent accès aux ressources documentaires du module, y compris les sous-dossiers. Le sommaire conserve l’ordre pédagogique recommandé ; cet index n’ajoute pas d’étape obligatoire.
+
+- [`00-PREREQUIS.md`](00-PREREQUIS.md)
+- [`01-00-why-architecture-patterns.md`](01-00-why-architecture-patterns.md)
+- [`02-module_pattern.md`](02-module_pattern.md)
+- [`03-solid_principles.md`](03-solid_principles.md)
+- [`04-mvc_pattern.md`](04-mvc_pattern.md)
+- [`05-clean_architecture.md`](05-clean_architecture.md)
+- [`06-event_driven.md`](06-event_driven.md)
+- [`07-microservices_intro.md`](07-microservices_intro.md)
+- [`08-EXO_LECTURE.md`](08-EXO_LECTURE.md)
+- [`90-grimoire.md`](90-grimoire.md)
+- [`91-90-grimoire.md`](91-90-grimoire.md)
+- [`95-challenge.md`](95-challenge.md)
+- [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)
+- [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)
+- [`SETUP.md`](SETUP.md)

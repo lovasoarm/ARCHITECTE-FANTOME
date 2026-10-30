@@ -9,10 +9,12 @@ perturbation_modes: [decision_organisationnelle, regression]
 anti_recipe_key: decision_organisationnelle+regression
 transfer_distance: high
 assessment_role: staff_mastery
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0081
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 # 07 : Transfert hors écosystème
@@ -20,7 +22,6 @@ review_due: 2027-12-31
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

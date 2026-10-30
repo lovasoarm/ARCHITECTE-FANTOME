@@ -336,3 +336,11 @@ Le workflow : voir le lag → enregistrer → trouver la Long Task → identifie
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « Devtools deep dive : lire un flamegraph », puis conserve le résultat et explique tout écart.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

@@ -15,7 +15,6 @@ assessment_role: diagnostic_mastery
 <!-- AF-DIAGRAM:jwt -->
 
 ```text
-text
 Login ─► Issue token ─► Request + token ─► Verify ─► Allow / Reject
                                       │
                                       └────► Expired / Invalid

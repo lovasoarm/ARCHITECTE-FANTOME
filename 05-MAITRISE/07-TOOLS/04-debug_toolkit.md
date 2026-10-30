@@ -10,10 +10,12 @@ perturbation_modes: [fausse_piste, decision_inversee]
 anti_recipe_key: fausse_piste+decision_inversee
 transfer_distance: high
 assessment_role: instructional_checkpoint
-review_due: 2028-12-31
-
+freshness_registry_id: PER-0077
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-01-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **SCÈNE CRAZYDEVS : traqueur de jutsu :** Naruto voit l'explosion finale et accuse le dernier fichier touché. Mauvais réflexe. Ton enquête doit remonter le flux, figer les hypothèses et retrouver la première trace qui ne colle plus.
 
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
@@ -231,7 +233,6 @@ Un `console.log` isolé montre une valeur sans contexte ni vérification. Une as
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

@@ -8,10 +8,12 @@ perturbation_modes: [regression, preuve_partielle]
 anti_recipe_key: regression+preuve_partielle
 transfer_distance: low
 assessment_role: diagnostic_mastery
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0007
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : mur de siège :** le bug n'est pas “où ça a explosé ?”, mais “où la première fissure est-elle apparue ?”. Ici, chaque log, test et reproduction est une empreinte dans le mur.
 
 # \_EXEMPLE_HYPOTHESES.md (cas reel)

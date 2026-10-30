@@ -48,7 +48,6 @@ Chaque nombre cité doit venir d'une mesure ou d'un relevé de **ton** projet, a
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -65,3 +64,11 @@ Nouveau contexte
 Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
 
 Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+
+## Barrière de réussite non compensable
+
+Une erreur critique de sécurité, d'intégrité des données ou de falsification de preuve entraîne une reprise ciblée, même si le total de points atteint le seuil. Une simulation doit être nommée comme simulation ; elle ne vaut pas preuve de production.
+
+## Vérification autonome : contrats et cohérence
+
+La correction doit permettre à un tiers de retrouver, dans les artefacts : l'owner de chaque donnée; l'invariant protégé par chaque agrégat; le producteur et le consommateur d'un contrat; la politique de compatibilité; l'identifiant d'événement; la stratégie d'idempotence; le délai maximal de convergence; et l'action compensatoire si le flux échoue. Un schéma sans propriétaires ni sens de dépendance ne valide pas le challenge. Une réponse qui propose CQRS sans besoin de lecture distinct, volume, isolation ou contrainte de modèle doit justifier le coût supplémentaire.

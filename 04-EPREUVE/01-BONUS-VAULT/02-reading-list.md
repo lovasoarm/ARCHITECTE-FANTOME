@@ -15,7 +15,6 @@ assessment_role: diagnostic_mastery
 <!-- AF-DIAGRAM:rto_rpo -->
 
 ```text
-text
 Incident
 │<──── RTO : délai maximal de reprise ────>│
 │
@@ -27,7 +26,6 @@ RTO mesure le temps acceptable avant reprise ; RPO mesure la quantité de donné
 <!-- AF-DIAGRAM:sharding -->
 
 ```text
-text
                  key
                   │
           ┌───────┼────────┐

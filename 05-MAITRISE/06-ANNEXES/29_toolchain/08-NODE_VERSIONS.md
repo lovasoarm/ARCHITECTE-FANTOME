@@ -8,8 +8,11 @@ perturbation_modes: [defaut_cache, regression]
 anti_recipe_key: defaut_cache+regression
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0072
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-01-28
+review_status: a_verifier_date_absente
 ---
 
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
@@ -22,12 +25,12 @@ Temps de lecture ~4 min
 > Node de référence. Ce document explique la politique, les minimums historiques
 > et la procédure de mise à jour. En cas de doute, `.nvmrc` fait foi.
 >
-> **Dernière revue : 2026-10-07.**
+> **Dernière revue : 2026-10-28.**
 
 ## Version courante
 
-- `.nvmrc` : **Node 22 (22.23.3 pour AF) LTS (`v22`)**
-- Ligne de référence du curriculum : **Node 22 (22.23.3 pour AF) LTS**
+- `.nvmrc` : **Node 22.23.4** (version exacte de référence AF)
+- Ligne de référence du curriculum : **Node 22.23.4** ; les autres versions Node 22.x demandent une vérification de compatibilité distincte.
 - Node 20 est **EOL depuis le 24 mars 2026** et n'est plus une version de
   référence, de CI ou de support du curriculum.
 
@@ -37,25 +40,25 @@ Vérifie ta version :
 node -v
 nvm install
 nvm use
-# doit afficher v22.x
+# doit afficher v22.23.4 pour une reproduction exacte
 ```
 
 ## Minimum par module
 
-Le curriculum est désormais évalué sur **Node 22 (22.23.3 pour AF)**. Les minimums historiques
+Le curriculum est désormais évalué sur **Node 22 (22.23.4 pour AF)**. Les minimums historiques
 ci-dessous ne constituent pas des versions de support indépendantes : ils
 indiquent seulement l'ancien niveau d'API requis par les exercices.
 
 | Module           | Minimum pédagogique historique |         Référence d'exécution |
 | ---------------- | -----------------------------: | ----------------------------: |
-| 01 → 07          |                             18 |     Node 22 (22.23.3 pour AF) |
-| 08 memory        |                             20 |     Node 22 (22.23.3 pour AF) |
-| 14 typescript    |                             20 |     Node 22 (22.23.3 pour AF) |
-| 15 runtime_env   |                             20 |     Node 22 (22.23.3 pour AF) |
-| 20 realtime      |                             20 |     Node 22 (22.23.3 pour AF) |
-| 23 ai_native_dev |                             20 |     Node 22 (22.23.3 pour AF) |
-| 24 → 28          |                             20 |     Node 22 (22.23.3 pour AF) |
-| 30 mini_projects |                             20 | Node 22 (22.23.3 pour AF) LTS |
+| 01 → 07          |                             18 |     Node 22 (22.23.4 pour AF) |
+| 08 memory        |                             20 |     Node 22 (22.23.4 pour AF) |
+| 14 typescript    |                             20 |     Node 22 (22.23.4 pour AF) |
+| 15 runtime_env   |                             20 |     Node 22 (22.23.4 pour AF) |
+| 20 realtime      |                             20 |     Node 22 (22.23.4 pour AF) |
+| 23 ai_native_dev |                             20 |     Node 22 (22.23.4 pour AF) |
+| 24 → 28          |                             20 |     Node 22 (22.23.4 pour AF) |
+| 30 mini_projects |                             20 | Node 22 (22.23.4 pour AF) LTS |
 
 Les scripts et la CI doivent utiliser `.nvmrc` plutôt qu'une plage vague
 du type `>=20` ou `>=22` pour choisir le runtime d'exécution.
@@ -64,9 +67,9 @@ du type `>=20` ou `>=22` pour choisir le runtime d'exécution.
 
 ## Politique de version
 
-**État au 07/10/2026 :** Node 22 (22.23.3 pour AF) est une ligne LTS en phase de maintenance et reste supportée jusqu’au 30/04/2027. La
-référence du cursus reste `v22`, afin de préserver la reproductibilité de la
-fusion et du corpus source.
+**Mise à jour au 28/10/2026 :** Node.js 22.23.4 a été publié le 21/10/2026 comme mise à jour de sécurité. AF adopte cette version comme nouvelle référence exacte ; elle remplace le pin précédent 22.23.3. Voir les [notes officielles de Node.js 22.23.4](https://nodejs.org/en/blog/release/v22.23.4).
+
+La version exacte de référence du dépôt est `v22.23.4` : c'est la valeur de `.nvmrc`. Les références à « Node 22 » désignent la branche de compatibilité, pas une preuve que chaque version mineure a été testée.
 
 La politique est volontairement simple :
 
@@ -83,8 +86,7 @@ La politique est volontairement simple :
 
 Node 20 est désormais EOL. Conserver Node 20 comme référence créerait une
 contradiction entre la reproductibilité pédagogique et la maintenance du
-runtime. Node 22 (22.23.3 pour AF) reste une ligne LTS supportée au moment de cette édition ; le choix `v22` est donc
-cohérent avec la source ARCHITECTE-FANTOME et avec la correction demandée par l'audit.
+runtime. Node 22 (22.23.4 pour AF) reste le choix reproductible retenu pour ce corpus ; toute autre version doit être validée séparément.
 
 ---
 
@@ -93,7 +95,7 @@ cohérent avec la source ARCHITECTE-FANTOME et avec la correction demandée par 
 Avant de publier une version d'ARCHITECTE-FANTOME :
 
 - `test -f .nvmrc`
-- `cat .nvmrc` retourne `22.23.3`
+- `cat .nvmrc` retourne `22.23.4`
 - les workflows CI utilisent `node-version-file: '.nvmrc'` ou un équivalent
 - aucun script ne traite l'absence de `.nvmrc` comme un état normal
 - les tests ciblés du mini-projet 17 ne produisent aucun `[WARN]` de version
@@ -105,3 +107,11 @@ et note la date de revalidation.
 
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « NODE_VERSIONS.md » à une codebase inconnue et un incident dont les symptômes sont incomplets. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

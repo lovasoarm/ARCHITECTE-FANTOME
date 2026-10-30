@@ -10,7 +10,6 @@ acte: restituer
 <!-- AF-DIAGRAM:event_driven -->
 
 ```text
-text
 ┌────────────┐      event      ┌────────────┐
 │ Producer   │────────────────►│ Event Bus  │
 └────────────┘                 └────┬───────┘

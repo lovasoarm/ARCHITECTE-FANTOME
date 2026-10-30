@@ -26,7 +26,6 @@ Temps de lecture ~7 min
 <!-- AF-DIAGRAM:secrets -->
 
 ```text
-text
 ┌──────────────┐
 │ Secret store │
 └──────┬───────┘
@@ -131,7 +130,7 @@ for (let i = 1; i <= 3; i++) {
 }
 ```
 
-> `let` crée une nouvelle variable `i` à chaque itération. Chaque `setTimeout` capture sa propre copie. Chaque porte a enfin son propre numéro.
+> `let` crée une liaison lexicale distincte pour chaque itération de cette boucle. Chaque callback peut lire la liaison de son itération ; ce n'est pas une copie générale des objets référencés.
 
 **Résultat :**
 

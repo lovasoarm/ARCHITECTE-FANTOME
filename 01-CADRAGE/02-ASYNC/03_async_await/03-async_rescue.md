@@ -14,22 +14,6 @@ assessment_role: instructional_checkpoint
 
 # Async rescue : sauver ce qui peut l'être
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 Temps de lecture ~9 min
 
 Une opération async peut rater pour 100 raisons différentes.

@@ -37,3 +37,15 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+## Barème autonome : Mathématiques utiles (20 points)
+
+- **Logique (4 pts)** : table de vérité et simplification De Morgan correctes, y compris les cas falsy/truthy JavaScript.
+- **Modulo et combinatoire (4 pts)** : calculs corrects, gestion des nombres négatifs documentée et espace de recherche estimé avant brute force.
+- **Bits et permissions (4 pts)** : masques indépendants, test d'un flag, ajout/retrait et limites de représentation expliqués.
+- **Hash et aléatoire (4 pts)** : distinction hash structurel/cryptographique, collisions, RNG et Fisher–Yates correctement justifiés.
+- **Preuve et transfert (4 pts)** : scripts de vérification passent et un cas d'usage nouveau est résolu sans copier le grimoire.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : utiliser Math.random pour un secret ou présenter un hash non cryptographique comme protection de sécurité.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

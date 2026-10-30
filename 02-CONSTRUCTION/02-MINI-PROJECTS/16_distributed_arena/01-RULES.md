@@ -19,11 +19,9 @@ INCOMPLET par un critere binaire ecrit dans ton `02-TDD-JOURNAL.md`.
 
 ## ADR_MINIMUM
 
-Nombre minimum d'ADR à livrer dans `ADR/` : **4**
+**CORE (slice 7 h) :** au moins un ADR qui justifie l'idempotence, le contrat de reprise et une alternative rejetée.
 
-Un ADR unique ("choix d'architecture") ne suffit pas. Décisions latérales attendues :
-données, frontières de module, stratégie de tests, choix async, sécurité, observabilité.
-Template canonique : `../97-templates/03-ADR_TEMPLATE.md`.
+**DEPTH (projet complet) :** nombre minimum de quatre ADR dans `ADR/`. Les décisions latérales couvrent notamment données, frontières de module, stratégie de tests, choix async, sécurité et observabilité. Un même document peut relier des décisions si les conséquences restent distinctes et explicites. Template canonique : `../97-templates/03-ADR_TEMPLATE.md`.
 
 ## SPEC_DRIFT_MODE
 
@@ -35,7 +33,11 @@ Si activé, `08-POSTMORTEM.md` doit contenir la section `## Comment j'ai encaiss
 
 ## Security Gate
 
-Bloc obligatoire (drill `node learner-verifier.js` (auto-verif ecrite par toi)) :
+**CORE :** valider les entrées des opérations, empêcher le double comptage par rejeu, limiter ce qu'un worker peut modifier et conserver une preuve de test de ces contrôles.
+
+**DEPTH :** le drill complet ci-dessous, y compris analyse de dépendances et modélisation STRIDE. Ne présente pas le slice CORE comme une évaluation exhaustive de sécurité.
+
+Bloc obligatoire en DEPTH (drill `node learner-verifier.js`, auto-vérification écrite par toi) :
 
 - **Entrées validées** : chaque entrée externe passe par un schéma explicite (Zod, manuel documenté).
 - **Secrets hors code** : jamais commités ; lus depuis env, documentés dans `SECURITY.md`.
@@ -44,11 +46,11 @@ Bloc obligatoire (drill `node learner-verifier.js` (auto-verif ecrite par toi)) 
 
 Absence de `SECURITY.md` = release refusée.
 
-## Security Gate : modélisation menace STRIDE
+## Security Gate DEPTH : modélisation de menace STRIDE
 
-Ce projet ayant une surface d'exposition structurelle, `SECURITY.md` doit inclure
-une modélisation STRIDE (Spoofing, Tampering, Repudiation, Information disclosure,
-DoS, Elevation of privilege) avec au moins un scénario par catégorie.
+Pour le projet complet, `SECURITY.md` doit inclure une modélisation STRIDE (Spoofing,
+Tampering, Repudiation, Information disclosure, DoS, Elevation of privilege) avec au
+moins un scénario par catégorie.
 
 ## TDD JOURNAL
 

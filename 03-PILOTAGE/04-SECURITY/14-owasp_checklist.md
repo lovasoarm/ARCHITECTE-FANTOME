@@ -5,9 +5,12 @@ stability: perissable
 last_reviewed: 2026-08
 depends_on_vendor: true
 cognitive_level: L4
-
+freshness_registry_id: PER-0044
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-01-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **SCÈNE CRAZYDEVS : armure Garo :** une protection qui existe mais n’est jamais vérifiée est juste un costume brillant. Chaque garde-fou doit être testable et attaquable.
 
 # OWASP TOP 10:2025 : CHECKLIST OPÉRATIONNELLE

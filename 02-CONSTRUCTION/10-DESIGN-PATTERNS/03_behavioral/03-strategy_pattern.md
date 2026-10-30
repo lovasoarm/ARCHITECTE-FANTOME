@@ -234,7 +234,6 @@ Strategy, c'est déléguer le "comment" à une fonction interchangeable, et gard
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -251,3 +250,13 @@ Nouveau contexte
 Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
 
 Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+
+## Transfert production : stratégie et arbitrage d'algorithme
+
+**Scénario.** Le calcul de frais de livraison dépend du pays, du poids et du type de service. Une stratégie permet de remplacer le calcul, mais le choix ne doit pas permettre d'appliquer une stratégie non autorisée.
+
+**Exercice.** Crée trois stratégies de tarification derrière un contrat commun ; sélectionne-les à partir d'une configuration validée et conserve la stratégie utilisée dans la trace de décision.
+
+**Vérification.** Chaque stratégie possède la même suite de contrat, valeurs limites et erreur explicite. Ajoute un test où une stratégie est absente et un test de changement de configuration.
+
+**Transfert.** Le pattern s'applique aux algorithmes interchangeables ; si la sélection ne varie jamais, une fonction simple suffit.

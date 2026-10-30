@@ -16,7 +16,6 @@ assessment_role: staff_mastery
 <!-- AF-DIAGRAM:roi -->
 
 ```text
-text
 Decision
   │
   ├──► Value / impact
@@ -60,3 +59,13 @@ et la contrepartie de mémoire, c'est bon. Sinon, réécris : le problème est t
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+## Exercice guidé : la même décision devant trois publics
+
+**Contexte.** L'équipe propose de remplacer une requête synchrone par une file asynchrone pour absorber un pic. Le changement augmente la latence de confirmation, ajoute un worker et un nouveau mode d'échec.
+
+**Production attendue.** Écris trois explications de 120 à 180 mots : (1) développeur qui doit implémenter et opérer ; (2) responsable produit qui doit arbitrer UX/délai ; (3) direction qui doit accepter coût/risque. Les trois explications doivent conserver les mêmes faits, hypothèses, limites et décision ; seul le niveau de détail change.
+
+**Vérification autonome.** Note chaque public sur 0–2 pour exactitude, clarté, décision/action attendue, limites et cohérence factuelle. Une explication qui promet une fiabilité absolue ou cache la nouvelle latence échoue, même si elle est convaincante. Seuil : 8/10 par public, aucun zéro en exactitude.
+
+**Transfert.** Réutilise ce format pour un incident, une dette technique ou un désaccord d'architecture ; consigne les questions non résolues et le propriétaire de la décision.

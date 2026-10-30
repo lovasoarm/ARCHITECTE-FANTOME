@@ -28,7 +28,6 @@ Inconvénient : c'est une source de vérité TEMPORAIRE, jamais la source de vé
 <!-- AF-DIAGRAM:cache -->
 
 ```text
-text
 Request
   │
   ▼
@@ -270,3 +269,11 @@ Redis cache pour éviter de recalculer ou re-requêter ce qui a déjà une répo
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Écris une assertion sur l’invariant de « Se souvenir vite pour ne pas redemander à chaque fois », puis teste cas normal, concurrence/duplicat, interruption et reprise. Fournis la requête ou la trace et explique ce que le test ne démontre pas.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

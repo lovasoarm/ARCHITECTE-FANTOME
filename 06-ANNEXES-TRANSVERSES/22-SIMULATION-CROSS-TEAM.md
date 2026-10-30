@@ -10,7 +10,6 @@ route_family: core
 <!-- AF-DIAGRAM:influence -->
 
 ```text
-text
                  ┌───────────┐
                  │ Decision  │
                  └─────┬─────┘

@@ -4,10 +4,12 @@ perishability_id: PER-0070
 stability: perissable
 acte: epreuve
 noyau: oui
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0070
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-01-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : armure Garo :** une protection qui existe mais n'est jamais vérifiée est juste un costume brillant. Ici, chaque garde-fou doit être testable et attaquable.
 
 # Security gate : fil rouge (cloud + brique IA)
@@ -15,7 +17,6 @@ review_due: 2027-12-31
 <!-- AF-DIAGRAM:capstone -->
 
 ```text
-text
 Architecture ─┐
 Security ─────┤
 Cost ─────────┤
@@ -30,7 +31,6 @@ Le capstone réunit plusieurs contraintes dans une décision unique, puis force 
 <!-- AF-DIAGRAM:fil_rouge -->
 
 ```text
-text
 S1 ─┐
 S2 ─┤
 S3 ─┤

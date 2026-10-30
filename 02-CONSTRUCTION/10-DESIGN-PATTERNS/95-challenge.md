@@ -45,3 +45,15 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+## Barème autonome : Design patterns (20 points)
+
+- **Problème avant pattern (4 pts)** : pression de changement et variation réelle identifiées avant de nommer un pattern.
+- **Structure et responsabilités (4 pts)** : participants, dépendances et flux d'appel représentés correctement.
+- **Implémentation (4 pts)** : pattern appliqué sur un cas métier avec tests du comportement attendu.
+- **Alternative (4 pts)** : solution plus simple comparée et coût d'abstraction explicité.
+- **Évolution (4 pts)** : une nouvelle variation est ajoutée sans changement diffus ni couplage caché.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : ajouter un pattern uniquement pour respecter un catalogue ou multiplier les couches sans besoin.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

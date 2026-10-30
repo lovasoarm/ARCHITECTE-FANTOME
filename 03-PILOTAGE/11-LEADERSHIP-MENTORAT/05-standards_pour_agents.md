@@ -16,7 +16,6 @@ assessment_role: staff_mastery
 <!-- AF-DIAGRAM:agent -->
 
 ```text
-text
 ┌─────────┐
 │ Goal    │
 └────┬────┘
@@ -70,3 +69,7 @@ une tâche à un agent avec ce fichier en contexte, et note les deux endroits o�
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+## Transfert vérifiable
+
+Applique ce standard à un agent qui propose une migration SQL. Avant acceptation, exige plan, périmètre, rollback, idempotence, preuve sur base jetable et revue humaine des opérations destructives. **Vérification :** un agent qui fournit seulement une explication ou un test sur mock ne franchit pas le gate ; consigne les artefacts manquants et le refus motivé.

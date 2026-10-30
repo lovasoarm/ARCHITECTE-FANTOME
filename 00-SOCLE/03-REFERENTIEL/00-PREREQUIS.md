@@ -3,10 +3,12 @@ perishability_id: PER-0005
 
 stability: perissable
 acte: évaluer
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0005
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 **SCÈNE CRAZYDEVS : Naruto :** avant de lancer le jutsu, tu vérifies ton chakra, ton terrain et ce que tu crois savoir. Ici, le piège est de coder avant d’avoir compris.
 
 # Prérequis du prélude "référentiel"

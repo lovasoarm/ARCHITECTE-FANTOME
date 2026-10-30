@@ -24,9 +24,25 @@ Construire un compteur distribué (coordinateur + workers) et prouver, métrique
 - Le total final doit être correct OU honnêtement dégradé (mesuré).
 - Retry rendu idempotent explicitement.
 
+## Périmètre explicite : CORE (7 h) et DEPTH
+
+Le projet complet décrit ci-dessous reste la cible de profondeur ; la route CORE de 7 h est un **slice**, pas la preuve que l'apprenant a résolu tous les problèmes distribués.
+
+**Slice CORE : critère minimal de réussite :**
+
+1. un coordinateur et au moins un worker local ;
+2. une clé d'idempotence pour chaque incrément ;
+3. tests TDD prouvant qu'un envoi dupliqué ne double pas le total ;
+4. au moins un scénario de timeout ou d'arrêt/redémarrage du worker ;
+5. total final vérifié par un oracle indépendant ;
+6. une mesure enregistrée (latence, tentatives, erreurs ou durée de récupération) ;
+7. un ADR qui énonce les hypothèses et ce que le résultat **ne prouve pas**.
+
+**DEPTH : exigences du projet complet :** les quatre scénarios de chaos (`race`, `kill-mid`, `network-drop`, `network-partition`), le rapport de chaos complet et la reprise/réconciliation définie par le modèle retenu. Une isolation de workers par rapport à un coordinateur unique est une **partition de connectivité**, pas un split-brain de coordinateurs. Un scénario de split-brain exige d'ajouter plusieurs coordinateurs/réplicas qui peuvent accepter des écritures de manière concurrente ; c'est une extension DEPTH distincte, avec un protocole et des tests dédiés. Ces scénarios doivent être exécutés et testés ; la simple présence de `chaos.js` ne les valide pas. Ne pas prétendre qu'un test local miniature démontre la correction générale sous partition ou consensus.
+
 ## LIVRABLE
 
-`coordinator.js`, `worker.js`, `chaos.js` (4 scénarios dont `network-partition`/split-brain), `verify.js`, rapport de chaos, `08-POSTMORTEM.md`.
+`coordinator.js`, `worker.js`, `chaos.js` (4 scénarios : `race`, `kill-mid`, `network-drop`, `network-partition`), `verify.js`, rapport de chaos, `08-POSTMORTEM.md`. L'extension multi-coordinateur/split-brain est un défi DEPTH séparé et ne doit pas être présentée comme testée par le scénario worker/coordinateur unique.
 
 ## SÉCURITÉ (gate obligatoire)
 

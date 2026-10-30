@@ -60,3 +60,7 @@ Un seul fichier à changer si l'API bouge. Commit.
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+## Transfert après l'exercice
+
+Remplace une API de notification fournisseur par un adaptateur qui expose le même contrat interne. Ajoute une fixture de réponse ancienne et une fixture nouvelle. Les tests du domaine ne doivent pas connaître le format fournisseur ; un état timeout doit rester « résultat inconnu » jusqu'à réconciliation, pas devenir arbitrairement « échec ».

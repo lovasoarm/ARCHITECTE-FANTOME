@@ -28,6 +28,20 @@ Cette implémentation en JavaScript est volontaire. Elle sera progressivement ty
 
 Ton nom s'affiche depuis une source unique.
 
+## Étape obligatoire : JavaScript sans framework (guidé)
+
+**Prérequis :** savoir créer un fichier `.js`, lancer `node --version` et `node fichier.js` ; connaître `const` et un objet simple. Aucun React, TypeScript ni Next.js nécessaire.
+
+1. Crée `personal.js` contenant `const personalInfo = { name: "Alex", role: "développeur" }; console.log(personalInfo.name);`.
+2. Lance `node personal.js` ; résultat attendu : `Alex`. Modifie `name`, relance et explique pourquoi l'affichage change.
+3. **Semi-guidé :** crée deux objets de personnes avec un nom différent, écris un affichage pour chacune, et justifie pourquoi la même propriété `name` est utilisée.
+4. **Indépendant :** crée `portfolio.js` qui conserve un objet `profile`, affiche son `name` puis traite un profil sans `name` en affichant `Nom indisponible` ; explique ton contrôle. Test négatif : absence de `name` ; une sortie `undefined` ne valide pas ce critère.
+5. Conserve les deux sorties, ton code et l'explication dans `preuve.md`. **Critère :** la donnée est définie une seule fois et la modification est visible après relance.
+
+## Extension optionnelle : Next.js (non requise pour valider la notion)
+
+**Prérequis avancés :** application Next.js préalablement initialisée, navigation `app/`, import/export JavaScript, JSX et lecture de `.tsx`. Si ces acquis manquent, reporter cette extension.
+
 ## APPLICATION
 
 - Crée le dossier `data/` à la racine de ton projet Next.js.
@@ -37,8 +51,9 @@ Ton nom s'affiche depuis une source unique.
 
 ## Critère de réussite
 
-- [ ] Crée le dossier `data/` à la racine de ton projet Next.js.
-- [ ] Importe-la dans `app/page.tsx` et affiche uniquement le `name` dans un `<h1>`.
+- [ ] Niveau obligatoire sans framework : `node personal.js` affiche le nom prévu et l’absence de nom est traitée.
+- [ ] Extension seulement : crée le dossier `data/` à la racine de ton projet Next.js.
+- [ ] Extension seulement : importe la donnée dans `app/page.tsx` et affiche le `name` dans un `<h1>`.
 - [ ] Je peux expliquer le résultat obtenu sans relire le cours.
 
 ## Vérification

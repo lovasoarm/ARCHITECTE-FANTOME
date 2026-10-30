@@ -274,3 +274,11 @@ Contrainte : tester en coupant la connexion manuellement (`source.close()`) puis
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+## Transfert production : SSE et proxy buffering
+
+Server-Sent Events (SSE, flux HTTP unidirectionnel du serveur vers le navigateur) convient aux notifications serveur→client lorsque le client n'a pas besoin d'envoyer une commande sur la même connexion. Le buffering du proxy et les timeouts intermédiaires peuvent retarder le flux.
+
+**Exercice.** Définis `Content-Type: text/event-stream`, les keep-alives, les événements nommés, le champ `id` et la reprise via `Last-Event-ID`. Décris ce que fait le serveur si le curseur demandé n'existe plus.
+
+**Vérification.** Le client reçoit un événement, se déconnecte puis reprend sans perdre les événements encore disponibles ; les en-têtes proxy/cache sont documentés et le flux reste unidirectionnel. Ne promets pas une conservation indéfinie du journal.

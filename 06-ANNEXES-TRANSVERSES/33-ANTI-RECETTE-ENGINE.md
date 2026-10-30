@@ -9,7 +9,6 @@ route_family: core
 <!-- AF-DIAGRAM:anti_recipe -->
 
 ```text
-text
 [Guidage fort]
       │
       ▼

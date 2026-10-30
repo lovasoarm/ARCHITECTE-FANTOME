@@ -11,7 +11,6 @@ acte: comprendre
 <!-- AF-DIAGRAM:tracing -->
 
 ```text
-text
 Request ─► Span A ─────► Span B ─────► Span C
              │             │              │
           service A     service B      service C
@@ -23,7 +22,6 @@ Une trace relie plusieurs spans pour reconstruire le chemin d’une requête à 
 <!-- AF-DIAGRAM:observability -->
 
 ```text
-text
                          System
                            │
              ┌─────────────┼─────────────┐
@@ -38,7 +36,6 @@ Logs, métriques et traces donnent trois angles complémentaires pour reconstrui
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

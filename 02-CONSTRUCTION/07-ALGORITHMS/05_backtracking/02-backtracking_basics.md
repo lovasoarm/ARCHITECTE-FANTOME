@@ -405,7 +405,6 @@ Backtracking, c'est trois opérations dans un ordre fixe : choisir, explorer, d�
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

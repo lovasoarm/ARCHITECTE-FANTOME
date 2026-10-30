@@ -10,10 +10,12 @@ perturbation_modes: [preuve_partielle, decision_organisationnelle]
 anti_recipe_key: preuve_partielle+decision_organisationnelle
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0054
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-04-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **SCÈNE CRAZYDEVS : finale au stade :** 99,9 % de disponibilité sur un slide ne sauve personne à 03:17 quand le service hurle. La vraie compétence commence quand il faut transformer la métrique en décision.
 
 # 09 : Instrumenter TON projet (OpenTelemetry local, zéro compte externe)
@@ -47,7 +49,6 @@ Tout tourne en `docker-compose` local. Aucun compte SaaS. Aucun secret externe.
 <!-- AF-DIAGRAM:observability -->
 
 ```text
-text
                          System
                            │
              ┌─────────────┼─────────────┐

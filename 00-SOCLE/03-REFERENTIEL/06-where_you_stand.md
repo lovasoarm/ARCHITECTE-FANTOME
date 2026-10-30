@@ -247,7 +247,6 @@ Ouvre `README.md` à la racine, lis la ROADMAP, et lance-toi.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

@@ -37,3 +37,15 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+## Barème autonome : POO JavaScript (20 points)
+
+- **Modèle objet (4 pts)** : prototype, propriété, lookup et `this` expliqués avec un cas qui échoue.
+- **Encapsulation (4 pts)** : invariant protégé et mutations autorisées contrôlées.
+- **Héritage/composition (4 pts)** : choix motivé par substituabilité et variation, pas par hiérarchie artificielle.
+- **Comportement (4 pts)** : tests couvrent méthodes, contexte d'appel, overrides et cas limites.
+- **Transfert (4 pts)** : le même modèle est expliqué en classes et en prototypes, avec limites.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : dépendre d'un `this` implicite sans contrat d'appel ou casser la substituabilité attendue.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

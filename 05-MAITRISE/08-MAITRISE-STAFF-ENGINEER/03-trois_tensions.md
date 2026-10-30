@@ -16,7 +16,6 @@ assessment_role: staff_mastery
 <!-- AF-DIAGRAM:roi -->
 
 ```text
-text
 Decision
   │
   ├──► Value / impact
@@ -72,3 +71,11 @@ Recommence avec un vrai conflit : il y en a toujours trois dans un système rée
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « Les trois tensions : la seule preuve de croisement », puis conserve le résultat et explique tout écart.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

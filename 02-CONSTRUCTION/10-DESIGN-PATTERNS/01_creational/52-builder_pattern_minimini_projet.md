@@ -60,3 +60,7 @@ Tu peux justifier ton style d'API interne avec un exemple concret sous les yeux.
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+## Transfert après l'exercice
+
+Réutilise le builder pour une requête de reporting multi-tenant. La méthode `build()` doit refuser une période inversée, un tenant absent et une option incompatible. Transfère ensuite le problème vers un constructeur typé : justifie si un builder reste utile ou si un objet de configuration validé suffit.

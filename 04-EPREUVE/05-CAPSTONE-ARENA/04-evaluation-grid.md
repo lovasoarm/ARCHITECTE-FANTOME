@@ -10,7 +10,6 @@ acte: comprendre
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -29,7 +28,6 @@ Le transfert teste ce qui survit du principe et ce qui doit être révisé dans 
 <!-- AF-DIAGRAM:capstone -->
 
 ```text
-text
 Architecture ─┐
 Security ─────┤
 Cost ─────────┤
@@ -99,7 +97,7 @@ pas un capstone recevable, indépendamment de la qualité du code.
 
 ## Familles Staff représentées dans le capstone
 
-Les six familles de preuve sont définies dans [`PREUVES-STAFF-ENGINEER.md`](../../PREUVES-STAFF-ENGINEER.md) : S1 systèmes/cloud, S2 architecture, S3 sécurité/fiabilité, S4 produit/business, S5 leadership/pédagogie, S6 IA/automatisation. **Le capstone peut fournir des pièces pour plusieurs familles, mais il ne détermine pas à lui seul le statut Staff.**
+Les six familles de preuve sont définies dans [`PREUVES-STAFF-ENGINEER.md`](../../PREUVES-STAFF-ENGINEER.md) : S1 systèmes/cloud, S2 architecture, S3 sécurité/fiabilité, S4 produit/business, S5 leadership/pédagogie, S6 livraison/exploitation. **Le capstone peut fournir des pièces pour plusieurs familles, mais il ne détermine pas à lui seul le statut Staff.**
 
 ```text
 capstone complet
@@ -111,7 +109,7 @@ Staff Readiness Gate
 READY seulement si S1–S6 sont fermées et S7 (transfert) est prouvée
 ```
 
-L’absence d’une brique IA dans le fil rouge ne supprime donc pas S6 : la preuve S6 peut être produite par le mini-projet CORE `19_supervise_the_ai` et/ou par un autre terrain explicitement accepté dans le dossier de preuves. Le capstone n’octroie jamais, à lui seul, un titre professionnel Staff Engineer.
+L’absence d’une brique IA dans le fil rouge ne supprime pas S6 : S6 est prouvée par `PREUVES/LIVRAISON-EXPLOITATION.md` et par une release/test de récupération vérifiable. La compétence IA est contrôlée séparément par G8 avec `PREUVES/EVALUATION-IA.md`, via le mini-projet CORE `19_supervise_the_ai` et le laboratoire IA de référence. N'ajoute pas un LLM à un produit si le besoin ne le justifie pas. Le capstone n’octroie jamais, à lui seul, un titre professionnel Staff Engineer.
 
 Une famille ne compte comme prouvée que si son fichier de preuve est présent, daté, et cité
 dans l'auto-évaluation avec le critère de la grille qui la note. Se déclarer « couvert sur

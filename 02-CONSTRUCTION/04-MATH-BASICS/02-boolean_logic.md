@@ -137,7 +137,8 @@ JS ne travaille pas qu'avec des vrais booléens. N'importe quelle valeur peut ê
 
 ```js
 false;
-0 - 0;
+0;
+-0;
 0n; // BigInt zéro
 (""); // chaîne vide
 null;
@@ -148,11 +149,10 @@ NaN;
 **Tout le reste est truthy**, y compris :
 
 ```js
-[]; // tableau vide : TRUTHY:attention
-{
-} // objet vide : TRUTHY:attention
-"0" - // la chaîne "0" : TRUTHY
-  1; // n'importe quel nombre non-zéro
+[]; // tableau vide : truthy
+({}); // objet vide : truthy
+("0"); // chaîne non vide : truthy
+1; // nombre non nul : truthy
 ```
 
 ```js
@@ -207,28 +207,30 @@ C'est utile en code review. Si quelqu'un écrit `!(a && b)`, tu proposes `!a || 
 ## 5) PRIORITÉ DES OPÉRATEURS
 
 ```text
-!  (NOT)    : priorité la plus haute
-&& (AND)
-|| (OR)    : priorité la plus basse
-??       : même niveau que ||
+!       (NOT) : priorité supérieure
+&&      (AND)
+||      (OR)
+??      (coalescence nullish) : même niveau de priorité que ||
 ```
 
+`??` et `||` n'ont pas la même sémantique : `||` remplace toute valeur falsy, alors que `??` ne remplace que `null` et `undefined`. JavaScript interdit de mélanger `??` directement avec `&&` ou `||` sans parenthèses ; écris le groupement voulu.
+
 ```js
-// sans parenthèses : peut surprendre
-true ||
-  (false &&
-    false(
-      // => true || (false && false) => true || false => true
-      // && est évalué avant ||
+// && est évalué avant ||
+const premier = true || (false && false); // true || false => true
 
-      // avec parenthèses : explicite
-      true || false,
-    ) &&
-    false);
-// => true && false => false
+// les parenthèses changent volontairement le groupement
+const second = (true || false) && false; // true && false => false
 
-// règle : si tu mixes && et || sans parenthèses, tu joues avec le feu
-// ajoute des parenthèses:le compilateur te remercie pas mais tes collègues oui
+const quota = 0;
+const avecOr = quota || 10; // 10 : 0 est falsy
+const avecNullish = quota ?? 10; // 0 : quota n'est ni null ni undefined
+
+// exemple de mélange autorisé grâce aux parenthèses
+const acces = (estAdmin || estSuperviseur) && compteActif;
+
+// règle : lorsque tu combines plusieurs opérateurs logiques,
+// parenthèse le groupement métier et teste les cas limites.
 ```
 
 ---
@@ -304,3 +306,44 @@ Trapsoul Radio a un système de feature flags. Chaque feature est active si son 
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+## Vérification autonome : logique et court-circuit
+
+Place ce bloc dans `verify-boolean.mjs`, puis exécute `node verify-boolean.mjs`. Il vérifie les invariants qui se perdent souvent dans une condition de production : valeurs falsy, De Morgan et absence d'effet lorsque le court-circuit s'applique.
+
+```js
+import assert from "node:assert/strict";
+
+assert.equal(true && true, true);
+assert.equal(true && false, false);
+assert.equal(false || true, true);
+assert.equal(!0, true);
+assert.equal(Boolean("0"), true);
+assert.equal(Boolean(""), false);
+assert.equal(!(true && false), !true || !false);
+
+let calls = 0;
+const disabled = false;
+disabled && (calls += 1);
+assert.equal(calls, 0, "le côté droit ne doit pas être évalué");
+
+console.log("OK boolean logic");
+```
+
+**Acceptation :** sortie `OK boolean logic`, code de sortie 0 ; expliquer pourquoi `'0'` est truthy et pourquoi la ligne avec `disabled` ne modifie pas `calls`. Si l'apprenant ne peut pas exécuter Node, il doit dérouler chaque assertion manuellement et marquer la preuve comme simulation papier.
+
+**Lien et transfert :** ces règles alimentent les guards TypeScript/JavaScript, les permissions et les branches de gestion d'erreurs ; une condition vraie ne garantit pas à elle seule l'autorisation métier.
+
+## Vérification de la règle d'accès : cas métier
+
+La condition de l'exercice Fox River doit appliquer l'alerte comme refus prioritaire, puis le badge + shift ou le statut superviseur. Une formulation de référence est :
+
+```js
+const peutOuvrirPorte = (garde) =>
+  !garde.alerteActive &&
+  (garde.superviseur || (garde.badge && garde.shiftActif));
+```
+
+**Table de décision minimale :** badge valide + shift actif + pas d'alerte → autorisé ; superviseur + pas d'alerte → autorisé ; alerte active → refus même pour le superviseur ; badge seul sans shift → refus. Le bypass superviseur ne doit jamais contourner l'alerte prioritaire.
+
+**Vérification :** exécute la fonction avec les trois objets de l'exercice, puis ajoute les cas `superviseur=true, alerteActive=true` et `badge=true, shiftActif=false`. Attendu : `true, true, false, false, false`. Cette table de décision est aussi la preuve de revue métier.

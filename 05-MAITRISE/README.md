@@ -25,7 +25,15 @@ le palier n'est pas franchissable.
 | [07-TOOLS](07-TOOLS/README.md)                                     | outils, sans religion d'outil  |
 | [08-MAITRISE-STAFF-ENGINEER](08-MAITRISE-STAFF-ENGINEER/README.md) | dossier unique + boss fight    |
 
-Retrospective : [02A-RETRO-BLOC-5-MAITRISE.md](02A-RETRO-BLOC-5-MAITRISE.md). Ensuite :
+## Extension Depth : après le palier terminal
+
+L'intégration pédagogique est explicitée dans [58 : Route apprenant cohérente](../06-ANNEXES-TRANSVERSES/58-ROUTE-APPRENANT-COHERENTE.md). Pour relier les projets aux leçons d'IA et DevOps/SRE, utilise [60 : Laboratoire IA](../06-ANNEXES-TRANSVERSES/60-LAB-SERVICE-IA-END-TO-END.md) et [59 : Atelier DevOps/SRE](../06-ANNEXES-TRANSVERSES/59-LAB-DEVOPS-LIFECYCLE.md) ; ils ne remplacent pas les projets, ils rendent leurs preuves comparables.
+
+Le [Portefeuille avancé de systèmes 2035+](09-PORTFOLIO-SYSTEMES-2035/README.md) assemble dix projets approfondis
+sans les transformer en prérequis CORE. Le contrat commun et les six leçons-ponts sont ouverts selon les besoins
+réels ; commence par La Tour de Contrôle et le Tribunal des IA, puis suis les prérequis de chaque projet.
+
+Rétrospective : [02A-RETRO-BLOC-5-MAITRISE.md](02A-RETRO-BLOC-5-MAITRISE.md). Ensuite :
 [14-EPILOGUE.md](../06-ANNEXES-TRANSVERSES/14-EPILOGUE.md) puis
 [15-ANNEXE-et-apres.md](../06-ANNEXES-TRANSVERSES/15-ANNEXE-et-apres.md).
 

@@ -19,7 +19,6 @@ assessment_role: diagnostic_mastery
 <!-- AF-DIAGRAM:slo -->
 
 ```text
-text
 SLO
  │
  ├──► SLI mesuré ───► conformité
@@ -403,3 +402,11 @@ En JS, passer un objet à une fonction ou l'assigner à une variable ne le copie
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « Mutation minefield : toucher un objet et tout casser ailleurs » à un service long-vivant plutôt qu’un script ponctuel. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

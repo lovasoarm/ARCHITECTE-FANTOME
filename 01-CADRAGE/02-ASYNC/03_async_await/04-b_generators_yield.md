@@ -20,50 +20,28 @@ Ce fichier sort de la numérotation standard. Il couvre un concept connexe à ce
 
 # Generators et yield : la fonction qui fait pause
 
-<!-- AF-DIAGRAM:promise -->
+<!-- AF-DIAGRAM:generator-yield -->
 
 ```text
-        ┌──────────┐
-        │ pending  │
-        └────┬─────┘
-             │ résultat
-       ┌─────┴─────┐
-       ▼           ▼
-┌────────────┐ ┌────────────┐
-│ fulfilled  │ │ rejected   │
-└─────┬──────┘ └─────┬──────┘
-      │              │
-      └──────┬───────┘
-             ▼
-       ┌───────────┐
-       │ handlers  │
-       └───────────┘
+missionGaro()  ──► crée un itérateur (le corps ne démarre pas)
+                       │
+                    next()
+                       ▼
+             exécute jusqu’à yield
+                       │
+                       ▼
+          { value: point, done: false }
+                       │
+                    next()
+                       ▼
+             reprend après yield
+                       │
+                    return
+                       ▼
+          { value: résultat, done: true }
 ```
 
-Une Promise évolue d’un état en attente vers un résultat résolu ou rejeté, puis déclenche ses handlers.
-
-<!-- AF-DIAGRAM:async_await -->
-
-```text
-┌──────────────┐
-│ fonction     │
-│ async        │
-└──────┬───────┘
-       │ await
-       ▼
-┌──────────────┐
-│ suspend      │
-│ la reprise   │
-└──────┬───────┘
-       │ Promise prête
-       ▼
-┌──────────────┐
-│ reprend      │
-│ le contexte  │
-└──────────────┘
-```
-
-await suspend la reprise de la fonction async, pas l’ensemble du runtime.
+Un générateur conserve son état entre les appels à `next()` : `yield` suspend l'exécution et `next()` la reprend. La première invocation de `next()` démarre le corps ; les suivantes peuvent fournir une valeur à l'expression `yield` suspendue.
 
 Temps de lecture ~3 min
 
@@ -197,22 +175,6 @@ console.log([...tousLesNinjas()]);
 ---
 
 ## 4) GENERATORS ASYNCHRONES : `async function*`
-
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
 
 Un generator peut être asynchrone : chaque yield peut attendre une opération async.
 

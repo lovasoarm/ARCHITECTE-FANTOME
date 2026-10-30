@@ -11,9 +11,7 @@ acte: comprendre
 
 Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADRs réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables.
 
-
 > **Route CORE 16 semaines :** ce projet conserve son contenu complet. Pour le sprint intensif, consulte [la carte CORE](../../../06-ANNEXES-TRANSVERSES/25-CORE-MINI-PROJECT-MAP.md) pour le slice recommandé. Le passage CORE ajoute une perturbation, un transfert et un rappel à froid ; voir [Engine d’ambiguïté](../../../06-ANNEXES-TRANSVERSES/20-ENGINE-AMBIGUITE.md).
-
 
 -> ~6 min
 
@@ -37,22 +35,21 @@ $ node src/index.js
 
 ---
 
-## INSTALLATION
+## PRÉREQUIS ET ÉTAT INITIAL
 
-```text
-Node.js    : v22.23.3
-npm      : v10+ (inclus avec Node.js)
-Variables env : aucune
-Outils externes: aucun
-```
+- Node.js : `v22.23.4` (version de référence du dépôt AF) ; npm est fourni avec Node.js.
+- État de l’archive : Sans dépendance externe. Le ZIP contient uniquement les cahiers, gabarits et README de `src/`/`tests/` : aucun `package.json`, source JavaScript ou test exécutable n’est livré.
+
+### Commandes disponibles dès réception
 
 ```bash
-npm install
-node src/index.js  # lance un combat
-npm test       # lance la suite de tests
+node --version
+npm --version
 ```
 
-Pas de build step, pas de transpilation. Le code tourne tel qu'il est écrit.
+### Commandes après réalisation du scaffold
+
+Après création du code : `node src/index.js`. Pour les tests avec le runner natif Node : `node --test`. `npm test` ne fonctionne qu’après déclaration d’un script `test` dans `package.json`. Aucun `npm install` n’est requis si tu conserves les modules natifs.
 
 ---
 
@@ -110,12 +107,12 @@ index.js
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module        | Où ça se voit                             |
-| -------------------- | ---------------------------------------------------------------------- |
-| `00-SOCLE/04-FUNDAMENTALS`  | objets ninja, HOF (`map`/`filter`/`reduce`) partout dans `combat.js`  |
-| `02-CONSTRUCTION/04-MATH-BASICS`   | `rng.js` (probabilités), `cooldownCycle.js` (modulo)          |
-| `02-CONSTRUCTION/09-FUNCTIONAL-JS`  | `turnResolver.js` : chaque tour retourne un nouvel état, zéro mutation |
-| `13_design_patterns` | `fighterFactory.js` (Factory), `jutsus/` (Strategy)          |
+| Module                             | Où ça se voit                                                          |
+| ---------------------------------- | ---------------------------------------------------------------------- |
+| `00-SOCLE/04-FUNDAMENTALS`         | objets ninja, HOF (`map`/`filter`/`reduce`) partout dans `combat.js`   |
+| `02-CONSTRUCTION/04-MATH-BASICS`   | `rng.js` (probabilités), `cooldownCycle.js` (modulo)                   |
+| `02-CONSTRUCTION/09-FUNCTIONAL-JS` | `turnResolver.js` : chaque tour retourne un nouvel état, zéro mutation |
+| `13_design_patterns`               | `fighterFactory.js` (Factory), `jutsus/` (Strategy)                    |
 
 ---
 
@@ -187,6 +184,16 @@ Un CI check impose la présence de `src/` et `tests/` avant validation.
 
 Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur dépôt apprenant. Si le projet utilise des dépendances npm, ton dépôt apprenant doit versionner `package.json` et `package-lock.json`, puis utiliser `npm ci` en CI pour installer exactement cet arbre. Si le projet est sans dépendances, consigne simplement la version de runtime et la commande de test réellement utilisée. La preuve de reproductibilité est la commande et la version relevées dans ton propre dépôt, pas une valeur inventée dans le curriculum.
 
+## Séquence de maîtrise exigée (pas seulement une démo)
+
+1. **Prédire** : écris les invariants de combat, de dégâts, de cooldown et de fin de partie avant de lancer le moteur.
+2. **Établir une baseline** : conserve la sortie d'un combat déterministe et les tests qui la rendent reproductible.
+3. **Casser une hypothèse** : injecte un jutsu inconnu, des stats limites et une source aléatoire contrôlée ; vérifie que le moteur refuse ou traite chaque cas selon le contrat.
+4. **Corriger avec preuve** : un test doit échouer avant la correction et réussir après. La sortie visuelle seule n'est pas suffisante.
+5. **Transférer** : remplace le domaine « combat » par une simulation d'inventaire ou de réservation en gardant l'architecture de décision, puis indique ce qui ne se transfère pas.
+
+**Gate :** les tests couvrent au moins un invariant, un cas limite, une erreur de contrat et une régression injectée. Explique pourquoi la séparation des responsabilités est utile ici et quand elle serait une abstraction inutile. Utilise [64 : Fondations](../../../06-ANNEXES-TRANSVERSES/64-LAB-FONDATIONS-ET-RAISONNEMENT.md) et [67 : Gate de maîtrise](../../../06-ANNEXES-TRANSVERSES/67-GATE-MAITRISE-ET-CAPSTONE.md).
+
 ## Contenu du dossier
 
 <!-- CONTENU-DOSSIER:debut -->
@@ -204,3 +211,31 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## Comprendre les tests avant de commencer : état exact du ZIP
+
+Référence : [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les exemples de sortie décrivent la cible, pas un logiciel livré, sauf mention contraire.
+
+- Code fourni : aucun module exécutable ; `src/README.md` et `tests/README.md` sont des consignes.
+- Tests de référence verts : aucun. Tests volontairement rouges : aucun test exécutable au départ ; le premier rouge est à écrire avant le code.
+- Tests à écrire : RNG déterministe, combattants, jutsus, dégâts/cooldowns, invariants de tour, fin de combat, erreurs et reproductibilité.
+- Validation finale : après création de `src/` et `tests/`, `node --test tests/*.test.js`. `npm test` n'existe qu'après déclaration d'un script dans `package.json`. La commande CLI `node src/index.js` est une commande d'état final, pas une commande du ZIP reçu.
+- Ordre : RNG/tests → modèles → règles de combat → orchestration → CLI/logger → intégration. Preuve : mêmes graines = mêmes combats ; limites et transitions couvertes.
+
+## Règles communes de progression et de preuve
+
+### Contrôle commun de la progression
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
+- **Tests verts de référence :** aucun.
+- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
+- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
+- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
+
+**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.

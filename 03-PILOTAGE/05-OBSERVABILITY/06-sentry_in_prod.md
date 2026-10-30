@@ -8,10 +8,12 @@ perturbation_modes: [changement_echelle, constraints_injectees]
 anti_recipe_key: changement_echelle+constraints_injectees
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0050
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.
 
 # Capturer l'erreur avant qu'un shinobi te l'envoie par email
@@ -19,7 +21,6 @@ review_due: 2027-12-31
 <!-- AF-DIAGRAM:tracing -->
 
 ```text
-text
 Request ─► Span A ─────► Span B ─────► Span C
              │             │              │
           service A     service B      service C
@@ -31,7 +32,6 @@ Une trace relie plusieurs spans pour reconstruire le chemin d’une requête à 
 <!-- AF-DIAGRAM:observability -->
 
 ```text
-text
                          System
                            │
              ┌─────────────┼─────────────┐

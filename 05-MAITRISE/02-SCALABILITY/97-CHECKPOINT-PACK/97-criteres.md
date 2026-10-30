@@ -24,3 +24,11 @@ Tant qu'une case reste vide, le jalon est **non valide** : le module suivant peu
 le jalon reste dû. Référentiel : [03-TECH-ILA](../../../06-ANNEXES-TRANSVERSES/04-TECH-ILA/README.md).
 
 <!-- JALON-TECH-ILA:fin -->
+
+<!-- AF-P0-2026-10-30: missing_example -->
+
+### Exemple travaillé : cas métier
+
+Le débit est multiplié par vingt pendant cinq minutes ; un consommateur tombe et redémarre avec des messages en retard. Construis un cas minimal qui illustre « Critères de vérification : `02-SCALABILITY` » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

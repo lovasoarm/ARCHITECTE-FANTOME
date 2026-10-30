@@ -10,10 +10,12 @@ perturbation_modes: [decision_organisationnelle, regression]
 anti_recipe_key: decision_organisationnelle+regression
 transfer_distance: high
 assessment_role: instructional_checkpoint
-review_due: 2028-12-31
-
+freshness_registry_id: PER-0013
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-04-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 # E2e playwright beast : simuler un vrai utilisateur
@@ -258,7 +260,6 @@ Ne mets pas tout en E2E : c'est lent. Réserve-les aux flux critiques.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

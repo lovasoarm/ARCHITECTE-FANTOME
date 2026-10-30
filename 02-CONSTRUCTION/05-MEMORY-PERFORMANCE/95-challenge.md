@@ -40,7 +40,6 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -57,3 +56,15 @@ Nouveau contexte
 Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
 
 Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+
+## Barème autonome : Mémoire et performance (20 points)
+
+- **Mesure initiale (4 pts)** : baseline reproductible avec scénario, volume, environnement et métrique clairement définis.
+- **Diagnostic mémoire (4 pts)** : heap snapshot/retainers ou preuve équivalente identifie la référence qui garde l'objet vivant.
+- **Complexité et profilage (4 pts)** : hypothèse algorithmique reliée aux mesures CPU/mémoire, sans conclure à partir d'une seule exécution.
+- **Correction (4 pts)** : patch ciblé, test de non-régression et mesure avant/après sur le même protocole.
+- **Compromis et transfert (4 pts)** : coût mémoire/latence/complexité opérationnelle comparé et cas où l'optimisation ne convient pas expliqué.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : annoncer un gain sans protocole comparable ou masquer une régression fonctionnelle.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

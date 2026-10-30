@@ -11,10 +11,12 @@ perturbation_modes: [decision_organisationnelle, defaut_cache]
 anti_recipe_key: decision_organisationnelle+defaut_cache
 transfer_distance: high
 assessment_role: instructional_checkpoint
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0071
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-01-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 > **Statut de pérennité :** intemporel | évolutif | **périssable**
@@ -232,7 +234,6 @@ Le camp de Rick a pas besoin du meilleur outil. Il a besoin de comprendre pourqu
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

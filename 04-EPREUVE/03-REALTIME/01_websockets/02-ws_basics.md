@@ -315,3 +315,11 @@ Contrainte : la fonction doit fonctionner même si appelée immédiatement, sans
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+## Transfert production : WebSocket derrière proxy et reconnexion
+
+**Scénario.** Un client perd le réseau pendant 20 secondes puis revient. Les connexions sont stateful et le proxy peut fermer une connexion inactive. Décris heartbeat, timeout, reconnexion avec jitter, authentification à l'établissement et rattrapage des événements manqués.
+
+**Exercice.** Écris une machine d'état `disconnected → connecting → connected → backoff → closed`. Donne un identifiant séquentiel d'événement et un curseur de reprise ; précise quand il faut recharger un snapshot plutôt que rejouer un flux trop ancien.
+
+**Vérification.** Tests de reconnexion, doublons, événement manquant, token révoqué et fermeture volontaire. Une connexion WebSocket ne garantit ni livraison durable ni exactly-once.

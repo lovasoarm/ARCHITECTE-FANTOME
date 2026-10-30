@@ -311,7 +311,6 @@ Si ça ressemble à "atteindre une somme/cible avec des unités" : Coin Change
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

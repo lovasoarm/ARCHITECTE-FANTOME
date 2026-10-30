@@ -8,10 +8,12 @@ perturbation_modes: [constraints_injectees, decision_organisationnelle]
 anti_recipe_key: constraints_injectees+decision_organisationnelle
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0002
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 # 02 : DAY ONE (contexte, environnement, premier code)
@@ -85,7 +87,7 @@ npm -v    # >= 10
 git --version  # utile ici, mais pas bloquant pour le premier cycle
 ```
 
-Node : voir [06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md](../../06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md) (cible v22, cible v22.23.3).
+Node : voir [06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md](../../06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md) (cible v22, cible v22.23.4).
 
 Si `node -v` ou `npm -v` échoue -> ouvre [`02-install.md`](02-install.md)
 avant d'aller plus loin. **Ne bricole pas.** Un environnement bancal génère des

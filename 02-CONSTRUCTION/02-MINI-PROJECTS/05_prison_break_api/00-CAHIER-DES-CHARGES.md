@@ -14,27 +14,21 @@ route_family: core
 
 Temps de lecture ~13 min
 
-## PRÉREQUIS
+## PRÉREQUIS ET ÉTAT INITIAL DU ZIP
 
-```text
-Node.js    : v22.23.3
-npm      : v10+
-Variables env : PORT (optionnel, défaut : 3000)
-Outils externes: aucun (SQLite est embedded, pas de serveur à démarrer séparément)
+- Node.js `22.23.4` recommandé.
+- La cible technique utilise `better-sqlite3`, qui devra être déclaré et verrouillé dans le dépôt apprenant. L'archive ne fournit ni `package.json`, ni serveur, ni schéma, ni tests exécutables.
+- SQLite est embarqué par la dépendance ; aucun serveur SQL séparé n'est requis. L'installation du module natif devra être vérifiée sur l'OS/ABI Node utilisés.
 
-# Installation
-$ npm install
+Commandes disponibles dès réception :
 
-# Démarrer le serveur
-$ node src/server.js
-
-# Lancer les tests (le serveur ne doit pas tourner en parallèle)
-$ npm test
+```bash
+node --version
+npm --version
 ```
 
-SQLite est inclus via le package `better-sqlite3` : pas de base de données externe à installer ni à configurer.
+Après création du manifeste et des sources : ajouter `better-sqlite3`, enregistrer le lockfile, puis construire `src/server.js` et les tests. `node src/server.js` et `npm test` ne sont valides qu'après cette construction et la déclaration du script de test.
 
----
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
@@ -88,7 +82,6 @@ Ce projet force à penser sécurité et robustesse ensemble, pas séparément :
 <!-- AF-DIAGRAM:jwt -->
 
 ```text
-text
 Login ─► Issue token ─► Request + token ─► Verify ─► Allow / Reject
                                       │
                                       └────► Expired / Invalid

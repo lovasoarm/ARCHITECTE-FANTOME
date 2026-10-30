@@ -9,10 +9,12 @@ perturbation_modes: [changement_echelle, temps_limite]
 anti_recipe_key: changement_echelle+temps_limite
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0069
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 # Semaine à double dérive : technique ET roadmap, en même temps
@@ -20,7 +22,6 @@ review_due: 2027-12-31
 <!-- AF-DIAGRAM:slo -->
 
 ```text
-text
 SLO
  │
  ├──► SLI mesuré ───► conformité
@@ -36,7 +37,6 @@ Le SLO définit la cible, le SLI mesure le service et l’error budget relie fia
 <!-- AF-DIAGRAM:capstone -->
 
 ```text
-text
 Architecture ─┐
 Security ─────┤
 Cost ─────────┤

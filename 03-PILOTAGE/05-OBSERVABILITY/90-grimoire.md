@@ -3,10 +3,12 @@ perishability_id: PER-0056
 
 stability: perissable
 acte: restituer
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0056
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.
 
 # Page verrouillée
@@ -14,7 +16,6 @@ review_due: 2027-12-31
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -33,7 +34,6 @@ Le transfert teste ce qui survit du principe et ce qui doit être révisé dans 
 <!-- AF-DIAGRAM:tracing -->
 
 ```text
-text
 Request ─► Span A ─────► Span B ─────► Span C
              │             │              │
           service A     service B      service C
@@ -45,7 +45,6 @@ Une trace relie plusieurs spans pour reconstruire le chemin d’une requête à 
 <!-- AF-DIAGRAM:observability -->
 
 ```text
-text
                          System
                            │
              ┌─────────────┼─────────────┐

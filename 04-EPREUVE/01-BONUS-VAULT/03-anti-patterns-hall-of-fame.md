@@ -9,7 +9,6 @@ stability: stable
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

@@ -50,7 +50,6 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -67,3 +66,15 @@ Nouveau contexte
 Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
 
 Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+
+## Barème autonome : TypeScript (20 points)
+
+- **Modélisation (4 pts)** : types représentent les états valides du domaine et distinguent `unknown`, `any` et unions.
+- **Narrowing (4 pts)** : type guards exhaustifs et gestion du cas impossible vérifiées par le compilateur.
+- **Généricité (4 pts)** : paramètres de type et utilitaires apportent une contrainte utile, sans complexité gratuite.
+- **Configuration (4 pts)** : `strict`, build, tests et types d'exécution sont cohérents avec le projet.
+- **Contrat (4 pts)** : les frontières non fiables sont validées à l'exécution ; l'apprenant explique pourquoi les types seuls ne valident pas une donnée externe.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : confondre typage statique et validation runtime d'une entrée utilisateur ou API.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

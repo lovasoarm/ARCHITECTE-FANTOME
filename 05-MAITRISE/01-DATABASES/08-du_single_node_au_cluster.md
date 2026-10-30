@@ -59,7 +59,6 @@ Où l'analogie casse (foot) : deux arbitres séparés par un tunnel de communica
 <!-- AF-DIAGRAM:replication -->
 
 ```text
-text
              write
 Client ─────────────► Primary
                         │
@@ -91,7 +90,6 @@ N=3, W=1, R=1 --> W+R=2 < 3 : lecture peut renvoyer vieille valeur
 <!-- AF-DIAGRAM:sharding -->
 
 ```text
-text
                  key
                   │
           ┌───────┼────────┐

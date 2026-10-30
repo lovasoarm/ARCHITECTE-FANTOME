@@ -43,3 +43,15 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+## Barème autonome : Concepts Web (20 points)
+
+- **Cycle client/serveur (4 pts)** : requête, réponse, cache et rendu reliés sur un scénario complet.
+- **HTTP (4 pts)** : méthodes, statuts, headers, cookies et cache employés selon leur sémantique.
+- **Sécurité (4 pts)** : origine, CORS, CSRF/XSS et stockage des secrets distingués correctement.
+- **Diagnostic (4 pts)** : réseau, navigateur et serveur observés avec un protocole reproductible.
+- **Décision (4 pts)** : rendu, cache, API et compatibilité arbitrés selon les contraintes utilisateur.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : traiter CORS comme une protection d'authentification ou exposer un secret dans le client.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

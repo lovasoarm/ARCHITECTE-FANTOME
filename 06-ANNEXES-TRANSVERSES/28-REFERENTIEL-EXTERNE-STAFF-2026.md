@@ -5,9 +5,12 @@ stability: perissable
 acte: annexe
 noyau: non
 verifie: 2026-08-22
-
+freshness_registry_id: PER-0103
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 # 28 : RÉFÉRENTIEL EXTERNE STAFF : 2026
 
 > Ce document ne devient pas une source pédagogique primaire. Il sert à vérifier périodiquement que le modèle AF du rôle Staff ne dérive pas vers une caricature technique.

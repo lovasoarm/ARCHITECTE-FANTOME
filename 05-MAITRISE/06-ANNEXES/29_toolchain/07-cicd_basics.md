@@ -96,7 +96,6 @@ En local, on l'oublie.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

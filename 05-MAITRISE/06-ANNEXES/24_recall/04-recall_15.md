@@ -15,7 +15,6 @@ assessment_role: diagnostic_mastery
 <!-- AF-DIAGRAM:recall -->
 
 ```text
-text
 J+1 ──► J+3 ──► J+7 ──► J+14 ──► J+28
  │        │        │         │         │
 free    explain  diagnose   transfer  defend inverse
@@ -51,3 +50,11 @@ Périmètre : functional JS, design patterns, refactoring (SOLID), TypeScript, r
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « \_recall_15.md : modules `02-CONSTRUCTION/09-FUNCTIONAL-JS` a `02-CONSTRUCTION/13-RUNTIME-ENV` » à une codebase inconnue et un incident dont les symptômes sont incomplets. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

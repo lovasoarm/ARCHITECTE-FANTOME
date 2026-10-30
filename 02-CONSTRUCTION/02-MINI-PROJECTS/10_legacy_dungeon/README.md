@@ -17,9 +17,7 @@ Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `
 
 -> ~7 min
 
-Les 9 projets précédents, quelqu'un a pensé à toi en les écrivant. Celui-là, non. Tu clones un vrai dépôt open source, jamais écrit pour t'apprendre quoi que ce soit, et tu dois en sortir vivant : une carte du terrain, un bug corrigé, une décision d'architecture déduite après coup.
-
-C'est ça, ton premier jour dans une équipe. Le code existe déjà. Personne ne te fait la visite guidée.
+Les 9 projets précédents te donnent un cahier des charges. Ici, tu arrives sur un codebase que tu n'as pas conçu : tu dois en sortir une carte, trouver un défaut, écrire une preuve avant/après et déduire une décision d'architecture. La fixture Git locale permet de le faire sans réseau ; un vrai dépôt public est proposé en extension terrain.
 
 > **Différence avec `12_legacy_takeover`** : ici le dépôt est **gros et
 > vivant** et l'attendu est la **lecture** : cartographier, situer la vraie
@@ -33,10 +31,11 @@ C'est ça, ton premier jour dans une équipe. Le code existe déjà. Personne ne
 ## CE QUE ÇA FAIT
 
 ```bash
-$ git clone <repo-choisi-par-toi> dungeon/
+$ git clone fixtures/legacy-billing.bundle dungeon/
 $ cd dungeon
-$ find . -name "*.js" -o -name "*.ts" | grep -v node_modules | xargs wc -l | tail -1
- 47832 total # tu mesures, tu ne supposes jamais
+$ git log --oneline --decorate -4
+$ git rev-parse HEAD
+$ node src/cli.js list
 
 [CARTOGRAPHIE] 2h chrono, MAP.md produit
  - point d'entrée réel localisé
@@ -56,25 +55,26 @@ $ find . -name "*.js" -o -name "*.ts" | grep -v node_modules | xargs wc -l | tai
 
 ---
 
-## INSTALLATION
+## PRÉREQUIS ET ÉTAT INITIAL
 
-```text
-Node.js : v22.23.3
-npm : v10+
-Variables env : aucune
-Outils externes: git
-```
+- Le ZIP contient une fixture Git locale dans [`fixtures/legacy-billing.bundle`](fixtures/legacy-billing.bundle), avec quatre commits, du code à cartographier et un défaut à caractériser. Elle permet de suivre le projet sans dépôt distant ni compte.
+- Prérequis minimal : Git local et Node.js `22.23.4` pour exécuter la fixture.
+- Le choix d’un dépôt public reste une extension terrain recommandée : URL, commit SHA, licence, activité, taille et raisons du choix doivent être consignés. Elle permet d’exercer l’évaluation d’un codebase tiers, mais n’est plus obligatoire pour terminer l’exercice.
+- Le dépôt AF ne fournit ni `package.json` ni code d’application pour ce mini-projet ; n’exécute pas `npm install` dans le dossier AF.
+
+### Commandes disponibles hors ligne
 
 ```bash
-# ÉTAPE 0 : choisis ton dépôt (voir 00-CAHIER-DES-CHARGES.md pour les 4 critères et les 3 candidats)
-git clone <url-du-repo-choisi> dungeon/
+git --version
+git clone fixtures/legacy-billing.bundle dungeon/
 cd dungeon
-
-# mesure ce que tu viens de cloner, ne fais confiance à personne, même pas à GitHub
-find . -name "*.js" -o -name "*.ts" | grep -v node_modules | xargs wc -l | tail -1
-
-# pas de npm install obligatoire : ce projet c'est lire, pas exécuter
+git log --oneline --decorate -4
+git rev-parse HEAD
+node src/cli.js list
+node src/cli.js price INV-1001
 ```
+
+Le dépôt local fournit un historique Git exploitable et le runtime Node natif. Aucun `npm install` n’est requis. Il possède un script `start`, mais pas de script de test : après avoir écrit ton test de caractérisation avec `node:test`, ajoute `npm pkg set "scripts.test=node --test"`, puis exécute `npm test`. Pour un dépôt public choisi en extension, vérifie les scripts et le lockfile avant d’installer les dépendances ; n’installe que ce qui est nécessaire au bugfix.
 
 ---
 
@@ -91,10 +91,10 @@ find . -name "*.js" -o -name "*.ts" | grep -v node_modules | xargs wc -l | tail 
 ├── MAP.md # à créer toi-même : la carte du repo (ÉTAPE 1)
 └── BUGFIX.md # à créer toi-même : la preuve avant/après (ÉTAPE 2)
 
-dungeon/ # le repo OSS que tu clones, à côté, pas dans ce dossier
+dungeon/ # le codebase cloné depuis la fixture locale ou un dépôt public optionnel
 ```
 
-Pas de `src/`, pas de `tests/` ici comme dans les autres mini-projets. Le "src" de ce projet, c'est le dépôt externe que tu choisis et clones à côté.
+Pas de `src/`, pas de `tests/` ici comme dans les autres mini-projets. Le codebase de travail est cloné dans `dungeon/` depuis la fixture locale ou, en extension, depuis un dépôt public.
 
 ---
 
@@ -200,6 +200,16 @@ Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un do
 
 Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur dépôt apprenant. Si le projet utilise des dépendances npm, ton dépôt apprenant doit versionner `package.json` et `package-lock.json`, puis utiliser `npm ci` en CI pour installer exactement cet arbre. Si le projet est sans dépendances, consigne simplement la version de runtime et la commande de test réellement utilisée. La preuve de reproductibilité est la commande et la version relevées dans ton propre dépôt, pas une valeur inventée dans le curriculum.
 
+## Séquence de maîtrise exigée (lecture d'un dépôt inconnu)
+
+1. **Cartographier** : commence par les points d'entrée, les frontières de données, les tests et les chemins d'erreur. Sépare faits observés et hypothèses.
+2. **Reproduire** : choisis un bug avec un symptôme et une condition de déclenchement reproductibles ; garde la trace de la commande et du résultat.
+3. **Réduire** : cherche le plus petit chemin de code qui conserve le défaut. Ne refactorise pas tant que le comportement n'est pas compris.
+4. **Proposer** : donne au moins deux options de correction, le risque de chacune, l'effort approximatif et les tests à ajouter.
+5. **Transférer** : examine une autre zone du dépôt et dis ce qui confirme ou infirme le premier modèle mental.
+
+**Gate :** le diagnostic doit citer des fichiers/flux concrets et une preuve reproductible ; « code sale » n'est pas une cause racine. Voir [63 : Testing Engineering](../../../06-ANNEXES-TRANSVERSES/63-LAB-TESTING-ENGINEERING.md) et [67 : Gate de maîtrise](../../../06-ANNEXES-TRANSVERSES/67-GATE-MAITRISE-ET-CAPSTONE.md).
+
 ## Contenu du dossier
 
 <!-- CONTENU-DOSSIER:debut -->
@@ -217,3 +227,32 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## Comprendre les tests avant de commencer : état exact du ZIP
+
+Référence : [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les exemples de sortie décrivent la cible, pas un logiciel livré, sauf mention contraire.
+
+- Code fourni : `fixtures/legacy-billing.bundle` embarque un dépôt Git local de quatre commits ; `src/` et `tests/` du projet AF ne sont pas attendus dans ce dossier. Le dépôt public est une extension facultative.
+- Tests de référence verts : aucun. La fixture bundle n’embarque volontairement aucun test et son `package.json` ne déclare pas encore de script `test` ; ajoute un test de caractérisation puis `npm pkg set "scripts.test=node --test"`. Les tests rouges/verts sont produits dans le dépôt cloné.
+- Tests à écrire : caractérisation des comportements observés, puis non-régression avant toute correction ; ne teste pas un comportement supposé.
+- Baseline locale : `git clone fixtures/legacy-billing.bundle dungeon` puis `git -C dungeon rev-parse HEAD`. Pour l’extension publique, remplace la source par une URL réelle et examine les scripts avant exécution.
+- Validation finale : rejouer les tests du dépôt à commit fixe, conserver sortie avant/après et expliquer les suites non reproductibles. Pour la fixture locale, `npm test` est disponible après création du fichier de test et du script `node --test`. `npm ci` n’est valable que si un lockfile existe.
+- Livrable : diagnostic, carte des risques, patch minimal, tests, ADR et postmortem ; pas un programme construit dans ce répertoire.
+
+## Règles communes de progression et de preuve
+
+### Contrôle commun de la progression
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
+- **Tests verts de référence :** aucun.
+- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code, puis le script Node natif doit être ajouté au manifeste.
+- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
+- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
+
+**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.

@@ -10,8 +10,11 @@ perturbation_modes: [defaut_cache, transmission]
 anti_recipe_key: defaut_cache+transmission
 transfer_distance: low
 assessment_role: instructional_checkpoint
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0017
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-04-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
 
 > **SCÈNE CRAZYDEVS : coupe du monde :** un bon algorithme ne gagne pas parce qu'il connaît un mouvement célèbre ; il gagne parce qu'il réduit le nombre d'actions nécessaires quand le terrain explose.
@@ -279,3 +282,11 @@ Merge sort coupe le tableau en deux récursivement jusqu'aux sous-tableaux de ta
 
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Vérifie ordre croissant, conservation exacte des éléments et stabilité sur des clés égales ; mesure séparément le coût mémoire.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

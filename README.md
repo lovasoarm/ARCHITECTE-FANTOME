@@ -14,681 +14,105 @@ stability: stable
 
 # ARCHITECTE-FANTOME
 
-> **Construire. Casser. Réparer. Concevoir. Exploiter. Arbitrer. Diriger.**
+ARCHITECTE-FANTOME (AF) est un parcours d’ingénierie logicielle orienté pratique. Il accompagne l’apprenant des fondamentaux vers la conception, la construction, la sécurisation, l’exploitation et l’évolution de systèmes logiciels complexes, y compris lorsqu’ils intègrent de l’IA.
 
-ARCHITECTE-FANTOME est un parcours CrazyDevs d'ingénierie logicielle conçu pour transformer
-progressivement un apprenant qui sait coder en quelqu'un capable de comprendre, construire,
-mesurer, sécuriser, exploiter et défendre des systèmes.
+Le parcours cherche à développer une capacité démontrable : expliquer pourquoi un système fonctionne, prévoir ses limites, diagnostiquer ses pannes, mesurer ses propriétés et défendre des décisions techniques. Terminer une page ou faire passer un exemple ne constitue pas, à lui seul, une preuve de maîtrise.
 
-La direction professionnelle visée est :
+## Commencer ici
 
-```text
-Staff Engineer / Principal Engineer
-            +
-Software Architecture / Solutions Architecture
-            +
-fondations fortes en Software Engineering,
-Backend, Cloud et AI Integration
-```
+1. Lis **[Formation complète : ingénierie logicielle, systèmes, IA et leadership technique](FORMATION-COMPLETE-INGENIERIE.md)** pour comprendre les paliers et les objectifs.
+2. Ouvre la **[route apprenant cohérente](06-ANNEXES-TRANSVERSES/58-ROUTE-APPRENANT-COHERENTE.md)** : elle indique l’ordre des ressources, les productions attendues et les étapes de remédiation.
+3. Consulte le **[guide général](06-ANNEXES-TRANSVERSES/00-GUIDE.md)** et **[comment utiliser le parcours](06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md)** pour naviguer sans essayer de lire tous les fichiers.
+4. Commence ensuite par **[START HERE](00-SOCLE/01-GETTING-STARTED/01-START_HERE.md)** et suis la progression `00 SOCLE → 01 CADRAGE → 02 CONSTRUCTION → 03 PILOTAGE → 04 ÉPREUVE → 05 MAÎTRISE`.
 
-Ce n'est pas une promesse de titre.
+## Préparer ton environnement
 
-Le parcours entraîne les compétences et les preuves qui rendent cette trajectoire crédible.
-L'expérience professionnelle, le scope réel, l'impact organisationnel et les conséquences vécues
-restent des dimensions du monde du travail.
+Tu peux lire les leçons et faire les exercices conceptuels sans installer l’ensemble des outils. Avant une activité pratique, ouvre le `SETUP.md` le plus proche : il précise les prérequis de cette activité, les commandes de vérification et les solutions de secours lorsque c’est possible.
 
-## Démarrage zéro friction
+Les installations de Node.js, npm, Git, Docker ou d’autres outils se font **manuellement, par l’apprenant, seulement lorsqu’une activité en a besoin**. Suis la version demandée par le guide local et la documentation officielle correspondant à ton système. N’installe pas une technologie simplement parce qu’elle apparaît dans une annexe. Certains projets exécutables comprennent leur propre `package.json`, leurs tests ou leurs fichiers Docker : ce sont des supports de pratique à utiliser lorsque la route t’y conduit.
 
-Tu peux commencer sans compte cloud, sans API et sans installer dix outils. Le minimum est **Node 22.23.3 + un éditeur de texte**. Git et VSCode sont utiles ensuite, pas comme barrière d'entrée.
+Le parcours privilégie les activités locales lorsque c’est possible. Une activité qui nécessite un réseau, un service externe ou un fournisseur IA doit le signaler dans ses prérequis ; les exemples d’IA restent des supports d’apprentissage et ne certifient pas un service prêt pour la production.
 
-Avant la première séance, lance le diagnostic :
+## La méthode de travail
 
-```bash
-Ouvre le `SETUP.md` de l’activité : il contient le contrôle de présence adapté.
-```
-
-Tu es offline ? Le même parcours fonctionne avec `SETUP.md`, puis le `SETUP.md` local de chaque activité, fournissent le contrat de secours offline et la procédure adaptée à la technologie.
-
-## Avant de commencer
-
-Tu n'as pas besoin de comprendre les 1 600+ fichiers du dépôt.
-
-Commence ici :
-
-**[00-GUIDE](06-ANNEXES-TRANSVERSES/00-GUIDE.md)**
-
-Il répond aux questions les plus importantes avant le parcours :
+Pour une compétence importante, suis cette boucle :
 
 ```text
-Je pars de zéro.
-        |
-        v
-Qu'est-ce que le métier ?
-        |
-        v
-Qu'est-ce que je dois apprendre ?
-        |
-        v
-Dans quel ordre ?
-        |
-        v
-Quel marché ?
-        |
-        v
-Quelle trajectoire ?
-        |
-        v
-Pourquoi Staff / Principal / Architecture ?
+Prédire le résultat
+        ↓
+Expliquer le mécanisme
+        ↓
+Pratiquer sans recopier
+        ↓
+Tester un cas limite
+        ↓
+Diagnostiquer et corriger
+        ↓
+Transférer à un autre contexte
+        ↓
+Revenir vérifier après un délai
 ```
 
-Puis :
+Consigne les résultats dans la **[fiche d’apprentissage et de preuve](06-ANNEXES-TRANSVERSES/62-FICHE-APPRENTISSAGE-PREUVE.md)**. Utilise la page **[Progression](PROGRESSION.md)** comme tableau de bord personnel. Les [compétences de référence](MATRICE-COMPETENCES.csv) relient les capacités attendues à des ressources et des preuves observables.
 
-**[01 - COMMENT UTILISER LE PARCOURS](06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md)**
-
-Il explique comment naviguer dans le dépôt sans transformer l'arborescence en checklist géante.
-
-Ensuite seulement :
-
-**[START HERE](00-SOCLE/01-GETTING-STARTED/01-START_HERE.md)**
-
-## Comment lire le parcours
-
-Le dépôt possède un fil canonique.
+## La route
 
 ```text
-00-GUIDE
-    |
-    v
-01-COMMENT-UTILISER-LE-PARCOURS
-    |
-    v
-START HERE
-    |
-    v
 00 SOCLE
-    |
-    v
+    ↓
 01 CADRAGE
-    |
-    v
+    ↓
 02 CONSTRUCTION
-    |
-    v
+    ↓
 03 PILOTAGE
-    |
-    v
-04 EPREUVE
-    |
-    v
-05 MAITRISE
+    ↓
+04 ÉPREUVE
+    ↓
+05 MAÎTRISE
 ```
 
-Les numéros donnent une direction, pas une permission de consommer tout le dépôt.
+Les numéros indiquent une direction, pas une obligation de lire chaque fichier. La route canonique utilise les leçons, les mini-projets, les challenges et les ateliers intégrateurs déjà présents. Le CORE de 16 semaines / 192 heures est un parcours facultatif d’orientation ou d’accélération ; il ne représente pas toute la formation et ne garantit aucun niveau professionnel dans un délai donné.
 
-Les dossiers `95-*`, `96-*`, `97-*`, `99-*` servent principalement à augmenter la profondeur
-de pratique, de vérification et de transfert autour d'un module.
+Les laboratoires qui relient les domaines :
 
-Les annexes transverses ont leurs propres noms canoniques.
+- [Fondations et raisonnement](06-ANNEXES-TRANSVERSES/64-LAB-FONDATIONS-ET-RAISONNEMENT.md)
+- [Données, API et transactions](06-ANNEXES-TRANSVERSES/65-LAB-DONNEES-API-ET-TRANSACTIONS.md)
+- [Data Engineering : pipelines, qualité, Kafka, Spark et orchestration](06-ANNEXES-TRANSVERSES/70-DATA-ENGINEERING-CORE/README.md)
+- [Mathématiques & Machine Learning](06-ANNEXES-TRANSVERSES/71-MACHINE-LEARNING-MATH-CORE/README.md)
+- [Sécurité et architecture](06-ANNEXES-TRANSVERSES/66-LAB-SECURITE-ET-ARCHITECTURE.md)
+- [Tests d’ingénierie](06-ANNEXES-TRANSVERSES/63-LAB-TESTING-ENGINEERING.md)
+- [DevOps et SRE](06-ANNEXES-TRANSVERSES/59-LAB-DEVOPS-LIFECYCLE.md)
+- [Service IA/RAG de bout en bout](06-ANNEXES-TRANSVERSES/60-LAB-SERVICE-IA-END-TO-END.md)
+- [Gate de release des systèmes IA](06-ANNEXES-TRANSVERSES/74-AI-ENGINEERING-RELEASE-GATE.md)
+- [Capstone systèmes intégrés](06-ANNEXES-TRANSVERSES/72-DISTINGUISHED-SYSTEMS-CAPSTONE.md)
+- [Practicum leadership technique](06-ANNEXES-TRANSVERSES/73-TECHNICAL-LEADERSHIP-PRACTICUM.md)
 
-**Règle importante : ne lis pas le dépôt comme un livre.**
+## Complétude et limites de validation
 
-Lis le chemin qui t'est demandé, puis ouvre une annexe quand une étape t'y envoie.
+Les leçons identifiées comme incomplètes lors de la revue du 30 octobre ont reçu des exemples, pratiques, vérifications ou transferts ciblés. Les nouveaux modules Data Engineering et ML rendent obligatoires les compétences qui n’étaient auparavant qu’introduites ou proposées en approfondissement.
 
-## Règle CrazyDevs
+La complétude documentaire ne remplace pas une validation par un spécialiste indépendant ni une exécution sur une infrastructure réelle. Les activités indiquent leur environnement et leur niveau de preuve ; une simulation locale ne doit jamais être présentée comme une expérience de production.
 
-Chaque concept important doit laisser une trace mémorable :
+## Cap professionnel
 
-```text
-mission
-piège
-personnage
-analogie
-incident
-conflit
-conséquence
-```
+Le cap de long terme est de développer le jugement d’un ingénieur capable de concevoir et de faire évoluer des systèmes complexes, fiables, sûrs et soutenables. Les rôles Staff Engineer, Principal Engineer, Software Systems Architect ou Distinguished Engineer décrivent des périmètres qui varient selon les organisations ; ils ne sont ni des titres délivrés par ce curriculum, ni des résultats automatiques de sa complétion.
 
-Les univers autorisés servent à ancrer un mécanisme.
+Le [noyau dur technique à l’horizon 2035+](06-ANNEXES-TRANSVERSES/40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md) et le [portefeuille avancé de systèmes](05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/README.md) servent à approfondir ce cap lorsque les prérequis sont acquis.
 
-Ils ne remplacent jamais l'explication technique.
+## Une règle
 
-> Une bonne blague aide à retenir une idée.
->
-> Elle ne devient jamais la preuve que tu l'as comprise.
+Une bonne analogie aide à retenir une idée ; elle ne remplace jamais l’explication technique. Quand une mesure, un test, une source officielle ou une expérience contredit une hypothèse, réexamine cette hypothèse. La capacité à corriger son modèle mental fait partie de l’ingénierie.
 
-## Pour qui ?
-
-Pour quelqu'un qui veut aller au-delà de :
-
-```text
-"j'arrive à faire marcher mon code"
-```
-
-vers :
-
-```text
-"je comprends pourquoi il marche,
-je sais pourquoi il casse,
-je sais quoi mesurer,
-je sais quoi sécuriser,
-je sais combien cela coûte,
-et je peux défendre ma décision."
-```
-
-Tu peux commencer débutant.
-
-Tu peux aussi entrer avec des bases déjà acquises.
-
-Le parcours adapte la profondeur via les niveaux et les preuves, pas via une collection infinie de technologies.
-
-## Le cerveau 2035+
-
-Le noyau durable d'ARCHITECTE-FANTOME n'est pas un framework particulier.
-
-Il repose sur :
-
-```text
-fondamentaux
-    +
-software engineering
-    +
-systems thinking
-    +
-architecture
-    +
-cloud
-    +
-reliability
-    +
-security
-    +
-cost / product judgment
-    +
-AI-assisted engineering
-    +
-technical leadership
-```
-
-L'IA est traitée comme un nouvel outil de travail et d'automatisation, pas comme une nouvelle
-identité professionnelle.
-
-Le but est d'apprendre à :
-
-```text
-comprendre
-    ->
-construire
-    ->
-observer
-    ->
-vérifier
-    ->
-décider
-    ->
-réviser
-    ->
-transférer
-```
-
-même lorsque les outils changent.
-
-## Le terminal devient résilient
-
-La route conserve ses fondamentaux et renforce la zone Staff autour de quatre capacités complémentaires :
-
-```text
-spécifier pour un constructeur autonome
-          +
-raisonner dans une organisation
-          +
-posséder et faire migrer un système dans le temps
-          +
-gouverner l’autonomie (permissions / évaluation / arrêt)
-          ↓
-PREUVE STAFF PLUS SOLIDE
-```
-
-
-## La boucle du parcours
-
-ARCHITECTE-FANTOME suit une boucle unique :
-
-**Comprendre -> Construire -> Casser -> Réparer -> Concevoir -> Exploiter -> Arbitrer -> Diriger**
-
-Mais cette boucle ne reste pas dans le livre.
-
-Pour les exercices importants, elle est prolongée par :
-
-```text
-EXERCICE
-    |
-    v
-CONTEXTE
-    |
-    v
-CONTRAINTE
-    |
-    v
-HYPOTHESE
-    |
-    v
-IMPLEMENTATION
-    |
-    v
-OBSERVATION
-    |
-    v
-PERTURBATION
-    |
-    v
-MESURE
-    |
-    v
-DECISION / REVISION
-    |
-    v
-POSTMORTEM
-    |
-    v
-TRANSFER
-    |
-    v
-REVIEW
-    |
-    v
-SORTIE TERRAIN
-```
-
-Tous les exercices n'ont pas la même profondeur.
-
-Un exercice de fondamentaux reste petit.
-
-Un mini-projet devient une simulation structurée.
-
-Un Boss ou un Capstone introduit davantage d'incertitude, de décision et de défense.
-
-Puis les preuves de haut niveau peuvent sortir du dépôt.
-
-## Pratique terrain
-
-Le standard commun est documenté dans :
-
-**[FIELD-ORIENTED PRACTICE](00-SOCLE/00-FIELD-ORIENTED-PRACTICE.md)**
-
-Le parcours distingue volontairement :
-
-```text
-T0 = simulation
-T1 = projet vivant
-T2 = utilisateurs externes
-T3 = open source / mission / client
-T4 = production suivie
-```
-
-Une simulation réaliste est une bonne préparation.
-
-Elle n'est pas présentée comme une expérience professionnelle.
-
-Cette distinction est volontaire et non négociable.
-
-## Les mini-projets
-
-Les mini-projets sont le principal pont entre apprentissage et ingénierie appliquée.
-
-Ils réexposent les mécanismes sous plusieurs contextes :
-
-```text
-async
-cache
-API
-legacy
-memory
-distributed systems
-security
-cost
-spec drift
-AI supervision
-architecture decisions
-```
-
-Le standard est documenté dans :
-
-**[MINI-PROJECT FIELD PRACTICE STANDARD](02-CONSTRUCTION/02-MINI-PROJECTS/00A-FIELD-PRACTICE-STANDARD.md)**
-
-et la répétition est cartographiée dans :
-
-**[REEXPOSURE MAP](02-CONSTRUCTION/02-MINI-PROJECTS/01-REEXPOSURE-MAP.md)**
-
-L'objectif n'est pas de refaire la même fiche.
-
-L'objectif est de vérifier qu'un mécanisme reste utilisable lorsque le contexte change.
-
-## Les épreuves
-
-Un challenge vérifie une capacité.
-
-Un Boss demande une production plus complète.
-
-Un Capstone rassemble plusieurs dimensions.
-
-Les preuves de haut niveau disposent désormais d'une voie d'évaluation externe :
-
-**[EXTERNAL VALIDATION](04-EPREUVE/08-EXTERNAL-VALIDATION/README.md)**
-
-et d'une fiche de sortie :
-
-**[FIELD EXIT CARD](04-EPREUVE/00-FIELD-EXIT-CARD.md)**
-
-Cette sortie permet de distinguer :
-
-```text
-ce qui est simulé
-ce qui est observé
-ce qui est externe
-ce qui est réellement vécu
-```
-
-## Evidence, pas seulement activité
-
-Lire n'est pas maîtriser.
-
-ARCHITECTE-FANTOME utilise donc plusieurs formes de preuve :
-
-```text
-production
-explication
-debugging
-mesure
-décision
-défense
-révision
-transfert
-```
-
-Le but n'est pas de remplir des fichiers.
-
-Le but est de pouvoir montrer une transformation :
-
-```text
-PROBLEME
-   |
-   v
-CONTRAINTES
-   |
-   v
-OPTIONS
-   |
-   v
-DECISION
-   |
-   v
-CONSEQUENCES
-   |
-   v
-REVISION
-```
-
-## Repère cognitif
-
-Lire une leçon ne signifie pas maîtriser son contenu.
-
-AF distingue plusieurs actions :
-
-| Action | Dans AF |
-|---|---|
-| Mémoriser | rappeler une notion |
-| Comprendre | l'expliquer avec ses propres mots |
-| Appliquer | l'utiliser dans une situation |
-| Analyser | identifier structure, causes, dépendances |
-| Évaluer | juger avec critères, preuves et compromis |
-| Créer | concevoir ou reconstruire une solution |
-
-Le transfert ajoute une question différente :
-
-> Est-ce que le même principe reste valable lorsque le contexte change ?
-
-Le parcours utilise aussi ses propres échelles de profondeur :
-
-- **[Échelle cognitive adaptative](06-ANNEXES-TRANSVERSES/32-ECHELLE-COGNITIVE-ADAPTATIVE.md)**
-- **[Anti-Recette Engine](06-ANNEXES-TRANSVERSES/33-ANTI-RECETTE-ENGINE.md)**
-
-Ces mécanismes évitent qu'une personne progresse simplement parce qu'elle reconnaît la forme d'un exercice.
-
-## Les niveaux
-
-| Niveau | Transformation |
-|---|---|
-| **00 : Socle** | Comprendre le code et résoudre un problème sans se perdre. |
-| **01 : Cadrage** | Choisir le bon problème, traiter l'asynchrone et diagnostiquer proprement. |
-| **02 : Construction** | Construire, tester, profiler, refactorer, poser des frontières solides et comprendre le client comme un système. |
-| **02bis : Architecture** | Sous-étape de Construction pour comparer des options et prendre des décisions d'architecture. |
-| **03 : Pilotage** | Faire fonctionner le système : sécurité, observabilité, fiabilité, cloud, plateforme, produit, coût et équipe. |
-| **04 : Épreuve** | Lire une grosse codebase, gérer le temps réel et défendre un système complet. |
-| **05 : Maîtrise** | Combiner, arbitrer, transmettre et transférer sous contrainte. |
-
-## Les trois profondeurs
-
-Le corpus complet ne constitue pas une checklist.
-
-Il possède trois profondeurs :
-
-```text
-CORE
-route intensive
-16 semaines
-12 h / semaine
-
-DEPTH
-approfondissement quand une faiblesse apparaît
-
-VAULT
-référence durable, variantes et ressources
-```
-
-Le détail du CORE est dans :
-
-**[19A - ROUTE CORE 16 SEMAINES](06-ANNEXES-TRANSVERSES/19A-ROUTE-CORE-16-SEMAINES.md)**
-
-La cartographie des mini-projets est dans :
-
-**[25 - CORE MINI PROJECT MAP](06-ANNEXES-TRANSVERSES/25-CORE-MINI-PROJECT-MAP.md)**
-
-Cette séparation évite de confondre :
-
-```text
-richesse du corpus
-      !=
-quantité à consommer
-```
-
-## Où commencer ?
-
-```text
-1. Lire 00-GUIDE si tu pars de zéro ou si tu veux comprendre la trajectoire.
-2. Lire 01-COMMENT-UTILISER-LE-PARCOURS.
-3. Ouvrir START HERE.
-4. Suivre le fil canonique.
-5. Produire la preuve demandée.
-6. Revenir sur une faiblesse plutôt que sauter à dix technologies.
-```
-
-Ton tableau de bord personnel :
-
-**[PROGRESSION.md](PROGRESSION.md)**
-
-Les compteurs :
-
-**[COMPTEURS DU PARCOURS](06-ANNEXES-TRANSVERSES/18-COMPTEURS-DU-PARCOURS.md)**
-
-Le Staff Gate :
-
-**[STAFF READINESS GATE](06-ANNEXES-TRANSVERSES/37-STAFF-READINESS-GATE.md)**
-
-## Ce que produit l'apprenant
-
-Pas 500 pages de notes.
-
-Quelques preuves solides et réutilisables :
-
-```text
-ADR
-API / contracts
-tests
-performance
-memory analysis
-security
-observability
-SLI / SLO
-recovery
-cloud choice
-budget
-product / cost / risk trade-offs
-project fil rouge
-capstone
-postmortem
-external review
-terrain evidence
-```
-
-Chaque preuve forte doit raconter une histoire :
-
-```text
-problème
-   ->
-contraintes
-   ->
-options
-   ->
-décision
-   ->
-résultat
-   ->
-surprise
-   ->
-révision
-```
-
-## Quand peut-on dire "terminé" ?
-
-Pas quand le dernier dossier est coché.
-
-Terminé signifie plutôt :
-
-```text
-je peux prendre un problème ambigu
-        ->
-construire une solution raisonnable
-        ->
-identifier ses limites
-        ->
-mesurer ce qui compte
-        ->
-réagir à une panne
-        ->
-expliquer le coût
-        ->
-défendre mes choix
-        ->
-accepter une objection valide
-        ->
-réviser ma décision
-        ->
-transférer le principe ailleurs
-```
-
-Le dernier niveau ne donne pas 300 notions de plus.
-
-Il te demande de combiner intelligemment celles que tu as déjà rencontrées.
-
-> **Diplôme AF != Staff Engineer reconnu.**
->
-> Le parcours prouve une préparation intensive et des productions évaluables.
-> Le scope, l'influence et les conséquences vécues dans le monde professionnel
-> restent de l'expérience professionnelle.
-
-## Le vrai principe CrazyDevs
-
-Tu verras parfois une architecture tordue volontairement.
-
-Tu verras des bugs.
-
-Tu verras des contraintes qui ne rentrent pas bien ensemble.
-
-Tu verras des décisions qui deviennent mauvaises lorsque le contexte change.
-
-C'est volontaire.
-
-> Voilà le problème.
->
-> Voilà ce qu'on pense pouvoir faire.
->
-> Voilà ce qui casse.
->
-> Maintenant explique pourquoi.
->
-> Puis fais mieux.
-
-Le but n'est pas de devenir quelqu'un qui ne se trompe jamais.
-
-Le but est de devenir quelqu'un qui :
-
-```text
-se trompe
-   ->
-le voit
-   ->
-le mesure
-   ->
-le comprend
-   ->
-le corrige
-   ->
-apprend
-   ->
-prend une meilleure décision la prochaine fois
-```
-
-
-```text
-outil change
-    |
-    v
-standard reste
-    |
-    v
-preuve est rejouée
-    |
-    v
-curriculum est mis à jour si nécessaire
-```
-
-## Regle finale
-
-Ne protège jamais le curriculum contre les faits.
-
-Si une expérience, une mesure, une revue externe ou une contrainte réelle contredit une hypothèse :
-
-```text
-hypothèse
-    ->
-observation
-    ->
-révision
-```
-
-La capacité à changer d'avis quand les preuves changent fait partie de l'ingénierie.
+Cette édition est une adaptation du curriculum ARCHITECTE-FANTOME destinée aux apprenants ; l’entrée en matière et certaines consignes de pratique ont été reformulées. Le curriculum conserve la licence CC BY-SA 4.0 et les exemples de code la licence CC0 1.0 indiquées dans le fichier `LICENSE`.
 
 ---
 
-<div align="center">
+**ARCHITECTE-FANTOME** : _Des fondamentaux aux systèmes, puis au jugement d’ingénierie._
 
-**ARCHITECTE-FANTOME**
+## Guides de lecture et de vérification
 
-_From fundamentals to systems to engineering judgment._
-
-</div>
-
-## Sortie visée
-
-Architecte-Fantôme mène de la compréhension des fondamentaux vers la construction, le pilotage, l'épreuve et la maîtrise de systèmes réels. La progression reste centrée sur les preuves produites par l'apprenant, la distinction T0→T4 et l'exercice du jugement technique.
-
+- [Glossaire général](GLOSSAIRE.md)
+- [Méthode d’apprentissage autonome](06-ANNEXES-TRANSVERSES/68-METHODE-APPRENTISSAGE-AUTONOME.md)
+- [Standard de complétude d’un module](06-ANNEXES-TRANSVERSES/69-STANDARD-COMPLETUDE-MODULE.md)
+- [Route apprenant cohérente](06-ANNEXES-TRANSVERSES/58-ROUTE-APPRENANT-COHERENTE.md)
+- [Dossier de preuves Staff](PREUVES-STAFF-ENGINEER.md)

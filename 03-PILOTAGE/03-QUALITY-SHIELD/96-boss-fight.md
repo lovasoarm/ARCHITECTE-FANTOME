@@ -15,7 +15,6 @@ assessment_role: staff_mastery
 <!-- AF-DIAGRAM:incident -->
 
 ```text
-text
 Signal
   │
   ▼

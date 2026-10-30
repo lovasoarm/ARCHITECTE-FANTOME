@@ -38,3 +38,11 @@ Tant qu'une case reste vide, le jalon est **non valide** : le module suivant peu
 le jalon reste dû. Référentiel : [03-TECH-ILA](../../../06-ANNEXES-TRANSVERSES/04-TECH-ILA/README.md).
 
 <!-- JALON-TECH-ILA:fin -->
+
+<!-- AF-P0-2026-10-30: missing_example -->
+
+### Exemple travaillé : cas métier
+
+Des stations distantes envoient des mesures avec réseau intermittent ; le système doit absorber les reprises sans doubler les écritures. Compare une journée normale et un pic dix fois supérieur. Pour « CRITÈRES DE PASSAGE : MODULE 07 », note le composant, le coût ou le risque qui varie, et le signal observable qui révèle la limite.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

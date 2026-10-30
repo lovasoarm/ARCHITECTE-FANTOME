@@ -10,10 +10,12 @@ perturbation_modes: [regression, fausse_piste]
 anti_recipe_key: regression+fausse_piste
 transfer_distance: medium
 assessment_role: instructional_checkpoint
-review_due: 2028-12-31
-
+freshness_registry_id: PER-0075
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-01-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
@@ -203,3 +205,11 @@ Un logger structuré répond toujours à quand, quoi, à quel niveau, et dans qu
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+## Transfert production : logs utiles sans fuite
+
+**Exercice.** Définis un événement de journal pour un échec de paiement avec `timestamp`, `level`, `service`, `requestId`, `tenantId` pseudonymisé, `operation`, `errorCode` et durée. Interdis token, mot de passe, numéro de carte et payload personnel brut.
+
+**Vérification.** Teste la sérialisation, la présence des champs obligatoires, l'absence de secrets avec fixtures canari et le comportement si le backend de logs est indisponible. Le log doit aider au diagnostic sans devenir une deuxième base de données métier.
+
+**Transfert.** Même schéma pour API, workers et scripts batch ; relie `requestId`/trace context à l'observabilité, en séparant corrélation et identité utilisateur.

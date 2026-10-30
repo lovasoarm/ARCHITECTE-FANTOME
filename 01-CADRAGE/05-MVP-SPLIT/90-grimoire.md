@@ -10,7 +10,6 @@ acte: restituer
 <!-- AF-DIAGRAM:mvp -->
 
 ```text
-text
 Problem
   │
   ▼

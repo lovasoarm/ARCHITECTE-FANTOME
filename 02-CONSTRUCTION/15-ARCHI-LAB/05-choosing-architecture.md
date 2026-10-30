@@ -273,7 +273,6 @@ traités dans [20-API-DOJO/03-errors-and-idempotence.md](../20-API-DOJO/03-error
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

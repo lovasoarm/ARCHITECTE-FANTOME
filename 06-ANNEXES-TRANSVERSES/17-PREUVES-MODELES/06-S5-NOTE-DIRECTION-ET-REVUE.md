@@ -3,10 +3,12 @@ perishability_id: PER-0100
 
 stability: perissable
 acte: appliquer
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0100
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-01-28
+review_status: a_verifier_date_absente
 ---
-
 > **CrazyDevs : briefing de mission :** ce concept doit survivre au moment où quelqu’un te demande « pourquoi ? » en plein chaos. Garde l’explication technique exacte, puis donne-lui une image qu’on peut raconter demain.
 
 # MODÈLE S5 : la revue de code et la note direction : exemplaires de référence

@@ -3,10 +3,12 @@ perishability_id: PER-0096
 
 stability: perissable
 acte: appliquer
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0096
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-01-28
+review_status: a_verifier_date_absente
 ---
-
 > **CrazyDevs : QG de Konoha :** les écrans peuvent clignoter toute la nuit sans te dire ce qui compte. Le boss est de relier signal, seuil, risque, coût et action.
 
 # MODÈLE S1 : 06A-BUDGET-CLOUD.md : exemplaire de référence, anonymisé

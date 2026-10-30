@@ -287,3 +287,11 @@ Tu as un tableau de 30 joueurs avec `{ name, country, position, votes }`. Groupe
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Pour chaque transformation, vérifie ordre, cardinalité et mutation éventuelle sur une entrée vide, une entrée à un élément et une entrée contenant une valeur invalide.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

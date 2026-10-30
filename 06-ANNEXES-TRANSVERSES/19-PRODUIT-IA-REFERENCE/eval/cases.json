@@ -33,5 +33,46 @@
     "expected": [
       "refusal"
     ]
+  },
+  {
+    "id": "slo-metrics-variation",
+    "query": "Comment mesure-t-on le SLO et le budget d’erreur ?",
+    "expected": [
+      "slo"
+    ]
+  },
+  {
+    "id": "security-log-variation",
+    "query": "Faut-il filtrer les secrets qui apparaissent dans les journaux ?",
+    "expected": [
+      "security"
+    ]
+  },
+  {
+    "id": "correlation-observability-variation",
+    "query": "Comment retrouver une requête grâce à son identifiant de corrélation ?",
+    "expected": [
+      "observability"
+    ]
+  },
+  {
+    "id": "cost-timeout-variation",
+    "query": "Quel plafond mettre par utilisateur actif avant un timeout ?",
+    "expected": [
+      "cost"
+    ]
+  },
+  {
+    "id": "refusal-evidence-variation",
+    "query": "Quand la preuve est faible, faut-il laisser l’IA décider ?",
+    "expected": [
+      "refusal"
+    ]
+  },
+  {
+    "id": "synthetic-no-match",
+    "query": "bismuth quokka zeppelin 2042",
+    "expected": [],
+    "expectNoHit": true
   }
 ]

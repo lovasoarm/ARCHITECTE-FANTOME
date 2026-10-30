@@ -108,7 +108,6 @@ chaque lecture et chaque écriture d'un objet identifié.
 <!-- AF-DIAGRAM:secrets -->
 
 ```text
-text
 ┌──────────────┐
 │ Secret store │
 └──────┬───────┘

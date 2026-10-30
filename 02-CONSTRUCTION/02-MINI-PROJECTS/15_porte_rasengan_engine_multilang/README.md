@@ -82,3 +82,29 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## État des tests et point de départ (référence AF)
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
+- **Tests verts de référence :** aucun.
+- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
+- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
+- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
+
+**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.
+
+### Détails d’implémentation et de validation à la réception
+
+- **Code fourni :** aucun portage exécutable dans `src/` ; le dossier décrit les contrats et les implémentations que l'apprenant doit créer.
+- **Tests de référence verts :** aucun.
+- **Tests volontairement rouges :** aucun test d'équivalence n'est livré ; ne pas annoncer de parité avant implémentation.
+- **Prérequis :** runtime de la première langue choisie et d'au moins une seconde langue. Consigner leurs versions exactes ; ne pas supposer que Node, Python ou Rust sont tous présents.
+- **Tests à créer :** contrat commun, fixtures de scénario, cas limites, erreurs, ordre déterministe, sérialisation et comparaison des sorties normalisées. Garder les divergences de sémantique explicites.
+- **Validation finale :** exécuter la même fixture sur les deux implémentations depuis des environnements propres ; comparer l'output canonique et conserver commandes, versions et sorties.
+- **Preuve :** au moins un scénario nominal, un scénario limite et un scénario d'erreur reproduits à l'identique ou écart justifié dans l'ADR.

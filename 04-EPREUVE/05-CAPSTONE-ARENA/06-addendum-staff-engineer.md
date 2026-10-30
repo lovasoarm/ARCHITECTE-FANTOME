@@ -9,10 +9,12 @@ perturbation_modes: [temps_limite, solution_concurrente]
 anti_recipe_key: temps_limite+solution_concurrente
 transfer_distance: high
 assessment_role: instructional_checkpoint
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0068
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 # Addendum Staff Engineer au Capstone
@@ -20,7 +22,6 @@ review_due: 2027-12-31
 <!-- AF-DIAGRAM:capstone -->
 
 ```text
-text
 Architecture ─┐
 Security ─────┤
 Cost ─────────┤
@@ -65,7 +66,6 @@ les hypothèses n'est pas un budget.
 <!-- AF-DIAGRAM:slo -->
 
 ```text
-text
 SLO
  │
  ├──► SLI mesuré ───► conformité
@@ -118,26 +118,27 @@ quatre pièces, pas le README du repo.
 
 Le capstone peut être techniquement réussi sans être certifié Staff.
 
-Avant la soutenance finale, le dépôt apprenant doit fournir `PREUVES/00_INDEX.md`
-et les sept pièces attendues. Le jury vérifie les chemins, les commits, les dates
-de mesure et les recroisements.
+Avant la soutenance finale, le dépôt apprenant doit fournir `PREUVES/00_INDEX.md`, les six pièces
+S1–S6, la preuve transversale S7 de transfert et le contrôle G8 d'évaluation IA. `IA-EN-PROD.md`
+n'est ajouté que si le système embarque réellement une brique IA. Le jury vérifie les chemins, les
+commits, les dates de mesure et les recroisements.
 
 Une pièce absente = famille non prouvée.
 
-### S6 : produit IA réel
+### S6 : livraison & exploitation
 
-La pièce S6 doit pointer vers un produit ou une brique réellement exécutée, avec :
+La pièce `PREUVES/LIVRAISON-EXPLOITATION.md` doit décrire une release/version tracée, les contrôles
+avant déploiement, la migration, les vérifications post-déploiement, les signaux observables et le
+critère de rollback/recovery. Elle doit inclure une panne contrôlée ou un essai de récupération daté,
+avec résultat et limite connue. Cette preuve est obligatoire avec ou sans brique IA.
 
-- architecture ;
-- jeu d'évaluation versionné ;
-- coût et plafond ;
-- sécurité ;
-- observabilité ;
-- modes d'échec et réponse dégradée ;
-- décision explicite d'au moins un cas où l'IA est refusée.
+### G8 : évaluation IA transversale
 
-Le laboratoire [Produit IA de référence](../../06-ANNEXES-TRANSVERSES/19-PRODUIT-IA-REFERENCE/README.md)
-sert de référence pédagogique ; il ne remplace pas la preuve personnelle.
+Le candidat exécute le [laboratoire Produit IA de référence](../../06-ANNEXES-TRANSVERSES/19-PRODUIT-IA-REFERENCE/README.md)
+et produit `PREUVES/EVALUATION-IA.md` : cas versionnés, critères, erreurs observées, décision d'usage
+ou de refus, limites et garde-fous. Une intégration IA dans le fil rouge est encouragée uniquement si
+elle répond à un besoin réel ; elle n'est pas obligatoire. Si une brique IA est réellement intégrée,
+`PREUVES/IA-EN-PROD.md` documente ses conditions d'exploitation.
 
 ### S7 : portage réellement exécuté
 

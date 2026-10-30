@@ -18,7 +18,7 @@ Temps de lecture ~9 min
 
 La plupart des devs n'ont jamais écrit une seule ligne de manipulation de bits. Puis un jour ils tombent sur un bug de permissions, un système de flags, ou un algo de compression : et ils réalisent qu'ils ne comprennent pas ce qui se passe sous leur code.
 
-Les bits ne sont pas une curiosité de bas niveau. Ils sont dans les permissions Unix, les masques réseau, les flags d'état, les couleurs RGBA, et les accélérateurs d'algo. Savoir les manipuler, c'est pouvoir lire et écrire le vrai langage de la machine.
+Les bits interviennent dans des permissions compactes, des masques réseau, des flags d'état, des formats d'image et certains algorithmes. En JavaScript, attention : les opérateurs bitwise convertissent les nombres en entiers signés sur 32 bits avant le calcul. Pour une donnée qui dépasse cette représentation, il faut choisir explicitement `BigInt` ou une autre représentation au lieu de compter sur une conversion implicite.
 
 ---
 
@@ -55,7 +55,7 @@ parseInt("1101", 2); // 13  :binaire vers décimal
 
 // Usage classique : masquage:garder seulement certains bits
 const MASK_ROUGE = 0xff0000; // 1111 1111 0000 0000 0000 0000
-const couleur = 0xff6b35; // une couleur RGBA quelconque
+const couleur = 0xff6b35; // RGB #FF6B35 sur 24 bits
 const rouge = (couleur & MASK_ROUGE) >> 16; // extraire le canal rouge
 ```
 
@@ -182,21 +182,21 @@ user = desactiver(user, PERM.ECRIRE); // 0001:revient à lire seulement
 Ce pattern est partout :
 
 - permissions Unix (rwx = 3 bits)
-- flags CSS (`font-style: bold | italic | underline`)
+- masques de configuration applicatifs, lorsque plusieurs options indépendantes doivent être compactées. Ce n'est pas une syntaxe CSS : `font-weight`, `font-style` et `text-decoration` sont des propriétés différentes.
 - états de composants React
 - options de configuration
 
 ---
 
-## 4) MANIPULATION DE COULEURS RGBA
+## 4) PACKING RGB ET DISTINCTION AVEC RGBA
 
-Les couleurs en HTML sont souvent stockées comme un seul entier 32 bits.
+Une notation CSS `#RRGGBB` décrit trois canaux de 8 bits (24 bits au total). Un programme peut les empaqueter dans un entier pour faciliter certaines opérations ; cela ne signifie pas que le navigateur stocke toujours la couleur sous cette forme. RGBA ajoute un canal alpha (opacité) de 8 bits, donc 32 bits. Ici, le premier exemple traite uniquement RGB.
 
 ```js
 // couleur #FF6B35 = rouge:255, vert:107, bleu:53
 const rgb = (r, g, b) => (r << 16) | (g << 8) | b;
 
-const orange = rgb(255, 107, 53); // 16LE3535... peu importe la valeur
+const orange = rgb(255, 107, 53); // 0xFF6B35 = 16 739 125 en décimal
 // 255 << 16 = FF0000
 // 107 << 8 = 006B00
 // 53     = 000035
@@ -218,46 +218,59 @@ bleu(orange); // 53
 
 ### Vérifier si un nombre est une puissance de 2
 
-```js
-// une puissance de 2 a exactement un seul bit à 1
-// n & (n-1) enlève le bit le plus bas
-// si le résultat est 0, il n'y avait qu'un seul bit => puissance de 2
+`n & (n - 1)` retire le bit à 1 le plus faible. Pour une puissance de 2 strictement positive dans le domaine couvert, le résultat vaut zéro. La fonction ci-dessous borne explicitement l'entrée au domaine positif représentable sans perte par ce raisonnement sur les entiers signés 32 bits.
 
-const estPuissanceDe2 = (n) => n > 0 && (n & (n - 1)) === 0;
+```js
+const estPuissanceDe2 = (n) => {
+  if (!Number.isInteger(n) || n < 1 || n > 0x80000000) return false;
+  return (n & (n - 1)) === 0;
+};
 
 estPuissanceDe2(4); // true : 0100 & 0011 = 0
 estPuissanceDe2(8); // true : 1000 & 0111 = 0
-estPuissanceDe2(6); // false : 0110 & 0101 = 0100 ≠ 0
+estPuissanceDe2(6); // false : 0110 & 0101 = 0100
+estPuissanceDe2(2 ** 32); // false : hors domaine déclaré
 ```
 
 ### Compter les bits à 1 (popcount)
 
+L'opérateur `>>>` est un décalage à droite avec remplissage par zéro. Ici, il permet de parcourir une valeur non signée sur 32 bits. La validation empêche qu'un nombre négatif ou fractionnaire soit silencieusement converti.
+
 ```js
-// utile pour les systèmes de votes, les distances de Hamming
 const compterBits = (n) => {
+  if (!Number.isInteger(n) || n < 0 || n > 0xffffffff) {
+    throw new RangeError('n doit être un entier non signé sur 32 bits');
+  }
+  let value = n >>> 0;
   let count = 0;
-  while (n > 0) {
-    count += n & 1; // vérifie le bit de droite
-    n >>= 1; // décale vers la droite
+  while (value !== 0) {
+    count += value & 1;
+    value >>>= 1;
   }
   return count;
 };
 
 compterBits(7); // 3 : 0111 => 3 bits à 1
 compterBits(13); // 3 : 1101 => 3 bits à 1
+compterBits(0xffffffff); // 32
 ```
 
-### Swap sans variable temporaire
+### Swap sans variable temporaire : propriété pédagogique, pas recommandation de production
 
 ```js
-// XOR swap : classique des entretiens
-let a = 5,
-  b = 9;
-a = a ^ b; // a = 5^9 = 12
-b = a ^ b; // b = 12^9 = 5 (b récupère l'ancienne valeur de a)
-a = a ^ b; // a = 12^5 = 9 (a récupère l'ancienne valeur de b)
-// résultat : a=9, b=5
+// XOR swap démontre les propriétés algébriques de XOR.
+let a = 5;
+let b = 9;
+a = a ^ b;
+b = a ^ b;
+a = a ^ b;
+// résultat : a=9, b=5 (sur des entiers 32 bits)
+
+// En code applicatif, la forme lisible est préférable :
+[a, b] = [b, a];
 ```
+
+**Piège terrain :** les opérations XOR convertissent leurs opérandes en entiers signés sur 32 bits. Elles ne préservent pas les fractions, les grands entiers ou les valeurs arbitraires. Utilise l'échange par destructuration pour des nombres généraux ; garde XOR swap comme exercice de compréhension, pas comme optimisation par défaut.
 
 ---
 
@@ -305,3 +318,57 @@ Les bits permettent d'encoder plusieurs états dans un seul entier. Le pattern f
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+
+## Vérification autonome : flags de permissions
+
+Le test suivant confirme les invariants essentiels d'un masque binaire : ajouter un droit ne retire pas les autres, retirer un droit n'affecte pas les autres, et le test d'un flag reste indépendant. Place-le dans `verify-flags.mjs` et lance `node verify-flags.mjs`.
+
+```js
+import assert from 'node:assert/strict';
+
+const READ = 1 << 0;
+const WRITE = 1 << 1;
+const ADMIN = 1 << 2;
+let permissions = READ | WRITE;
+
+assert.equal((permissions & READ) !== 0, true);
+assert.equal((permissions & ADMIN) !== 0, false);
+permissions |= ADMIN;
+assert.equal(permissions, READ | WRITE | ADMIN);
+permissions &= ~WRITE;
+assert.equal((permissions & WRITE) !== 0, false);
+assert.equal((permissions & READ) !== 0, true);
+assert.equal((permissions & ADMIN) !== 0, true);
+
+console.log('OK permission flags');
+```
+
+**Acceptation :** code de sortie 0 et `OK permission flags`. Expliquer la différence entre `|=` (ajout) et `&= ~` (retrait). Les opérateurs bitwise JavaScript convertissent les nombres en entiers signés 32 bits : ne pas utiliser ce modèle sans contrôle pour des masques qui dépassent cette représentation ; préférer `BigInt` si le besoin le justifie.
+
+**Lien et transfert :** les flags peuvent simplifier un protocole compact ou une permission interne, mais ils ne remplacent pas un modèle d'autorisation serveur vérifié et audité.
+
+
+## Vérification autonome : domaine 32 bits et erreurs de bord
+
+Copie le code de `estPuissanceDe2` et `compterBits` dans `verify-bit-operations.mjs`, puis ajoute les assertions ci-dessous. Lance `node verify-bit-operations.mjs`.
+
+```js
+import assert from 'node:assert/strict';
+
+assert.equal(estPuissanceDe2(1), true);
+assert.equal(estPuissanceDe2(1024), true);
+assert.equal(estPuissanceDe2(0), false);
+assert.equal(estPuissanceDe2(6), false);
+assert.equal(estPuissanceDe2(2 ** 32), false);
+assert.equal(compterBits(0), 0);
+assert.equal(compterBits(7), 3);
+assert.equal(compterBits(0xffffffff), 32);
+assert.throws(() => compterBits(-1), RangeError);
+assert.throws(() => compterBits(1.5), RangeError);
+console.log('OK bit operations');
+```
+
+**Acceptation :** le processus retourne le code 0 et affiche `OK bit operations`. Une solution qui retourne 0 pour `0xffffffff`, ou qui accepte silencieusement `-1`, ne passe pas.
+
+**Limite de sécurité :** un masque de bits peut représenter des permissions internes, mais il ne doit jamais remplacer la vérification d'autorisation côté serveur, l'identité du sujet, le tenant et la politique d'accès.

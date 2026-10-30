@@ -9,15 +9,17 @@ route_family: core
 
 > La sortie Staff ne se valide pas par couverture documentaire. Les six familles **S1–S6** doivent traverser **production → perturbation → transfert → défense**. **S7 est une preuve transversale obligatoire de transfert, pas une septième famille.**
 
-| Famille               | Production                     | Perturbation                  | Transfert               | Défense                                |
-| --------------------- | ------------------------------ | ----------------------------- | ----------------------- | -------------------------------------- |
-| S1 Systèmes           | système mesuré                 | charge/incident               | autre stack             | pourquoi cette capacité est suffisante |
-| S2 Architecture       | ADR + diagramme                | spec drift                    | autre contexte          | meilleur argument contre               |
-| S3 Sécurité/fiabilité | threat model + SLO             | panne/attaque                 | nouvelle surface        | coût du risque restant                 |
-| S4 Produit/coût       | décision chiffrée              | budget ou priorité modifiée   | autre marché            | sacrifice assumé                       |
-| S5 Leadership         | stratégie + message            | partie prenante opposée       | autre organisation      | objection en direct                    |
-| S6 IA                 | prompts + reviews + garde-fous | proposition IA contradictoire | autre fournisseur/outil | pourquoi ne pas déléguer               |
-| S7 Transfert (transversal) | portage hors stack         | contrainte cassant un invariant | nouveau contexte     | ce qui reste invariant / ce qui change |
+| Famille                    | Production                         | Perturbation                    | Transfert           | Défense                                |
+| -------------------------- | ---------------------------------- | ------------------------------- | ------------------- | -------------------------------------- |
+| S1 Systèmes                | système mesuré                     | charge/incident                 | autre stack         | pourquoi cette capacité est suffisante |
+| S2 Architecture            | ADR + diagramme                    | spec drift                      | autre contexte      | meilleur argument contre               |
+| S3 Sécurité/fiabilité      | threat model + SLO                 | panne/attaque                   | nouvelle surface    | coût du risque restant                 |
+| S4 Produit/coût            | décision chiffrée                  | budget ou priorité modifiée     | autre marché        | sacrifice assumé                       |
+| S5 Leadership              | stratégie + message                | partie prenante opposée         | autre organisation  | objection en direct                    |
+| S6 Livraison/exploitation  | release + observabilité + rollback | panne / migration défectueuse   | autre environnement | pourquoi cette récupération est sûre   |
+| S7 Transfert (transversal) | portage hors stack                 | contrainte cassant un invariant | nouveau contexte    | ce qui reste invariant / ce qui change |
+
+Le protocole commun de traçabilité des preuves, des commandes et de leur portée est défini dans [57 : Registre de preuves et validation reproductible](57-REGISTRE-PREUVES-ET-VALIDATION.md). Il doit être utilisé pour les familles S1–S7 ; une ligne de registre sans artefact ou résultat brut reste une déclaration.
 
 ## Gate de compétence
 
@@ -37,7 +39,6 @@ J'ai produit
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -65,6 +66,10 @@ Le transfert doit changer au moins **deux** dimensions parmi :
 - contrainte réglementaire.
 
 Un simple changement de nom de variable ne compte pas.
+
+### Contrôle transversal G8 : IA
+
+En plus de S6, `PREUVES/EVALUATION-IA.md` doit montrer qu’une brique IA a été évaluée avec des cas versionnés, que ses limites et risques ont été reconnus et qu’au moins un cas de refus ou de fallback a été justifié. Ce contrôle n’oblige pas à intégrer l’IA au fil rouge.
 
 ## Gate anti-illusion
 

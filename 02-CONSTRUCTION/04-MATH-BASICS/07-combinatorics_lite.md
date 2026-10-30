@@ -365,3 +365,13 @@ Avant de coder une boucle de bruteforce, compte d'abord : si c'est > 10^8, t'as 
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+## Transfert vérifiable : estimer l'espace de recherche avant de coder
+
+Le nombre de combinaisons détermine souvent si une recherche exhaustive est viable. Pour choisir `k` éléments parmi `n`, le nombre de possibilités est \(inom{n}{k}\). Une boucle imbriquée peut donc devenir impraticable même si chaque itération est rapide. Les contraintes (ordre, répétition, exclusions) changent la formule : écris-les avant de compter.
+
+**Exercice terrain.** Un moteur de recommandations doit comparer toutes les paires parmi 5 000 produits. Calcule le nombre de paires, estime la durée à 2 millions d'évaluations/s, puis propose une réduction (préfiltrage, top-k, index ou échantillonnage) et indique le biais possible.
+
+**Vérification.** Le résultat attendu pour les paires non ordonnées sans répétition est `n*(n-1)/2 = 12 497 500`. À 2 000 000 évaluations/s, le plancher théorique est environ 6,25 s, hors I/O, allocation et contention. Un benchmark réel doit remplacer l'estimation avant engagement de performance.
+
+**Lien aval.** Ce raisonnement prépare l'analyse de complexité dans `07-ALGORITHMS`, les index et requêtes dans Databases, puis le capacity planning dans Scalability.

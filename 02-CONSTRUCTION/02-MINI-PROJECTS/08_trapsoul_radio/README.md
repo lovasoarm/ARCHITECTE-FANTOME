@@ -41,22 +41,21 @@ $ npx tsc --noImplicitAny --noEmit
 
 ---
 
-## INSTALLATION
+## PRÉREQUIS ET ÉTAT INITIAL
 
-```text
-Node.js : v22.23.3
-npm : v10+
-TypeScript : v5+
-Outils externes: axe-cli, Lighthouse CLI
-```
+- Node.js : `v22.23.4` (version de référence du dépôt AF) ; npm est fourni avec Node.js.
+- État de l’archive : Le projet cible TypeScript, accessibilité et audit Lighthouse/axe. À la réception, aucun `package.json`, `tsconfig`, `dist/` ou test exécutable n’est fourni. Les outils d’audit sont des dépendances locales à ajouter et à verrouiller ; ne les installe pas globalement.
+
+### Commandes disponibles dès réception
 
 ```bash
-npm install
-npm install -g @axe-core/cli lighthouse
-npx http-server dist/ -p 3000 # serveur local
-npx axe http://localhost:3000 # audit a11y
-npm test # tests unitaires
+node --version
+npm --version
 ```
+
+### Commandes après réalisation du scaffold
+
+Après création du manifeste et du build : ajouter les versions locales de TypeScript, `@axe-core/cli`, Lighthouse et du serveur statique, puis construire `dist/`. `npx tsc`, `npx http-server dist/`, `npx axe` et `npm test` ne deviennent valides qu’après configuration de leurs commandes, fichiers et scripts.
 
 ---
 
@@ -155,7 +154,6 @@ Voir `02-CONSTRUCTION/05-MEMORY-PERFORMANCE/02A-measure_first.md`.
 <!-- AF-DIAGRAM:slo -->
 
 ```text
-text
 SLO
  │
  ├──► SLI mesuré ───► conformité
@@ -255,3 +253,31 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## Comprendre les tests avant de commencer : état exact du ZIP
+
+Référence : [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les exemples de sortie décrivent la cible, pas un logiciel livré, sauf mention contraire.
+
+- Code fourni : aucun frontend/backend, manifest ou test exécutable ; les démos audio et audits cités sont des cibles.
+- Tests de référence verts : aucun. Tests volontairement rouges : aucun.
+- Tests à écrire : player state, file de lecture, reprise, erreurs média, i18n, navigation clavier, focus, labels, réseau et préférences d'accessibilité.
+- Validation finale : après choix/installation du framework et création du lockfile, exécuter `npm ci && npm test`. Axe et Lighthouse sont des audits complémentaires à versionner ; l'installation globale proposée dans le README n'est pas une précondition de départ.
+- Ordre : logique player pure → état → média → UI → i18n → accessibilité → tests navigateur/mesures. Preuve : scénarios clavier, lecteur déconnecté et reprise vérifiés, pas seulement un score Lighthouse.
+
+## Règles communes de progression et de preuve
+
+### Contrôle commun de la progression
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
+- **Tests verts de référence :** aucun.
+- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
+- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
+- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
+
+**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.

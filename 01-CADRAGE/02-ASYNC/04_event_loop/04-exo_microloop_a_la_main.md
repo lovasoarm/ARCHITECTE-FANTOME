@@ -14,22 +14,6 @@ assessment_role: diagnostic_mastery
 
 # EXO : implémenter une mini file de microtasks à la main
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 <!-- AF-DIAGRAM:event_loop -->
 
 ```text

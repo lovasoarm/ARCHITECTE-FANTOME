@@ -123,20 +123,50 @@ async function distribuerRations(job) {
 
 La correction : rendre l'opération idempotente (vue aussi dans `02-CONSTRUCTION/19-API-CRAFT/04_auth_jwt` pour le refresh token), c'est-à-dire que la rejouer plusieurs fois donne le MÊME résultat que la jouer une fois.
 
+```text
+Consommateur at-least-once
+        │
+        ▼
+BEGIN transaction DB
+        │
+        ├─ INSERT idempotency_key avec contrainte UNIQUE
+        │      ├─ déjà présent : aucun effet métier à rejouer
+        │      └─ nouvel identifiant : appliquer l'effet métier
+        │
+        ├─ vérifier que le stock suffit et l'actualiser
+        └─ COMMIT transaction DB
+                │
+                ▼
+          ACK du message
+```
+
+Exemple de pseudo-code transactionnel (adapter l'API et les erreurs au moteur choisi) :
+
 ```js
-// Idempotent : un identifiant unique de distribution empêche le double traitement
-async function distribuerRations(job) {
-  const dejaFait = await db.query(
-    "SELECT id FROM distributions WHERE idempotency_key = $1",
+await db.transaction(async (tx) => {
+  const inserted = await tx.query(
+    `INSERT INTO processed_messages (idempotency_key) VALUES ($1)
+     ON CONFLICT (idempotency_key) DO NOTHING RETURNING idempotency_key`,
     [job.idempotencyKey],
   );
-  if (dejaFait.rows.length > 0) {
-    return; // déjà fait, on ne re-prélève pas le stock
+
+  if (inserted.rowCount === 1) {
+    const updated = await tx.query(
+      `UPDATE stock SET quantity = quantity - $1
+       WHERE item_id = $2 AND quantity >= $1`,
+      [job.quantite, job.itemId],
+    );
+    if (updated.rowCount !== 1)
+      throw new Error("stock insuffisant ou article absent");
   }
-  await preleverDuStock(job.quantite, job.idempotencyKey);
-  await queue.ack(job.id);
-}
+  // Si la clé existait déjà, aucun effet métier n'est rejoué. La transaction commit ensuite.
+}); // Le commit doit être confirmé avant l'ACK.
+await queue.ack(job.id);
 ```
+
+La table `processed_messages` doit avoir une contrainte `UNIQUE` sur `idempotency_key`, et l'enregistrement de la clé doit appartenir à la même transaction que l'effet métier. L'exemple est un pseudo-code : vérifie que `db.transaction` ne retourne qu'après un commit confirmé et que les erreurs annulent la transaction.
+
+Le point déterminant n'est pas le `SELECT` préalable : deux workers peuvent lire simultanément « absent ». La contrainte `UNIQUE` et la transaction doivent rendre atomiques l'enregistrement de la clé et l'effet métier. Si l'effet externe n'est pas dans la même base (email, fournisseur, paiement), la transaction locale ne le rend pas atomique ; il faut un contrat d'idempotence côté destinataire, un outbox/inbox ou une réconciliation documentée. Un crash après le commit mais avant l'ACK provoque un rejeu sans second effet métier si la clé est conservée durablement.
 
 ---
 
@@ -322,3 +352,11 @@ Une message queue découple ce qui doit répondre vite de ce qui peut prendre so
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Écris une assertion sur l’invariant de « Découpler pour ne pas tout bloquer en chaîne », puis teste cas normal, concurrence/duplicat, interruption et reprise. Fournis la requête ou la trace et explique ce que le test ne démontre pas.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

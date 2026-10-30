@@ -54,7 +54,7 @@ l'ordre où tu dois les faire strictement. Recommandation :
 | 18  | `18_human_vs_ai_smell`               | Revue critique de code généré par IA : détecter le smell qu'une IA ne voit pas       |
 | 19  | `19_supervise_the_ai`                | Architecte-superviseur : zero code applicatif, ADR + consigne + reviews + POSTMORTEM |
 
-Les projets `18` et `19` forment une paire de discernement terminal : `18` apprend à démonter une production humaine et une production IA à périmètre identique ; `19` demande ensuite de déléguer sans déléguer le jugement. Ils prolongent S6 et la couche de maturation Staff, ils ne constituent pas un second cursus.
+Les projets `18` et `19` forment une paire de discernement terminal : `18` apprend à démonter une production humaine et une production IA à périmètre identique ; `19` demande ensuite de déléguer sans déléguer le jugement. Ils renforcent la lecture critique de l'IA et le contrôle transversal G8, ainsi que la maturation Staff ; ils ne remplacent pas S6 (livraison & exploitation) et ne constituent pas un second cursus.
 
 ## Contrat d’exécution
 
@@ -106,7 +106,7 @@ fois par trimestre. Voir `05-MAITRISE/06-ANNEXES/16_career/05_ai_famine_drill.md
 ## Gate securite (OWASP) : bloquant pour cloturer un projet
 
 Chaque POSTMORTEM de mini-projet doit contenir la checklist OWASP Top 10
-(voir `97-templates/04-POSTMORTEM_TEMPLATE.md`, section "GATE SECURITE").
+(voir `97-templates/09-POSTMORTEM.md`, section "GATE SECURITE").
 Tant qu'une ligne reste en ``, le projet **n'est pas livre**, meme si
 les tests passent. La checklist est obligatoire pour les **19 projets
 numerotes** (le drill hors serie "IA en panne" a son propre POSTMORTEM, sans

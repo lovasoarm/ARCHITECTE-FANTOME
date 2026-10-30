@@ -60,3 +60,7 @@ Le catalogue accepte des entrées minimalistes sans rien casser à l'affichage. 
 ## CHECKPOINT DE PROFONDEUR : variation B : défendre l'inverse
 
 Ferme la page et défends pendant quelques minutes une stratégie opposée à celle implicitement recommandée ici. Cherche son meilleur cas d'usage, puis montre le cas où elle casse. Reviens ensuite à la stratégie initiale et justifie le choix par des mécanismes, pas par le vocabulaire du cours.
+
+## Transfert après l'exercice
+
+Reprends la factory dans un service de génération de rapports : une implémentation mémoire pour les tests et une implémentation fichier pour l'usage local. Décris comment ajouter une implémentation sans modifier le consommateur. Vérifie que la factory rejette un driver inconnu et ne construit pas un adaptateur avec des credentials non validés. Dans le fil rouge Rasengan, le même principe ne doit pas créer une factory si une unique construction suffit.

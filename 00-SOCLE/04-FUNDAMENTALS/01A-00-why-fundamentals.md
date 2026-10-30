@@ -108,7 +108,6 @@ Maintenant, ouvre `03-intro_variables.md`. Et cette fois, regarde vraiment ce qu
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

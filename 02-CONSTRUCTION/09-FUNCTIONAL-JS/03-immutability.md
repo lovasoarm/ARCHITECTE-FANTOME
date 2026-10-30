@@ -10,8 +10,11 @@ perturbation_modes: [decision_organisationnelle, transmission]
 anti_recipe_key: decision_organisationnelle+transmission
 transfer_distance: low
 assessment_role: instructional_checkpoint
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0019
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-04-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
 
 **SCÈNE CRAZYDEVS : Naruto :** une technique qui ne modifie pas le village autour d’elle est plus facile à tester et à relancer. La pureté n’est pas mystique : elle réduit les surprises.
@@ -350,3 +353,11 @@ Les méthodes `sort`, `reverse`, `splice` mutent en place : toujours travailler 
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « Immutabilité : ne pas muter, créer » à un traitement de journaux d’audit plutôt que des événements de mesure. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

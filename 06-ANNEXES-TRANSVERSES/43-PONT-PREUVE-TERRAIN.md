@@ -113,11 +113,17 @@ Faire relire une décision, aider une autre personne, mener une revue ou transme
 
 **Preuve utile :** feedback anonymisé, PR revue, notes de mentorat, décision collective ou amélioration observable chez le pair.
 
-### S6 : IA & automatisation en production
+### S6 : livraison & exploitation
 
-N'ajoute pas d'IA pour cocher S6. Partir d'un besoin où elle peut réellement apporter de la valeur : génération assistée, extraction, recherche, RAG, workflow agentique ou automatisation. Mesurer au moins la qualité de tâche, un coût ou proxy de coût, un risque, un mécanisme d'arrêt et la supervision humaine.
+Confronte le chemin de release à une contrainte réelle : migration, configuration erronée, dépendance indisponible ou régression de performance. Observe les signaux, applique le critère de rollback/recovery et documente le résultat. Le cœur de S6 existe même sans IA.
 
-**Preuve utile :** cas réel, évaluation avant/après, erreurs observées, permissions, coût/latence, décision d'adoption ou de retrait.
+**Preuve utile :** version livrée, check post-déploiement, panne/retour daté, impact observé, décision révisée et action de maintenance.
+
+### Contrôle G8 : IA / automatisation vérifiée (transversal)
+
+Si l'IA apporte une vraie valeur au projet, évalue-la et gouverne son usage en production-like. Sinon, réalise le laboratoire IA de référence et documente le cas où la sortie déterministe est préférable. Ne confonds jamais benchmark local, prototype et système effectivement exploité.
+
+**Preuve utile :** `EVALUATION-IA.md` avec cas versionnés, résultats observés, risques, coût/latence quand mesurables, permissions et cas de refus ; ajoute `IA-EN-PROD.md` uniquement si une brique IA est intégrée au système réel.
 
 ## 5. Le minimum si tu n'as pas de terrain
 

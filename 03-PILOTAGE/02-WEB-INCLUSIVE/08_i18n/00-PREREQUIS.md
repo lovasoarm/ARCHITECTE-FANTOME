@@ -46,7 +46,6 @@ Temps de lecture ~5 min
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

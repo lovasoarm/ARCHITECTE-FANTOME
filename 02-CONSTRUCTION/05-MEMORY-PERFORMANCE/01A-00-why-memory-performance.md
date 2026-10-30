@@ -31,7 +31,6 @@ Temps de lecture ~8 min
 <!-- AF-DIAGRAM:cache -->
 
 ```text
-text
 Request
   │
   ▼

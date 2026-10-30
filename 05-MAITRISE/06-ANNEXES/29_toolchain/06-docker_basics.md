@@ -51,7 +51,7 @@ isolation totale           isolation au niveau processus
 ```dockerfile
 # On part d'une image de base : Node déjà installé, version précise
 # "alpine" = une distribution Linux minimaliste, très légère
-FROM node:22.23.3-alpine
+FROM node:22.23.4-alpine
 
 # Le dossier où tout va se passer DANS le container
 WORKDIR /app
@@ -101,7 +101,7 @@ Tu as pas besoin d'emporter tout ton atelier de réparation en expédition. Just
 
 ```dockerfile
 # ===== STAGE 1 : construction =====
-FROM node:22.23.3-alpine AS builder
+FROM node:22.23.4-alpine AS builder
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
@@ -110,7 +110,7 @@ RUN npm run build
 # Cette étape produit un dossier /app/dist avec le code compilé/optimisé
 
 # ===== STAGE 2 : exécution =====
-FROM node:22.23.3-alpine AS runner
+FROM node:22.23.4-alpine AS runner
 WORKDIR /app
 # On copie SEULEMENT le résultat du build, pas les outils qui ont servi à le produire
 COPY --from=builder /app/dist ./dist
@@ -199,7 +199,6 @@ Docker isole au niveau processus, pas au niveau OS complet : c'est pour ça que 
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

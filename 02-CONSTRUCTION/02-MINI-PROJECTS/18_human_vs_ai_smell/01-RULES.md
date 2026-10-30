@@ -20,7 +20,7 @@ Nombre minimum d'ADR à livrer dans `ADR/` : **4**
 
 Un ADR unique ("choix d'architecture") ne suffit pas. Décisions latérales attendues :
 données, frontières de module, stratégie de tests, choix async, sécurité, observabilité.
-Template canonique : `02-CONSTRUCTION/02-MINI-PROJECTS/97-templates/ADR_TEMPLATE.md`.
+Template canonique : `02-CONSTRUCTION/02-MINI-PROJECTS/97-templates/03-ADR_TEMPLATE.md`.
 
 ## SPEC_DRIFT_MODE
 

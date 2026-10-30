@@ -385,3 +385,13 @@ Règle de décision : si deux systèmes font la même chose mais se parlent des 
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+## Transfert production : isoler un fournisseur externe
+
+**Scénario.** Le fournisseur de paiement change son format d'erreur et ses noms de champs. Un adaptateur convertit son API vers le contrat interne, sans laisser le modèle fournisseur se diffuser dans le domaine.
+
+**Exercice.** Définis `PaymentGateway` interne et deux adaptateurs : fournisseur simulé A et fixture B. Normalise succès, refus, timeout et état inconnu.
+
+**Vérification.** La même suite de contrat passe sur les deux adaptateurs ; les tests couvrent les erreurs inconnues et ne journalisent ni token ni données de carte. L'adaptateur ne doit pas inventer qu'un timeout signifie un paiement refusé : l'état peut être indéterminé.
+
+**Transfert.** Cette frontière prépare l'anti-corruption layer de DDD et les migrations progressives de fournisseur.

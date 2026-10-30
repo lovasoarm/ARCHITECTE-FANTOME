@@ -399,3 +399,11 @@ Contrainte : sans modifier le serveur : tout se passe dans le code client.
 
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+
+## Transfert production : flux de notifications avec backlog
+
+**Scénario.** Un flux d'activité reçoit 500 événements/s tandis que le client ne lit que 100/s. Définis une politique de buffer, de drop ou de snapshot ; ne laisse pas une connexion lente épuiser la mémoire du serveur.
+
+**Exercice.** Choisis une taille maximale de backlog, une fenêtre de reprise, un seuil d'abandon et un mécanisme de snapshot. Indique quels événements peuvent être coalescés et lesquels sont auditables/non perdables.
+
+**Vérification.** Test de client lent, reprise après déconnexion, buffer saturé et curseur expiré. Les métriques montrent le backlog et les clients déconnectés ; une mise à jour d'état peut être coalescée, un événement financier ne doit pas être perdu silencieusement.

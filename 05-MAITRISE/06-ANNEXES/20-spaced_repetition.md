@@ -32,7 +32,6 @@ Pour chaque nouveau concept clé :
 <!-- AF-DIAGRAM:recall -->
 
 ```text
-text
 J+1 ──► J+3 ──► J+7 ──► J+14 ──► J+28
  │        │        │         │         │
 free    explain  diagnose   transfer  defend inverse
@@ -56,7 +55,6 @@ Lié depuis chaque `_recall_XX.md`.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

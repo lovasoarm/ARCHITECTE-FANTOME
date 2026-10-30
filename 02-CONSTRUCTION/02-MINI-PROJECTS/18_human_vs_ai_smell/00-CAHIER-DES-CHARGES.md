@@ -6,9 +6,12 @@ duree_de_vie_estimee: 1-2 ans
 raison: Les styles IA évoluent avec les modèles.
 route_family: depth
 review_mode: blind
-
+freshness_registry_id: PER-0010
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 # Cahier des charges : 18_human_vs_ai_smell

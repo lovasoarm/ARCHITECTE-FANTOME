@@ -3,10 +3,12 @@ perishability_id: PER-0037
 
 stability: perissable
 acte: comprendre
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0037
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Garo :** la règle est simple jusqu'au jour où un état caché traverse une frontière. À partir de là, le “petit raccourci” devient le Horror qui te poursuit pendant trois heures.
 
 # PONT : de typer du code à connaître le sol sur lequel il tourne à l'environnement d'exécution

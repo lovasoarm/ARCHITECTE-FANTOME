@@ -4,10 +4,12 @@ perishability_id: PER-0004
 stability: perissable
 route: survie
 acte: comprendre
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0004
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 # Lis-moi avant de coder
 
 Temps de lecture ~2 min
@@ -25,7 +27,7 @@ Raisons :
 
 1. `01-START_HERE.md` : porte d'entrée et ordre du premier passage.
 2. `01A-00-why-getting-started.md` : pourquoi cette mise en route et ce qu'elle prépare.
-3. `02-install.md` : Node 22 LTS, éditeur, et Git lorsque l’activité en a besoin. Le dépôt utilise Node 22.23.3 comme environnement de référence ; la compatibilité déclarée du sandbox reste Node 22.x.
+3. `02-install.md` : Node, éditeur, et Git lorsque l’activité en a besoin. Cette édition épingle Node 22.23.4 pour la reproductibilité ; le sandbox de ce module déclare `node >=22.0.0` sans borne supérieure dans son `package.json`. L’absence de borne supérieure ne constitue pas une preuve que toutes les versions plus récentes ont été testées.
 4. `03-day_one.md` : contexte du métier, poste de travail, premières lignes de JS.
 5. `04-shell_survival.md` : 12 commandes pour survivre.
 6. `05-git_101.md` : clone, add, commit, push, revert.

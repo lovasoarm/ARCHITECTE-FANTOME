@@ -279,7 +279,6 @@ Cas d'usage réels :
 <!-- AF-DIAGRAM:rto_rpo -->
 
 ```text
-text
 Incident
 │<──── RTO : délai maximal de reprise ────>│
 │
@@ -515,3 +514,13 @@ Un canvas, une carte, un jeu, un dashboard interactif : tout ça tourne avec ce 
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+## Transfert vérifiable : géométrie dans une interface et une API
+
+Une distance dépend du repère et de l'unité. Des coordonnées écran en pixels ne sont pas des coordonnées géographiques ; une distance euclidienne sur latitude/longitude n'est pas une distance fiable sur de grandes zones. Les boîtes englobantes (bounding boxes, rectangles qui bornent une forme) permettent un préfiltre rapide, mais une collision exacte exige ensuite le test adapté à la forme.
+
+**Exercice terrain.** Implémente `containsPoint(box, point)` avec bornes inclusives explicites. Ajoute `intersects(a, b)` pour deux rectangles axis-aligned. Teste point sur chaque bord, coin, rectangle nul, rectangles séparés d'une unité et rectangles qui se touchent.
+
+**Vérification.** Fournis une table de cas attendus et 100 cas aléatoires comparés à une implémentation oracle simple. Les coordonnées doivent partager le même repère et la même unité ; sinon rejette l'entrée ou convertis-la avant le calcul.
+
+**Lien aval.** Ces invariants sont réutilisables dans le rendu d'interface, les hitboxes, la cartographie et les validations géospatiales ; pour des distances terrestres, utiliser une formule géodésique adaptée ou une projection documentée.

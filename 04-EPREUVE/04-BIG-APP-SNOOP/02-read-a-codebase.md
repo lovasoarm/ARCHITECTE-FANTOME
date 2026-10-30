@@ -186,7 +186,6 @@ Où l'analogie casse : à l'atelier les outils sont visibles ; dans un dépôt, 
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

@@ -246,7 +246,6 @@ Refactorer sans tests, c'est marcher sur une corde raide sans filet : ça peut m
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

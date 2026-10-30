@@ -279,3 +279,11 @@ Le Fenwick Tree (BIT) résout les range sum queries dynamiques en O(log n) pour 
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Compare chaque somme de préfixe à une somme naïve sur le même tableau, avant et après plusieurs mises à jour, y compris les indices limites.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

@@ -38,3 +38,15 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+## Barème autonome : Edge cases (20 points)
+
+- **Entrées hostiles (4 pts)** : null/undefined/NaN, coercions et bornes couvertes par des tests.
+- **Numérique (4 pts)** : précision flottante, arrondis et comparaison expliqués selon le domaine.
+- **Concurrence (4 pts)** : race condition reproduite de façon déterministe et cause isolée.
+- **Contrat (4 pts)** : spécification floue/dérivée transformée en critères testables et contre-exemples.
+- **Diagnostic (4 pts)** : hypothèse, reproduction, correction minimale et test de non-régression sont remis.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : corriger le symptôme sans isoler la condition de course ou modifier le contrat sans décision.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

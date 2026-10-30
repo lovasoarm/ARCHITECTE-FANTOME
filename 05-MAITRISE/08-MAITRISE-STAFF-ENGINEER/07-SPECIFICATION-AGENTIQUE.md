@@ -110,3 +110,11 @@ Une spécification sans mécanisme de réfutation est une opinion structurée.
 
 **Temps CORE ajouté : 45 min de consolidation**, en remplaçant une relecture passive du grimoire,
 pas en créant un nouveau palier.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « 07 : Ingénierie des spécifications : écrire pour un constructeur autonome » à une décision qui touche plusieurs équipes pendant plusieurs trimestres. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

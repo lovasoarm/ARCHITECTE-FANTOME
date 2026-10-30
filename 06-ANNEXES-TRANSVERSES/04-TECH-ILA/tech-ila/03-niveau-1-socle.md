@@ -8,10 +8,12 @@ revue: trimestrielle
 companion: ce parcours
 stability: perissable
 acte: comprendre
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0087
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-04-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 [← Sommaire TECH-ILA](../README.md)
@@ -25,7 +27,6 @@ review_due: 2027-12-31
 <!-- AF-DIAGRAM:supply_chain -->
 
 ```text
-text
 Application
    │
    ▼
@@ -45,7 +46,6 @@ La supply chain étend la surface de risque au-delà des dépendances que le pro
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -753,7 +753,6 @@ ce parcours t'a appris la stratégie ([02-CONSTRUCTION/03-TESTING/10-test_strate
 <!-- AF-DIAGRAM:secrets -->
 
 ```text
-text
 ┌──────────────┐
 │ Secret store │
 └──────┬───────┘

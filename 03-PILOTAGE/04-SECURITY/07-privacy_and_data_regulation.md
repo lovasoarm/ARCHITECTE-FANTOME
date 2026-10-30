@@ -8,10 +8,12 @@ perturbation_modes: [reglementation, incident, decision_organisationnelle]
 anti_recipe_key: regulation+privacy+ai-governance
 transfer_distance: high
 assessment_role: diagnostic_mastery
-review_due: 2027-08-23
-
+freshness_registry_id: PER-0043
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-01-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Prison Break :** le but n’est pas de mémoriser des interdictions. Le but est de savoir quelles données existent, pourquoi elles existent, quelle règle les gouverne et quelle décision technique en découle.
 
 # RGPD et AI Act : transformer la contrainte réglementaire en décision technique

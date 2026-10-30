@@ -16,7 +16,6 @@ assessment_role: instructional_checkpoint
 <!-- AF-DIAGRAM:slo -->
 
 ```text
-text
 SLO
  │
  ├──► SLI mesuré ───► conformité
@@ -80,7 +79,6 @@ requêtes ratées par semaine. Rends `SLO.md`, section 1 à 3.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

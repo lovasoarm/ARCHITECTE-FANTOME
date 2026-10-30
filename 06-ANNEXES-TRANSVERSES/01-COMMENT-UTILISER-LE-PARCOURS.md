@@ -6,6 +6,8 @@ noyau: non
 
 # 01 - COMMENT UTILISER ARCHITECTE-FANTOME
 
+> Pour le chemin concret, utilise [58 : Route apprenant cohérente](58-ROUTE-APPRENANT-COHERENTE.md) : elle relie les ressources existantes à leurs prérequis, livrables, critères de sortie et chemins de remédiation. Ce guide reste le mode d'emploi de navigation.
+
 > Tu viens de lire `00-GUIDE.md` et tu veux savoir comment entrer dans le parcours sans te perdre.
 > Ce fichier est la rampe d'accès. Il ne rajoute pas un niveau technique.
 

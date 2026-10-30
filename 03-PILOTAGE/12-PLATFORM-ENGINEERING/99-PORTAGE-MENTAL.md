@@ -10,7 +10,6 @@ acte: transférer
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

@@ -27,7 +27,7 @@ Temps de lecture ~2 min
 
 ## Contraintes
 
-- Node 22.23.3, zéro dépendance externe (utilise `fetch` global et `node:fs`).
+- Node 22.23.4, zéro dépendance externe (utilise `fetch` global et `node:fs`).
 - Sortie JSON stdout :
 
   ```json
@@ -94,3 +94,11 @@ Simuler côté client ne reproduit ni le comportement des proxies (Vary, cache-p
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « Web concepts : Drill exécutable » à un navigateur mobile avec réseau lent et session renouvelée. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

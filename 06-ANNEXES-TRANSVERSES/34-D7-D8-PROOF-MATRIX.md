@@ -9,7 +9,6 @@ acte: prouver
 <!-- AF-DIAGRAM:d7d8 -->
 
 ```text
-text
 D1 connaître
   │
   ▼

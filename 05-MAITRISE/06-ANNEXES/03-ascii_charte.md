@@ -201,7 +201,7 @@ Le principe de la clean architecture : le domaine (la logique métier) ne dépen
 
 La flèche entre Domaine et Infra pointe vers le HAUT : c'est l'infra qui implémente une interface définie par le domaine, pas le contraire. Si tu changes de DB, le domaine ne bouge pas d'une ligne.
 
-**Référencé dans :** `02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/04_clean_architecture`, `02-CONSTRUCTION/11-REFACTORING/02_solid_principles`.
+**Référencé dans :** `02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/05-clean_architecture.md`, `02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md`.
 
 ---
 
@@ -260,3 +260,11 @@ Si ton module a besoin d'un 9e schéma canonique qui sert dans plusieurs modules
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « Charte ascii : la norme unique », puis conserve le résultat et explique tout écart.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

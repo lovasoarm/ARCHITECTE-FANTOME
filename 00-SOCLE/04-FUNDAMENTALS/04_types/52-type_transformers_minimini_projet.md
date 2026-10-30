@@ -73,7 +73,6 @@ Dans ce scénario, tu as vérifié que : ta couche de formatage existe.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

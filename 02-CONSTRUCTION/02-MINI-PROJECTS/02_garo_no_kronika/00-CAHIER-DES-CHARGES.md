@@ -10,27 +10,21 @@ route_family: depth
 
 Temps de lecture ~14 min
 
-## PRÉREQUIS
+## PRÉREQUIS ET ÉTAT INITIAL DU ZIP
 
-```text
-Node.js    : v22.23.3
-npm      : v10+
-Variables env : aucune
-Outils externes: aucun
+- Node.js `22.23.4` recommandé ; l'orchestration d'événements utilise `node:events` natif.
+- Aucun `package.json`, source ou test exécutable n'est livré. `src/` et `tests/` sont des scaffolds documentaires.
+- Les lignes de commandes ci-dessous décrivent l'état final attendu, pas l'état du ZIP reçu.
 
-# Installation
-$ npm install
+Commandes disponibles dès réception :
 
-# Lancer la démo
-$ node src/index.js
-
-# Lancer les tests
-$ npm test
+```bash
+node --version
+npm --version
 ```
 
-Le streaming est simulé via le module natif `events` de Node.js (`EventEmitter`), pas via un vrai serveur HTTP. Zéro dépendance réseau, zéro port ouvert. C'est un choix délibéré : l'objectif est de comprendre le pattern event-driven, pas de configurer un serveur SSE.
+Après avoir créé le point d'entrée, les sources et les tests : `node src/index.js` et `node --test`. `npm install` ne sert que si tu déclares des dépendances ; `npm test` requiert un script dans ton `package.json`.
 
----
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
@@ -117,7 +111,6 @@ await suspend la reprise de la fonction async, pas l’ensemble du runtime.
 <!-- AF-DIAGRAM:event_driven -->
 
 ```text
-text
 ┌────────────┐      event      ┌────────────┐
 │ Producer   │────────────────►│ Event Bus  │
 └────────────┘                 └────┬───────┘

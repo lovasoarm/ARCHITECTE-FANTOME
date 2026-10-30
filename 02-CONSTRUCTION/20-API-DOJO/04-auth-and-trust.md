@@ -121,7 +121,6 @@ où le code tourne sur son appareil.
 <!-- AF-DIAGRAM:secrets -->
 
 ```text
-text
 ┌──────────────┐
 │ Secret store │
 └──────┬───────┘

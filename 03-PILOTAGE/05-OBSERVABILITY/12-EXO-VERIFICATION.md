@@ -14,7 +14,6 @@ acte: verification
 <!-- AF-DIAGRAM:observability -->
 
 ```text
-text
                          System
                            │
              ┌─────────────┼─────────────┐

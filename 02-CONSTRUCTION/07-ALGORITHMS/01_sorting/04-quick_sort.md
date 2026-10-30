@@ -12,7 +12,7 @@ assessment_role: instructional_checkpoint
 
 > **SCÈNE CRAZYDEVS : coupe du monde :** un bon algorithme ne gagne pas parce qu'il connaît un mouvement célèbre ; il gagne parce qu'il réduit le nombre d'actions nécessaires quand le terrain explose.
 
-# Quick sort : le plus rapide en pratique, le moins stable en théorie
+# Quick sort : partition, coût moyen et pire cas
 
 Temps de lecture ~9 min
 
@@ -41,9 +41,11 @@ Parcours :
 [2] > 1 --> reste à droite
 [1] <= 1 --> passe à gauche (c'est le pivot)
 
-Résultat : [1, 1, 8, 10, 6, 2, 3]
-        ^
-        le pivot est à sa place définitive (index 1 dans cet exemple)
+Résultat : [1, 1, 8, 10, 3, 2, 6]
+           ^
+           le pivot est à sa place définitive (index 1 dans cet exemple)
+
+Attention : la partition ne trie pas les deux sous-tableaux. Elle garantit seulement que les valeurs à gauche sont `<= pivot` et celles à droite sont `> pivot` pour cette implémentation.
 ```
 
 ```text
@@ -52,10 +54,10 @@ Avant partition :
            ^pivot
 
 Après partition :
-[1, 1 | 8, 10, 6, 2, 3]
+[1, 1 | 8, 10, 3, 2, 6]
     ^
     pivotIndex : tout à gauche est <= pivot
-          tout à droite est > pivot
+          tout à droite est > pivot ; les deux côtés restent à trier
 ```
 
 ---
@@ -98,7 +100,7 @@ console.log(quickSort([...scores]));
 // [3, 9, 10, 27, 38, 43, 82]
 ```
 
-**Important :** Quick sort trie en place. Il mute le tableau d'entrée. Si tu veux garder l'original, passe `[...arr]`.
+**Important :** Quick sort trie en place et mute le tableau d'entrée. Cette implémentation utilise les opérateurs numériques/ordinaires et n'est donc pas directement un tri générique d'objets. Pour conserver l'original, passe `[...arr]`. Pour des objets, définis et teste une fonction de comparaison cohérente ; la stabilité n'est pas garantie.
 
 ---
 
@@ -165,7 +167,7 @@ function partitionRandom(arr, low, high) {
 }
 ```
 
-Avec un pivot aléatoire, la probabilité de tomber sur le pire cas à chaque niveau devient astronomiquement faible. En pratique : O(n log n) moyen garanti.
+Avec un pivot choisi uniformément au hasard, le coût attendu est O(n log n) sur les entrées fixes usuelles. Le pire cas O(n²) reste possible : le hasard réduit le risque, il ne fournit pas une borne temporelle garantie. Une entrée adaptativement choisie ou une implémentation défavorable impose d'autres précautions.
 
 ---
 
@@ -181,20 +183,21 @@ Cache-friendly   OUI (in-place)   moins (allocations)
 Usage réel     V8 pour primitives Tim Sort (grands tris)
 ```
 
-Quick sort est plus rapide en pratique parce qu'il est **cache-friendly** : il travaille sur le même tableau en mémoire, sans créer de nouvelles allocations. Le processeur précharge les données adjacentes. Moins de cache miss.
+Quick sort en place peut bénéficier d'une bonne localité mémoire et limiter certaines allocations, mais cela ne suffit pas à conclure qu'il est toujours plus rapide. Les constantes, le pivot, les doublons, la taille des données, les allocations et l'implémentation du runtime comptent. Pour une décision réelle, mesure sur les données cibles et utilise le contrat documenté de la bibliothèque choisie plutôt que de supposer que son algorithme interne est Quick sort.
 
 ```js
 // Quick sort n'est PAS stable
 // ce comportement peut surprendre
 
 const matchs = [
- { tour: 1, but: "Mbappé" },
- { tour: 3, but: "Messi" },
- { tour: 1, but: "Vinicius" }, // même tour que Mbappé
-]
+  { tour: 1, but: "Mbappé" },
+  { tour: 3, but: "Messi" },
+  { tour: 1, but: "Vinicius" }, // même tour que Mbappé
+];
 
-quickSort(matchs, ...) // ne garantit pas Mbappé avant Vinicius
-// l'ordre des éléments de même valeur est imprévisible
+// Un tri instable peut inverser des éléments dont la clé est égale.
+// Cette implémentation de quickSort compare directement les valeurs ; pour des objets,
+// il faut lui fournir un comparateur cohérent au lieu d'utiliser <= sur les objets.
 
 // si tu tris des objets et que l'ordre des ex-aequo compte : utilise Merge Sort
 ```
@@ -304,3 +307,11 @@ Quick sort choisit un pivot, partitionne le tableau autour de lui, puis traite r
 
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « Quick sort : partition, coût moyen et pire cas » à un volume de données dix fois plus grand ou une mémoire dix fois plus petite. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

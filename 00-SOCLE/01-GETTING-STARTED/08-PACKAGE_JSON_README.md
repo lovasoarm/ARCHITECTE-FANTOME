@@ -3,10 +3,12 @@ perishability_id: PER-0003
 
 stability: perissable
 acte: comprendre
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0003
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 # `package.json` : mode d'emploi (2 min)
@@ -32,10 +34,10 @@ tout de suite** : il n'y a aucune dependance a installer.
 
 ## Requis Node
 
-`"engines"` demande Node 22.x ou plus récent. Le curriculum prend Node 22.23.3 comme référence de reproductibilité, mais les exercices fondamentaux restent compatibles avec Node 22.x.
+`"engines"` demande Node 22.x ou plus récent. Le curriculum prend Node 22.23.4 comme référence de reproductibilité, mais les exercices fondamentaux restent compatibles avec Node 22.x.
 Verifie avec `node -v`.
 
-**Référence canonique du runtime AF : `22.23.3` (voir `.nvmrc`).**
+**Référence canonique du runtime AF : `22.23.4` (voir `.nvmrc`).**
 
 ## Pourquoi ce fichier est utile meme vide
 

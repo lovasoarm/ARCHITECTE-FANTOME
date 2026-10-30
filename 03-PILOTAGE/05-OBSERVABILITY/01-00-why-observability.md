@@ -23,7 +23,6 @@ assessment_role: diagnostic_mastery
 <!-- AF-DIAGRAM:tracing -->
 
 ```text
-text
 Request ─► Span A ─────► Span B ─────► Span C
              │             │              │
           service A     service B      service C
@@ -35,7 +34,6 @@ Une trace relie plusieurs spans pour reconstruire le chemin d’une requête à 
 <!-- AF-DIAGRAM:observability -->
 
 ```text
-text
                          System
                            │
              ┌─────────────┼─────────────┐

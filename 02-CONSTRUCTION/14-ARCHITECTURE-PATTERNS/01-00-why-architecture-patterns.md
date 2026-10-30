@@ -18,7 +18,7 @@ assessment_role: instructional_checkpoint
 
 > **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `05-MAITRISE/06-ANNEXES/17-frontieres_modules.md` : table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
 
-> **CE MODULE RÉUTILISE** : patterns (02-CONSTRUCTION/10-DESIGN-PATTERNS), async & I/O (01-CADRAGE/02-ASYNC), DB (05-MAITRISE/01-DATABASES, approfondi plus loin dans le fil), refactoring (02-CONSTRUCTION/11-REFACTORING). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas. SOLID est enseigné directement dans ce module (`02_solid_principles.md`), pas ailleurs.
+> **CE MODULE RÉUTILISE** : patterns (02-CONSTRUCTION/10-DESIGN-PATTERNS), async & I/O (01-CADRAGE/02-ASYNC), DB (05-MAITRISE/01-DATABASES, approfondi plus loin dans le fil), refactoring (02-CONSTRUCTION/11-REFACTORING). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas. SOLID est enseigné directement dans ce module (`03-solid_principles.md`), pas ailleurs.
 
 > **Ce module ressemble aux modules voisins (patterns, refactoring, OOP, architecture) ?** Lis d'abord [`05-MAITRISE/06-ANNEXES/17-frontieres_modules.md`](../../05-MAITRISE/06-ANNEXES/17-frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
 
@@ -29,7 +29,6 @@ assessment_role: instructional_checkpoint
 <!-- AF-DIAGRAM:event_driven -->
 
 ```text
-text
 ┌────────────┐      event      ┌────────────┐
 │ Producer   │────────────────►│ Event Bus  │
 └────────────┘                 └────┬───────┘
@@ -68,7 +67,7 @@ L'architecture, c'est la décision qui se prend une fois, mais qui détermine le
 Ce module suppose que tu maîtrises :
 
 - design patterns créationnels et structuraux : voir `02-CONSTRUCTION/10-DESIGN-PATTERNS/`
-- principes SOLID (SRP, OCP, DIP) : voir `../11-REFACTORING/02_solid_principles.md`
+- principes SOLID (SRP, OCP, DIP) : voir `03-solid_principles.md`
 - comment Node charge un module : voir `02-CONSTRUCTION/13-RUNTIME-ENV/02-node_vs_browser.md` et `02-CONSTRUCTION/13-RUNTIME-ENV/04-commonjs_vs_esm.md`
 
 Si ces bases ne sont pas là : reviens ici après.

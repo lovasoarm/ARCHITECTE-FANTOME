@@ -372,7 +372,6 @@ Une factory qui fait tout n'est pas une factory : c'est un God Object avec un me
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -389,3 +388,13 @@ Nouveau contexte
 Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
 
 Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+
+## Transfert production : création d'adaptateurs par configuration
+
+**Scénario.** Un service doit créer un stockage local, S3-compatible ou mémoire selon l'environnement. Une factory reçoit une configuration validée et retourne une interface `BlobStore` ; elle ne doit pas ouvrir un accès privilégié à partir d'une valeur arbitraire.
+
+**Exercice.** Écris une factory qui accepte uniquement `memory`, `filesystem` ou `object-storage`, valide les options requises et refuse un fournisseur inconnu. Teste chaque branche et un identifiant invalide.
+
+**Vérification.** Les trois implémentations respectent le même contrat de lecture/écriture ; les tests de contrat sont réutilisés sur chacune. Le choix du fournisseur est journalisé sans secret. Si une seule implémentation existe, la factory est probablement superflue.
+
+**Transfert.** Le même critère s'applique aux repositories, clients HTTP et adaptateurs d'infrastructure : la création varie, le contrat métier doit rester stable.

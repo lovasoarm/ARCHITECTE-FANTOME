@@ -286,7 +286,6 @@ C'est ça le FP en prod : pas un style, une architecture.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -303,3 +302,15 @@ Nouveau contexte
 Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
 
 Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+
+## Barème autonome : JavaScript fonctionnel (20 points)
+
+- **Pureté et effets (4 pts)** : fonctions pures séparées des entrées/sorties et effet contrôlé aux frontières.
+- **Immutabilité (4 pts)** : aucune mutation cachée ; tests vérifient que les entrées restent inchangées.
+- **Composition (4 pts)** : pipeline lisible, ordre des transformations explicite et erreurs traitées.
+- **Abstraction (4 pts)** : curry, partial application et itération ne sont utilisés que lorsqu'ils clarifient le contrat.
+- **Résultat et transfert (4 pts)** : le challenge produit un rapport déterministe, testé sur données sales et cas limites.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : appeler une fonction pure une fonction qui modifie un état partagé ou dépend d'une horloge non injectée.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

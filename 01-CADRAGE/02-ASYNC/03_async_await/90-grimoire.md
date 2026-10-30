@@ -73,22 +73,6 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ## ASYNC GRIMOIRE
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 async, await, generators, AbortController, et tout ce qui gravite autour.
 Le dictionnaire complet des concepts du module `03_async_await` : fichiers 01, 02, 02b, 02c.
 

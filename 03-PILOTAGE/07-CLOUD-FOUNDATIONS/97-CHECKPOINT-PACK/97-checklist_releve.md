@@ -16,3 +16,11 @@ Temps de lecture ~2 min
 - [ ] Ligne IA séparée
 - [ ] Aucun montant identique caractère pour caractère au relevé de référence
 - [ ] Capture ou PDF tarifaire archivé dans `PREUVES/captures/`
+
+<!-- AF-P0-2026-10-30: missing_example -->
+
+### Exemple travaillé : cas métier
+
+Des stations distantes envoient des mesures avec réseau intermittent ; le système doit absorber les reprises sans doubler les écritures. Compare une journée normale et un pic dix fois supérieur. Pour « Checklist relevé personnel », note le composant, le coût ou le risque qui varie, et le signal observable qui révèle la limite.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

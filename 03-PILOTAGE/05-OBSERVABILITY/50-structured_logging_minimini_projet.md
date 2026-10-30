@@ -15,7 +15,6 @@ assessment_role: instructional_checkpoint
 <!-- AF-DIAGRAM:secrets -->
 
 ```text
-text
 ┌──────────────┐
 │ Secret store │
 └──────┬───────┘
@@ -33,7 +32,6 @@ Un secret doit entrer dans le système au runtime et ne pas être figé dans le 
 <!-- AF-DIAGRAM:observability -->
 
 ```text
-text
                          System
                            │
              ┌─────────────┼─────────────┐

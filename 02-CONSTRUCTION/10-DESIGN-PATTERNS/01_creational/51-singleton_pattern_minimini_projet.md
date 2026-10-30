@@ -56,3 +56,7 @@ Tu as compris un pattern et su ne pas le sur-implémenter : c'est le vrai signe 
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+## Transfert après l'exercice
+
+Déplace le service global vers deux workers avec deux processus : démontre que chaque processus possède sa propre instance. Compare avec un pool de connexion géré au démarrage et injecté par dépendance. La preuve attendue est un test qui isole deux contextes et une note sur ce qui ne peut pas être garanti entre processus.

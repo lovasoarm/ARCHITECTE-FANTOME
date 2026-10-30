@@ -13,9 +13,7 @@ Temps de lecture ~2 min
 
 Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADRs réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables.
 
-
 > **Route CORE 16 semaines :** ce projet conserve son contenu complet. Pour le sprint intensif, consulte [la carte CORE](../../../06-ANNEXES-TRANSVERSES/25-CORE-MINI-PROJECT-MAP.md) pour le slice recommandé. Le passage CORE ajoute une perturbation, un transfert et un rappel à froid ; voir [Engine d’ambiguïté](../../../06-ANNEXES-TRANSVERSES/20-ENGINE-AMBIGUITE.md).
-
 
 -> ~15 h
 
@@ -80,6 +78,16 @@ Tu dois adapter ton architecture pour absorber les deux, ou arbitrer expliciteme
 
 Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur dépôt apprenant. Si le projet utilise des dépendances npm, ton dépôt apprenant doit versionner `package.json` et `package-lock.json`, puis utiliser `npm ci` en CI pour installer exactement cet arbre. Si le projet est sans dépendances, consigne simplement la version de runtime et la commande de test réellement utilisée. La preuve de reproductibilité est la commande et la version relevées dans ton propre dépôt, pas une valeur inventée dans le curriculum.
 
+## Séquence de raisonnement et transfert
+
+1. Écris les exigences mesurables, les non-objectifs et les hypothèses inconnues.
+2. Décris au moins deux architectures plausibles, y compris une option plus simple.
+3. Pour chaque option, trace un chemin de requête, ses modes de panne, son coût d'exploitation et son mécanisme de récupération.
+4. Choisis un scénario de charge ou panne. Prédis l'observation, exécute le scénario et compare au modèle.
+5. Change ensuite deux dimensions (par exemple volume + budget, ou organisation + modèle de panne) et réévalue la décision.
+
+**Gate :** l'ADR identifie une option rejetée avec son meilleur argument, des signaux de révision et les limites de la preuve. Un diagramme sans hypothèses, flux et modes de panne n'est pas un livrable suffisant. Utilise [61 : Exercices systèmes](../../../06-ANNEXES-TRANSVERSES/61-PACK-EXERCICES-SYSTEMES-ET-ARBITRAGES.md) et [67 : Gate de maîtrise](../../../06-ANNEXES-TRANSVERSES/67-GATE-MAITRISE-ET-CAPSTONE.md).
+
 ## Contenu du dossier
 
 <!-- CONTENU-DOSSIER:debut -->
@@ -97,3 +105,29 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## État des tests et point de départ (référence AF)
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
+- **Tests verts de référence :** aucun.
+- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
+- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
+- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
+
+**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.
+
+### Détails d’implémentation et de validation à la réception
+
+- **Code fourni :** aucun service, cluster, client de charge, `package.json` ou suite automatisée ; les dossiers `src/` et `tests/` sont des emplacements documentés.
+- **Tests de référence verts :** aucun.
+- **Tests volontairement rouges :** aucun test logiciel à l'ouverture. Les scénarios de charge/panne sont à spécifier et simuler par l'apprenant.
+- **Prérequis :** savoir lire des diagrammes et formuler des exigences ; l'usage d'un cloud ou d'un outil de benchmark n'est pas obligatoire pour l'épreuve papier. Toute simulation doit déclarer les hypothèses.
+- **Travail initial :** écrire SLO/SLI, hypothèses de charge, contraintes, non-objectifs et budget de coût ; comparer au moins deux architectures incluant la solution la plus simple.
+- **Vérification autonome :** grille d'ADR du cahier + critères du challenge : flux annotés, panne, dégradation, capacité, sécurité, coût, récupération, observabilité et signaux de révision.
+- **Validation terrain optionnelle :** si un load test ou un cloud est utilisé, joindre versions, configuration, dataset, commande, sortie et coût réel ; ne jamais présenter une estimation papier comme une mesure.

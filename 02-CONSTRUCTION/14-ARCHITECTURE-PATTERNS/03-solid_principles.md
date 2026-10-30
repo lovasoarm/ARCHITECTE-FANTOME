@@ -348,3 +348,13 @@ SOLID, c'est pas cinq règles à cocher : c'est cinq questions à se poser quand
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+## Transfert en production : appliquer SOLID sans dogme
+
+**Scénario.** Un calcul de facture change à chaque règle fiscale et à chaque fournisseur de paiement. Identifie ce qui varie réellement et ce qui doit rester stable avant d'introduire interfaces et classes.
+
+**Exercice.** À partir d'un module de facturation monolithique, sépare validation, calcul de prix et émission de paiement. Ne crée une abstraction que si une seconde règle ou un test démontre une variation réelle.
+
+**Vérification.** Les tests métier existants restent verts ; un nouveau calcul peut être ajouté sans modifier l'orchestrateur ; les dépendances pointent vers les contrats internes ; le nombre de fichiers/abstractions ajouté est justifié par un changement facilité.
+
+**Transfert.** Le même raisonnement prépare le refactoring et l'architecture hexagonale. Une interface sans deuxième implémentation ni besoin de test n'est pas automatiquement une bonne abstraction.

@@ -19,8 +19,7 @@ mesures datées et une soutenance écrite rendent la preuve vérifiable **seul**
 ## Ce que ce palier n'est pas
 
 Ce n'est pas un résumé des modules précédents. Ce n'est pas un portfolio de
-captures. Si une famille S1..S6 est encore CREUX (fichier de preuve vide, ou
-contrat IA sans plafond réel), **tu n'entres pas**.
+captures. Si une famille S1..S6 est encore CREUX (fichier de preuve vide ou invérifiable), **tu n'entres pas**. La preuve S6 de livraison/exploitation et le contrôle transversal G8 d'évaluation IA sont distincts.
 
 ## D'où tu viens : la couture JS → Staff
 
@@ -44,7 +43,9 @@ première fois, c'est le moment où il cesse de l'être.
 - [ ] `PREUVES/DECISION-ARBITRAGE.md` : valeur, coût, risque, point mort.
 - [ ] Revue S5 publiée (URL + SHA) + passe [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/09-CONTRADICTEUR.md).
 - [ ] `STANDARDS-AGENTS.md` présent.
-- [ ] `PREUVES/IA-EN-PROD.md` : coût calculé, plafond, dégradé, 20 cas : ou remplacement S4/S5 **écrit**.
+- [ ] `PREUVES/LIVRAISON-EXPLOITATION.md` : release, migration, observabilité post-déploiement, test de rollback/recovery daté.
+- [ ] `PREUVES/EVALUATION-IA.md` : jeu de cas versionné exécuté, erreurs et limites expliquées, décision d’usage/refus justifiée.
+- [ ] Si le fil rouge intègre une brique IA : `PREUVES/IA-EN-PROD.md` avec coût plafond, permissions, fallback et conditions d’arrêt.
 - [ ] Capstone rejouable (y compris addendum Staff et semaine à double dérive).
 
 ## Maturation décisionnelle

@@ -371,3 +371,11 @@ Le GC suit toujours le même chemin : partir des roots, marquer ce qui est attei
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Fais varier une référence encore accessible et une référence devenue inaccessible. Vérifie que tu distingues objet éligible au GC, objet effectivement collecté et moment de collecte non garanti.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

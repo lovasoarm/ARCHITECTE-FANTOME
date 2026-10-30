@@ -22,7 +22,6 @@ parce qu'il arrive trop tard, avec un budget dépassé, et une confiance client 
 <!-- AF-DIAGRAM:incident -->
 
 ```text
-text
 Signal
   │
   ▼

@@ -383,3 +383,11 @@ Analyser la complexité d'un algorithme complet se fait bloc par bloc : séquenc
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Mesure les temps sur plusieurs tailles, trace le rapport de croissance et confronte-le à la complexité théorique. Ne conclue pas à O(n) à partir d’une seule mesure.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

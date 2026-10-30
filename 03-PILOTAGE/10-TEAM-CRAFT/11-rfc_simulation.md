@@ -83,3 +83,11 @@ onboarder les nouveaux.
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Fournis une preuve observable : critère mesurable avant exécution, résultat attendu, résultat obtenu et seuil d’échec. Teste aussi une condition dégradée. Une affirmation sans mesure ne valide pas « RFC simulation : soumets une décision technique ».
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

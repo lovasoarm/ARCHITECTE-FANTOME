@@ -3,9 +3,15 @@ stability: intemporel
 acte: pilotage
 noyau: oui
 route: complete
+paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
+expert_review: pending
+paper_audit_date: 2026-10-30
+terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 ---
 
 # 11 : LEADERSHIP ET MENTORAT : L'INFLUENCE SANS AUTORITÉ
+
+> **État pédagogique : 30 octobre 2026 : structure documentaire revue.** Les contrôles de contenu ne remplacent pas une revue technique indépendante ni une validation terrain ; voir le [standard de complétude AF](../../06-ANNEXES-TRANSVERSES/69-STANDARD-COMPLETUDE-MODULE.md).
 
 > Palier 3 : Pilotage. Durée estimée : 7 h 30.
 > **Variante solo garantie** : chaque exercice de ce module a une forme jouable seul, sur du
@@ -62,3 +68,17 @@ Une revue publiée (URL + SHA), une note d'une page pour direction, `STANDARDS-A
 - [Grimoire : leadership et mentorat](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+## Préparer l'environnement
+
+Lire [`SETUP.md`](SETUP.md) avant toute commande ou installation. Les prérequis locaux de l'activité priment sur les indications générales.
+
+## Navigation complète des ressources
+
+Le sommaire ci-dessus reste le parcours recommandé. Les index ci-dessous rendent accessibles les ressources d'appui et les sous-parcours qui ne sont pas des étapes linéaires supplémentaires.
+
+### Ressources d'appui et vérification
+
+- [Sept situations de leadership : décider, expliquer et obtenir un mouvement collectif](07-SCENARIOS-LEADERSHIP-ARBITRAGES.md)
+
+## Standard de complétude et audit

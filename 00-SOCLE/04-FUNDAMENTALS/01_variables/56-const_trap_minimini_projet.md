@@ -58,7 +58,6 @@ Tu sais maintenant distinguer un lien constant d'une valeur immuable, et tu conn
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

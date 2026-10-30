@@ -81,7 +81,7 @@ S2  architecture / DDD / contrats / arbitrage
 S3  sécurité / fiabilité / observabilité
 S4  produit / coût / valeur / décision
 S5  leadership / mentorat / communication
-S6  IA / automatisation / supervision
+S6  livraison / exploitation / récupération vérifiée (automatisation ou IA si justifiée)
 S7  transfert transversal multi-langage + multi-fournisseur
               ↓
         fil rouge + capstone
@@ -91,6 +91,13 @@ S7  transfert transversal multi-langage + multi-fournisseur
 
 La couche de **maturation décisionnelle** du palier `08-MAITRISE-STAFF-ENGINEER` ajoute une exigence différente : l’apprenant doit montrer comment il change d’avis, encaisse la contradiction, reconnaît une erreur, arbitre sous pression et compense ses propres biais.
 
-## 6. Prérequis et topologie
+## 5bis. Portfolio avancé après le CORE
+
+Le [Portefeuille avancé de systèmes 2035+](../05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/README.md)
+propose dix projets Depth, réalisés un à la fois. Ils réutilisent le cours existant et ajoutent des contrats de preuve
+spécifiques plutôt que des modules IA-native obligatoires. Les six leçons-ponts traitent seulement les concepts qui
+nécessitent une explication supplémentaire. La réussite d'un projet ne vaut pas certification d'un titre d'entreprise.
+
+## 6. Prérequis et topologie## 6. Prérequis et topologie
 
 Une relation `CE MODULE RÉUTILISE` doit toujours être satisfaite dans l’ordre public. Si un module suppose une compétence non encore acquise, retourne au prérequis avant de poursuivre.

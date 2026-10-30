@@ -101,3 +101,11 @@ La preuve doit relier :
 La documentation des noms d'outils est secondaire ; les contrôles doivent survivre à leur remplacement.
 
 Ce module renforce G4, G6 et G8 et complète `06-IA-GOVERNANCE-SECURITY.md`.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « 10 : Gouvernance des systèmes semi-autonomes » à une décision qui touche plusieurs équipes pendant plusieurs trimestres. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

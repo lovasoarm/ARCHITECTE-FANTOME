@@ -73,7 +73,6 @@ Serveur retourne les données si la signature est valide
 <!-- AF-DIAGRAM:jwt -->
 
 ```text
-text
 Login ─► Issue token ─► Request + token ─► Verify ─► Allow / Reject
                                       │
                                       └────► Expired / Invalid
@@ -351,3 +350,11 @@ RBAC pour des permissions simples par rôle. ABAC quand les droits dépendent du
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « Authentification et autorisation : deux problèmes différents » à un navigateur mobile avec réseau lent et session renouvelée. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

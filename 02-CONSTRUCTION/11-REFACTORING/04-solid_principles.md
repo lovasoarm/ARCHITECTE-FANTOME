@@ -1,16 +1,21 @@
 ---
-stability: intemporel
-acte: comprendre
+stability: stable
+acte: naviguer
+canonical_resource: ../14-ARCHITECTURE-PATTERNS/03-solid_principles.md
 ---
 
-**SCÈNE CRAZYDEVS : Prison Break :** tu ne reconstruis pas toute la prison pour déplacer une porte. Tu réduis le risque, un changement vérifié à la fois, sans perdre les garanties existantes.
+# SOLID : renvoi vers la leçon canonique
 
-# SOLID (déplacé)
+Ce fichier est conservé pour préserver les références historiques et les liens du module Refactoring. **Ce n'est pas une leçon autonome et il ne doit pas être compté comme 45 minutes d'enseignement.**
 
-Temps de lecture ~2 min
+Les cinq principes SOLID sont expliqués dans la ressource canonique : [SOLID dans Architecture Patterns](../14-ARCHITECTURE-PATTERNS/03-solid_principles.md). Elle couvre la définition, le mécanisme, les contre-exemples et les compromis.
 
-SOLID est un socle d'**architecture**, pas un simple geste de refactoring. Il vit désormais dans `02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/02_solid_principles.md`.
+Dans le parcours Refactoring, utilise d'abord cette leçon, puis réalise le [mini-projet SOLID](51-solid_principles_minimini_projet.md) en partant des tests de caractérisation. La cible du refactoring est le couplage réellement observé, pas l'application mécanique d'un acronyme.
 
-Pourquoi le déplacement : SRP, OCP, LSP, ISP, DIP décrivent la structure des dépendances entre modules. Ils précèdent l'acte de refacto, ils ne le composent pas.
+<!-- AF-P0-2026-10-30: missing_practice -->
 
-Renvoi : [`02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/02_solid_principles.md`](../14-ARCHITECTURE-PATTERNS/03-solid_principles.md).
+### Pratique autonome : production attendue
+
+Refactorise une règle qui change pour plusieurs raisons. Sépare les axes de changement sans créer une abstraction qui n’a qu’un consommateur.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

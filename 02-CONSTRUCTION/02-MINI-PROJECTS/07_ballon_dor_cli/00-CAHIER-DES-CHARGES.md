@@ -10,36 +10,26 @@ route_family: depth
 
 Temps de lecture ~13 min
 
-## PRÉREQUIS
+## PRÉREQUIS ET ÉTAT INITIAL DU ZIP
 
-```text
-Node.js    : v22.23.3
-npm      : v10+
-Docker     : v24+ (pour la containerisation : optionnel pour commencer)
-Variables env : aucune
-Outils externes: Docker (en dernier, une fois que tout tourne en local)
+- Node.js `22.23.4` recommandé ; Docker `24+` est optionnel et doit rester la dernière étape.
+- Le récit du « code v1 » est le contexte de l'exercice : aucun dépôt v1, `package.json`, source CLI ou test n'est livré dans ce ZIP. Tu construis le prototype à partir du cahier des charges ; ne cherche pas un fichier legacy qui n'existe pas.
+- Aucun Dockerfile n'est fourni au départ.
 
-# Installation
-$ npm install
+Commandes disponibles dès réception :
 
-# Lancer une commande CLI
-$ node src/cli.js rank
-
-# Lancer les tests
-$ npm test
-
-# Construire l'image Docker (une fois que les tests passent)
-$ docker build -t ballon-dor-cli .
-$ docker run ballon-dor-cli rank
+```bash
+node --version
+npm --version
+docker --version  # uniquement si Docker est installé ; optionnel
 ```
 
-Conseil de démarrage : ignore Docker jusqu'à ce que toutes les commandes CLI fonctionnent en local et que tous les tests passent. La containerisation est la dernière étape, pas la première.
+Après création du CLI et de sa suite : lancer la commande CLI et `node --test` (ou le script de test réellement défini). `docker build` ne devient possible qu'après création et validation d'un Dockerfile.
 
----
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
-Les journalistes du monde entier votent. Chaque vote est soumis depuis le terminal. Les points s'agrègent. Le classement se met à jour. Des commandes disponibles : `vote`, `rank`, `simulate`, `reset`, `export`. Le code v1 a été torché en une nuit par un stagiaire. Il fonctionne. Il est illisible. La v2, c'est toi qui l'écris. Et cette fois, elle est SOLID, testée, containerisée, et déployée proprement.
+Les journalistes du monde entier votent. Chaque vote est soumis depuis le terminal. Les points s'agrègent. Le classement se met à jour. Des commandes disponibles : `vote`, `rank`, `simulate`, `reset`, `export`. Le scénario imagine une v1 écrite dans l’urgence. Cette v1 n’est pas incluse dans l’archive : le livrable demandé est de concevoir une CLI neuve à partir des invariants métier, puis de justifier ses frontières. Et cette fois, elle est SOLID, testée, containerisée, et déployée proprement.
 
 Ce que tu dois voir tourner à la fin :
 

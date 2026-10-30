@@ -10,7 +10,6 @@ route_family: core
 <!-- AF-DIAGRAM:recall -->
 
 ```text
-text
 J+1 ──► J+3 ──► J+7 ──► J+14 ──► J+28
  │        │        │         │         │
 free    explain  diagnose   transfer  defend inverse
@@ -62,7 +61,6 @@ L'apprenant tente d'abord. La correction n'est consultée qu'après horodatage d
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

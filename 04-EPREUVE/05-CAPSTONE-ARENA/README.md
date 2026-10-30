@@ -11,7 +11,6 @@ route: complete
 <!-- AF-DIAGRAM:influence -->
 
 ```text
-text
                  ┌───────────┐
                  │ Decision  │
                  └─────┬─────┘
@@ -30,7 +29,6 @@ L’influence traverse des parties prenantes aux objectifs différents avant d�
 <!-- AF-DIAGRAM:capstone -->
 
 ```text
-text
 Architecture ─┐
 Security ─────┤
 Cost ─────────┤

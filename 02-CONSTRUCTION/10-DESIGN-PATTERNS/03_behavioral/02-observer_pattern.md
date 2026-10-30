@@ -351,3 +351,13 @@ En prod : partout où un changement d'état doit déclencher plusieurs réaction
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+## Transfert production : événements, abonnés et fuite mémoire
+
+**Scénario.** Un service émet `OrderPaid` vers plusieurs abonnés. Un abonné lent ne doit pas bloquer indéfiniment l'émetteur ; un abonné supprimé doit être désinscrit.
+
+**Exercice.** Écris un registre d'abonnés avec `subscribe()` qui retourne une fonction `unsubscribe()`. Teste un abonné qui lève une exception, un abonné lent et une désinscription pendant l'émission.
+
+**Vérification.** L'échec d'un abonné suit une politique documentée, les autres abonnés reçoivent l'événement, les abonnés supprimés ne sont plus invoqués et aucun listener n'est retenu après fermeture.
+
+**Transfert.** L'observer en mémoire est synchrone et local ; ne le confonds pas avec un broker distribué durable, qui exige stockage, ack, retry, idempotence et gestion des doublons.

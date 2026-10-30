@@ -20,66 +20,21 @@ Ce fichier sort de la numérotation standard. Il couvre un concept connexe à ce
 
 # Abortcontroller : annuler ce qui ne doit plus se terminer
 
-<!-- AF-DIAGRAM:promise -->
+<!-- AF-DIAGRAM:abort-controller -->
 
 ```text
-        ┌──────────┐
-        │ pending  │
-        └────┬─────┘
-             │ résultat
-       ┌─────┴─────┐
-       ▼           ▼
-┌────────────┐ ┌────────────┐
-│ fulfilled  │ │ rejected   │
-└─────┬──────┘ └─────┬──────┘
-      │              │
-      └──────┬───────┘
-             ▼
-       ┌───────────┐
-       │ handlers  │
-       └───────────┘
+AbortController créé
+        │
+        ├── signal passé à fetch
+        │       │
+        │       ├── réponse avant annulation ──► traiter si utile
+        │       └── abort() avant la fin ──────► rejet de la requête
+        │
+        └── la même intention d’annulation peut être partagée
+            entre plusieurs opérations qui prennent ce signal
 ```
 
-Une Promise évolue d’un état en attente vers un résultat résolu ou rejeté, puis déclenche ses handlers.
-
-<!-- AF-DIAGRAM:async_await -->
-
-```text
-┌──────────────┐
-│ fonction     │
-│ async        │
-└──────┬───────┘
-       │ await
-       ▼
-┌──────────────┐
-│ suspend      │
-│ la reprise   │
-└──────┬───────┘
-       │ Promise prête
-       ▼
-┌──────────────┐
-│ reprend      │
-│ le contexte  │
-└──────────────┘
-```
-
-await suspend la reprise de la fonction async, pas l’ensemble du runtime.
-
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
+`abort()` n’annule pas rétroactivement un travail déjà terminé. Seules les opérations qui observent le signal peuvent réagir à l’annulation ; pour une API maison, il faut transmettre le signal et définir son comportement d’arrêt.
 
 Temps de lecture ~3 min
 

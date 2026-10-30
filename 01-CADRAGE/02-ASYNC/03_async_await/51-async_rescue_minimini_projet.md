@@ -12,22 +12,6 @@ assessment_role: instructional_checkpoint
 
 ## TYPE
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 <!-- AF-DIAGRAM:async_await -->
 
 ```text
@@ -101,7 +85,6 @@ Deux filets de sécurité en place, testés à la main. Commit-les.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

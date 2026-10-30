@@ -16,7 +16,6 @@ assessment_role: instructional_checkpoint
 <!-- AF-DIAGRAM:roi -->
 
 ```text
-text
 Decision
   │
   ├──► Value / impact

@@ -455,3 +455,13 @@ Règle simple : si ton constructeur dépasse 3 paramètres optionnels, le Builde
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+## Transfert production : construction d'une configuration valide
+
+**Scénario.** Un rapport nécessite une plage de dates, un tenant et un format. Un builder peut rendre les étapes lisibles, mais ne doit pas permettre de construire un objet invalide.
+
+**Exercice.** Implémente un builder avec `forTenant`, `between`, `format` et `build`. Fais échouer `build()` si tenant ou intervalle manque, si `from >= to`, ou si le format est inconnu.
+
+**Vérification.** Tests positifs, champs manquants, bornes inversées et immutabilité de l'objet construit. Si la configuration n'a que deux champs obligatoires, un constructeur classique avec validation peut être plus simple.
+
+**Transfert.** Le pattern est utile quand l'objet a de nombreux paramètres optionnels ou des étapes nommées ; le coût de l'API fluide et du code supplémentaire doit être justifié.

@@ -10,7 +10,6 @@ acte: évaluer
 <!-- AF-DIAGRAM:mvp -->
 
 ```text
-text
 Problem
   │
   ▼

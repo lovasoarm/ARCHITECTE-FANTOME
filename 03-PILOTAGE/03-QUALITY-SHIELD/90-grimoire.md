@@ -3,10 +3,12 @@ perishability_id: PER-0040
 
 stability: perissable
 acte: restituer
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0040
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 # Grimoire : Quality Shield
@@ -89,7 +91,6 @@ indéfiniment "jusqu'à ce qu'il passe".
 <!-- AF-DIAGRAM:incident -->
 
 ```text
-text
 Signal
   │
   ▼

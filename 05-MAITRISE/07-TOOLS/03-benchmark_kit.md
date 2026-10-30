@@ -10,10 +10,12 @@ perturbation_modes: [changement_contexte, decision_organisationnelle]
 anti_recipe_key: changement_contexte+decision_organisationnelle
 transfer_distance: medium
 assessment_role: instructional_checkpoint
-review_due: 2028-12-31
-
+freshness_registry_id: PER-0076
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-01-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
@@ -203,3 +205,11 @@ Un benchmark transforme une intuition ("ça a l'air rapide") en mesure vérifiab
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+## Transfert production : benchmark qui ne ment pas
+
+**Exercice.** Compare deux implémentations de la même fonction sur jeux petits, moyens et grands. Fixe runtime/matériel, seed, warm-up, nombre de répétitions et métrique (médiane, dispersion, p95 si la distribution le justifie). Mesure aussi allocation et mémoire si elles changent la décision.
+
+**Vérification.** La fonction est identique, le résultat est contrôlé par un test d'équivalence, les mesures sont répétées et les données/hardware sont consignés. Une différence inférieure au bruit ou mesurée sur un seul run n'autorise pas une conclusion de performance.
+
+**Transfert.** Utiliser avant/après pour un refactoring ou une optimisation ; le profiling local identifie un coût, la production détermine si ce coût affecte réellement les utilisateurs.

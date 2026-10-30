@@ -8,10 +8,12 @@ perturbation_modes: [defaut_cache, decision_organisationnelle]
 anti_recipe_key: defaut_cache+decision_organisationnelle
 transfer_distance: high
 assessment_role: instructional_checkpoint
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0049
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : finale au stade :** 99,9 % de disponibilité sur un slide ne sauve personne à 03:17 quand le service hurle. La vraie compétence commence quand il faut transformer la métrique en décision.
 
 # Les chiffres qui te préviennent avant que tout brûle
@@ -19,7 +21,6 @@ review_due: 2027-12-31
 <!-- AF-DIAGRAM:observability -->
 
 ```text
-text
                          System
                            │
              ┌─────────────┼─────────────┐
@@ -212,7 +213,6 @@ Un counter ne fait que monter, une gauge monte et descend, un histogram capture 
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

@@ -34,7 +34,6 @@ L’Event Loop reprend le travail lorsque la pile est libérée, en drainant d�
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -49,22 +48,6 @@ Nouveau contexte
 ```
 
 Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
-
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
 
 Temps de lecture ~7 min
 

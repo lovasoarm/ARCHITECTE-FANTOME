@@ -31,7 +31,6 @@ Une fuite apparaît lorsqu’une structure conserve une référence qui maintien
 <!-- AF-DIAGRAM:event_driven -->
 
 ```text
-text
 ┌────────────┐      event      ┌────────────┐
 │ Producer   │────────────────►│ Event Bus  │
 └────────────┘                 └────┬───────┘
@@ -346,3 +345,13 @@ La règle d'or : toujours retourner une fonction de désabonnement. Toujours.
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+
+## Transfert en production : événement, publication et cohérence
+
+**Scénario.** Après `OrderPaid`, le service d'expédition doit être averti. Si la base est commitée mais que la publication échoue, la livraison n'est jamais lancée ; si l'événement est publié avant le commit, un abonné peut lire un état inexistant.
+
+**Exercice.** Dessine et compare publication naïve avant/après commit, puis propose un outbox transactionnel. Définis l'identifiant d'événement, la clé d'idempotence du consommateur et la politique de reprise.
+
+**Vérification.** Simule crash entre commit et publish, publish et ack, et doublon du message. La preuve doit montrer que l'effet est finalement appliqué sans double effet ; ne promets pas « exactly once » sans préciser le périmètre.
+
+**Transfert.** Relie à DDD (événement métier), Databases (transaction/outbox), Scalability (queue) et SLO (retard de traitement).

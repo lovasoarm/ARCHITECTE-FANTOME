@@ -31,7 +31,6 @@ Une propriété absente sur l’objet est recherchée le long de sa chaîne de p
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

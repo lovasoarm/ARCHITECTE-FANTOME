@@ -3,10 +3,12 @@ perishability_id: PER-0095
 
 stability: perissable
 acte: comprendre
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0095
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 # Support de rappel
@@ -14,7 +16,6 @@ review_due: 2027-12-31
 <!-- AF-DIAGRAM:recall -->
 
 ```text
-text
 J+1 ──► J+3 ──► J+7 ──► J+14 ──► J+28
  │        │        │         │         │
 free    explain  diagnose   transfer  defend inverse
@@ -127,7 +128,7 @@ _Fichier : `05-MAITRISE/06-ANNEXES/99A-PONT.md`_
 
 _installer, écrire, ne pas se perdre_
 
-**Noyau ** : Node 22 LTS (version longue durée, la plus stable), `.nvmrc` = ton fichier source de vérité pour la version utilisée. Vérifie `node -v` et `git --version` avant tout.
+**Noyau** : Node 22.23.4 est la version épinglée pour reproduire cette édition AF ; `.nvmrc` est la source de vérité. Ce pin n’implique pas que cette branche soit la LTS la plus récente. Vérifie `node -v` et `git --version` avant la pratique.
 _Fichier : `../00-SOCLE/01-GETTING-STARTED/02-install.md`_
 
 **Piège** : installer Node "en dur" sur ta machine ET utiliser nvm (un gestionnaire de versions Node) en même temps crée deux versions qui se battent pour savoir laquelle répond quand tu tapes `node`. Choisis un seul gestionnaire de versions (nvm, volta, ou asdf) et reste dessus.
@@ -688,7 +689,7 @@ N  Non-goals         qu'est-ce que l'agent n'a explicitement PAS le droit de tou
 ```
 
 Chaque lettre saute = un audit d'une heure garanti à la fin. Chaque minute passée à remplir ces 5 cases t'en économise 10 en audit, et t'évite 3 mois de dette technique invisible.
-_Fichier : `05-MAITRISE/03-EDGE-CASES/02_verifiable_specifications.md`_
+_Fichier : `05-MAITRISE/03-EDGE-CASES/12-specifications-verifiables-agents.md`_
 
 **Piège** : un agent qui a fait 30 appels d'affilée et qui propose une Pull Request n'est pas une autorité à qui faire confiance par défaut : refuser une trace d'exécution opaque (qu'on ne peut pas suivre étape par étape) fait partie du métier. Un agent sans bac à sable (sandbox, un environnement isolé) est un incident qui attend juste son heure : isolation du réseau, du système de fichiers, et des secrets, par défaut, systématiquement.
 
@@ -703,7 +704,7 @@ _Fichier : `05-MAITRISE/03-EDGE-CASES/02_verifiable_specifications.md`_
 _où les concepts s'assemblent_
 
 **Noyau ** : on ne mémorise pas le code des projets, on retient ce qu'ils prouvent qu'on sait faire. Chaque projet se clôt par un POSTMORTEM (un bilan écrit après coup) signé : sans postmortem, c'est comme si le projet n'avait pas eu lieu.
-_Fichier : `02-CONSTRUCTION/02-MINI-PROJECTS/97-templates/04-POSTMORTEM_TEMPLATE.md`_
+_Fichier : `02-CONSTRUCTION/02-MINI-PROJECTS/97-templates/09-POSTMORTEM.md`_
 
 **Piège** : une case "SECURITY_GATE" (le passage obligé de vérification sécurité) cochée sans preuve à l'appui, c'est une case cochée frauduleusement : ça ne compte pas.
 

@@ -50,7 +50,6 @@ On te fournit [`11A-flaky.js`](./11A-flaky.js) (15 lignes, autonome). Bug : envi
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

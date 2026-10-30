@@ -54,7 +54,7 @@ function example() {
     console.log(score); // 42
   }
 
-  console.log(score); // 10 : pas touché, le if avait sa propre copie
+  console.log(score); // 10 : la liaison du bloc if est distincte de la liaison externe
 }
 ```
 

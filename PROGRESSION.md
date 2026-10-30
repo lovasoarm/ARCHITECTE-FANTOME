@@ -6,11 +6,32 @@ stability: stable
 
 # PROGRESSION
 
+**Route canonique : [FORMATION-COMPLETE-INGENIERIE.md](FORMATION-COMPLETE-INGENIERIE.md) + [58 : Route apprenant cohérente](06-ANNEXES-TRANSVERSES/58-ROUTE-APPRENANT-COHERENTE.md).** La première définit les paliers ; la seconde fait le lien entre prérequis, ressources réelles, productions, gates et remédiation. La formation n’a pas de durée de fin prédéterminée ; les étapes et le rythme sont pilotés par les preuves de maîtrise. Le CORE de 16 semaines / 192 h est une route facultative d’orientation/accélération, pas l’ossature de la formation complète.
+
 Ton tableau de bord personnel. Une seule règle : une étape est validée par une **preuve**, pas par le nombre de pages lues.
 
-## Boucle de leçon CORE
+## Boucle d’apprentissage profonde
 
-Avant chaque leçon CORE, applique [26-PROTOCOLE-LECON-PROFONDE.md](06-ANNEXES-TRANSVERSES/26-PROTOCOLE-LECON-PROFONDE.md) : prédiction → modèle causal → rappel à livre fermé → contre-exemple → transfert. Les documents restent inchangés ; c’est leur mode d’exploitation qui devient actif.
+Avant chaque leçon importante de la formation complète, applique [26-PROTOCOLE-LECON-PROFONDE.md](06-ANNEXES-TRANSVERSES/26-PROTOCOLE-LECON-PROFONDE.md) et consigne le résultat avec la [fiche de preuve](06-ANNEXES-TRANSVERSES/62-FICHE-APPRENTISSAGE-PREUVE.md) : prédiction → modèle causal → pratique indépendante → perturbation → correction → transfert → rappel différé. Si une ressource ne fournit pas tous les éléments, complète-les dans ta fiche d'étude ; une fiche documentaire ne devient pas une preuve de compétence par sa seule existence.
+
+Les deux chaînes intégratrices à retrouver au cours du parcours sont [DevOps/SRE](06-ANNEXES-TRANSVERSES/59-LAB-DEVOPS-LIFECYCLE.md) (commit → artefact → déploiement → signal → incident → restauration) et [service IA/RAG](06-ANNEXES-TRANSVERSES/60-LAB-SERVICE-IA-END-TO-END.md) (dataset → baseline → retrieval → ACL → génération → évaluation → limites opérationnelles). Les problèmes de transfert transversal sont dans le [pack d'exercices systèmes](06-ANNEXES-TRANSVERSES/61-PACK-EXERCICES-SYSTEMES-ET-ARBITRAGES.md).
+
+## Boussole professionnelle : horizon 2035+
+
+- **Cap de capacité :** architecturer et faire fonctionner des systèmes logiciels complexes,
+  fiables, sécurisés et soutenables, avec une compréhension critique des systèmes intégrant l'IA.
+- **Premier jalon élevé :** Staff Engineer (leadership technique transverse, sans management obligatoire).
+- **Cap stratégique de long terme :** Principal Engineer / Software Systems Architect.
+- **Étoile du Nord :** impact de niveau Distinguished Engineer / Fellow-equivalent si le parcours,
+  les résultats réels et l'organisation le permettent. Ce n'est ni une étape obligatoire ni un titre
+  universel.
+
+La feuille de référence est [40 : Noyau dur technique, horizon 2035+](06-ANNEXES-TRANSVERSES/40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md).
+Lorsque les prérequis correspondants sont acquis, utilise le [Portefeuille avancé de systèmes 2035+](05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/README.md)
+comme route Depth : un seul projet actif à la fois ; réutilise les modules existants au lieu de les dupliquer.
+Les règles de validation du [diplôme AF et des revues externes](06-ANNEXES-TRANSVERSES/56-DIPLOME-AF-ET-REVUE-EXTERNE.md)
+distinguent portfolio évalué, readiness et grade professionnel réel.
+Le CORE de 16 semaines / 192 h est une route facultative d’orientation/accélération : il ne remplace pas la formation complète ni la pratique longitudinale et ne certifie aucun rang professionnel.
 
 ## Niveau actuel
 
@@ -34,13 +55,15 @@ T3 = open source / mission / client
 T4 = production suivie avec responsabilité dans la durée
 ```
 
-Le [Pont preuve terrain](06-ANNEXES-TRANSVERSES/43-PONT-PREUVE-TERRAIN.md) explique comment faire évoluer une preuve. Le portfolio doit conserver la distinction entre simulation, terrain, revue externe et impact. Cette maturation ne change pas la route CORE de 16 semaines / 192 h.
+Le [Pont preuve terrain](06-ANNEXES-TRANSVERSES/43-PONT-PREUVE-TERRAIN.md) explique comment faire évoluer une preuve. Le portfolio doit conserver la distinction entre simulation, terrain, revue externe et impact. Cette maturation fait partie de la formation complète et continue bien au-delà du CORE de 16 semaines / 192 h.
 
 ### Référence de maîtrise durable
 
-Utilise [NOYAU DUR STAFF / PRINCIPAL 2035+](06-ANNEXES-TRANSVERSES/40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md) pour distinguer les capacités qui doivent devenir durables des spécialisations DEPTH/VAULT. Cette carte n’ajoute aucune heure au CORE : elle précise ce que les preuves existantes doivent permettre de démontrer.
+Utilise [NOYAU DUR STAFF / PRINCIPAL 2035+](06-ANNEXES-TRANSVERSES/40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md) pour distinguer les capacités qui doivent devenir durables des spécialisations DEPTH/VAULT. Cette carte définit les capacités durables de la formation complète ; elle ne se réduit pas à un budget d’heures du CORE.
 
-## Parcours
+## Parcours canonique par paliers
+
+Les étapes ci-dessous sont des paliers de progression, pas un calendrier. Les gates de la [formation complète](FORMATION-COMPLETE-INGENIERIE.md) priment sur la lecture séquentielle et sur toute durée indicative.
 
 ### 00 : SOCLE
 
@@ -112,7 +135,7 @@ Utilise [NOYAU DUR STAFF / PRINCIPAL 2035+](06-ANNEXES-TRANSVERSES/40-NOYAU-DUR-
 
 **Prochaine étape :** maintenir, transmettre et continuer à apprendre.
 
-## Mode Survie : vue accélérée, pas second parcours
+## Mode Survie : vue accélérée facultative, pas la formation complète
 
 Le **Mode Survie** est une sélection accélérée des preuves déjà présentes dans le parcours canonique. Il ne crée ni niveaux, ni prérequis, ni système de validation parallèle : tu conserves le même `Niveau`, le même `Boss` et les mêmes preuves que dans `PROGRESSION.md`. Il sert uniquement à prioriser les compétences immédiatement utiles à l’employabilité.
 
@@ -123,7 +146,6 @@ Quand ton rythme change, reprends simplement le parcours canonique au dernier Bo
 <!-- AF-DIAGRAM:d7d8 -->
 
 ```text
-text
 D1 connaître
   │
   ▼

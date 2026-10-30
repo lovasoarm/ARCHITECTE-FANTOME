@@ -8,10 +8,12 @@ perturbation_modes: [regression, decision_inversee]
 anti_recipe_key: regression+decision_inversee
 transfer_distance: low
 assessment_role: instructional_checkpoint
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0039
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-01-28
+review_status: a_verifier_date_absente
 ---
-
 **SCÈNE CRAZYDEVS : Prison Break :** une API est un pacte avec les autres équipes. Une modification « minuscule » peut fermer une porte qu’un autre service traverse tous les jours.
 
 > **CrazyDevs : Konoha sous siège :** chaque frontière doit avoir un propriétaire, une règle de passage et une raison d’exister. Sinon tu as juste construit des murs dans le village.
@@ -21,7 +23,6 @@ review_due: 2027-12-31
 <!-- AF-DIAGRAM:jwt -->
 
 ```text
-text
 Login ─► Issue token ─► Request + token ─► Verify ─► Allow / Reject
                                       │
                                       └────► Expired / Invalid

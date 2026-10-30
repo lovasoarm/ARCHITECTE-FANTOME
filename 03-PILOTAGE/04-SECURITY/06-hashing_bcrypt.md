@@ -8,10 +8,12 @@ perturbation_modes: [decision_inversee, changement_contexte]
 anti_recipe_key: decision_inversee+changement_contexte
 transfer_distance: medium
 assessment_role: instructional_checkpoint
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0042
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-01-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Attack on Titan :** ta frontière de confiance est un mur. Le problème n'est pas seulement de savoir s'il tient ; il faut savoir **qui peut passer, par où, avec quelle preuve et que se passe-t-il quand le mur est percé**.
 
 # Hasher un mot de passe : bcrypt, salt, coût

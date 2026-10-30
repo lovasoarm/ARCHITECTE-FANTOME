@@ -61,3 +61,7 @@ Tu peux mesurer sans polluer la logique métier. Commit ce helper.
 
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+
+## Transfert après l'exercice
+
+Applique ton décorateur à un client de paiement simulé. Teste l'ordre `metrics(retry(client))` et `retry(metrics(client))` : les compteurs d'appels et d'échecs diffèrent. Explique quelle observation est utile à l'exploitation et comment empêcher un retry sur une commande de paiement non idempotente.

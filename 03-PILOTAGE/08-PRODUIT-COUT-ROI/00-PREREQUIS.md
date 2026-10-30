@@ -10,7 +10,6 @@ acte: pilotage
 <!-- AF-DIAGRAM:roi -->
 
 ```text
-text
 Decision
   │
   ├──► Value / impact

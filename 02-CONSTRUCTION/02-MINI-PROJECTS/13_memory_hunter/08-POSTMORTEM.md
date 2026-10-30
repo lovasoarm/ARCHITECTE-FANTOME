@@ -10,7 +10,6 @@ acte: pratiquer
 <!-- AF-DIAGRAM:incident -->
 
 ```text
-text
 Signal
   │
   ▼

@@ -8,10 +8,12 @@ perturbation_modes: [decision_organisationnelle, changement_contexte]
 anti_recipe_key: decision_organisationnelle+changement_contexte
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0065
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : vestiaire après match :** deux personnes peuvent être techniquement en désaccord sans devenir ennemies. Le vrai skill est de séparer le problème, le modèle, la décision… et l'ego.
 
 # Technical writing : écrire pour des devs
@@ -67,7 +69,7 @@ Une ligne qui explique ce que ça fait. Pas ce que c'est : ce que ça fait.
 
 ## Prérequis
 
-- Node 22.23.3
+- Node 22.23.4
 - PostgreSQL 15
 - Redis 7 (optionnel pour le cache)
 

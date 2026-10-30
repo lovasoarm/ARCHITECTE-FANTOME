@@ -2,23 +2,28 @@
   "documents": [
     {
       "id": "slo",
-      "text": "Le service cible un SLO de 99,5% sur une fenêtre de 30 jours. Le budget d'erreur est calculé en requêtes ratées par semaine."
+      "text": "Le service cible un SLO de 99,5% sur une fenêtre de 30 jours. Le budget d'erreur est calculé en requêtes ratées par semaine.",
+      "tenantId": "demo"
     },
     {
       "id": "security",
-      "text": "Les secrets ne doivent jamais apparaître dans les prompts persistés, les logs ou le contrôle de version. Les sorties du modèle sont validées avant usage."
+      "text": "Les secrets ne doivent jamais apparaître dans les prompts persistés, les logs ou le contrôle de version. Les sorties du modèle sont validées avant usage.",
+      "tenantId": "demo"
     },
     {
       "id": "cost",
-      "text": "Le budget IA comprend coût par appel, plafond par utilisateur actif, timeout et stratégie de réponse dégradée."
+      "text": "Le budget IA comprend coût par appel, plafond par utilisateur actif, timeout et stratégie de réponse dégradée.",
+      "tenantId": "demo"
     },
     {
       "id": "observability",
-      "text": "Chaque appel garde un identifiant de corrélation, la latence, le mode de réponse et le résultat de validation. Les métriques principales sont la latence, les erreurs et les métriques de mode."
+      "text": "Chaque appel garde un identifiant de corrélation, la latence, le mode de réponse et le résultat de validation. Les métriques principales sont la latence, les erreurs et les métriques de mode.",
+      "tenantId": "demo"
     },
     {
       "id": "refusal",
-      "text": "Une décision d'architecture critique est prise sans IA quand le contexte est insuffisant, quand la preuve est faible ou quand l'action est irréversible."
+      "text": "Une décision d'architecture critique est prise sans IA quand le contexte est insuffisant, quand la preuve est faible ou quand l'action est irréversible.",
+      "tenantId": "demo"
     }
   ]
 }

@@ -14,22 +14,6 @@ assessment_role: instructional_checkpoint
 
 # CONCURRENCE MÉMOIRE : SharedArrayBuffer & Atomics
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 Temps de lecture ~15 min
 
 JS "single-thread" ? Plus tout à fait. Avec les Workers + `SharedArrayBuffer`, deux threads voient la MÊME mémoire. Bienvenue dans le monde des data races.

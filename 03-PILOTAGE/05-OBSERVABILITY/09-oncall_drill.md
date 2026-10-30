@@ -8,10 +8,12 @@ perturbation_modes: [constraints_injectees, decision_organisationnelle]
 anti_recipe_key: constraints_injectees+decision_organisationnelle
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0053
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.
 
 # 08 : On-call drill : il est 3h du matin
@@ -32,7 +34,6 @@ Le circuit breaker protège une dépendance en passant de trafic normal à ouver
 <!-- AF-DIAGRAM:observability -->
 
 ```text
-text
                          System
                            │
              ┌─────────────┼─────────────┐
@@ -47,7 +48,6 @@ Logs, métriques et traces donnent trois angles complémentaires pour reconstrui
 <!-- AF-DIAGRAM:incident -->
 
 ```text
-text
 Signal
   │
   ▼

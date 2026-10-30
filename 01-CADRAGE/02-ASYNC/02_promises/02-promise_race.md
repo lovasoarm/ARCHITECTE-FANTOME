@@ -14,22 +14,6 @@ assessment_role: instructional_checkpoint
 
 # Promise.race, allsettled, any : quand plusieurs opérations s'affrontent
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 <!-- AF-DIAGRAM:promise -->
 
 ```text

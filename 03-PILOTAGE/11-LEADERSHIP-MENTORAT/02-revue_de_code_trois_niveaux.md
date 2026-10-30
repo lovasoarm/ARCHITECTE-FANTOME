@@ -16,7 +16,6 @@ assessment_role: staff_mastery
 <!-- AF-DIAGRAM:roi -->
 
 ```text
-text
 Decision
   │
   ├──► Value / impact
@@ -77,3 +76,9 @@ Fais-le. Une revue, trois niveaux, maximum trois bloquants, publiée.
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+
+## Transfert terrain : une revue qui protège le débit et la qualité
+
+Sur une PR qui ajoute un endpoint de lecture multi-tenant, produis trois passes séparées : (1) fonctionnement et invariants ; (2) sécurité, données et exploitation ; (3) maintenabilité et lisibilité. Chaque commentaire doit citer une ligne ou un comportement, le risque utilisateur, une preuve attendue et la sévérité. Sépare bloqueur, suggestion et question.
+
+**Vérification.** L'auteur doit pouvoir traiter chaque commentaire sans deviner la demande. Le reviewer vérifie que la correction n'introduit ni fuite inter-tenant ni régression, et qu'un commentaire non bloquant n'est pas transformé en gate arbitraire. **Transfert :** appliquer la même méthode sur une migration SQL, une configuration IaC ou un changement de politique d'authentification.

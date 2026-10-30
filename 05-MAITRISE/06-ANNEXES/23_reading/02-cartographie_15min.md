@@ -17,7 +17,6 @@ assessment_role: instructional_checkpoint
 <!-- AF-DIAGRAM:rto_rpo -->
 
 ```text
-text
 Incident
 │<──── RTO : délai maximal de reprise ────>│
 │
@@ -129,3 +128,11 @@ Une codebase inconnue est un espace : tu as besoin d'une carte avant de choisir 
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+<!-- AF-P0-2026-10-30: missing_practice -->
+
+### Pratique autonome : production attendue
+
+À partir de « Cartographie 15 min d'une codebase inconnue », produis une variante indépendante du cas suivant : Tu rejoins une organisation qui possède plusieurs services, une documentation incomplète et un incident ouvert ; il faut comprendre avant de proposer. Travaille sans recopier la solution de la leçon ; conserve l’entrée, les hypothèses, la sortie attendue et un artefact vérifiable (code, requête, schéma, trace ou décision).
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

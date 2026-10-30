@@ -43,3 +43,15 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
+
+## Barème autonome : Structures de données (20 points)
+
+- **Choix de structure (4 pts)** : opérations dominantes identifiées et structure choisie en lien avec leurs coûts.
+- **Correction des invariants (4 pts)** : tests couvrent cas vide, singleton, doublons, bornes et état dégénéré.
+- **Complexité (4 pts)** : temps et mémoire expliqués pour le pire cas, pas uniquement le cas moyen.
+- **Implémentation (4 pts)** : au moins une structure est implémentée et comparée à une alternative native.
+- **Diagnostic et transfert (4 pts)** : une dégradation est diagnostiquée à partir d'un scénario de charge et une autre structure est défendue.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : annoncer O(log n) sans préciser les hypothèses d'équilibrage ou ignorer un cas dégénéré.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

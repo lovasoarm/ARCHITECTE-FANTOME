@@ -5,12 +5,13 @@ noyau: oui
 route_family: core
 ---
 
+> **STATUT MIS À JOUR : ROUTE FACULTATIVE.** Ce planning de 16 semaines / 192 h n’est ni la route canonique ni une formation complète de Distinguished Engineer. Utilise d’abord [FORMATION-COMPLETE-INGENIERIE.md](../FORMATION-COMPLETE-INGENIERIE.md) pour la progression fondée sur les compétences et les preuves. Cette route accélérée est un sous-ensemble possible pour s’orienter ou reprendre le rythme ; aucun achèvement de ce planning ne prouve une maîtrise professionnelle avancée.
+
 # 19 : ROUTE CORE 16 SEMAINES
 
 <!-- AF-DIAGRAM:core -->
 
 ```text
-text
 16 semaines
 │
 ├─ pratique / projets ───────── 80 h
@@ -34,11 +35,11 @@ ARCHITECTE-FANTOME contient volontairement davantage de matière que ce qu'un hu
 - **DEPTH** : approfondissement facultatif pendant le sprint ;
 - **VAULT** : référence à consulter au besoin et après le sprint.
 
-La durée cible est **16 semaines × 12 h = 192 h**. Ces 192 h comprennent lecture active, pratique, transfert, rappel, défense et rétrospective. Elles ne supposent pas que le diplôme signifie « Staff Engineer déjà accompli ».
+La durée planifiée est **16 semaines × 12 h = 192 h**. Ces 192 h incluent lecture active, pratique, transfert, rappel, défense et rétrospective. **192 h est une hypothèse de conception, pas une durée empiriquement validée pour tous les profils** : aucun apprenant ne doit accélérer en sacrifiant les preuves pour tenir le calendrier. Le premier pilote doit journaliser, par semaine, le temps prévu/réel, les blocages, les reprises et les critères non atteints. Si deux semaines consécutives dépassent le budget de 25 % ou si une compétence critique échoue, ralentir, remédier et recalibrer la durée plutôt que déclarer la sortie acquise. Cette durée ne signifie jamais « Staff Engineer déjà accompli ».
 
-## Ce que garantit la route CORE
+## Ce que la route CORE vise à évaluer (sans garantie automatique de maîtrise)
 
-À la fin des 16 semaines, l'apprenant doit être capable de :
+À la fin des 16 semaines, l’apprenant devrait apporter des preuves sur les capacités suivantes ; les échecs imposent une remédiation et la poursuite de la formation complète :
 
 1. cadrer un problème incomplet avant de choisir une solution ;
 2. lire un système inconnu et construire une hypothèse vérifiable ;
@@ -149,7 +150,6 @@ Sortie : proposition technique, objection d'une partie prenante, négociation de
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

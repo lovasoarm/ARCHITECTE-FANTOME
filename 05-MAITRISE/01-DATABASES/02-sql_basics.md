@@ -16,7 +16,7 @@ Temps de lecture ~12 min
 
 T'as un système qui tient en mémoire : tableaux JS, objets, variables. Tu restart le serveur : tout disparaît. Une DB (database : base de données) relationnelle, c'est la mémoire qui survit au crash. SQL (structured query language : langage de requête structuré), c'est la langue qu'elle comprend.
 
-Pourquoi ça compte vraiment en prod : 90% des bugs de perf en backend, c'est pas ton code JS qui rame, c'est ta requête SQL qui scanne 2 millions de lignes pour en retourner 5. Si tu comprends pas `EXPLAIN` (le plan d'exécution d'une requête), t'es aveugle face à ce genre de bug.
+Pourquoi ça compte vraiment en prod : une requête peut lire beaucoup plus de lignes que nécessaire, mais la cause doit être mesurée plutôt que devinée. `EXPLAIN` (le plan d'exécution d'une requête) aide à comprendre le choix du moteur ; aucun pourcentage de causes de lenteur n'est universel sans données et périmètre précis.
 
 Avantage : structure stricte, intégrité garantie, le langage le plus universel du métier.
 Inconvénient : moins flexible qu'une DB document quand ton schéma (la structure des données) change tout le temps.
@@ -107,9 +107,9 @@ Le risque réel : tu fais un `JOIN` sans `WHERE` ni `LIMIT` sur deux grosses tab
 
 ## 4) INDEX : LE RACCOURCI QUE PERSONNE NE VOIT
 
-Sans index, chercher une ligne dans une table de 1 million de lignes = lire les 1 million de lignes une par une (full table scan : scan complet de la table). C'est O(n).
+Sans chemin d'accès sélectif, le moteur peut devoir examiner toutes les lignes candidates : le travail de scan croît alors avec le volume de données (ordre O(n) pour un parcours linéaire).
 
-Un index, c'est une structure à part (souvent un B-Tree, vu en détail dans `02-CONSTRUCTION/06-DATA-STRUCTURES/06_bst`) qui range les valeurs d'une colonne dans un ordre permettant une recherche en O(log n).
+Un index est une structure à part (souvent un B-tree) qui peut réduire le nombre de pages/lignes à examiner. Une recherche dans l'arbre comporte typiquement un coût logarithmique en nombre d'entrées, mais le coût total inclut les lignes trouvées, les accès aux pages, le cache, la sélectivité et les autres opérations du plan. Un index ne garantit donc ni une complexité totale O(log n), ni une exécution plus rapide pour chaque requête.
 
 ```sql
 -- sans index sur ninja_name : la DB lit TOUTE la table
@@ -117,7 +117,7 @@ SELECT * FROM ninjas WHERE ninja_name = 'Kakashi';
 
 -- avec index :
 CREATE INDEX idx_ninjas_name ON ninjas(ninja_name);
--- maintenant la même requête est quasi instantanée même sur 10 millions de lignes
+-- l'index devient candidat ; mesure EXPLAIN (ANALYZE, BUFFERS) pour savoir s'il aide
 ```
 
 ```text
@@ -126,8 +126,8 @@ recherche --> ligne 1 ? non --> ligne 2 ? non --> ... --> ligne 999 999 ? oui
 coût : O(n)
 
 TABLE AVEC INDEX (B-Tree) :
-recherche --> branche gauche ou droite ? --> branche gauche ou droite ? --> trouvé
-coût : O(log n)
+recherche --> descendre l'arbre --> localiser les entrées candidates --> lire les lignes utiles
+coût : dépend de la sélectivité, des pages lues, du cache et du reste du plan
 ```
 
 Le piège que personne ne voit avant la prod : un index accélère la lecture (`SELECT`) mais ralentit l'écriture (`INSERT`, `UPDATE`, `DELETE`), parce que la DB doit aussi mettre à jour l'index à chaque écriture. Mettre un index sur chaque colonne "pour être sûr" : mauvaise idée. Tu indexes ce qui est cherché souvent (`WHERE`, `JOIN`, `ORDER BY`), pas tout.
@@ -150,19 +150,21 @@ EXPLAIN SELECT * FROM missions WHERE status = 'active';
 ```text
 Résultat typique (simplifié) :
 
-Seq Scan on missions     --> mauvais signe : scan complet, pas d'index utilisé
+Seq Scan on missions     --> lit la table ; peut être optimal si elle est petite ou peu sélective
  Filter: status = 'active'
 
 vs
 
-Index Scan using idx_status --> bon signe : l'index a été utilisé
+Index Scan using idx_status --> lit les entrées d'index puis les lignes correspondantes
  Index Cond: status = 'active'
+
+Le bon plan dépend des données, de la sélectivité et des coûts observés ; le nom du nœud ne suffit pas.
 ```
 
 Le quoi : un outil de diagnostic intégré à la DB.
 Le pourquoi : sans lui, t'optimises au feeling, et le feeling se trompe souvent sur les DB (l'optimiseur de la DB prend parfois des décisions contre-intuitives).
 Le quand : dès qu'une requête est lente, ou avant de mettre en prod une requête sur une table qui va grossir.
-Le comment : tu lances `EXPLAIN` (ou `EXPLAIN ANALYZE` qui exécute vraiment la requête et donne le temps réel), tu lis "Seq Scan" comme un drapeau rouge sur une grosse table.
+Le comment : lance d'abord `EXPLAIN`, puis `EXPLAIN (ANALYZE, BUFFERS)` dans un environnement approprié lorsque tu peux exécuter réellement la requête. `EXPLAIN ANALYZE` exécute la requête : sois prudent avec les opérations qui modifient des données et utilise une transaction annulée si c'est adapté. Lis `Seq Scan` comme une observation à expliquer, pas comme une faute : compare les lignes estimées/observées, la sélectivité, les buffers et le temps sur un jeu représentatif.
 Vraie utilité : ça transforme "ça rame, je sais pas pourquoi" en "voilà exactement où ça coince". C'est la vision du Chevalier d'Or dans Garo : tu vois ce que les autres ne voient pas.
 
 ---
@@ -238,7 +240,7 @@ UPDATE missions SET status = 'expired' WHERE status = 'pending' AND assigned_at 
 
 ## TIPS D'ÉVOLUTION TECHNIQUE
 
-Avant, on écrivait du SQL brut partout dans le code applicatif, concaténé à la main avec les variables directement dans la string. Résultat : injection SQL ouverte par défaut (vu en détail dans `03-PILOTAGE/04-SECURITY/01_xss_injection`). Maintenant, on utilise des requêtes paramétrées (placeholders `$1`, `?`, ou un ORM/query builder comme vu dans `05_db_in_js`) presque partout. Le switch existe pour la sécurité, pas pour le style.
+Avant, on écrivait du SQL brut partout dans le code applicatif, concaténé à la main avec les variables directement dans la string. Résultat : injection SQL ouverte par défaut (vu en détail dans `03-PILOTAGE/04-SECURITY/02-xss_injection.md`). Maintenant, on utilise des requêtes paramétrées (placeholders `$1`, `?`, ou un ORM/query builder comme vu dans `05_db_in_js`) presque partout. Le switch existe pour la sécurité, pas pour le style.
 
 ```js
 // Avant (dangereux) : concaténation directe
@@ -270,14 +272,13 @@ On te donne deux tables `villages` (10 lignes) et `ninjas` (500 lignes) sans rel
 
 ## RÉSUMÉ
 
-SQL c'est pas de la syntaxe à apprendre par cœur, c'est une façon de déléguer le travail lourd à un moteur fait pour ça. `WHERE` filtre avant de te ramener la donnée, `JOIN` recolle des tables séparées par design, `INDEX` transforme une recherche linéaire en recherche logarithmique, et `EXPLAIN` te montre ce qui se passe vraiment au lieu de deviner. Le danger numéro un reste humain : un `UPDATE` sans `WHERE` ne pardonne pas.
+SQL c'est pas de la syntaxe à apprendre par cœur, c'est une façon de déléguer le travail lourd à un moteur fait pour ça. `WHERE` filtre les lignes selon la sémantique SQL, `JOIN` relie des tables, un index peut éviter de lire une partie des données (au prix de stockage et de maintenance), et `EXPLAIN` expose le plan choisi. Aucun index ne garantit à lui seul une complexité ni une amélioration : mesure le plan, le volume et le comportement réel avant de conclure. En particulier, `O(log n)` pour la recherche dans une structure ne décrit pas à lui seul le coût d'une requête SQL complète. Le danger numéro un reste humain : un `UPDATE` sans `WHERE` ne pardonne pas.
 
 ## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
 
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

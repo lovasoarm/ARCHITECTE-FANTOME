@@ -50,7 +50,6 @@ Naruto s'entraîne comme un dingue mais il **récupère**. Le manga saute la ré
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

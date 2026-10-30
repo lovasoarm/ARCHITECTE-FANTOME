@@ -15,7 +15,6 @@ assessment_role: instructional_checkpoint
 <!-- AF-DIAGRAM:secrets -->
 
 ```text
-text
 ┌──────────────┐
 │ Secret store │
 └──────┬───────┘

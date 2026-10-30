@@ -52,22 +52,6 @@ await suspend la reprise de la fonction async, pas l’ensemble du runtime.
 
 L’Event Loop reprend le travail lorsque la pile est libérée, en drainant d’abord les microtasks avant les tâches suivantes.
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 > Palier `01-CADRAGE`. Duree estimee : **9 h 15** (13 fichiers de travail).
 
 ## Sommaire du module

@@ -10,10 +10,12 @@ perturbation_modes: [preuve_partielle, decision_organisationnelle]
 anti_recipe_key: preuve_partielle+decision_organisationnelle
 transfer_distance: high
 assessment_role: instructional_checkpoint
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0015
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-04-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **SCÈNE CRAZYDEVS : jauge de chakra :** optimiser sans mesurer, c'est demander à Naruto de vider son chakra sans regarder la jauge. D'abord la mesure, ensuite le coup de génie ; sinon tu optimises peut-être le mauvais ralentissement.
 
 # Heap snapshot hands-on
@@ -125,7 +127,6 @@ Prochaine étape : `07-detached_dom_leak.md`.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

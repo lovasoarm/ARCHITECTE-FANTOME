@@ -62,7 +62,6 @@ Trois points de rupture réels du portfolio sont sécurisés. Commit.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

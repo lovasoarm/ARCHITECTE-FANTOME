@@ -7,6 +7,12 @@ route: survie
 
 # MODULE 03 TESTING
 
+> **Chaîne de maîtrise :** spécifier le comportement → tester une unité → vérifier l'intégration → valider le contrat avec les consommateurs → tester le parcours critique → muter volontairement une hypothèse → démontrer que la suite détecte la régression. Le framework importe moins que la qualité du signal produit par les tests.
+
+Pour les exercices cumulatifs, ajoute le [Pack d'exercices systèmes et arbitrages](../../06-ANNEXES-TRANSVERSES/61-PACK-EXERCICES-SYSTEMES-ET-ARBITRAGES.md) après les bases ; il force à utiliser tests, idempotence, migrations et mesures dans des situations nouvelles.
+
+Pour approfondir le pouvoir réel de la suite, enchaîne avec [63 : Laboratoire de tests](../../06-ANNEXES-TRANSVERSES/63-LAB-TESTING-ENGINEERING.md) : contrat, propriété, mutation, doubles et test de transfert avec correction de référence.
+
 > Palier `02-CONSTRUCTION`. Duree estimee : **16 h 30** (23 fichiers de travail).
 
 ## Sommaire du module

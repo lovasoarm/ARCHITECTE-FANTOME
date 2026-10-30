@@ -9,8 +9,11 @@ perturbation_modes: [fausse_piste, decision_organisationnelle]
 anti_recipe_key: fausse_piste+decision_organisationnelle
 transfer_distance: low
 assessment_role: diagnostic_mastery
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0064
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
 
 > **SCÈNE CRAZYDEVS : coach du village :** tu n'as pas 40 matchs à préparer, tu en as trois cette semaine. La question n'est donc pas “que peut-on construire ?” mais “quel pari vaut le terrain maintenant ?”.
@@ -30,7 +33,6 @@ voulais, que tu sors).
 <!-- AF-DIAGRAM:roi -->
 
 ```text
-text
 Decision
   │
   ├──► Value / impact
@@ -66,3 +68,15 @@ nombres copiés du [relevé de référence](../07-CLOUD-FOUNDATIONS/07-RELEVE-RE
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
+
+## Barème autonome sur 20 : décision produit / coût / ROI
+
+| Critère               | Points | Preuve attendue                                                                  |
+| --------------------- | -----: | -------------------------------------------------------------------------------- |
+| Problème et baseline  |      4 | Segment d'utilisateur, mesure de départ datée, source et limite de l'échantillon |
+| Valeur métier         |      4 | Unité, hypothèse causale, résultat attendu et indicateur de succès               |
+| Coût complet          |      4 | Coût cloud, heures d'ingénierie, exploitation, migration et coût de sortie       |
+| Risque et sensibilité |      4 | P50/P95 ou fourchette, scénario défavorable, dépendances et coût d'opportunité   |
+| Décision et garde-fou |      4 | Choix, option rejetée, point mort, seuil d'arrêt et date de réévaluation         |
+
+**Seuil : 15/20**, aucune donnée chiffrée sans source et aucun engagement sur un tarif cloud sans date, région, unité et source officielle vérifiées. Si le coût ne peut pas être mesuré, le verdict doit expliciter l'incertitude et réduire l'engagement.

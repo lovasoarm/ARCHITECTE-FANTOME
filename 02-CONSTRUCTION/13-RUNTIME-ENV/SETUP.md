@@ -15,7 +15,7 @@ Lis d’abord le [`SETUP.md`](../../SETUP.md) le plus proche dans l’arborescen
 
 ## 3. Technologie / environnement
 
-**Environnement standard AF** : Node.js 22.23.3 + éditeur de texte suffisent tant qu’aucune dépendance locale supplémentaire n’est explicitement signalée par le contenu du dossier.
+**Environnement standard AF** : Node.js 22.23.4 + éditeur de texte suffisent tant qu’aucune dépendance locale supplémentaire n’est explicitement signalée par le contenu du dossier.
 
 ## 4. Première preuve
 

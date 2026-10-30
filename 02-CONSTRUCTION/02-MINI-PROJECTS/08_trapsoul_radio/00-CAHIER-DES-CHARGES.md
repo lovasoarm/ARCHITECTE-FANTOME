@@ -10,38 +10,52 @@ route_family: depth
 
 Temps de lecture ~14 min
 
-## PRÉREQUIS
+## PRÉREQUIS ET ÉTAT INITIAL DU ZIP
 
-```text
-Node.js    : v22.23.3
-npm      : v10+
-TypeScript   : v5+ (installé comme dépendance locale)
-Variables env : aucune
-Outils externes: axe-cli (pour les vérifications a11y), Lighthouse CLI
+- Node.js `22.23.4` est la version de référence visée ; npm `10+` est fourni avec cette distribution.
+- TypeScript `5+` est une dépendance locale à installer et verrouiller dans le dépôt de l'apprenant.
+- `axe-cli` sert aux vérifications d'accessibilité et Lighthouse à l'audit de performance/accessibilité ; ce sont des outils d'audit, pas des dépendances de production.
+- Aucun `package.json`, `package-lock.json`, `tsconfig.json`, `dist/`, code HTML/TS, serveur ou test exécutable n'est livré à l'état initial. Les commandes de build et d'audit ci-dessous sont donc des commandes **après bootstrap**, pas des commandes disponibles dès l'ouverture du ZIP.
+- Évite `npm install -g` : les outils locaux versionnés rendent les audits reproductibles et évitent de modifier globalement la machine de l'apprenant.
 
-# Installation
-$ npm install
-$ npm install -g @axe-core/cli lighthouse  # outils de vérification
+Commandes disponibles dès réception :
 
-# Démarrer un serveur local (http-server ou équivalent)
-$ npx http-server dist/ -p 3000
-
-# Vérifier les types
-$ npx tsc --noImplicitAny --noEmit
-
-# Vérifier l'accessibilité
-$ npx axe http://localhost:3000
-
-# Audit Lighthouse
-$ npx lighthouse http://localhost:3000 --only-categories=performance,accessibility
-
-# Lancer les tests
-$ npm test
+```bash
+node --version
+npm --version
 ```
 
-Pas de framework (pas de React, pas de Vue). HTML + CSS + TypeScript natif compilé vers du JS. Le build step est `tsc` uniquement.
+### Bootstrap local (à effectuer une seule fois)
 
----
+Depuis le dossier de travail du projet, après avoir créé les fichiers HTML, CSS et TypeScript initiaux :
+
+```bash
+npm init -y
+npm install --save-dev typescript http-server @axe-core/cli lighthouse
+npx tsc --init
+```
+
+Configure ensuite `tsconfig.json` pour compiler les sources vers `dist/`, ajoute les scripts `build`, `typecheck`, `start` et `audit` adaptés à ton arborescence, puis crée au moins un test automatisé pertinent avant de déclarer le projet vérifiable. Vérifie et versionne `package-lock.json` ; les exécutions ultérieures reproductibles utilisent `npm ci`.
+
+### Commandes après création de l'application et de sa configuration
+
+Les exemples suivants supposent que `tsconfig.json` émet les fichiers compilés sous `dist/`, qu'une page d'entrée est réellement présente dans `dist/`, et qu'un serveur est configuré :
+
+```bash
+npx tsc --noEmit
+npx tsc
+npx http-server dist/ -p 3000
+```
+
+Dans un second terminal, une fois le serveur démarré :
+
+```bash
+npx axe http://localhost:3000
+npx lighthouse http://localhost:3000 --only-categories=performance,accessibility
+```
+
+`npm test` n'est valide qu'après avoir créé une suite et déclaré un script `test` dans `package.json`. Le projet final doit conserver les commandes exactes réellement utilisées, leurs versions, les résultats avant/après et les limitations éventuelles. Il n'existe pas de commande de test de référence verte fournie à l'état initial.
+
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 

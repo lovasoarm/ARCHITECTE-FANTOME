@@ -3,9 +3,15 @@ stability: evolutif
 acte: parcours
 noyau: oui
 route: complete
+paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
+expert_review: pending
+paper_audit_date: 2026-10-30
+terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 ---
 
 # MODULE 06 ANNEXES
+
+> **État pédagogique : 30 octobre 2026 : preuves documentaires complétées.** Les ajouts ciblés couvrent les exemples, pratiques, vérifications et transferts requis pour ce module. Une revue technique indépendante et une validation terrain restent distinctes ; voir [48 : External Review Gate](../../06-ANNEXES-TRANSVERSES/48-EXTERNAL-REVIEW-GATE.md) et [49 : Terrain Maturity Gate](../../06-ANNEXES-TRANSVERSES/49-TERRAIN-MATURITY-GATE.md).
 
 > Palier `05-MAITRISE`. Duree estimee : **17 h 45** (26 fichiers de travail).
 
@@ -43,11 +49,12 @@ Total : **17 h 45**. Le Total reprend exactement la somme du tableau. Le challen
 
 ## Comment travailler ce module
 
-1. Ouvre d abord le fichier `00_why_*` s il existe : il dit pourquoi le module merite ton temps.
-2. Passe le controle de prerequis. Un prerequis manquant se repare en amont, jamais ici.
-3. Fais les lecons dans l ordre des numeros. Chaque lecon a un exercice borne : il se rend, il se date.
-4. Le grimoire se lit **apres** la pratique, jamais avant : c est une fiche de rappel, pas un cours.
-5. Le challenge, puis le boss fight, cochent le module. Sans eux, le module est lu, pas acquis.
+1. Commence par [`00-PREREQUIS.md`](00-PREREQUIS.md). Si un prérequis échoue, remonte vers la ressource indiquée au lieu de deviner.
+2. Lis la leçon « pourquoi ce module » lorsqu'elle figure dans le parcours, puis suis l'ordre du sommaire. Les sous-dossiers ont leur propre README lorsqu'un sous-parcours est nécessaire.
+3. Après chaque concept, réalise l'exercice ou le mini-projet explicitement associé. Une leçon peut intégrer sa pratique dans une section `EXERCICES` ; ne suppose pas qu'un fichier séparé existe.
+4. Avant toute exécution, lis [`SETUP.md`](SETUP.md) et vérifie la version, le dossier courant, les données de départ et la commande attendue. Lorsqu'un outil externe manque, utilise uniquement le mode papier/simulation décrit par l'activité et marque le résultat comme simulé.
+5. Fais le challenge `95-challenge.md`, puis le boss `96-boss-fight.md` **seulement s'il existe dans ce module**. À défaut de boss séparé, le challenge et les checkpoints/critères liés constituent la vérification annoncée : aucun boss non fourni n'est supposé.
+6. Le grimoire se lit après la pratique. Consigne la preuve, le résultat des vérifications, les limites non testées et la date dans ton journal de progression.
 
 ## Ce que ce module produit dans ton depot fil rouge
 
@@ -112,3 +119,17 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Grimoire : `06-ANNEXES`](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+## Navigation complète des ressources
+
+Le sommaire ci-dessus reste le parcours recommandé. Les index ci-dessous rendent accessibles les ressources d'appui et les sous-parcours qui ne sont pas des étapes linéaires supplémentaires.
+
+### Sous-parcours indexés
+
+- [30_transferability/09_pool_bugs](30_transferability/09_pool_bugs/README.md)
+
+### Ressources d'appui et vérification
+
+- [Pitch : "Pourquoi moi et pas une solution ?"](10-pitch_vs_reality.md)
+
+## Standard de complétude et audit

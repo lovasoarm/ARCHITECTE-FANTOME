@@ -503,3 +503,11 @@ Contrainte : ne pas toucher à la logique vidéo, uniquement le DataChannel.
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+## Transfert production : permissions, TURN et coût média
+
+Un appel WebRTC peut fonctionner en réseau local puis échouer derrière NAT/firewall. Le serveur STUN aide à découvrir l'adresse ; TURN relaie le média lorsque la connexion directe échoue, avec un coût de bande passante.
+
+**Exercice.** Compare connexion directe et relayée ; décris le cycle de permission caméra/micro, la signalisation, le renouvellement des ICE candidates et la fermeture d'appel. Estime le coût d'un appel relayé à partir du débit moyen, de la durée, du nombre de participants et du tarif daté de l'opérateur.
+
+**Vérification.** Matrice de scénarios : permission refusée, appareil absent, réseau restrictif, changement de réseau, pair déconnecté et fermeture. La démo seule ne certifie pas la qualité sur tous les navigateurs/appareils ; consigne versions et mesures de terrain.

@@ -8,8 +8,8 @@ acte: comprendre
 # BREAKING CACHE
 
 <!-- AF-DIAGRAM:cache -->
+
 ```text
-text
 Request
   │
   ▼
@@ -24,16 +24,14 @@ Value  ┌──────────┐
             ▼
          populate
 ```
-Le cache court-circuite la source de vérité en cas de hit et la recharge en cas de miss.
 
+Le cache court-circuite la source de vérité en cas de hit et la recharge en cas de miss.
 
 ## Ordre de lecture
 
 Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADRs réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables.
 
-
 > **Route CORE 16 semaines :** ce projet conserve son contenu complet. Pour le sprint intensif, consulte [la carte CORE](../../../06-ANNEXES-TRANSVERSES/25-CORE-MINI-PROJECT-MAP.md) pour le slice recommandé. Le passage CORE ajoute une perturbation, un transfert et un rappel à froid ; voir [Engine d’ambiguïté](../../../06-ANNEXES-TRANSVERSES/20-ENGINE-AMBIGUITE.md).
-
 
 -> ~6 min
 
@@ -58,22 +56,21 @@ $ node src/index.js
 
 ---
 
-## INSTALLATION
+## PRÉREQUIS ET ÉTAT INITIAL
 
-```text
-Node.js    : v22.23.3
-npm      : v10+
-Variables env : aucune
-Outils externes: aucun
-```
+- Node.js : `v22.23.4` (version de référence du dépôt AF) ; npm est fourni avec Node.js.
+- État de l’archive : Le cœur algorithmique peut être écrit en Node natif. Le ZIP ne fournit pas `package.json`, source exécutable ni tests ; les README de `src/` et `tests/` sont des consignes, pas des programmes.
+
+### Commandes disponibles dès réception
 
 ```bash
-npm install
-node src/index.js  # charge le graphe, lance tous les algos, écrit les benchmarks
-npm test       # lance la suite de tests
+node --version
+npm --version
 ```
 
-Pas de build step. Le code tourne tel qu'il est écrit.
+### Commandes après réalisation du scaffold
+
+Après création des sources et de la suite, lance `node src/index.js` et `node --test`. Les benchmarks ne sont à exécuter qu’après avoir créé leur runner et fixé les données, le warm-up et le protocole. `npm install` n’est pas nécessaire sans dépendances ; `npm test` suppose un script défini.
 
 ---
 
@@ -132,11 +129,11 @@ index.js
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module         | Où ça se voit                                |
-| ----------------------- | ---------------------------------------------------------------------------- |
-| `02-CONSTRUCTION/06-DATA-STRUCTURES`  | `graphBuilder.js` (graphe), `minHeap.js` (heap), `adjacencyList.js`     |
-| `02-CONSTRUCTION/07-ALGORITHMS`     | `dijkstra.js`, `bfs.js`, `quickSort.js`, `mergeSort.js`, `stockOptimizer.js` |
-| `02-CONSTRUCTION/05-MEMORY-PERFORMANCE` | `benchmarker.js` : `performance.now()` sur chaque algo, Big-O analysé    |
+| Module                                  | Où ça se voit                                                                |
+| --------------------------------------- | ---------------------------------------------------------------------------- |
+| `02-CONSTRUCTION/06-DATA-STRUCTURES`    | `graphBuilder.js` (graphe), `minHeap.js` (heap), `adjacencyList.js`          |
+| `02-CONSTRUCTION/07-ALGORITHMS`         | `dijkstra.js`, `bfs.js`, `quickSort.js`, `mergeSort.js`, `stockOptimizer.js` |
+| `02-CONSTRUCTION/05-MEMORY-PERFORMANCE` | `benchmarker.js` : `performance.now()` sur chaque algo, Big-O analysé        |
 
 ---
 
@@ -225,3 +222,31 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## Comprendre les tests avant de commencer : état exact du ZIP
+
+Référence : [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les exemples de sortie décrivent la cible, pas un logiciel livré, sauf mention contraire.
+
+- Code fourni : aucun module exécutable ; `src/README.md` et `tests/README.md` sont des espaces réservés. Les timings affichés sont illustratifs, pas des mesures déjà produites.
+- Tests de référence verts : aucun. Tests volontairement rouges : aucun.
+- Tests à écrire : graphe, Dijkstra (poids non négatifs), BFS/DFS, min-heap, tris/stabilité, knapsack, entrées vides/dupliquées et tests différentiels.
+- Validation finale : après implémentation, `node --test tests/*.test.js`. Exécute les benchmarks à part, avec warm-up, données déterministes, matériel/version et plusieurs répétitions ; ne transforme pas un temps unique en promesse de performance.
+- Ordre : graphe → heap/priority queue → algorithmes → oracle simple → tests limites → benchmarks. `npm install`/`npm test` ne sont pas disponibles faute de `package.json`.
+
+## Règles communes de progression et de preuve
+
+### Contrôle commun de la progression
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
+- **Tests verts de référence :** aucun.
+- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
+- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
+- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
+
+**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.

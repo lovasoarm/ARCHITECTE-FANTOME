@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "06-ANNEXES-TRANSVERSES/26-PROTOCOLE-LECON-PROFONDE.md",
+                "file": "README.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "26-PROTOCOLE-LECON-PROFONDE"
+              "title": "README"
             }
           }
         ]
@@ -176,9 +176,9 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "canvas:Créer un nouveau canvas": false,
       "switcher:Ouvrir le sélecteur rapide": false,
       "graph:Ouvrir la vue graphique": false,
-      "canvas:Créer une nouvelle toile": false,
       "daily-notes:Ouvrir la note quotidienne": false,
       "templates:Insérer le modèle": false,
       "command-palette:Ouvrir la palette de commandes": false,
@@ -187,9 +187,11 @@
   },
   "active": "ca28f1edb021ea76",
   "lastOpenFiles": [
+    "ARCHITECTE-FANTOME.zip",
+    "SETUP.md",
+    "06-ANNEXES-TRANSVERSES/26-PROTOCOLE-LECON-PROFONDE.md",
     "PROGRESSION.md",
     "PREUVES-STAFF-ENGINEER.md",
-    "SETUP.md",
     "README.md"
   ]
 }

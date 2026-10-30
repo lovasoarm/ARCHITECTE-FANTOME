@@ -11,9 +11,7 @@ acte: comprendre
 
 Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADRs réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables.
 
-
 > **Route CORE 16 semaines :** ce projet conserve son contenu complet. Pour le sprint intensif, consulte [la carte CORE](../../../06-ANNEXES-TRANSVERSES/25-CORE-MINI-PROJECT-MAP.md) pour le slice recommandé. Le passage CORE ajoute une perturbation, un transfert et un rappel à froid ; voir [Engine d’ambiguïté](../../../06-ANNEXES-TRANSVERSES/20-ENGINE-AMBIGUITE.md).
-
 
 -> ~7 min
 
@@ -40,22 +38,21 @@ $ npm start
 
 ---
 
-## INSTALLATION
+## PRÉREQUIS ET ÉTAT INITIAL
 
-```text
-Node.js    : v22.23.3
-npm      : v10+
-TypeScript   : v5+ (installé via npm install)
-Variables env : SENTRY_DSN (optionnel pour l'env de dev)
-Outils externes: aucun
-```
+- Node.js : `v22.23.4` (version de référence du dépôt AF) ; npm est fourni avec Node.js.
+- État de l’archive : Le projet cible TypeScript, `ts-node` et `ts-jest`. Le ZIP ne fournit ni manifeste npm, ni `tsconfig`, ni code applicatif ou test exécutable. Ces outils devront être installés localement et versionnés dans le dépôt apprenant.
+
+### Commandes disponibles dès réception
 
 ```bash
-npm install
-npx tsc --noImplicitAny --noEmit  # 0 erreur = typage propre
-npm start              # démarre avec ts-node
-npm test              # ts-jest, pas de build séparé
+node --version
+npm --version
 ```
+
+### Commandes après réalisation du scaffold
+
+Après création du `package.json`, du `tsconfig.json`, de la configuration Jest et des sources : installer les dépendances locales, lancer `npx tsc --noEmit`, puis `npm test` et `npm start` uniquement si les scripts correspondants sont déclarés. Aucun paquet global n’est requis.
 
 ---
 
@@ -115,11 +112,11 @@ eventIngester.receive(rawEvent)
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module       | Où ça se voit                                |
-| ------------------ | ---------------------------------------------------------------------------- |
-| `03-PILOTAGE/05-OBSERVABILITY` | `logger.ts` (JSON structuré, correlation ID), `tracer.ts`, `sentryClient.ts` |
-| `05-MAITRISE/02-SCALABILITY`  | rate limiting sur l'endpoint live, simulation de load horizontal       |
-| `02-CONSTRUCTION/12-TYPESCRIPT`  | `Event<T>`, `Pipeline<I,O>`, utility types sur les structs d'events     |
+| Module                          | Où ça se voit                                                                |
+| ------------------------------- | ---------------------------------------------------------------------------- |
+| `03-PILOTAGE/05-OBSERVABILITY`  | `logger.ts` (JSON structuré, correlation ID), `tracer.ts`, `sentryClient.ts` |
+| `05-MAITRISE/02-SCALABILITY`    | rate limiting sur l'endpoint live, simulation de load horizontal             |
+| `02-CONSTRUCTION/12-TYPESCRIPT` | `Event<T>`, `Pipeline<I,O>`, utility types sur les structs d'events          |
 
 ---
 
@@ -203,6 +200,16 @@ Un CI check impose la présence de `src/` et `tests/` avant validation.
 
 Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur dépôt apprenant. Si le projet utilise des dépendances npm, ton dépôt apprenant doit versionner `package.json` et `package-lock.json`, puis utiliser `npm ci` en CI pour installer exactement cet arbre. Si le projet est sans dépendances, consigne simplement la version de runtime et la commande de test réellement utilisée. La preuve de reproductibilité est la commande et la version relevées dans ton propre dépôt, pas une valeur inventée dans le curriculum.
 
+## Séquence de maîtrise exigée (temps réel, qualité de service)
+
+1. **Définir le besoin utilisateur** : quelles données doivent être fraîches, dans quel délai et avec quelle tolérance à la perte ?
+2. **Mesurer une baseline** : latence par percentile, taux d'erreur, âge des données et comportement sur une durée déterminée. Consigne la taille de l'échantillon.
+3. **Déclencher une perturbation** : ralentir la dépendance, couper le flux ou créer un backlog contrôlé ; prédis les signaux avant l'essai.
+4. **Corriger puis comparer** : ne conclus pas à une amélioration à partir d'une moyenne seule ; compare le même scénario et les mêmes dimensions.
+5. **Transférer** : augmente le volume ou change la fréquence de mise à jour ; justifie ce qui doit évoluer.
+
+**Gate :** les métriques répondent à des questions opérationnelles, le dashboard signale clairement les données périmées et l'exercice clavier est effectivement parcourable. Le résultat reste limité à la charge testée. Complète avec [59 : Cycle de vie DevOps/SRE](../../../06-ANNEXES-TRANSVERSES/59-LAB-DEVOPS-LIFECYCLE.md) et [67 : Gate de maîtrise](../../../06-ANNEXES-TRANSVERSES/67-GATE-MAITRISE-ET-CAPSTONE.md).
+
 ## Contenu du dossier
 
 <!-- CONTENU-DOSSIER:debut -->
@@ -220,3 +227,31 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## Comprendre les tests avant de commencer : état exact du ZIP
+
+Référence : [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les exemples de sortie décrivent la cible, pas un logiciel livré, sauf mention contraire.
+
+- Code fourni : aucun `.ts`, `package.json`, `tsconfig`, configuration Jest ou test ; `src/` et `tests/` sont documentés seulement.
+- Tests de référence verts : aucun. Tests volontairement rouges : aucun.
+- Tests à écrire : validation xG, agrégations, dates/timezones, états vides/erreurs, contrats API, accessibilité et filtres.
+- Validation finale : créer manifeste, `tsconfig`, config du runner et lockfile ; déclarer `npm test`, puis exécuter `npm ci && npm test`. `npm start` n'existe pas dans le ZIP reçu.
+- Ordre : types/contrats → calculs purs → agrégation → adaptateurs → composants → accessibilité/intégration. Preuve : toute métrique possède source, unité, période et formule.
+
+## Règles communes de progression et de preuve
+
+### Contrôle commun de la progression
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
+- **Tests verts de référence :** aucun.
+- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
+- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
+- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
+
+**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.

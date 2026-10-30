@@ -1,46 +1,33 @@
-# SETUP : démarrage global
+# Préparer une activité
 
-Ce document est le **contrat de démarrage commun** d’ARCHITECTE-FANTOME (AF). Les `SETUP.md` plus proches d’une pratique, d’un exercice, d’un mini-projet ou d’une technologie ajoutent uniquement les prérequis spécifiques.
+Ce guide aide à choisir le bon environnement sans installer inutilement des outils. La configuration dépend de l’activité : le `SETUP.md` placé le plus près de l’exercice ou du projet donne les prérequis spécifiques et prévaut sur ce guide.
 
-## 1. Socle minimal
+## 1. Commencer sans installation globale
 
-Pour lire le parcours et réaliser les exercices purement conceptuels :
+Pour lire le parcours, étudier les schémas et faire les exercices sur papier, un éditeur de texte et le ZIP décompressé suffisent. Aucun compte cloud ni aucune API ne sont nécessaires pour le contenu documentaire.
 
-- un éditeur de texte ;
-- Node.js **22.23.3** pour les exercices JavaScript/Node ;
-- le ZIP décompressé ;
-- aucun compte en ligne requis pour le contenu documentaire.
+## 2. Installer seulement ce que l’activité demande
 
-Le Git, un IDE particulier et les extensions ne sont jamais une barrière au premier démarrage.
+1. Décompresse le ZIP et ouvre `README.md`.
+2. Suis la route apprenant jusqu’à l’activité voulue.
+3. Lis son `SETUP.md` avant de commencer la pratique.
+4. Installe manuellement les outils qui y sont demandés, en suivant la documentation officielle de ton système et la version explicitement indiquée.
+5. Exécute la commande de vérification fournie par l’activité avant de poursuivre.
 
-## 2. Démarrage
+Node.js, npm, Git, Docker, Python ou une base de données ne sont pas des prérequis universels. Ne les installe pas si l’activité ne les demande pas. Un `package.json`, un `Dockerfile` ou un fichier Compose présent dans un mini-projet est un support d’exercice : il ne signifie pas que l’outil doit être installé pour lire le reste du curriculum.
 
-1. Décompresse le ZIP.
-2. Ouvre la racine du curriculum.
-3. Lis le `SETUP.md` le plus proche avant chaque pratique/exo/projet.
-4. N’installe une technologie supplémentaire que lorsque le `SETUP.md` local l’exige.
+## 3. Travailler hors ligne
 
-## 3. Offline
+Les activités conceptuelles et les exercices qui ne dépendent pas d’un service externe peuvent être travaillés hors ligne. Si une technologie nécessite un installateur ou un paquet absent de la machine, prépare-le manuellement avant la séance, ainsi que les dépendances demandées par le guide local. N’exécute pas un script d’installation dont le rôle ou l’origine ne sont pas compris.
 
-Le parcours doit rester praticable hors ligne lorsque l’activité ne dépend pas d’un service externe. Pour une technologie qui exige un installateur ou un paquet absent de la machine, prépare **avant la séance** :
+## 4. Priorité entre guides
 
-- l’installateur correspondant à l’OS/architecture ;
-- la version explicitement indiquée par le `SETUP.md` local ;
-- les artefacts de dépendances demandés par le projet (par exemple lockfile + cache/package store).
+Le `SETUP.md` le plus proche du livrable est prioritaire. S’il ne répète pas une information commune, utilise ce guide et celui de son dossier parent. Ne réinstalle pas un outil dont la version et la commande de vérification ont déjà été validées.
 
-AF ne tente pas de télécharger ou d’installer des outils à l’insu de l’apprenant.
+## 5. Avant de pratiquer
 
-## 4. Règle de priorité
-
-Le `SETUP.md` le plus proche du livrable est prioritaire. Lorsqu’il ne répète pas une information, il hérite du `SETUP.md` parent. **Ne refais pas une installation déjà validée.**
-
-## 5. Check comportemental
-
-Avant de commencer une activité :
-
-- [ ] je sais exactement quoi installer ;
-- [ ] je sais comment vérifier que c’est installé ;
-- [ ] je sais quoi faire si je suis offline ;
-- [ ] je connais la commande de première preuve ;
-- [ ] je n’installe rien qui n’est pas nécessaire à l’activité.
-
+- [ ] Je sais quelle preuve je veux produire.
+- [ ] J’ai lu les prérequis de l’activité.
+- [ ] Je sais quelle commande confirme que l’outil nécessaire est disponible.
+- [ ] J’ai un plan hors ligne si l’activité le permet.
+- [ ] Je n’ai installé que les outils nécessaires à cette activité.

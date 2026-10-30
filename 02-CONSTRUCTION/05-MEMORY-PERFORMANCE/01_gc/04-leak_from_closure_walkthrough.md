@@ -91,3 +91,11 @@ Reproduis, mesure avec `process.memoryUsage().heapUsed`, corrige, remesure. Note
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Compare une fonction qui libère son abonnement avec une fonction qui conserve une closure vers un gros objet. Vérifie la rétention par un graphe de références, pas par une seule lecture de heap usage.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

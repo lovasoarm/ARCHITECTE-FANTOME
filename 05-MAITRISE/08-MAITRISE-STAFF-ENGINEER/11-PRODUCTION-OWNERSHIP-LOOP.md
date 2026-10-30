@@ -5,41 +5,109 @@ noyau: oui
 assessment_role: staff_mastery
 ---
 
-# 11 : Boucle d'ownership en production
+# Production ownership loop : posséder le résultat en production
 
-Ce module ferme le dernier écart entre « système correctement conçu » et « système réellement possédé dans le temps ».
+## 1. Ce que signifie l'ownership
 
-## Contrat
+L'**ownership de production** est la responsabilité explicite de comprendre le comportement d'un système, d'en réduire le risque, de répondre aux incidents, de préserver les données, de mesurer les résultats et de faire fermer les actions correctives. Ce n'est pas « être de garde pour tout » ni porter seul toutes les pannes.
 
-Sur un même fil rouge, exécute une boucle longitudinale :
+Un système bien possédé a des limites, propriétaires, SLO/SLI, runbooks, accès, procédures de changement et dépendances identifiables. La responsabilité est partagée entre équipes avec des interfaces claires.
+
+## 2. Boucle de travail
 
 ```text
-baseline
-  -> changement
-  -> incident ou régression
-  -> diagnostic
-  -> décision
-  -> mitigation
-  -> migration / refactor
-  -> mesure post-changement
-  -> revisite
+[Besoin / changement]
+        |
+        v
+[Conception + risques + critères]
+        |
+        v
+[Build / tests / revue]
+        |
+        v
+[Déploiement contrôlé]
+        |
+        v
+[Signaux / SLO / support]
+        |
+        v
+[Incident ou apprentissage]
+        |
+        v
+[Diagnostic + restauration]
+        |
+        v
+[Actions avec propriétaires et échéances]
+        |
+        +------> [Tests / architecture / documentation]
 ```
 
-La preuve doit contenir au minimum :
+La boucle ne s'arrête pas au déploiement. Elle se ferme lorsque les actions ont une preuve de correction et que les changements améliorent le résultat observable.
 
-- 3 états datés du système ;
-- 1 changement de produit ou de charge ;
-- 1 dégradation observable ;
-- 1 décision de migration, rollback ou limitation de scope ;
-- 1 mesure avant/après ;
-- 1 condition qui aurait invalidé la décision.
+## 3. Artefacts minimaux
 
-## Ce qui est interdit
+- service owner et équipe secondaire ;
+- architecture et dépendances mises à jour ;
+- SLI/SLO ou objectifs adaptés au risque ;
+- dashboard et alertes actionnables ;
+- runbook pour incidents probables ;
+- procédure de déploiement, rollback et restauration ;
+- inventaire de secrets/identités ;
+- test de sauvegarde/restauration ;
+- journal des changements significatifs ;
+- postmortems et suivi d'actions.
 
-Un benchmark synthétique exécuté une seule fois ne ferme pas ce gate.
-Une simulation peut fermer T0 ; elle ne doit jamais être présentée comme T4.
+Un document sans propriétaire, vérification et date de revue peut devenir dangereux. Un runbook doit être essayé, pas seulement lu.
 
-## Artefact
+## 4. Scénario d'évaluation
 
-Créer `PREUVES/OWNERSHIP-LOOP.md` avec les horodatages, mesures, décisions et écarts.
-Le document doit pouvoir être compris par un tiers sans explication orale.
+Un service de commande dépasse son SLO pendant une migration. L'alerte arrive, mais le runbook pointe vers une commande obsolète et la personne d'astreinte n'a pas les permissions. L'équipe doit stabiliser sans contourner la sécurité, communiquer, identifier les dépendances et restaurer sans perdre les commandes déjà acceptées.
+
+L'apprenant doit :
+
+1. définir le rôle incident commander et la communication ;
+2. identifier les signaux d'impact ;
+3. arrêter la promotion risquée ;
+4. décider rollback vs hotfix selon compatibilité des données ;
+5. préserver l'audit et les identités ;
+6. vérifier intégrité, rattrapage et retour au SLO ;
+7. assigner les actions correctives.
+
+## 5. Pièges
+
+- Ownership = responsabilité individuelle illimitée : mène à l'épuisement et à une architecture sans équipe.
+- Alertes sans action : fatigue d'astreinte.
+- Rollback non testé : faux sentiment de sécurité.
+- Postmortem sans propriétaire d'action : répétition de l'incident.
+- État de service « vert » sans vérification de l'intégrité métier.
+- Docs non synchronisées avec la production.
+
+## 6. Exercice et grille /25
+
+Produire un dossier d'exploitation pour un service réel ou de laboratoire : propriétaires, SLO, alertes, runbook, identité, sauvegarde, test de restauration, rollback et postmortem simulé.
+
+Grille : ownership/rôles (4), signaux/SLO (4), déploiement/rollback (5), sécurité/accès (4), reprise/intégrité (4), actions et maintenance (4). Seuil 20/25, aucun zéro en accès ou reprise.
+
+## 7. Exemple de réponse faible et forte
+
+**Faible :** « Je suis responsable du service, je surveille les logs et je corrige vite. » Rien ne précise l'autorité, les signaux, les données ou le test de reprise.
+
+**Forte :** l'équipe propriétaire est nommée, un incident commander coordonne, le SLI métier déclenche l'alerte, l'arrêt des promotions est explicite, le choix de rollback tient compte du schéma, la restauration est vérifiée et chaque action a un propriétaire et une preuve de fermeture.
+
+## 8. Preuve de maîtrise
+
+Lien de service ou laboratoire, runbook essayé, résultat d'un exercice de restauration, postmortem, actions fermées et revue par un autre ingénieur. Ce document évalue une pratique observée ; un exercice réussi ne démontre pas à lui seul l'ownership durable d'un système en production.
+
+## Contrat longitudinal obligatoire conservé
+
+Sur un même fil rouge, garder au minimum trois états datés du système, un changement de produit ou de charge, une dégradation observable, une décision de migration/rollback/réduction de périmètre, une mesure avant/après et une condition qui aurait invalidé la décision. La boucle est : baseline → changement → incident/régression → diagnostic → décision → mitigation → migration/refactor → mesure post-changement → revisite.
+
+Un benchmark synthétique exécuté une seule fois ne ferme pas ce gate. Une simulation peut fermer un niveau d'exercice initial, mais elle ne doit jamais être présentée comme une preuve d'expérience terrain avancée. Créer `PREUVES/OWNERSHIP-LOOP.md` avec horodatages, mesures, décisions et écarts ; un tiers doit pouvoir comprendre le dossier sans explication orale.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « Production ownership loop : posséder le résultat en production » à une décision qui touche plusieurs équipes pendant plusieurs trimestres. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

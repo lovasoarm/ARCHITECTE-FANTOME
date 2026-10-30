@@ -14,7 +14,6 @@ assessment_role: transfer_checkpoint
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

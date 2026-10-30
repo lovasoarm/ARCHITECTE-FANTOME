@@ -22,3 +22,11 @@ Sur une décision réelle, écris :
 ## Test
 
 Après la défense de l'inverse, réécris la décision sans te référer à ton premier texte. Compare les deux versions.
+
+<!-- AF-P0-2026-10-30: missing_example -->
+
+### Exemple travaillé : cas métier
+
+Une décision locale réduit le coût d’une équipe mais crée une dépendance pour quatre autres ; tu dois arbitrer le système global et obtenir l’adoption. Pour « SELF-ADVERSARIAL-REVIEW : construire le meilleur dossier contre soi », construis un exemple où deux équipes ont des objectifs contradictoires. Distingue contrainte, préférence, coût immédiat, coût différé et critère de décision.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

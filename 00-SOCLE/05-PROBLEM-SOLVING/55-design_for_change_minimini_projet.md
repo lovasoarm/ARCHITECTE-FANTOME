@@ -63,7 +63,6 @@ Ton catalogue est extensible pour de vrai, testé par l'expérience. Commit le r
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

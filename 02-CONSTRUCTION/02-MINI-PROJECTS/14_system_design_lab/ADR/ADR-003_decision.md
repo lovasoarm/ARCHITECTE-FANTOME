@@ -37,7 +37,6 @@ Réévalue la décision et note explicitement ce qui change et ce qui ne change 
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

@@ -47,7 +47,6 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -64,3 +63,15 @@ Nouveau contexte
 Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
 
 Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+
+## Barème autonome sur 20 : accessibilité et internationalisation
+
+| Critère                              | Points | Preuve attendue                                                                      |
+| ------------------------------------ | -----: | ------------------------------------------------------------------------------------ |
+| Sémantique et structure              |      4 | HTML sémantique, noms accessibles, hiérarchie et formulaire explicités               |
+| Clavier et focus                     |      4 | Parcours complet sans souris, ordre, focus visible, pièges et échappement documentés |
+| Lecteur d'écran                      |      4 | Résultat attendu des annonces, labels, erreurs et mises à jour dynamiques            |
+| Perception visuelle                  |      4 | Contraste mesuré, zoom/reflow, couleur non unique, mouvement et états                |
+| Internationalisation et vérification |      4 | Locale, dates/fuseaux, chaînes, pseudo-localisation et tests automatisés + manuels   |
+
+**Seuil : 15/20**, aucun blocage clavier ou contrôle sans nom accessible. Une capture Lighthouse seule ne prouve pas l'accessibilité ; joindre le protocole manuel et le résultat de navigation.

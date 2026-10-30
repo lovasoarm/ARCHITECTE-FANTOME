@@ -13,21 +13,23 @@ assessment_role: instructional_checkpoint
 
 # 05 : Async avancé : AbortController, backpressure, mini-scheduler
 
-<!-- AF-DIAGRAM:offline_sync -->
+<!-- AF-DIAGRAM:async-lifecycle -->
 
 ```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
+Opération asynchrone
+       │
+       ├── résultat ───────────────► succès
+       ├── exception/rejet ────────► échec observable
+       └── signal d’annulation ────► arrêt coopératif
+
+Flux de données : producteur ──► tampon borné ──► consommateur
+                              ▲
+                     « drain » : reprendre
+
+Mini-scheduler : traiter un lot ──► céder le contrôle ──► reprendre
 ```
 
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
+Les trois sujets se complètent : borner la durée d’une opération, limiter la mémoire d’un flux et empêcher une longue tâche de monopoliser l’exécution.
 
 Temps de lecture ~5 min
 
@@ -70,18 +72,55 @@ Une Promise évolue d’un état en attente vers un résultat résolu ou rejeté
 Les Promises natives ne sont pas annulables. Solution : wrapper qui écoute un signal.
 
 ```js
-function cancellable(promiseFactory, signal) {
+function raisonAnnulation(signal) {
+  return signal.reason ?? Object.assign(new Error("Opération annulée"), {
+    name: "AbortError",
+  });
+}
+
+function abortable(promiseFactory, signal) {
   return new Promise((resolve, reject) => {
-    if (signal.aborted) return reject(signal.reason);
-    signal.addEventListener("abort", () => reject(signal.reason), {
-      once: true,
-    });
-    promiseFactory().then(resolve, reject);
+    if (signal.aborted) {
+      reject(raisonAnnulation(signal));
+      return;
+    }
+
+    let settled = false;
+    const cleanup = () => signal.removeEventListener("abort", onAbort);
+    const onAbort = () => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      reject(raisonAnnulation(signal));
+    };
+
+    signal.addEventListener("abort", onAbort, { once: true });
+    Promise.resolve()
+      .then(() => {
+        if (settled || signal.aborted) return undefined;
+        return promiseFactory(signal);
+      })
+      .then(
+        (value) => {
+          if (settled) return;
+          settled = true;
+          cleanup();
+          resolve(value);
+        },
+        (error) => {
+          if (settled) return;
+          settled = true;
+          cleanup();
+          reject(error);
+        },
+      );
   });
 }
 ```
 
-**Exercice** : écris `sleep(ms, { signal })` annulable.
+Le wrapper retire son écouteur et ne règle sa Promise extérieure qu'une fois. Il transmet le signal à l'opération : le travail sous-jacent ne s'arrête réellement que si cette opération observe le signal (par exemple `fetch(url, { signal })`). Un wrapper seul ne peut pas arrêter arbitrairement un calcul déjà lancé.
+
+**Exercice** : écris `sleep(ms, { signal })` annulable ; assure-toi que le timer est effacé aussi bien à la résolution qu'à l'annulation.
 
 ## 3. Backpressure (streams)
 

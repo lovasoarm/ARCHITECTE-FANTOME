@@ -19,3 +19,11 @@ Tu as présenté un ADR et obtenu l'adhésion. Un ingénieur junior découvre un
 ## Preuve
 
 Une capture de la meilleure réponse ne suffit pas. Il faut la chronologie avant / correction / reprise.
+
+<!-- AF-P0-2026-10-30: missing_example -->
+
+### Exemple travaillé : cas métier
+
+Une décision locale réduit le coût d’une équipe mais crée une dépendance pour quatre autres ; tu dois arbitrer le système global et obtenir l’adoption. Pour « STATUS-LOSS : abandonner une bonne identité d'expert », construis un exemple où deux équipes ont des objectifs contradictoires. Distingue contrainte, préférence, coût immédiat, coût différé et critère de décision.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

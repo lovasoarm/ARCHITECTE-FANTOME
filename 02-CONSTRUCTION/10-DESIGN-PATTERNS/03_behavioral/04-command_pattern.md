@@ -308,3 +308,13 @@ Command transforme une action en objet autonome : elle sait s'exécuter, et souv
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+## Transfert production : commande différée et idempotence
+
+**Scénario.** Une commande `ShipOrder` peut être mise en file et rejouée après une panne. La commande décrit l'intention ; elle ne garantit pas que son effet sera exécuté une seule fois.
+
+**Exercice.** Donne à chaque commande un identifiant stable, un état (`pending`, `running`, `succeeded`, `failed`) et un handler. Rejoue deux fois la même commande après une interruption simulée.
+
+**Vérification.** L'effet métier n'est appliqué qu'une fois grâce à une clé d'idempotence ou une contrainte persistée ; les erreurs sont réessayées selon une politique explicite ; une commande inconnue est rejetée et journalisée.
+
+**Transfert.** Cette distinction prépare les queues et les workflows distribués : commande ≠ événement, acceptation ≠ exécution réussie.

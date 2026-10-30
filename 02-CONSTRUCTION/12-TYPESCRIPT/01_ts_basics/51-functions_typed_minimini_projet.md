@@ -73,7 +73,6 @@ L'autocomplétion travaille pour toi dans tout le projet. Commit.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

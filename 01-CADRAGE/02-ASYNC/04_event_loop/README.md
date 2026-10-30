@@ -24,20 +24,6 @@ review_interval: 6 mois
 Les microtasks sont traitées avant de passer à la prochaine task.
 
 
-<!-- AF-DIAGRAM:offline_sync -->
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 
 <!-- AF-DIAGRAM:event_loop -->
 ```text

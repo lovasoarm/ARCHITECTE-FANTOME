@@ -61,7 +61,6 @@ Les closures sont la base de la modularité JS avant les modules ES6, et restent
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

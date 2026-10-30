@@ -3,17 +3,108 @@ stability: evolutif
 acte: appliquer
 ---
 
+
 > **SCÈNE CRAZYDEVS : Prison Break :** Scofield ne demande pas à chaque détenu de comprendre toute la plomberie. Il cache la complexité derrière quelques chemins fiables. Une IDP fait la même chose pour les équipes.
 
-# Internal Developer Platform
+# Internal Developer Platform : rendre le chemin sûr accessible en self-service
 
-Une IDP expose des capacités :
+## 1. Définition
 
-- créer un service ;
-- choisir un environnement ;
-- obtenir un pipeline ;
-- voir logs/metrics/traces ;
-- demander une ressource ;
-- appliquer des politiques.
+Une **Internal Developer Platform (IDP, plateforme interne pour les développeurs)** est un ensemble cohérent de services, d'API, de modèles, d'automatisations et de garde-fous qui permet aux équipes produit de réaliser des tâches techniques courantes sans connaître chaque détail de l'infrastructure sous-jacente.
 
-Tu dois identifier ce qui mérite une abstraction et ce qui doit rester libre.
+Une IDP n'est ni un simple portail web, ni un catalogue de liens, ni une équipe qui valide manuellement chaque demande. Le portail peut être une interface ; la plateforme est le système de capacités qui exécute les demandes et applique les règles.
+
+## 2. Pourquoi elle existe
+
+À mesure que plusieurs équipes livrent des services, elles répètent les mêmes tâches : créer un dépôt, configurer CI, provisionner une base, gérer une identité, créer des dashboards, déclarer des alertes et déployer. Chaque équipe qui réinvente ces procédures augmente les coûts de maintenance et les écarts de sécurité.
+
+L'IDP réduit cette répétition tout en gardant des responsabilités claires. Elle ne supprime pas la responsabilité des équipes produit : elle leur fournit un chemin utilisable et des limites explicites.
+
+## 3. Architecture et responsabilités
+
+```text
+[Développeur / équipe produit]
+             |
+             v
+[Portail ou CLI de self-service]
+             |
+             v
+[Catalogue + templates + workflows]
+             |
+       paramètres validés
+             v
+[API de plateforme / orchestrateur]
+       |             |             |
+       v             v             v
+[CI/CD]       [Identité/secrets] [Provisioning]
+       |             |             |
+       +-------------+-------------+
+                     v
+        [Environnements / services]
+                     |
+          métriques, logs, traces
+                     v
+      [Observabilité + gouvernance]
+                     |
+             feedback / évolution
+                     +------> équipe plateforme
+```
+
+- **Équipe produit** : responsable du code métier, des tests, des données et de l'exploitation du service dans les limites convenues.
+- **Équipe plateforme** : responsable des capacités partagées, de leur disponibilité, sécurité, documentation et évolution.
+- **Sécurité/SRE/FinOps** : définit les politiques, accompagne les risques et fournit des contrôles automatisables.
+- **Portail/CLI** : expose les opérations, mais ne doit pas être l'unique manière de comprendre ou de déboguer le système.
+- **Orchestrateur** : valide les entrées, applique les workflows, journalise les opérations et gère les erreurs/reprises.
+
+## 4. Concevoir le self-service
+
+Un workflow de création de service devrait :
+
+1. demander un nom, une équipe propriétaire, une criticité, un environnement et un contact d'astreinte ;
+2. valider le format et les règles de nommage ;
+3. générer un dépôt depuis un template versionné ;
+4. appliquer les permissions minimales ;
+5. créer une pipeline et des contrôles qualité ;
+6. enregistrer les secrets dans leur coffre, sans les afficher ;
+7. provisionner uniquement les ressources autorisées ;
+8. créer dashboards et alertes de départ ;
+9. fournir une documentation opératoire et un identifiant de demande.
+
+Les opérations longues doivent être idempotentes (les relancer ne doit pas créer des ressources en double), observables et reprenables après échec. Une demande doit permettre d'identifier qui a demandé quoi, à quel moment, avec quels paramètres et quel résultat.
+
+## 5. Garde-fous et gouvernance
+
+Un bon self-service ne donne pas un accès administrateur à tous. Il encode des limites : quotas, tailles autorisées, région, chiffrement, politique de réseau, propriétaires, rétention, budget, identité et durée de vie. Les exceptions doivent être possibles mais explicites, motivées, expirables et auditées.
+
+Distinguer **standardisation** et **uniformité forcée** : imposer un socle sécurisé est pertinent ; interdire toute différence sans raison peut empêcher un cas légitime. Fournir une voie d'exception documentée avec propriétaire et date de réexamen.
+
+## 6. Exemple fil rouge
+
+L'équipe `Checkout` veut créer `orders-api`. Depuis le portail, elle sélectionne un template backend, choisit un niveau de criticité, une base managée et une région autorisée. Le workflow crée dépôt, pipeline, identité de runtime, coffre de secrets, environnement de test et dashboard. La plateforme refuse une taille de base non autorisée, explique la politique concernée et propose l'option approuvée la plus proche.
+
+À l'échec du provisioning, la demande passe à `FAILED_WITH_COMPENSATION` : les ressources créées sont listées, les actions sûres sont compensées, et l'utilisateur reçoit l'étape qui nécessite une intervention. Le système ne relance pas aveuglément toutes les créations.
+
+## 7. Pièges
+
+- Construire un portail avant d'avoir compris les tâches répétitives des équipes.
+- Mesurer le nombre de clics du portail plutôt que le temps et les erreurs évités.
+- Créer un catalogue de templates obsolètes sans propriétaire.
+- Confondre self-service et accès illimité.
+- Cacher les détails techniques : le développeur doit pouvoir voir les logs et comprendre l'état.
+- Créer une dépendance à une personne centrale pour les opérations de routine.
+
+## 8. Exercice et vérification
+
+Dessiner l'architecture d'un workflow « créer un service HTTP ». Définir acteurs, entrées, validations, API, ressources créées, permissions, journaux, reprises et compensations. Simuler un échec après création du dépôt mais avant provisionnement de la base.
+
+**Critères :** aucune ressource dupliquée au retry ; permissions minimales ; état de demande observable ; propriétaire identifié ; coût et quotas contrôlés ; procédure de compensation ; documentation de sortie exploitable.
+
+## 9. Lien et preuve de maîtrise
+
+Prérequis : GitOps, CI/CD, sécurité des identités, cloud et observabilité. Suite : Golden Paths, Platform as a Product et SLO.
+
+**Preuve attendue :** une architecture de plateforme avec frontières de responsabilité, workflow self-service, garde-fous, stratégie d'échec/reprise et métriques qui démontrent un gain réel pour les équipes.
+
+## Question de conception conservée
+
+Identifie ce qui mérite une abstraction commune (workflow réellement répété, politique de sécurité, observabilité) et ce qui doit rester libre au niveau de l'équipe (logique métier, choix de domaine). Toute abstraction doit avoir un utilisateur, un propriétaire, un coût de maintenance et une voie de sortie.

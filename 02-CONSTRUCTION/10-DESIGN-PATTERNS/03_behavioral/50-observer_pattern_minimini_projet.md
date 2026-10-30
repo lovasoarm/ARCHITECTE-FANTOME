@@ -60,3 +60,7 @@ L'effet de défilement Netflix est en place, performant et accessible. Montre-le
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+## Transfert après l'exercice
+
+Porte l'événement local vers une file durable dans un second exercice. Liste les garanties qui disparaissent lorsque l'émetteur et l'abonné vivent dans deux processus : persistance, acknowledgement, retry, ordre et déduplication. Garde l'Observer local uniquement pour notifier des composants dans le même processus.

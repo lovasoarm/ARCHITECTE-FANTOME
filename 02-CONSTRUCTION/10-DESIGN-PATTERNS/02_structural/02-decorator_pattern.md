@@ -358,3 +358,13 @@ Le signe que tu as besoin d'un Decorator : tu modifies une fonction pour la dixi
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+## Transfert production : décorateur et politiques transverses
+
+**Scénario.** Un client HTTP doit ajouter métriques et retry borné sans modifier chaque cas d'usage. Le décorateur enveloppe le client et respecte exactement son interface.
+
+**Exercice.** Ajoute un décorateur de métriques puis un décorateur de retry (nombre maximal d'essais, délai borné, erreurs non réessayables). Compare leur composition dans les deux ordres.
+
+**Vérification.** Contrat identique avant/après, même erreur métier propagée, pas de retry sur une opération non idempotente sans clé, métrique sans donnée sensible, nombre d'appels conforme aux tests.
+
+**Transfert.** Logging, métriques, cache et contrôle d'accès peuvent être décorés ; une politique de sécurité ne doit jamais être contournable par une composition mal ordonnée.

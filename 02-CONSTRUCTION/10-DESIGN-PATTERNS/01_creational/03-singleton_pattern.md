@@ -398,3 +398,13 @@ Dès que le Singleton est utilisé dans du code métier testable : c'est probabl
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+## Transfert production : singleton, processus et tests
+
+Un singleton garantit au mieux une instance dans un périmètre d'exécution donné. Il ne garantit pas une instance unique entre plusieurs processus, conteneurs ou régions. Il peut aussi cacher un état global et rendre les tests dépendants de l'ordre d'exécution.
+
+**Exercice.** Compare un client de configuration global et un client injecté dans deux cas d'usage. Lance deux tests concurrents avec configurations différentes et observe si l'état fuit d'un test à l'autre.
+
+**Vérification.** Les tests doivent pouvoir créer deux contextes indépendants sans reset global fragile. Documente la portée réelle (module/processus/runtime) et l'impact du hot reload ou des workers.
+
+**Transfert.** En production, préfère souvent un cycle de vie explicite (singleton scoped au processus, pool, ou injection) plutôt qu'un `getInstance()` global. Un pool de connexions est un singleton de ressources à portée limitée, pas une instance universelle distribuée.

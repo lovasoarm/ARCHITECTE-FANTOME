@@ -5,6 +5,8 @@ acte: restituer
 
 # 03-PILOTAGE : Niveau 3 : Senior
 
+> Pour l'intégration entre modules, ne traite pas sécurité, observabilité, SLO, cloud et plateforme comme des checklists indépendantes. Termine les leçons correspondantes puis applique [59 : Atelier DevOps/SRE](../06-ANNEXES-TRANSVERSES/59-LAB-DEVOPS-LIFECYCLE.md) au même fil rouge : release, signal, incident, récupération et correction.
+
 Porte d'entrée du palier. Douze modules. Tu tiens un système en production et tu le chiffres.
 Livrables : `06A-BUDGET-CLOUD.md`, `SLO.md`, revue de sécurité, `STANDARDS-AGENTS.md`,
 `DECISION-ARBITRAGE.md`.

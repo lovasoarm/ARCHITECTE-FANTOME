@@ -8,8 +8,11 @@ revue: trimestrielle
 companion: ce parcours
 stability: perissable
 acte: comprendre
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0090
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-04-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
@@ -38,7 +41,6 @@ Un retry sain combine décision de retry, délai de backoff et limite d’essais
 <!-- AF-DIAGRAM:tracing -->
 
 ```text
-text
 Request ─► Span A ─────► Span B ─────► Span C
              │             │              │
           service A     service B      service C
@@ -512,7 +514,6 @@ Ce que ce parcours t'a appris (XSS, CSRF, injection, pollution de prototype, OWA
 <!-- AF-DIAGRAM:secrets -->
 
 ```text
-text
 ┌──────────────┐
 │ Secret store │
 └──────┬───────┘
@@ -628,7 +629,7 @@ Hôte Docker
 
 **Tag : CONTEXTUELLE** · Coût : ~2 h avant utilité · Durée de vie : ~5 ans · À apprendre après : 7.2 Cloud et 7.4 Résilience
 
-Tu ne vas pas devenir data engineer avec ce document, mais si un jour on te dit "on a besoin d'un pipeline pour ingérer 10 millions de lignes par jour", tu dois savoir que ce n'est pas un problème PostgreSQL de plus, et vers quoi chercher. Ce qui suit sert à reconnaître le terrain, pas à l'occuper.
+Cette section TECH-ILA sert à reconnaître le domaine et à éviter de confondre une requête lourde avec un pipeline de données. Pour apprendre à réellement construire, tester et exploiter un pipeline, le parcours complet exige maintenant le [70 : Data Engineering Core](../../70-DATA-ENGINEERING-CORE/README.md) : ingestion batch, qualité, SQL analytique, Kafka, Spark, orchestration, reprise et lineage. La reconnaissance du terrain ne remplace pas cette pratique.
 
 **Le seuil, concrètement.** Un backend classique traite des requêtes : petites, nombreuses, immédiates, sur les données du moment. Un pipeline de données traite des lots : énormes, périodiques, sur l'historique complet. Le basculement se sent avant de se mesurer :
 
@@ -657,9 +658,9 @@ Tant que tu es à gauche, la réponse est un index, une requête réécrite, un 
 - Un pipeline qui échoue en silence est pire qu'un pipeline qui tombe : le rapport du lundi sort avec des données de la semaine dernière et personne ne le voit. Les réflexes de [7.3](#73-observabilité) s'appliquent tels quels, appliqués à la fraîcheur des données.
 - La facture. Un calcul distribué mal cadré consomme des heures-machine sans plafond naturel : c'est le sujet de `05-MAITRISE/06-ANNEXES/04-finops_greenops.md`, en plus brutal.
 
-**Ce que tu n'as pas besoin de savoir à ce stade** : écrire un job Spark optimisé, dimensionner un cluster, choisir un format de fichier colonnaire, modéliser un entrepôt. Ça, c'est un métier, avec ses propres années d'apprentissage.
+**Ce que tu n'as pas besoin de savoir dans cette section d'orientation** : écrire un job Spark optimisé ou dimensionner un cluster. Ces compétences sont approfondies dans le [module 70 obligatoire](../../70-DATA-ENGINEERING-CORE/README.md), avec des limites explicites sur ce qui reste à valider en environnement distribué réel.
 
-**Ce que tu dois pouvoir faire** : dire en réunion "ça, ce n'est plus une requête, c'est un pipeline", nommer les trois briques, et poser les deux questions qui cadrent le sujet : quelle fraîcheur des données est réellement exigée, et que se passe-t-il quand une exécution échoue à 3 h du matin.
+**Ce que tu dois pouvoir faire après cette section** : reconnaître quand un pipeline devient nécessaire et poser les questions de fraîcheur, d'échec et de reprise. Puis tu dois réaliser le laboratoire du [module 70](../../70-DATA-ENGINEERING-CORE/README.md) pour passer de la reconnaissance à la construction.
 
 > **Exercice : reconnaître le seuil**
 > **Temps réaliste** : 1 h · **Prérequis matériel / compte** : aucun · **Coût max** : 0 € ·

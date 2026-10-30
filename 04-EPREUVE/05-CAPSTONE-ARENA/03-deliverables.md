@@ -10,7 +10,6 @@ acte: comprendre
 <!-- AF-DIAGRAM:capstone -->
 
 ```text
-text
 Architecture ─┐
 Security ─────┤
 Cost ─────────┤
@@ -128,7 +127,6 @@ franchi, au même titre qu'une revue de risques non signée ne compte pas comme 
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

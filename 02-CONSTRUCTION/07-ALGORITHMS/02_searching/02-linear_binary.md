@@ -282,3 +282,11 @@ Linear search : O(n), fonctionne sur n'importe quoi, simple. Binary search : O(l
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Démontre la précondition de tri avant recherche binaire. Compare au résultat d’une recherche linéaire sur des entrées vides, répétées et non trouvées.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

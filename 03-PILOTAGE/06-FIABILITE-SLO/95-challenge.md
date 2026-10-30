@@ -17,7 +17,6 @@ assessment_role: diagnostic_mastery
 <!-- AF-DIAGRAM:slo -->
 
 ```text
-text
 SLO
  │
  ├──► SLI mesuré ───► conformité

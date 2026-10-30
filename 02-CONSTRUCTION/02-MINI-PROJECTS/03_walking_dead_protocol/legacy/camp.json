@@ -1,0 +1,22 @@
+{
+  "camp": "Alexandria",
+  "day": 47,
+  "inventory": {
+    "food": 14,
+    "ammunition": 847,
+    "medicine": 3
+  },
+  "guards": [
+    "le sniper",
+    "Michonne",
+    "Glenn",
+    "Carl"
+  ],
+  "guardIndex": 0,
+  "threats": [
+    {
+      "perimeter": "south",
+      "level": 3
+    }
+  ]
+}

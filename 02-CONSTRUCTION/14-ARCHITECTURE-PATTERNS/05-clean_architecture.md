@@ -14,27 +14,39 @@ assessment_role: instructional_checkpoint
 
 # Clean architecture : le domaine au centre
 
-<!-- AF-DIAGRAM:promise -->
+<!-- AF-DIAGRAM:clean-architecture -->
 
 ```text
-        ┌──────────┐
-        │ pending  │
-        └────┬─────┘
-             │ résultat
-       ┌─────┴─────┐
-       ▼           ▼
-┌────────────┐ ┌────────────┐
-│ fulfilled  │ │ rejected   │
-└─────┬──────┘ └─────┬──────┘
-      │              │
-      └──────┬───────┘
-             ▼
-       ┌───────────┐
-       │ handlers  │
-       └───────────┘
+        DÉPENDANCES DU CODE : VERS L’INTÉRIEUR
+
+┌────────────────────────────────────────────┐
+│ Frameworks & drivers                       │
+│ HTTP, SQL, framework web, services externes│
+└─────────────────────┬──────────────────────┘
+                      │ implémentent/adaptent
+                      ▼
+┌────────────────────────────────────────────┐
+│ Adapters / interfaces                      │
+│ Controllers, repositories, presenters      │
+└─────────────────────┬──────────────────────┘
+                      │ dépendent des contrats
+                      ▼
+┌────────────────────────────────────────────┐
+│ Application / use cases                    │
+│ Orchestration et ports nécessaires         │
+└─────────────────────┬──────────────────────┘
+                      │ applique les règles
+                      ▼
+┌────────────────────────────────────────────┐
+│ Domaine / entités                          │
+│ Règles métier indépendantes des outils     │
+└────────────────────────────────────────────┘
+
+Règle de source : les dépendances de code pointent vers l’intérieur.
+Les appels d’exécution peuvent sortir via un port défini à l’intérieur.
 ```
 
-Une Promise évolue d’un état en attente vers un résultat résolu ou rejeté, puis déclenche ses handlers.
+Les couches externes dépendent des contrats internes, pas l’inverse. À l’exécution, un cas d’usage peut appeler un port de dépôt fourni par injection ; l’implémentation concrète vit à la périphérie sans imposer sa technologie au domaine.
 
 Temps de lecture ~11 min
 
@@ -42,10 +54,10 @@ L'Armure de Garo ne dépend pas de la marque des bottes que León porte. Elle fo
 
 La question que ce pattern répond : comment écrire du code qui survit au changement d'outil ?
 
-Prérequis : `04-mvc_pattern.md`, `../10-DESIGN-PATTERNS/02_structural/03-adapter_pattern.md`, `../11-REFACTORING/02_solid_principles.md`.
+Prérequis : `04-mvc_pattern.md`, `../10-DESIGN-PATTERNS/02_structural/03-adapter_pattern.md`, `03-solid_principles.md`.
 
 > Ce module s'appuie sur le principe de Responsabilité Unique (SRP) et de découplage (couplage : degré de dépendance entre deux modules).
-> La source de vérité pour SRP et couplage est `../11-REFACTORING/02_solid_principles.md`.
+> La source de vérité pour SRP et couplage est `03-solid_principles.md`.
 > Ici on les applique à l'échelle d'un système entier. On ne les réexplique pas.
 
 > Ce fichier construit directement sur `02-CONSTRUCTION/13-RUNTIME-ENV`.
@@ -54,22 +66,14 @@ Prérequis : `04-mvc_pattern.md`, `../10-DESIGN-PATTERNS/02_structural/03-adapte
 
 ---
 
-```text
-+----------------------------------------------+
-|     Interface / Controllers       | <- adapte le monde externe au domaine
-| +----------------------------------------+ |
-| |    Use Cases / Application    | | <- orchestre les règles métier
-| | +----------------------------------+ | |
-| | |  Domain / Entities (coeur) | | | <- zéro dépendances externes
-| | +----------------------------------+ | |
-| +----------------------------------------+ |
-|     Infrastructure / DB / API     | <- détails techniques, outils
-+----------------------------------------------+
+| Couche | Responsabilité | Direction des dépendances |
+|---|---|---|
+| Domaine / entités | Règles métier stables | Ne dépend ni des use cases ni de l’infrastructure |
+| Application / use cases | Orchestration des scénarios, définition des ports nécessaires | Dépend du domaine et des contrats internes |
+| Adapters / interfaces | Traduit HTTP, formats externes et résultats vers les ports | Dépend des contrats internes ; peut utiliser des bibliothèques de bord |
+| Frameworks & drivers | Base de données, serveur HTTP, SDK et outils techniques | Implémentations concrètes situées à la périphérie |
 
-Règle unique : les flèches de dépendance pointent toujours vers le centre.
-Domain ne connaît pas Infrastructure. Jamais.
-Si tu changes de DB, le Domain ne bouge pas d'un pixel.
-```
+**Règle de source :** la direction des dépendances pointe vers l’intérieur. Un adapter concret peut utiliser un framework ou un driver ; les use cases et le domaine ne doivent pas dépendre de ces détails. À l’exécution, un use case appelle le port interne, dont l’implémentation externe lui a été injectée.
 
 ## 1) LE PROBLÈME : LE CODE QUI DÉPEND DE SES OUTILS
 
@@ -117,9 +121,9 @@ Le domaine ne connaît pas les adapters. Les adapters ne connaissent pas les fra
 
 **Use Cases (cas d'usage)** : les actions que l'application peut faire. Ils orchestrent les entities. Ils définissent des interfaces (contrats) pour ce dont ils ont besoin.
 
-**Adapters** : convertissent les données du monde extérieur vers le format que le domaine attend : et vice-versa.
+**Adapters** : convertissent les données du monde extérieur vers les ports et formats internes, puis adaptent les résultats vers l’extérieur. Ils forment la frontière où les dépendances aux protocoles et bibliothèques externes sont isolées.
 
-**Frameworks & Drivers** : Express, MongoDB, React. Ils sont aux bords. Remplaçables.
+**Frameworks & Drivers** : Express, MongoDB, React. Ils sont aux bords. Remplaçables. Les adapters peuvent connaître ces outils ; les règles du domaine et les use cases ne les importent pas directement.
 
 Le schéma précédent montre la structure statique (qui peut dépendre de qui). Mais une vraie requête HTTP, elle, traverse ces couches dans un ordre précis, à l'exécution :
 

@@ -105,3 +105,28 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## État des tests et point de départ (référence AF)
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Tests de référence verts dès le départ :** aucun n'est fourni sans l'implémentation.
+- **Tests volontairement rouges :** `tests/pmap.test.js` importe `src/pmap.js` et `tests/loop.test.js` importe `src/loop.js`. Ces modules sont absents de l'archive ; les tests doivent échouer sur l'import au départ, puis devenir verts après création.
+- **Tests à créer :** cas limites de concurrence, ordre, rejet/erreur, annulation, famine éventuelle, file micro/macro, et comportement sous charge selon le cahier des charges.
+- **Validation finale :** `node --test tests/*.test.js` depuis le dossier du projet, après création des modules. Noter la version Node. À réception, la suite n'est pas encore verte.
+
+**Ordre de code :** définir contrat et invariants de `pMap`/`Loop`, écrire les tests, créer `src/pmap.js` et `src/loop.js`, puis documenter les limites d'annulation et d'ordonnancement.
+
+### Détails d’implémentation et de validation à la réception
+
+- **Code métier fourni :** aucun. `src/README.md` décrit l'emplacement, mais `src/pmap.js` et `src/loop.js` n'existent pas.
+- **Tests de référence verts :** aucun.
+- **Tests volontairement rouges :** `tests/pmap.test.js` importe `../src/pmap.js` et `tests/loop.test.js` importe `../src/loop.js`. Le premier échec attendu est un import manquant (`ERR_MODULE_NOT_FOUND`), tant que le livrable n'est pas écrit.
+- **Prérequis réel :** Node.js du rail AF 22.x. Les tests utilisent `node:test` et des imports ES modules. Dans le dépôt apprenant, crée un `package.json` avec `"type": "module"` pour rendre le mode explicite, ou documente une configuration équivalente validée.
+- **Commande après création du manifeste :** `node --test tests/*.test.js`. À la réception, ne présente pas cette commande comme une suite verte.
+- **Tests supplémentaires à créer :** concurrence 0/1/>N, erreur d'un worker, abort avant lancement et en cours, garantie de nettoyage, ordre des résultats, starvation et boucle infinie de microtasks.
+- **Preuve finale :** invariants écrits, traces d'ordonnancement reproductibles, mesure de concurrence maximale, et comportement d'annulation explicitement limité (un AbortSignal ne tue pas une tâche qui ignore le signal).

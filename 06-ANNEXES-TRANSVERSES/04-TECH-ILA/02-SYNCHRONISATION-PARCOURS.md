@@ -11,7 +11,6 @@ companion: ce parcours
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼
@@ -26,22 +25,6 @@ Nouveau contexte
 ```
 
 Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
-
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
 
 TECH-ILA n'est **pas** un examen final à faire après avoir fini JavaScript, TypeScript et Staff.
 Il accompagne le fil principal au moment où un mécanisme devient utile dans un écosystème réel.

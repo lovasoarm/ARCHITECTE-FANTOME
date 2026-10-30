@@ -27,22 +27,6 @@ acte: restituer
 
 Les microtasks sont traitées avant de passer à la prochaine task.
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 Temps de lecture ~7 min
 
 > Rappel : ce grimoire simplifie via analogies. Lire d'abord [`../../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md`](../../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).

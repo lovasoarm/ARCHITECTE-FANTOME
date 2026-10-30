@@ -9,7 +9,6 @@ review_interval: 6 mois
 
 <!-- AF-DIAGRAM:transfer -->
 ```text
-text
 Principe appris
       │
       ▼

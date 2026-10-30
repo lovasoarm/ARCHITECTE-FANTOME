@@ -34,7 +34,7 @@ noyau: oui
 | 13  | `13_memory_hunter`                   | DEPTH                  |          : | heap + leaks                  |
 | 14  | `14_system_design_lab`               | CORE                   |        9 h | design distribué + chaos      |
 | 15  | `15_porte_rasengan_engine_multilang` | TRANSFER               |        6 h | portage de mécanisme          |
-| 16  | `16_distributed_arena`               | CORE                   |        7 h | partitions + idempotence      |
+| 16  | `16_distributed_arena`               | CORE                   |        7 h | idempotence + reprise ; partition en DEPTH |
 | 17  | `17_polyglot_forge`                  | TRANSFER               |        4 h | invariants cross-language     |
 | 18  | `18_human_vs_ai_smell`               | DEPTH + review aveugle |        4 h | qualité provenance-blind      |
 | 19  | `19_supervise_the_ai`                | CORE                   |        5 h | délégation + gouvernance IA   |

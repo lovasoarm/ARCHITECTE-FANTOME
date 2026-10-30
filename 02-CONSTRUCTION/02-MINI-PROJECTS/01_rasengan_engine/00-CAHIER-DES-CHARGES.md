@@ -10,25 +10,88 @@ route_family: core
 
 Temps de lecture ~14 min
 
-## PRÉREQUIS
+## ENVIRONNEMENT ET ÉTAT INITIAL DU PROJET
+
+### Environnement requis
 
 ```text
-Node.js    : v22.23.3
-npm      : v10+ (inclus avec Node.js)
-Variables env : aucune
-Outils externes: aucun
-
-# Installation
-$ npm install
-
-# Lancer le moteur
-$ node src/index.js
-
-# Lancer les tests
-$ npm test
+Node.js : v22.23.4 (version de référence du dépôt, voir .nvmrc)
+npm     : version fournie avec Node.js ; noter la sortie de npm --version
+Dépendances externes : aucune pour le moteur de base
 ```
 
-Pas de build step, pas de transpilation. Du JS pur, Node en direct.
+Vérifie l'environnement avant de commencer :
+
+```bash
+node --version
+npm --version
+```
+
+Si `node --version` ne renvoie pas `v22.23.4`, installe la version indiquée par `.nvmrc` avec ton gestionnaire Node, puis ouvre un nouveau terminal et vérifie à nouveau. Ne suppose pas qu'une version majeure ou mineure différente est validée par ce projet.
+
+### État initial réel
+
+Tu pars d'une page blanche : `src/` et `tests/` ne contiennent pas d'implémentation de référence. Les `README.md` de ces répertoires expliquent le rôle des dossiers ; ils ne sont ni des fichiers JavaScript ni des tests. Par conséquent, les commandes `node src/index.js` et `npm test` ne sont pas des commandes de validation disponibles avant la création de leurs fichiers.
+
+### Étape A : Bootstrap minimal
+
+À la racine de `01_rasengan_engine/`, initialise le projet et crée les dossiers. Ces commandes ne fabriquent aucun code métier :
+
+```bash
+npm init -y
+npm pkg set type=module
+npm pkg set "scripts.test=node --test"
+mkdir -p src/utils src/fighters src/jutsus src/engine tests ADR
+```
+
+Vérifie ensuite le manifeste et la structure :
+
+```bash
+npm pkg get type scripts
+find src tests ADR -maxdepth 2 -type d -print
+```
+
+Sur Windows PowerShell, la création des dossiers peut se faire ainsi (les commandes npm restent identiques) :
+
+```powershell
+New-Item -ItemType Directory -Force -Path src/utils,src/fighters,src/jutsus,src/engine,tests,ADR | Out-Null
+```
+
+Il n'y a pas de `npm install` nécessaire tant qu'aucune dépendance externe n'est déclarée. Lorsque tu ajoutes volontairement une dépendance, justifie-la dans un ADR, puis exécute `npm install` pour enregistrer le lockfile et les dépendances. Le projet impose de privilégier le JavaScript natif.
+
+### Étape B : TDD et création du code
+
+Crée d'abord un premier test, par exemple `tests/rng.test.js`, puis exécute :
+
+```bash
+npm test
+```
+
+Un échec parce qu'un module attendu n'existe pas encore est le **rouge TDD attendu**. Il doit être explicable et lié au comportement que tu vas implémenter. Après avoir créé `src/utils/rng.js`, le test ciblé doit passer. Répète le cycle rouge → vert → refactor pour chaque capacité.
+
+Crée les fichiers métier au fur et à mesure des tests. Le cahier des charges fait notamment référence à `src/utils/rng.js`, `src/utils/cooldownCycle.js`, `src/fighters/fighterFactory.js`, `src/engine/turnResolver.js` et `src/engine/combat.js`. Cette liste décrit des responsabilités attendues, pas une arborescence déjà livrée. Les modules complémentaires (`damageCalc`, jutsus, logger) peuvent être découpés par toi et justifiés dans un ADR.
+
+### Étape C : Exécuter le moteur après création du code
+
+La commande suivante devient disponible seulement après la création de l'entrée `src/index.js` et de tous ses imports :
+
+```bash
+node src/index.js
+```
+
+La commande de tests devient une validation significative lorsque les fichiers de test ont été créés :
+
+```bash
+npm test
+```
+
+Pour le gate final, relance `npm test` trois fois depuis un état propre. Le nombre et le nom des tests réellement exécutés doivent être conservés dans le journal ; ne recopie pas les nombres d'exemple ci-dessous comme s'ils avaient été mesurés dans ton dépôt.
+
+### État final attendu
+
+À la fin, le dépôt contient au minimum une entrée exécutable, les modules nécessaires, des tests déterministes et un manifeste avec script `test`. Le combat de démonstration s'exécute et les tests écrits par toi valident les règles métier et les cas limites. Les fichiers présents doivent correspondre aux imports réels : pas de commande qui référence un fichier absent, pas de test ignoré pour masquer un défaut.
+
+Pas de build step ni de transpilation : JavaScript natif et Node.js.
 
 ---
 
@@ -172,7 +235,7 @@ Les transitions sont plus faciles à tester et à journaliser, au prix de quelqu
 
 ## QUAND EST-CE QUE LE PROJET EST VRAIMENT FINI
 
-```json
+```text
 [ ] un combat complet s'affiche dans la console avec le format exact montré en intro
 [ ] les 4 fichiers de tests passent avec au moins 50 tests au total
 [ ] aucune mutation directe d'état nulle part dans src/

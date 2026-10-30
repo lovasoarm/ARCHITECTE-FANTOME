@@ -14,21 +14,19 @@ Temps de lecture ~3 min
 
 Lis ce dossier dans cet ordre : `README.md` → `00A-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADRs réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables.
 
-
 > **Route CORE 16 semaines :** ce projet conserve son contenu complet. Pour le sprint intensif, consulte [la carte CORE](../../../06-ANNEXES-TRANSVERSES/25-CORE-MINI-PROJECT-MAP.md) pour le slice recommandé. Le passage CORE ajoute une perturbation, un transfert et un rappel à froid ; voir [Engine d’ambiguïté](../../../06-ANNEXES-TRANSVERSES/20-ENGINE-AMBIGUITE.md).
 
-
--> ~8h (réparties sur 3 sessions)
+-> Projet complet : budget à calibrer ; 8 h est une estimation de départ, pas un engagement garanti. Slice CORE : 7 h selon la carte CORE ; le reste est DEPTH.
 
 Tu ne montes pas Kubernetes. Tu ne loues pas un cloud. Tu écris un système à N
-processus Node qui parlent entre eux, en local, et tu prouves qu'il survit à :
+processus Node qui parlent entre eux, en local, et tu mesures son comportement face à :
 
 - une race condition déterministe,
 - un timeout réseau,
-- une panne partielle (kill -9 sur un noeud),
-- un retry non idempotent qui corrompt les données SI tu ne le sécurises pas.
+- une panne partielle (arrêt d'un worker),
+- un retry non idempotent qui peut corrompre les données si tu ne le sécurises pas.
 
-C'est le mini-projet manquant qui distingue un dev mid d'un dev senior en 2026.
+Ce projet produit des preuves plus substantielles qu'une simple démonstration de déploiement : tests, mesure, reprise et décisions documentées. Il ne garantit pas à lui seul un niveau Senior ni un résultat de recrutement.
 
 Prérequis : `01-CADRAGE/02-ASYNC` complet, `05-MAITRISE/02-SCALABILITY`, `03-PILOTAGE/05-OBSERVABILITY`.
 
@@ -56,9 +54,13 @@ $ node verify.js
 $ node chaos.js --scenario network-drop # drop 30% des messages
 $ node verify.js
   expected = 500 observed = 500    [OK, at-least-once + dédup]
-$ node chaos.js --scenario network-partition --duration 5s # coupe 2 workers du coordinateur pendant 5s (split-brain)
+$ node chaos.js --scenario network-partition --duration 5s # isole des workers du coordinateur unique pendant 5s
 $ node verify.js
-  expected = 500 observed = 500    [OK, quorum refuse le split OU réconcilie après reconnect]
+  expected = 500 observed = 500    [OK si les opérations sont reprises sans double comptage ; sinon écart mesuré]
+
+# Extension DEPTH distincte, uniquement si plusieurs coordinateurs sont implémentés :
+$ node chaos.js --scenario coordinator-partition --duration 5s # isole des réplicas qui peuvent écrire
+$ node verify.js
 ```
 
 ---
@@ -67,10 +69,10 @@ $ node verify.js
 
 1. `coordinator.js` : reçoit les increments, applique idempotence (clé unique par op).
 2. `worker.js` : envoie des increments avec retry backoff.
-3. `chaos.js` : injecte 4 scénarios (`race`, `kill-mid`, `network-drop`, `network-partition`). Sur `network-partition`, tu DOIS documenter dans l'ADR comment ton système réagit : refus d'écrire côté minoritaire (quorum type Raft) ou acceptation + réconciliation au reconnect (last-write-wins, CRDT, vector clock). Pas de bonne réponse, juste une décision assumée et défendable.
+3. `chaos.js` : injecte les 4 scénarios (`race`, `kill-mid`, `network-drop`, `network-partition`). Pour `network-partition`, documente le comportement des workers isolés, les timeouts, le buffering/retry et la reprise, puis prouve l'absence de double comptage. Ne nomme pas cela « split-brain » tant qu'il n'existe pas plusieurs coordinateurs susceptibles d'accepter des écritures concurrentes. En extension DEPTH multi-coordinateur, compare une stratégie de quorum/consensus à une stratégie de disponibilité avec résolution de conflits : last-write-wins est une politique de conflit avec risque de perte d'écriture, un CRDT doit respecter des propriétés de convergence propres à son type, et un vector clock aide à détecter la concurrence mais ne définit pas à lui seul sa résolution.
 4. `verify.js` : compare total observé vs attendu, sort code 0 ou 1.
 5. `ADR-001_decision.md` : décision à produire par l’apprenant
-  compteur monotone par worker. Trade-offs.
+   compteur monotone par worker. Trade-offs.
 
 Bonus (mais fortement recommandé) : 6. `08-POSTMORTEM.md` d'un bug que tu n'as PAS anticipé au design et qui est apparu au chaos.
 
@@ -79,7 +81,8 @@ Bonus (mais fortement recommandé) : 6. `08-POSTMORTEM.md` d'un bug que tu n'as 
 ## GRILLE DE RÉUSSITE
 
 - [ ] `verify.js` renvoie 0 sur les 4 scénarios chaos, 10 runs consécutifs.
-- [ ] `network-partition` : ton système soit refuse d'écrire côté minoritaire, soit accepte + réconcilie honnêtement. Choix documenté dans l'ADR avec trade-offs (CAP : tu choisis C ou A, tu ne bluffes pas les deux).
+- [ ] `network-partition` (coordinateur unique) : les opérations isolées échouent ou attendent selon un timeout documenté, puis reprennent sans double comptage ou le manque est signalé honnêtement.
+- [ ] Extension multi-coordinateur seulement : le modèle documente les garanties de cohérence et de disponibilité pendant la partition. CAP ne signifie pas que le système choisit globalement « C ou A » en toutes circonstances ; sous partition, un système ne peut pas garantir simultanément la cohérence forte et la disponibilité pour les opérations concernées de chaque côté.
 - [ ] `race` reproduit un data race avant fix (branche `broken`), corrigé après.
 - [ ] `kill-mid` : au moins 1 worker relance sa dernière op sans double-comptage.
 - [ ] `network-drop` : at-least-once avec dédup côté coordinateur (par clé UUID).
@@ -91,12 +94,12 @@ Bonus (mais fortement recommandé) : 6. `08-POSTMORTEM.md` d'un bug que tu n'as 
 ## PIÈGES CONNUS (ne pas les éviter, les traverser)
 
 - **Le retry naïf casse tout.** Un `retry` sans clé d'idempotence double le compteur
- au premier drop réseau. Tu vas le voir. C'est la leçon.
+  au premier drop réseau. Tu vas le voir. C'est la leçon.
 - **`Date.now()` comme clé** : deux workers peuvent collisionner à la même ms. Utilise
- `crypto.randomUUID()`.
+  `crypto.randomUUID()`.
 - **Coordinator unique = SPOF.** À la fin du projet, écris 3 lignes dans l'ADR sur
- comment tu ferais un vrai consensus (Raft, Paxos) : tu ne l'implémentes pas, tu
- démontres que tu sais que c'est là.
+  comment tu ferais un vrai consensus (Raft, Paxos) : tu ne l'implémentes pas, tu
+  démontres que tu sais que c'est là.
 
 ---
 
@@ -112,6 +115,16 @@ un ordre de magnitude plus crédible en entretien.
 ## REPRODUCTIBILITÉ
 
 Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur dépôt apprenant. Si le projet utilise des dépendances npm, ton dépôt apprenant doit versionner `package.json` et `package-lock.json`, puis utiliser `npm ci` en CI pour installer exactement cet arbre. Si le projet est sans dépendances, consigne simplement la version de runtime et la commande de test réellement utilisée. La preuve de reproductibilité est la commande et la version relevées dans ton propre dépôt, pas une valeur inventée dans le curriculum.
+
+## Séquence de preuve et limites du résultat
+
+1. **Modéliser** : écris la machine à états, la clé d'idempotence, la propriété de sécurité/correction et le périmètre exact de la garantie.
+2. **Prédire** les effets d'une course, d'un retry, d'une perte de réponse et d'un arrêt de worker.
+3. **Reproduire avant fix** au moins un double-comptage ou une mise à jour perdue.
+4. **Corriger** puis lancer plusieurs répétitions contrôlées ; consigne les opérations envoyées, acceptées, rejetées comme doublons et en attente.
+5. **Transférer** : ajoute une seconde contrainte et explique si la solution dépend toujours du coordinateur unique. Ne nomme pas « split-brain » une partition de workers sans plusieurs nœuds pouvant accepter des écritures concurrentes.
+
+**Gate :** la conclusion sépare garantie, comportement observé et hypothèse non testée. Les résultats d'un modèle local ne certifient pas un système distribué en production. Complète avec [65 : Données/API/transactions](../../../06-ANNEXES-TRANSVERSES/65-LAB-DONNEES-API-ET-TRANSACTIONS.md), [61 : Exercices systèmes](../../../06-ANNEXES-TRANSVERSES/61-PACK-EXERCICES-SYSTEMES-ET-ARBITRAGES.md) et [67 : Gate de maîtrise](../../../06-ANNEXES-TRANSVERSES/67-GATE-MAITRISE-ET-CAPSTONE.md).
 
 ## Contenu du dossier
 
@@ -131,3 +144,29 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## État des tests et point de départ (référence AF)
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
+- **Tests verts de référence :** aucun.
+- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
+- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
+- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
+
+**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.
+
+### Détails d’implémentation et de validation à la réception
+
+- **Code fourni :** aucun moteur distribué dans `src/`. `00_fixtures/` contient des consignes/fixtures de travail ; les services, stockage et orchestration sont à construire.
+- **Tests de référence verts :** aucun test automatisé livré.
+- **Tests volontairement rouges :** aucun test exécutable n'est livré au démarrage.
+- **Prérequis :** connaître les bases de concurrence, messages et persistance. Docker ou un broker réel ne sont pas exigés pour la conception initiale ; si utilisés, leurs versions et coûts doivent être consignés.
+- **Tests à créer :** livraison au moins une fois, doublons, idempotence, ordre partiel, retry/backoff, poison message, panne de nœud, redémarrage, partition, cohérence et rétention.
+- **Validation sur papier :** définir invariants, modèle d'état, transitions, contrat d'événement, clé d'idempotence, stratégie de reprise et test de chaos simulé. Une phrase « exactly once » sans modèle d'effet et de déduplication ne passe pas.
+- **Validation finale :** démontrer qu'un redémarrage et un rejeu ne dupliquent pas l'effet métier, avec journaux et états avant/après.

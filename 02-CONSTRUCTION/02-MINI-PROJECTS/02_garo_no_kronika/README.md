@@ -11,9 +11,7 @@ acte: comprendre
 
 Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADRs réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables.
 
-
 > **Route CORE 16 semaines :** ce projet conserve son contenu complet. Pour le sprint intensif, consulte [la carte CORE](../../../06-ANNEXES-TRANSVERSES/25-CORE-MINI-PROJECT-MAP.md) pour le slice recommandé. Le passage CORE ajoute une perturbation, un transfert et un rappel à froid ; voir [Engine d’ambiguïté](../../../06-ANNEXES-TRANSVERSES/20-ENGINE-AMBIGUITE.md).
-
 
 -> ~6 min
 
@@ -44,20 +42,21 @@ $ node src/index.js
 
 ---
 
-## INSTALLATION
+## PRÉREQUIS ET ÉTAT INITIAL
 
-```text
-Node.js    : v22.23.3
-npm      : v10+
-Variables env : aucune
-Outils externes: aucun
-```
+- Node.js : `v22.23.4` (version de référence du dépôt AF) ; npm est fourni avec Node.js.
+- État de l’archive : Le projet utilise le `EventEmitter` natif. À la réception, aucun `package.json`, fichier source exécutable ou test n’est fourni : `src/` et `tests/` sont des espaces à construire.
+
+### Commandes disponibles dès réception
 
 ```bash
-npm install
-node src/index.js  # lance la démo
-npm test       # lance la suite de tests
+node --version
+npm --version
 ```
+
+### Commandes après réalisation du scaffold
+
+Après création de `src/index.js` et des tests, utilise `node src/index.js` et `node --test`. N’exécute `npm install` qu’après avoir créé un manifeste avec les dépendances réelles ; `npm test` exige un script déclaré.
 
 ---
 
@@ -117,12 +116,12 @@ Le Conseil écoute pendant que les missions tournent. Ce n'est pas séquentiel :
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module           | Où ça se voit                              |
-| -------------------------- | ----------------------------------------------------------------------- |
-| `01-CADRAGE/02-ASYNC`         | `dispatcher.js` (allSettled), `missionRunner.js` (race + timeout)    |
-| `01-CADRAGE/04-ERROR-HANDLING`    | `errors/` (erreurs custom typées), propagation dans `missionRunner.js` |
-| `04-EPREUVE/03-REALTIME`       | `streamEmitter.js` / `streamReceiver.js` : pattern SSE simulé en JS pur |
-| `02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS` | découplage total Conseil/Chevalier via événements (event-driven)    |
+| Module                                     | Où ça se voit                                                           |
+| ------------------------------------------ | ----------------------------------------------------------------------- |
+| `01-CADRAGE/02-ASYNC`                      | `dispatcher.js` (allSettled), `missionRunner.js` (race + timeout)       |
+| `01-CADRAGE/04-ERROR-HANDLING`             | `errors/` (erreurs custom typées), propagation dans `missionRunner.js`  |
+| `04-EPREUVE/03-REALTIME`                   | `streamEmitter.js` / `streamReceiver.js` : pattern SSE simulé en JS pur |
+| `02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS` | découplage total Conseil/Chevalier via événements (event-driven)        |
 
 ---
 
@@ -210,3 +209,31 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## Comprendre les tests avant de commencer : état exact du ZIP
+
+Référence : [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les exemples de sortie décrivent la cible, pas un logiciel livré, sauf mention contraire.
+
+- Code fourni : aucun code exécutable ; `src/README.md` et `tests/README.md` sont des emplacements.
+- Tests de référence verts : aucun. Tests volontairement rouges : aucun ; écris les tests avant le dispatcher.
+- Tests à écrire : dispatch équitable, disponibilité, préparation/timeout d'armure, événements concurrents, `Promise.allSettled`, échec partiel et rapport.
+- Validation finale : après création des sources/tests, `node --test tests/*.test.js`. `npm test` exige un `package.json` et un script déclaré ; `npm install` n'est pas utile dans l'archive actuelle.
+- Ordre : contrat d'événement → dispatcher → chevalier/armure → moteur de mission → réception parallèle → rapport/CLI. Preuve : plusieurs missions tournent simultanément sans perte d'événement ; timeout et échec partiel sont testés.
+
+## Règles communes de progression et de preuve
+
+### Contrôle commun de la progression
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
+- **Tests verts de référence :** aucun.
+- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
+- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
+- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
+
+**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.

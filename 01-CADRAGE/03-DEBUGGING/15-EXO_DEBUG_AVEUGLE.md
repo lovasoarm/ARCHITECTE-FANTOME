@@ -41,7 +41,6 @@ Un pair (ou toi 24h plus tard) doit pouvoir rejouer ton `REPRO.md` et voir le bu
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

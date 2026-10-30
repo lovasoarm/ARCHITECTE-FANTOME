@@ -33,22 +33,6 @@ acte: pratiquer
 
 # EXO [IA séduisante] : 01-cadrage/02-async
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 Temps de lecture ~2 min
 
 > Tag `[IA séduisante]` : solution totalement coupee (IA/Claude/ChatGPT desactives).

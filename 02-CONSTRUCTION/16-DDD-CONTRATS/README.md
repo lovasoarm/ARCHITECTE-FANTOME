@@ -3,9 +3,15 @@ stability: intemporel
 acte: construction
 noyau: oui
 route: complete
+paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
+expert_review: pending
+paper_audit_date: 2026-10-30
+terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 ---
 
 # 16 : DDD ET CONTRATS : LE LANGAGE AVANT LE CODE
+
+> **État pédagogique : 30 octobre 2026 : preuves documentaires complétées.** Les ajouts ciblés couvrent les exemples, pratiques, vérifications et transferts requis pour ce module. Une revue technique indépendante et une validation terrain restent distinctes ; voir [48 : External Review Gate](../../06-ANNEXES-TRANSVERSES/48-EXTERNAL-REVIEW-GATE.md) et [49 : Terrain Maturity Gate](../../06-ANNEXES-TRANSVERSES/49-TERRAIN-MATURITY-GATE.md).
 
 <!-- AF-DIAGRAM:ddd -->
 
@@ -97,3 +103,21 @@ Voir `00-PREREQUIS.md`. Si un seul point tombe, retourne le voir : ce module ne 
 - [`97-CHECKPOINT-PACK/`](97-CHECKPOINT-PACK/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+## Usage recommandé
+
+Étudier les leçons dans l’ordre, puis réaliser le cas fil rouge `10-CAS-FIL-ROUGE-COMMANDE-LIVRAISON.md` avant le challenge et le boss fight. La maîtrise exige une carte de contextes et des contrats défendus, pas seulement un diagramme ou la création de microservices.
+
+## Préparer l'environnement
+
+Lire [`SETUP.md`](SETUP.md) avant toute commande ou installation. Les prérequis locaux de l'activité priment sur les indications générales.
+
+## Navigation complète des ressources
+
+Le sommaire ci-dessus reste le parcours recommandé. Les index ci-dessous rendent accessibles les ressources d'appui et les sous-parcours qui ne sont pas des étapes linéaires supplémentaires.
+
+### Ressources d'appui et vérification
+
+- [Cas fil rouge DDD : commande, paiement et livraison sans modèle métier monolithique](10-CAS-FIL-ROUGE-COMMANDE-LIVRAISON.md)
+
+## Standard de complétude et audit

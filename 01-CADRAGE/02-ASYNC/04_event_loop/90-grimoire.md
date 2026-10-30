@@ -26,22 +26,6 @@ depends_on_vendor: false
 
 Les microtasks sont traitées avant de passer à la prochaine task.
 
-<!-- AF-DIAGRAM:offline_sync -->
-
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 > Rappel : ce grimoire simplifie via analogies. Lire d'abord [`91-18_GRIMOIRE_CODE_HONNEUR.md`](../../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
 
 Temps de lecture ~9 min

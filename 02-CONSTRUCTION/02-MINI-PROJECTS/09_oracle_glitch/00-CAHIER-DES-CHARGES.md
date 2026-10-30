@@ -10,30 +10,21 @@ route_family: depth
 
 Temps de lecture ~15 min
 
-## PRÉREQUIS
+## PRÉREQUIS ET ÉTAT INITIAL DU ZIP
 
-```text
-Node.js    : v22.23.3
-npm      : v10+
-Variables env : ANTHROPIC_API_KEY (obligatoire pour les appels API réels)
-Outils externes: aucun
+- Node.js `22.23.4` recommandé.
+- L'archive ne contient ni `package.json`, ni CLI, ni SDK/client, ni tests exécutables. Le modèle nommé dans le dossier est une référence de scénario, pas une clé ou un service inclus.
+- La suite de tests finale doit être mockée et fonctionner sans réseau et sans `ANTHROPIC_API_KEY`. Un appel fournisseur réel est une extension facultative, non un prérequis d'apprentissage.
 
-# Installation
-$ npm install
+Commandes disponibles dès réception :
 
-# Configurer la clé API (créer un fichier .env à la racine)
-ANTHROPIC_API_KEY=sk-ant-...
-
-# Lancer une analyse
-$ node src/cli.js analyze src/target.js
-
-# Lancer les tests (n'appellent PAS l'API réelle : streamingClient est mocké)
-$ npm test
+```bash
+node --version
+npm --version
 ```
 
-Le modèle utilisé dans `streamingClient.js` : `claude-haiku-4-5-20251001` (le moins coûteux, suffisant pour l'analyse de code). Les tests n'appellent jamais l'API réelle : `streamingClient` est mocké via Jest. Chaque `npm test` coûte 0 token.
+Après création de l'application et du manifeste : installer et verrouiller le SDK retenu, construire un adaptateur mockable, puis déclarer le script de test. Pour l'usage réel seulement, injecte `ANTHROPIC_API_KEY` dans l'environnement de la session ; ne place jamais une vraie clé dans un exemple, un historique shell ou le dépôt. Les commandes CLI ci-dessous décrivent la cible après réalisation.
 
----
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 

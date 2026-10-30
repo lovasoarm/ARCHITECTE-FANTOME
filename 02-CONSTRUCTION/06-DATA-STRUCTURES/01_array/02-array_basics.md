@@ -56,7 +56,6 @@ console.log(crew[3]); // "Kakashi"
 <!-- AF-DIAGRAM:slo -->
 
 ```text
-text
 SLO
  │
  ├──► SLI mesuré ───► conformité
@@ -255,3 +254,11 @@ Un tableau JS c'est un bloc mémoire continu : lire par index est O(1) car c'est
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Compare ton résultat à une méthode naïve sur de petites entrées. Vérifie entrée vide, un élément, doublons et cas limite. Pour « Array basics : ce que chaque opération coûte vraiment », justifie aussi le coût théorique et une mesure reproductible.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

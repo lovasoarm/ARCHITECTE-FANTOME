@@ -8,7 +8,6 @@ acte: pratiquer
 <!-- AF-DIAGRAM:cache -->
 
 ```text
-text
 Request
   │
   ▼

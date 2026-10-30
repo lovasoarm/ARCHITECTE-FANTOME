@@ -52,3 +52,7 @@ questions avaient une réponse en dix minutes. C'est l'enseignement du module.
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+## Transfert vérifiable
+
+En revue d'incident, imagine que la direction demande si la perte de messages est due au broker. Formule une réponse honnête en séparant faits observés, hypothèses, inconnues et prochaine mesure. Donne un responsable et une heure de mise à jour. **Vérification :** un pair doit pouvoir distinguer ce qui est prouvé de ce qui reste à vérifier ; toute certitude non soutenue par un log, une métrique ou une reproduction est un échec.

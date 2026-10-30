@@ -50,3 +50,11 @@ Prends la prochaine décision réelle de ton fil rouge. Remplis la grille, trois
 
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+
+<!-- AF-P0-2026-10-30: missing_example -->
+
+### Exemple travaillé : cas métier
+
+Deux améliorations sont proposées : l’une réduit les incidents, l’autre accélère une fonctionnalité ; le budget et l’équipe sont limités. Construis un cas minimal qui illustre « La grille coût / risque / valeur » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

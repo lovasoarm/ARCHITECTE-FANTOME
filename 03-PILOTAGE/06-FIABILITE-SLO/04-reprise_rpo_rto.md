@@ -16,7 +16,6 @@ assessment_role: instructional_checkpoint
 <!-- AF-DIAGRAM:rto_rpo -->
 
 ```text
-text
 Incident
 │<──── RTO : délai maximal de reprise ────>│
 │

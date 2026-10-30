@@ -417,3 +417,13 @@ Différence avec Decorator : Decorator enveloppe des appels de fonctions, Proxy 
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+## Transfert production : proxy, sécurité et disponibilité
+
+**Scénario.** Un proxy contrôle l'accès à un document distant et met en cache les lectures. Le proxy ne remplace pas l'autorisation métier : il doit la vérifier au moment correct et isoler les tenants.
+
+**Exercice.** Implémente un proxy avec contrôle d'accès, timeout et cache à TTL. Simule une révocation d'accès entre deux lectures et un changement de tenant.
+
+**Vérification.** Aucun cache ne sert une donnée à un tenant différent ; une révocation prend effet selon une fenêtre explicitement définie ; timeout et erreurs sont observables ; les permissions sont testées indépendamment du cache.
+
+**Transfert.** Proxy utile pour accès distant, lazy loading ou cache ; il crée un point d'interception qui doit être audité, mesuré et testé contre les contournements.

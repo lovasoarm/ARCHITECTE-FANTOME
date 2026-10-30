@@ -36,3 +36,15 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+## Barème autonome sur 20 : runtime et environnement
+
+| Critère                      | Points | Preuve attendue                                                                                      |
+| ---------------------------- | -----: | ---------------------------------------------------------------------------------------------------- |
+| Modèle d'exécution           |      4 | Diagramme event loop / tâches / microtasks et prédiction de l'ordre d'exécution, avec cas bloquant   |
+| Frontières runtime           |      4 | Comparaison Node / navigateur / processus enfant, APIs disponibles et limites explicites             |
+| Configuration et dépendances |      4 | Commandes reproductibles, versions épinglées, lockfile et comportement en environnement propre       |
+| Diagnostic production        |      4 | Analyse d'un symptôme à partir de logs/stack/mesures, hypothèse testée et cause démontrée            |
+| Sécurité et transfert        |      4 | Secrets hors dépôt, variables validées, permissions minimales et décision adaptée à un autre runtime |
+
+**Seuil : 15/20**, aucun zéro sur configuration reproductible ou sécurité. Une explication sans commande vérifiable ou sans préciser le runtime vaut au maximum la moitié du critère concerné.

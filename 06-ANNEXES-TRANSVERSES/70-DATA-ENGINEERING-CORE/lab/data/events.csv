@@ -1,0 +1,9 @@
+event_id,station_id,occurred_at,metric,value
+EVT-001,ST-01,2026-10-30T08:00:00+03:00,temperature_c,21.4
+EVT-002,ST-02,2026-10-30T08:01:00+03:00,pressure_kpa,5.1
+EVT-001,ST-01,2026-10-30T08:00:00+03:00,temperature_c,22.0
+EVT-003,ST-03,not-a-date,vibration_mm_s,0.12
+EVT-004,ST-04,2026-10-30T08:03:00+03:00,temperature_c,NaN
+EVT-005,ST-05,2026-10-30T08:04:00+03:00,unknown_metric,12
+,ST-06,2026-10-30T08:05:00+03:00,temperature_c,20.0
+EVT-006,ST-06,2026-10-30T05:06:00Z,vibration_mm_s,0.12

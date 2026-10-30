@@ -7,20 +7,6 @@ review_interval: 6 mois
 
 # CALLBACKS
 
-<!-- AF-DIAGRAM:offline_sync -->
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 
 > Sommaire de `01-CADRAGE/02-ASYNC/01_callbacks`.
 

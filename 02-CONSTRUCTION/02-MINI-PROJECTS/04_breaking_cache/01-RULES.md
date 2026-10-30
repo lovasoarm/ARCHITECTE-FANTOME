@@ -19,7 +19,6 @@ assessment_role: project_mastery
 <!-- AF-DIAGRAM:cache -->
 
 ```text
-text
 Request
   │
   ▼

@@ -208,3 +208,11 @@ Rate limiting protège ton service contre l'abus, qu'il soit malveillant ou just
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Teste une rafale, une arrivée régulière, plusieurs identités et une horloge qui avance. Vérifie que la politique ne peut pas être contournée par le parallélisme.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

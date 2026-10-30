@@ -74,3 +74,11 @@ Si trois tentatives instrumentées n’améliorent aucun indicateur de maîtrise
 ## Checkpoint
 
 Sans relire : donne deux hypothèses expliquant ton plateau, une mesure discriminante pour chacune, puis une observation qui t’obligerait à changer de diagnostic.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « Sortir d’un plateau », puis conserve le résultat et explique tout écart.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

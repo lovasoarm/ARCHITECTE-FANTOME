@@ -43,21 +43,21 @@ Résultat :
 
 ---
 
-## INSTALLATION
+## PRÉREQUIS ET ÉTAT INITIAL
 
-```text
-Node.js : v22.23.3
-npm : v10+
-Variables env : ANTHROPIC_API_KEY (obligatoire pour les appels réels)
-Outils externes: aucun
-```
+- Node.js : `v22.23.4` (version de référence du dépôt AF) ; npm est fourni avec Node.js.
+- État de l’archive : Le ZIP ne contient ni `package.json`, ni `src/cli.js`, ni tests ou client API. Le mode de test doit être entièrement mocké et fonctionner sans réseau ni clé. Les appels réels au fournisseur restent facultatifs et ne doivent jamais être requis pour valider le projet.
+
+### Commandes disponibles dès réception
 
 ```bash
-npm install
-echo "ANTHROPIC_API_KEY=sk-ant-..." > .env
-node src/cli.js analyze src/cible.js # analyse réelle
-npm test # mocks IA, 0 appel API réel
+node --version
+npm --version
 ```
+
+### Commandes après réalisation du scaffold
+
+Après création des sources et du manifeste : installer et verrouiller le SDK choisi, configurer les mocks, puis déclarer le script de test. Pour un appel réel seulement, injecter `ANTHROPIC_API_KEY` dans l’environnement de la session (ne pas l’écrire dans l’historique shell ni le committer). `node src/cli.js` et `npm test` ne sont disponibles qu’après création de leurs prérequis.
 
 ---
 
@@ -169,7 +169,6 @@ Voir `02-CONSTRUCTION/05-MEMORY-PERFORMANCE/02A-measure_first.md`.
 <!-- AF-DIAGRAM:slo -->
 
 ```text
-text
 SLO
  │
  ├──► SLI mesuré ───► conformité
@@ -269,3 +268,31 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## Comprendre les tests avant de commencer : état exact du ZIP
+
+Référence : [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les exemples de sortie décrivent la cible, pas un logiciel livré, sauf mention contraire.
+
+- Code fourni : aucun `src/cli.js`, analyseur, test ou manifest ; le chemin de l'IA est à construire.
+- Tests de référence verts : aucun. Tests volontairement rouges : aucun.
+- Tests à écrire : parsing JSON, schéma strict, hallucination de symbole, faux positifs/négatifs, prompt injection dans le code analysé, secrets, timeout, retry et coût.
+- Validation finale : créer un validateur local indépendant du modèle ; `node --test tests/*.test.js`. La suite doit fonctionner sans réseau et sans clé API ; appels réels facultatifs, isolés derrière un adaptateur.
+- Ordre : contrat JSON → fixtures adversariales → validateur → adaptateur simulé → CLI → intégration optionnelle. Preuve : aucune sortie IA n'est traitée comme vérité sans validation locale.
+
+## Règles communes de progression et de preuve
+
+### Contrôle commun de la progression
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
+- **Tests verts de référence :** aucun.
+- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
+- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
+- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
+
+**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.

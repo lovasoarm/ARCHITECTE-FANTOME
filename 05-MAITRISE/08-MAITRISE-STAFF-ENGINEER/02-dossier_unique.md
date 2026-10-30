@@ -29,7 +29,7 @@ Un dossier de 10 à 14 pages, écrit sur **ton** fil rouge, qu'un jury ouvre san
 | 4   | La promesse                     | SLI/SLO, budget d'erreur, RPO/RTO mesurés                                                                                              | S3, module `02-CONSTRUCTION/03-TESTING`               |
 | 5   | L'arbitrage                     | grille coût/risque/valeur, point mort, dette déclarée                                                                                  | S4, module `02-CONSTRUCTION/05-MEMORY-PERFORMANCE`    |
 | 6   | La note direction               | une page, zéro jargon, un chiffre, une contrepartie                                                                                    | S5, module `02-CONSTRUCTION/09-FUNCTIONAL-JS`         |
-| 7   | L'IA en production              | coût par utilisateur, plafond, dégradé, jeu d'évaluation                                                                               | S6                                                    |
+| 7   | Livraison & exploitation        | version, release, migration, signaux post-déploiement, rollback/recovery daté                                                          | S6                                                    |
 | 8   | Les trois tensions              | trois contradictions chiffrées **entre** familles                                                                                      | `03-trois_tensions.md`                                |
 | 9   | Le transfert                    | portage hors langage et hors fournisseur                                                                                               | S7, `05A-transfert_hors_ecosysteme.md`                |
 | 10  | La transformation décisionnelle | croyance initiale, confiance, preuve contradictoire, changement d’avis, biais, junior-was-right, pression et mécanisme de compensation | `05-PSYCHOLOGIE-DECISION/README.md`                   |
@@ -45,8 +45,11 @@ Un dossier de 10 à 14 pages, écrit sur **ton** fil rouge, qu'un jury ouvre san
 ## Conditions de recevabilité (toutes)
 
 - [ ] Les dix sections existent.
-- [ ] Les sept pièces de [PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md) sont liées.
+- [ ] Les six pièces S1–S6 et la preuve S7 de [PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md) sont liées.
+- [ ] Le contrôle transversal G8 `PREUVES/EVALUATION-IA.md` est annexé.
 - [ ] `STANDARDS-AGENTS.md` est présent (sinon S5 non couvert, dossier refusé).
+- [ ] `PREUVES/EVALUATION-IA.md` est annexée pour G8, même si le fil rouge n'intègre pas d'IA ; le périmètre hors IA est justifié.
+- [ ] `PREUVES/IA-EN-PROD.md` est annexée uniquement si une brique IA fait partie du système réel.
 - [ ] La section 8 contient trois tensions **chiffrées des deux côtés**.
 - [ ] La section 9 contient un dossier `transfert/` réellement exécutable.
 - [ ] Une date de revisite est fixée (`04-revisite_datee.md`).
@@ -60,3 +63,11 @@ La soutenance dure 30 minutes : 12 de présentation, 18 de contradiction. Le jur
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
+
+<!-- AF-P0-2026-10-30: missing_example -->
+
+### Exemple travaillé : cas métier
+
+Une décision locale réduit le coût d’une équipe mais crée une dépendance pour quatre autres ; tu dois arbitrer le système global et obtenir l’adoption. Pour « Le dossier unique : la pièce qui tient tout », construis un exemple où deux équipes ont des objectifs contradictoires. Distingue contrainte, préférence, coût immédiat, coût différé et critère de décision.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

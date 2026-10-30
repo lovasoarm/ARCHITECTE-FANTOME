@@ -377,3 +377,11 @@ Contrainte : opérations fichier asynchrones uniquement (`fs.promises`).
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+
+## Transfert production : chat multi-instance
+
+Un chat en mémoire sur une instance ne devient pas distribué parce que la socket est persistante. Avec deux instances, les utilisateurs d'une room peuvent être répartis sur deux processus.
+
+**Exercice.** Dessine la topologie de deux instances et le canal de diffusion partagé. Définis l'identifiant de message, l'ordre par conversation, la persistance, la politique de reconnexion et le contrôle d'accès à chaque room.
+
+**Vérification.** Deux clients connectés à des instances différentes reçoivent un message ; un client non membre ne reçoit rien ; un rejeu après reconnexion n'affiche pas de doublon. Précise la limite de garantie d'ordre et les données récupérables après panne.

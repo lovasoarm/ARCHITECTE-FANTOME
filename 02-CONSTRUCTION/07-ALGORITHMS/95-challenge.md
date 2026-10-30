@@ -40,3 +40,15 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+## Barème autonome : Algorithmes (20 points)
+
+- **Modélisation (4 pts)** : entrées, sorties, préconditions, invariants et cas limites sont écrits avant le code.
+- **Exactitude (4 pts)** : tests couvrent entrée vide, doublons, valeurs extrêmes et cas adversarial.
+- **Complexité (4 pts)** : borne temporelle et mémoire sont justifiées par le mécanisme.
+- **Comparaison (4 pts)** : deux approches sont comparées sur les mêmes données et les mêmes conditions.
+- **Choix terrain (4 pts)** : stabilité, mémoire, ordre, taille de données et lisibilité motivent le choix final.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : appliquer recherche binaire à une entrée non triée ou choisir un algorithme sans vérifier ses préconditions.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

@@ -62,7 +62,6 @@ Ton `catch` distingue enfin les cas au lieu de tout traiter pareil. Commit.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

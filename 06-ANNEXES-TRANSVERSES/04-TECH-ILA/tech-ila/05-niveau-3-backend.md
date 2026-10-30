@@ -8,16 +8,18 @@ revue: trimestrielle
 companion: ce parcours
 stability: perissable
 acte: comprendre
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0089
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-04-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 [← Sommaire TECH-ILA](../README.md)
 
 > **Tu viens de** : [04-niveau-2-frontend.md](04-niveau-2-frontend.md) (React, état, Vite, routing/formulaires/a11y, Next.js)
-> **Tu dois déjà savoir** : `node:http` et les fondamentaux Node (`03-niveau-1-socle.md`), composition de fonctions (`../../../02-CONSTRUCTION/09-FUNCTIONAL-JS/04-composition.md`), les patrons SOLID de base (`02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/02_solid_principles.md`)
+> **Tu dois déjà savoir** : `node:http` et les fondamentaux Node (`03-niveau-1-socle.md`), composition de fonctions (`../../../02-CONSTRUCTION/09-FUNCTIONAL-JS/04-composition.md`), les patrons SOLID de base (`02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md`)
 > **Ensuite** : [06-niveau-4-systemes.md](06-niveau-4-systemes.md) (CI/CD, cloud, observabilité, résilience)
 
 # Niveau 3 : Backend (section 6)
@@ -25,7 +27,6 @@ review_due: 2027-12-31
 <!-- AF-DIAGRAM:secrets -->
 
 ```text
-text
 ┌──────────────┐
 │ Secret store │
 └──────┬───────┘
@@ -43,7 +44,6 @@ Un secret doit entrer dans le système au runtime et ne pas être figé dans le 
 <!-- AF-DIAGRAM:tracing -->
 
 ```text
-text
 Request ─► Span A ─────► Span B ─────► Span C
              │             │              │
           service A     service B      service C
@@ -312,7 +312,6 @@ Petit service, fonction serverless, prototype, équipe rebutée par les classes 
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

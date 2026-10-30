@@ -21,7 +21,6 @@ Tu affiches un prix : `1234.56`. En France, ça doit s'écrire `1 234,56`. Aux �
 <!-- AF-DIAGRAM:rto_rpo -->
 
 ```text
-text
 Incident
 │<──── RTO : délai maximal de reprise ────>│
 │
@@ -148,3 +147,11 @@ Le point et la virgule échangent leurs rôles de séparateur décimal et de sé
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « Number formats : 1,234.56 vs 1.234,56 » à une personne qui utilise clavier, contraste renforcé ou lecteur d’écran. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

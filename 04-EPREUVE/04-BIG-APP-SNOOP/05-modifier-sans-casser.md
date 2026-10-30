@@ -269,7 +269,6 @@ ne sait plus si elle mérite d'être réévaluée.
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

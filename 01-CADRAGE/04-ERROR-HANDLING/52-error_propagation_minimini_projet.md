@@ -73,7 +73,6 @@ Le visiteur lit une phrase humaine, toi tu gardes la cause technique dans les lo
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

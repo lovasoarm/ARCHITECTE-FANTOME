@@ -8,10 +8,12 @@ perturbation_modes: [changement_echelle, regression]
 anti_recipe_key: changement_echelle+regression
 transfer_distance: low
 assessment_role: instructional_checkpoint
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0001
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 # 01 : Installation pas-à-pas (Windows / macOS / Linux)
@@ -49,15 +51,21 @@ commande. Si la vérification échoue, tu ne passes pas à la suivante.
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 # ferme et rouvre le terminal
-nvm install --lts
-nvm use --lts
-node -v  # doit renvoyer v22.x (aligné sur `.nvmrc` = v22)
+nvm install 22.23.4
+nvm use 22.23.4
+node -v  # doit renvoyer v22.23.4
 ```
 
 ### Windows
 
-Option A (recommandée) : [`nvm-windows`](https://github.com/coreybutler/nvm-windows).
-Option B : installeur officiel [nodejs.org](https://nodejs.org) → LTS.
+Option A (recommandée) : [`nvm-windows`](https://github.com/coreybutler/nvm-windows). Dans PowerShell, installe puis sélectionne explicitement la version canonique :
+
+```powershell
+nvm install 22.23.4
+nvm use 22.23.4
+```
+
+Option B : installeur officiel depuis l’[archive Node.js 22.23.4](https://nodejs.org/en/download/archive/v22.23.4) ; choisis précisément cette version, et non automatiquement la LTS la plus récente.
 
 Vérifie dans PowerShell :
 
@@ -72,24 +80,17 @@ paramètres système, ajoute le dossier d'install de Node.
 
 ---
 
-## 1bis. Fenêtre Node testée (à vérifier avant tout autre install)
+## 1bis. Version de référence et compatibilité
 
-Ce curriculum est testé et validé sur **Node 22.x** (LTS actifs à la
-date de review). Node 18 est en fin de vie ; Node 23-24 peuvent émettre des
-warnings de deprecation qui perturbent le premier click.
+La version exacte de reproductibilité du curriculum est **Node 22.23.4**, indiquée dans `.nvmrc`. Pour reproduire les exercices dans les mêmes conditions, installe cette version. Une autre version Node 22.x peut fonctionner, mais sa compatibilité doit être vérifiée séparément : le fait qu'elle appartienne à la même branche majeure ne prouve pas que tous les exercices ont été testés avec elle.
 
 Vérifie **maintenant**, avant même le premier exercice :
 
 ```bash
-node -e 'if (!process.versions.node.startsWith("22.")) { console.error("Node 22.x requis. Version:", process.versions.node); process.exit(1); } else { console.log("Node OK:", process.versions.node); }'
+node -e 'if (process.versions.node !== "22.23.4") { console.error("Node 22.23.4 requis pour la reproduction exacte. Version détectée:", process.versions.node); process.exit(1); } else { console.log("Node de référence OK:", process.versions.node); }'
 ```
 
-Si la commande échoue avec `Node 22.x requis` :
-
-- Utilise une version Node 22 LTS.
-- La référence de reproductibilité AF reste `22.23.3`, mais une autre version 22.x est une compatibilité à vérifier séparément.
-
-Le fichier `.nvmrc` à la racine du repo donne la version canonique en cours.
+Si la commande échoue, installe ou sélectionne la version exacte indiquée dans `.nvmrc`. Le contrôle vérifie la reproductibilité de l'environnement ; il ne prouve pas que tous les exercices du dépôt ont été exécutés avec succès.
 
 ---
 

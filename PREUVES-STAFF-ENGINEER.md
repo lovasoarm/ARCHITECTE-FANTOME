@@ -38,7 +38,9 @@ PREUVES/
 ├── SLO.md
 ├── REVUE-DE-CODE.md
 ├── NOTE-DIRECTION.md
-├── IA-EN-PROD.md
+├── LIVRAISON-EXPLOITATION.md
+├── EVALUATION-IA.md
+├── IA-EN-PROD.md              # seulement si une brique IA est intégrée au système
 └── PORTAGE.md
 ```
 
@@ -53,8 +55,10 @@ pas physiquement présente, exécutable ou vérifiable, et recroisée avec au mo
 une autre famille.
 
 Le capstone peut être terminé techniquement tout en restant **NON CERTIFIÉ STAFF**
-si le dossier `PREUVES/` est incomplet. Cette séparation évite précisément le
-faux positif « j'ai lu le cursus, donc je peux prouver le niveau ».
+si le dossier `PREUVES/` est incomplet. Cette séparation évite le faux positif « j'ai lu le cursus,
+donc je peux prouver le niveau ». S6 et G8 sont deux contrôles différents : livraison/exploitation
+d'un côté, évaluation critique de l'IA de l'autre. Le benchmark IA n'oblige pas à ajouter un LLM
+au fil rouge.
 
 ## S1 : Systèmes, backend et cloud
 
@@ -89,11 +93,18 @@ faux positif « j'ai lu le cursus, donc je peux prouver le niveau ».
 - Quatrième pièce, obligatoire : `PLAN-MENTORAT.md` **de ton dépôt de projet fil rouge** ([03-PILOTAGE/11-LEADERSHIP-MENTORAT/06-plan_de_mentorat.md](03-PILOTAGE/11-LEADERSHIP-MENTORAT/06-plan_de_mentorat.md)) : point de départ observé, objectif unique formulé en acte observable, trois jalons datés avec leur preuve, jalon 1 constaté, et le bilan une fois la date de fin passée. Variante solo admise sur un contributeur open source. Le mentorat est ce que la revue ponctuelle n'est pas : une trajectoire datée.
 - Recroisement exigé : la note reprend les chiffres exacts de S1 et la promesse de service de S3, et le coût plafond de `STANDARDS-AGENTS.md` est cohérent avec le budget S1.
 
-## S6 : IA et automatisation
+## S6 : Livraison & exploitation
 
-- Ce que tu montres : `IA-EN-PROD.md` **de ton dépôt de projet fil rouge**. La pièce doit pointer vers un produit IA réel ou un service en production-like, pas uniquement vers un cahier des charges. : coût par utilisateur actif, plafond retenu, timeout et réponse dégradée, SLO séparé de la brique IA, et le jeu de 20 cas d'évaluation rejoué à chaque changement de modèle.
-- Pièce jointe partagée avec S5 : `STANDARDS-AGENTS.md` **de ton dépôt de projet fil rouge**, qui borne ce que la brique IA et les agents décident sans toi.
-- Recroisement exigé : le coût variable apparaît dans le budget S1, la sortie du modèle est validée selon les règles S3, et le coût plafond de `STANDARDS-AGENTS.md` couvre les appels de cette brique IA.
+- Ce que tu montres : `LIVRAISON-EXPLOITATION.md` **de ton dépôt de projet fil rouge** : version livrée, procédure de release, migration, contrôles qualité, signaux post-déploiement, critère de rollback/recovery et preuve datée d'une panne contrôlée ou d'un essai de récupération.
+- Où ça s'apprend : [modèle de preuve S6](06-ANNEXES-TRANSVERSES/17-PREUVES-MODELES/07-S6-LIVRAISON-EXPLOITATION.md), fiabilité/SLO, sécurité, cloud et qualité.
+- Recroisement exigé : la procédure protège le SLO S3, son coût et ses contraintes sont compatibles avec S1, et les décisions risquées sont reliées à un ADR S2.
+
+### G8 : Évaluation IA et automatisation vérifiée (contrôle transversal, pas une famille supplémentaire)
+
+- Ce que tu montres : `EVALUATION-IA.md`, produit par le laboratoire [Produit IA de référence](06-ANNEXES-TRANSVERSES/19-PRODUIT-IA-REFERENCE/README.md). La preuve peut être un test local déterministe sans clé API : hypothèses, jeu d'évaluation versionné, critères, résultats, erreurs, limites, coût/latence quand mesurables, sécurité et cas où l'IA est refusée.
+- Si le fil rouge embarque une brique IA, ajoute `IA-EN-PROD.md` avec son coût plafond, ses permissions, son SLO ou mode dégradé, son observabilité et ses conditions d'arrêt. C'est un supplément conditionnel, pas une exigence d'ajouter un LLM à tout projet.
+- `STANDARDS-AGENTS.md` reste la preuve de gouvernance des agents : tâches délégables, permissions, validation humaine, budget et commande de vérification.
+- Règle : une sortie générée ne vaut jamais preuve avant vérification indépendante du comportement.
 
 ## S7 : Pensée transférable (la septième pièce)
 
@@ -108,7 +119,7 @@ faux positif « j'ai lu le cursus, donc je peux prouver le niveau ».
 - **Client Systems / Flutter** : sert de terrain S1/S2/S3 pour montrer qu’un client n’est pas une simple couche d’écran : cache, offline, contrat, sécurité, performance et observabilité.
 - **Platform Engineering** : renforce S1/S3/S5 en faisant traiter GitOps, dérive, IDP, golden paths, supply chain et expérience développeur comme un produit interne.
 - **CMS Architecture Lab** : renforce S4/S2 en forçant le choix entre couplé, headless et custom avec coût, migration, sécurité et conditions de sortie.
-- **IA Governance & Security** : renforce S3/S6 avec threat model, permissions agentiques, évaluation, observabilité, coût et kill switch.
+- **IA Governance & Security** : renforce G8 (évaluation IA), et S3/S6 uniquement lorsque le système réel intègre une brique IA : threat model, permissions, évaluation, observabilité, coût, fallback et kill switch.
 
 ## Le livrable qui prouve que les six tiennent ensemble
 
@@ -119,6 +130,6 @@ Une famille prouvée seule ne prouve rien pour ce profil. La pièce qui tranche 
 En l'état, le parcours produit les six familles côté enseignement et côté exercice. Ce qui n'existe pas encore, et qu'aucun texte ne remplacera :
 
 - Les six fichiers de preuve ci-dessus vivent dans TON dépôt de projet, pas ici. Tant qu'ils ne sont pas écrits, coche zéro famille.
-- S6 n'est plus optionnelle dans la sortie Staff : le fil rouge doit contenir une brique IA/automatisation réelle, ou un produit de référence explicitement accepté par le capstone, avec évaluation, sécurité, coût, observabilité et modes d'échec.
+- S6 est obligatoire dans la sortie Staff et signifie **livraison & exploitation** : release traçable, vérification post-déploiement, rollback/recovery et preuve datée d'un test ou d'une panne contrôlée. G8 exige séparément `EVALUATION-IA.md`. Le fil rouge n'a pas à embarquer une brique IA ; `IA-EN-PROD.md` n'est requis que si le système l'intègre réellement.
 - La famille S5 **se prouve intégralement en solo**. La revue de [02-revue_de_code_trois_niveaux.md](03-PILOTAGE/11-LEADERSHIP-MENTORAT/02-revue_de_code_trois_niveaux.md) doit pointer vers un commit immuable (SHA complet) dans un dépôt public, privé ou anonymisé auquel l'évaluateur peut accéder. Aucun code propriétaire, secret ou donnée personnelle ne doit être publié pour satisfaire le gate. La contradiction vient de la passe S5 du [CONTRADICTEUR](06-ANNEXES-TRANSVERSES/09-CONTRADICTEUR.md), jouée seul. Une réponse de mainteneur ou un commentaire reçu sur la note de direction sont des bonus, jamais des conditions.
 

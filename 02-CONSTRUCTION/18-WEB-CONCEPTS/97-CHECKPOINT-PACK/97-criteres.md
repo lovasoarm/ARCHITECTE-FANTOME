@@ -24,3 +24,11 @@ Tant qu'une case reste vide, le jalon est **non valide** : le module suivant peu
 le jalon reste dû. Référentiel : [03-TECH-ILA](../../../06-ANNEXES-TRANSVERSES/04-TECH-ILA/README.md).
 
 <!-- JALON-TECH-ILA:fin -->
+
+<!-- AF-P0-2026-10-30: missing_example -->
+
+### Exemple travaillé : cas métier
+
+Une équipe consulte des mesures récentes ; le réseau tombe, le cache contient des données anciennes et les droits changent pendant la session. Construis un cas minimal qui illustre « Critères de vérification : `18-WEB-CONCEPTS` » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

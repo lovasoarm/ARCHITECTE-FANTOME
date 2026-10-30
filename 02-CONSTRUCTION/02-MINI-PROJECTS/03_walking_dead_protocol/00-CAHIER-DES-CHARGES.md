@@ -14,35 +14,32 @@ route_family: core
 
 Temps de lecture ~17 min
 
-## PRÉREQUIS
+## PRÉREQUIS ET ÉTAT INITIAL DU ZIP
 
-```text
-Node.js    : v22.23.3
-npm      : v10+
-Variables env : aucune
-Outils externes: Playwright (installé via npm install)
+- Node.js `22.23.4` recommandé (version épinglée par AF) ; le legacy n'utilise que les modules natifs.
+- Le fichier `legacy/campV1.js` est livré et exécutable sans installation npm. `src/` et `tests/` sont des espaces de travail vides à construire.
+- Aucun `package.json`, script npm ou test automatisé n'est livré à l'état initial ; `npm install`, `npm test` et `npm run test:e2e` ne sont donc pas des commandes de départ.
 
-# Installation
-$ npm install
-$ npx playwright install chromium  # navigateur pour les tests E2E
+Commandes de départ réellement disponibles :
 
-# Lancer le camp (le CLI de gestion)
-$ node src/cli.js status
-
-# Lancer les tests unitaires et d'intégration
-$ npm test
-
-# Lancer les tests E2E
-$ npm run test:e2e
+```bash
+node --version
+node legacy/campV1.js status
 ```
 
-Pas de serveur web. Le camp se gère depuis la ligne de commande. Playwright teste le comportement du CLI via des processus Node enfants.
+Pour une exécution isolée sous Linux/macOS :
 
----
+```bash
+tmp=$(mktemp -d)
+CAMP_STATE_FILE="$tmp/camp.json" node legacy/campV1.js status
+CAMP_STATE_FILE="$tmp/camp.json" node legacy/campV1.js consume --resource food --amount -2
+```
+
+Le dernier appel met en évidence le défaut volontaire. Après création de la v2, d'un `package.json`, des tests et des scripts npm, tu pourras installer Playwright localement puis utiliser `npm test` et `npm run test:e2e`. Ne lance pas ces commandes avant d'avoir créé leurs prérequis.
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
-Le groupe de Rick Grimes a besoin d'un système de gestion de camp : inventaire de ressources, rotations de garde, rations alimentaires, niveaux de sécurité par périmètre. Le code existe déjà : `legacy/campV1.js`. Il a été écrit en pleine nuit, sous la pression des morts-vivants. C'est du spaghetti. Une seule fonction de 300 lignes. Des variables globales partout. Zéro test. Personne ne sait ce qu'il fait vraiment.
+Le groupe de Rick Grimes a besoin d'un système de gestion de camp : inventaire de ressources, rotations de garde, rations alimentaires, niveaux de sécurité par périmètre. Le code est fourni dans [`legacy/campV1.js`](legacy/campV1.js) : une entrée monolithique, un état mutable et plusieurs responsabilités mélangées. Aucun test de caractérisation n’est fourni. Un défaut reproductible : la consommation négative : constitue le premier comportement à capturer.
 
 Ton boulot : ne jamais ajouter de feature avant d'avoir des tests. Refactorer sans rien casser. Transformer ce camp en forteresse de code propre.
 
@@ -77,7 +74,7 @@ $ npm run test:e2e
 PASS e2e/campWorkflow.spec.js (8 scénarios)
 ```
 
-Ce projet a deux versions coexistantes : `legacy/campV1.js` (jamais modifié) et `src/` (ta v2 propre). Même comportement observable, structure interne entièrement différente.
+Ce projet a deux versions coexistantes : `legacy/campV1.js` (référence de comportement, jamais modifiée) et `src/` (ta v2 propre). La v2 conserve le comportement valide documenté ; la correction du défaut de consommation négative constitue une différence intentionnelle, testée et décrite dans le postmortem.
 
 ## POURQUOI CE PROJET EXISTE
 

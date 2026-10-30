@@ -103,3 +103,11 @@ Ferme la page et défends pendant quelques minutes une stratégie opposée à ce
 - U.S. Copyright Office : AI copyrightability : https://www.copyright.gov/newsnet/2025/1060.html
 - U.S. Copyright Office : AI registration guidance : https://www.copyright.gov/ai/ai_policy_guidance.pdf
 - AI Act (EUR-Lex) : https://eur-lex.europa.eu/eli/reg/2024/1689/oj
+
+<!-- AF-P0-2026-10-30: missing_example -->
+
+### Exemple travaillé : cas métier
+
+Tu rejoins une organisation qui possède plusieurs services, une documentation incomplète et un incident ouvert ; il faut comprendre avant de proposer. Construis un cas minimal qui illustre « Éthique & Licences (annexe indispensable) » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

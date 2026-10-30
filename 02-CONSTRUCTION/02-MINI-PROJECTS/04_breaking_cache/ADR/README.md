@@ -8,7 +8,6 @@ acte: comprendre
 <!-- AF-DIAGRAM:cache -->
 
 ```text
-text
 Request
   │
   ▼

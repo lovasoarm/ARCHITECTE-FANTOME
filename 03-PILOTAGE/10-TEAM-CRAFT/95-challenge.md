@@ -38,3 +38,15 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+## Barème autonome : Team craft (20 points)
+
+- **Revue de code (4 pts)** : commentaires priorisés par risque et formulés comme actions vérifiables.
+- **Décision écrite (4 pts)** : ADR/RFC contient contexte, options, conséquences et condition de revisite.
+- **Collaboration (4 pts)** : demande d'aide, pair programming et désaccord aboutissent à un next step observable.
+- **Communication (4 pts)** : même décision expliquée à une audience technique et non technique sans perdre les faits.
+- **Amélioration équipe (4 pts)** : un problème de processus est relié à un signal et à une expérience de changement.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : transformer une préférence personnelle en standard imposé sans contexte ni feedback.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

@@ -15,7 +15,6 @@ route_family: depth
 <!-- AF-DIAGRAM:cache -->
 
 ```text
-text
 Request
   │
   ▼
@@ -35,27 +34,21 @@ Le cache court-circuite la source de vérité en cas de hit et la recharge en ca
 
 Temps de lecture ~13 min
 
-## PRÉREQUIS
+## PRÉREQUIS ET ÉTAT INITIAL DU ZIP
 
-```text
-Node.js    : v22.23.3
-npm      : v10+
-Variables env : aucune
-Outils externes: aucun
+- Node.js `22.23.4` recommandé ; le sujet peut être réalisé avec les API natives.
+- Aucun `package.json`, source exécutable ou test n'est fourni dans l'archive. Les dossiers `src/` et `tests/` sont des consignes de construction.
+- Les commandes de démonstration plus bas sont des commandes d'état final, pas des commandes immédiatement exécutables depuis le ZIP.
 
-# Installation
-$ npm install
+Commandes disponibles dès réception :
 
-# Lancer la démo (charge le graphe, lance tous les algos, écrit les benchmarks)
-$ node src/index.js
-
-# Lancer les tests
-$ npm test
+```bash
+node --version
+npm --version
 ```
 
-Aucune bibliothèque d'algorithmes externe. Tout est écrit from scratch : c'est l'objectif pédagogique du projet.
+Après création des fichiers : `node src/index.js` et `node --test`. N'ajoute une dépendance npm que si un ADR la justifie ; `npm test` exige un script déclaré. Les benchmarks doivent être écrits par l'apprenant et ne sont pas fournis comme chiffres de référence.
 
----
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 

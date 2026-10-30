@@ -134,3 +134,7 @@ section « Ce que je ne fais pas » existe pour tenir.
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+
+## Transfert vérifiable
+
+Choisis une compétence observable (par exemple diagnostiquer une lenteur API) et transforme-la en plan de quatre semaines : situation de départ, pratique guidée, tâche autonome, feedback et preuve. **Vérification :** l'apprenant doit reproduire le diagnostic sur un second service non utilisé pendant le mentorat ; la réussite sur le premier cas seul ne prouve pas le transfert.

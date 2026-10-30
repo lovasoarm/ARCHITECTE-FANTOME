@@ -61,7 +61,6 @@ Si tu veux "juste renommer une variable pour comprendre" : **note-le dans `HYPOT
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

@@ -105,7 +105,6 @@ TEAM-QUEST = travailler ensemble quand les priorités, dépendances et responsab
 <!-- AF-DIAGRAM:influence -->
 
 ```text
-text
                  ┌───────────┐
                  │ Decision  │
                  └─────┬─────┘

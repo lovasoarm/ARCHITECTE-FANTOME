@@ -13,9 +13,7 @@ acte: comprendre
 
 Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADRs réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables.
 
-
 > **Route CORE 16 semaines :** ce projet conserve son contenu complet. Pour le sprint intensif, consulte [la carte CORE](../../../06-ANNEXES-TRANSVERSES/25-CORE-MINI-PROJECT-MAP.md) pour le slice recommandé. Le passage CORE ajoute une perturbation, un transfert et un rappel à froid ; voir [Engine d’ambiguïté](../../../06-ANNEXES-TRANSVERSES/20-ENGINE-AMBIGUITE.md).
-
 
 -> ~5 min
 
@@ -105,7 +103,7 @@ type : mesure `--prof`").
 ## Livrable
 
 - `ONBOARDING.md`, `REPRO.md`, `ADR/ADR-003_decision.md`,
- `WRITE_UP.md`, `BENCH.md`,
+  `WRITE_UP.md`, `BENCH.md`,
 - PR ouverte sur ton fork,
 - CI verte.
 
@@ -126,13 +124,24 @@ Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Jus
 
 Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
 
+## Gate pédagogique après les cinq étapes
+
+- Reproduire le défaut de départ avant de modifier le code.
+- Expliquer le mécanisme causal et différencier symptôme, cause racine et dette historique.
+- Ajouter un test qui échoue sur la version défectueuse, puis démontrer qu'il protège la correction.
+- Mesurer l'impact de la refonte sur au moins une dimension pertinente ; si aucune mesure numérique n'est utile, justifier ce choix et fournir une comparaison comportementale reproductible.
+- Écrire les conditions de rollback et le signal qui déclencherait une nouvelle refonte.
+- Traiter un second scénario de changement sans réutiliser la réponse précédente comme recette.
+
+**Critère éliminatoire :** une PR qui passe les tests mais change un comportement métier non approuvé ne passe pas la gate. Relie le travail à [63 : Testing Engineering](../../../06-ANNEXES-TRANSVERSES/63-LAB-TESTING-ENGINEERING.md) et [67 : Gate de maîtrise](../../../06-ANNEXES-TRANSVERSES/67-GATE-MAITRISE-ET-CAPSTONE.md).
+
 ## Contenu du dossier
 
 <!-- CONTENU-DOSSIER:debut -->
 
 - [06-SPEC-DRIFT-DRILL.md : spec drift **en cours de projet** (mouvant)](06-SPEC-DRIFT-DRILL.md)
 - [`ADR/`](ADR/README.md)
-- [09-DAY-ONE-SIMULATION.md : 4h chrono, ton premier jour dans une equipe](07-DAY-ONE-SIMULATION.md)
+- [07-DAY-ONE-SIMULATION.md : 4 h chrono, ton premier jour dans une équipe](07-DAY-ONE-SIMULATION.md)
 - [Postmortem : legacy takeover](08-POSTMORTEM.md)
 - [RULES : 12_legacy_takeover](01-RULES.md)
 - [SECURITY : 12_legacy_takeover](03-SECURITY.md)
@@ -144,3 +153,29 @@ Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un do
 - [`tests/`](tests/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+---
+
+## État des tests et point de départ (référence AF)
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
+- **Tests verts de référence :** aucun.
+- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
+- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
+- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
+
+**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.
+
+### Détails d’implémentation et de validation à la réception
+
+- **Code de départ :** aucun système legacy n'est embarqué ; `src/README.md` et `tests/README.md` sont des instructions.
+- **Tests de référence verts :** aucun dans AF.
+- **Tests volontairement rouges :** aucun test exécutable AF n'est fourni. Le rouge/vert doit être créé dans le dépôt legacy autorisé choisi par l'apprenant.
+- **Prérequis :** Git, accès à un dépôt que tu es autorisé à cloner, environnement et outils explicitement requis par ce dépôt. Fixe un commit SHA ; ne travaille pas sur une branche mouvante sans le noter.
+- **Démarrage :** `git clone <URL_AUTORISEE> legacy-target`, puis `git -C legacy-target rev-parse HEAD`. Le placeholder doit être remplacé. Lis les scripts et la politique de contribution avant toute commande d'installation ou de test.
+- **Tests à créer :** caractérisation du comportement existant, cas métier, sécurité, non-régression, et test prouvant chaque correction. Ne transforme pas une bizarrerie legacy en règle sans validation métier.
+- **Validation finale :** rejouer exactement la suite documentée au commit initial et au commit corrigé ; comparer sorties, migrations et compatibilité. Le résultat attendu est un dossier de preuves (diagnostic, patch, tests, ADR, plan de rollback), non un programme fourni dans AF.

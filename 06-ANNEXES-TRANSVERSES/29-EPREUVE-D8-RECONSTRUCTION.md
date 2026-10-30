@@ -10,7 +10,6 @@ route_family: core
 <!-- AF-DIAGRAM:d7d8 -->
 
 ```text
-text
 D1 connaître
   │
   ▼
@@ -83,7 +82,6 @@ La qualité de l'épreuve se juge sur la **chaîne de causalité**, pas sur le v
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

@@ -12,7 +12,6 @@ type: grimoire
 <!-- AF-DIAGRAM:roi -->
 
 ```text
-text
 Decision
   │
   ├──► Value / impact

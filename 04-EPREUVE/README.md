@@ -5,20 +5,6 @@ acte: restituer
 
 # 04-EPREUVE
 
-<!-- AF-DIAGRAM:offline_sync -->
-```text
-text
-        Local changes
-Client ───────────────► Local store
-  ▲                        │
-  │ sync                   │ reconnect
-  └────────────── Server ◄─┘
-                    │
-                    ▼
-                conflicts
-```
-Un système offline conserve des changements locaux puis négocie leur synchronisation et leurs conflits au retour du réseau.
-
 
 Porte d’entrée du palier terminal. Le contenu detaille vit dans les fichiers listes ci-dessous.
 
@@ -42,7 +28,6 @@ endroit du parcours ou l'affirmation « je saurais le refaire ailleurs » devien
 
 <!-- AF-DIAGRAM:transfer -->
 ```text
-text
 Principe appris
       │
       ▼

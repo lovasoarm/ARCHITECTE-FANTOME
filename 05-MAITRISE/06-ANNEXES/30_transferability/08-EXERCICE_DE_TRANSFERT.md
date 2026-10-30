@@ -15,7 +15,6 @@ assessment_role: transfer_mastery
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

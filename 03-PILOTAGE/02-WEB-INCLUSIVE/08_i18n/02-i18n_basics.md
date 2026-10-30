@@ -159,3 +159,11 @@ L'i18n sépare le texte du code via des clés de traduction : le code ne change 
 ## CHECKPOINT DE PROFONDEUR : variation B : défendre l'inverse
 
 Ferme la page et défends pendant quelques minutes une stratégie opposée à celle implicitement recommandée ici. Cherche son meilleur cas d'usage, puis montre le cas où elle casse. Reviens ensuite à la stratégie initiale et justifie le choix par des mécanismes, pas par le vocabulaire du cours.
+
+<!-- AF-P0-2026-10-30: missing_verification -->
+
+### Vérification observable : critères de réussite
+
+Fournis une preuve observable : critère mesurable avant exécution, résultat attendu, résultat obtenu et seuil d’échec. Teste aussi une condition dégradée. Une affirmation sans mesure ne valide pas « I18n basics : parler toutes les langues sans tout réécrire ».
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

@@ -3,9 +3,12 @@ perishability_id: PER-0060
 
 stability: perissable
 acte: appliquer
-
+freshness_registry_id: PER-0060
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-01-28
+review_status: a_verifier_date_absente
 ---
-
 # Reference portability lab : deux fournisseurs, un même contrat
 
 Ce labo renforce le transfert sans inventer de tarifs.

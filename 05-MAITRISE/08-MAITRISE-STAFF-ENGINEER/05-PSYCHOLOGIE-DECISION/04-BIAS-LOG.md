@@ -14,3 +14,11 @@ Ne cherche pas à diagnostiquer les autres. Cherche le mécanisme qui aurait pu 
 Biais prioritaires : confirmation, ancrage, sunk cost, authority bias, statu quo, planning fallacy, survivorship, ownership, escalation of commitment, loss aversion.
 
 Le but n'est pas d'avoir « zéro biais ». Le but est de construire des garde-fous qui rendent un biais moins dangereux.
+
+<!-- AF-P0-2026-10-30: missing_example -->
+
+### Exemple travaillé : cas métier
+
+Une décision locale réduit le coût d’une équipe mais crée une dépendance pour quatre autres ; tu dois arbitrer le système global et obtenir l’adoption. Pour « BIAS-LOG », construis un exemple où deux équipes ont des objectifs contradictoires. Distingue contrainte, préférence, coût immédiat, coût différé et critère de décision.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

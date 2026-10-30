@@ -176,7 +176,6 @@ Où l'analogie casse : une brigade est fixe, un utilisateur change de rôle en c
 <!-- AF-DIAGRAM:transfer -->
 
 ```text
-text
 Principe appris
       │
       ▼

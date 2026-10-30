@@ -10,10 +10,12 @@ perturbation_modes: [defaut_cache, fausse_piste]
 anti_recipe_key: defaut_cache+fausse_piste
 transfer_distance: medium
 assessment_role: instructional_checkpoint
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0014
+freshness_audit_date: 2026-10-30
+freshness_status: date_declaree_non_revalidee_dans_cette_edition
+review_due: 2027-04-28
+review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
-
 **SCÈNE CRAZYDEVS : Dragon Ball Z :** deux attaques paraissent identiques à l’œil nu, mais l’énergie réelle n’est pas la même. Les bits, arrondis et probabilités te forcent à regarder sous la surface.
 
 > **CrazyDevs : tournoi de Konoha :** le problème n’est pas de gagner un duel, mais de ne pas faire combattre inutilement 10 000 adversaires quand une seule bonne stratégie suffit.
@@ -379,3 +381,13 @@ Les clés objet dans un `Map` se comparent par référence : sérialise-les si t
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+## Transfert vérifiable : intégrité, cache et secrets
+
+Un hash (empreinte calculée à partir d'une donnée) sert à comparer ou indexer, mais il ne prouve ni l'identité d'un utilisateur ni l'absence de collision. Pour une clé de cache, canonise d'abord l'entrée (ordre stable des propriétés, encodage et version de format) ; sinon deux objets équivalents peuvent donner des clés différentes. Pour un mot de passe, n'utilise jamais un SHA-256 simple : choisis une fonction de dérivation de mot de passe dédiée avec sel et coût adaptatif (Argon2id, scrypt ou bcrypt selon les contraintes et la politique du système).
+
+**Exercice terrain.** Implémente une clé de cache pour une requête de rapport composée de `tenantId`, `from`, `to` et `filters`. Ajoute `schemaVersion` dans la matière hachée. Vérifie : même requête réordonnée → même clé ; tenant différent → clé différente ; période différente → clé différente ; changement de schéma → clé différente. N'inclus jamais le secret d'authentification dans une clé exposée.
+
+**Vérification.** Tests unitaires sur les quatre propriétés ci-dessus ; test de collision de représentation (objets dont l'ordre des clés diffère) ; vérification que la fonction de clé ne journalise pas les données sensibles. Une empreinte n'est pas un contrôle d'accès : le service doit toujours vérifier le tenant et l'autorisation.
+
+**Lien aval.** Ce mécanisme prépare les tables de hachage et le cache dans `06-DATA-STRUCTURES`, puis les index, contraintes et clés d'idempotence dans `05-MAITRISE/01-DATABASES` et les systèmes distribués.

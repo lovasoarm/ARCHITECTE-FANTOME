@@ -17,7 +17,6 @@ assessment_role: instructional_checkpoint
 <!-- AF-DIAGRAM:secrets -->
 
 ```text
-text
 ┌──────────────┐
 │ Secret store │
 └──────┬───────┘
@@ -151,7 +150,7 @@ jobs:
    - name: Setup Node
     uses: actions/setup-node@v4
     with:
-     node-version: "22.23.3"
+     node-version: "22.23.4"
 
    - name: Install dependencies
     run: npm ci
@@ -388,3 +387,11 @@ Quand un budget est cassé : tu réduis la source ou tu révises le seuil en doc
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+
+<!-- AF-P0-2026-10-30: missing_transfer -->
+
+### Transfert : changer de contexte
+
+Applique le mécanisme de « Le budget de performance : tu le poses, le CI le fait respecter » à un service long-vivant plutôt qu’un script ponctuel. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+
+**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

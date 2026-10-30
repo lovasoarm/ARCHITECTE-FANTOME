@@ -36,3 +36,15 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+## Barème autonome : Architecture patterns (20 points)
+
+- **Frontières (4 pts)** : responsabilités et dépendances représentées avec un sens unidirectionnel.
+- **Ports/adaptateurs (4 pts)** : domaine séparé des détails d'infrastructure avec un exemple exécutable ou testable.
+- **Événements et communication (4 pts)** : synchrone/asynchrone, ordre, doublons et échecs distingués.
+- **Compromis (4 pts)** : monolithe modulaire, services séparés et complexité opérationnelle comparés.
+- **Évolution (4 pts)** : décision d'architecture datée, risques, migration et stratégie de retour documentés.
+
+**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : découper en services sans ownership, observabilité, sécurité ni plan de migration.
+
+**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.

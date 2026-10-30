@@ -1,11 +1,14 @@
 ---
 perishability_id: PER-0011
----
 stability: perissable
-duree_de_vie_estimee: 1-2 ans
-raison: Les styles IA évoluent avec les modèles.
+duree_de_vie_estimee: "1-2 ans"
+raison: "Les styles IA évoluent avec les modèles."
+freshness_registry_id: PER-0011
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 # 18_human_vs_ai_smell : reconnaître deux styles de bug
 
 ## Ordre de lecture
@@ -72,3 +75,28 @@ Pour la CI du corpus, distinguer toujours :
 ## REPRODUCTIBILITÉ
 
 Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur dépôt apprenant. Si le projet utilise des dépendances npm, ton dépôt apprenant doit versionner `package.json` et `package-lock.json`, puis utiliser `npm ci` en CI pour installer exactement cet arbre. Si le projet est sans dépendances, consigne simplement la version de runtime et la commande de test réellement utilisée. La preuve de reproductibilité est la commande et la version relevées dans ton propre dépôt, pas une valeur inventée dans le curriculum.
+
+---
+
+## État des tests et point de départ (référence AF)
+
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+
+### État des tests à la réception
+
+- **Code de départ présent :** `src/human_version.js` et `src/ai_version.js`.
+- **Tests de référence verts dès le départ :** aucun, car le fix n'est volontairement pas fourni.
+- **Test volontairement rouge :** `tests/tests.js` importe `src/format_arena_time.js`, qui doit être créé par l'apprenant. L'échec initial `MODULE_NOT_FOUND` est `RED_BY_DESIGN` et correspond à l'état initial déclaré par le cahier des charges.
+- **Tests à créer :** au moins trois cas spécifiques au style humain, trois cas spécifiques au style IA, et des cas limites pour valeurs négatives, non finies, non entières et grands nombres. Chaque piège nommé doit être prouvé par un test qui échoue sur les versions originales et passe sur le fix.
+- **Validation finale :** après création de `src/format_arena_time.js`, lancer `node tests/tests.js` depuis la racine du projet. Tous les tests doivent passer ; conserver la sortie. Ne pas modifier `human_version.js`, `ai_version.js` ou affaiblir les assertions pour obtenir artificiellement du vert.
+
+Ce projet diffère des scaffolds vierges : il fournit du code à examiner et à comparer. Lis le code avant de modifier le protocole.
+
+### Détails d’implémentation et de validation à la réception
+
+- **Code fourni :** `src/human_version.js` et `src/ai_version.js`, avec `tests/tests.js`.
+- **Tests de référence verts :** aucun ; le correctif n'est volontairement pas fourni.
+- **Test volontairement rouge :** `tests/tests.js` importe `src/format_arena_time.js`, absent au départ. `node tests/tests.js` doit donc échouer sur un module manquant tant que l'apprenant n'a pas créé ce livrable.
+- **Tests à créer :** cas propres à chaque style, nombres négatifs, décimaux, chaînes, valeurs non finies, grandes durées et bornes métier. Chaque bug identifié dans `AUDIT.md` doit avoir une preuve testable.
+- **Commande finale :** après création du module, `node tests/tests.js` depuis ce dossier. Aucun `npm install` n'est requis par les fichiers livrés.
+- **Preuve :** chaque test échoue sur le comportement fautif initial et passe sur la correction, sans modifier les sources originales ni affaiblir les assertions.

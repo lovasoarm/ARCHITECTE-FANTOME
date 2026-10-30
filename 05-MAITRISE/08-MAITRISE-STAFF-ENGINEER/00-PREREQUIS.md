@@ -16,7 +16,9 @@ Tout ou rien. Si une case est non, **n'entre pas**.
 - [ ] `DECISION-ARBITRAGE.md`
 - [ ] revue S5 (URL + SHA) + contradicteur
 - [ ] `STANDARDS-AGENTS.md`
-- [ ] `IA-EN-PROD.md` **ou** remplacement S4/S5 écrit
+- [ ] `LIVRAISON-EXPLOITATION.md` (famille S6)
+- [ ] `EVALUATION-IA.md` (contrôle transversal G8)
+- [ ] `IA-EN-PROD.md` uniquement si une brique IA est intégrée au système
 - [ ] capstone + addendum Staff + gate fil rouge
 
 Détail : [01-00-why-this-level.md](01-00-why-this-level.md).

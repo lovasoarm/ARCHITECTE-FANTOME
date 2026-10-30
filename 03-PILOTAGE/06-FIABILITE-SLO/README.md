@@ -7,10 +7,11 @@ route: survie
 
 # 06 : FIABILITÉ ET SLO : PROMETTRE UN CHIFFRE, PUIS LE TENIR
 
+> **Atelier intégrateur :** après les leçons de ce module, effectue le [59 : Atelier DevOps/SRE](../../06-ANNEXES-TRANSVERSES/59-LAB-DEVOPS-LIFECYCLE.md). Il relie le calcul SLI/SLO à une release, une panne, un rollback et une restauration mesurée. Les chiffres du laboratoire sont des données d'exercice ; les résultats du fil rouge doivent être mesurés par l'apprenant.
+
 <!-- AF-DIAGRAM:slo -->
 
 ```text
-text
 SLO
  │
  ├──► SLI mesuré ───► conformité
@@ -35,6 +36,8 @@ Le SLO définit la cible, le SLI mesure le service et l’error budget relie fia
 4. Encaisser une panne subie sur ton fil rouge et en sortir un post-mortem sans coupable.
 
 ## Parcours
+
+- `08-CASE-OPERATIONNEL-SLO.md` : cas complet SLI/SLO/SLA, budget, alerte, incident et postmortem.
 
 | Fichier                           | Objet                                     | Durée  |
 | --------------------------------- | ----------------------------------------- | ------ |

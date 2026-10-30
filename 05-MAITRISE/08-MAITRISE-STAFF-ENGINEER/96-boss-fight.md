@@ -9,10 +9,12 @@ perturbation_modes: [decision_inversee, changement_echelle]
 anti_recipe_key: decision_inversee+changement_echelle
 transfer_distance: high
 assessment_role: staff_mastery
-review_due: 2027-12-31
-
+freshness_registry_id: PER-0084
+freshness_audit_date: 2026-10-30
+freshness_status: a_verifier_date_absente
+review_due: 2027-04-28
+review_status: a_verifier_date_absente
 ---
-
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 # Boss fight : soutenance du dossier unique sous contradiction
