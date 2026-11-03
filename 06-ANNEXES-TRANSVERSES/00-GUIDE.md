@@ -1,10 +1,28 @@
 ---
-stability: mixte - fondamentaux durables, marche et outils perissables
+stability: perissable
+perishability_id: PER-0117
+review_interval: "3 mois"
+source_verified_on: "2026-11-03"
+freshness_status: "verified_current"
+source_url: https://www.bls.gov/opub/ted/2026/artificial-intelligence-information-technology-and-employment-2024-34.htm
+source_type: primary
+review_due: "2027-02-03"
+source_scope: "BLS Employment Projections 2024–2034 (États-Unis) : data scientists +33,5 %, information security analysts +28,5 %, software developers +15,8 %. Ce sont des projections professionnelles américaines, pas des données mondiales ou malgaches. Le guide contient aussi des liens de marché distincts ; leurs références, dates et limites sont inventoriées dans 06-ANNEXES-TRANSVERSES/84-REGISTRE-SOURCES-V6.5.md. Ces liens ne sont pas couverts par cette seule fiche BLS."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_current » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "BLS_US_2024_2034_OCCUPATION_PROJECTIONS_EXACT_PERCENTAGES_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
 
 # 00-GUIDE : Tu ne sais pas quoi faire ? Commence ici.
 
-> **Route canonique mise à jour :** commence par [FORMATION-COMPLETE-INGENIERIE.md](../FORMATION-COMPLETE-INGENIERIE.md), puis utilise ce guide comme boussole d’orientation. `START HERE` ouvre les premières activités, sans imposer de durée de fin.
+> **Périmètre suivi :** les données de marché, les projections, les offres d’emploi et les références externes datées. Les données étrangères ou issues d’une plateforme ne décrivent pas automatiquement le marché malgache ; relis les sources et leur périmètre avant toute décision.
+
+> **Contrôle documentaire des références : 3 novembre 2026 :** les projections BLS citées dans la section marché ont été contrôlées sur la source BLS 2024–2034 et ne concernent que les États-Unis. Les autres sources liées dans ce guide sont des enquêtes, analyses de plateformes, rapports ou instantanés distincts : leurs dénominateurs, territoires et dates sont conservés dans le texte et leurs références sont inventoriées dans le [registre des références V6.5](84-REGISTRE-SOURCES-V6.5.md). Une donnée Indeed décrit des annonces Indeed aux États-Unis ; une donnée Upwork décrit sa place de marché ; une enquête Stack Overflow décrit ses répondants ; une projection WEF/BLS n'est pas une promesse individuelle. Les instantanés Asako/Recruteo sont historiques et ne décrivent pas les offres actuellement disponibles. Aucune de ces sources ne permet de calculer une probabilité personnelle d'embauche à Madagascar.
+
+> **Porte d’entrée unique :** commence par [START HERE](../00-SOCLE/01-GETTING-STARTED/01-START_HERE.md). Suis ensuite l’ordre indiqué : Getting Started, Prologue, première passe du Référentiel, puis Route 58. Ce guide est une boussole de référence, pas une étape à terminer avant ton premier exercice. [Formation complète](../FORMATION-COMPLETE-INGENIERIE.md) décrit la destination et les domaines ; ce n’est pas un prérequis de démarrage.
 
 > **Version CrazyDevs**
 >
@@ -16,9 +34,9 @@ stability: mixte - fondamentaux durables, marche et outils perissables
 >
 > Respire. On va remettre les pieces dans le bon ordre.
 
-Première passe : environ 15–20 minutes. La lecture complète est volontairement progressive :
-tu peux revenir aux sections longues après le démarrage. Ce document est une boussole
-d’orientation, pas un module CORE.
+Première passe de lecture : environ 15–20 minutes pour l’introduction et la section 0 (repères 0.1 à 0.4). Cette estimation n’inclut ni la réalisation du kata de la section 0.5 (20–45 minutes), ni la lecture des sections 1 à 13. La lecture complète du guide est volontairement progressive : reviens aux sections longues après le démarrage ou lorsque la Route 58 te renvoie vers elles. Ce document est une boussole d’orientation, pas un module CORE.
+
+> **Limite des données de marché :** les chiffres cités plus loin proviennent de périmètres différents (enquêtes de répondants, annonces publiées, projections ou données de plateformes). Chaque chiffre conserve son territoire, sa période et sa méthode ; aucun ne permet de déduire directement une probabilité individuelle d’embauche à Madagascar. Les instantanés de job boards sont datés et ne décrivent pas les offres disponibles aujourd’hui.
 
 ---
 
@@ -154,64 +172,51 @@ Je documente
 
 Ca, c'est deja de l'ingenierie.
 
-### 0.3 Le kit de depart
+### 0.3 Le kit de départ : installer au bon moment
 
-Tu peux commencer avec tres peu :
+Tu peux **lire le parcours et faire les exercices conceptuels sans installation globale**. Pour le premier cycle JavaScript exécutable de Getting Started, prépare seulement :
+
+| Outil                                                 | Quand en as-tu besoin ?                                                                                                        |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Un éditeur de texte (VS Code est une option pratique) | Pour créer et modifier le fichier `.js` de `Day One`.                                                                          |
+| Un terminal                                           | Dès Getting Started, pour te repérer dans les dossiers et lancer le fichier. Le terminal intégré de VS Code convient aussi.    |
+| Node.js                                               | Avant d'exécuter le premier fichier JavaScript ; suis la version et les étapes de `00-SOCLE/01-GETTING-STARTED/02-install.md`. |
+
+**À différer jusqu'à l'activité qui le demande :**
+
+| Outil                                           | Déclencheur d'installation ou d'utilisation                                                                                                                |
+| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Navigateur                                      | Lors d'un exercice Web qui demande de tester une page ou une interface. Tu en as probablement déjà un ; aucun réglage spécial n'est requis pour `Day One`. |
+| Git local                                       | Juste avant une activité qui demande de suivre les changements ou de produire un historique de commits.                                                    |
+| Compte GitHub et dépôt distant                  | Uniquement lorsqu'une activité demande explicitement une collaboration ou une publication distante ; ce n'est pas nécessaire pour le premier exercice.     |
+| npm ou un autre gestionnaire de paquets         | Lorsqu'un projet demande d'installer des dépendances ; ne lance pas `install` par réflexe.                                                                 |
+| Python, Docker, base de données et outils Cloud | À l'étape dont le `SETUP.md` les déclare nécessaires, pas au démarrage du curriculum.                                                                      |
+
+Le principe est simple : installe un outil quand une activité précise en a besoin, puis vérifie-le avec la commande indiquée par cette activité. Le guide global [`SETUP.md`](../SETUP.md) et le `SETUP.md` local expliquent la priorité des prérequis.
+
+### 0.4 Exemple de progression possible : sans calendrier
+
+> Ce découpage donne des exemples de thèmes qui peuvent arriver successivement. Ce ne sont ni des semaines obligatoires, ni une durée cible, ni une promesse de résultat. La [Route 58](58-ROUTE-APPRENANT-COHERENTE.md) détermine l'ordre réel et les prérequis. Une étape peut prendre plusieurs séances ou être reportée jusqu'à ce que la compétence précédente soit suffisamment comprise.
 
 ```text
-VS Code          editeur de code
-Terminal         interface texte pour parler au systeme
-Git              outil de versioning (historique de tes changements)
-GitHub           depot distant (endroit ou ton code et son historique sont visibles)
-Navigateur       pour tester le web
-Node.js          environnement pour executer JavaScript cote serveur
+ÉTAPE A  : premiers mécanismes
+variables, conditions, boucles, fonctions, tableaux, objets, console
+
+ÉTAPE B  : consolider les gestes de développement
+modules, erreurs, debugging, fichiers, terminal ; Git local lorsque la route le demande
+
+ÉTAPE C  : construire avec des preuves
+README, petit projet, tests simples et refactor, après les prérequis correspondants
+
+ÉTAPE D  : terminer et rendre observable
+corriger les bugs, documenter et déployer seulement lorsqu'une activité le demande
 ```
 
-Tout le reste arrive lorsqu'un projet le demande.
+Une petite réalisation terminée à ton rythme vaut mieux qu'une longue liste de tutoriels commencés et abandonnés.
 
-### 0.4 Les 30 premiers jours
+### 0.5 Ton premier kata : pas le fil rouge
 
-```text
-JOURS 1-7
----------
-variables
-conditions
-boucles
-fonctions
-tableaux
-objets
-console
-petits exercices
-
-JOURS 8-14
-----------
-modules
-erreurs
-debugging
-fichiers
-terminal
-premier Git
-
-JOURS 15-21
------------
-GitHub
-README
-petit projet
-tests simples
-refactor (reorganiser du code sans changer son comportement)
-
-JOURS 22-30
------------
-finir le projet
-corriger les bugs
-documenter
-deployer simplement
-ecrire ce qui a ete difficile
-```
-
-Un mois termine avec un petit projet fini vaut plus qu'un mois de playlists commencees et abandonnees.
-
-### 0.5 Ton premier projet
+> **Statut : kata de démarrage (20–45 minutes), pas projet fil rouge, pas mini-projet certifiant.** Il sert à pratiquer quelques opérations de base. Le fil rouge personnel sera qualifié après le Cadrage. Si un projet existe déjà, ne le détruis pas pour cet exercice.
 
 Prends un probleme ridicule.
 
@@ -361,17 +366,17 @@ Puis la suivante.
 
 Avant de parler de Python ou de JavaScript, il faut remonter loin. Très loin. Genre... 1843.
 
-En **1843**, une femme nommée **Ada Lovelace** écrit ce qu'on considère aujourd'hui comme le tout premier algorithme destiné à être exécuté par une machine. Elle travaillait sur la "Machine Analytique" de **Charles Babbage** : une machine mécanique géante qui n'a jamais vraiment été construite de son vivant. Ada est donc techniquement la première programmeuse de l'histoire.
+En **1843**, **Ada Lovelace** publie ses notes sur la Machine analytique de **Charles Babbage**. Elles décrivent notamment une suite d'opérations destinée à calculer des nombres de Bernoulli. Cette machine mécanique générale n'a pas été achevée de son vivant. Pour cette raison, Lovelace est souvent présentée comme la première programmeuse : ses notes sont parmi les premières descriptions publiées d'un programme conçu pour une machine programmable. Cette formulation est plus précise que « première programmeuse » prise comme un fait sans nuance.
 
-C'est pour ça que le langage **Ada** (utilisé encore aujourd'hui dans l'aviation et l'armée) porte son prénom.
+Le langage **Ada**, conçu bien plus tard pour des systèmes où la fiabilité compte, porte son prénom.
 
-Byron était son père. L'histoire de la programmation, c'est de la poésie appliquée dès le départ.
+Byron était son père. L'histoire de la programmation commence aussi par un travail d'écriture, de traduction et de raisonnement.
 
-Mais un "vrai" langage de programmation au sens moderne, ça arrive bien plus tard.
+Les langages de haut niveau apparaissent progressivement au milieu du XXe siècle.
 
-En **1949**, **John Mauchly** crée **Short Code** : le premier langage à ressembler à ce qu'on connaît aujourd'hui. Des instructions lisibles par un humain, pas juste des 0 et des 1.
+En **1949**, **John Mauchly** propose **Short Code**, un interpréteur de notation mathématique ensuite implémenté pour des ordinateurs BINAC puis UNIVAC. C'est l'un des premiers langages de haut niveau effectivement mis en œuvre ; il n'est pas le premier langage lisible de toute l'histoire, car d'autres conceptions, dont Plankalkül de Konrad Zuse, l'ont précédé sur le plan conceptuel.
 
-Puis en **1957**, **John Backus** et son équipe chez IBM inventent **FORTRAN** (FORmula TRANslation). C'est le premier langage vraiment utilisé massivement, principalement pour les calculs scientifiques. FORTRAN existe encore en 2026. Oui, vraiment. Les scientifiques qui simulent des trajectoires de fusées l'utilisent encore.
+Puis **FORTRAN**, conçu par l'équipe de **John Backus** chez IBM et diffusé à partir de 1957, devient l'un des premiers langages de haut niveau largement adoptés, notamment pour le calcul scientifique. Il est encore utilisé dans certains domaines spécialisés.
 
 ---
 
@@ -384,7 +389,7 @@ Le mot "Bonjour" en binaire :
 01000010 01101111 01101110 01101010 01101111 01110101 01110010
 ```
 
-Un langage de programmation, c'est un **intermédiaire** entre toi (l'humain) et la machine. Tu écris des instructions dans un format que tu comprends, et le langage s'occupe de tout traduire en langage machine.
+Un langage de programmation fournit une notation structurée pour décrire des opérations. Selon le langage et l'environnement, un compilateur, un interpréteur ou une machine virtuelle transforme ou exécute ces instructions. Le résultat n'est pas toujours une traduction directe de chaque ligne en binaire : plusieurs étapes et couches d'exécution peuvent intervenir.
 
 ```
 Illustration : la chaîne de traduction
@@ -403,21 +408,20 @@ C'est exactement comme un traducteur lors d'une conférence internationale. Toi 
 ### Frise chronologique : de 1843 à 2026
 
 ```
-1843 -------- Ada Lovelace écrit le 1er algo de l'histoire (sur papier)
-1949 -------- Short Code : 1er langage lisible par un humain
-1957 -------- FORTRAN : 1er langage massivement utilisé (IBM)
-1958 -------- LISP : ancêtre de tous les langages fonctionnels
-1959 -------- COBOL : Grace Hopper. Les banques l'utilisent encore
-1972 -------- C : Dennis Ritchie. Le père de presque tout
-1983 -------- C++ : C mais avec des objets dedans
-1991 -------- Python : Guido van Rossum. Nommé d'après les Monty Python
-1995 -------- Java + JavaScript + PHP : L'ANNÉE DU WEB
-2009 -------- Go : Google en avait marre que C++ compile trop lentement
-2010 -------- Rust : Mozilla en avait marre que C++ plante tout
-2014 -------- Swift : Apple remplace Objective-C, enfin lisible
-2015 -------- Kotlin : JetBrains commence à tuer Java sur Android
-2016 -------- TypeScript : Microsoft rend JavaScript sérieux
-2022+ ------- Zig, Carbon : nouveaux challengers qui visent C/C++
+1843 -------- Ada Lovelace publie des notes décrivant un programme pour la Machine analytique
+1949 -------- Short Code : proposition de Mauchly, puis premiers déploiements sur BINAC/UNIVAC
+1957 -------- FORTRAN : diffusion commerciale d'un langage de haut niveau largement adopté
+1958 -------- LISP : famille fondatrice des langages fonctionnels symboliques
+1959 -------- COBOL : langage conçu pour les traitements de données métier
+1972 -------- C : Dennis Ritchie et les débuts d'Unix moderne
+1983 -------- C++ : extension de C avec programmation orientée objet
+1991 -------- Python : Guido van Rossum publie la première version
+1995 -------- Java, JavaScript et PHP apparaissent dans le contexte de l'essor du Web
+2009 -------- Go : langage conçu chez Google pour des systèmes et outils réseau
+2010 -------- Rust : première annonce publique du projet par Mozilla
+2014 -------- Swift : Apple présente un langage moderne pour ses plateformes
+2016 -------- TypeScript : Microsoft publie la version 2.0, après ses débuts en 2012
+2022+ ------- Zig et Carbon : projets qui explorent d'autres choix pour la programmation système
 ```
 
 En 1995, Java, JavaScript et PHP sont sortis la même année. Ferrari, Lamborghini et Bugatti le même jour : aucun des trois n'a gagné définitivement, mais chacun a dominé son terrain.
@@ -427,13 +431,13 @@ En 1995, Java, JavaScript et PHP sont sortis la même année. Ferrari, Lamborghi
 ### Qui a programmé quoi en premier ?
 
 ```
-PREMIER ALGO DOCUMENTÉ       : Ada Lovelace (1843)
-PREMIER LANGAGE LISIBLE       : John Mauchly avec Short Code (1949)
-PREMIER LANGAGE MASSIVEMENT UTILISÉ : John Backus avec FORTRAN (1957)
-PREMIER LANGAGE WEB         : Brendan Eich avec JavaScript (1995, en 10 jours)
+PROGRAMME PUBLIÉ PRÉCOCEMENT : notes d'Ada Lovelace sur la Machine analytique (1843)
+LANGAGE DE HAUT NIVEAU IMPLÉMENTÉ TÔT : Short Code, proposé par Mauchly (1949)
+LANGAGE DE HAUT NIVEAU LARGEMENT ADOPTÉ : FORTRAN (à partir de 1957)
+SCRIPT DE NAVIGATEUR POPULARISÉ : JavaScript, prototype de Brendan Eich (1995)
 ```
 
-JavaScript a été créé en 10 jours. Ça explique beaucoup de choses.
+Le premier prototype de JavaScript a été écrit en dix jours en mai 1995, selon son créateur. Le langage s'appelait d'abord Mocha, puis LiveScript, avant de prendre le nom JavaScript. Cette rapidité de prototypage ne résume ni son évolution ultérieure ni la qualité des standards actuels.
 
 ---
 
@@ -622,12 +626,12 @@ Question
 
 ### Ce que les donnees permettent de dire
 
-Le Stack Overflow Developer Survey 2026 place JavaScript en tete des langages utilises (62 % des repondants), tandis que SQL, HTML/CSS et Python sont a 58 %. Le survey permet de decrire les usages de ses repondants ; il ne constitue pas un classement universel du marche mondial.
-Source : https://survey.stackoverflow.co/
+Dans le **Stack Overflow Developer Survey 2026**, JavaScript est cité par 62,0 % des répondants à la question sur les langages utilisés (`n = 14 099`), devant SQL (58,4 %), HTML/CSS (58,2 %) et Python (58,0 %). La question porte sur les langages avec lesquels les répondants ont réalisé un travail de développement approfondi au cours de l’année précédente. Ces résultats décrivent les participants à cette enquête ; ils ne constituent ni un recensement de tous les développeurs ni un classement universel du marché mondial.
+Source : [Stack Overflow Developer Survey 2026 : langages, données détaillées](https://survey.stackoverflow.co/2026/technology/data/languages).
 
-Le Web reste structure autour de JavaScript et TypeScript. TypeScript est aujourd'hui une competence tres pertinente pour les applications web professionnelles, mais il ne faut pas confondre popularite et universalite.
+Le Web reste structuré autour de JavaScript et TypeScript. TypeScript est aujourd’hui une compétence très pertinente pour les applications web professionnelles, mais il ne faut pas confondre popularité et universalité.
 
-Le vrai principe a retenir est :
+Le vrai principe à retenir est :
 
 ```text
 LANGAGE
@@ -931,7 +935,7 @@ web
    +--> full-stack
 ```
 
-Tu peux donc apprendre une grosse partie de l'ingénierie logicielle sans changer de langage toutes les trois semaines.
+Tu peux donc apprendre une large partie de l’ingénierie logicielle dans un même langage avant d’élargir ton environnement. Le nombre de changements de langage n’est pas un indicateur de progression.
 
 Puis tu peux apprendre Python, Go, Java, Rust ou autre quand le problème le justifie.
 
@@ -1076,21 +1080,24 @@ CONTRAINTE          IMPACT SUR LE CHOIX TECH
 Peu de temps        : Technos que tu connais DÉJÀ.
                Pas le moment d'apprendre Rust.
 
-Pas de budget       : Vercel (gratuit), Supabase (gratuit),
-               Firebase (gratuit au début).
+Budget très limité : compare les offres gratuites ou d'essai, leurs quotas,
+               régions, sauvegardes, limites de stockage et conditions de suspension.
+               Prévois un scénario de coût dès que les quotas sont dépassés.
 
 Travail en équipe     : Ce que tout le monde dans l'équipe sait déjà.
                Pas le moment d'imposer un langage exotique.
 
-Doit durer longtemps    : Java, C#, Rust : stables, maintenus sur le long terme.
-               Évite les frameworks trop jeunes (ils disparaissent vite).
+Doit durer longtemps    : vérifie la politique de support, la fréquence des versions,
+               l'écosystème et le coût de migration. Un langage ou framework récent
+               n'est pas automatiquement fragile ; un outil ancien n'est pas automatiquement maintenu.
 
-Beaucoup d'utilisateurs  : Pense à la scalabilité (capacité à supporter davantage de charge). Go et Node.js gèrent bien la
-potentiels          charge. PostgreSQL tient mieux que certaines bases
-               NoSQL sous haute charge.
+Charge importante      : mesure les profils de lecture/écriture, la concurrence,
+               la latence et les limites de la base avant de choisir. Go, Node.js,
+               PostgreSQL et les bases NoSQL répondent à des contraintes différentes ;
+               aucun n'est « plus scalable » sans scénario de charge défini.
 
 Client / projet scolaire  : Choisis ce qui te permet de livrer quelque chose qui MARCHE.
-               Un projet simple qui fonctionne vaut 100x mieux qu'un
+               Un projet simple qui fonctionne est généralement plus utile qu'un
                projet complexe qui plante.
 ```
 
@@ -1107,7 +1114,7 @@ SITE WEB ou APP WEB : stack moderne débutant-intermédiaire suggérée
  Back-end     : Inclus dans Next.js via API routes, ou Supabase directement
  Base de données : PostgreSQL via Supabase
  Auth       : Supabase Auth (Google, GitHub, email/password)
- Hébergement   : Vercel (gratuit pour les petits projets)
+ Hébergement   : Vercel (offre gratuite ou payante selon quotas et usage)
  Style      : Tailwind CSS
 
  Alternatives front : Vue.js + Nuxt, SvelteKit, Astro
@@ -1117,7 +1124,8 @@ SITE WEB ou APP WEB : stack moderne débutant-intermédiaire suggérée
  Alternatives héberg : Netlify, Railway, Render, Firebase Hosting
  Alternatives style : Bootstrap, Shadcn/ui, Chakra UI
 
- Avantages : tout est gratuit au début, très bien documenté, des milliers de tutos.
+ Avantages : écosystème documenté et composants intégrables. Les coûts dépendent des quotas,
+              des régions, des sauvegardes, du trafic et des options retenues.
 
 APPLICATION MOBILE : cross-platform
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -1166,30 +1174,30 @@ JEU VIDÉO
 
 ### Étape 4 : Ne pas surarchitecturer
 
-C'est **l'erreur classique** de l'étudiant en info.
+C'est **l'erreur classique** de l'étudiant en info. Les étapes ci-dessous illustrent un ordre d'incréments, pas un calendrier : aucune durée ou échéance n'est imposée.
 
 ```
 SCÉNARIO TYPE :
  Le projet : une application de prise de notes (3 écrans).
 
  Ce que l'étudiant fait :
-  Semaine 1 : configure Docker + Docker Compose
-  Semaine 2 : met en place Kubernetes
-  Semaine 3 : architecture microservices avec 4 services séparés
-  Semaine 4 : pipeline CI/CD sur GitHub Actions
-  Semaine 5 : ... il n'a pas encore une seule note dans l'app
+  Étape 1 : configure Docker + Docker Compose
+  Étape 2 : met en place Kubernetes
+  Étape 3 : architecture microservices avec 4 services séparés
+  Étape 4 : pipeline CI/CD sur GitHub Actions
+  Étape 5 : ... il n'a pas encore une seule note dans l'app
 
  PROBLÈME : l'étudiant a construit l'infrastructure d'Amazon pour une app de notes.
 
 LA BONNE APPROCHE :
- Semaine 1 : l'app de notes fonctionne, on peut créer une note et la lire.
- Semaine 2 : on peut modifier et supprimer une note.
- Semaine 3 : authentification.
- Semaine 4 : déploiement simple sur Vercel.
- Plus tard : si ya 10 000 utilisateurs, là on réfléchit à Docker et Kubernetes.
+ Étape 1 : l'app de notes fonctionne, on peut créer une note et la lire.
+ Étape 2 : on peut modifier et supprimer une note.
+ Étape 3 : authentification.
+ Étape 4 : déploiement simple sur Vercel.
+ Plus tard : ajoute un conteneur lorsque tu as besoin d'un environnement reproductible ou d'une isolation adaptée. Envisage un orchestrateur comme Kubernetes seulement si les contraintes d'exploitation le justifient : plusieurs services à gérer, disponibilité, déploiements progressifs, montée en charge mesurée ou exigences d'équipe. Un nombre d'utilisateurs, à lui seul, ne déclenche pas automatiquement ce choix.
 ```
 
-> **Docker** = une boîte magique qui emballe ton app pour qu'elle tourne partout pareil. **Compose** = plusieurs boîtes qui se parlent. **Kubernetes** = un chef d'orchestre qui gère des milliers de boîtes Docker en même temps. Utilisé par Google, Netflix. **Microservices** = au lieu d'une seule app, tu découpes en mini-apps qui communiquent. Amazon a des centaines de microservices. **CI/CD** = un robot qui teste et déploie ton code automatiquement à chaque push.
+> **Image de conteneur** = paquet qui décrit un système de fichiers et ses dépendances, métadonnées et paramètres de démarrage. Elle améliore la reproductibilité, mais ne garantit pas un comportement strictement identique sur tous les hôtes : noyau, architecture, secrets, données, réseau et configuration restent importants. **Docker Compose** décrit et lance plusieurs services associés dans un environnement donné. **Kubernetes** orchestre des charges de travail conteneurisées (déploiement, placement, redémarrage, réseau et mises à l'échelle) ; il ne se résume pas à « gérer des milliers de boîtes Docker » et ajoute un coût opérationnel. **Microservices** = services séparés, conçus pour être déployés et exploités indépendamment ; ce découpage n'est utile que si les frontières et les coûts sont maîtrisés. **CI/CD** = automatisation de certaines étapes d'intégration et de livraison (build, contrôles, publication ou déploiement), souvent avec des approbations et des garde-fous.
 
 > **Règle : commence simple.** Ajoute de la complexité quand le BESOIN apparaît vraiment, pas avant. Un MVP (Minimum Viable Product) c'est la version la plus simple possible qui résout le vrai problème. Tout le reste vient après.
 
@@ -1255,8 +1263,7 @@ LA BONNE APPROCHE :
          Vercel   Railway  Render
         (front /  (back /  (back /
         Next.js)  Node/Py)  Node/Py)
-         Gratuit  Gratuit  Gratuit
-         au début  au début  au début
+         Paliers d'essai ou gratuits, avec quotas et limites variables
 ```
 
 ---
@@ -1315,25 +1322,21 @@ Budget        : Zéro (projet perso / scolaire)
 Temps        : 3 mois
 ```
 
-**Stack choisie** :
+**Exemple de stack possible** (à adapter au besoin, au pays, au budget et aux contraintes de données) :
 
 ```
-Front-end    : Next.js (TypeScript)
-Styles      : Tailwind CSS
-Backend     : Supabase (API auto-générée depuis PostgreSQL)
-Auth       : Supabase Auth
-Base de données : PostgreSQL via Supabase
-Temps réel    : Supabase Realtime (websockets inclus)
-Hébergement   : Vercel (gratuit)
+Front-end       : Next.js (TypeScript)
+Styles          : Tailwind CSS
+Backend         : API Supabase ou service applicatif séparé
+Auth            : Supabase Auth ou fournisseur adapté au contexte
+Base de données : PostgreSQL
+Temps réel      : Supabase Realtime si le besoin le justifie
+Hébergement     : Vercel ou autre fournisseur compatible
 ```
 
-**Pourquoi pas quelque chose de plus complexe ?**
+**Pourquoi commencer ainsi ?**
 
-```
-Parce que ça suffit. Ces outils sont gratuits au début. Ils sont scalables si le
-projet grandit. La doc est excellente. Des milliers de tutos existent.
-Tu peux livrer en 3 mois, pas en 3 ans.
-```
+Cette composition réduit le nombre de composants à maintenir pour un produit simple. Les offres gratuites ou d'essai ont des quotas, limites, conditions de conservation et possibilités de suspension qui peuvent évoluer. Avant d'y placer des données réelles, vérifie les conditions, les régions d'hébergement, les sauvegardes, les limites et le coût au-delà des quotas. La capacité à livrer en quelques semaines ou en plusieurs mois dépend du périmètre, de l'expérience, du temps disponible et des contraintes : aucune durée universelle ne peut être promise.
 
 ---
 
@@ -1341,9 +1344,9 @@ Tu peux livrer en 3 mois, pas en 3 ans.
 
 ## 7. Les vérités qu'on te dira jamais en cours
 
-**Vérité 1 : Le meilleur langage c'est celui que tu maîtrises vraiment.**
+**Vérité 1 : la maîtrise utile compte davantage qu'une collection de mots-clés.**
 
-Un dev qui connaît JavaScript sur le bout des doigts battra toujours quelqu'un qui connaît vaguement dix langages. La profondeur bat la largeur, toujours.
+Pour un objectif donné, une bonne maîtrise d'un langage et d'un écosystème pertinents est généralement plus utile qu'une connaissance superficielle de dix langages. La largeur reste précieuse pour comprendre les frontières entre systèmes, lire du code existant et choisir un outil ; elle complète la profondeur au lieu de s'y opposer.
 
 **Vérité 2 : Les langages ne meurent pas vraiment.**
 
@@ -1352,13 +1355,11 @@ COBOL de 1959 tourne encore dans les banques en 2026. FORTRAN tourne encore dans
 **Vérité 3 : Les concepts se transfèrent.**
 
 ```
-Si tu maîtrises vraiment Python :
- Apprendre Go prend quelques semaines.
- Apprendre Kotlin prend quelques semaines.
- Apprendre Swift prend quelques semaines.
+Si tu maîtrises vraiment Python, tu reconnaîtras rapidement dans Go, Kotlin ou Swift des concepts familiers : variables, fonctions, structures de contrôle, composition et gestion des erreurs.
 
-Les boucles, les conditions, les fonctions, les objets, les erreurs :
- c'est pareil partout. La syntaxe change. La logique, non.
+La durée d'adaptation dépend toutefois de ce que tu veux faire. Comprendre la syntaxe de base peut être rapide ; maîtriser les idiomes, le système de types, la concurrence, l'outillage, les conventions et l'écosystème demande davantage de pratique.
+
+Les idées se transfèrent ; les détails d'exécution et les contraintes ne sont pas identiques.
 ```
 
 **Vérité 4 : La stack ne fait pas tout.**
@@ -1379,13 +1380,13 @@ La qualité du code et de l'architecture comptent plus que le choix du langage.
 
 Passe du temps sur GitHub. Lis des projets open source dans ton domaine. Essaie de comprendre comment les autres ont résolu les mêmes problèmes que toi. C'est comme lire des livres pour un écrivain : indispensable.
 
-**Vérité 6 : Le syndrome de l'imposteur est universel.**
+**Vérité 6 : Le doute professionnel existe aussi chez les personnes expérimentées.**
 
-Même les devs avec 15 ans d'expérience googlèrent des trucs basiques tous les jours. Tout le monde le fait. Personne ne sait tout par cœur. La différence entre un junior et un senior c'est souvent juste le nombre de fois où il a résolu le même type de problème.
+Le syndrome de l’imposteur est fréquent, mais il n’est ni universel ni identique pour tout le monde. Des développeurs expérimentés consultent régulièrement la documentation et recherchent des notions qu’ils n’ont pas utilisées depuis longtemps. Personne ne connaît tout par cœur. L’expérience se construit notamment en reconnaissant les problèmes, en sachant où vérifier une information et en évaluant les conséquences d’une solution. Elle ne se résume pas au nombre de fois où une personne a rencontré le même problème.
 
 **Vérité 7 : Les outils changent. Les fondamentaux, non.**
 
-Les frameworks changent tous les 3 ans. Angular, React, Vue, Svelte, Solid... dans 5 ans il y en aura d'autres. Mais quelqu'un qui comprend vraiment le DOM, les événements, l'asynchrone et les requêtes HTTP s'adaptera en quelques semaines à n'importe quel nouveau framework.
+Les frameworks évoluent à des rythmes différents : certains changent fortement, d'autres conservent longtemps leurs concepts centraux. Angular, React, Vue, Svelte et Solid n'ont pas les mêmes conventions ni les mêmes modèles de rendu. Comprendre le DOM, les événements, l'asynchrone et HTTP facilite l'adaptation, mais ne garantit pas une maîtrise en quelques semaines ni une compétence immédiate sur n'importe quel nouvel outil.
 
 > Construis des fondations solides. Le reste vient tout seul.
 
@@ -1542,7 +1543,7 @@ fetch("/api/user/42");
 app.get("/api/user/:id", async (req, res) => {
   // vérifie que t'es authentifié
   // vérifie que t'as le droit de voir CET utilisateur (pas juste n'importe lequel)
-  // sanitize l'id (quelqu'un a déjà envoyé "42; DROP TABLE users;")
+  // valide le format de l'id, puis le lie comme paramètre SQL (jamais de concaténation)
   // requête DB avec retry si connexion timeout
   // cache le résultat 60s pour pas brûler la base
   // log la requête pour le monitoring (surveiller ton app en temps réel)
@@ -1634,7 +1635,7 @@ git commit -m "docs: README mis à jour (enfin)"
 // -> spoiler : le README n'a jamais été mis à jour
 ```
 
-La plupart des full-stacks ont une "main hand". Ils font les deux, mais sont vraiment experts dans un seul côté. Dans les startups, c'est le profil le plus recherché : il livre vite. Dans les grandes boîtes, on lui demande souvent de choisir un camp. C'est parfaitement normal.
+Un profil full-stack peut avoir un domaine de prédilection (« main hand ») tout en intervenant des deux côtés. La répartition dépend de l’équipe, du produit et du niveau de responsabilité : une petite structure peut valoriser la polyvalence, tandis qu’une organisation plus grande peut répartir les responsabilités entre spécialistes. Aucun de ces modèles n’est universel et le titre « full-stack » ne garantit pas, à lui seul, une expertise équivalente en frontend et en backend.
 
 ---
 
@@ -2079,10 +2080,9 @@ Il ne code pas le MEME Engine. Il décide comment il s'intègre dans le système
           _____________|______________
           |              |
         Supabase             S3
-        gratuit jusqu'à 1 GB,      pas de limite, moins cher
-        intégration facile,       à grande échelle, mais
-        parfait sous 10 000       plus de config
-        memes/mois
+        intégration simple,       contrôle fin et écosystème large,
+        quotas et limites         configuration et coûts à mesurer,
+        selon l'offre             frais selon stockage, requêtes et transferts
 
       Comment éviter que le stockage explose ?
       -> job CRON : les memes non téléchargés depuis 7 jours
@@ -2422,6 +2422,9 @@ Un excellent dev comprend ce qui se passe au-delà de son code : comment fonctio
 ### La carrière réaliste sur 10-15 ans
 
 ```
+Exemple de trajectoire, pas calendrier de promotion : l'expérience, les occasions,
+le contexte local et les responsabilités confiées varient fortement.
+
 ANNÉES 1-2 : LE DÉBROUSSAILLAGE
  Tu apprends vite mais tu casses aussi vite.
  Chaque semaine tu découvres que tu ne sais pas quelque chose.
@@ -2456,20 +2459,20 @@ ANNÉES 8-15 : LA FORCE TRANQUILLE
 
 ### Le tableau de synthèse final
 
-| Métier             | Difficulté d'accès | Salaire global | Remote    | Stabilité |
-| ------------------ | ------------------ | -------------- | --------- | --------- |
-| Frontend Dev       | Moyenne            | Bon            | Très fort | Solide    |
-| Backend Dev        | Moyenne            | Bon            | Très fort | Solide    |
-| Full-Stack Dev     | Moyenne            | Bon            | Très fort | Solide    |
-| Mobile Dev         | Moyenne            | Bon            | Fort      | Solide    |
-| DevOps / SRE       | Élevée             | Très bon       | Très fort | Excellent |
-| Data Engineer      | Élevée             | Très bon       | Très fort | Excellent |
-| ML / AI Engineer   | Très élevée        | Excellent      | Très fort | Excellent |
-| Security Engineer  | Très élevée        | Excellent      | Fort      | Excellent |
-| Game Dev           | Élevée             | Correct        | Faible    | Moyen     |
-| Software Architect | Très élevée        | Excellent      | Fort      | Excellent |
+| Famille de rôle                   | Travail caractéristique                                                | Contraintes qui structurent le poste                                             |
+| --------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Frontend / expérience utilisateur | Interfaces, état, rendu, accessibilité et performance perçue           | Diversité des appareils, navigateur, usages et qualité de l'expérience           |
+| Backend / services                | API, règles métier, données, intégrations et fiabilité                 | Sécurité, cohérence, latence, disponibilité et évolution des contrats            |
+| Full-stack                        | Parcours complet du client aux données                                 | Arbitrage entre profondeur technique et largeur de responsabilité                |
+| Mobile / client                   | Applications installées, synchronisation et capacités locales          | Plateformes, cycle de publication, réseau intermittent et stockage sécurisé      |
+| DevOps / SRE / Platform           | Livraison, exploitation, fiabilité et plateforme interne               | Astreinte, automatisation, incidents, coûts et objectifs de service              |
+| Data Engineering                  | Collecte, qualité, transformation et circulation des données           | Volumes, fraîcheur, gouvernance, traçabilité et coûts de calcul                  |
+| ML / AI Engineering               | Modèles, données, évaluation et intégration produit                    | Qualité des données, dérive, coût d'inférence, sécurité et mesure du résultat    |
+| Sécurité                          | Réduction du risque, architecture de défense et réponse aux incidents  | Menaces, conformité applicable, preuve et arbitrages avec les équipes            |
+| Game development                  | Moteur, gameplay, rendu et outils de production                        | Performance temps réel, plateformes, contraintes graphiques et modèle économique |
+| Architecture logicielle           | Décisions transversales, frontières, migration et alignement technique | Contexte organisationnel, influence, dette, risque et conséquences à long terme  |
 
-_Estimations basées sur les tendances du marché global 2026. Les salaires varient énormément selon le pays, l'entreprise et l'expérience._
+Ces familles ne se classent pas universellement par salaire, facilité d'accès, télétravail ou stabilité. Ces dimensions dépendent notamment du pays, du secteur, de l'expérience, de l'entreprise et du cycle économique ; compare des offres réelles dans le marché visé plutôt que de traiter un adjectif comme une statistique.
 
 ---
 
@@ -2493,29 +2496,29 @@ ou :
 
 Les donnees montrent plutot une **polarisation**.
 
-Le software reste une grande famille professionnelle. Le BLS americain projette pour 2024-2034 :
+Le Bureau of Labor Statistics (BLS) publie des projections pour les Etats-Unis sur la période 2024–2034. Il faut distinguer les **professions** des **industries** : on ne mélange pas leurs taux dans un même classement.
 
-```text
-Software developers              +15,8 %
-Information security analysts    +28,5 %
-Data scientists                  +33,5 %
-Computing infrastructure         +20,3 %
-```
+**Professions sélectionnées :**
 
-Ces projections concernent les Etats-Unis et ne sont pas des previsions mondiales. Elles indiquent cependant
-que l'activite ne disparait pas simplement parce que les outils deviennent plus automatises.
+| Profession aux Etats-Unis     | Variation projetée de l'emploi, 2024–2034 |
+| ----------------------------- | ----------------------------------------: |
+| Data scientists               |                                   +33,5 % |
+| Information security analysts |                                   +28,5 % |
+| Software developers           |                                   +15,8 % |
 
-Source :
-https://www.bls.gov/opub/mlr/2026/article/industry-and-occupational-employment-projections-overview.htm
+Ces pourcentages sont des projections nationales d'emploi, pas des taux d'embauche garantis ni des prévisions mondiales. Le nombre absolu d'emplois et la base de départ comptent également.
+
+**Industries :** le BLS projette séparément une croissance de certaines industries, dont l'infrastructure informatique. Ce taux ne doit pas être présenté comme la croissance d'une profession de développeur.
+
+Sources : [BLS : professions liées à l'IA et aux technologies, 2024–2034](https://www.bls.gov/opub/ted/2026/artificial-intelligence-information-technology-and-employment-2024-34.htm) ; [BLS : projections par industrie et profession](https://www.bls.gov/opub/mlr/2026/article/industry-and-occupational-employment-projections-overview.htm).
 
 ### 9.1 Le changement le plus important
 
-Indeed a observe un rebond d'environ 15 % des offres software development aux Etats-Unis sur la periode
-etudiee entre 2025 et 2026. Mais **71 % de l'augmentation entre mai 2025 et mai 2026 provenait de roles seniors**
-et 37 % des offres ajoutees mentionnaient l'IA dans leur titre.
+Selon Indeed Hiring Lab, les **annonces d’emploi** en développement logiciel aux États-Unis ont progressé d’environ 15 % entre le 24 février 2025 (date de référence du lancement de Claude Code) et juin 2026, tandis que l’ensemble des annonces reculait d’environ 7 %. Le point de départ était bas : les annonces de développement logiciel restaient environ 27,5 % sous leur niveau de février 2020. Entre mai 2025 et mai 2026, les postes seniors représentaient 71 % de l’augmentation nette des annonces de développement logiciel, et les postes mentionnant l’IA dans leur intitulé en représentaient 37 %. Ces deux catégories peuvent se recouper.
 
-Source :
-https://hiringlab.indeed.com/2026/07/08/ai-and-job-postings-from-destruction-to-creation/
+Il s’agit d’un indice d’annonces américaines, pas d’un décompte d’embauches, d’emplois garantis ou d’une mesure complète de la demande mondiale. La concomitance avec la diffusion des outils agentiques ne démontre pas une causalité.
+
+Source : [Indeed Hiring Lab : AI and Job Postings (8 juillet 2026)](https://hiringlab.indeed.com/2026/07/08/ai-and-job-postings-from-destruction-to-creation/).
 
 La lecture intelligente n'est donc pas :
 
@@ -2549,23 +2552,17 @@ valeur potentiellement plus defendable
 
 ### 9.2 Freelance : meme histoire
 
-Upwork observe en 2026 une hausse de 109 % des competences mentionnant explicitement l'IA sur sa place de marche.
-Les competences historiques comme le full-stack, la data et le design restent toutefois demandees.
+Upwork annonce en 2026 une hausse de 109 % des compétences explicitement liées à l'IA dans les données de sa propre place de marché. Ce signal décrit les annonces, catégories et missions suivies par Upwork ; il ne mesure pas, à lui seul, l’ensemble du marché mondial de l’emploi.
 
-Plus interessant : leur Future Workforce Index 2026 distingue la simple execution IA du travail complexe augmente par l'IA.
-Les travaux IA plus complexes gagnent davantage en valeur, tandis que des travaux d'execution generative voient leurs revenus
-sous pression. Upwork utilise le terme "AI orchestrator" pour decrire le profil qui combine outil, expertise de domaine,
-workflow, jugement et resultat business.
+Le Future Workforce Index 2026 d’Upwork distingue l’exécution de tâches avec l’IA du travail plus complexe augmenté par l’IA. Ces observations portent sur sa place de marché et ne démontrent pas une évolution uniforme des revenus ou des missions dans les autres canaux de recrutement. Upwork emploie l’expression « AI orchestrator » pour désigner un profil qui combine outil, expertise de domaine, workflow, jugement et résultat métier ; il s’agit de sa terminologie, pas d’un titre professionnel universel.
 
 Sources :
 https://www.upwork.com/press/releases/upworks-in-demand-skills-2026-demand-for-top-ai-skills-more-than-doubles-as-ai-is-embedded-into-everyday-work
 https://www.upwork.com/research/research-future-workforce-index-2026
 
-Un autre signal, publie en aout 2026, est encore plus parlant : les missions demandant a des humains d'ameliorer du
-travail genere par IA ont augmente de 70 % sur Upwork, et de plus de huit fois depuis 2023 dans le developpement logiciel.
+Un autre rapport d'Upwork décrit la progression, sur sa place de marché, des missions où des humains vérifient ou améliorent des productions générées par IA. Les pourcentages et comparaisons de ce rapport portent sur les offres et missions observées par la plateforme ; ils ne doivent pas être extrapolés à toutes les entreprises ni à tous les pays.
 
-Source :
-https://www.upwork.com/research/ai-generated-work-is-creating-more-work-for-humans
+Source : [Upwork Research : AI-generated work is creating more work for humans](https://www.upwork.com/research/ai-generated-work-is-creating-more-work-for-humans).
 
 ### 9.3 Ce que cela signifie pour toi
 
@@ -2632,7 +2629,7 @@ mais :
 
 Madagascar possede deja un ecosysteme d'emploi numerique et d'externalisation.
 
-Des snapshots de plateformes locales en aout-septembre 2026 montrent des offres en :
+Des instantanés de plateformes locales consultés entre août et septembre 2026 montraient des annonces dans les domaines suivants ; ce relevé n'est pas un inventaire actuel ni une mesure exhaustive du marché :
 
 ```text
 backend
@@ -2645,14 +2642,13 @@ BPO
 design
 ```
 
-Asako listait par exemple 13 offres Informatique & Digital au 1er septembre 2026, dont CTO remote,
+Dans son instantané du 1er septembre 2026, Asako affichait par exemple 13 offres Informatique & Digital, dont CTO remote,
 developpeur PHP senior, data, chef de projet IT, DevWebflow et full-stack.
 
 Source :
 https://www.asako.mg/emploi/s-informatique-digital
 
-Recruteo affichait egalement un ensemble d'offres IT a Madagascar avec des roles web, systeme/reseau,
-data et DevOps. Ses chiffres et salaires sont des donnees de plateforme, pas une statistique nationale.
+Dans son instantané consulté le 1er novembre 2026, Recruteo affichait également des offres IT à Madagascar dans les domaines web, système/réseau, data et DevOps. Ses annonces et éventuels salaires sont des données de plateforme, pas une statistique nationale.
 
 Source :
 https://recruteo.mg/en/secteurs/informatique
@@ -2686,21 +2682,32 @@ Madagascar
 competences exportables
 ```
 
-### 9.6 L'anglais n'est pas un bonus
+### 9.6 Développer progressivement l'anglais technique
 
-Pour travailler avec des equipes internationales :
+L'anglais technique facilite l'accès aux documentations, aux discussions et aux équipes internationales. **Ce n'est pas un prérequis pour commencer AF**, ni une raison de retarder la programmation. Il se travaille par petites tâches liées à ce que tu étudies déjà ; il ne remplace jamais la compréhension du concept en français.
+
+| Palier                        | Où l'intégrer dans AF                                                | Pratique courte et preuve utile                                                                                                                                                                                                |
+| ----------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1. Reconnaître le vocabulaire | Dès Getting Started et Fundamentals                                  | Garde un mini-glossaire personnel : terme anglais, explication simple en français, phrase ou ligne de code où tu l'as rencontré. Commence par les mots d'interface, les noms d'outils et les messages d'erreur.                |
+| 2. Lire sans tout traduire    | Après les premières notions JavaScript, puis dans Async et Debugging | Lis un court passage de documentation correspondant à une notion déjà étudiée. Repère le but, la condition d'utilisation et une limite ; explique-les avec tes mots en français. Vérifie les termes bloquants, pas chaque mot. |
+| 3. Écrire pour être compris   | Dans les exercices, mini-projets et standards de README              | Rédige un résumé court, une étape de reproduction ou une description de changement. La précision compte plus que la sophistication grammaticale ; n'ajoute pas un commentaire à chaque ligne de code.                          |
+| 4. Communiquer sur un système | Dans Pilotage, sécurité, observabilité et revues                     | Prépare progressivement un compte-rendu d'incident, une question technique, un ADR ou une revue. Commence par des phrases simples et des faits vérifiables, puis expose les compromis et les limites.                          |
+
+**Routine légère, sans gate :** à la fin d'une séance, choisis un terme rencontré, retrouve sa définition dans le contexte, puis écris une phrase qui explique ce qu'il signifie dans ton exercice. Quand tu es à l'aise, remplace cette phrase par un court résumé en anglais. Deux ou trois répétitions régulières valent mieux qu'une longue session de traduction sans pratique.
+
+Pour signaler un bug, tu peux d'abord t'appuyer sur ce canevas :
 
 ```text
-lire la documentation
-ecrire clairement
-faire un compte-rendu
-decrire un incident
-defendre une decision
-poser une question precise
-comprendre un contrat ou une specification
+Expected behavior: what should happen
+Actual behavior: what happened
+Steps to reproduce: how to see the problem
+Environment: tool and version
+Evidence: error message or relevant observation
 ```
 
-sont des competences techniques autant que linguistiques.
+**Comment mesurer le progrès :** tu progresses lorsque tu peux retrouver une information précise dans une documentation, expliquer une instruction ou une erreur, poser une question compréhensible et rédiger un compte-rendu reproductible. La fluidité orale, un niveau CECRL particulier ou la rédaction parfaite ne sont pas des gates du parcours. Pour une décision sensible (sécurité, droit, données, coût), vérifie toujours le texte source et son contexte ; une traduction automatique peut aider à lire, pas remplacer cette vérification.
+
+Cette progression s'appuie sur les activités existantes : [Getting Started](../00-SOCLE/01-GETTING-STARTED/README.md), [Debugging](../01-CADRAGE/03-DEBUGGING/README.md), le [standard de complétude d'un module](69-STANDARD-COMPLETUDE-MODULE.md) et les pratiques de revue du bloc [Leadership & Mentorat](../03-PILOTAGE/11-LEADERSHIP-MENTORAT/README.md). Elle ne crée pas de devoir préalable ni de validation supplémentaire.
 
 ### 9.7 Ce qui se vend moins bien a long terme
 
@@ -2759,46 +2766,33 @@ RESPONSABILITE
 Il faut commencer par une nuance importante :
 
 ```text
-AI tool
+outil IA
  !=
-AI agent
+agent IA
  !=
-AI-native company
+organisation organisée autour de systèmes agentiques
 ```
 
 Une entreprise peut utiliser ChatGPT tous les jours sans avoir une architecture agentique.
 
 ### 10.1 Ce que les developpeurs font deja
 
-Le **Stack Overflow Developer Survey 2026**, publie le 6 octobre 2026, montre que l'IA est
-desormais integree au travail logiciel courant :
+Le **Stack Overflow Developer Survey 2026**, publié le 6 octobre 2026, décrit les usages déclarés par les personnes ayant répondu à chaque question du sondage. Pour la question sur les outils IA utilisés dans le rôle professionnel (`n = 17 464`) :
 
 ```text
-73 % des repondants qui utilisent
-des assistants/agents IA de developpement
-les utilisent quotidiennement.
-
-66 % utilisent des coding agents
-63 % utilisent des chatbots
-
-79 % veulent renforcer leurs competences IA
-52 % continuent a apprendre de nouvelles competences de programmation
+83 % utilisent au moins un outil IA
+65,9 % utilisent des assistants/agents de codage
+62,5 % utilisent des outils conversationnels généralistes
+26,2 % utilisent des agents ou workflows automatisés
 ```
 
-Le meme survey montre aussi ou l'IA est encore principalement employee :
+Pour la fréquence d'usage (`n = 14 478`), 73 % des utilisateurs d'assistants/agents de codage déclarent les utiliser quotidiennement. Ce dénominateur est celui de la question de fréquence, pas l'ensemble des répondants au sondage.
 
-```text
-generation de code dans des zones familieres   67 %
-debugging                                      61 %
-deploiement / operations / troubleshooting prod 20 %
-```
+Sur l'intégration dans le workflow (`n = 12 637`), les répondants indiquent notamment l'usage actuel de l'IA pour générer du code dans des contextes familiers (69 %) et pour déboguer, diagnostiquer ou refactorer (63,8 %). L'usage actuel pour déployer, exploiter ou dépanner des systèmes de production est plus bas (19,9 %). Les catégories et dénominateurs sont ceux de questions différentes ; ne les additionne pas.
 
-Le signal utile pour AF n'est donc plus « l'IA va-t-elle arriver ? ». Elle est deja là. La
-question d'ingenierie devient : comment cadrer, verifier, securiser, mesurer et exploiter ce
-travail sans confier le jugement au systeme ?
+Le signal utile pour AF n'est donc plus « l'IA va-t-elle arriver ? ». Elle est déjà présente dans les pratiques déclarées ; la question d'ingénierie devient : comment cadrer, vérifier, sécuriser, mesurer et exploiter ce travail sans confier le jugement au système ?
 
-Source :
-https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/
+Sources : [Stack Overflow Developer Survey 2026 : données IA](https://survey.stackoverflow.co/2026/ai/data) ; [résultats du sondage, 6 octobre 2026](https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/).
 
 Le signal est tres important :
 
@@ -2820,9 +2814,9 @@ RESPONSABILITE HUMAINE
 
 ### 10.2 Les agents ne rendent pas l'expertise inutile
 
-Anthropic a analyse environ 400 000 sessions Claude Code entre octobre 2025 et avril 2026.
+Anthropic a analysé environ 400 000 sessions interactives de Claude Code, issues d’environ 235 000 personnes entre octobre 2025 et avril 2026. L’étude porte sur l’usage de Claude Code via son interface en ligne de commande, Claude.ai ou son application de bureau ; elle décrit cet outil et cet échantillon, pas l’ensemble des développeurs ni toutes les IA.
 
-Le resultat le plus interessant n'est pas simplement "l'agent code beaucoup".
+Le résultat le plus intéressant n'est pas simplement "l'agent code beaucoup".
 
 Dans les sessions typiques :
 
@@ -2842,14 +2836,13 @@ Et plus l'utilisateur apporte d'expertise de domaine, plus l'agent peut effectue
 Source :
 https://www.anthropic.com/research/claude-code-expertise
 
-C'est une idee centrale pour ton parcours :
+C’est une idée centrale pour ton parcours :
 
-> **L'IA augmente la puissance de l'ingenieur, mais la qualite du probleme, du contexte et de la verification reste essentielle.**
+> **L’IA augmente la puissance de l’ingénieur, mais la qualité du problème, du contexte et de la vérification reste essentielle.**
 
-### 10.3 L'adoption organisationnelle monte vite, le deploiement des agents est plus jeune
+### 10.3 L'adoption organisationnelle monte vite, le déploiement des agents est plus récent
 
-Le Stanford AI Index 2026 estime que 88 % des organisations interrogees avaient adopte l'IA dans au moins une fonction.
-Mais le deploiement des agents restait encore dans les premiers stades, avec des taux a un chiffre dans presque toutes les fonctions.
+Le Stanford AI Index 2026 rapporte que 88 % des organisations interrogées déclaraient utiliser l’IA dans au moins une fonction en 2025. Il indique également que le déploiement d’agents restait à un chiffre dans presque toutes les fonctions métier. Ces mesures proviennent d’enquêtes organisationnelles ; elles ne décrivent pas automatiquement toutes les entreprises ni tous les pays.
 
 Source :
 https://hai.stanford.edu/ai-index/2026-ai-index-report/economy
@@ -2860,7 +2853,7 @@ Cela implique que :
 AI integration
 ```
 
-est deja une competence concrete,
+est déjà une compétence concrète,
 
 alors que :
 
@@ -3043,12 +3036,9 @@ et quelle part du jugement humain restait indispensable ?"
 
 ### 10.9 Le danger du "presque juste"
 
-Stack Overflow rapporte que la frustration la plus frequente face aux outils IA est la sortie
-"presque correcte", citee par 66 % des repondants. Le debugging de code genere par IA est egalement
-une difficulte importante.
+Dans le **Developer Survey 2025** (et non 2026), 66 % des personnes ayant répondu à cette question ont cité les solutions IA « presque correctes, mais pas tout à fait » comme frustration ; 45 % ont aussi signalé que déboguer du code généré par IA prenait davantage de temps. Le dénominateur de la question est de 31 476 répondants. Ce résultat doit rester daté de 2025.
 
-Source :
-https://survey.stackoverflow.co/
+Source : [Stack Overflow Developer Survey 2025 : AI tool frustrations](https://survey.stackoverflow.co/2025/ai/).
 
 Le bon ingenieur n'est donc pas celui qui produit le plus de code avec IA.
 
@@ -3247,9 +3237,7 @@ sécurité, exploitation, coût, produit et intégration critique de l'IA. Voir 
 
 Le potentiel africain ne doit pas etre transforme en promesse vague.
 
-La Banque mondiale et l'IFC ont estime que plus de 230 millions d'emplois en Afrique subsaharienne pourraient
-necessiter des competences numeriques d'ici 2030, avec une demande venant aussi d'entreprises qui ne sont pas
-des entreprises technologiques.
+Un document de travail de la Banque mondiale publié en novembre 2025 cite une **projection de l’IFC datant de 2019** : plus de 230 millions d’emplois en Afrique subsaharienne pourraient nécessiter des compétences numériques d’ici 2030. Ce nombre est une projection ancienne, pas un comptage actuel ni une prévision spécifiquement établie pour Madagascar. Le même document de 2025 apporte une analyse distincte de près de cinq millions d’annonces en ligne, recueillies entre 2020 et 2024 en Afrique du Sud, au Nigeria, au Kenya et en Ouganda ; ses résultats ne doivent pas être extrapolés directement au marché malgache.
 
 Source :
 https://documents1.worldbank.org/curated/en/099746512082541920/pdf/IDU-dcae1207-ed6e-4383-9c7f-1f2b2dbae522.pdf
@@ -3259,7 +3247,7 @@ a l'economie africaine en 2025 et projette environ 290 milliards en 2030, avec l
 et la connectivite comme moteurs importants.
 
 Source :
-https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-economy/africa/
+https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-economy/Africa/
 
 La consequence pour un profil depuis Madagascar est pragmatique :
 
@@ -3543,10 +3531,12 @@ https://www.weforum.org/publications/the-future-of-jobs-report-2025/
 
 ### IA et travail logiciel
 
-**Stack Overflow Developer Survey 2026**
+**Stack Overflow Developer Survey 2026 : résultats et données détaillées**
 https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/
+https://survey.stackoverflow.co/2026/technology/data/languages
+https://survey.stackoverflow.co/2026/ai/data
 
-**Stanford AI Index 2026 - Economy**
+**Stanford AI Index 2026 : Economy**
 https://hai.stanford.edu/ai-index/2026-ai-index-report/economy
 
 **Stanford AI Index 2026**
@@ -3561,7 +3551,7 @@ https://www.worldbank.org/en/country/madagascar
 https://documents1.worldbank.org/curated/en/099746512082541920/pdf/IDU-dcae1207-ed6e-4383-9c7f-1f2b2dbae522.pdf
 
 **GSMA - Mobile Economy Africa**
-https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-economy/africa/
+https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-economy/Africa/
 
 ### Regle de maintenance
 
@@ -3591,11 +3581,11 @@ Le but est de savoir apprendre en 2026, puis en 2030, puis en 2035+.
 
 ---
 
-> **Statut**
+> **Statut et entretien**
 >
-> `00-GUIDE` est une boussole.
+> `00-GUIDE` est une boussole de référence ; ce n'est pas une porte d'entrée concurrente. La seule porte d'entrée reste [START HERE](../00-SOCLE/01-GETTING-STARTED/01-START_HERE.md), puis la [Route 58](58-ROUTE-APPRENANT-COHERENTE.md) fait foi pour l'ordre et les prérequis. `FORMATION-COMPLETE-INGENIERIE.md` est une carte de destination, non une lecture préalable.
 >
-> La route canonique est `FORMATION-COMPLETE-INGENIERIE.md` à la racine ; ce guide sert à l’orientation. Une fois le diagnostic effectué, `START HERE` ouvre les premières activités du socle.
+> Les informations de marché, d'emploi, d'outils et de versions sont des instantanés, pas des garanties actuelles. Avant une décision, vérifie la date de publication, le périmètre, le pays concerné et le contexte des sources citées. Les tendances observées sur une plateforme ou dans une enquête ne se généralisent pas automatiquement à tous les employeurs ni à tous les marchés.
 >
 > Et le titre Staff / Principal se construit dans le monde reel : experience,
 > impact, responsabilite, influence et preuves independantes.

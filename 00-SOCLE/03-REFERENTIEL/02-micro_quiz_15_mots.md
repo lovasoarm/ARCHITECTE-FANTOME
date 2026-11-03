@@ -12,14 +12,21 @@ assessment_role: diagnostic_mastery
 
 # Micro-quiz : les 15 mots
 
-Temps de lecture ~3 min
+> **Ressource différée : pas un test d'entrée.** Ce quiz rassemble des termes introduits dans plusieurs parties du curriculum. Ne le passe pas avant d'avoir étudié les notions correspondantes ; tu peux sauter une question dont le sujet n'a pas encore été enseigné.
 
--> ~10 min
+Temps de réponse indicatif : ~10 min, après les leçons concernées.
 
-Rejoue ce quiz **apres le bloc 01 -> 07** et **avant d'attaquer 08**.
-Si tu rates plus de 3 questions par groupe, retourne au module concerne.
+## Préparer le quiz
 
-## Groupe A : Runtime et execution (bloc 01 -> 04)
+| Groupe                        | Notions                                                          | Ressources à étudier avant le quiz                                                                                                                                                                                                                                                                                                                                  |
+| ----------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A : Runtime et exécution      | JIT, runtime, microtasks, event loop, stack trace                | [`01-CADRAGE/02-ASYNC`](../../01-CADRAGE/02-ASYNC/README.md), [`02-CONSTRUCTION/13-RUNTIME-ENV`](../../02-CONSTRUCTION/13-RUNTIME-ENV/README.md), [`01-CADRAGE/03-DEBUGGING`](../../01-CADRAGE/03-DEBUGGING/README.md)                                                                                                                                              |
+| B : Types, mémoire, structure | GC, closures, prototypes, immutabilité, hash                     | [`04-FUNDAMENTALS/02_scope`](../04-FUNDAMENTALS/02_scope/README.md), [`05-MEMORY-PERFORMANCE`](../../02-CONSTRUCTION/05-MEMORY-PERFORMANCE/README.md), [`06-DATA-STRUCTURES`](../../02-CONSTRUCTION/06-DATA-STRUCTURES/README.md), [`09-FUNCTIONAL-JS`](../../02-CONSTRUCTION/09-FUNCTIONAL-JS/README.md), [`17-OOP-JS`](../../02-CONSTRUCTION/17-OOP-JS/README.md) |
+| C : Discipline et hygiène     | reproduction déterministe, hypothèse testable, flaky, a11y, i18n | [`03-DEBUGGING`](../../01-CADRAGE/03-DEBUGGING/README.md), [`03-TESTING`](../../02-CONSTRUCTION/03-TESTING/README.md), [`WEB-INCLUSIVE`](../../03-PILOTAGE/02-WEB-INCLUSIVE/README.md)                                                                                                                                                                              |
+
+Les nombres de blocs d'anciennes versions ont été retirés : ils ne correspondaient pas à une séquence unique, vérifiable par l'apprenant. Le bon repère est la liste des notions et des ressources ci-dessus.
+
+## Groupe A : Runtime et execution
 
 1. **JIT** signifie :
    a) Just-In-Time compilation
@@ -44,7 +51,7 @@ Si tu rates plus de 3 questions par groupe, retourne au module concerne.
    b) la pile d'appels reconstituee au moment d'une erreur
    c) le log des exceptions non gerees
 
-## Groupe B : Types, memoire, structure (bloc 05 -> 07)
+## Groupe B : Types, memoire, structure
 
 6. **GC** (garbage collector) :
    a) supprime les fichiers inutiles du disque
@@ -69,7 +76,7 @@ Si tu rates plus de 3 questions par groupe, retourne au module concerne.
     comme index rapide
     c) un mot de passe chiffre
 
-## Groupe C : Discipline et hygiene (transverse au bloc)
+## Groupe C : Discipline et hygiene (reperes transversaux)
 
 11. **Repro deterministe** :
     a) un test qui passe une fois sur deux
@@ -100,20 +107,63 @@ Si tu rates plus de 3 questions par groupe, retourne au module concerne.
 
 ## Verdict
 
-- 13-15 : tu peux entrer dans le bloc 08 -> 14.
-- 10-12 : relis `../../01-CADRAGE/03-DEBUGGING/16-HYPOTHESES_TEMPLATE.md` et le glossaire de
-  `01-START_HERE.md`, refais le quiz.
-- < 10 : retour aux 4-5 lecons ou tu as trebuche. Pas de honte, l'illusion
-  de savoir coute plus cher.
+- 13-15 : tu restitues correctement les termes testés. Continue la route prévue ; ce résultat ne dispense pas des exercices.
+- 10-12 : repère les questions ratées et retourne uniquement aux leçons liées dans le tableau de préparation.
+- < 10 : note les notions inconnues et reprends-les une par une. Ne relis pas tout le curriculum et ne considère pas ce score comme un échec d'entrée.
 
-## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
+Ce quiz ne donne pas l'autorisation d'entrer dans un bloc et ne bloque aucune progression. Il mesure seulement le rappel de notions déjà étudiées.
+
+## CHECKPOINT DE PROFONDEUR : facultatif après étude des notions testées
+
+### Variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
 
-<!-- AF-P0-2026-10-30: missing_practice -->
+### Approfondissement facultatif : à faire plus tard
 
-### Pratique autonome : production attendue
+La pratique ci-dessous est volontairement plus exigeante que le quiz. Elle n'est pas attendue pendant la première passe du Référentiel et ne conditionne aucune progression.
 
-À partir de « Micro-quiz : les 15 mots », produis une variante indépendante du cas suivant : Une documentation d’API change : sépare les concepts durables (HTTP, contrats, invariants) des détails périssables (version, commande, option fournisseur). Travaille sans recopier la solution de la leçon ; conserve l’entrée, les hypothèses, la sortie attendue et un artefact vérifiable (code, requête, schéma, trace ou décision).
+### Pratique autonome : rappel ciblé facultatif
 
-**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+Choisis une question dont la notion a déjà été étudiée. Réponds sans regarder le corrigé, puis vérifie dans la leçon d'origine. Note le mot ou l'explication à revoir. Ne travaille pas les questions qui concernent des modules non encore étudiés.
+
+**Preuve à conserver :** une réponse personnelle et le nom de la leçon utilisée pour vérifier.
+
+<!-- AF-DIAGRAM:reference -->
+
+## Repère visuel utile : Référentiel de compétences par preuves
+
+```text
+compétence -> tâche observable -> artefact
+     ^                         |
+     |                         v
+révision datée <- verdict <- critère explicite
+     |
+     +-> remédiation ou nouvelle preuve
+```
+
+<!-- AF-LESSON-PROFILE: reference -->
+
+## Repères de décision
+
+- **Pourquoi :** Un référentiel sert à rendre les compétences observables et à éviter de confondre familiarité, autonomie et maîtrise.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le pour établir un point de départ, prioriser une révision ou préparer une revue de portfolio. Ne l'utilise pas comme classement de valeur personnelle.
+- **Limites :** Une auto-évaluation est biaisée. Le niveau doit être confirmé par une tâche inconnue, un artefact reproductible et, aux paliers avancés, une revue externe.
+
+## Mécanisme : la version sans magie
+
+Associe une compétence à une tâche, un critère, une preuve, une date et un statut. Réévalue quand le contexte ou la technologie change.
+
+## Ancrage produit / terrain : Kintana
+
+Kintana est un cas fictif ; ce quiz sert uniquement à réviser des mots déjà enseignés. Il ne demande aucune mission technique Kintana.
+
+## Mission utile : rappel ciblé, jamais test d'entrée
+
+**Livrable et critères d’acceptation :** une réponse à une seule question portant sur une notion déjà étudiée, avec le lien vers sa leçon d’origine. Les questions non étudiées sont ignorées sans pénalité ; le quiz n’est pas requis pour entrer dans Fundamentals.
+
+Choisis seulement les questions dont tu as déjà étudié les notions dans leur module d'origine. Ignore les autres sans pénalité. Si tu n'as pas encore étudié les termes d'une question, ne tente pas de deviner.
+
+### Transfert : plus tard
+
+L'application de ces notions dans un autre service ou langage sera traitée après l'enseignement des prérequis correspondants.

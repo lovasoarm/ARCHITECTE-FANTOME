@@ -362,10 +362,40 @@ ETag : le serveur donne une empreinte, le client la renvoie, le serveur dit si �
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « Caching strategies : mettre en cache sans mettre en danger », puis conserve le résultat et explique tout écart.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: browser -->
+
+## Repères de décision
+
+- **Pourquoi :** Le navigateur est un environnement distinct du serveur : DOM, réseau, stockage local et cycle de vie utilisateur imposent des états et des erreurs spécifiques.
+- **Quand l’utiliser / quand l’éviter :** Utilise ces mécanismes pour rendre le parcours web compréhensible, résilient et accessible. Ne stocke rien de sensible dans le navigateur et ne suppose jamais que le réseau est disponible.
+- **Limites :** Le client ne fait pas autorité pour les droits, les montants ou l'état métier. Le stockage local peut être effacé, altéré ou partagé sur un appareil ; la synchronisation peut produire des conflits.
+
+## Mécanisme : la version sans magie
+
+Modélise les états visibles, annule les requêtes devenues inutiles, traite les réponses réseau comme non fiables et synchronise les brouillons avec un identifiant stable.
+
+## Ancrage produit / terrain : Kintana
+
+Dans le [cas d’étude Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), Kintana affiche des informations publiques de centre, des créneaux qui changent et des demandes privées. Toutes ces données n’ont ni la même durée de fraîcheur ni le même droit au cache.
+
+**Niveau de preuve :** Kintana est un scénario fictif. Étiquette le résultat `CONCEPT`, `LAB` ou `SIMULATION` selon le travail réellement effectué ; une fixture synthétique n’est pas une observation de terrain.
+
+## Mission utile : Kintana : Étape 5/8 : décider quoi mettre en cache
+
+> **Arc One Piece / Grand Line :** Un stock prépositionné accélère le service ; un stock périmé peut envoyer l’utilisateur vers une porte déjà fermée.
+
+Classe les informations Kintana : contenu public du centre, créneaux disponibles, statut d’une demande et brouillon local. Pour chacune, choisis emplacement, clé, durée de fraîcheur, invalidation et comportement en cas d’indisponibilité.
+
+**Livrable :** Une matrice de politique de cache et un scénario de créneau devenu indisponible pendant que l’utilisateur est hors ligne.
+
+**Critères d’acceptation :** Les données privées ne sont pas servies depuis un cache partagé ; un créneau périmé n’est jamais présenté comme réservé ; la fraîcheur et la stratégie de revalidation sont explicites.
+
+**Transfert obligatoire :** Un créneau est pris par un autre demandeur pendant une coupure réseau : décris la réconciliation et le message à afficher.
+
+Cette étape prolonge le même artefact Kintana ; elle ne demande pas de recommencer le projet et n’ajoute pas de gate au parcours.

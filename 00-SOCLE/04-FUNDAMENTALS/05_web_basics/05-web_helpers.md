@@ -207,6 +207,8 @@ Crée une fonction `spawnMonster(name)` qui crée un élément, lui donne un tex
 
 Ces helpers ne sont pas des luxes. Ils font partie du kit de survie de tout dev frontend qui comprend ce qui se passe sous le capot des frameworks.
 
+> **Statut pour la première passe : différé.** Termine d’abord la leçon et la pratique de base. Cette variation n’est pas une gate ; saute-la si elle utilise une notion non encore étudiée et reviens-y après les prérequis.
+
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.

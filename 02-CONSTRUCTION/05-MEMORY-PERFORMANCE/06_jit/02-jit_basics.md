@@ -216,10 +216,36 @@ pas encore comprise ; tu l'as juste memorisee.
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « JIT basics : le moteur qui apprend ton code en le lisant », puis conserve le résultat et explique tout écart.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **JIT basics : le moteur qui apprend ton code en le lisant** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Comparer le comportement avant et après échauffement
+
+**Mission liée à « JIT basics : le moteur qui apprend ton code en le lisant » :** Mesure une fonction Kintana sur plusieurs phases d’exécution (premiers appels puis régime stabilisé) et varie les formes d’entrée. Interprète les écarts sans supposer un mécanisme interne non observé.
+
+**Livrable :** Protocole de warm-up, résultats séparés et hypothèses prudentes.
+
+**Critères d’acceptation :** Les phases sont séparées ; les données sont répétées ; la version du runtime est indiquée ; aucune règle d’optimisation fondée sur un folklore n’est avancée.
+
+**Transfert obligatoire :** Une variation disparaît sur un autre runtime : limite la conclusion à l’environnement mesuré.

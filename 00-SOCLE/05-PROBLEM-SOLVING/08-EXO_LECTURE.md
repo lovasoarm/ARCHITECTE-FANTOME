@@ -10,33 +10,37 @@ assessment_role: instructional_checkpoint
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
-# EXO LECTURE : 15-25 minutes (Problem Solving)
+# EXO DE LECTURE : trois cycles de 15 minutes (45 min au total)
 
-Temps de lecture ~2 min
+**Durée indicative : 45 minutes**, soit trois cycles distincts de 15 minutes. Chaque cycle utilise un extrait différent ; les trois cycles constituent un seul exercice.
 
-> **LOCK : pas d'édition avant HYPOTHESES.md signé.** Tu ne modifies AUCUN fichier avant que ton `HYPOTHESES.md` soit signé (>= 3 hypothèses, chacune avec preuve attendue). Sinon, l'exo ne compte pas.
+> **LOCK : pas d'édition avant les hypothèses.** Pour chaque cycle, écris et date d'abord le fichier correspondant (`HYPOTHESES_01.md`, `HYPOTHESES_02.md` ou `HYPOTHESES_03.md`). Il doit contenir au moins trois hypothèses et, pour chacune, l'observation ou la preuve qui pourrait la confirmer ou l'infirmer. Ne modifie pas l'extrait avant d'avoir enregistré cette fiche.
 >
-> **Budget lecture** : 120 lignes en 15 min chrono. Si tu dépasses, note pourquoi dans `MAP.md`. Objectif progressif : tu dois pouvoir tenir 500 lignes en 15 min à la fin du curriculum.
+> **Budget de lecture** : vise au plus 120 lignes pertinentes pendant le cycle de 15 minutes. Si l'extrait est plus long ou difficile à cartographier, note le blocage dans `MAP.md` et réduis le périmètre. Ce nombre est un repère de time-box, pas un objectif de vitesse : la justesse de ta compréhension compte davantage que le volume lu.
 >
 > **Protocole de cartographie** : suis `../../05-MAITRISE/06-ANNEXES/23_reading/02-cartographie_15min.md` si tu ne sais pas par où entrer.
 
-Temps de lecture ~2 min
+Compétence : lire un extrait de code ou un exemple structuré que tu n'as pas écrit, puis expliquer son comportement AVANT de le modifier. C'est une part importante du métier.
 
-Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT de le modifier. C'est une part importante du métier.
+## Les trois extraits
 
-## L'extrait
+Effectue trois cycles de 15 minutes, sans réutiliser deux fois le même extrait :
 
-On te fournit un extrait qui décompose un problème (fichier `03-decompose.md` ou `05-choose_an_approach.md`) : repère les 5 sous-problèmes. 15-25 minutes de lecture, pas plus.
+1. `03-decompose.md` : choisis le bloc de code ou le découpage illustré dans la leçon.
+2. `05-choose_an_approach.md` : choisis un extrait distinct, notamment l'exemple de fonction de recherche.
+3. `06-read_fuzzy_requirements.md` : choisis l'exemple de transformation d'une demande floue en comportement observable.
 
-## Le protocole (15 min chrono)
+Pour chaque cycle, identifie le point d'entrée, les entrées, les sorties et un cas limite. Si le point d'entrée, l'appelant ou le déclencheur ne figurent pas dans l'extrait, écris « non fourni » au lieu de l'inventer. Si l'extrait est illustratif et ne peut pas être exécuté tel quel, fais une trace statique sur papier : n'invente pas une exécution.
+
+## Le protocole (15 min par cycle)
 
 1. **POINT D'ENTRÉE** : quelle ligne s'exécute en premier ? Qui appelle ce code ? Quel est le trigger externe ?
 2. **HYPOTHÈSE SUR LE COMPORTEMENT** : sans exécuter, écris ce que tu crois qu'il fait, entrée -> sortie. Nomme au moins 1 cas limite que tu suspectes de casser.
-3. **VÉRIFICATION** : exécute (ou lis les tests), compare à ton hypothèse, explique tout écart. Le nombre d'écarts est le vrai résultat de l'exercice.
+3. **VÉRIFICATION** : si le code est exécutable dans le contexte fourni, lance-le ou lis les tests disponibles. Sinon, effectue une trace statique. Compare le résultat à ton hypothèse et explique tout écart ; indique clairement `EXÉCUTION` ou `TRACE STATIQUE`.
 
 ## Livrable
 
-`LECTURE_<nom>.md` avec tes 3 sections remplies. Interdiction absolue de modifier l'extrait avant que les 3 sections soient écrites au propre. Cf `../../02-CONSTRUCTION/11-REFACTORING/07-do_not_touch_before_explain.md`.
+Produis trois fichiers (`LECTURE_01.md`, `LECTURE_02.md`, `LECTURE_03.md`), un par cycle, chacun avec les trois sections du protocole remplies et datées. Interdiction de modifier l'extrait avant que les hypothèses et la première explication soient enregistrées. Cf `../../02-CONSTRUCTION/11-REFACTORING/07-do_not_touch_before_explain.md`.
 
 ## (attention) Ce que l'exo révèle
 
@@ -44,12 +48,12 @@ Si ton hypothèse était fausse, tant mieux : tu viens d'apprendre où ton modè
 
 ## Enchainement
 
-- Fait 3 fois de suite avec 3 extraits différents avant de passer au prochain module.
-- Croise avec `EXO_VERIFICATION.md` du même module quand il existe : compare ton hypothèse humaine à celle qu'une IA produirait sur le même extrait.
+- Fais les trois cycles avec les trois extraits indiqués avant de passer au prochain module. Conserve une fiche datée par cycle.
+- `98-EXO-VERIFICATION.md` (45 min) est un exercice autonome facultatif ; `97-EXO-VERIFICATION.md` (10 min) est un exercice facultatif de détection d'une suggestion IA trompeuse. Aucun des deux ne conditionne la première passe ni le challenge.
 
 ---
 
-Si tu veux "juste renommer une variable pour comprendre" : **note-le dans `HYPOTHESES.md`, ne le fais pas dans le fichier**.
+Si tu veux "juste renommer une variable pour comprendre" : **note-le dans le fichier `HYPOTHESES_XX.md` du cycle concerné ; ne modifie pas l'extrait**.
 
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 

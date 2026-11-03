@@ -1,13 +1,7 @@
 ---
-perishability_id: PER-0097
 
-stability: perissable
+stability: stable
 acte: appliquer
-freshness_registry_id: PER-0097
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-01-28
-review_status: a_verifier_date_absente
 ---
 > **CrazyDevs : briefing de mission :** ce concept doit survivre au moment où quelqu’un te demande « pourquoi ? » en plein chaos. Garde l’explication technique exacte, puis donne-lui une image qu’on peut raconter demain.
 
@@ -23,30 +17,29 @@ imposé, et résume les deux autres pour montrer où placer le chiffrage.
 ## ADR-001 : découper "Réservation" et "Planification" en deux contextes bornés
 
 **Statut :** acceptée : 12/03
-**Contexte.** Le mot "créneau" désigne deux réalités différentes selon l'équipe : pour la
+**Contexte fictif.** Le mot "créneau" désigne deux réalités différentes selon l'équipe : pour la
 réservation, un créneau est une place à occuper ou libérer ; pour la planification, un
 créneau est une plage horaire à publier ou annuler avant même qu'un utilisateur ne le voie.
-Les deux équipes ont modifié la même table `creneaux` trois fois ce trimestre en se
-marchant dessus, dont un incident de production le 04/03 où une annulation de planification
-a supprimé une réservation confirmée.
+Les deux équipes a modifié la même table `creneaux` trois fois dans le trimestre simulé, dont un incident
+modélisé au 04/03 où une annulation de planification supprime une réservation confirmée.
 
 **Options considérées.**
 
-> Relevé le 2026-08-14, source : pages tarifaires publiques des fournisseurs citées dans le module, à revérifier avant 2027.
+> **Hypothèses de simulation.** Les montants de cette ADR sont fictifs et servent à montrer comment documenter une conséquence financière. Ils ne proviennent pas d'une grille fournisseur consultée et ne doivent pas être repris dans un budget réel.
 
 | Option                                                                   | Description                                                    | Coût de mise en œuvre | Effet sur la disponibilité                                                                                                        | Effet mensuel sur le budget cloud                      |
 | ------------------------------------------------------------------------ | -------------------------------------------------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
 | A. Ne rien changer                                                       | garder une seule table, ajouter des vérifications applicatives | 2 jours               | aucun effet direct, mais le risque de récidive reste entier                                                                       | 0 €                                                    |
-| B. Séparer en deux contextes bornés avec un événement de synchronisation | `Planification` publie, `Réservation` s'abonne                 | 9 jours               | ajoute une latence de propagation mesurée à 150 ms en moyenne (voir `02-CONSTRUCTION/16-DDD-CONTRATS/03-cqrs_coherence_terme.md`) | +18 €/mois (file d'événements managée, palier de base) |
+| B. Séparer en deux contextes bornés avec un événement de synchronisation | `Planification` publie, `Réservation` s'abonne                 | 9 jours               | ajoute une latence de propagation supposée à 150 ms en moyenne dans ce scénario (voir `02-CONSTRUCTION/16-DDD-CONTRATS/03-cqrs_coherence_terme.md`) | +18 €/mois (file d'événements managée, palier de base) |
 | C. Séparer en deux services avec base de données propre à chacun         | isolation complète, pas de table partagée                      | 21 jours              | supprime le risque de verrou croisé, mais complexifie la cohérence transactionnelle                                               | +65 €/mois (deuxième instance de base de données)      |
 
-**Décision.** Option B. Le coût de 9 jours et 18 €/mois est justifié par l'incident du
+**Décision.** Option B. Dans le scénario, le coût hypothétique de 9 jours et 18 €/mois est justifié par l'incident du
 04/03, dont le correctif d'urgence a coûté à lui seul 1,5 jour à l'équipe. L'option C est
 écartée : son coût est trois fois supérieur pour un gain de disponibilité non demandé au
 SLO actuel (`PREUVES/SLO.md` de ce projet fictif fixe la cible à 99,5 %, atteignable avec B).
 
-**Conséquences.** Le modèle de lecture de `Réservation` peut afficher une place comme
-disponible jusqu'à 150 ms après sa publication réelle par `Planification`. Cette latence est
+**Conséquences.** Dans ce scénario, le modèle de lecture de `Réservation` peut afficher une place comme
+disponible jusqu'à 150 ms après sa publication par `Planification`, selon l'hypothèse du scénario. Cette latence est
 documentée dans `PREUVES/SLO.md` pour qu'elle ne soit jamais découverte en production.
 
 **Date de revue.** 12/09 : vérifier si le volume d'événements justifie encore le palier de

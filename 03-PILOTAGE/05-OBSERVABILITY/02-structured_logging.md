@@ -8,12 +8,21 @@ perturbation_modes: [temps_limite, transmission]
 anti_recipe_key: temps_limite+transmission
 transfer_distance: high
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0046
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: https://opentelemetry.io/docs/
+source_type: primary
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « Arrête d'écrire des logs que personne ne peut chercher ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : finale au stade :** 99,9 % de disponibilité sur un slide ne sauve personne à 03:17 quand le service hurle. La vraie compétence commence quand il faut transformer la métrique en décision.
 
 # Arrête d'écrire des logs que personne ne peut chercher
@@ -178,7 +187,7 @@ logger.info({
 });
 ```
 
-Le risque réel : un log fuité (accès non autorisé à l'outil de logs, mauvaise configuration de droits) avec une donnée sensible dedans, c'est une fuite de données aussi grave qu'une fuite de DB, sauf que personne ne pense à protéger les logs avec la même rigueur que la base de données principale (vue aussi dans `03-PILOTAGE/04-SECURITY/05_hashing_bcrypt` pour le même réflexe appliqué aux mots de passe).
+Le risque réel : un log fuité (accès non autorisé à l'outil de logs, mauvaise configuration de droits) avec une donnée sensible dedans, c'est une fuite de données aussi grave qu'une fuite de DB, sauf que personne ne pense à protéger les logs avec la même rigueur que la base de données principale (vue aussi dans `03-PILOTAGE/04-SECURITY/06-hashing_bcrypt.md` pour le même réflexe appliqué aux mots de passe).
 
 ---
 
@@ -224,24 +233,49 @@ Une alerte Horror traverse Détecteur → Dispatcher → Chevalier → Conseil. 
 
 Un log structuré est une donnée JSON cherchable, pas une phrase humaine jetable. Les niveaux de log (DEBUG à FATAL) doivent rester calibrés pour que ERROR garde tout son poids d'alerte. Le correlation ID relie les logs d'une même requête à travers plusieurs services, et c'est le socle sur lequel repose le tracing distribué vu juste après. Et un log, structuré ou pas, ne contient jamais une donnée sensible : un log qui fuite avec une information critique en clair dedans est une fuite de données comme une autre.
 
-## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+<!-- AF-DIAGRAM:observability -->
 
-<!-- AF-DIAGRAM:transfer -->
+## Repère visuel utile : Traçage du parcours critique Kintana
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+requête Kintana
+      | correlation_id
+      v
+API -----> DB -----> worker -----> notification
+ |          |          |                 |
+ logs      métriques  traces           résultat
+      \__________ mêmes IDs __________/
+                       |
+                       v
+                 diagnostic / action
 ```
 
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+<!-- AF-LESSON-PROFILE: observability -->
 
-Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+## Repères de décision
+
+- **Pourquoi :** L'observabilité réduit le temps entre un symptôme et une hypothèse vérifiable. Elle aide à savoir si le problème est local, partagé ou externe.
+- **Quand l’utiliser / quand l’éviter :** Instrumente un parcours critique et chaque frontière qui peut échouer. Évite les logs sans action associée, les cardinalités infinies et les identifiants personnels.
+- **Limites :** Plus de télémétrie n'est pas toujours mieux : stockage, coûts, bruit et données sensibles augmentent. Une métrique isolée ne prouve pas une cause.
+
+## Mécanisme : la version sans magie
+
+Relie logs structurés, métriques et traces par un identifiant de corrélation ; choisis des signaux qui répondent à une question opérationnelle ; définis l'action attendue sur alerte.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Arrête d'écrire des logs que personne ne peut chercher** se rattache à ce cas concret : Le parcours Kintana création -> réservation -> notification doit pouvoir être suivi sans enregistrer le contenu personnel de la demande.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Traçage du parcours critique Kintana
+
+> **Arc Walking Dead :** quand le camp crie « ça ne marche plus », les logs, métriques et traces doivent te dire où regarder sans exposer les habitants.
+
+**Mission liée à « Arrête d'écrire des logs que personne ne peut chercher » :** Instrumente le parcours choisi avec correlation ID, événements structurés et métriques utiles. Injecte une panne dans une frontière et rédige un diagnostic qui s'appuie uniquement sur les signaux collectés.
+
+**Livrable :** schéma de logs, métriques avec unités et labels bornés, trace corrélée, règle d'alerte et runbook de diagnostic.
+
+**Critères d’acceptation :** chaque signal répond à une question ; les secrets et contenus personnels sont exclus ; cardinalité maîtrisée ; l'alerte possède une action ; les résultats simulés restent LAB/SIMULATION.
+
+**Transfert obligatoire :** Une dépendance externe dégrade sa latence sans tomber. Explique quels signaux distinguent saturation, lenteur fournisseur et erreur interne.

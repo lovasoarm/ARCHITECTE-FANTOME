@@ -25,7 +25,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [52-code_smells_minimini_projet.md](52-code_smells_minimini_projet.md)
 - [53-refacto_in_action_minimini_projet.md](53-refacto_in_action_minimini_projet.md)
 - [REFACTO CHALLENGE](95-challenge.md)
-- [EXO LECTURE : 15-25 minutes (Refactoring)](09-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Refactoring)](09-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 02-CONSTRUCTION/11-REFACTORING](98-EXO-VERIFICATION.md)
 - [EXO : chasse au code mort (15.4)](10-EXO_CHASSE_AU_CODE_MORT.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/11-REFACTORING](97-EXO-VERIFICATION.md)

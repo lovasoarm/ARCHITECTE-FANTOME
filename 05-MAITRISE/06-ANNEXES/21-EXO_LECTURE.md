@@ -10,17 +10,17 @@ assessment_role: instructional_checkpoint
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
-# EXO LECTURE : 15-25 minutes (05-MAITRISE/06-ANNEXES)
+# EXO LECTURE : ~20 minutes : questions et auto-évaluation (05-MAITRISE/06-ANNEXES)
 
-Temps de lecture ~2 min
+**Durée indicative : environ 20 minutes** : environ 2 minutes de prise en main, 10 minutes pour répondre aux questions, jusqu’à 5 minutes pour l’auto-évaluation et quelques minutes pour consigner les réponses. Le checkpoint de profondeur est un prolongement séparé et n’est pas compris dans cette durée.
+
+Lecture de la consigne : ~2 min
 
 > **LOCK : pas d'édition avant HYPOTHESES.md signé.** Tu ne modifies AUCUN fichier avant que ton `HYPOTHESES.md` soit signé (>= 3 hypothèses, chacune avec preuve attendue). Sinon, l'exo ne compte pas.
 >
 > **Budget lecture** : 500 lignes en 15 min chrono. Si tu dépasses, note pourquoi dans `MAP.md`. Objectif progressif : tu dois pouvoir tenir 500 lignes en 15 min à la fin du curriculum.
 >
 > **Protocole de cartographie** : suis `23_reading/02-cartographie_15min.md` si tu ne sais pas par où entrer.
-
-Temps de lecture ~2 min
 
 Compétence : parcourir un dossier d'annexes hétérogène et savoir en
 extraire uniquement ce dont tu as besoin, sans te noyer.
@@ -40,12 +40,16 @@ Ouvre `./16A-ARBORESCENCE.md`. Ne lis PAS l'intégralité.
 5. Si tu ne devais lire qu'une seule annexe cette semaine, laquelle et
    pourquoi ?
 
-## Auto-évaluation
+## Auto-évaluation (5 min, repère indicatif)
 
 - 5/5 juste : tu as compris que 05-MAITRISE/06-ANNEXES est une **boîte à outils**,
   pas un manuel à lire en séquence.
 - ≤ 3/5 juste : refais l'exercice dans 3 jours. La compétence « scanner
   au lieu de lire » se travaille.
+
+## Livrable
+
+`LECTURE_<nom>.md` : consigne/extrait choisi, réponses aux questions, résultat de l’auto-évaluation et point restant à vérifier. Garde ce fichier dans ton espace de travail apprenant, pas dans le dépôt source du curriculum.
 
 ## RÈGLE READ_ONLY_FIRST (non négociable)
 

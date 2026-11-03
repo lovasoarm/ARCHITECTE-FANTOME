@@ -123,3 +123,27 @@ En Python, l'objet est un dictionnaire d'attributs et l'héritage suit un MRO (M
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+<!-- AF-LESSON-PROFILE: oop-js-overview -->
+
+## Repères de décision
+
+- **Pourquoi :** L’OOP JavaScript aide à comprendre comment des objets portent un état, partagent du comportement et délèguent la recherche de propriétés. C’est indispensable pour lire des frameworks et du code existant, pas une obligation de tout concevoir en classes.
+- **Quand l’utiliser / quand l’éviter :** Choisis un objet ou une classe lorsque l’identité, l’état et les opérations forment un contrat cohérent. Préfère des fonctions et des données simples quand elles rendent le flux plus direct.
+- **Limites :** JavaScript délègue par prototypes ; `class` ajoute des règles propres au langage. Une hiérarchie d’objets ne garantit ni un bon modèle métier, ni la sécurité, ni la simplicité.
+
+## Mécanisme : la version sans magie
+
+Une propriété propre est cherchée sur l’objet ; si elle manque, le moteur remonte la chaîne `[[Prototype]]`. Les méthodes peuvent ainsi être partagées. `this` dépend du mode d’appel pour une fonction classique, tandis qu’une flèche capture son contexte lexical.
+
+## Ancrage produit / terrain : Kintana
+
+Une demande Kintana possède une identité, un statut et des transitions autorisées. Le modèle doit rendre ces invariants explicites sans créer une hiérarchie de classes artificielle pour chaque variante de demande.
+
+## Mission utile : Kintana : modéliser une demande sans surconception
+
+**Livrable :** un petit modèle `Demande` avec état initial, deux transitions explicites et des tests de comportement ; ajoute une note qui justifie le choix entre fonctions, objets et classe.
+
+**Critères d’acceptation :** l’état invalide est refusé ; le comportement partagé n’est pas recréé inutilement par instance ; le choix de conception cite un besoin réel ; aucune hiérarchie n’est ajoutée sans relation métier stable.
+
+**Transfert obligatoire :** explique ce qui resterait identique si le modèle était écrit dans un langage à classes nominales, et ce qui dépend spécifiquement des prototypes JavaScript.

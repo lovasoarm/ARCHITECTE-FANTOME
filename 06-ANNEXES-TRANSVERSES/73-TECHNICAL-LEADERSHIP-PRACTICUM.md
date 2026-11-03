@@ -5,6 +5,13 @@ noyau: oui
 route: formation-complete
 niveau: E-H
 last_reviewed: 2026-10-30
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # 73 : Technical Leadership Practicum : décider, influencer, transmettre
@@ -75,3 +82,54 @@ Un exercice simulé peut entraîner le jugement ; il ne remplace jamais la preuv
 ## Portfolio de leadership
 
 Conserve au minimum : trois ADR contradictoires, un RFC, un post-mortem, une note coût/risque/valeur, une revue de code formatrice, un exemple de décision révisée, une preuve d'adoption par un tiers et un journal de suivi des effets. Anonymise les éléments confidentiels.
+
+<!-- AF-DIAGRAM:leadership -->
+
+## Repère visuel utile : Du problème à l’adoption
+
+```text
+initiative à impact
+       |
+       v
+acteurs + contraintes
+       |
+       v
+options et compromis
+       |
+       v
+responsable + décision
+       |
+       v
+adoption observée
+       |
+       v
+résultat et révision
+```
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](77-FIL-ROUGE-KINTANA/README.md), **73 : Technical Leadership Practicum : décider, influencer, transmettre** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Conduire une décision technique de bout en bout
+
+**Mission liée à « 73 : Technical Leadership Practicum : décider, influencer, transmettre » :** Sélectionne une initiative Kintana qui requiert influence, arbitrage, transfert et suivi. Établis un état initial, fais une recommandation, recueille les objections et définis comment observer le résultat.
+
+**Livrable :** Dossier d’initiative avec diagnostic, ADR/RFC si utile, plan d’adoption et bilan à compléter après observation.
+
+**Critères d’acceptation :** Les preuves réelles et les simulations sont séparées ; l’impact n’est pas revendiqué avant mesure ; les responsabilités et seuils de révision existent.
+
+**Transfert obligatoire :** Une équipe refuse l’initiative : distingue le désaccord rationnel du blocage de coordination et adapte la séquence.

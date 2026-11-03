@@ -155,8 +155,8 @@ pourquoi. Voir le critère "Délégation à l'IA" de `04-evaluation-grid.md`.
 ### Livrables du jalon
 
 - Version 1 fonctionnelle (Livrable 3), dossier de suite (Livrable 4), auto-évaluation
-  (Livrable 5), arborescence de livraison conforme (`03-deliverables.md`), revue de risques
-  du module `04-EPREUVE/01-BONUS-VAULT` (`REVUE-DE-RISQUES.md`).
+  (Livrable 5), arborescence de livraison conforme (`03-deliverables.md`), revue de risques du Capstone (`REVUE-DE-RISQUES.md`), préparée avant le premier commit
+  de code du jalon 3.
 
 ### Grille du jalon
 

@@ -8,6 +8,8 @@ transfer_distance: low
 assessment_role: diagnostic_mastery
 ---
 
+# Mise en pratique : Le plan avant les murs
+
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 ## TYPE
@@ -61,3 +63,15 @@ Tu as modélisé avant d'implémenter. Commit ton schéma dans `docs/`.
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
+
+## Livraison produit obligatoire : Kintana : Réservation cohérente
+
+> **Fil narratif : Arène Staff / DBZ :** Le combat change d’échelle : tu ne gagnes plus en lançant une attaque plus forte, mais en choisissant le bon terrain, en coordonnant l’équipe et en assumant les conséquences.
+
+Le micro-exercice existant reste une mise en jambe : il isole un mécanisme, mais ne suffit pas comme preuve de maîtrise. La livraison évaluée améliore le même produit [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
+
+**Mission liée à « 50-data_modeling_minimini_projet » :** Dans Kintana, crée un pipeline événementiel avec validation, quarantaine, déduplication, rejeu et réconciliation des volumes lus/acceptés/rejetés.
+
+Modélise la donnée concernée dans PostgreSQL ou dans le moteur réellement étudié. Définis contraintes, migration et transaction. Simule deux commandes concurrentes sur la dernière capacité disponible.
+
+**Livrable :** incrément intégré, tests ou vérifications, note de décision et contre-exemple. **Gate :** Aucune incohérence n’est persistée ; les conflits ont une réponse explicite ; la migration et le test peuvent être rejoués. Étiquette les résultats locaux `LAB` ; ne revendique `PRODUCTION` qu’après déploiement et observation réels.

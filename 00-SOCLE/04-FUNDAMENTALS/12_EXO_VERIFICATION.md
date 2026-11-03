@@ -1,23 +1,27 @@
 ---
 stability: stable
 acte: verification
+assessment_role: instructional_checkpoint
 ---
 
-# Vérification : 12_EXO_VERIFICATION.md
+**SCÈNE CRAZYDEVS : atelier de Konoha :** observe les contraintes avant de choisir une technique.
 
-**SCÈNE CRAZYDEVS : Naruto :** avant de lancer le jutsu, tu vérifies ton chakra, ton terrain et ce que tu crois savoir. Ici, le piège est de coder avant d’avoir compris.
+# EXO 12 : copie superficielle et référence imbriquée
 
-# EXO : Le code propre qui ment
+Temps indicatif : 12 min.
 
-Tu reçois un petit morceau de code qui semble propre, nomme bien ses variables et passe les cas heureux.
+```js
+const original = { name: "Mika", profile: { rank: "genin" } };
+const copy = { ...original };
+copy.profile.rank = "chunin";
+console.log(original.profile.rank);
+```
 
-## Mission
+**Questions**
 
-Trouve une hypothèse cachée qui n’est pas garantie par le contrat.
+1. Prédis la sortie sans exécuter le code.
+2. Explique pourquoi la copie de premier niveau ne duplique pas l’objet `profile`.
+3. Propose une copie adaptée à cet objet précis : `{ ...original, profile: { ...original.profile } }`.
+4. Explique pourquoi cette technique ne constitue pas une copie profonde générale si des niveaux supplémentaires ou des types particuliers existent.
 
-1. donne le cas qui la casse ;
-2. explique pourquoi le code semblait crédible ;
-3. propose le plus petit correctif ;
-4. ajoute un test qui empêcherait le retour du bug.
-
-Le but n’est pas de trouver une faute de syntaxe. Le but est de montrer qu’une solution élégante peut reposer sur une hypothèse fausse.
+**Preuve** : un test doit démontrer que la modification de `copy.profile` ne change plus `original.profile` après correction.

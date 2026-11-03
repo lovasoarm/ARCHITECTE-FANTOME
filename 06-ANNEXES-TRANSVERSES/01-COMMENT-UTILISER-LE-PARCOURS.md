@@ -8,39 +8,34 @@ noyau: non
 
 > Pour le chemin concret, utilise [58 : Route apprenant cohérente](58-ROUTE-APPRENANT-COHERENTE.md) : elle relie les ressources existantes à leurs prérequis, livrables, critères de sortie et chemins de remédiation. Ce guide reste le mode d'emploi de navigation.
 
-> Tu viens de lire `00-GUIDE.md` et tu veux savoir comment entrer dans le parcours sans te perdre.
-> Ce fichier est la rampe d'accès. Il ne rajoute pas un niveau technique.
+> Ce guide est une référence de navigation facultative. Tu n'as pas besoin de le lire avant de commencer : ouvre directement [START HERE](../00-SOCLE/01-GETTING-STARTED/01-START_HERE.md).
+> Il ne rajoute pas un niveau technique et ne crée pas une seconde porte d'entrée.
 
 ## La route en une page
 
 ```text
-00-GUIDE
+README
    |
-   | "Je comprends la carte."
-   v
-01-COMMENT-UTILISER-LE-PARCOURS
-   |
-   | "Je sais comment travailler."
    v
 START HERE
    |
    v
-SOCLE
+GETTING STARTED
    |
    v
-CADRAGE
+PROLOGUE
    |
    v
-CONSTRUCTION
+RÉFÉRENTIEL
    |
    v
-PILOTAGE
+ROUTE APPRENANT (58)
    |
    v
-EPREUVE
+RESSOURCE DE L'ÉTAPE COURANTE
    |
    v
-MAITRISE
+ANNEXE, SEULEMENT SI LA ROUTE L'INDIQUE
 ```
 
 ## Regle numero 1
@@ -52,11 +47,14 @@ quand une etape t'y envoie.
 
 ```text
 README
-  -> 00-GUIDE
   -> START HERE
-  -> parcours courant
-  -> annexe appelee par le parcours
-  -> retour au parcours
+  -> Getting Started
+  -> Prologue
+  -> Référentiel
+  -> Route apprenant (58)
+  -> ressource de l'étape courante
+  -> annexe appelée par la route, si nécessaire
+  -> retour à la route
 ```
 
 ## Regle numero 2
@@ -75,8 +73,8 @@ Tu dois produire une preuve ?
 Tu dois verifier une decision ?
     -> annexe de revue / contradiction
 
-Tu dois traiter le marche ou la peremption ?
-    -> annexe de gouvernance
+Tu dois vérifier une information susceptible d'évoluer ?
+    -> source officielle indiquée par la ressource
 ```
 
 ## Regle numero 3
@@ -141,8 +139,8 @@ Il explique seulement comment **naviguer sans se perdre**.
 Apres ce fichier :
 
 ```text
-si tu es debutant
-    -> suis START HERE
+si tu es débutant
+    -> ouvre directement START HERE
 
 si tu as deja des bases
     -> utilise PROGRESSION.md pour te situer

@@ -9,6 +9,13 @@ perturbation_modes: [fausse_piste, changement_contexte]
 anti_recipe_key: fausse_piste+changement_contexte
 transfer_distance: medium
 assessment_role: instructional_checkpoint
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "04-EPREUVE/03-REALTIME/99-PORTAGE-MENTAL.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 04-EPREUVE/03-REALTIME/99-PORTAGE-MENTAL.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
@@ -140,3 +147,33 @@ Maintenant, ouvre `02-ws_basics.md`. Et arrête de faire semblant d'être en dir
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+<!-- AF-LESSON-PROFILE: async -->
+
+## Repères de décision
+
+- **Pourquoi :** L'asynchronisme permet au système de continuer pendant l'attente, mais introduit ordre, concurrence, annulation et erreurs différées.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le pour I/O, tâches longues, notifications ou flux continus. Évite les traitements concurrents sans limite ; impose timeout, annulation et backpressure quand le producteur peut dépasser le consommateur.
+- **Limites :** `Promise.race` ne tue pas l'opération perdante ; `Promise.all` rejette au premier échec observable ; `allSettled` collecte les résultats mais ne fournit pas de stratégie de reprise. La mémoire partagée exige une synchronisation explicite.
+
+## Mécanisme : la version sans magie
+
+Sépare tâche, attente et consommation. Fixe un délai, une politique d'annulation, une limite de concurrence et une règle de rejeu/idempotence selon les effets.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce module mérite ton temps : real-time** se rattache à ce cas concret : Le service de notification Kintana traite plusieurs demandes. Un fournisseur lent ne doit pas bloquer toute la file ni provoquer des doublons au retry.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Worker de notifications asynchrones fiable
+
+> **Arc One Piece / Grand Line :** un message peut arriver tard, deux fois ou pas du tout. Le navigateur ne promet pas que tout le monde rame à la même vitesse.
+
+**Mission liée à « Pourquoi ce module mérite ton temps : real-time » :** Implémente un worker pour les notifications Kintana avec concurrence bornée, timeout, annulation quand elle est supportée, backoff avec jitter et clé de déduplication. Instrumente le nombre en attente et l'âge du plus vieux message.
+
+**Livrable :** un worker, une horloge contrôlée dans les tests, un test de timeout, un test de rejeu et un scénario de saturation.
+
+**Critères d’acceptation :** la concurrence ne dépasse jamais la limite ; le message échoué est classé ; un replay ne double pas l'effet ; l'annulation est distinguée d'un timeout ; le backlog est observable.
+
+**Transfert obligatoire :** Augmente le débit producteur jusqu'à dépasser le débit consommateur. Explique quand appliquer backpressure, rejeter ou stocker temporairement.

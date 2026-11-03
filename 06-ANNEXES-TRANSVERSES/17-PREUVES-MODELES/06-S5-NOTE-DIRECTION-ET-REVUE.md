@@ -1,13 +1,7 @@
 ---
-perishability_id: PER-0100
 
-stability: perissable
+stability: stable
 acte: appliquer
-freshness_registry_id: PER-0100
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-01-28
-review_status: a_verifier_date_absente
 ---
 > **CrazyDevs : briefing de mission :** ce concept doit survivre au moment où quelqu’un te demande « pourquoi ? » en plein chaos. Garde l’explication technique exacte, puis donne-lui une image qu’on peut raconter demain.
 
@@ -15,7 +9,7 @@ review_status: a_verifier_date_absente
 
 Temps de lecture ~3 min
 
-> Relevé le 2026-08-14, source : pages tarifaires publiques des fournisseurs citées dans ce fichier, à revérifier avant 2027. Tout montant de ce fichier est un ordre de grandeur daté, jamais une vérité intemporelle.
+> **Scénario fictif.** Les montants, délais et mesures de ce modèle sont des hypothèses pédagogiques, pas des tarifs relevés ni des observations de production. Ils ne sont pas dérivés du modèle S1 ; un projet réel doit recalculer les chiffres à partir de ses propres preuves.
 
 Projet fictif : **Lumen**. Deux pièces distinctes, exigées par `PREUVES-STAFF-ENGINEER.md`.
 
@@ -24,9 +18,10 @@ Projet fictif : **Lumen**. Deux pièces distinctes, exigées par `PREUVES-STAFF-
 Contribution relue : ajout de l'export comptable mensuel (ADR-004), 380 lignes.
 
 **Bloquant : l'export s'exécute sur la base principale.**
-Risque nommé : la mesure du 05/06 montre 60% des connexions consommées pendant 8 minutes.
-Au tarif de notre SLO (99,5%, budget de 216 requêtes ratées par semaine), un seul export
-consomme environ 2 100 requêtes ratées, soit dix semaines de budget en une nuit. Ce n'est
+Risque nommé : dans le scénario de charge du 05/06, l'export consomme 60 % des connexions
+pendant 8 minutes. Pour la cible de scénario (99,5 %, budget de 216 requêtes ratées par
+semaine), le cas estime environ 2 100 requêtes ratées, soit près de dix semaines de budget.
+Ces valeurs sont des hypothèses à vérifier par une mesure sur le système réel. Ce n'est
 pas une préférence d'architecture : c'est la rupture d'un engagement écrit. Corriger en
 pointant la connexion vers la réplique de lecture, ou démontrer par une mesure que le
 chiffre ci-dessus est faux.
@@ -44,32 +39,31 @@ volontaire, une ligne de commentaire ou un test nommé suffira.
 
 **Objet : pourquoi l'export comptable prendra 14 jours et non 6.**
 
-Nous pouvons livrer l'export comptable de deux façons. La rapide prend 6 jours et ne coûte
+Dans ce scénario fictif, l'export comptable a deux options. La rapide prend 6 jours et ne coûte
 rien de plus par mois. La solide prend 14 jours et coûte 96 € de plus par mois.
 
 La version rapide fait lire toute la base par le programme d'export, au même moment que
-les utilisateurs. Nous avons mesuré le 5 juin ce que cela produit : pendant environ huit
-minutes chaque mois, l'écran de disponibilité devient trop lent, ou n'affiche rien. Nous
+les utilisateurs. Le scénario de charge du 5 juin prévoit que, pendant environ huit
+minutes, l'écran de disponibilité devient trop lent ou n'affiche rien ; ce résultat reste à mesurer sur un système réel. Nous
 avons promis par écrit à trois clients que cet écran répond correctement 99,5 fois sur 100.
 Ces huit minutes, à elles seules, consomment dix semaines de la marge d'erreur que cette
 promesse nous laisse.
 
 La version solide fait travailler l'export sur une copie de la base, mise à jour en
-continu, qui sert uniquement à la lecture. Les utilisateurs ne sont pas ralentis. C'est ce
-que coûtent les 96 € mensuels.
+continu, qui sert uniquement à la lecture. Le scénario suppose que les utilisateurs ne sont pas ralentis ; un test doit le confirmer. Le surcoût fictif est de 96 € mensuels.
 
 Nous recommandons la version solide, et nous prévenons dès cette semaine les sept structures
 en attente que la livraison arrive dans quatre semaines. Ce que nous perdons : huit jours de
-délai, et une facture d'infrastructure qui passe de 395 à 491 € par mois. Ce que nous
+délai, et une facture d'infrastructure simulée qui passe de 389,86 à 485,86 € par mois (total S1 à 10 000 utilisateurs, puis +96 € mensuels dans ce scénario). Ce que nous
 évitons : une promesse écrite rompue le premier mois, devant les trois clients qui l'ont
 signée.
 
-**Ce que je ne sais pas encore.** Si le nombre de structures dépasse cinquante, la copie de
-lecture pourrait devoir grossir. Je le saurai en rejouant la mesure de charge à ce volume,
-et je réponds avant le 30 septembre.
+**Ce que le scénario ne démontre pas.** Si le nombre de structures dépasse cinquante, la copie de
+lecture pourrait devoir grossir. Le projet réel doit rejouer la mesure de charge à ce volume
+avant de confirmer la capacité et le budget.
 
 ## Pourquoi ces deux pièces vont ensemble
 
 La revue prouve la transmission d'un critère à un pair. La note prouve la traduction du même
-fait vers une direction, sans un seul terme technique non expliqué, avec les chiffres exacts
-du budget (S1) et de la promesse de service (S3). Une seule des deux ne prouve pas la famille.
+fait vers une direction, sans un seul terme technique non expliqué, avec les chiffres de scénario du budget S1 et de la promesse de service S3 ;
+ils ne valent pas mesures de production. Une seule des deux ne prouve pas la famille.

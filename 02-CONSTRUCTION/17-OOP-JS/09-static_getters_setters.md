@@ -169,10 +169,50 @@ Reproduis le cas de la section 4 avec un `get` qui logge à chaque appel. Compte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Static, getters, setters : logique cachée derrière une syntaxe d'attribut » à un troisième fournisseur dont l’API ne ressemble pas aux deux premiers. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-DIAGRAM:scope -->
+
+## Repère visuel utile : Contexte sûr des handlers Kintana
+
+```text
+création de la fonction
+      | capture l'environnement lexical
+      v
+closure(handler) -----> requestId / role
+      |
+      v
+dispatcher appelle plus tard
+      |
+      +--> paramètres explicites
+      +--> closure conservée
+      +--> `this` dépend du call-site
+```
+
+<!-- AF-LESSON-PROFILE: oop-static-getters-setters -->
+
+## Repères de décision
+
+- **Pourquoi :** `static`, `get` et `set` modifient la façon dont une classe expose des opérations ou des propriétés ; leur syntaxe peut cacher un appel de méthode.
+- **Quand l’utiliser / quand l’éviter :** Utilise `static` pour une opération liée à la classe plutôt qu’à une instance. Utilise un getter pour exposer une valeur dérivée simple, et un setter lorsqu’une affectation doit vérifier ou maintenir un invariant. Préfère une méthode explicite si l’opération est coûteuse ou a des effets de bord.
+- **Limites :** Un getter peut être exécuté lors d’une simple lecture de propriété ; y placer du réseau, de l’I/O ou un calcul lourd surprend les appelants. Un setter ne doit pas permettre de contourner les invariants qu’il est censé protéger.
+
+## Mécanisme : la version sans magie
+
+Une méthode `static` est appelée sur la classe, non sur une instance ordinaire. `get nom()` transforme la lecture `objet.nom` en appel de getter ; `set nom(valeur)` transforme l’affectation en appel de setter.
+
+## Ancrage produit / terrain : Kintana
+
+La classe Kintana peut exposer une fabrique statique pour créer une demande validée et un getter calculant un libellé à partir du statut ; la lecture ne doit pas déclencher de requête cachée.
+
+## Mission utile : Kintana : rendre l’API d’objet prévisible
+
+**Livrable :** une méthode statique de création, un getter dérivé et, si nécessaire, un setter qui protège un invariant ; ajoute les tests des chemins valides et invalides.
+
+**Critères d’acceptation :** tu indiques si chaque membre appartient à la classe ou à l’instance ; la lecture d’un getter reste prévisible ; les erreurs de setter sont explicites ; aucune I/O n’est cachée derrière une propriété.
+
+**Transfert obligatoire :** remplace un getter par une méthode explicite et explique à partir de quel coût ou effet de bord ce changement améliore le contrat.

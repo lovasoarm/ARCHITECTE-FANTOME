@@ -6,20 +6,19 @@ route: complete
 
 **SCÈNE CRAZYDEVS : Naruto :** avant de lancer le jutsu, tu vérifies ton chakra, ton terrain et ce que tu crois savoir. Ici, le piège est de coder avant d’avoir compris.
 
-# Auto-test d'entrée : `02-PROLOGUE`
+# Dépendance de parcours : `02-PROLOGUE`
 
 Temps de lecture ~2 min
 
-Acte attendu : évaluer. Trois minutes, seul, sans ouvrir le module.
+Cette vérification ne teste aucune connaissance de programmation, de modélisation ou d'architecture. Elle confirme uniquement que tu as suivi la première étape pratique du parcours. Ne pas avoir de domaine candidat ou ne pas connaître les cinq critères métier ne bloque pas l'entrée.
 
-Si une seule ligne ci-dessous te fait hésiter, tu ouvres d'abord ce qu'elle nomme. Ouvrir ce
-module sans ces acquis coûte la séance : tu apprendrais le prérequis à la place du module.
+## Dépendance déclarée
 
-## Ce que tu dois déjà savoir faire
-
-- Tu as terminé [`01-GETTING-STARTED`](../../00-SOCLE/01-GETTING-STARTED/README.md), module précédent du fil.
+- [ ] `01-GETTING-STARTED` est terminé : environnement préparé, dossier local du curriculum ouvert et navigation de base comprise. Un clone Git ou un dépôt distant n’est pas requis.
 
 ## Verdict
 
-- [ ] Toutes les lignes passent → ouvre [`README.md`](README.md).
-- [ ] Une ligne ne passe pas → reviens ici quand elle passe. Note la date, pas l'excuse.
+- [ ] Étape terminée → ouvre [`README.md`](README.md).
+- [ ] Étape non terminée → réalise uniquement Getting Started, puis reviens ici.
+
+Aucune formation externe ni compétence de code préalable n'est exigée. Le diagnostic de connaissances du Prologue est non éliminatoire : il sert uniquement à repérer les notions à apprendre dans le Socle.

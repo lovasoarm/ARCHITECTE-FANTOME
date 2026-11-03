@@ -15,9 +15,9 @@ Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `
 
 -> ~7 min
 
-Le club de foot le plus suivi de la saison. Des milliers d'ultras connectés pendant un match. Des events de jeu qui arrivent à 200 par minute. Un dashboard qui affiche possession, xG, heatmap de passes, alertes temps réel, sans jamais tomber. Si le serveur crash pendant un match, les ultras brûlent tout.
+Le club de foot le plus suivi de la saison. Scénario **SIMULATION** : des milliers de connexions synthétiques pendant un match fictif. Les événements à 200 par minute sont une charge d’exercice, pas une mesure observée sur un service réel. Un dashboard qui affiche possession, xG, heatmap de passes, alertes temps réel, sans jamais tomber. Si le serveur crash pendant un match, les ultras brûlent tout.
 
-TypeScript de bout en bout. Tracing. Métriques. Alerting. Sentry en prod.
+TypeScript de bout en bout. Tracing. Métriques. Alerting. Sentry dans un environnement de laboratoire ou pilote ; aucun compte Sentry ni déploiement de production n’est fourni.
 
 ---
 
@@ -255,3 +255,12 @@ Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STAND
 - **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
 
 **Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.
+
+## Statut des données et de la charge
+
+Les clubs, matchs, utilisateurs, volumes d’événements, sorties terminal et valeurs de métriques de ce scénario sont synthétiques. Les nombres servent à concevoir les tests de charge. Ils ne prouvent ni un usage réel, ni une latence observée, ni une disponibilité de production. Produis tes propres mesures reproductibles et étiquette-les `LAB`, `PILOT` ou `PRODUCTION` selon le niveau de preuve.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.
+- [Référence technique différée](reference/README.md) : à consulter après la tentative, sans recopier dans le livrable.

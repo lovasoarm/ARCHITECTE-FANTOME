@@ -1,14 +1,15 @@
 ---
-perishability_id: PER-0083
 
-stability: perissable
+stability: "intemporel"
 acte: maitrise
 noyau: oui
-freshness_registry_id: PER-0083
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+canonical_resource: "PREUVES-STAFF-ENGINEER.md"
+source_scope: "Référentiel interne des preuves Staff Engineer utilisé pour cadrer le challenge ; il ne constitue pas une certification externe."
+provenance_note: "Référence interne explicitement reliée au sujet ; elle ancre le parcours mais ne constitue pas une preuve externe. Aucun contenu n’est déclaré revérifié par cette mise à jour."
 ---
 > **SCÈNE CRAZYDEVS : Boss final :** ton architecture est plausible, ton budget est joli et ton agent IA applaudit. Puis un junior te montre une contrainte que tu n’avais pas vue. Le niveau Staff commence là.
 
@@ -39,7 +40,7 @@ Chaque section contient au moins une affirmation vérifiable, un chiffre daté a
 
 - Lier les six familles S1–S6 et la preuve de transfert S7 décrites dans [PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md).
 - Joindre le contrôle transversal G8 `PREUVES/EVALUATION-IA.md`, même si le système ne contient pas de brique IA ; dans ce cas, justifier explicitement pourquoi le risque IA est absent ou hors périmètre.
-- Joindre `STANDARDS-AGENTS.md` lorsque des agents interviennent dans la conception ou la livraison ; si aucun agent n'est utilisé, documenter le contrôle équivalent et la décision de non-usage.
+- Joindre `STANDARDS-AGENTS.md` uniquement si le système utilise des agents ou automatisations autonomes qui prennent ou exécutent des décisions/actions. Si aucun n’est utilisé, `EVALUATION-IA.md` documente le non-usage, son périmètre et les contrôles conservés. Un assistant sous validation humaine directe ne déclenche pas automatiquement cette pièce.
 - Joindre `PREUVES/IA-EN-PROD.md` uniquement si une brique IA est réellement en production.
 - Annexer `04-BELIEF-CHANGE-LOG.md`, `05-BIAS-LOG.md`, `BAD-NEWS-UPWARD` et au moins deux épreuves de `05-PSYCHOLOGIE-DECISION/`.
 - Inclure une date de revisite et le fichier `04-revisite_datee.md`.

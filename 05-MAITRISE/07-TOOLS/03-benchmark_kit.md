@@ -1,7 +1,7 @@
 ---
 perishability_id: PER-0076
 
-stability: perissable
+stability: "perissable"
 last_reviewed: 2026-07
 depends_on_vendor: false
 acte: comprendre
@@ -10,12 +10,21 @@ perturbation_modes: [changement_contexte, decision_organisationnelle]
 anti_recipe_key: changement_contexte+decision_organisationnelle
 transfer_distance: medium
 assessment_role: instructional_checkpoint
-freshness_registry_id: PER-0076
-freshness_audit_date: 2026-10-30
-freshness_status: date_declaree_non_revalidee_dans_cette_edition
-review_due: 2027-01-28
-review_status: date_declaree_non_revalidee_dans_cette_edition
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: "https://nodejs.org/docs/v22.23.4/api/perf_hooks.html"
+source_type: "primary"
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: 'Documentation officielle ou source primaire consultée en rapport avec « Benchmark kit : savoir si ton code est rapide, pas juste "pas lent en apparence" ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l''exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous.'
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
@@ -213,3 +222,38 @@ Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, dé
 **Vérification.** La fonction est identique, le résultat est contrôlé par un test d'équivalence, les mesures sont répétées et les données/hardware sont consignés. Une différence inférieure au bruit ou mesurée sur un seul run n'autorise pas une conclusion de performance.
 
 **Transfert.** Utiliser avant/après pour un refactoring ou une optimisation ; le profiling local identifie un coût, la production détermine si ce coût affecte réellement les utilisateurs.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Benchmark kit : savoir si ton code est rapide, pas juste "pas lent en apparence"** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Construire un benchmark reproductible
+
+**Mission liée à « Benchmark kit : savoir si ton code est rapide, pas juste "pas lent en apparence" » :** Choisis une opération Kintana, définis l’entrée, l’échauffement, le nombre de répétitions, la mesure et les conditions d’arrêt. Compare une baseline et une variante dans le même environnement.
+
+**Livrable :** Script/protocole, données de mesure, dispersion et conclusion prudente.
+
+**Critères d’acceptation :** Les conditions sont identiques ; médiane et dispersion sont rapportées ; les résultats ne sont pas extrapolés au-delà du contexte testé.
+
+**Transfert obligatoire :** La différence est inférieure au bruit mesuré : conclus que le benchmark ne permet pas de trancher.
+
+## Références officielles utiles
+
+> **Référence principale vérifiée le 2 novembre 2026 :** la première ressource de ce panneau, également enregistrée dans `source_url`, a été consultée pour le mécanisme versionné traité ici. Les autres liens sont des compléments officiels utiles ; ils ne constituent pas chacun une attestation indépendante de l’exemple du curriculum. Aucune référence ne prouve que l’exemple a été exécuté. Vérifie la version cible et teste dans ton environnement avant un usage réel.
+
+- [Node.js : perf_hooks](https://nodejs.org/docs/v22.23.4/api/perf_hooks.html)
+- [MDN : Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance)

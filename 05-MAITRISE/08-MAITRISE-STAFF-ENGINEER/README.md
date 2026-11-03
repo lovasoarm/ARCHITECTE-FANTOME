@@ -3,15 +3,9 @@ stability: intemporel
 acte: maitrise
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 ---
 
 # 08 : Maîtrise Staff Engineer
-
-> **État pédagogique : 30 octobre 2026 : preuves documentaires complétées.** Les ajouts ciblés couvrent les exemples, pratiques, vérifications et transferts requis pour ce module. Une revue technique indépendante et une validation terrain restent distinctes ; voir [48 : External Review Gate](../../06-ANNEXES-TRANSVERSES/48-EXTERNAL-REVIEW-GATE.md) et [49 : Terrain Maturity Gate](../../06-ANNEXES-TRANSVERSES/49-TERRAIN-MATURITY-GATE.md).
 
 > Ce palier est un dispositif d’évaluation et de progression adossé à une expérience réelle. AF ne garantit pas qu’un parcours de cours, seul, confère le titre de Staff Engineer ou Distinguished Engineer.
 
@@ -53,8 +47,6 @@ Le [Portefeuille avancé de systèmes 2035+](../09-PORTFOLIO-SYSTEMES-2035/READM
 
 <!-- CONTENU-DOSSIER:fin -->
 
-## Standard de complétude et audit
-
 ## Navigation complète des ressources
 
 Les liens ci-dessous donnent accès aux ressources documentaires du module, y compris les sous-dossiers. Le sommaire conserve l’ordre pédagogique recommandé ; cet index n’ajoute pas d’étape obligatoire.
@@ -92,3 +84,14 @@ Les liens ci-dessous donnent accès aux ressources documentaires du module, y co
 - [`90-grimoire.md`](90-grimoire.md)
 - [`95-challenge.md`](95-challenge.md)
 - [`96-boss-fight.md`](96-boss-fight.md)
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **décision qui traverse les équipes** : Rédige une RFC/ADR sur une décision Kintana qui affecte API, données et exploitation. Compare au moins deux options, demande une revue contradictoire et transforme les objections en critères d’acceptation. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : La décision a un propriétaire, un coût, un plan de migration et une condition de révision ; l’adoption réelle reste « non démontrée » tant qu’une équipe ne l’a pas adoptée.
+
+## Ressources pratiques associées
+
+- [Atelier de consolidation](ATELIER-CONSOLIDATION.md) : réutiliser les notions du module dans un cas intégré.
+- [Corrigé de référence de l'atelier](corriges/ATELIER-CONSOLIDATION-CORRIGE.md) : à consulter après une tentative autonome.

@@ -397,16 +397,42 @@ _(Indice : `Proxy` avec un trap `set` qui retourne `false` en strict mode lève 
 
 ## RÉSUMÉ
 
-En JS, passer un objet à une fonction ou l'assigner à une variable ne le copie pas : ça partage la même référence. Toute modification touche tous ceux qui la pointent. Les méthodes `sort()`, `reverse()`, `push()`, `splice()` mutent en place : il faut copier avant. `Object.freeze` protège le premier niveau : `deepFreeze` protège tout. Le pattern immutable consiste à toujours retourner un nouvel objet plutôt que de modifier l'existant : c'est ce qui rend le code prévisible, testable, et debuggable.
+En JS, affecter un objet à une variable ou le passer à une fonction copie la référence, pas l’objet. Deux variables peuvent donc désigner le même objet. Les méthodes `sort()`, `reverse()`, `push()` et `splice()` modifient le tableau en place : crée une copie si tu veux préserver l’original. `Object.freeze` est superficiel : il ne protège pas automatiquement les objets imbriqués. Une copie profonde doit être choisie selon les types de données et les contraintes ; `structuredClone` ne prend pas en charge tous les types ni tous les comportements. L’immutabilité réduit les effets de bord, sans être une garantie automatique d’absence de bug.
 
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
-
-<!-- AF-P0-2026-10-30: missing_transfer -->
 
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Mutation minefield : toucher un objet et tout casser ailleurs » à un service long-vivant plutôt qu’un script ponctuel. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Mutation minefield : toucher un objet et tout casser ailleurs** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Repérer les mutations qui fuient entre parcours
+
+**Mission liée à « Mutation minefield : toucher un objet et tout casser ailleurs » :** Passe en revue un parcours Kintana qui trie, filtre et met à jour des objets partagés. Identifie les appels mutables, reproduis une fuite d’état, puis remplace seulement les mutations qui violent le contrat.
+
+**Livrable :** Liste des mutations, reproduction, correctif ciblé et tests de non-mutation.
+
+**Critères d’acceptation :** Les mutations intentionnelles restent explicites ; les tests vérifient l’entrée et les autres consommateurs ; aucune copie inutile n’est ajoutée sans raison.
+
+**Transfert obligatoire :** Un objet doit réellement être modifié : indique où la mutation est autorisée et qui en possède la responsabilité.

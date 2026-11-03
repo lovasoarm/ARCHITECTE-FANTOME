@@ -3,17 +3,18 @@ stability: evolutif
 acte: parcours
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/10-TEAM-CRAFT/01-00-why-team-craft.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 03-PILOTAGE/10-TEAM-CRAFT/01-00-why-team-craft.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # MODULE 10 TEAM CRAFT
 
-> **État pédagogique : 30 octobre 2026 : preuves documentaires complétées.** Les ajouts ciblés couvrent les exemples, pratiques, vérifications et transferts requis pour ce module. Une revue technique indépendante et une validation terrain restent distinctes ; voir [48 : External Review Gate](../../06-ANNEXES-TRANSVERSES/48-EXTERNAL-REVIEW-GATE.md) et [49 : Terrain Maturity Gate](../../06-ANNEXES-TRANSVERSES/49-TERRAIN-MATURITY-GATE.md).
-
-> Palier `03-PILOTAGE`. Duree estimee : **15 h 00** (22 fichiers de travail).
+> Palier `03-PILOTAGE`. Duree estimee : **14 h 30** (22 fichiers de travail).
 
 ## Sommaire du module
 
@@ -36,12 +37,12 @@ terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 | [`14-three_audiences_drill.md`](14-three_audiences_drill.md)   | DRILL 3 AUDIENCES : TU EXPLIQUES OU TU NE COMPRENDS PAS             | 45 min |
 | [`15-argumentaire_technique.md`](15-argumentaire_technique.md) | ARGUMENTAIRE TECHNIQUE : CONVAINCRE UN PAIR EN 1 PAGE               | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                             | Page verrouillée                                                    | 30 min |
-| [`16-EXO_LECTURE.md`](16-EXO_LECTURE.md)                       | EXO LECTURE : 15-25 minutes (Team Craft)                            | 45 min |
+| [`16-EXO_LECTURE.md`](16-EXO_LECTURE.md)                       | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Team Craft)         | 50 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)             | EXO [JEUNE IA] : 03-PILOTAGE/10-TEAM-CRAFT                          | 45 min |
-| [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)             | EXO IA MENTEUSE : module 03-PILOTAGE/10-TEAM-CRAFT                  | 45 min |
+| [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)             | EXO IA MENTEUSE : module 03-PILOTAGE/10-TEAM-CRAFT                  | 10 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                 | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust             | 45 min |
 
-Total : **15 h**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) et le boss (3 h) sont des évaluations séparées et ne sont pas ajoutés au Total sauf s’ils apparaissent comme lignes du tableau.
+Total : **14 h 30**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
 ## Comment travailler ce module
 
@@ -94,7 +95,7 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Drill 3 audiences : tu expliques ou tu ne comprends pas](14-three_audiences_drill.md)
 - [Argumentaire technique : convaincre un pair en 1 page](15-argumentaire_technique.md)
 - [Page verrouillée](90-grimoire.md)
-- [EXO LECTURE : 15-25 minutes (Team Craft)](16-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Team Craft)](16-EXO_LECTURE.md)
 - [EXO [jeune IA] : 03-pilotage/10-team-craft](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 03-PILOTAGE/10-TEAM-CRAFT](97-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
@@ -106,8 +107,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 ## Frontière avec TEAM-QUEST
 
 TEAM-CRAFT = construire les règles, standards et habitudes qui rendent la collaboration durable.
-
-## Standard de complétude et audit
 
 ## Navigation complète des ressources
 
@@ -137,3 +136,14 @@ Les liens ci-dessous donnent accès aux ressources documentaires du module, y co
 - [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)
 - [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)
 - [`SETUP.md`](SETUP.md)
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **décision qui traverse les équipes** : Rédige une RFC/ADR sur une décision Kintana qui affecte API, données et exploitation. Compare au moins deux options, demande une revue contradictoire et transforme les objections en critères d’acceptation. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : La décision a un propriétaire, un coût, un plan de migration et une condition de révision ; l’adoption réelle reste « non démontrée » tant qu’une équipe ne l’a pas adoptée.
+
+## Ressources pratiques associées
+
+- [Atelier de consolidation](ATELIER-CONSOLIDATION.md) : réutiliser les notions du module dans un cas intégré.
+- [Corrigé de référence de l'atelier](corriges/ATELIER-CONSOLIDATION-CORRIGE.md) : à consulter après une tentative autonome.

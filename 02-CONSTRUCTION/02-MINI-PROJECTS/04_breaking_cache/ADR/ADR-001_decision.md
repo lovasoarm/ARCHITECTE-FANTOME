@@ -4,64 +4,31 @@ acte: décider
 preuve: learner
 ---
 
-# ADR-001 : décision d’architecture : Épreuve de décision non résolue
+# ADR-001 : quelle règle TTL protège réellement la fraîcheur ?
 
-> **Règle learner :** aucune décision de référence n'est fournie ici. La décision
-> doit être produite à partir du contexte du mini-projet, puis défendue et révisée
-> après perturbation.
+> **Épreuve non résolue :** le cours ne fournit pas la décision. À toi de comparer les options dans le contexte de Kintana.
 
-## Mission
+## Contexte à établir
 
-Produis un ADR original pour cette situation. Tu dois choisir, pas retrouver une
-réponse attendue. Toute alternative raisonnable doit être explicitement considérée.
+Un résumé de stock est lu souvent et mis à jour. Le TTL doit réduire les lectures répétées sans présenter une donnée périmée plus longtemps que ce que le produit accepte.
 
-## Contraintes minimales
+## Options à comparer
 
-- identifier le problème et les hypothèses encore incertaines ;
-- proposer au moins deux options plausibles ;
-- expliciter les critères de décision ;
-- produire une décision provisoire ;
-- donner au moins un coût, un risque et une conséquence secondaire ;
-- écrire l'argument le plus fort **contre** ta propre décision ;
-- préciser quelle observation te ferait changer d'avis ;
-- rester indépendant d'un framework ou d'un nom d'architecture tant que le mécanisme n'est pas justifié.
+- TTL court et invalidation explicite après écriture réussie ;
+- TTL plus long et invalidation explicite ;
+- absence de cache pour cette donnée ;
+- une autre option, si tu la justifies.
+
+Ne choisis pas avant d'avoir identifié le coût des lectures, le risque métier d'une valeur périmée et les garanties réelles de la source.
 
 ## Épreuve adverse
 
-Après ta première décision, ajoute une perturbation non prévue au départ : charge,
-coût, sécurité, disponibilité, besoin produit, dépendance ou contrainte d'équipe.
-Réévalue la décision et note explicitement ce qui change et ce qui ne change pas.
+Ajoute une lecture lente commencée avant la mise à jour et terminée après l'invalidation. Explique si elle peut réinsérer une ancienne valeur dans ton implémentation. Si oui, nomme l'invariant manquant et propose une stratégie de mitigation.
 
-## Transfert
+## À produire
 
-<!-- AF-DIAGRAM:transfer -->
+Contexte, hypothèses, options, critères, décision, conséquences positives/négatives, contre-argument le plus fort, signal de révision, tests et lien avec les mesures. Utilise le template ADR commun.
 
-```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
-```
+## Rappel à froid et transfert
 
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
-
-Explique comment la même décision devrait être adaptée dans un contexte différent
-(langage, scale, fournisseur, équipe ou contrainte). Donne aussi un cas où ton
-conseil initial deviendrait mauvais.
-
-## Rappel à froid
-
-Une semaine plus tard, reconstruis l'ADR sans rouvrir ce fichier puis compare ta
-reconstruction à ta version initiale.
-
-## Preuve attendue
-
-La preuve est le raisonnement et les révisions de l'apprenant. La simple production
-d'un fichier ADR ne suffit pas.
+Une semaine plus tard, reconstruis le raisonnement sans relire le document. Puis adapte ta décision à un cache partagé par plusieurs instances : quel invariant ne peut plus être supposé ?

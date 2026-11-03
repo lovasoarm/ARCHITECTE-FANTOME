@@ -26,14 +26,16 @@ fois et qu'on oublie.
 
 ### Règle 1 : le livrable, pas la lecture
 
-Chaque niveau se termine par un `95-challenge.md` : un exercice appliqué avec un livrable
-concret et des critères de réussite mesurables. Lire les leçons sans faire le challenge, c'est
-comme lire un livre de musculation sans soulever de barre. Tu comprendras intellectuellement
-la surcharge progressive, tes muscles n'en sauront rien.
+Le contrat local indique les pièces attendues. Lorsqu'un module déclare un `95-challenge.md`
+comme preuve de sortie, il te demande un exercice appliqué avec un livrable concret et des
+critères de réussite mesurables. Lire les leçons sans réaliser la preuve déclarée, c'est comme
+lire un livre de musculation sans soulever de barre : tu comprends l'idée, mais tu ne développes
+pas encore la capacité.
 
-La règle est simple et non négociable : **tu ne passes au niveau suivant qu'après avoir
-produit le livrable et l'avoir confronté au `96-boss-fight.md`.** Pas "je pense avoir compris",
-un artefact qui existe, que tu peux montrer, critiquer, casser.
+La règle est simple et non négociable : **tu ne passes au niveau suivant qu'après avoir produit
+les preuves de sortie déclarées par le README local et la Route 58.** Un `96-boss-fight.md`
+ajoute une contrainte adverse uniquement lorsque le fichier existe et que le README local
+l'annonce. Pas "je pense avoir compris" : un artefact que tu peux montrer, critiquer et tester.
 
 ```text
    lire la leçon
@@ -42,19 +44,29 @@ un artefact qui existe, que tu peux montrer, critiquer, casser.
    comprendre le modèle mental (tu peux l'expliquer à voix haute, sans notes)
         |
         v
-   produire le livrable du challenge
+   produire la preuve déclarée localement
         |
         v
-   affronter le boss-fight (contrainte adverse réaliste)
-        |
+   boss-fight supplémentaire ?
+        | oui (si le README le déclare)
         v
-   +------------+------------+
-   |                         |
- réussi                   échoué
-   |                         |
-   v                         v
-niveau suivant      retour à la leçon concernée,
-                     PAS au début du niveau
+   contrainte adverse réaliste
+        |
+        +--------------------+
+        | non                 | oui
+        v                    v
+   vérifier les critères   évaluer l'épreuve
+   de sortie locaux        et les critères locaux
+        |                    |
+        +---------+----------+
+                  |
+          +-------+-------+
+          |               |
+        réussi          échec
+          |               |
+          v               v
+     niveau suivant   retour au critère concerné,
+                      PAS au début du niveau
 ```
 
 ### Règle 2 : le rythme est déterminé par la compréhension, pas par le calendrier
@@ -73,13 +85,13 @@ du niveau suivant), parce que le réflexe d'expliciter n'est pas encore automati
 
 ### Règle 3 : l'auto-évaluation se fait par confrontation, pas par confiance
 
-Tu ne peux pas juger toi-même si ton livrable est bon en te demandant "est-ce que je suis
-content de moi ?". Ce n'est pas un critère. Les critères sont dans `95-challenge.md`
-(mesurables : "le système supporte X sans Y", "le document explique Z en moins de N lignes")
-et dans `96-boss-fight.md` (une grille d'évaluation avec des seuils explicites). Si possible,
-fais relire ton livrable par quelqu'un d'autre : un pair, un mentor, ou toi-même dans une
-semaine avec un oeil froid. La confrontation externe révèle les angles morts qu'un
-raisonnement solitaire ne révèle jamais.
+Tu ne peux pas juger ton livrable en te demandant seulement « est-ce que je suis content de moi ? ».
+Les critères obligatoires sont ceux du `README.md` local, du challenge lorsqu'il est déclaré et de la
+Route 58 lorsqu'elle associe une preuve ou un gate à cette étape. Un `96-boss-fight.md` ajoute une
+mise sous contrainte uniquement lorsque le module le fournit et l'annonce. Un module sans boss séparé
+n'est pas incomplet : son challenge, ses checkpoints et ses critères de sortie constituent son contrat.
+Si possible, fais relire le livrable par un pair ou un mentor ; à défaut, conserve une auto-revue datée
+et ne la présente pas comme une revue externe.
 
 ### Ce que "terminer un niveau" signifie réellement
 
@@ -92,29 +104,28 @@ Terminer un niveau, ce n'est pas avoir lu tous les fichiers. C'est avoir :
 3. Une trace écrite d'au moins une décision que tu as prise et que tu pourrais défendre en
    entretien technique.
 
-### Comment traiter un échec au boss-fight
+### Comment traiter un échec à une preuve de sortie
 
-Un échec au boss-fight n'est pas un retour à la case départ du niveau. C'est un signal précis :
-la grille d'évaluation te dit quel critère a échoué, donc quelle leçon revisiter. Si tu échoues
-sur "justification du choix de verrouillage optimiste vs pessimiste" dans un niveau sur la
-concurrence, tu ne relis pas tout le niveau, tu relis la leçon concernée, tu refais la partie
-du livrable qui en dépendait, et tu retentes le boss-fight seulement sur ce point.
+Un échec à une preuve de sortie n'est pas un retour à la case départ du module. C'est un signal précis :
+la grille ou les critères locaux indiquent ce qui manque et quelle ressource revisiter. Si le module
+prévoit un `96-boss-fight.md`, corrige le critère en échec puis rejoue l'épreuve selon son contrat.
+S'il n'en prévoit pas, reprends le challenge, le checkpoint ou la partie du livrable qui couvre le
+critère manquant ; ne crée pas un boss fictif.
 
 ```text
-   échec boss-fight
+   preuve de sortie non validée
         |
         v
-   quel critère précis a échoué ? (lire la grille, pas ton impression)
+   quel critère précis manque ?
         |
         v
-   quelle leçon couvre ce critère ?
+   quelle ressource ou prérequis le couvre ?
         |
         v
-   relire CETTE leçon, refaire CETTE partie du livrable
+   corriger cette partie du livrable
         |
         v
-   retenter le boss-fight en entier (pas seulement le point corrigé,
-   pour vérifier que la correction n'a rien cassé ailleurs)
+   rejouer la vérification déclarée par le README local
 ```
 
 ### Ce que tu perds si tu lis en diagonale
@@ -134,8 +145,8 @@ paralysie par perfectionnisme. Le critère de passage n'est pas "je maîtrise à
 donnera un retour concret sur ce qui manque encore".
 
 ```text
-   Trop vite : lire en diagonale, sauter les challenges
-        --> illusion de compétence, s'effondre au premier boss-fight
+   Trop vite : lire en diagonale, sauter les preuves déclarées
+        --> illusion de compétence, qui cède au premier cas concret
 
    Trop lent : relire indéfiniment sans jamais produire de livrable
         --> aucune confrontation réelle, le modèle mental reste théorique
@@ -149,27 +160,30 @@ donnera un retour concret sur ce qui manque encore".
 Les chiffres ci-dessous ne constituent pas une étude ni une mesure du dépôt. Ils servent uniquement
 à rendre visible l'écart entre lecture et pratique : imagine deux parcours avec un temps de lecture
 comparable, mais l'un saute la majorité des exercices alors que l'autre produit systématiquement le
-challenge et affronte le boss-fight. Le second accumulera mécaniquement davantage de retours observables
-et de preuves de décision, parce qu'il aura davantage de situations à résoudre et à réviser.
+preuves déclarées et, lorsqu'il existe dans le contrat local, affronte le boss-fight. Le second
+accumulera davantage de retours observables et de preuves de décision parce qu'il aura davantage
+de situations à résoudre et à réviser.
 
 ### Ce que veulent dire les numéros de fichiers
 
-Chaque niveau suit le même squelette de fichiers, et leur numéro n'est pas arbitraire :
-il indique **quand** ouvrir le fichier, pas juste son ordre alphabétique.
+Les préfixes donnent des conventions de lecture, pas un squelette obligatoire identique pour chaque
+module. Le `README.md` local énumère les pièces réellement présentes, leur rôle et les critères de
+sortie. Une pièce absente n'est un défaut que si le contrat canonique du module la déclare obligatoire.
 
-| Préfixe                | Rôle                                                                             | Quand l'ouvrir                                                       |
-| ---------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `00-PREREQUIS.md`      | Filtre d'entrée : question sur le niveau précédent                               | Avant tout le reste, jamais après                                    |
-| `00_why_*.md`          | Pourquoi ce niveau mérite ton temps                                              | Juste après le prereq check                                          |
-| `01`, `02`, `03`…      | Leçons numérotées dans l'ordre de lecture                                        | Dans l'ordre, une par une                                            |
-| `90-grimoire.md`       | Fiche de rappel dense, pas un cours                                              | **Après** la pratique, jamais avant (relis la règle 1 de ce fichier) |
-| `95-challenge.md`      | L'épreuve du niveau : le livrable à produire                                     | Une fois les leçons terminées                                        |
-| `96-boss-fight.md`     | Contrainte adverse qui valide le challenge                                       | Après le challenge, jamais à la place                                |
-| `99-PORTAGE-MENTAL.md` | Encart "ce concept dans un autre langage"                                        | En fin de niveau, teste le transfert                                 |
-| `99A-PONT.md`          | Palier de transition vers le niveau suivant, nommé explicitement dans le fichier | Juste avant de changer de niveau, jamais comme "encore un chapitre"  |
+| Préfixe                | Rôle habituel                               | Règle d'utilisation                                                                             |
+| ---------------------- | ------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `00-PREREQUIS.md`      | Vérification des prérequis annoncés         | Suivre uniquement les dépendances déclarées par le module et la Route 58.                       |
+| `00_why_*.md`          | Pourquoi le module mérite du temps          | Lire avant les leçons lorsqu'il existe.                                                         |
+| `01`, `02`, `03`…      | Leçons                                      | Respecter l'ordre indiqué par le README local.                                                  |
+| `90-grimoire.md`       | Rappel dense                                | Réviser après l'apprentissage et la pratique.                                                   |
+| `95-challenge.md`      | Application intégrée                        | Obligatoire lorsque le README local le déclare comme preuve de sortie.                          |
+| `96-boss-fight.md`     | Mise sous contrainte supplémentaire         | Obligatoire uniquement si le fichier existe et que le README local l'annonce.                   |
+| `99-PORTAGE-MENTAL.md` | Transfert vers un autre langage ou contexte | Utiliser selon le contrat du module.                                                            |
+| `99A-PONT.md`          | Transition ou pont conceptuel               | Obligatoire uniquement lorsqu'une route ou un README le déclare ; certains ponts sont différés. |
 
-Un niveau qui s'écarte de ce squelette (un fichier numéroté qui ne suit pas ce rôle,
-un `99A-PONT.md` qui manque) est un défaut de forme, pas une variation voulue.
+Le `README.md` de chaque module est la source de vérité pour les pièces et critères locaux. La Route 58
+est la source de vérité pour l'ordre opérationnel et les dépendances transversales. Le standard 69
+fixe les exigences de qualité communes, sans imposer un fichier qui n'est pas pertinent pour le module.
 
 ### Cas particulier : un module qui n'est pas un bloc à finir d'un coup
 
@@ -190,43 +204,41 @@ c'est le comportement attendu, pas un signe que tu as sauté quelque chose.
 | Suivre le curriculum linéairement, niveau par niveau           | Plus lent, exige de la discipline  | Modèle mental cumulatif solide, chaque niveau s'appuie sur le précédent | Par défaut : c'est la conception du parcours                                      |
 | Piocher les niveaux qui t'intéressent selon un besoin immédiat | Rapide pour combler un trou précis | Modèle mental fragmenté, angles morts sur les fondations                | Quand tu as déjà un modèle mental solide ailleurs et un besoin ponctuel documenté |
 
-## Auto-test d'entrée : 10 questions
+## Diagnostic de départ : 10 questions non bloquantes
 
-Ce curriculum suppose un socle. Pas un diplôme, un socle. Le vérifier prend 20 minutes et
-t'évite trois semaines de décrochage au 08-DATA-SPELLS. Prends une feuille, réponds sans chercher.
+Ce diagnostic sert à repérer les notions à renforcer ; il ne filtre pas l'accès au curriculum et ne
+remplace aucun prérequis déclaré par un module. Si tu débutes de zéro, commence par Getting Started,
+puis suis la séquence du Socle. Une réponse manquante signifie « à apprendre ou à réviser », jamais
+« interdit d'entrer ».
 
-| #   | Question                                                                                                           | Réponse juste = tu sais...                |
-| --- | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------- |
-| 1   | Écris une fonction qui prend une liste de nombres et rend la moyenne, sans utiliser de bibliothèque.               | déclarer une fonction, boucler, retourner |
-| 2   | Que vaut `x` après `let x = "3" + 1` dans le langage de ton choix, et pourquoi ?                                   | types et conversions implicites           |
-| 3   | Lis ce JSON `{"user":{"id":7,"tags":["a","b"]}}` : comment accèdes-tu à `"b"` ?                                    | structures imbriquées                     |
-| 4   | Écris un `SELECT` qui joint `commande` et `client` sur `commande.client_id` et ne garde que les commandes de 2026. | `JOIN` et `WHERE`                         |
-| 5   | Quelle est la différence entre `GET` et `POST` sur une requête HTTP ?                                              | verbes HTTP et effets de bord             |
-| 6   | Que fait `git commit` que `git add` ne fait pas ?                                                                  | zone d'index et historique                |
-| 7   | Ton programme plante avec « undefined is not a function ». Quelle est ta première action ?                         | lecture de trace d'erreur                 |
-| 8   | Écris une condition qui teste « l'utilisateur est majeur ET a validé son email ».                                  | opérateurs booléens                       |
-| 9   | Que fait une boucle qui itère sur une liste vide ?                                                                 | cas limite trivial                        |
-| 10  | Ouvre un terminal, place-toi dans un dossier, liste ses fichiers. Écris les deux commandes.                        | ligne de commande                         |
+Réponds sans chercher, puis marque chaque item `ACQUIS`, `À RENFORCER` ou `NON VU`.
 
-**Verdict binaire, aucune nuance :**
+| #   | Question                                                                                 | Notion à repérer                   |
+| --- | ---------------------------------------------------------------------------------------- | ---------------------------------- |
+| 1   | Écris une fonction qui prend une liste de nombres et rend la moyenne, sans bibliothèque. | Fonction, boucle, retour.          |
+| 2   | Que vaut `x` après `let x = "3" + 1`, et pourquoi ?                                      | Types et conversions.              |
+| 3   | Dans `{"user":{"id":7,"tags":["a","b"]}}`, comment accéder à `"b"` ?                     | Structures imbriquées.             |
+| 4   | Écris un `SELECT` qui joint `commande` et `client` et filtre les commandes de 2026.      | SQL `JOIN` et `WHERE`.             |
+| 5   | Quelle différence de sémantique entre `GET` et `POST` ?                                  | HTTP et effets de bord.            |
+| 6   | Que fait `git commit` que `git add` ne fait pas ?                                        | Index et historique Git.           |
+| 7   | Ton programme affiche « undefined is not a function ». Quelle est ta première démarche ? | Lecture de l'erreur et diagnostic. |
+| 8   | Écris une condition « majeur ET email validé ».                                          | Logique booléenne.                 |
+| 9   | Que fait une boucle qui parcourt une liste vide ?                                        | Cas limite.                        |
+| 10  | Depuis un terminal, place-toi dans un dossier et liste ses fichiers.                     | Navigation shell.                  |
 
-- **7 réponses justes ou plus** : tu entres. Les trois manques se combleront en route.
-- **6 ou moins** : ce dépôt te ferait décrocher au 08-DATA-SPELLS, pas par difficulté conceptuelle
-  mais par charge d'outillage. Remise à niveau d'abord, 20 à 40 h : un cours de programmation
-  débutant complet (bases du langage, fonctions, listes, dictionnaires), un tutoriel SQL
-  interactif jusqu'aux jointures, et les 10 premières commandes d'un shell. Refais l'auto-test
-  ensuite. Ce n'est pas un échec, c'est un ordre.
-- **Cas particulier** : si seules les questions 4 et 10 te bloquent, tu peux entrer, mais lis
-  [01-BONUS-VAULT/97-checklists.md](../../04-EPREUVE/01-BONUS-VAULT/97-checklists.md) avant le 08-DATA-SPELLS.
+### Interpréter le résultat
 
-Écris la date et le score dans ton journal de parcours. C'est ta première ligne d'historique
-daté : tu en produiras plusieurs dizaines.
+- **Majorité `ACQUIS` :** poursuis la route normale et conserve tes réponses comme point de départ.
+- **Plusieurs `À RENFORCER` :** ajoute une séance ciblée sur les modules du Socle qui couvrent ces notions ; refais les exercices après les leçons correspondantes.
+- **Majorité `NON VU` ou début absolu :** suis intégralement Getting Started, Prologue, Référentiel, Fundamentals et Problem Solving. Le Socle est précisément là pour construire ces bases progressivement.
+
+Il n'existe **aucun seuil éliminatoire**, aucune note minimale et aucune obligation de suivre un cours extérieur avant l'entrée. Une formation externe peut aider, mais elle reste facultative. Seuls les prérequis explicites d'un module ou d'un projet peuvent retarder cette étape précise ; ils ne bloquent pas l'accès au curriculum entier.
+
+Écris la date et les statuts dans ton journal pour comparer tes progrès plus tard. Ce diagnostic n'est ni un examen de certification ni une preuve de compétence.
 
 ## Reprendre après une pause longue
 
-Le corpus complet peut s’étaler sur plusieurs mois selon le rythme, les interruptions et la profondeur choisie. La route CORE intensive est, elle, fixée à 16 semaines / 192 h ; cette durée ne prétend pas convertir une année d’expérience réelle en quatre mois. Tu t'arrêteras. Six semaines d'arrêt ne sont pas un
-incident, c'est la norme statistique de l'autoformation. Ce qui tue, ce n'est pas la pause,
-c'est la reprise mal faite : relire depuis le début, se lasser, abandonner pour de bon.
+Le corpus complet peut s’étaler sur plusieurs mois selon le rythme, les interruptions et la profondeur choisie. La route CORE intensive est, elle, fixée à 16 semaines / 192 h ; cette durée ne prétend pas convertir une année d’expérience réelle en quatre mois. Tu peux interrompre ton parcours, même pendant plusieurs semaines : cela ne signifie ni échec ni perte de tout ce que tu as appris. Le vrai risque est de reprendre sans repère, de relire depuis le début, de te lasser et d'abandonner. Utilise le protocole ci-dessous pour retrouver ton dernier point maîtrisé et reprendre progressivement.
 
 Protocole de reprise, dans cet ordre, 90 minutes maximum :
 
@@ -242,9 +254,9 @@ Protocole de reprise, dans cet ordre, 90 minutes maximum :
 5. **Redate ton plan.** Réécris la date de fin visée dans ton journal, à partir d'aujourd'hui
    et de ton rythme réel constaté, pas de celui que tu espérais.
 
-Règle dure : après une pause, tu ne recommences **jamais** un niveau déjà validé par son
-boss-fight. Tu relis son grimoire. La différence entre les deux, c'est 8 heures contre 20 minutes,
-et c'est souvent la différence entre finir et abandonner.
+Règle dure : après une pause, tu ne recommences **jamais** un module déjà validé par sa preuve de
+sortie déclarée. Tu relis son grimoire, puis tu rejoues uniquement le contrôle que le README local
+prévoit si ton rappel montre une lacune. Un boss-fight n'est rejoué que lorsqu'il existe dans ce module.
 
 ## Pièges classiques
 
@@ -253,8 +265,8 @@ et c'est souvent la différence entre finir et abandonner.
 - Faire le challenge en cherchant "la bonne réponse attendue" plutôt qu'en raisonnant depuis
   le contexte donné : le symptôme est un livrable qui ressemble à un exemple du cours au lieu
   de répondre au cas concret posé.
-- Sauter le boss-fight parce que "le challenge suffit" : le symptôme est de se faire
-  déstabiliser par la première contrainte imprévue en situation réelle.
+- Sauter une vérification de sortie explicitement prévue : le symptôme est de confondre lecture et
+  maîtrise. Un boss-fight supplémentaire n'est requis que s'il figure au contrat local.
 - Considérer une note personnelle non écrite comme suffisante : le symptôme est l'incapacité
   à retrouver, six mois après, pourquoi une décision a été prise.
 - Recommencer tout le niveau après un échec au boss-fight au lieu de cibler le critère
@@ -268,7 +280,36 @@ Où l'analogie casse : une mise en place ratée se rattrape le lendemain, un niv
 
 ## Ce que tu dois savoir défendre
 
-1. Pourquoi "avoir lu" un niveau ne veut rien dire dans ce curriculum.
-2. Que fais-tu si tu échoues au boss-fight d'un niveau : où retournes-tu exactement, et
-   pourquoi pas au tout début du niveau.
-3. Quels sont les trois éléments concrets qui prouvent qu'un niveau est terminé.
+1. Pourquoi « avoir lu » un module ne prouve pas la maîtrise.
+2. Comment retrouver le critère manquant après l'échec d'une preuve de sortie, avec ou sans boss-fight.
+3. Quels éléments concrets le README local et la Route 58 demandent de conserver comme preuve.
+
+<!-- AF-LESSON-PROFILE: learning -->
+
+## Repères de décision
+
+- **Pourquoi :** Un parcours long ne produit pas de maîtrise par simple lecture. Il faut transformer chaque notion en rappel, application, correction et preuve conservée.
+- **Quand l’utiliser / quand l’éviter :** Utilise cette méthode pour planifier, réviser ou sortir d'un plateau. Évite de transformer le suivi en usine à cases cochées : le signal est la capacité à résoudre un problème nouveau.
+- **Limites :** Le journal et le calendrier ne prouvent pas la compétence. Seule une tâche refaite sans copier, puis transférée à un autre contexte, apporte une preuve utile.
+
+## Mécanisme : la version sans magie
+
+Prédis, rappelle sans support, pratique, compare à un critère, corrige, puis reviens après un délai et transfère vers un cas différent.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Comment utiliser ce curriculum** se rattache à ce cas concret : Le cas d’étude Kintana donne un contexte stable ; tu peux vérifier si une notion apprise sur le client réapparaît correctement dans l'API, les données ou l'exploitation.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Rappel actif et transfert
+
+> **Arc Équipe 7 / Naruto :** le scroll ne te rend pas meilleur. Ce qui compte, c'est ce que tu peux rappeler, expliquer et réutiliser sans regarder la solution.
+
+**Mission liée à « Comment utiliser ce curriculum » :** Choisis une capacité Kintana déjà étudiée. Sans rouvrir la leçon, reconstruis le mécanisme, applique-le à une évolution imprévue, puis compare ton résultat aux critères de la leçon et consigne l'écart.
+
+**Livrable :** une fiche de rappel à froid, un commit ou artefact produit, les tests exécutés et une note de correction datée.
+
+**Critères d’acceptation :** la tentative initiale est conservée ; l'écart est expliqué ; le transfert change au moins une contrainte ; le niveau de preuve est étiqueté LAB, PILOT ou PRODUCTION sans confusion.
+
+**Transfert obligatoire :** Refais la tâche une semaine plus tard sans relire la fiche. Si tu ne peux pas expliquer les limites, classe la compétence en cours plutôt que maîtrisée.

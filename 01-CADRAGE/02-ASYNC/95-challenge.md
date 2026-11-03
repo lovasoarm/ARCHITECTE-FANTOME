@@ -72,7 +72,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [51-macrotask_monsters_minimini_projet.md](04_event_loop/51-macrotask_monsters_minimini_projet.md)
 - [EXO : IMPLÉMENTER UNE MINI FILE DE MICROTASKS À LA MAIN](04_event_loop/04-exo_microloop_a_la_main.md)
 - [DRILL : L'event loop explique a un enfant de 5 ans, PUIS reconstruit en 20 lignes](06-event_loop_drill_5ans.md)
-- [EXO LECTURE : 15-25 minutes (Asynchrone)](07-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Asynchrone)](07-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 01-CADRAGE/02-ASYNC](98-EXO-VERIFICATION.md)
 - [EXO [IA MENTEUSE] : async (forEach + await)](97-EXO-VERIFICATION.md)
 - [EXO : reimplemente une file de microtasks a la main (12.6)](08-EXO_MICROTASK_A_LA_MAIN.md)

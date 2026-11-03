@@ -45,3 +45,15 @@ Toutes les autres transitions du curriculum. Elles ne posent pas de saut de natu
 ## RÈGLE POUR L'AVENIR
 
 Un nouveau pont s'ajoute **seulement si** la transition change la nature du travail. Pas si elle change juste le sujet. Ça évite la dérive vers 31 ponts creux.
+
+<!-- AF-TRANSFER-FIELD-1.1 -->
+
+## Transfert terrain : Kintana
+
+**Pourquoi ce transfert compte :** une notion que tu sais réciter mais que tu ne sais pas replacer dans un système est encore fragile.
+
+**Quand la réutiliser :** quand une contrainte du produit change (rôle, réseau, volume, concurrence, panne ou coût) et que tu dois déterminer ce qui reste invariant.
+
+**Limite :** ne transpose pas une syntaxe ou une solution sans vérifier ses hypothèses ; le même mécanisme peut avoir des garanties différentes selon le runtime et le stockage.
+
+**Mission courte :** applique le principe de cette page à un incrément de [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md) : Choisis une décision issue de deux modules du parcours et construis un cas Kintana où ils se croisent. Identifie les hypothèses communes, les tensions et la preuve qui permet de trancher sans ajouter une nouvelle règle arbitraire. Produis un petit test ou scénario de panne et note l'invariant conservé, l'hypothèse qui change et la limite observée. Cette mission complète le transfert ; elle ne remplace pas le projet évalué du module.

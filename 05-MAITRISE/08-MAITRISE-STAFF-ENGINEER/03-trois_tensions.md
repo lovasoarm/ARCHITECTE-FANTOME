@@ -72,10 +72,36 @@ Recommence avec un vrai conflit : il y en a toujours trois dans un système rée
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « Les trois tensions : la seule preuve de croisement », puis conserve le résultat et explique tout écart.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Les trois tensions : la seule preuve de croisement** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Analyser une initiative sous trois tensions
+
+**Mission liée à « Les trois tensions : la seule preuve de croisement » :** Évalue une évolution Kintana sous trois angles : qualité technique, valeur produit et coût organisationnel. Explique les tensions, le compromis choisi et les garde-fous.
+
+**Livrable :** Matrice des trois tensions et décision argumentée.
+
+**Critères d’acceptation :** Aucun axe n’est optimisé isolément ; le compromis est explicite ; les conséquences reportées ont un propriétaire.
+
+**Transfert obligatoire :** Le contexte change et l’équilibre se déplace : précise quel indicateur déclenche une nouvelle décision.

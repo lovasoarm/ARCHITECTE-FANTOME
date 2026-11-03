@@ -399,8 +399,6 @@ Le greedy en conditions réelles, c'est choisir la bonne définition de "optimal
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Compare ton résultat à une méthode naïve sur de petites entrées. Vérifie entrée vide, un élément, doublons et cas limite. Pour « GREEDY EN CONDITIONS RÉELLES : CONTRAINTES, PRIORITÉS, DEADLINES », justifie aussi le coût théorique et une mesure reproductible.

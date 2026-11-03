@@ -3,17 +3,18 @@ stability: evolutif
 acte: parcours
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "02-CONSTRUCTION/11-REFACTORING/01-00-why-refactoring.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 02-CONSTRUCTION/11-REFACTORING/01-00-why-refactoring.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # MODULE 11 REFACTORING
 
-> **État pédagogique : 30 octobre 2026 : preuves documentaires complétées.** Les ajouts ciblés couvrent les exemples, pratiques, vérifications et transferts requis pour ce module. Une revue technique indépendante et une validation terrain restent distinctes ; voir [48 : External Review Gate](../../06-ANNEXES-TRANSVERSES/48-EXTERNAL-REVIEW-GATE.md) et [49 : Terrain Maturity Gate](../../06-ANNEXES-TRANSVERSES/49-TERRAIN-MATURITY-GATE.md).
-
-> Palier `02-CONSTRUCTION`. Duree estimee : **15 h 00** (21 fichiers de travail).
+> Palier `02-CONSTRUCTION`. Duree estimee : **14 h 05** (21 fichiers de travail).
 
 ## Sommaire du module
 
@@ -30,18 +31,18 @@ terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 | [`52-code_smells_minimini_projet.md`](52-code_smells_minimini_projet.md)             | 03 code smells minimini projet                                  | 45 min |
 | [`06-refacto_in_action.md`](06-refacto_in_action.md)                                 | REFACTO IN ACTION                                               | 45 min |
 | [`53-refacto_in_action_minimini_projet.md`](53-refacto_in_action_minimini_projet.md) | 04 refacto in action minimini projet                            | 45 min |
-| [`95-challenge.md`](95-challenge.md)                                                 | REFACTO CHALLENGE                                               | 45 min |
+| [`95-challenge.md`](95-challenge.md)                                                 | REFACTO CHALLENGE                                               | 90 min |
 | [`07-do_not_touch_before_explain.md`](07-do_not_touch_before_explain.md)             | NE TOUCHE À RIEN AVANT DE POUVOIR L'EXPLIQUER                   | 45 min |
 | [`08-smell_hunter.md`](08-smell_hunter.md)                                           | 08 : Smell hunter : chasser le code mort et puant               | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                                                   | Page verrouillée                                                | 30 min |
-| [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                                             | EXO LECTURE : 15-25 minutes (Refactoring)                       | 45 min |
+| [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                                             | EXO LECTURE : ~20 minutes : un cycle (Refactoring)              | 20 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                   | EXO [JEUNE IA] : 02-CONSTRUCTION/11-REFACTORING                 | 45 min |
 | [`10-EXO_CHASSE_AU_CODE_MORT.md`](10-EXO_CHASSE_AU_CODE_MORT.md)                     | EXO : chasse au code mort (15.4)                                | 45 min |
-| [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                   | EXO IA MENTEUSE : module 02-CONSTRUCTION/11-REFACTORING         | 45 min |
+| [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                   | EXO IA MENTEUSE : module 02-CONSTRUCTION/11-REFACTORING         | 10 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                       | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust         | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                                         | PONT : de refactorer en JS pur à ajouter des types à TypeScript | 45 min |
 
-Total : **15 h**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) et le boss (3 h) sont des évaluations séparées et ne sont pas ajoutés au Total sauf s’ils apparaissent comme lignes du tableau.
+Total : **14 h 05**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
 ## Comment travailler ce module
 
@@ -93,7 +94,7 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Ne touche à rien avant de pouvoir l'expliquer](07-do_not_touch_before_explain.md)
 - [08 : Smell hunter : chasser le code mort et puant](08-smell_hunter.md)
 - [Page verrouillée](90-grimoire.md)
-- [EXO LECTURE : 15-25 minutes (Refactoring)](09-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Refactoring)](09-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/11-refactoring](98-EXO-VERIFICATION.md)
 - [EXO : chasse au code mort (15.4)](10-EXO_CHASSE_AU_CODE_MORT.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/11-REFACTORING](97-EXO-VERIFICATION.md)
@@ -103,8 +104,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Grimoire : `11-REFACTORING`](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
-
-## Standard de complétude et audit
 
 ## Navigation complète des ressources
 
@@ -134,3 +133,14 @@ Les liens ci-dessous donnent accès aux ressources documentaires du module, y co
 - [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)
 - [`99A-PONT.md`](99A-PONT.md)
 - [`SETUP.md`](SETUP.md)
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md) uniquement comme contexte partagé. Pour ce sous-module, applique la mission précise de sa ligne dans la section **Missions ciblées par sous-module** de cette carte ; le challenge local reste la consigne et le critère de validation. Cette référence ne crée ni prérequis ni gate supplémentaire.
+
+## Ressources pratiques associées
+
+- [Atelier de consolidation](ATELIER-CONSOLIDATION.md) : réutiliser les notions du module dans un cas intégré.
+- [Corrigé de référence de l'atelier](corriges/ATELIER-CONSOLIDATION-CORRIGE.md) : à consulter après une tentative autonome.

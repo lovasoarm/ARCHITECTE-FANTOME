@@ -6,7 +6,7 @@ route: complete
 
 # Module 05-MAITRISE/05-DAY-TO-LEGEND : Day-to-Legend
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../04-EPREUVE/05-CAPSTONE-ARENA/README.md) | [Niveau suivant](../../04-EPREUVE/02-TOOL-CAVE/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../04-EPREUVE/05-CAPSTONE-ARENA/README.md) | [Contrôle d'entrée](00-PREREQUIS.md)
 
 **Ce niveau réutilise :** [12-CAPSTONE-ARENA](../../04-EPREUVE/05-CAPSTONE-ARENA/04-evaluation-grid.md) : la grille d'evaluation chiffrée, réutilisee comme modèle pour batir ton propre suivi de progression.
 
@@ -16,10 +16,10 @@ route: complete
 2. Cite deux flux Git differents et le critère qui fait choisir l'un plutôt que l'autre.
 3. Pourquoi dire non a une demande intenable ne doit-il pas casser la relation avec la personne qui demande ?
 
-**Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
-[le grimoire du niveau précédent](../../04-EPREUVE/05-CAPSTONE-ARENA/90-grimoire.md) (20 minutes), puis refais son
-[challenge](../../04-EPREUVE/05-CAPSTONE-ARENA/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
-trou amont, c'est attribuer au module `05-MAITRISE/05-DAY-TO-LEGEND` une difficulté qui vient du module `04-EPREUVE/05-CAPSTONE-ARENA`.
+**Verdict de l'auto-test :** le Capstone validé et Team Quest terminé sont les prérequis
+de parcours. Les questions ci-dessus vérifient que les acquis de collaboration de Team Quest
+sont encore mobilisables. Les critères détaillés sont centralisés dans
+[`00-PREREQUIS.md`](00-PREREQUIS.md).
 
 **Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
@@ -35,9 +35,10 @@ confondent "travailler beaucoup" avec "s'entraîner". Ce niveau sépare les deux
 une routine concrète, tenable sur douze semaines, pour que ta courbe de compétence continue
 de monter après que ce curriculum soit fini.
 
-Prérequis : avoir terminé au moins le Module `04-EPREUVE/05-CAPSTONE-ARENA` (Capstone-Arena). Ce niveau parle de
-progression continue ; il faut d'abord avoir livré quelque chose de complet pour savoir ce
-qu'on cherche à améliorer.
+Prérequis : avoir terminé et validé le module `04-EPREUVE/05-CAPSTONE-ARENA` (Capstone
+Arena), et maîtriser les bases de collaboration de `03-PILOTAGE/09-TEAM-QUEST`. Ce niveau
+parle de progression continue ; il faut avoir livré quelque chose de complet et savoir
+travailler avec d'autres pour choisir des axes de progression utiles.
 
 ## Ce que tu sais faire à la sortie
 
@@ -103,3 +104,13 @@ vrai longtemps plutôt que sur ce qui est vrai cette année.
 - [Grimoire : Day-to-Legend](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.

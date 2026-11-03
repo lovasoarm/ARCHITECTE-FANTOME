@@ -18,10 +18,9 @@ Temps de lecture ~11 min
 
 Dans Breaking Bad, il n'y a qu'un seul cook qui dirige le labo à la fois.
 Deux Walter White qui décident en même temps : c'est la catastrophe, deux lots incompatibles, deux stocks en conflit.
-Une seule instance. Une seule source de vérité. C'est ça, le Singleton.
+Une instance partagée dans un périmètre défini. Une seule source de vérité locale. C'est l'idée du Singleton.
 
-Le Singleton garantit qu'une classe ne peut être instanciée qu'une seule fois.
-Toute tentative de créer une deuxième instance retourne la première.
+Cette implémentation cherche à partager une instance dans un périmètre défini. Elle ne garantit pas une instance universelle : la portée dépend du module, du chargeur, du runtime et du processus. Une autre copie du module, un worker ou un autre processus peut avoir son propre état.
 
 Cas d'usage légitimes : config globale d'une app, connexion DB partagée, logger centralisé, état partagé de cache.
 Cas dangereux : tout le reste. Le Singleton est souvent le premier pas vers le God Object.
@@ -173,38 +172,55 @@ Pas de classe. Pas de `_instance`. Juste le système de modules qui fait le boul
 
 ## 4) SINGLETON EN PRATIQUE : LE LOGGER
 
+Cet exemple garde volontairement un historique de démonstration, borné aux 1 000 dernières entrées. Un logger de production doit généralement déléguer les sorties à un collecteur adapté plutôt que conserver indéfiniment chaque événement en mémoire.
+
 ```js
 // logger.js:un seul logger pour toute l'app
 const levels = { debug: 0, info: 1, warn: 2, error: 3 };
 
 let _level = "info";
 let _history = [];
+const MAX_HISTORY = 1000; // borne pédagogique pour ne pas conserver un historique sans limite
 
 const logger = {
   setLevel(lvl) {
-    if (!levels[lvl]) throw new Error(`Niveau inconnu : ${lvl}`);
+    if (!Object.prototype.hasOwnProperty.call(levels, lvl)) {
+      throw new Error(`Niveau inconnu : ${lvl}`);
+    }
     _level = lvl;
   },
 
   log(level, message, context = {}) {
+    if (!Object.prototype.hasOwnProperty.call(levels, level)) {
+      throw new Error(`Niveau inconnu : ${level}`);
+    }
     if (levels[level] < levels[_level]) return; // filtré selon le niveau actuel
+    if (
+      context === null ||
+      typeof context !== "object" ||
+      Array.isArray(context)
+    ) {
+      throw new TypeError("context doit être un objet non-null et non-tableau");
+    }
 
     const entry = {
+      ...context, // les champs fournis ne peuvent pas écraser les métadonnées réservées
       timestamp: new Date().toISOString(),
       level,
       message,
-      ...context,
     };
 
     _history.push(entry);
+    if (_history.length > MAX_HISTORY) _history.shift(); // garde uniquement les 1 000 événements les plus récents
     console.log(JSON.stringify(entry));
   },
 
+  debug: (msg, ctx) => logger.log("debug", msg, ctx),
   info: (msg, ctx) => logger.log("info", msg, ctx),
   warn: (msg, ctx) => logger.log("warn", msg, ctx),
   error: (msg, ctx) => logger.log("error", msg, ctx),
 
-  getHistory: () => [..._history], // copie défensive
+  getHistory: () => [..._history], // copie défensive des 1 000 événements les plus récents
   clear: () => {
     _history = [];
   }, // pour les tests
@@ -221,7 +237,7 @@ import logger from "./logger.js";
 logger.info("Connexion DB établie", { host: "localhost" });
 logger.warn("Rate limit atteint", { endpoint: "/api/vote" });
 
-// dans un autre fichier, même import, même objet, même historique
+// dans un autre fichier, même import et même historique récent dans ce contexte
 import logger from "./logger.js";
 logger.getHistory(); // contient les deux entrées précédentes
 ```
@@ -389,7 +405,7 @@ Pour chacun des cas suivants, décide si un Singleton est adapté ou si l'inject
 
 ## RÉSUMÉ
 
-Le Singleton garantit une instance unique d'une ressource partagée dans tout le processus.
+Dans cette forme, le module partage un objet unique pour les importateurs qui utilisent la même instance du module dans le même contexte de chargement.
 En JS, la forme la plus propre c'est le module pattern : un fichier exporté = un singleton naturel.
 Les cas légitimes sont rares et précis : config, logger, connexion unique à une ressource externe.
 Les dangers sont réels : couplage global caché, tests qui s'interfèrent, parallélisme qui casse.
@@ -408,3 +424,33 @@ Un singleton garantit au mieux une instance dans un périmètre d'exécution don
 **Vérification.** Les tests doivent pouvoir créer deux contextes indépendants sans reset global fragile. Documente la portée réelle (module/processus/runtime) et l'impact du hot reload ou des workers.
 
 **Transfert.** En production, préfère souvent un cycle de vie explicite (singleton scoped au processus, pool, ou injection) plutôt qu'un `getInstance()` global. Un pool de connexions est un singleton de ressources à portée limitée, pas une instance universelle distribuée.
+
+<!-- AF-LESSON-PROFILE: patterns -->
+
+## Repères de décision
+
+- **Pourquoi :** Un pattern donne un vocabulaire et une structure à un problème récurrent ; mal choisi, il ajoute indirection et coût de maintenance.
+- **Quand l’utiliser / quand l’éviter :** Utilise un pattern quand le problème se répète et qu'il clarifie les variations. Préfère la solution directe tant que tu n'as pas deux comportements réellement différents.
+- **Limites :** Un pattern ne garantit ni extensibilité ni qualité. Un mauvais niveau d'abstraction peut rendre le flux plus difficile à comprendre que le code initial.
+
+## Mécanisme : la version sans magie
+
+Identifie la variation, les responsabilités et les dépendances ; compare une solution simple à une solution structurée ; mesure l'effet sur test et changement.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Singleton pattern** se rattache à ce cas concret : Kintana peut avoir plusieurs canaux de notification ou politiques de dispatch. Le pattern ne doit apparaître que si ces variantes existent vraiment.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Évaluer un pattern sur un besoin réel
+
+> **Arc Capsule Corp. / DBZ :** un design pattern est un outil, pas une transformation magique. S'il ajoute plus de pièces qu'il ne résout de problèmes, laisse-le dans le coffre.
+
+**Mission liée à « Singleton pattern » :** Applique la notion à une variation Kintana : canal de notification, stratégie d'affectation ou fournisseur. Écris d'abord une version simple, puis une alternative avec le pattern ; compare lisibilité, testabilité et coût d'ajout d'une seconde variante.
+
+**Livrable :** deux implémentations ou un ADR argumenté, tests de comportement commun et note de suppression si le pattern n'apporte rien.
+
+**Critères d’acceptation :** la variation est démontrée ; l'interface n'expose que le contrat utile ; les tests vérifient les comportements et non les classes internes ; le coût de complexité est déclaré.
+
+**Transfert obligatoire :** Supprime la deuxième variante. Décide si le pattern doit rester ou être retiré, et explique pourquoi.

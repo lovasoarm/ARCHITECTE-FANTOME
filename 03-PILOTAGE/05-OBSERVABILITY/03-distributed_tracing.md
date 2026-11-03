@@ -8,12 +8,21 @@ perturbation_modes: [preuve_partielle, defaut_cache]
 anti_recipe_key: preuve_partielle+defaut_cache
 transfer_distance: medium
 assessment_role: instructional_checkpoint
-freshness_registry_id: PER-0047
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: https://opentelemetry.io/docs/concepts/signals/traces/
+source_type: primary
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « Suivre un Rasengan qui traverse 6 couches de chakra sans perdre le fil ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.
 
 # Suivre un Rasengan qui traverse 6 couches de chakra sans perdre le fil
@@ -227,3 +236,33 @@ Le distributed tracing découpe une requête en spans organisés en arbre, pour 
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+<!-- AF-LESSON-PROFILE: observability -->
+
+## Repères de décision
+
+- **Pourquoi :** L'observabilité réduit le temps entre un symptôme et une hypothèse vérifiable. Elle aide à savoir si le problème est local, partagé ou externe.
+- **Quand l’utiliser / quand l’éviter :** Instrumente un parcours critique et chaque frontière qui peut échouer. Évite les logs sans action associée, les cardinalités infinies et les identifiants personnels.
+- **Limites :** Plus de télémétrie n'est pas toujours mieux : stockage, coûts, bruit et données sensibles augmentent. Une métrique isolée ne prouve pas une cause.
+
+## Mécanisme : la version sans magie
+
+Relie logs structurés, métriques et traces par un identifiant de corrélation ; choisis des signaux qui répondent à une question opérationnelle ; définis l'action attendue sur alerte.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Suivre un Rasengan qui traverse 6 couches de chakra sans perdre le fil** se rattache à ce cas concret : Le parcours Kintana création -> réservation -> notification doit pouvoir être suivi sans enregistrer le contenu personnel de la demande.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Traçage du parcours critique Kintana
+
+> **Arc Walking Dead :** quand le camp crie « ça ne marche plus », les logs, métriques et traces doivent te dire où regarder sans exposer les habitants.
+
+**Mission liée à « Suivre un Rasengan qui traverse 6 couches de chakra sans perdre le fil » :** Instrumente le parcours choisi avec correlation ID, événements structurés et métriques utiles. Injecte une panne dans une frontière et rédige un diagnostic qui s'appuie uniquement sur les signaux collectés.
+
+**Livrable :** schéma de logs, métriques avec unités et labels bornés, trace corrélée, règle d'alerte et runbook de diagnostic.
+
+**Critères d’acceptation :** chaque signal répond à une question ; les secrets et contenus personnels sont exclus ; cardinalité maîtrisée ; l'alerte possède une action ; les résultats simulés restent LAB/SIMULATION.
+
+**Transfert obligatoire :** Une dépendance externe dégrade sa latence sans tomber. Explique quels signaux distinguent saturation, lenteur fournisseur et erreur interne.

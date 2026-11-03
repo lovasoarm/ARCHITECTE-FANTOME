@@ -282,10 +282,36 @@ Ne pas confondre hitCount élevé sur `(program)` (overhead du runtime) avec une
 
 Ferme la page et défends pendant quelques minutes une stratégie opposée à celle implicitement recommandée ici. Cherche son meilleur cas d'usage, puis montre le cas où elle casse. Reviens ensuite à la stratégie initiale et justifie le choix par des mécanismes, pas par le vocabulaire du cours.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « Node CPU profiling : trouver ce qui bouffe le CPU en prod », puis conserve le résultat et explique tout écart.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Node CPU profiling : trouver ce qui bouffe le CPU en prod** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Isoler un hotspot CPU côté Node
+
+**Mission liée à « Node CPU profiling : trouver ce qui bouffe le CPU en prod » :** Sur une requête ou tâche Kintana répétable, collecte un profil CPU, identifie une zone dominante et vérifie qu’elle explique le symptôme avec une expérience ciblée.
+
+**Livrable :** Baseline, profil, changement ciblé et comparaison après changement.
+
+**Critères d’acceptation :** Les mêmes données et conditions sont utilisées ; les mesures sont répétées ; la correction ne change pas le résultat métier.
+
+**Transfert obligatoire :** Le CPU baisse mais la latence p95 augmente : examine la concurrence et le coût déplacé.

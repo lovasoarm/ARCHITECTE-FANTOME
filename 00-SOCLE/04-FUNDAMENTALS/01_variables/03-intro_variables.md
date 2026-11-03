@@ -1,284 +1,97 @@
 ---
-stability: intemporel
-last_reviewed: 2026-07
+stability: stable
+last_reviewed: 2026-10-31
 depends_on_vendor: false
 acte: comprendre
-cognitive_level: L3
-perturbation_modes: [preuve_partielle, decision_organisationnelle]
-anti_recipe_key: preuve_partielle+decision_organisationnelle
-transfer_distance: medium
+cognitive_level: L1
+perturbation_modes: [consigne_simple, changement_valeur]
+anti_recipe_key: consigne_simple+changement_valeur
+transfer_distance: low
 assessment_role: instructional_checkpoint
 ---
 
-> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+> **Repère :** une variable associe un nom à une valeur ; le nom permet de réutiliser cette valeur dans le programme.
 
-# Intro variables : ce qui se passe vraiment en mémoire
+# Introduction aux variables : nommer une valeur
 
-Temps de lecture ~7 min
+Temps de lecture indicatif : 5 min.
 
-Tu penses que `let x = 5` c'est juste "mettre 5 dans x". En surface oui. Sous le capot non. Une variable c'est un **binding** (une liaison entre un nom et un emplacement mémoire). Ce concept est le sol de tout le reste. Si tu zappes ça, les bugs de mutation que tu verras en prod te sembleront de la magie noire.
-
-Vraie utilité : comprendre pourquoi un objet "se modifie tout seul" ailleurs dans le code, pourquoi `const` ne verrouille pas ce que tu crois, et pourquoi copier un tableau peut produire un résultat surprenant.
-
----
-
-## 1) VAR, LET, CONST : TROIS DÉCLARATIONS, TROIS COMPORTEMENTS
-
-### `var` : l'ancêtre qu'on garde en musée
+## 1. Une valeur peut recevoir un nom
 
 ```js
-function example() {
-  var score = 10; // score vit dans la fonction entière, pas juste ici
+const learnerName = "Mina";
+const score = 12;
 
-  if (true) {
-    var score = 42; // MÊME variable : pas une nouvelle : écrase l'ancienne
-    console.log(score); // 42
-  }
-
-  console.log(score); // 42 : le if a crasé le score d'en haut
-}
+console.log(learnerName); // Mina
+console.log(score); // 12
 ```
 
-`var` ignore les blocs `{}`. Sa portée (scope : zone de vie d'une variable), c'est la fonction entière ou le global. Plus de détails dans `02_scope/`.
+`learnerName` et `score` sont des noms de variables. `"Mina"` et `12` sont les valeurs associées. Le nom doit aider une personne à comprendre ce que représente la donnée.
 
-Risque réel : tu penses déclarer une variable locale dans un `if` ou un `for`, mais tu écrases une variable du scope parent. Aucun message d'erreur. Le bug est silencieux.
-
-### `let` : block-scoped, la version saine
+## 2. Lire et réutiliser une valeur
 
 ```js
-function example() {
-  let score = 10;
+const unitPrice = 12000;
+const quantity = 2;
+const total = unitPrice * quantity;
 
-  if (true) {
-    let score = 42; // NOUVELLE variable, locale au bloc du if
-    console.log(score); // 42
-  }
-
-  console.log(score); // 10 : la liaison du bloc if est distincte de la liaison externe
-}
+console.log(total); // 24000
 ```
 
-`let` respecte les blocs `{}`. Chaque paire de `{}` crée une zone de vie indépendante.
+Le programme réutilise les noms au lieu de recopier les nombres dans chaque calcul. Le symbole `*` signifie « multiplié par ». Si le prix change, le calcul se met à jour à partir de la nouvelle valeur.
 
-### `const` : le binding immuable (pas la valeur)
+## 3. Une valeur peut être réaffectée
 
 ```js
-const chakra = 100;
-chakra = 200; // TypeError : Assignment to constant variable
-// le binding lui-même est verrouillé
+let attempts = 0;
+console.log(attempts); // 0
 
-const ninja = { name: "Kakashi", chakra: 1000 };
-ninja.chakra = 500; // ok : le binding pointe toujours vers le même objet
-ninja = { name: "Naruto" }; // TypeError : le binding ne peut pas changer de cible
+attempts = 1;
+console.log(attempts); // 1
 ```
 
-`const` verrouille le lien, pas ce vers quoi il pointe. Un objet déclaré `const` reste entièrement modifiable de l'intérieur. Ce piège est développé dans `09-const_trap.md`.
+`let` autorise la réaffectation. `const` sert lorsqu'on ne prévoit pas de réaffecter le nom. La différence entre `let`, `const` et `var` est détaillée dans la leçon suivante.
 
----
+## Repère visuel utile : nom et valeur
 
-## 2) LA MÉMOIRE : STACK ET HEAP
-
-<!-- AF-DIAGRAM:stack_heap -->
+<!-- AF-DIAGRAM:variables-intro -->
 
 ```text
-┌─────────────────┐       ┌────────────────────────┐
-│ STACK           │       │ HEAP                   │
-│ frame variables │──────►│ objets / structures   │
-│ appels           │       │ référencés            │
-└─────────────────┘       └────────────────────────┘
+const learnerName = "Mina"
+      |               |
+      nom             valeur
+
+const total = unitPrice * quantity
+      |
+      résultat réutilisable
 ```
 
-La stack porte notamment les frames d’exécution ; le heap contient les objets accessibles par référence.
+## Pourquoi ce mécanisme compte
 
-Pour apprendre, on peut utiliser une métaphore stack/heap, mais JavaScript ne garantit pas une correspondance universelle entre type de valeur et zone mémoire.
+Les variables rendent les valeurs identifiables, réutilisables et modifiables lorsque le besoin l'exige. Elles évitent les nombres ou textes répétés sans explication.
 
-```text
-STACK (pile)           HEAP (tas)
---------------------------    ------------------------------------
-Accès rapide, taille limitée   Accès indirect, taille dynamique
-Représentation conceptuelle      Représentation interne non garantie
-Durée de vie observable      Gestion de la mémoire par le moteur et son GC
-```
+## Repères de décision
 
-### Primitives : représentation observable
+- **Pourquoi :** Un nom clair permet de comprendre à quoi sert une valeur et où elle est réutilisée.
+- **Quand l'utiliser / quand l'éviter :** Donne un nom à une donnée réutilisée ou importante pour la compréhension. Évite les noms vagues comme `x1`, `data2` ou `thing` lorsqu'un nom métier est possible.
+- **Limites :** Un nom clair ne garantit pas que la valeur soit correcte. Les types, conditions, objets et références sont des notions séparées qui seront étudiées ensuite.
 
-```js
-let a = 42; // 42 est la valeur observable liée à `a`; l’implémentation du moteur décide de la représentation mémoire interne, que le modèle JavaScript ne garantit pas comme « stack vs heap »
-let b = a; // b reçoit une COPIE de 42 : deux cases mémoire indépendantes
-b = 100;
+## Mécanisme : la version sans magie
 
-console.log(a); // 42 : pas touché
-console.log(b); // 100 : sa propre copie
-```
+Une déclaration introduit un binding (association entre un nom et une valeur). Une lecture utilise ce nom ; une affectation peut remplacer la valeur associée lorsque le mot-clé l'autorise. JavaScript évalue ensuite les expressions qui utilisent ces valeurs.
 
-Chaque variable primitive est autonome. Modifier `b` ne touche pas à `a`.
+## Ancrage produit / terrain : Kintana
 
-### Objets sur le Heap
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), le prix, la quantité et le statut d'une demande sont des données différentes. Leur donner des noms explicites aide à lire une règle métier sans devoir deviner le rôle de chaque valeur.
 
-```js
-let hero = { name: "Kakashi", power: "Sharingan" };
-// hero ne contient pas l'objet : il contient une ADRESSE vers l'objet
-// l'objet lui-même vit sur le Heap
+**À observer :** identifie le nom, la valeur et la ligne qui affiche le résultat. Une exécution locale suffit pour cette première preuve ; étiquette-la `LAB`.
 
-let alias = hero;
-// alias reçoit l'ADRESSE, pas une copie de l'objet
-// les deux pointent vers le même endroit en mémoire
+## Mission utile : nommer un calcul
 
-alias.power = "Reversed Infinity";
+**Mission liée à « Introduction aux variables : nommer une valeur » :** écris un programme avec `unitPrice`, `quantity` et `total`. Affiche le total, puis modifie le prix et prédis le nouveau résultat.
 
-console.log(hero.power); // "Reversed Infinity" : même objet, même adresse
-```
+**Livrable :** code, résultat initial, résultat modifié et une phrase sur le rôle des trois noms.
 
-Schéma mémoire :
+**Critères d'acceptation :** chaque variable a un nom compréhensible ; la valeur affichée correspond au calcul ; la prédiction est écrite avant la nouvelle exécution.
 
-```text
-Stack         Heap
------------      -----------------------------------------
-hero --> [ 0x001 ]  --> { name: "Kakashi", power: "Sharingan" }
-alias --> [ 0x001 ] -/
-```
-
-`hero` et `alias` contiennent la même adresse. Deux clés pour une même maison. Modifier via l'une, l'autre voit le changement.
-
-### Le modèle mental à garder pour la vie
-
-```text
-Primitive --> la variable stocke la valeur directement
-Object   --> la variable stocke une adresse --> l'objet est sur le Heap
-```
-
----
-
-## 3) TYPEOF : LIRE LE TYPE D'UNE VARIABLE
-
-```js
-typeof 42; // "number"
-typeof "hello"; // "string"
-typeof true; // "boolean"
-typeof undefined; // "undefined"
-typeof null; // "object"  <-- bug historique : null N'EST PAS un objet
-typeof {}; // "object"
-typeof []; // "object"  <-- les arrays sont des objets en JS
-typeof function () {}; // "function"
-```
-
-`null` retourne `"object"` : c'est un bug de la première implémentation de JS en 1995, jamais corrigé pour ne pas casser la rétrocompatibilité (ancien code existant). Pour tester `null`, tu compares explicitement : `x === null`.
-
-Risque en prod : une fonction qui reçoit `null` et fait `typeof x === "object"` va le traiter comme un objet, planter sur `x.property`, et te donner un `TypeError: Cannot read properties of null`.
-
----
-
-## 4) LES TROIS NIVEAUX D'EXEMPLES
-
-### Niveau 1 : minimal
-
-```js
-// Primitive : copie de valeur
-let x = 1;
-let y = x;
-y = 2;
-console.log(x); // 1 : pas touché
-```
-
-### Niveau 2 : réaliste
-
-```js
-// Objet : partage de référence
-const config = { env: "dev", port: 3000 };
-const local = config; // même adresse, pas une copie
-local.env = "prod";
-console.log(config.env); // "prod" : la config est compromise
-```
-
-### Niveau 3 : celui qui casse en prod
-
-```js
-function applyVirus(horde) {
-  horde.count = Math.floor(horde.count * 1.5); // mutation directe de l'objet reçu
-  return horde;
-}
-
-const localHorde = { sectors: ["sector_A", "sector_B"], count: 200 };
-const mutated = applyVirus(localHorde);
-
-console.log(localHorde.count); // 300 : la fonction a muté l'original
-console.log(mutated.count); // 300 : les deux pointent vers le même objet
-// résultat : impossible de savoir quelle était la taille de la horde avant la mutation
-```
-
-La fonction ne fait pas une copie de la horde : elle reçoit l'adresse et modifie l'objet directement. Le code compile. Le code tourne. Le bug est silencieux jusqu'à ce que le système de détection applique la mutation deux fois de suite et déclenche une fausse alerte de niveau de menace rouge catastrophique.
-
-Ce pattern s'appelle une **mutation non intentionnelle**. C'est le sujet de `08-mutation_madness.md`.
-
----
-
-## EXERCICES
-
-**EXO 1 : L'inventaire de Rick Grimes**
-
-Le camp Walking Dead a un inventaire central. Hershel copie l'inventaire pour faire son rapport mensuel. Il retire 10 balles pour noter sa consommation. Rick découvre qu'il manque des balles dans l'inventaire officiel alors qu'aucune attaque n'a eu lieu.
-
-```js
-const inventory = { bullets: 50, food: 20, medkits: 5 };
-const hershelReport = inventory;
-hershelReport.bullets -= 10;
-
-console.log(inventory.bullets); // ?
-```
-
-Contrainte : explique pourquoi `inventory.bullets` vaut maintenant 40. Corrige le code pour qu'Hershel travaille sur une copie sans affecter l'inventaire officiel. (Indice : spread operator `{ ...inventory }` ou `Object.assign({}, inventory)`)
-
----
-
-**EXO 2 : Les jutsus de Naruto**
-
-```js
-var chakra = 100; // chakra global
-
-function useJutsu() {
-  if (true) {
-    var chakra = 50; // nouvelle variable ou même ?
-    console.log(chakra); // prédit : ?
-  }
-  console.log(chakra); // prédit : ?
-}
-
-useJutsu();
-console.log(chakra); // prédit : ?
-```
-
-Contrainte : sans exécuter le code, prédis chaque `console.log` avec `var`. Explique pourquoi. Réécris ensuite avec `let` pour que le comportement soit celui qu'on attendrait : le chakra de l'intérieur du if ne touche pas au chakra global.
-
----
-
-**EXO 3 : La config de service qui fout tout en l'air**
-
-```js
-const defaults = { timeout: 3000, retries: 3, env: "production" };
-
-function createServiceConfig(overrides) {
-  defaults.env = overrides.env || defaults.env; // problème ici
-  defaults.timeout = overrides.timeout || defaults.timeout;
-  return defaults;
-}
-
-const serviceA = createServiceConfig({ env: "staging", timeout: 5000 });
-const serviceB = createServiceConfig({ env: "test" });
-
-console.log(serviceA.env); // ?
-console.log(serviceB.env); // ?
-```
-
-Contrainte : identifie pourquoi `serviceA.env` ne vaut plus "staging" à la fin. Corrige `createServiceConfig` pour qu'elle retourne un nouvel objet sans jamais modifier `defaults`. (Indice : `{ ...defaults, ...overrides }`)
-
----
-
-## RÉSUMÉ
-
-Une variable n'est pas une boîte. C'est un binding : un nom lié à un emplacement mémoire. Le langage ne garantit pas une représentation mémoire « primitive = stack, objet = heap ». Pour raisonner correctement, utilise le modèle observable : une variable est un binding et une affectation d'objet partage la même valeur d'objet entre plusieurs bindings. Pour une affectation d’objet, la nouvelle variable reçoit une valeur qui désigne le même objet ; le modèle observable est celui d’une référence partagée, sans imposer une représentation mémoire précise au moteur, pas son contenu. `const` verrouille le binding, pas ce vers quoi il pointe. `var` ignore les blocs et produit des bugs silencieux. Utilise `let` et `const`, comprends ce qu'ils font en mémoire, et les mutations surprises cesseront d'être de la magie noire.
-
-Suite : `07-reference_chaos.md` va pousser ce modèle jusqu'à ce qu'il soit gravé.
-
-## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
-
-Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+**Transfert obligatoire :** remplace le prix et la quantité par deux données d'un autre contexte, par exemple le nombre de billets et leur tarif. Garde le même mécanisme.

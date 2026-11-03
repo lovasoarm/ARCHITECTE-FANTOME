@@ -58,10 +58,60 @@ Ne prépare pas les vagues à l'avance. La panique fait partie de l'exercice.
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
 
-<!-- AF-P0-2026-10-30: missing_example -->
-
 ### Exemple travaillé : cas métier
 
-Tu rejoins une organisation qui possède plusieurs services, une documentation incomplète et un incident ouvert ; il faut comprendre avant de proposer. Construis un cas minimal qui illustre « Chaos Day : 3 vagues de 30 min » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+**Exemple résolu (fictif).** Vague 1 : couper l'accès à une dépendance pendant 2 minutes et vérifier que l'API retourne une erreur contrôlée. Vague 2 : rétablir la dépendance et vérifier que les demandes en attente sont reprises sans doublon. Vague 3 : restaurer une sauvegarde et comparer un invariant métier avant/après. L'équipe consigne l'heure, le signal observé, l'impact et la limite de chaque exercice. **Conclusion :** le système a résisté à ces scénarios de laboratoire, pas à toutes les pannes possibles.
+
+**À toi :** Tu rejoins une organisation qui possède plusieurs services, une documentation incomplète et un incident ouvert ; il faut comprendre avant de proposer. Construis un cas minimal qui illustre « Chaos Day : 3 vagues de 30 min » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-DIAGRAM:architecture -->
+
+## Repère visuel utile : Défendre une frontière de domaine Kintana
+
+```text
+client -> API / application
+               |
+               v
+        domaine Kintana
+        /      |      \
+       v       v       v
+ demandes  réservations  rôles
+       \       |       /
+        v      v      v
+        persistance + outbox
+                |
+                v
+          worker notification
+```
+
+<!-- AF-LESSON-PROFILE: architecture -->
+
+## Repères de décision
+
+- **Pourquoi :** Les frontières réduisent le coût de changement et clarifient les responsabilités. Elles doivent répondre aux contraintes de l'équipe, des données et de l'exploitation.
+- **Quand l’utiliser / quand l’éviter :** Découpe un système quand une frontière protège une règle ou un rythme de changement. Ne crée pas de microservice tant que l'autonomie, la charge ou la gouvernance ne justifient pas le coût distribué.
+- **Limites :** Chaque frontière ajoute contrats, réseau, déploiement, observabilité et coordination. Un diagramme propre ne prouve ni la faisabilité ni la performance.
+
+## Mécanisme : la version sans magie
+
+Part des cas d'usage, repère invariants et propriétaires de données, définis les contrats, compare les options et mesure les conséquences du changement.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Chaos Day : 3 vagues de 30 min** se rattache à ce cas concret : Kintana commence comme monolithe modulaire. Les demandes, réservations et notifications doivent avoir des frontières explicites sans fragmenter trop tôt le déploiement.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Défendre une frontière de domaine Kintana
+
+> **Arc Capsule Corp. / DBZ :** une architecture est le plan du vaisseau et les coûts qu'il impose. Si chaque pièce doit connaître toutes les autres, le vaisseau ne décolle jamais.
+
+**Mission liée à « Chaos Day : 3 vagues de 30 min » :** Dessine le flux réel d'une création de demande. Identifie les invariants, propriétaires de données et dépendances ; compare monolithe modulaire et service séparé dans un ADR. Simule une évolution et mesure le nombre de composants touchés.
+
+**Livrable :** diagramme de composants/flux, ADR avec deux options, contrat de frontière et test de changement.
+
+**Critères d’acceptation :** la frontière possède une responsabilité claire ; les données ont un propriétaire ; le coût d'exploitation est explicite ; le microservice n'est pas choisi par prestige ; une condition de révision est écrite.
+
+**Transfert obligatoire :** Le nombre d'équipes ou le volume double. Indique quel signal justifierait de séparer un composant et quel coût tu acceptes.

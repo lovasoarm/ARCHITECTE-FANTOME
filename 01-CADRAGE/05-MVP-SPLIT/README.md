@@ -24,7 +24,7 @@ Must prove
 
 Le MVP choisit la plus petite tranche capable de tester l’hypothèse importante et de produire une mesure.
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../01-PROBLEM-HUNT/README.md) | [Niveau suivant](../../02-CONSTRUCTION/01-USER-WIZARD/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Module précédent : Error Handling](../04-ERROR-HANDLING/README.md) | [Niveau suivant](../../02-CONSTRUCTION/01-USER-WIZARD/README.md)
 
 **Ce niveau réutilise :** [02-PROBLEM-HUNT](../01-PROBLEM-HUNT/04-scope-and-non-goals.md) : les non-objectifs et la metrique de succes, qui donnent les bornes du decoupage en tranches.
 
@@ -34,10 +34,12 @@ Le MVP choisit la plus petite tranche capable de tester l’hypothèse important
 2. A quoi sert une section de non-objectifs, concretement, sur les choix d'architecture ?
 3. Comment distingues-tu un persona utile d'un persona decoratif ?
 
-**Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
-[le grimoire du niveau précédent](../01-PROBLEM-HUNT/90-grimoire.md) (20 minutes), puis refais son
-[challenge](../01-PROBLEM-HUNT/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
-trou amont, c'est attribuer au 05-MVP-SPLIT une difficulté qui vient du 01-PROBLEM-HUNT.
+**Règle d’entrée complète :** le contrôle d’entrée faisant foi est celui de
+[00-PREREQUIS.md](00-PREREQUIS.md) : il vérifie séparément Error Handling (précédent direct)
+et Problem Hunt (compétence amont réutilisée). Les trois questions ci-dessus sont un rappel
+complémentaire sur Problem Hunt, pas un second filtre. Si Error Handling n’est pas maîtrisé,
+reprends [son grimoire](../04-ERROR-HANDLING/90-grimoire.md) et son challenge ; si Problem Hunt
+est fragile, reprends [son grimoire](../01-PROBLEM-HUNT/90-grimoire.md) et son challenge.
 
 **Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
@@ -55,9 +57,12 @@ ne livre rien d'utilisable seule). Tu apprends où placer les lignes de coupe da
 complexe, comment estimer avec de l'incertitude assumée plutôt que cachée, et comment arbitrer
 entre dire oui, dire non, et dire "pas maintenant, et voici pourquoi".
 
-Prérequis : Module `01-CADRAGE/01-PROBLEM-HUNT` (Problem Hunt) terminé. Tu dois arriver ici avec un besoin réel identifié,
-des utilisateurs qui comptent, des non-objectifs écrits et une métrique de succès définie.
-Sans ça, découper un problème mal posé ne fait que produire des tranches inutiles plus vite.
+Prérequis : le contrôle d’entrée de référence est [`00-PREREQUIS.md`](00-PREREQUIS.md).
+Il exige deux acquis : `04-ERROR-HANDLING` terminé (précédent immédiat dans le bloc)
+et `01-PROBLEM-HUNT` terminé (compétence amont utilisée ici). Tu dois arriver avec un
+besoin réel identifié, des utilisateurs qui comptent, des non-objectifs écrits et une
+métrique de succès définie. Sans ça, découper un problème mal posé ne fait que produire
+des tranches inutiles plus vite.
 
 ## Ce que tu sais faire à la sortie
 
@@ -125,3 +130,9 @@ rétrospective du bloc Cadrage que tu viens de terminer.
 - [Grimoire : Module 01-CADRAGE/05-MVP-SPLIT, MVP Split](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.

@@ -3,17 +3,18 @@ stability: evolutif
 acte: parcours
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "05-MAITRISE/01-DATABASES/01-00-why-databases.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 05-MAITRISE/01-DATABASES/01-00-why-databases.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # MODULE 01 DATABASES
 
-> **État pédagogique : 30 octobre 2026 : preuves documentaires complétées.** Les ajouts ciblés couvrent les exemples, pratiques, vérifications et transferts requis pour ce module. Une revue technique indépendante et une validation terrain restent distinctes ; voir [48 : External Review Gate](../../06-ANNEXES-TRANSVERSES/48-EXTERNAL-REVIEW-GATE.md) et [49 : Terrain Maturity Gate](../../06-ANNEXES-TRANSVERSES/49-TERRAIN-MATURITY-GATE.md).
-
-> Palier `05-MAITRISE`. Duree estimee : **9 h 45** (14 fichiers de travail).
+> Palier `05-MAITRISE`. Duree estimee : **9 h 20** (14 fichiers de travail).
 
 ## Sommaire du module
 
@@ -28,13 +29,13 @@ terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 | [`05-redis_caching.md`](05-redis_caching.md)                                 | Se souvenir vite pour ne pas redemander à chaque fois          | 45 min |
 | [`06-db_in_js.md`](06-db_in_js.md)                                           | Connecter ton code à la DB sans te perdre dans l'abstraction   | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                                           | Page verrouillée                                               | 30 min |
-| [`07-EXO_LECTURE.md`](07-EXO_LECTURE.md)                                     | EXO LECTURE : 15-25 minutes (Databases)                        | 45 min |
+| [`07-EXO_LECTURE.md`](07-EXO_LECTURE.md)                                     | EXO LECTURE : ~20 minutes : un cycle (Databases)               | 20 min |
 | [`09-EXO-VERIFICATION.md`](09-EXO-VERIFICATION.md)                           | Exercice 09 : analyse de risque d’une suppression multi-tenant | 30 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                           | Exercice 97 : laboratoire transactionnel PostgreSQL            | 60 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                               | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust        | 45 min |
 | [`08-du_single_node_au_cluster.md`](08-du_single_node_au_cluster.md)         | Du single-node au cluster : le pont vers le distribué          | 45 min |
 
-Total : **9 h 45**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) et le boss (3 h) sont des évaluations séparées et ne sont pas ajoutés au Total sauf s’ils apparaissent comme lignes du tableau.
+Total : **9 h 20**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
 ## Comment travailler ce module
 
@@ -79,7 +80,7 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Se souvenir vite pour ne pas redemander à chaque fois](05-redis_caching.md)
 - [Connecter ton code à la DB sans te perdre dans l'abstraction](06-db_in_js.md)
 - [Page verrouillée](90-grimoire.md)
-- [EXO LECTURE : 15-25 minutes (Databases)](07-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Databases)](07-EXO_LECTURE.md)
 - [Exercice 09 : analyse de risque multi-tenant](09-EXO-VERIFICATION.md)
 - [Exercice 97 : laboratoire transactionnel PostgreSQL](97-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
@@ -97,4 +98,13 @@ Le sommaire ci-dessus reste le parcours recommandé. Les index ci-dessous renden
 
 - [EXO : Vérifier une IA séduisante](10-EXO-VERIFICATION.md)
 
-## Standard de complétude et audit
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.
+
+## Ressources pratiques associées
+
+- [Atelier de consolidation](ATELIER-CONSOLIDATION.md) : réutiliser les notions du module dans un cas intégré.
+- [Corrigé de référence de l'atelier](corriges/ATELIER-CONSOLIDATION-CORRIGE.md) : à consulter après une tentative autonome.

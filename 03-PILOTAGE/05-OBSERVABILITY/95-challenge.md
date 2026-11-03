@@ -50,8 +50,8 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [LIRE UNE STACK TRACE DE PROD QUAND LE CODE SOURCE N'EXISTE PLUS](08-prod_stack_trace_drill.md)
 - [08 : On-call drill : il est 3h du matin](09-oncall_drill.md)
 - [09 : Instrumenter TON projet (OpenTelemetry local, zéro compte externe)](10-instrumenter_ton_projet.md)
-- [EXO LECTURE : 15-25 minutes (Observabilite)](11-EXO_LECTURE.md)
-- [EXO [JEUNE IA] : 03-PILOTAGE/05-OBSERVABILITY](12-EXO-VERIFICATION.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Observabilite)](11-EXO_LECTURE.md)
+- [Exercice : relier logs, métriques et traces](12-EXO-VERIFICATION.md)
 
 ## Ce qui valide le challenge (les quatre actes, aucun ne se saute)
 

@@ -42,7 +42,7 @@ Si ces bases ne sont pas là : reviens ici après.
 
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
-Sans bagage algorithmique, chaque problème ressemble à un problème nouveau, même quand ce n'est pas le cas. Trier une liste de 100 000 éléments avec un tri à bulles (O(n²)) au lieu d'un merge sort (O(n log n)), c'est la différence entre 2 secondes et 3 minutes d'exécution sur le même volume. Chercher un élément dans une liste triée avec une recherche linéaire au lieu d'une recherche binaire (binary search), c'est la différence entre O(n) et O(log n) : littéralement des milliers de fois plus rapide sur de gros volumes.
+Sans bagage algorithmique, chaque problème ressemble à un problème nouveau, même quand ce n'est pas le cas. Trier une liste de 100 000 éléments avec un tri à bulles (O(n²)) au lieu d'un merge sort (O(n log n)) peut faire exploser le nombre d’opérations. Le temps exact dépend toutefois du matériel, du moteur et du code ; compare les ordres de grandeur avant de mesurer. Chercher un élément dans une liste triée avec une recherche linéaire au lieu d'une recherche binaire (binary search), c'est la différence entre O(n) et O(log n) : littéralement des milliers de fois plus rapide sur de gros volumes.
 
 Ce module t'apprend à reconnaître les familles de problèmes :
 
@@ -115,3 +115,33 @@ Maintenant, ouvre `02-bubble_insertion.md`. Et vois enfin pourquoi un algorithme
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+<!-- AF-LESSON-PROFILE: algorithms -->
+
+## Repères de décision
+
+- **Pourquoi :** Un algorithme transforme une entrée en résultat ; sa complexité détermine si la solution reste viable quand le volume augmente.
+- **Quand l’utiliser / quand l’éviter :** Compare plusieurs approches quand le volume ou la latence est important. Préfère l'algorithme le plus simple qui respecte le besoin et l'enveloppe mesurée.
+- **Limites :** Big-O décrit une croissance asymptotique, pas le temps exact. Les constantes, la distribution des données, le matériel et les coûts I/O comptent aussi.
+
+## Mécanisme : la version sans magie
+
+Décris l'état, les étapes et les invariants ; analyse le meilleur, moyen et pire cas pertinents ; vérifie par tests de propriétés et benchmark.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce module mérite ton temps : algorithms** se rattache à ce cas concret : Le dispatch Kintana doit affecter des demandes à des agents selon capacité, priorité et zone sans créer de biais ou exploser en coût.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Optimiser une opération de dispatch
+
+> **Arc DBZ / Capsule Corp. :** une attaque brillante mais quadratique peut perdre le combat quand la foule arrive. Regarde le coût quand l'entrée grandit.
+
+**Mission liée à « Pourquoi ce module mérite ton temps : algorithms » :** Implémente ou compare l'algorithme associé à la leçon sur une tâche de dispatch Kintana. Définis d'abord le résultat attendu et les cas limites, puis calcule le coût et mesure une fixture à plusieurs tailles.
+
+**Livrable :** l'algorithme, tests de propriétés, analyse de complexité et benchmark reproductible si le sujet le permet.
+
+**Critères d’acceptation :** le résultat est correct pour les cas limites ; le coût temporel et mémoire est expliqué ; le benchmark ne confond pas overhead de mesure et algorithme ; les hypothèses sont écrites.
+
+**Transfert obligatoire :** Change le nombre d'acteurs et la distribution des priorités. Identifie le scénario où l'algorithme choisi devient mauvais.

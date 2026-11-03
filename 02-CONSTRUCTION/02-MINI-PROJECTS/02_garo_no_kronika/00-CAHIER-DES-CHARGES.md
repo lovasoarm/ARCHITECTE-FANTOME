@@ -25,7 +25,6 @@ npm --version
 
 Après avoir créé le point d'entrée, les sources et les tests : `node src/index.js` et `node --test`. `npm install` ne sert que si tu déclares des dépendances ; `npm test` requiert un script dans ton `package.json`.
 
-
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
 Inspiré de Garo Honoo no Kokuin (Garo : La flamme de la marque). Des Horrors (démons qui prennent forme humaine et dévorent les faibles) apparaissent dans plusieurs quartiers de la ville simultanément. Un Conseil de Surveillance détecte les apparitions et dispatche des missions aux Chevaliers d'Or disponibles. Chaque Chevalier prépare son armure dorée (ce qui prend du temps), combat le Horror, et streame le résultat en temps réel vers le Conseil. L'armure ne peut tenir que 99,9 secondes. Si le combat dépasse ce seuil : l'armure se désintègre, le Chevalier est vulnérable, et la mission échoue.
@@ -223,10 +222,10 @@ Le diagnostic devient plus simple et les logs gagnent une petite quantité de m�
 
 Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
 
-- Validation d'entrée (OWASP A03) : sanitizer les données de chronique avant traitement (pas d'injection via les champs texte).
+- Validation d'entrée : vérifier le type, le format et la longueur des données de chronique avant traitement. Si elles sont persistées en SQL, utiliser des paramètres liés ; si un client les affiche, appliquer une protection de rendu adaptée au contexte (texte sûr ou DOMPurify uniquement pour du HTML autorisé). La validation seule ne prévient pas une injection SQL ou une XSS.
 - Intégrité des données (OWASP A08) : vérifier la cohérence des enregistrements avant persistance.
 
-Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `97-CHECKPOINT-PACK` de ce projet contient un test de sécurité qui doit passer.
+Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Ajoute dans le dossier `tests/` de ce projet un test ciblé pour au moins une des menaces retenues. Documente dans le README la commande exacte qui exécute ce test. Aucun pack de correction séparé n’est fourni dans ce projet.
 
 ---
 
@@ -261,3 +260,29 @@ Avant de coder, produis :
 - les critères qui te feront changer d’architecture en cours de route.
 
 Ne cherche pas une architecture « correcte » dans le curriculum : le but est de reconstruire un modèle sous contrainte, puis de défendre pourquoi il tient.
+
+<!-- AF-PROJECT-REAL-WORLD-GATE-1.1 -->
+
+## Mission produit évaluée : Orchestrateur fiable de notifications et d'affectation
+
+La scène Garo sert à visualiser le parallélisme et les événements. L'EventEmitter local n'est pas un broker durable et le streaming simulé n'est pas une preuve SSE en production.
+
+### Mission évaluée : orchestrateur Kintana de notifications et d'affectation
+
+Construis un worker d'événements qui traite les notifications de demandes :
+
+- concurrence bornée et priorités de traitement ;
+- timeout explicite avec distinction entre abandon local et opération distante ;
+- retries avec backoff et jitter, nombre maximal et politique d'erreur permanente ;
+- déduplication/idempotence par identifiant d'événement ;
+- file d'échec (dead-letter) et procédure de rejeu ;
+- arrêt propre : aucun événement accepté ne disparaît silencieusement ;
+- suivi de l'état et corrélation par identifiant de demande.
+
+**Produit de référence :** [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
+
+**Livrables :** worker, adaptateur de queue (in-memory pour le lab, broker réel uniquement si le module le demande), tests avec horloge contrôlée, scénario d'injection de panne et ADR sur at-least-once vs garanties plus fortes.
+
+**Gate :** événements dupliqués sans double notification, erreur permanente non rejouée en boucle, saturation visible, concurrence plafonnée, arrêt/reprise vérifiés. Marque tout test local `LAB`.
+
+**Règle de livraison :** la kata d’origine reste utile pour isoler le concept et son univers narratif. La validation finale du projet repose sur la mission métier ci-dessus, ses tests, ses limites et les preuves produites par l’apprenant. Les résultats de simulation ne sont jamais présentés comme des résultats de production.

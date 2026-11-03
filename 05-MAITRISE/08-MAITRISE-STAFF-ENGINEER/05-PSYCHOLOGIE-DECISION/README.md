@@ -17,13 +17,13 @@ auto-mesure → exposition → perturbation → observation
 
 ## Cinq axes
 
-| Axe | Question observable | Preuve attendue |
-|---|---|---|
-| Humilité épistémique | Que sais-je réellement ? | inconnues + seuils d'escalade |
-| Plasticité | Quelle preuve me ferait changer d'avis ? | belief change log |
-| Régulation | Que devient ma décision sous pression ? | décision sous charge + journaux horodatés |
-| Désidentification | Puis-je abandonner mon idée sans défendre mon ego ? | status-loss + junior-was-right |
-| Influence saine | Puis-je faire émerger une bonne idée sans domination ? | conflit + sécurité psychologique + mauvaise nouvelle |
+| Axe                  | Question observable                                    | Preuve attendue                                      |
+| -------------------- | ------------------------------------------------------ | ---------------------------------------------------- |
+| Humilité épistémique | Que sais-je réellement ?                               | inconnues + seuils d'escalade                        |
+| Plasticité           | Quelle preuve me ferait changer d'avis ?               | belief change log                                    |
+| Régulation           | Que devient ma décision sous pression ?                | décision sous charge + journaux horodatés            |
+| Désidentification    | Puis-je abandonner mon idée sans défendre mon ego ?    | status-loss + junior-was-right                       |
+| Influence saine      | Puis-je faire émerger une bonne idée sans domination ? | conflit + sécurité psychologique + mauvaise nouvelle |
 
 ## Échelle P0 → P4
 
@@ -49,3 +49,9 @@ Une phrase comme « je suis humble » n'est jamais une preuve. Le score porte su
 6. Fais `14-ARCHITECTURE-HUMAN-BIASES.md` et `12-NO-WIN-DECISION.md`.
 7. Termine par `16-EXPERT-TRAP.md`.
 8. Résume le changement dans la section 10 du dossier unique.
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **décision qui traverse les équipes** : Rédige une RFC/ADR sur une décision Kintana qui affecte API, données et exploitation. Compare au moins deux options, demande une revue contradictoire et transforme les objections en critères d’acceptation. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : La décision a un propriétaire, un coût, un plan de migration et une condition de révision ; l’adoption réelle reste « non démontrée » tant qu’une équipe ne l’a pas adoptée.

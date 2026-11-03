@@ -10,17 +10,17 @@ assessment_role: instructional_checkpoint
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
-# EXO LECTURE : 15-25 minutes (Testing)
+# EXO LECTURE : ~20 minutes : un cycle (Testing)
 
-Temps de lecture ~2 min
+**Durée indicative : environ 20 minutes** : environ 2 minutes pour prendre connaissance de la consigne, puis 15 minutes pour le protocole et quelques minutes pour consigner le résultat. Le checkpoint de profondeur, s’il est présent, est un prolongement séparé et n’est pas compris dans cette durée.
+
+Lecture de la consigne : ~2 min
 
 > **LOCK : pas d'édition avant HYPOTHESES.md signé.** Tu ne modifies AUCUN fichier avant que ton `HYPOTHESES.md` soit signé (>= 3 hypothèses, chacune avec preuve attendue). Sinon, l'exo ne compte pas.
 >
 > **Budget lecture** : 180 lignes en 15 min chrono. Si tu dépasses, note pourquoi dans `MAP.md`. Objectif progressif : tu dois pouvoir tenir 500 lignes en 15 min à la fin du curriculum.
 >
 > **Protocole de cartographie** : suis `../../05-MAITRISE/06-ANNEXES/23_reading/02-cartographie_15min.md` si tu ne sais pas par où entrer.
-
-Temps de lecture ~2 min
 
 Competence : lire du code reel que tu n'as pas ecrit et le comprendre AVANT de
 le modifier. C'est 80% du metier. Applique le protocole

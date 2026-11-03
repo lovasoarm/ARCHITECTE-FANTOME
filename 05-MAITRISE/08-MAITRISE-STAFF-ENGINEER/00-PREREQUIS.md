@@ -15,7 +15,7 @@ Tout ou rien. Si une case est non, **n'entre pas**.
 - [ ] `SLO.md` + RTO chrono
 - [ ] `DECISION-ARBITRAGE.md`
 - [ ] revue S5 (URL + SHA) + contradicteur
-- [ ] `STANDARDS-AGENTS.md`
+- [ ] Si le fil rouge utilise des agents ou automatisations autonomes : `STANDARDS-AGENTS.md`. Sinon, la décision de non-usage et son périmètre sont consignés dans `EVALUATION-IA.md`.
 - [ ] `LIVRAISON-EXPLOITATION.md` (famille S6)
 - [ ] `EVALUATION-IA.md` (contrôle transversal G8)
 - [ ] `IA-EN-PROD.md` uniquement si une brique IA est intégrée au système

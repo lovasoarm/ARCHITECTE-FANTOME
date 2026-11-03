@@ -1,7 +1,7 @@
 ---
 stability: intemporel
 acte: comprendre
-cognitive_level: L3
+cognitive_level: L2
 perturbation_modes: [constraints_injectees, decision_organisationnelle]
 anti_recipe_key: constraints_injectees+decision_organisationnelle
 transfer_distance: medium
@@ -9,6 +9,8 @@ assessment_role: instructional_checkpoint
 ---
 
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+
+> **Référence différée :** tu n'as pas à planifier les six pierres maintenant. Utilise ce document après avoir réellement étudié une notion ou terminé un module. Les pierres non étudiées restent simplement « pas encore vues » ; aucun quiz, calendrier ou suivi futur ne conditionne l'entrée dans Fundamentals. Un rappel peut être court et adapté à ton temps disponible.
 
 # Répétition espacée : calendrier explicite sur les six pierres
 
@@ -41,8 +43,7 @@ free    explain  diagnose   transfer  defend inverse
 
 Le rappel distribué réactive la compétence sous des formes différentes au fil du temps.
 
-Après avoir **terminé** le module d'une pierre (grimoire lu, tous les
-exercices faits), programme dans ton agenda 4 rappels :
+Après avoir étudié un sujet et réalisé une première pratique, tu peux choisir un ou plusieurs rappels. Le calendrier ci-dessous est une proposition, pas une obligation :
 
 | Échéance | Durée cible | Format                                                   |
 | -------- | ----------- | -------------------------------------------------------- |
@@ -88,8 +89,7 @@ Copier dans un fichier `retention/<pierre>_J+<n>.md` :
 | Archi        | à remplir         | à remplir       | à remplir         |
 | Système      | à remplir         | à remplir       | à remplir         |
 
-Ce tableau est ta **seule** source de vérité de ta rétention. Tiens-le à
-jour, sinon tu retombes dans l'illusion de savoir.
+Ce tableau est facultatif. Tu peux noter uniquement le sujet que tu as réellement étudié et le prochain rappel utile. Ne remplis pas les lignes des modules que tu n'as pas encore abordés.
 
 ## Pourquoi ce fichier existe
 
@@ -99,14 +99,40 @@ l'intemporel vs le périssable : la répétition espacée est ce qui rend
 l'intemporel effectivement durable **dans ta tête**, pas juste dans les
 fichiers.
 
-## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
+## CHECKPOINT DE PROFONDEUR : différé après l’étude des notions concernées
+
+### Variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
-
-<!-- AF-P0-2026-10-30: missing_transfer -->
 
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Répétition espacée : calendrier explicite sur les six pierres » à une technologie ou une version différente de celle de la leçon. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: reference -->
+
+## Repères de décision
+
+- **Pourquoi :** Un référentiel sert à rendre les compétences observables et à éviter de confondre familiarité, autonomie et maîtrise.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le pour établir un point de départ, prioriser une révision ou préparer une revue de portfolio. Ne l'utilise pas comme classement de valeur personnelle.
+- **Limites :** Une auto-évaluation est biaisée. Le niveau doit être confirmé par une tâche inconnue, un artefact reproductible et, aux paliers avancés, une revue externe.
+
+## Mécanisme : la version sans magie
+
+Associe une compétence à une tâche, un critère, une preuve, une date et un statut. Réévalue quand le contexte ou la technologie change.
+
+## Ancrage produit / terrain : Kintana
+
+Kintana est un cas fictif qui servira plus tard à réviser des compétences de système. Il n'est pas nécessaire d'y appliquer un calendrier de rappel avant d'avoir appris ces compétences.
+
+## Mission utile : un rappel simple
+
+**Livrable et critères d’acceptation :** une phrase de rappel sur une notion déjà étudiée, puis un mot corrigé après consultation de la leçon. Si aucune notion n’a encore été étudiée, cette activité reste différée et ne produit aucun livrable.
+
+Choisis une notion que tu as vraiment étudiée cette semaine. Cache tes notes et essaie de l'expliquer en une phrase. Rouvre ensuite la leçon et note un élément que tu avais oublié. Si tu n'as pas encore étudié de notion, ne fais rien : reviens ici plus tard.
+
+### Transfert : facultatif et différé
+
+L'application à une nouvelle technologie ou à un contexte différent sera demandée seulement après l'apprentissage de la notion concernée.

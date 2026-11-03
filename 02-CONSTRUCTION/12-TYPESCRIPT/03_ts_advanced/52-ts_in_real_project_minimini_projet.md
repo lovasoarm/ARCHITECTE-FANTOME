@@ -8,6 +8,8 @@ transfer_distance: low
 assessment_role: instructional_checkpoint
 ---
 
+# Mise en pratique : TS dans un vrai projet : config, migration, boundaries, décisions
+
 > **SCÈNE CRAZYDEVS : clan des ninjas :** une abstraction peut être une technique secrète… ou une montagne de parchemins pour un problème de trois lignes. Ton défi est de savoir laquelle des deux tu construis.
 
 ## TYPE
@@ -73,3 +75,13 @@ Un dépôt TypeScript propre de bout en bout : c'est vérifiable en 30 secondes 
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+## Livraison produit obligatoire : Kintana : Règle métier et état
+
+> **Fil narratif : Capsule Corp. / DBZ :** Bulma ne gagne pas en ajoutant des boutons au vaisseau : elle comprend le mécanisme, teste ses limites et répare ce qui casse. Ton code doit faire pareil, sans compter sur une transformation magique.
+
+Le micro-exercice existant reste une mise en jambe : il isole un mécanisme, mais ne suffit pas comme preuve de maîtrise. La livraison évaluée améliore le même produit [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
+
+**Mission liée à « 52-ts_in_real_project_minimini_projet » :** Choisis une frontière réelle du module Kintana à migrer vers TypeScript. Type les entrées/sorties à cette frontière, conserve le comportement existant et documente ce qui reste volontairement non typé.
+
+**Livrable :** incrément intégré, tests ou vérifications, note de décision et contre-exemple. **Gate :** Un cas nominal et deux cas invalides sont testés ; le même scénario peut être rejoué ; un autre développeur peut expliquer l’invariant. Étiquette les résultats locaux `LAB` ; ne revendique `PRODUCTION` qu’après déploiement et observation réels.

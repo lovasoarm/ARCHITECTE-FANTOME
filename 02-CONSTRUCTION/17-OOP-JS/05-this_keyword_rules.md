@@ -150,10 +150,32 @@ Prends 4 appels de fonctions différents dans un mini-script (appel en méthode,
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « This keyword rules : this selon le call-site » à un troisième fournisseur dont l’API ne ressemble pas aux deux premiers. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: oop-this-call-site -->
+
+## Repères de décision
+
+- **Pourquoi :** `this` explique pourquoi une méthode fonctionne quand elle est appelée sur un objet, puis perd son récepteur lorsqu’elle est extraite comme callback.
+- **Quand l’utiliser / quand l’éviter :** Utilise `this` lorsqu’un comportement dépend réellement de l’objet récepteur. Pour une fonction passée à une API ou à une file de callbacks, fixe explicitement le contexte avec `bind`, une fonction flèche adaptée ou un paramètre.
+- **Limites :** Pour une fonction classique, `this` est déterminé par le mode d’appel, pas par l’endroit où la fonction a été déclarée. Une flèche capture le `this` lexical et ne possède pas son propre `this` ; elle ne remplace donc pas automatiquement une méthode dynamique.
+
+## Mécanisme : la version sans magie
+
+Dans `objet.methode()`, `this` désigne `objet`. Dans un appel direct en mode strict, `this` vaut `undefined`. Une fonction flèche reprend le `this` de son environnement lexical. Il faut donc examiner l’expression d’appel avant de conclure.
+
+## Ancrage produit / terrain : Kintana
+
+Un handler de notification Kintana est enregistré dans un dispatcher. L’extraction de `service.envoyer` peut faire perdre le récepteur qui contient la configuration ; le bug vient du mode d’appel, pas du nom de la méthode.
+
+## Mission utile : Kintana : préserver le récepteur d’un callback
+
+**Livrable :** un exemple de méthode appelée directement, puis extraite et passée à un dispatcher ; documente deux corrections et le comportement obtenu.
+
+**Critères d’acceptation :** tu prédis `this` avant l’exécution ; tu distingues fonction classique et flèche ; la correction ne masque pas une dépendance métier qui devrait être un paramètre explicite.
+
+**Transfert obligatoire :** déplace le handler dans un module séparé et explique quelles dépendances doivent être passées explicitement au lieu de reposer sur `this`.

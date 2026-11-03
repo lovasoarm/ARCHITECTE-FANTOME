@@ -239,3 +239,35 @@ Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STAND
 - **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
 
 **Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.
+
+<!-- AF-PROJECT-REAL-WORLD-GATE-1.1 -->
+
+## Mission produit évaluée : Moteur de règles et de capacité Kintana
+
+Le simulateur de combat Naruto/Sasuke reste une **kata d'entrée** pour fonctions pures, stratégies et état immuable. Il n'est plus, à lui seul, le livrable de portfolio.
+
+### Mission évaluée : moteur de règles et de capacité Kintana
+
+Construis le moteur de décision du parcours de demande et de réservation :
+
+- règles d'éligibilité selon le type de demande, le centre, le rôle et l'état courant ;
+- calcul de capacité disponible avec priorité métier explicite ;
+- transitions d'état autorisées/interdites et raisons de refus stables ;
+- idempotence d'une commande répétée ;
+- concurrence sur le dernier créneau (aucun double-booking) ;
+- données de test synthétiques, reproductibles et sans informations personnelles.
+
+**Produit de référence :** [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
+
+**Livrables :** module de domaine indépendant de l'interface, tests table-driven, test de concurrence/transaction, ADR comparant au moins deux stratégies et rapport de mesure sur un volume annoncé.
+
+**Gate :** zéro mutation cachée ; invariant de capacité vérifié ; même commande rejouée sans double effet ; cas limite et contre-exemple documentés. Un benchmark local reste `LAB`.
+
+**Hors scope :** pas de microservices ni de moteur de règles générique tant que le besoin ne les justifie.
+
+**Règle de livraison :** la kata d’origine reste utile pour isoler le concept et son univers narratif. La validation finale du projet repose sur la mission métier ci-dessus, ses tests, ses limites et les preuves produites par l’apprenant. Les résultats de simulation ne sont jamais présentés comme des résultats de production.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.
+- [Référence technique différée](reference/README.md) : à consulter après la tentative, sans recopier dans le livrable.

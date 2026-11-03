@@ -1,24 +1,27 @@
 ---
-perishability_id: PER-0024
-
-stability: perissable
+stability: "intemporel"
 acte: pratiquer
 cognitive_level: L4
 perturbation_modes: [defaut_cache, solution_concurrente]
 anti_recipe_key: defaut_cache+solution_concurrente
 transfer_distance: low
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0024
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+canonical_resource: "02-CONSTRUCTION/12-TYPESCRIPT/README.md"
+source_scope: "Référence interne du module TypeScript associée à l’exercice de lecture ; toute assertion dépendant d’une version doit être vérifiée séparément."
+provenance_note: "Référence interne explicitement reliée au sujet ; elle ancre le parcours mais ne constitue pas une preuve externe. Aucun contenu n’est déclaré revérifié par cette mise à jour."
 ---
+
 > **SCÈNE CRAZYDEVS : Garo :** la règle est simple jusqu'au jour où un état caché traverse une frontière. À partir de là, le “petit raccourci” devient le Horror qui te poursuit pendant trois heures.
 
-# EXO LECTURE : 15-25 minutes (TypeScript)
+# EXO LECTURE : ~50 minutes : 3 cycles de 15 min (TypeScript)
 
-Temps de lecture ~2 min
+**Durée indicative : environ 50 minutes** : 45 minutes de travail chronométré (3 cycles de 15 minutes, chacun avec un extrait différent), plus environ 2 minutes de prise en main et une petite marge de préparation. Le checkpoint de profondeur, s’il est présent, est un prolongement séparé et n’est pas compris dans cette durée.
+
+Lecture de la consigne : ~2 min
 
 > **LOCK : pas d'édition avant HYPOTHESES.md signé.** Tu ne modifies AUCUN fichier avant que ton `HYPOTHESES.md` soit signé (>= 3 hypothèses, chacune avec preuve attendue). Sinon, l'exo ne compte pas.
 >
@@ -26,13 +29,11 @@ Temps de lecture ~2 min
 >
 > **Protocole de cartographie** : suis `../../05-MAITRISE/06-ANNEXES/23_reading/02-cartographie_15min.md` si tu ne sais pas par où entrer.
 
-Temps de lecture ~2 min
-
 Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT de le modifier. C'est une part importante du métier.
 
 ## L'extrait
 
-On te fournit un extrait TS avec types conditionnels, `infer`, discriminated union ou template literal types : issu de `02-CONSTRUCTION/12-TYPESCRIPT/03_ts_advanced/`. 15-25 minutes de lecture, pas plus.
+On te fournit un extrait TS avec types conditionnels, `infer`, discriminated union ou template literal types : issu de `02-CONSTRUCTION/12-TYPESCRIPT/03_ts_advanced/`. 15 minutes de protocole par cycle ; traite un seul extrait pendant chaque cycle.
 
 ## Le protocole (15 min chrono)
 
@@ -42,7 +43,7 @@ On te fournit un extrait TS avec types conditionnels, `infer`, discriminated uni
 
 ## Livrable
 
-`LECTURE_<nom>.md` avec tes 3 sections remplies. Interdiction absolue de modifier l'extrait avant que les 3 sections soient écrites au propre. Cf `../11-REFACTORING/07-do_not_touch_before_explain.md`.
+`LECTURE_<nom>.md` avec les trois cycles réunis dans un seul fichier, sous trois sections datées `Cycle 1`, `Cycle 2` et `Cycle 3`. Chaque section contient les trois parties du protocole. Ne remplace pas les résultats d’un cycle par ceux du suivant.
 
 ## (attention) Ce que l'exo révèle
 
@@ -50,7 +51,7 @@ Si ton hypothèse était fausse, tant mieux : tu viens d'apprendre où ton modè
 
 ## Enchainement
 
-- Fait 3 fois de suite avec 3 extraits différents avant de passer au prochain module.
+- Réalise trois cycles avec trois extraits différents ; conserve les résultats dans les trois sections datées de `LECTURE_<nom>.md`.
 - Croise avec `EXO_VERIFICATION.md` du même module quand il existe : compare ton hypothèse humaine à celle qu'une IA produirait sur le même extrait.
 
 ---

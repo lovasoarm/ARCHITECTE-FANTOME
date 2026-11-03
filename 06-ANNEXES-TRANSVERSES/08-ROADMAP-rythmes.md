@@ -20,7 +20,7 @@ Ordre détaillé : [04A-CARTE-DU-PARCOURS.md](04A-CARTE-DU-PARCOURS.md).
 
 ## SPRINT : 12 h / semaine
 
-**Exemple facultatif : route CORE vers des preuves initiales de préparation à des responsabilités élargies, 16 semaines / 192 h planifiées. Ce n’est pas une préparation Staff certifiée ni la route complète.** Le Mode Survie reste disponible comme vue accélérée (~6 semaines), mais il réutilise les mêmes niveaux, Boss et preuves ; il ne constitue pas une seconde progression. La profondeur additionnelle reste dans le corpus sans être obligatoire pendant le sprint.
+**Exemple facultatif : route CORE vers des preuves initiales de préparation à des responsabilités élargies, 16 semaines / 192 h planifiées. Ce n’est pas une préparation Staff certifiée ni la route complète.** Le Mode Survie reste disponible comme vue accélérée (~6 semaines), mais il réutilise les mêmes blocs, l'ordre de la Route 58 et les critères de sortie locaux ; il ne crée ni boss universel ni seconde progression. La profondeur additionnelle reste dans le corpus sans être obligatoire pendant le sprint.
 
 La règle n’est plus « terminer le maximum ». La règle devient : **produire les preuves CORE, réussir les transferts, puis ouvrir DEPTH selon les faiblesses observées**.
 

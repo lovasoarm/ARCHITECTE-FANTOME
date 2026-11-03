@@ -89,19 +89,23 @@ Stratégie : si A échoue, utilise B. L'opération principale échoue, mais le s
 Quand : la valeur principale est désirable mais pas critique. Une alternative moins bonne vaut mieux que rien.
 
 ```js
+// Exemple de classification : le client HTTP doit normaliser ses erreurs.
+// Les codes ci-dessous illustrent des pannes possiblement transitoires ; adapte-les
+// à la documentation du fournisseur. Une erreur inconnue n'est PAS transitoire par défaut.
+function estErreurTransitoire(e) {
+  return e?.code === "ETIMEDOUT" || e?.code === "ECONNRESET" ||
+    [429, 502, 503, 504].includes(e?.status);
+}
+
 async function getStatsJoueur(joueurId) {
   try {
-    // stats live depuis l'API externe
     return await fetchStatsLive(joueurId);
   } catch (e) {
-    console.warn(
-      `Stats live indisponibles pour ${joueurId}, fallback sur cache`,
-    );
-    // fallback : stats en cache, peut-être pas à jour
+    if (!estErreurTransitoire(e)) throw e; // validation, auth, not-found, erreur inconnue
+    console.warn(`Stats live temporairement indisponibles pour ${joueurId}, fallback sur cache`);
     const cached = await cache.get(`stats:${joueurId}`);
-    if (cached) return cached;
-    // fallback niveau 2 : stats vides mais structurées
-    return { joueurId, buts: 0, passes: 0, statut: "données_indisponibles" };
+    if (cached) return { ...cached, source: "cache", potentiellementObsolete: true };
+    return { joueurId, buts: null, passes: null, statut: "données_indisponibles" };
   }
 }
 ```
@@ -112,27 +116,24 @@ API live --> ok --> stats temps réel
           --> fail --> données vides structurées
 ```
 
-Exemple Breaking Bad : Walter ne peut pas obtenir le methylamine du fournisseur habituel. Fallback : autre fournisseur. Fallback niveau 2 : synthèse alternative. Il ne s'arrête pas. Il s'adapte.
+Exemple Breaking Bad : Walter ne peut pas vérifier la disponibilité de la methylamine chez le fournisseur habituel. Fallback : consulter un autre fournisseur. Cette illustration porte sur une **lecture de disponibilité**, pas sur l'envoi de commandes. Une commande qui a expiré côté client peut avoir été acceptée côté fournisseur : ne la rejoue pas auprès d'un autre fournisseur sans clé d'idempotence, vérification du statut et procédure de rapprochement.
 
 ```js
-async function obtenirSupplies(ingredient) {
+async function obtenirDisponibilite(ingredient) {
   const fournisseurs = ["gus_fring", "combo", "saul_contact"];
 
   for (const fournisseur of fournisseurs) {
     try {
-      const stock = await commander(fournisseur, ingredient);
-      console.log(`Stock obtenu via ${fournisseur}`);
+      const stock = await consulterDisponibilite(fournisseur, ingredient);
+      console.log(`Disponibilité obtenue via ${fournisseur}`);
       return stock;
     } catch (e) {
-      console.warn(
-        `${fournisseur} indisponible : ${e.message}, tentative suivante`,
-      );
+      if (!estErreurTransitoire(e)) throw e;
+      console.warn(`${fournisseur} temporairement indisponible : ${e.message}, fournisseur suivant`);
     }
   }
 
-  throw new Error(
-    `Impossible d'obtenir ${ingredient} : tous les fournisseurs KO`,
-  );
+  throw new Error(`Disponibilité impossible à vérifier pour ${ingredient}`);
 }
 ```
 
@@ -150,35 +151,43 @@ Quand PAS : erreurs de validation (réessayer avec les mêmes données invalides
 
 ```js
 async function retryAsync(fn, options = {}) {
+  if (typeof fn !== "function") throw new TypeError("fn doit être une fonction");
   const {
-    maxTentatives = 3,
-    delai = 1000, // ms entre les tentatives
-    backoff = 2, // multiplicateur exponentiel
-    shouldRetry = () => true,
+    maxTentatives = 3, // nombre total d'appels, première tentative comprise
+    delai = 1000,
+    backoff = 2,
+    shouldRetry = () => false, // aucun retry sans décision explicite
   } = options;
 
-  let tentative = 0;
-  let delaiCourant = delai;
+  if (!Number.isInteger(maxTentatives) || maxTentatives < 1) {
+    throw new RangeError("maxTentatives doit être un entier >= 1");
+  }
+  if (!Number.isFinite(delai) || delai < 0 || !Number.isFinite(backoff) || backoff < 1) {
+    throw new RangeError("delai doit être >= 0 et backoff doit être >= 1");
+  }
+  if (typeof shouldRetry !== "function") {
+    throw new TypeError("shouldRetry doit être une fonction");
+  }
 
-  while (tentative < maxTentatives) {
+  let delaiCourant = delai;
+  for (let tentative = 1; tentative <= maxTentatives; tentative++) {
     try {
       return await fn();
     } catch (e) {
-      tentative++;
-
-      if (tentative >= maxTentatives || !shouldRetry(e)) {
-        throw e; // plus de tentatives ou erreur non retryable
+      if (tentative === maxTentatives) throw e;
+      const decision = shouldRetry(e);
+      if (typeof decision !== "boolean") {
+        throw new TypeError("shouldRetry doit retourner un booléen de façon synchrone");
       }
-
-      console.warn(
-        `Tentative ${tentative}/${maxTentatives} échouée : ${e.message}`,
-      );
-      console.warn(`Prochain essai dans ${delaiCourant}ms`);
-
-      await sleep(delaiCourant);
-      delaiCourant *= backoff; // backoff exponentiel : 1s, 2s, 4s
+      if (!decision) throw e;
+      const plafond = Math.min(30_000, delaiCourant); // plafonne aussi la première attente
+      const attente = Math.random() * plafond; // full jitter : délai tiré dans [0, plafond]
+      console.warn(`Tentative ${tentative}/${maxTentatives} échouée : ${e.message}`);
+      await sleep(attente);
+      delaiCourant = Math.min(30_000, delaiCourant * backoff);
     }
   }
+  throw new Error("État inaccessible : la boucle doit toujours retourner ou lever");
 }
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -191,15 +200,17 @@ const stats = await retryAsync(() => fetchStatsLive(joueurId), {
   maxTentatives: 3,
   delai: 500,
   backoff: 2,
-  shouldRetry: (e) => e.name === "NetworkError" || e.code === 429,
-  // retry seulement sur erreurs réseau ou rate limit
-  // pas sur ValidationError ou NotFoundError
+  shouldRetry: estErreurTransitoire,
+  // Politique illustrative : adapte les codes au client HTTP et au contrat du fournisseur.
+  // ValidationError, erreurs d'authentification et NotFoundError ne sont pas réessayées.
+  // Cette lecture est rejouable ; n'applique pas ce retry à un effet métier non idempotent
+  // sans clé d'idempotence ou protocole de déduplication.
 });
 ```
 
 ```
-tentative 1 --> fail --> attendre 500ms
-tentative 2 --> fail --> attendre 1000ms
+tentative 1 --> fail --> attendre un délai tiré dans [0, 500ms]
+tentative 2 --> fail --> attendre un délai tiré dans [0, 1000ms]
 tentative 3 --> fail --> throw (propagé à l'appelant)
 ```
 
@@ -229,14 +240,12 @@ async function chargerDonneesMatch(matchId) {
     donneesLive = await retryAsync(() => fetchMatchLive(matchId), {
       maxTentatives: 3,
       delai: 1000,
-      shouldRetry: (e) => e.name === "NetworkError",
+      shouldRetry: estErreurTransitoire,
     });
     return donneesLive;
   } catch (e) {
-    if (e instanceof ValidationError || e instanceof NotFoundError) {
-      throw e; // fail-fast : ces erreurs ne bénéficient pas du fallback
-    }
-    console.warn(`API live KO après 3 tentatives, fallback cache`);
+    if (!estErreurTransitoire(e)) throw e; // seules les pannes transitoires ouvrent le fallback
+    console.warn(`API live temporairement indisponible après retry, fallback cache`);
   }
 
   // fallback sur le cache
@@ -266,7 +275,7 @@ NotFoundError     --> fail-fast (pas de retry, pas de fallback)
 <!-- AF-DIAGRAM:circuit_breaker -->
 
 ```text
-           failure rate élevé
+           seuil d’échecs consécutifs atteint
 [ CLOSED ] ─────────────────► [ OPEN ]
      ▲                            │
      │ succès test                │ timeout
@@ -276,48 +285,79 @@ NotFoundError     --> fail-fast (pas de retry, pas de fallback)
 
 Le circuit breaker protège une dépendance en passant de trafic normal à ouvert, puis en testant prudemment la récupération.
 
-Pattern avancé : si un service externe échoue trop souvent, arrête de l'appeler. Donne-lui le temps de se rétablir.
+Pattern avancé : si un service externe échoue trop souvent, arrête de l'appeler. Donne-lui le temps de se rétablir. Cette démonstration compte des échecs consécutifs, autorise une seule sonde en état semi-ouvert et ignore les résultats d'appels devenus anciens après un changement d'état. Elle ne fournit pas une fenêtre glissante, des métriques distribuées, ni un état partagé entre plusieurs instances : ces garanties demandent une conception et des tests propres au système.
 
 ```js
+const { performance } = require("node:perf_hooks"); // horloge monotone pour mesurer le délai local
+
 class CircuitBreaker {
   constructor(options = {}) {
-    this.seuil = options.seuil || 5; // nb d'échecs avant ouverture
-    this.timeout = options.timeout || 30000; // ms avant retentative
+    this.seuil = options.seuil ?? 5; // nombre d'échecs consécutifs observés
+    this.timeout = options.timeout ?? 30_000; // délai avant une sonde, en ms
+    if (!Number.isInteger(this.seuil) || this.seuil < 1) {
+      throw new RangeError("seuil doit être un entier >= 1");
+    }
+    if (!Number.isFinite(this.timeout) || this.timeout < 0) {
+      throw new RangeError("timeout doit être un nombre fini >= 0");
+    }
     this.echecs = 0;
-    this.etat = "FERMÉ"; // FERMÉ = normal, OUVERT = bloqué, SEMI-OUVERT = test
+    this.etat = "FERMÉ"; // FERMÉ = normal, OUVERT = bloqué, SEMI-OUVERT = sonde
     this.prochainTest = null;
+    this.sondeEnCours = false;
+    this.generation = 0; // ignore le résultat tardif d'un appel lancé avant un changement d'état
   }
 
   async executer(fn) {
+    if (typeof fn !== "function") throw new TypeError("fn doit être une fonction");
+
     if (this.etat === "OUVERT") {
-      if (Date.now() < this.prochainTest) {
-        throw new Error(
-          "Circuit ouvert : service indisponible, pas de tentative",
-        );
+      if (performance.now() < this.prochainTest) {
+        throw new Error("Circuit ouvert : service indisponible, pas de tentative");
       }
       this.etat = "SEMI-OUVERT";
+      this.generation++;
     }
 
+    let estSonde = false;
+    if (this.etat === "SEMI-OUVERT") {
+      // Une seule sonde concurrente : les autres appels sont court-circuités.
+      if (this.sondeEnCours) {
+        throw new Error("Circuit semi-ouvert : une sonde est déjà en cours");
+      }
+      this.sondeEnCours = true;
+      estSonde = true;
+    }
+
+    const generationAuDepart = this.generation;
     try {
-      const result = await fn();
-      this.onSucces();
-      return result;
+      const resultat = await fn();
+      this.onSucces(generationAuDepart);
+      return resultat;
     } catch (e) {
-      this.onEchec();
+      this.onEchec(generationAuDepart);
       throw e;
+    } finally {
+      if (estSonde) this.sondeEnCours = false;
     }
   }
 
-  onSucces() {
+  onSucces(generationAuDepart) {
+    if (generationAuDepart !== this.generation) return; // résultat devenu ancien
     this.echecs = 0;
-    this.etat = "FERMÉ";
+    if (this.etat !== "FERMÉ") {
+      this.etat = "FERMÉ";
+      this.prochainTest = null;
+      this.generation++;
+    }
   }
 
-  onEchec() {
+  onEchec(generationAuDepart) {
+    if (generationAuDepart !== this.generation) return; // ne rouvre pas sur un résultat périmé
     this.echecs++;
-    if (this.echecs >= this.seuil) {
+    if (this.etat === "SEMI-OUVERT" || this.echecs >= this.seuil) {
       this.etat = "OUVERT";
-      this.prochainTest = Date.now() + this.timeout;
+      this.prochainTest = performance.now() + this.timeout;
+      this.generation++;
       console.error(
         `Circuit OUVERT après ${this.echecs} échecs : pause de ${this.timeout}ms`,
       );
@@ -342,7 +382,7 @@ SEMI-OUVERT : une tentative test
  --> échec --> OUVERT (reset timer)
 ```
 
-Exemple Walking Dead : le camp a un système radio pour communiquer avec les autres survivants. Si la radio tombe 3 fois de suite, on arrête d'essayer et on économise les piles (ressource critique). Après 30 minutes, on retente.
+Exemple Walking Dead : le camp a un système radio pour communiquer avec les autres survivants. Si la radio tombe 3 fois de suite, on arrête d'essayer et on économise les piles (ressource critique). Dans la configuration du code (15 secondes), une seule sonde est autorisée après ce délai ; en production, le délai dépend du service et de sa politique de reprise.
 
 ---
 

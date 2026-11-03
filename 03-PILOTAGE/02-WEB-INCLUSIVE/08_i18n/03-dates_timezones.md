@@ -18,9 +18,22 @@ Temps de lecture ~8 min
 
 Tu stockes une date. Tu l'affiches. Ça marche sur ton écran, à Antananarivo, à 14h. Sauf que l'utilisateur à Tokyo voit une heure différente, et celui à New York encore une autre. Les fuseaux horaires (timezones) ne sont pas un détail cosmétique : c'est la source numéro un de bugs silencieux dans les apps qui touchent plusieurs pays. Walter White synchronise ses livraisons à la minute près : toi aussi, tu dois savoir exactement QUELLE heure tu manipules.
 
-## 1) UTC : LA SEULE VÉRITÉ QUI NE BOUGE JAMAIS
+## 1) UTC : LA RÉFÉRENCE DES INSTANTS, PAS DE TOUTES LES DATES
 
-UTC (Temps Universel Coordonné) c'est l'heure de référence mondiale, sans fuseau, sans changement d'heure été/hiver. La règle d'or : stocke TOUJOURS en UTC, affiche dans le fuseau local seulement à l'affichage final.
+UTC (Temps Universel Coordonné) est la référence non ambiguë pour représenter un **instant précis** : une création, un paiement, un événement déjà survenu ou un rendez-vous confirmé à un moment donné. Pour ces instants, persiste une valeur UTC (par exemple ISO 8601 avec suffixe `Z`) et formate-la dans le fuseau voulu au moment de l'affichage.
+
+Mais une valeur de calendrier n'est pas toujours un instant. Avant de choisir son stockage, demande-toi ce qu'elle signifie :
+
+| Sens métier            | Exemple                                     | Représentation adaptée                                                               |
+| ---------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Instant précis         | Une demande a été créée à un moment donné   | Instant UTC, par exemple `2026-11-03T11:30:00.000Z`                                  |
+| Date civile sans heure | Date de visite, date limite ou jour férié   | Date seule `YYYY-MM-DD`, sans conversion de fuseau                                   |
+| Heure locale planifiée | Visite prévue à 09:00 dans une ville donnée | Date + heure locale + fuseau IANA ; résoudre ensuite l'instant selon la règle métier |
+| Durée                  | Intervention prévue pendant 90 minutes      | Durée explicite, sans lui attribuer un fuseau                                        |
+
+Pour un rendez-vous fixé à une heure locale, conserve le fuseau IANA qui donne son sens (et la règle de résolution des heures ambiguës ou inexistantes lors d'un changement d'heure). Si le rendez-vous est confirmé comme un instant, conserve aussi cet instant UTC. Une date civile comme `2026-11-03` ne doit pas être transformée en minuit UTC puis affichée comme un instant : selon le fuseau, elle pourrait devenir la veille ou le lendemain.
+
+La règle utile n'est donc pas « tout stocker en UTC », mais **ne jamais confondre un instant, une date civile, une heure locale et une durée**.
 
 ```js
 // Ça casse (mais fun) : stocker l'heure locale du serveur, sans contexte
@@ -148,16 +161,44 @@ Affiche une même heure de rendez-vous UTC dans 3 fuseaux différents (Tokyo, Pa
 
 ## RÉSUMÉ
 
-Stocke toujours les dates en UTC, jamais dans le fuseau local du serveur ou du client. N'écris jamais l'arithmétique des dates à la main (+86400000 ms pour "un jour") : le changement d'heure casse ce calcul silencieusement. Affiche dans le fuseau de l'utilisateur uniquement au moment final, avec `Intl.DateTimeFormat` ou une lib comme Luxon. Et pour toute logique sensible, ne fais jamais confiance à l'horloge locale du client.
+Stocke les instants précis dans une représentation UTC ; conserve les dates civiles comme `YYYY-MM-DD` et les heures locales planifiées avec leur fuseau IANA. Ne transforme pas une date sans heure en instant artificiel. Pour « demain à la même heure », raisonne avec le calendrier et le fuseau, pas avec une addition brute de 86 400 000 ms. Affiche les instants avec une locale et un fuseau explicites via `Intl.DateTimeFormat` ou une bibliothèque adaptée. Pour toute logique sensible, ne fais pas confiance à l'horloge locale du client.
 
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
-
-<!-- AF-P0-2026-10-30: missing_transfer -->
 
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Dates et timezones : le cauchemar et comment le résoudre » à une personne qui utilise clavier, contraste renforcé ou lecteur d’écran. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: accessibility -->
+
+## Repères de décision
+
+- **Pourquoi :** L'accessibilité permet à davantage de personnes d'utiliser le produit et rend souvent l'interface plus robuste pour tous, y compris sur mobile et au clavier.
+- **Quand l’utiliser / quand l’éviter :** Teste les parcours critiques avec clavier, lecteur d'écran, contraste et zoom. N'attends pas la fin du design pour corriger la structure sémantique.
+- **Limites :** Un score Lighthouse ou une vérification automatique ne couvre pas tous les usages. Il faut aussi tester manuellement avec plusieurs modes d'interaction et, quand possible, avec des personnes concernées.
+
+## Mécanisme : la version sans magie
+
+Utilise HTML sémantique, labels, focus visible, ordre logique, messages d'état annoncés et alternatives aux interactions pointer-only.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Dates et timezones : le cauchemar et comment le résoudre** se rattache à ce cas concret : Le demandeur Kintana peut utiliser un petit écran, un clavier externe, le zoom ou un lecteur d'écran. Le formulaire doit rester compréhensible dans tous ces cas.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Parcours de demande accessible
+
+> **Arc One Piece / Grand Line :** un parcours n'est pas réussi si seule une partie de l'équipage peut monter à bord. L'accessibilité enlève les obstacles inutiles.
+
+**Mission liée à « Dates et timezones : le cauchemar et comment le résoudre » :** Audite le flux de création d'une demande Kintana. Corrige les labels, focus, erreurs associées, annonces de statut et navigation clavier ; ajoute des tests automatisés plus une vérification manuelle documentée.
+
+**Livrable :** audit WCAG ciblé, patch de composants, matrice clavier/lecteur d'écran et résultats reproductibles.
+
+**Critères d’acceptation :** aucun contrôle sans nom accessible ; focus visible et séquentiel ; erreurs reliées aux champs ; les états ne reposent pas seulement sur la couleur ; limites des outils automatiques reconnues.
+
+**Transfert obligatoire :** Teste le même parcours à 200 % de zoom et avec un lecteur d'écran. Identifie les défauts non détectés par l'audit automatique.

@@ -1,43 +1,33 @@
 ---
 stability: stable
 acte: verification
+assessment_role: instructional_checkpoint
 ---
 
-# Vérification : 11_EXO_VERIFICATION.md
+**SCÈNE CRAZYDEVS : atelier de Konoha :** observe les contraintes avant de choisir une technique.
 
-> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+# EXO : nombres flottants : égalité et tolérance
 
-# EXO IA MENTEUSE : module 07_math_basics
+Temps indicatif : 12 min.
 
-Temps : ~10 min. Format court, seul ou en binôme.
-
-## Snippet IA plausible
-
-L'assistant te propose ce code, l'air confiant :
+Une IA propose :
 
 ```js
-const rand = (n) => Math.floor(Math.random() * n) + 1; // '1..n uniforme'
+const total = 0.1 + 0.2;
+if (total === 0.3) {
+  console.log("OK");
+} else {
+  console.log("ÉCHEC");
+}
 ```
 
-Il ajoute : _"C'est propre, testé, prod-ready."_
+Elle affirme que JavaScript calcule mal l’addition.
 
-## Ta question unique
+**Mission**
 
-**Où est la faille ?**
+1. Prédis le résultat et explique la représentation binaire approchée des nombres décimaux.
+2. Remplace le test par une comparaison avec une tolérance adaptée au domaine.
+3. Explique pourquoi il n’existe pas une tolérance universelle : unités, échelle et erreur acceptable comptent.
+4. Donne un exemple où arrondir trop tôt serait dangereux.
 
-Prends 5 minutes. Écris ta réponse **sans** relancer l'IA. Nomme :
-
-1. Le comportement observable qui trompe (pourquoi ça a l'air correct).
-2. Le vrai problème (technique, sécurité, complexité, ou sémantique).
-3. La correction minimale que **toi** tu apporterais.
-
-## Piste de correction (à ne lire qu'après)
-
-> Math.random() n'est pas cryptographiquement sûr, et le +1 introduit un biais si n est petit ? Non : pas de biais ici. Où est la vraie faille (uniformité vs sécurité) ?
-
-## Pourquoi cet exo
-
-En 2026, l'IA génère du code **plausible** plus vite qu'elle ne le vérifie.
-Le métier n'est plus d'écrire ; c'est de **repérer la faille** dans une
-suggestion qui a l'air correcte. Ce drill de 10 min, une fois par module,
-te transforme de consommateur en pilote.
+**Critère** : ne présente pas les nombres flottants comme « faux » ; explique qu’ils représentent une approximation finie et que le code doit choisir une stratégie de comparaison adaptée.

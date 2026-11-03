@@ -3,19 +3,20 @@ stability: evolutif
 acte: pilotage
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/07-CLOUD-FOUNDATIONS/01-00-why-cloud-foundations.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 03-PILOTAGE/07-CLOUD-FOUNDATIONS/01-00-why-cloud-foundations.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # 07 : CLOUD FOUNDATIONS : CHIFFRER AVANT DE CHOISIR
 
-> **État pédagogique : 30 octobre 2026 : preuves documentaires complétées.** Les ajouts ciblés couvrent les exemples, pratiques, vérifications et transferts requis pour ce module. Une revue technique indépendante et une validation terrain restent distinctes ; voir [48 : External Review Gate](../../06-ANNEXES-TRANSVERSES/48-EXTERNAL-REVIEW-GATE.md) et [49 : Terrain Maturity Gate](../../06-ANNEXES-TRANSVERSES/49-TERRAIN-MATURITY-GATE.md).
-
-> Palier 3 : Pilotage. Durée estimée : 9 h 50.
+> Palier 3 : Pilotage. Durée estimée : 10 h 20, hors laboratoire de portabilité facultatif.
 > Frontière : `06-FIABILITE-SLO` promet un niveau de service. Ce module en **paie la facture**.
-> Les deux fichiers se contredisent toujours quelque part : c'est voulu.
+> Les exemples du dépôt sont explicitement étiquetés `SIMULATION` ou `DONNÉE RÉELLE`. Une différence entre deux ressources doit être expliquée par ses hypothèses et ses sources ; aucune contradiction cachée n'est présentée comme un exercice.
 
 ## Ce que tu sauras faire
 
@@ -26,18 +27,18 @@ terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 
 ## Parcours
 
-| Fichier                                                                    | Objet                                     | Durée          |
-| -------------------------------------------------------------------------- | ----------------------------------------- | -------------- |
-| `01-00-why-cloud-foundations.md`                                           | pourquoi                                  | 45 min         |
-| `02-modeles_cout.md`                                                       | modèles de coût et unités facturées       | 45 min         |
-| `03-rayon_impact_zones.md`                                                 | régions, zones, rayon d'impact            | 45 min         |
-| `04-choisir_fournisseur.md`                                                | grille de choix et critère de sortie      | 45 min         |
-| `99-PORTAGE-MENTAL.md`                                                     | portage, preuve de transférabilité        | 45 min         |
-| [`06-reference-portability/README.md`](06-reference-portability/README.md) | laboratoire de portabilité AWS/GCP        | selon le jalon |
-| `05-releve_tarifaire_reel.md`                                              | relevé personnel daté (anti-copie)        | 45 min         |
-| `07-RELEVE-REFERENCE-2026.md`                                              | relevé de référence, à ne jamais recopier | 20 min         |
-| `90-grimoire.md`                                                           | lignes à retenir                          | 30 min         |
-| `95-challenge.md` / `96-boss-fight.md`                                     | mise en pratique et passage               | 4 h 30         |
+| Fichier                                                                    | Objet                                      | Durée          |
+| -------------------------------------------------------------------------- | ------------------------------------------ | -------------- |
+| `01-00-why-cloud-foundations.md`                                           | pourquoi                                   | 45 min         |
+| `02-modeles_cout.md`                                                       | modèles de coût et unités facturées        | 45 min         |
+| `03-rayon_impact_zones.md`                                                 | régions, zones, rayon d'impact             | 45 min         |
+| `04-choisir_fournisseur.md`                                                | grille de choix et critère de sortie       | 45 min         |
+| `99-PORTAGE-MENTAL.md`                                                     | portage, preuve de transférabilité         | 45 min         |
+| [`06-reference-portability/README.md`](06-reference-portability/README.md) | laboratoire de portabilité AWS/GCP         | selon le jalon |
+| `05-releve_tarifaire_reel.md`                                              | relevé personnel daté (anti-copie)         | 75 min         |
+| `07-RELEVE-REFERENCE-2026.md`                                              | simulation de budget, jamais un tarif réel | 20 min         |
+| `90-grimoire.md`                                                           | lignes à retenir                           | 30 min         |
+| `95-challenge.md` / `96-boss-fight.md`                                     | mise en pratique et passage                | 4 h 30         |
 
 ## Livrable
 
@@ -67,7 +68,7 @@ terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 - [07 : Relevé tarifaire réel, obligatoire et contredisible](05-releve_tarifaire_reel.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
 - [06A-BUDGET-CLOUD.md](06A-BUDGET-CLOUD.md)
-- [Relevé de référence : ordres de grandeur 2026](07-RELEVE-REFERENCE-2026.md)
+- [Simulation de budget cloud (données fictives)](07-RELEVE-REFERENCE-2026.md)
 - [BOSS FIGHT : MODULE 07 : LA FACTURE A TRIPLÉ CE MOIS-CI](96-boss-fight.md)
 - [95-challenge.md](95-challenge.md)
 - [Grimoire : cloud foundations](90-grimoire.md)
@@ -78,7 +79,9 @@ terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 
 ## Référence d’architecture intégrée
 
-- `08-ARCHITECTURES-RESEAUX-IDENTITES-REPRISE.md` : réseau, identité, déploiement, coût, RPO/RTO et reprise testée.
+Pour la route spécifique du projet **07 : Coffre Imprenable**, étudie d’abord la [Leçon-pont 12 : Fondations réseau](../../05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/12-fondations-reseau-dns-tcp-tls.md) : elle enseigne IP, ports, DNS, TCP, TLS et HTTP depuis les bases. Ce lien ne crée pas de prérequis Portfolio pour tous les apprenants Cloud.
+
+- `08-ARCHITECTURES-RESEAUX-IDENTITES-REPRISE.md` : réseau, identité, déploiement, coût, RPO/RTO et reprise testée. Cette architecture applique les notions réseau ; elle ne remplace pas leur cours introductif.
 
 ## Préparer l'environnement
 
@@ -92,4 +95,13 @@ Le sommaire ci-dessus reste le parcours recommandé. Les index ci-dessous renden
 
 - [Architectures cloud : réseau, identité, déploiement, coût et reprise](08-ARCHITECTURES-RESEAUX-IDENTITES-REPRISE.md)
 
-## Standard de complétude et audit
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.
+
+## Ressources pratiques associées
+
+- [Atelier de consolidation](ATELIER-CONSOLIDATION.md) : réutiliser les notions du module dans un cas intégré.
+- [Corrigé de référence de l'atelier](corriges/ATELIER-CONSOLIDATION-CORRIGE.md) : à consulter après une tentative autonome.

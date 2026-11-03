@@ -245,7 +245,7 @@ Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigenc
 - Validation d'upload/stream (OWASP A03) : valider le type et la taille des flux entrants.
 - Rate limiting (OWASP A04) : borner les requêtes par client pour protéger le stream.
 
-Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `97-CHECKPOINT-PACK` de ce projet contient un test de sécurité qui doit passer.
+Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Ajoute dans le dossier `tests/` de ce projet un test ciblé pour au moins une des menaces retenues. Documente dans le README la commande exacte qui exécute ce test. Aucun pack de correction séparé n’est fourni dans ce projet.
 
 ---
 

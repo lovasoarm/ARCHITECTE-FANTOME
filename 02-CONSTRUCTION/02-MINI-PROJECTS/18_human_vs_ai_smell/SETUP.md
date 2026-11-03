@@ -1,4 +1,4 @@
-# SETUP : 18 human vs ai smell
+# SETUP : deux implémentations, un contrat
 
 Ce `SETUP.md` est le point de passage obligatoire avant la pratique, l’exercice ou le livrable situé dans ce dossier.
 

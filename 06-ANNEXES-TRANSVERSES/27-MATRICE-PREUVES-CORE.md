@@ -24,6 +24,7 @@ Le protocole commun de traçabilité des preuves, des commandes et de leur port�
 ## Gate de compétence
 
 Une famille ne ferme pas sur une bonne réponse écrite seule.
+Un artefact d’exercice ou un résultat de simulation peut démontrer une capacité dans ce contexte précis ; il ne prouve pas une mise en production, un impact organisationnel ni un niveau Staff/Principal. Pour toute revendication, conserve le niveau T0–T4 et la provenance décrits dans le registre de preuves.
 
 Il faut pouvoir montrer :
 

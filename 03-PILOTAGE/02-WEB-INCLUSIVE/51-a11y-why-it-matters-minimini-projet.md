@@ -73,3 +73,23 @@ Tu as une feuille de route d'accessibilité issue de ton propre site. Commit `do
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+## Livraison produit : Kintana : identifier et prioriser les obstacles d'accès
+
+> **Fil rouge :** Kintana garde le même parcours de demande. Cette mission ne cherche pas encore à corriger toutes les techniques d'accessibilité ; elle vérifie que tu sais identifier qui est bloqué, à quel moment et avec quelle conséquence.
+
+Le micro-exercice reste la mise en jambe. La livraison évaluée améliore le même produit [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), sans exiger une refonte complète.
+
+**Mission liée à « Pourquoi l’accessibilité compte » :** examine trois tâches métier du demandeur : trouver un service, envoyer une demande et retrouver son statut. Pour chacune, analyse au moins un mode d'accès différent parmi clavier seul, lecteur d'écran, faible perception du contraste/zoom ou compréhension des libellés et messages. Observe le parcours réel dans ton environnement ou inspecte le code et le rendu ; ne prétends pas représenter l'expérience de toutes les personnes concernées par une simple simulation.
+
+**Livrable :** `docs/a11y-kintana.md` contenant les tâches, le mode d'accès étudié, l'étape précise, l'obstacle constaté, la conséquence utilisateur, une preuve (capture, séquence de touches, annonce entendue ou extrait pertinent), la gravité argumentée, la correction proposée et la limite de l'observation.
+
+**Gate : la preuve porte sur l'impact et la priorisation :**
+
+- le registre contient au moins trois constats vérifiables (obstacles constatés ou contrôles passés) couvrant au moins deux modes d'accès différents ; si aucun défaut n'est observé, tu le notes comme tel au lieu d'en inventer un ;
+- chaque constat distingue le fait observé de l'hypothèse sur l'impact ;
+- les niveaux `bloquant`, `important` et `amélioration` sont définis selon la tâche empêchée ou dégradée, pas selon la facilité de correction ;
+- si un obstacle est confirmé, tu choisis le plus grave, tu le corriges avec un changement limité, puis tu rejoues exactement la tâche pour comparer avant/après ; si aucun obstacle n'est confirmé, tu justifies ce résultat et définis le test supplémentaire qui réduirait le plus l'incertitude ;
+- les éléments non testés sont explicitement marqués `NON TESTÉ` ; une inspection personnelle n'est pas présentée comme un test utilisateur ni comme une validation juridique.
+
+**Contre-épreuve :** donne un exemple d'interface visuellement réussie qui échoue pour un autre mode d'accès, puis explique pourquoi le seul score visuel ou fonctionnel ne suffit pas. Étiquette les résultats locaux `LAB` ; ne revendique `PRODUCTION` qu'après observation réelle dans cet environnement.

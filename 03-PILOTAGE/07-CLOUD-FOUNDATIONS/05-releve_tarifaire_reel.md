@@ -1,18 +1,26 @@
 ---
 perishability_id: PER-0059
 
-stability: perissable
+stability: "perissable"
 acte: produire
 cognitive_level: L3
 perturbation_modes: [changement_contexte, regression]
 anti_recipe_key: changement_contexte+regression
 transfer_distance: high
 assessment_role: instructional_checkpoint
-freshness_registry_id: PER-0059
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-01-28
-review_status: a_verifier_date_absente
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: "https://calculator.aws/"
+source_type: "primary"
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "AWS Pricing Calculator : outil d’estimation. Les hypothèses tarifaires officielles précisent que le résultat n’est pas une offre/devis et que la facture réelle dépend de l’usage, de la région, des services et des conditions applicables. Aucun tarif fixe n’est garanti par cette référence."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "AWS_CALCULATOR_ESTIMATE_LIMITS_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
 
 > **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.
@@ -21,148 +29,117 @@ review_status: a_verifier_date_absente
 
 Temps de lecture ~5 min
 
-Temps de travail 60 min chrono, exercice **obligatoire** du module.
+Temps de travail indicatif : **75 min**. Prévois davantage si les pages tarifaires demandent une configuration ou un compte.
 
-Tout ce que ce module t'a appris sur la forme d'un budget cloud ne vaut rien tant que tu n'as
-pas un seul prix que tu puisses défendre devant quelqu'un qui te contredit. Un Staff Engineer
-n'est pas jugé sur le tableau : il est jugé sur le nombre qu'il avance, la source qu'il cite,
-et la date de cette source. « Environ 7 € » sans URL ni date est une opinion déguisée en
-chiffre.
+Un budget cloud devient défendable quand chaque prix est rattaché à un service précis, une région, une unité, des conditions et une date. « Environ 7 € » sans ces éléments n'est pas une donnée exploitable.
+
+> **Limite de l’estimation tarifaire :** AWS Pricing Calculator fournit une estimation fondée sur les hypothèses saisies ; ce n’est ni un devis contractuel ni une facture garantie. Le coût réel varie selon la région, les services, la consommation, les options et les conditions de facturation. Date la simulation et conserve ses hypothèses.
 
 ## Ce que tu produis
 
-Un fichier `RELEVE-TARIFAIRE.md` à la racine de ton fil rouge, contenant les trois sections
-ci-dessous, entièrement remplies avec **tes** relevés. Il devient la source de tout montant
-en euros que tu écriras dans le reste du parcours, y compris dans ton `06A-BUDGET-CLOUD.md`.
+Un fichier `RELEVE-TARIFAIRE.md` à la racine de ton fil rouge, avec les trois sections ci-dessous. Il devient la source de tout montant réel que tu écriras ensuite dans ton `06A-BUDGET-CLOUD.md`.
 
-## Section 1 : le relevé, trois fournisseurs nommés, quatre lignes
+## Section 1 : relever trois fournisseurs et quatre postes
 
-Tu ouvres les pages tarifaires publiques de **trois fournisseurs que tu nommes** (un
-hyperscaler généraliste, un fournisseur européen, un fournisseur à tarification simple : le
-choix t'appartient, la diversité est imposée). Pour chacun, tu relèves quatre lignes et
-quatre seulement.
+Choisis trois fournisseurs : un hyperscaler généraliste, un fournisseur européen et un fournisseur à tarification simple. Pour chaque fournisseur, relève les quatre postes suivants, si le service existe. Si une offre n'a pas d'équivalent suffisamment comparable, écris `non comparable` et explique pourquoi : ne fabrique pas de ligne équivalente.
 
-| Ligne          | Unité imposée                            | Ce que tu notes |
-| -------------- | ---------------------------------------- | --------------- |
-| Calcul         | 1 vCPU + 2 Go de RAM, 730 h/mois         | prix mensuel    |
-| Base managée   | instance la plus petite, 20 Go de disque | prix mensuel    |
-| Stockage objet | 100 Go stockés, 1 mois                   | prix mensuel    |
-| Egress         | 1 Go sortant vers Internet               | prix au Go      |
+| Poste          | Configuration de comparaison                                                                          | Unité à relever                                                      |
+| -------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Calcul         | 1 vCPU + 2 Go de RAM, fonctionnement 730 h/mois ; variante la plus proche disponible                  | prix mensuel ou calcul détaillé converti en prix mensuel             |
+| Base managée   | plus petite instance de base relationnelle, avec 20 Go de stockage si l'offre le sépare               | prix mensuel, en séparant calcul, disque et sauvegarde si nécessaire |
+| Stockage objet | 100 Go conservés pendant un mois ; préciser classe et nombre de requêtes si facturées                 | prix mensuel                                                         |
+| Egress         | 1 Go sortant vers Internet depuis la région retenue ; préciser destination et éventuel palier gratuit | prix par Go et frais fixes éventuels                                 |
 
-Le tableau à remplir, une ligne par couple fournisseur/ligne, douze lignes au total :
+Le tableau contient normalement douze lignes (trois fournisseurs × quatre postes). Ce nombre est une cible de comparaison, pas une obligation de remplir une case avec un tarif inexistant. Une ligne non comparable, avec sa raison, vaut mieux qu'un chiffre inventé.
 
 ```text
-| Fournisseur | Ligne | Unité | Prix relevé | Devise | URL complète | Date du relevé |
-| --- | --- | --- | --- | --- | --- | --- |
-| <nom réel>  | Calcul | 1 vCPU / 2 Go / 730 h | ... | EUR | https://... | 2026-08-.. |
+| Fournisseur | Poste/service exact | Région | SKU/configuration et conditions | Quantité | Unité facturée | Prix | Devise | URL complète | Date consultée | Limites / éléments exclus |
+|---|---|---|---|---:|---|---:|---|---|---|---|
 ```
 
-Trois règles de recevabilité, non négociables :
+Pour chaque tarif, note au minimum : fournisseur, nom du service, région, SKU ou configuration, prix, devise, unité exacte, conditions (à la demande, engagement, réservation, niveau de service, frais minimums), quantité utilisée pour la conversion, URL qui mène à l'information tarifaire et date réelle de consultation. Précise si les taxes, crédits, remises, frais d'API, stockage, sauvegardes ou transferts ne sont pas inclus.
 
-1. **URL complète**, jusqu'à la page qui porte le nombre : pas la page d'accueil du
-   fournisseur, pas « pages tarifaires publiques ».
-2. **Date du jour du relevé**, au format `AAAA-MM-JJ`, écrite à la main, pas déduite.
-3. **Devise et unité explicites** : un prix à l'heure et un prix au mois ne se comparent pas
-   sans conversion écrite.
+**Règles de recevabilité :**
 
-**Repli hors ligne, si et seulement si tu ne peux pas relever toi-même** : le dépôt fournit
-12 lignes réellement sourcées (fournisseur, poste, prix, devise, unité, date, URL complète) dans
-[07-RELEVE-REFERENCE-2026.md](07-RELEVE-REFERENCE-2026.md). Elles servent de garde-fou d'ordre de
-grandeur, jamais de réponse : un montant recopié de là sans avoir ouvert l'URL ne se défend pas
-en soutenance, et l'exercice reste non validé.
+1. L'URL doit pointer vers la page tarifaire du service concerné, et non vers la page d'accueil du fournisseur. Si le montant provient d'un calculateur, conserve aussi les paramètres du calcul.
+2. La date est celle à laquelle tu as consulté la source (`AAAA-MM-JJ`), pas la date de publication de la page ni une date supposée.
+3. La région, le SKU, la devise et l'unité doivent être visibles. Une conversion (heure → mois, GiB → GB, devise → EUR) doit afficher son taux, sa date et sa formule.
+4. Une page qui présente seulement une fourchette ou qui ne montre pas le prix de la configuration choisie ne justifie pas un montant exact.
 
-Protocole de sourçage complet :
-[../../06-ANNEXES-TRANSVERSES/17A-PROTOCOLE-DONNEE-SOURCEE.md](../../06-ANNEXES-TRANSVERSES/17A-PROTOCOLE-DONNEE-SOURCEE.md).
+**Repli hors ligne :** [07-RELEVE-REFERENCE-2026.md](07-RELEVE-REFERENCE-2026.md) fournit une simulation arithmétique fictive pour apprendre à calculer et contrôler un budget. Elle ne contient aucun tarif réel, ne remplace aucune des douze recherches et ne valide pas le relevé personnel. Indique `SIMULATION` dans ta preuve si tu utilises ce repli.
 
-## Section 2 : l'écart avec le modèle du dépôt
+Protocole de sourçage : [../../06-ANNEXES-TRANSVERSES/17A-PROTOCOLE-DONNEE-SOURCEE.md](../../06-ANNEXES-TRANSVERSES/17A-PROTOCOLE-DONNEE-SOURCEE.md).
 
-Le dépôt fournit un exemplaire rempli :
-[02-S1-BUDGET-CLOUD.md](../../06-ANNEXES-TRANSVERSES/17-PREUVES-MODELES/02-S1-BUDGET-CLOUD.md). Ses montants
-sont des ordres de grandeur relevés le 2026-08-14 : ils illustrent la forme, ils ne font pas
-autorité sur ton budget.
+## Section 2 : comparer au modèle pédagogique
 
-Pour chacune des quatre lignes, tu calcules l'écart en pourcentage entre le montant du modèle
-et **le moins cher de tes trois relevés** :
+Le dépôt fournit un exemple rempli : [02-S1-BUDGET-CLOUD.md](../../06-ANNEXES-TRANSVERSES/17-PREUVES-MODELES/02-S1-BUDGET-CLOUD.md). Ses montants sont **des paramètres de simulation**, pas les prix d'un fournisseur et pas une référence de marché.
+
+Pour chacun des quatre postes, compare ton prix calculé au montant du scénario S1. Présente l'écart comme un exercice de lecture des hypothèses, pas comme un classement réel de fournisseurs : les configurations peuvent différer et les données du modèle sont fictives.
 
 ```text
-ecart = (ton_prix - prix_du_modele) / prix_du_modele * 100
+écart (%) = (ton_prix - montant_simulé_S1) / montant_simulé_S1 × 100
 ```
+
+Si la simulation vaut zéro ou si les configurations ne sont pas comparables, n'effectue pas la division : explique la limite et donne une comparaison adaptée.
+
+| Poste | Montant simulé S1 | Ton relevé comparable | Écart % ou « non comparable » | Cause ou limite vérifiable |
+| ----- | ----------------: | --------------------: | ----------------------------: | -------------------------- |
+
+## Section 3 : expliquer les écarts
+
+Pour chaque écart, écris une phrase qui nomme une cause vérifiable : région, SKU, engagement, palier gratuit, unité de facturation, volume, nombre de requêtes, sauvegardes, rétention, transfert ou date de consultation. « C'est moins cher chez X » ne suffit pas.
+
+## Le piège de l'egress
+
+Utilise une seule convention d'unité. Dans cet exercice, `kB`, `MB` et `GB` sont décimaux : 1 kB = 1 000 octets et 1 GB = 1 000 000 000 octets.
 
 ```text
-| Ligne | Modèle S1 | Ton meilleur relevé | Écart % | Pourquoi cet écart existe (une phrase) |
-| --- | --- | --- | --- | --- |
+Hypothèse : 50 000 réponses par jour, 40 kB par réponse.
+50 000 × 40 kB = 2 000 000 kB = 2 000 MB = 2 GB/jour.
+2 GB/jour × 30 jours = 60 GB/mois.
+Coût mensuel = 60 GB × ton tarif d'egress par GB,
+              en ajoutant séparément tout frais fixe ou palier applicable.
 ```
 
-## Section 3 : une phrase par écart, et elle doit être vérifiable
-
-Pour chaque ligne, **une phrase** qui explique l'écart par une cause nommée, pas par « les
-prix ont changé ». Les causes recevables sont peu nombreuses et se reconnaissent :
-
-- une **région** différente (le même service ne coûte pas le même prix à Paris et en Iowa) ;
-- un **engagement de durée** (paiement à la demande contre réservation 1 an) ;
-- un **palier gratuit** inclus par le fournisseur, qui masque une partie du coût réel ;
-- une **unité de facturation** différente (à la seconde, à l'heure, à la requête) ;
-- une **date** : le relevé du modèle a un an de retard sur le tien.
-
-Une phrase du type « c'est moins cher chez X » n'explique rien : elle répète le tableau.
-
-## Le piège de l'egress, à ne pas rater
-
-L'egress est la seule des quatre lignes dont le prix unitaire est petit et la facture grande.
-Fais le calcul une fois, avec ton propre trafic :
-
-```text
-Hypothèse fil rouge : 50 000 réponses par jour, 40 Ko en moyenne par réponse.
-
-50 000 x 40 Ko = 2 000 000 Ko/jour = ~1,9 Go/jour
-1,9 Go x 30 = ~57 Go/mois de sortie
-
-facture egress = 57 x <ton prix au Go relevé en section 1>
-```
-
-Compare ce montant à ta ligne « calcul ». Chez plusieurs fournisseurs, la sortie coûte plus
-cher que la machine qui l'a produite : c'est le nombre qui surprend un comité, et c'est celui
-que tu dois pouvoir sortir de mémoire.
+Compare ce résultat au coût du calcul. Ne conclus pas que l'egress est toujours le poste dominant : vérifie-le avec tes volumes, ton contrat et tes seuils gratuits.
 
 ## Preuve à livrer
 
-- `RELEVE-TARIFAIRE.md` : douze lignes sourcées, URL complète et date pour chacune.
-- Le tableau d'écarts, quatre lignes, quatre pourcentages, quatre phrases de cause.
-- Le calcul d'egress mensuel de ton fil rouge, avec l'hypothèse de trafic écrite au-dessus.
+- `RELEVE-TARIFAIRE.md` : douze lignes si les douze configurations sont réellement tarifables ; sinon, les lignes disponibles et les équivalences refusées, avec justification.
+- Les paramètres de calcul et les conversions, conservés à côté de chaque prix.
+- Le tableau d'écarts, avec `non comparable` quand c'est nécessaire.
+- Le calcul d'egress mensuel, avec les unités et l'hypothèse de trafic.
 
 ## Verdict
 
-Binaire, par le critère de
-[98-criteres.md](97-CHECKPOINT-PACK/98-criteres.md) : **un seul montant sans URL
-complète ou sans date rend l'exercice non réussi**. Aucune auto-notation, aucune moyenne : ce
-n'est pas une note sur douze lignes, c'est un refus sur la première ligne non sourcée.
+Le critère de [98-criteres.md](97-CHECKPOINT-PACK/98-criteres.md) est binaire pour chaque prix présenté comme réel : sans source précise, date, région, unité ou conditions essentielles, le montant est refusé. Une ligne explicitement déclarée `non comparable` n'est pas une erreur ; elle interdit simplement de conclure sur ce poste.
 
 ## Où ce relevé ressert
 
-- Ton `06A-BUDGET-CLOUD.md` : tous ses montants viennent d'ici, jamais du modèle.
+- Ton `06A-BUDGET-CLOUD.md` : chaque montant réel doit provenir de tes relevés, avec hypothèses et limites.
 - Le prix de la neuvième : [03-rayon_impact_zones.md](03-rayon_impact_zones.md), section 3 bis.
 - Le choix de fournisseur : [04-choisir_fournisseur.md](04-choisir_fournisseur.md).
-- L'écart de coût entre deux fournisseurs, au moment du portage :
-  [99-PORTAGE-MENTAL.md](99-PORTAGE-MENTAL.md).
-- La tension n°1 imposée du capstone :
-  [04-EPREUVE/05-CAPSTONE-ARENA/06-addendum-staff-engineer.md](../../04-EPREUVE/05-CAPSTONE-ARENA/06-addendum-staff-engineer.md).
+- Le portage multi-fournisseur : [99-PORTAGE-MENTAL.md](99-PORTAGE-MENTAL.md).
+- La tension n°1 imposée du capstone : [06-addendum-staff-engineer.md](../../04-EPREUVE/05-CAPSTONE-ARENA/06-addendum-staff-engineer.md).
 
 ## RÉSUMÉ
 
-Trois fournisseurs nommés, quatre lignes, douze prix avec URL et date : c'est le socle
-chiffré de tout ce que tu diras sur le coût de ton système. L'écart avec le modèle du dépôt
-n'est pas une erreur à corriger, c'est l'objet même de l'exercice : il t'apprend qu'un prix
-appartient à une région, une unité, un engagement et une date, et que sans ces quatre
-attributs il n'est pas défendable.
+Un prix défendable est associé à un service, une configuration, une région, une unité, des conditions, une URL et une date de consultation. Les douze lignes sont un objectif de comparaison ; les équivalences impossibles sont signalées, jamais fabriquées.
 
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
-Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
-
-<!-- AF-P0-2026-10-30: missing_transfer -->
+Ferme la page et écris de mémoire : besoin → service → unité → hypothèse → calcul → limite. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
 
 ### Transfert : changer de contexte
 
-Applique le mécanisme de « 07 : Relevé tarifaire réel, obligatoire et contredisible » à une autre région et un fournisseur aux primitives différentes. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
+Refais le relevé dans une autre région ou avec un fournisseur aux primitives différentes. Explique ce qui reste comparable, ce qui change et quelle preuve permet de le confirmer.
 
-**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+**Preuve à conserver :** les sources consultées, la date, les paramètres, les calculs, les limites et la décision de comparaison.
+
+## Références officielles utiles
+
+> **Référence principale vérifiée le 2 novembre 2026 :** la première ressource de ce panneau, également enregistrée dans `source_url`, a été consultée pour le mécanisme versionné traité ici. Les autres liens sont des compléments officiels utiles ; ils ne constituent pas chacun une attestation indépendante de l’exemple du curriculum. Aucune référence ne prouve que l’exemple a été exécuté. Vérifie la version cible et teste dans ton environnement avant un usage réel.
+
+- [AWS Pricing Calculator](https://calculator.aws/)
+- [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/)
+- [Google Cloud Pricing Calculator](https://cloud.google.com/products/calculator)

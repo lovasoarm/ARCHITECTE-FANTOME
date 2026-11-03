@@ -9,6 +9,13 @@ perturbation_modes: [decision_organisationnelle, fausse_piste]
 anti_recipe_key: decision_organisationnelle+fausse_piste
 transfer_distance: medium
 assessment_role: diagnostic_mastery
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "05-MAITRISE/02-SCALABILITY/02-distributed_thinking.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 05-MAITRISE/02-SCALABILITY/02-distributed_thinking.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
@@ -121,14 +128,43 @@ Maintenant, ouvre `01_load_balancing.md`. Et commence à penser ton système pou
 
 Ce que tu apprends ici n'est pas JS-spécifique :
 
-- **Python / Java / Go / Rust** partagent 90 % de ces mécanismes (allocation
-  heap vs stack, contention, backpressure, isolation runtime).
-- Le vocabulaire change (`GIL` en Python, `goroutine` en Go, `borrow checker`
-  en Rust), le mécanisme sous-jacent reste. Si tu comprends ici, tu portes
-  ailleurs en 2 semaines de lecture ciblée.
+- **Python / Java / Go / Rust** partagent plusieurs familles de mécanismes
+  (allocation, contention, backpressure, isolation du runtime), mais leurs
+  modèles mémoire et leurs garanties d'exécution diffèrent.
+- Le vocabulaire et les garanties changent (`GIL` en Python, `goroutine` en Go,
+  `borrow checker` en Rust). Le transfert demande une lecture ciblée des différences
+  du runtime, du modèle mémoire et des outils du langage concerné.
 - Test : explique à quelqu'un qui code Python ce que tu viens d'apprendre.
   Si tu peux, c'est acquis. Sinon, relis.
 
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce module mérite ton temps : scalability** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Définir une enveloppe de capacité
+
+**Mission liée à « Pourquoi ce module mérite ton temps : scalability » :** Pour Kintana, décris le trafic nominal, les pointes, la taille des données et le délai acceptable. Identifie le premier goulot probable et une mesure qui pourrait le confirmer.
+
+**Livrable :** Modèle de charge, hypothèses, enveloppe cible et plan de mesure.
+
+**Critères d’acceptation :** Les hypothèses sont chiffrées ou marquées inconnues ; le goulot est une hypothèse, pas un fait ; les objectifs utilisateurs sont explicités.
+
+**Transfert obligatoire :** Le trafic double mais la distribution change : explique pourquoi le dimensionnement initial peut devenir faux.

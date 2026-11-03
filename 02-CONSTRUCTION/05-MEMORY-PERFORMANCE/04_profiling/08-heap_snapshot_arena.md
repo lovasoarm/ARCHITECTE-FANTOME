@@ -81,24 +81,50 @@ http
 
 Un snapshot **fige** l'état ; il ne dit pas **pourquoi** l'objet est retenu. La `retainer chain` est ta boussole, pas la taille brute.
 
-## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+<!-- AF-DIAGRAM:performance -->
 
-<!-- AF-DIAGRAM:transfer -->
+## Repère visuel utile : Enquêter à partir des chemins de rétention
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+objet suspect
+      |
+      v
+retainer path
+      |
+      v
+propriétaire qui conserve la référence
+      |
+      v
+hypothèse de cycle de vie
+      |
+      v
+correction candidate + preuve
 ```
 
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+<!-- AF-LESSON-PROFILE: performance -->
 
-Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **05 : Heap Snapshot Arena** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Résoudre un cas de rétention à partir d’un heap snapshot
+
+**Mission liée à « 05 : Heap Snapshot Arena » :** Traite le scénario de l’arène comme une enquête : identifie l’objet suspect, remonte ses retainer paths, propose une cause et vérifie-la en retirant une seule référence.
+
+**Livrable :** Dossier d’enquête avec hypothèses, snapshots et preuve de correction.
+
+**Critères d’acceptation :** Le chemin de rétention est montré ; les objets attendus sont exclus ; une variation de mémoire seule n’est pas suffisante.
+
+**Transfert obligatoire :** Le chemin de rétention traverse une dépendance : nomme le propriétaire à qui transmettre la correction.

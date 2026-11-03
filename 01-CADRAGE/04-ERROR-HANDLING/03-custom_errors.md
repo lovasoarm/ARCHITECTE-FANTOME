@@ -335,35 +335,22 @@ try {
 
 ## EXO 1 : LE SYSTÈME DE TRANSFERT
 
-<!-- AF-DIAGRAM:transfer -->
+<!-- AF-DIAGRAM:errors -->
+
+## Repère visuel utile : Contrat d'erreur stable pour l'API Kintana
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+erreur observée
+      |
+      v
+classer la cause
+   |         |          |
+   v         v          v
+validation transitoire sécurité
+   |         |          |
+   v         v          v
+4xx clair  retry borné  refus + audit
 ```
-
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
-
-Crée trois custom errors pour un système de transfert de joueur :
-
-- `BudgetInsuffisantError(club, budgetDisponible, prixDemande)`
-- `JoueurSousContratError(joueur, clubActuel, finContrat)`
-- `ClubbingInterditError(joueur, raison)`
-
-Chacune doit avoir : `name`, `message` descriptif, propriétés structurées, `code` HTTP.
-
-Teste en levant chacune et en les catchant sélectivement.
-
----
 
 ## EXO 2 : LA HIÉRARCHIE PRISON BREAK
 
@@ -403,3 +390,33 @@ Un log sans contexte, c'est un rapport de match sans les statistiques : tu sais 
 
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+
+<!-- AF-LESSON-PROFILE: errors -->
+
+## Repères de décision
+
+- **Pourquoi :** Une politique d'erreur explicite empêche un échec temporaire de devenir une boucle infinie et évite de cacher un défaut métier derrière un message vague.
+- **Quand l’utiliser / quand l’éviter :** Classe l'erreur selon sa cause et sa récupérabilité. Retry uniquement les erreurs transitoires et les opérations idempotentes ; remonte les violations métier et sécurité sans boucle automatique.
+- **Limites :** Un `catch` trop large masque la cause. Un retry peut amplifier une panne et doubler un effet ; une erreur personnalisée ne rend pas un message sûr à exposer au client.
+
+## Mécanisme : la version sans magie
+
+Capture au niveau qui peut décider, enrichis avec le contexte utile, transforme en contrat stable et préserve la cause originale pour le diagnostic.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Custom errors : les erreurs qui racontent une histoire** se rattache à ce cas concret : La création de demande Kintana doit distinguer validation, refus d'accès, conflit d'idempotence, timeout fournisseur et panne de base.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Contrat d'erreur stable pour l'API Kintana
+
+> **Arc Walking Dead :** une erreur n'est pas toujours un zombie à abattre. Certaines se récupèrent ; d'autres doivent arrêter la mission immédiatement.
+
+**Mission liée à « Custom errors : les erreurs qui racontent une histoire » :** Définis les erreurs du parcours de création de demande. Ajoute une conversion stable vers les réponses API, une politique retry par classe et des tests qui vérifient qu'un secret ou une pile interne ne fuit pas.
+
+**Livrable :** un catalogue d'erreurs, un mapper HTTP, des tests de contrat et une table de décision retry/no-retry.
+
+**Critères d’acceptation :** les erreurs métier, techniques et de sécurité sont séparées ; les causes sont conservées côté serveur ; aucun retry n'est fait sur opération non idempotente sans clé ; les réponses client restent stables.
+
+**Transfert obligatoire :** Ajoute une panne fournisseur qui récupère après deux tentatives et compare le comportement avec une validation refusée.

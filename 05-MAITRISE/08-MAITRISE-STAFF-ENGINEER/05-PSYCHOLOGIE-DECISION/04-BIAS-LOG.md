@@ -15,10 +15,10 @@ Biais prioritaires : confirmation, ancrage, sunk cost, authority bias, statu quo
 
 Le but n'est pas d'avoir « zéro biais ». Le but est de construire des garde-fous qui rendent un biais moins dangereux.
 
-<!-- AF-P0-2026-10-30: missing_example -->
+## Exemple travaillé : cas métier
 
-### Exemple travaillé : cas métier
+**Exemple résolu (fictif).** Pendant un incident, l'équipe accuse d'abord le dernier développeur ayant touché le code. Le biais possible est l'attribution à une personne avant l'examen du système. Le log consigne le fait (l'incident suit une release), l'interprétation initiale, les éléments qui la contredisent (la même erreur existe sur l'ancienne version) et la contre-mesure (chronologie, comparaison de configuration, revue sans blâme). Il décrit un comportement observable, pas un diagnostic psychologique.
 
-Une décision locale réduit le coût d’une équipe mais crée une dépendance pour quatre autres ; tu dois arbitrer le système global et obtenir l’adoption. Pour « BIAS-LOG », construis un exemple où deux équipes ont des objectifs contradictoires. Distingue contrainte, préférence, coût immédiat, coût différé et critère de décision.
+**À toi :** Une décision locale réduit le coût d’une équipe mais crée une dépendance pour quatre autres ; tu dois arbitrer le système global et obtenir l’adoption. Pour « BIAS-LOG », construis un exemple où deux équipes ont des objectifs contradictoires. Distingue contrainte, préférence, coût immédiat, coût différé et critère de décision.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

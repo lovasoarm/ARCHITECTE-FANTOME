@@ -217,10 +217,38 @@ Driver brut, query builder, et ORM ne sont pas trois façons de faire la même c
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Connecter ton code à la DB sans te perdre dans l'abstraction » à une migration de schéma sans arrêter les anciens consommateurs. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: database -->
+
+## Repères de décision
+
+- **Pourquoi :** La modélisation et les contraintes protègent l'intégrité des données même quand plusieurs clients ou processus agissent en même temps.
+- **Quand l’utiliser / quand l’éviter :** Utilise les transactions et contraintes pour les invariants métier. Choisis le modèle selon les accès réels ; ne choisis pas NoSQL juste parce que le schéma semble flexible.
+- **Limites :** La base ne choisit pas les bonnes règles métier à ta place. Les index coûtent en écriture et stockage ; l'isolation a un coût ; les garanties varient selon le moteur et sa configuration.
+
+## Mécanisme : la version sans magie
+
+Part des requêtes et invariants, conçois clés et contraintes, exécute les écritures dans une transaction, puis vérifie le comportement concurrent et les migrations.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Connecter ton code à la DB sans te perdre dans l'abstraction** se rattache à ce cas concret : Kintana ne doit pas attribuer le dernier créneau à deux demandeurs ni laisser un agent lire le dossier d'un autre tenant.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Intégrité transactionnelle des demandes et créneaux
+
+> **Arc One Piece / Grand Line :** la base est le registre du navire. Si deux personnes modifient la même ligne sans règle, le journal de bord devient une fiction.
+
+**Mission liée à « Connecter ton code à la DB sans te perdre dans l'abstraction » :** Modélise une partie du domaine Kintana avec clés, contraintes et index justifiés. Écris une transaction qui réserve le dernier créneau, puis exécute deux requêtes concurrentes dans une base de test pour vérifier qu'une seule gagne.
+
+**Livrable :** DDL/migration, requêtes d'accès, transaction, test de concurrence et plan de restauration de fixture.
+
+**Critères d’acceptation :** les invariants critiques sont ancrés côté base ; le test concurrent est réellement exécuté sur le moteur annoncé ; les index sont justifiés par les requêtes ; la migration est réversible ou son risque est documenté.
+
+**Transfert obligatoire :** Ajoute un deuxième centre de service et un historique plus long. Vérifie index, isolation, rétention et accès par tenant.

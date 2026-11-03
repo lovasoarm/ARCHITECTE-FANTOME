@@ -68,6 +68,8 @@ Le **04-EPREUVE** ajoute l’incertitude humaine : grosse codebase, changement d
 Le **05-MAITRISE** ne t’ajoute pas une montagne de jargon. Il te demande de croiser technique, produit, coût, risque, communication et transfert, puis de transmettre une décision qui peut survivre à ton absence.
 
 ### Comment utiliser cette carte
+> **Repère canonique :** les blocs, paliers, phases, étapes et gates sont des couches différentes. Consulte la [matrice des progressions](../../06-ANNEXES-TRANSVERSES/80-MATRICE-PROGRESSIONS.md) pour leurs correspondances.
+
 
 Quand tu bloques, demande-toi sur quelle question tu es actuellement :
 

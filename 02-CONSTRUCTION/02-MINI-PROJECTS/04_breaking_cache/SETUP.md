@@ -1,35 +1,37 @@
-# SETUP : 04 breaking cache
+# SETUP : 04 BREAKING CACHE
 
-Ce `SETUP.md` est le point de passage obligatoire avant la pratique, l’exercice ou le livrable situé dans ce dossier.
+Ce projet est local, sans réseau et sans dépendance npm.
 
-## 1. Héritage
+## Prérequis
 
-Lis d’abord le [`SETUP.md`](../SETUP.md) le plus proche dans l’arborescence. Ce document ne répète que les éléments utiles à cette activité.
+- Avoir compris les valeurs/objets JavaScript.
+- Savoir utiliser une `Map`.
+- Avoir les bases de `async` / `await`.
+- Savoir écrire un test unitaire simple (voir [Tests unitaires](../../03-TESTING/02-unit_sniper.md)).
+- Comprendre le principe de mesure avant optimisation (voir [Mesurer avant d'optimiser](../../05-MEMORY-PERFORMANCE/02A-measure_first.md)).
+- Runtime de référence AF : Node.js `22.23.4` (voir [politique Node](../../../06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md)).
 
-## 2. Pré-requis locaux
+Tu peux lire le cahier et préparer tes tests sans installer d'outil supplémentaire. Le ZIP ne contient pas de `package.json`, de modules exécutables ni de suite de tests pour ce projet. Pour éviter une ambiguïté de modules, pars en CommonJS (`require` / `module.exports`) avec les fichiers `.js` proposés. Si tu choisis ESM, utilise `.mjs` ou crée un `package.json` avec `"type": "module"` et adapte les commandes en conséquence.
 
-- [ ] Le socle global est validé.
-- [ ] La technologie demandée par le dossier est disponible **dans la version indiquée ci-dessous**.
-- [ ] Les dépendances du projet, lorsqu’il existe un `package.json`/lockfile ou équivalent, sont présentes ou préparées pour l’offline.
-- [ ] Une première commande de preuve est connue avant de commencer la mission.
+## Première preuve disponible dès réception
 
-## 3. Technologie / environnement
+```bash
+node --version
+```
 
-**Environnement standard AF** : Node.js 22.23.4 + éditeur de texte suffisent tant qu’aucune dépendance locale supplémentaire n’est explicitement signalée par le contenu du dossier.
+La sortie attendue pour la référence AF est `v22.23.4`. C'est la seule commande de projet disponible avant d'avoir écrit les fichiers.
 
-## 4. Première preuve
+## Après création du code et des tests
 
-1. Vérifier les prérequis ci-dessus.
-2. Exécuter **une seule** commande de preuve simple avant de commencer la mission.
-3. Si elle échoue, corriger l’environnement avant de modifier le code de l’exercice.
+```bash
+node src/demo.js
+node --test
+```
 
-## 5. Offline
+La commande `node src/benchmark.js` devient disponible après avoir écrit ton runner. Ne lance pas `npm test` sans avoir créé et documenté un script `test` dans un `package.json`.
 
-Aucun script automatique n’est requis pour l’installation. Prépare simplement les installateurs, caches, binaires, images ou fixtures mentionnés par ce document et son parent.
+## Anti-friction
 
-## 6. Anti-friction
-
-- Ne pas installer Git/IDE/extensions si l’activité n’en dépend pas.
-- Ne pas remplacer une version explicitement épinglée par une version « plus récente » pendant l’exercice.
-- Ne pas lancer une commande qui télécharge implicitement des dépendances sur une machine isolée.
-- Une dépendance commune est documentée au niveau parent ; ne pas la réinstaller dans chaque exercice.
+- Aucune installation `npm install` nécessaire.
+- Pas de base PostgreSQL, Redis, Docker ni service Cloud requis.
+- Si une extension ajoute une dépendance ou un service, documente son besoin dans un ADR et garde le projet de base reproductible sans elle.

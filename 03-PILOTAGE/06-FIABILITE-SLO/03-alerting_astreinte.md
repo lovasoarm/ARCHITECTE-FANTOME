@@ -7,6 +7,13 @@ perturbation_modes: [defaut_cache, regression]
 anti_recipe_key: defaut_cache+regression
 transfer_distance: medium
 assessment_role: instructional_checkpoint
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/06-FIABILITE-SLO/01-00-why-fiabilite-slo.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 03-PILOTAGE/06-FIABILITE-SLO/01-00-why-fiabilite-slo.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.

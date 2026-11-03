@@ -1,16 +1,26 @@
 ---
 perishability_id: PER-0102
-stability: perissable
+stability: "perissable"
 acte: appliquer
 noyau: oui
-freshness_registry_id: PER-0102
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-01-28
-review_status: a_verifier_date_absente
+source_verified_on: "2026-11-03"
+freshness_status: "verified_current"
+source_url: "https://www.nist.gov/itl/ai-risk-management-framework"
+source_type: "primary"
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "NIST AI Risk Management Framework : RMF 1.0 reste un cadre volontaire publié en janvier 2023 et le NIST a annoncé sa révision en 2026. Le cadre ne constitue pas, à lui seul, une loi, une certification ou une preuve de conformité."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_current » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "NIST_AI_RMF_1_0_STATUS_AND_REVISION_NOTICE_CONFIRMED_2026-11-03"
+claim_reviewed_on: "2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
 ---
 
 # Produit IA de référence : `retrieval-gateway`
+
+> **État du référentiel NIST au 3 novembre 2026 :** le NIST AI RMF 1.0, publié le 26 janvier 2023, reste le cadre publié accessible dans les ressources NIST. La page officielle indique toutefois que l'AI RMF 1.0 est en cours de révision dans le cadre du White House AI Action Plan ; elle mentionne également une note de concept publiée le 7 avril 2026 pour un profil consacré à l'IA digne de confiance dans les infrastructures critiques. Utilise donc l'AI RMF 1.0 comme cadre de référence existant, mais ne le présente pas comme une édition définitivement stabilisée ou comme une norme de conformité obligatoire. Vérifie la page NIST avant chaque décision de gouvernance.
 
 Ce laboratoire produit une **preuve transversale d'évaluation critique de l'IA (G8)**. Il ne remplace
 pas la preuve S6 de livraison/exploitation et n'impose pas d'ajouter un LLM au fil rouge.
@@ -135,3 +145,20 @@ La preuve S6 de livraison/exploitation reste distincte : `PREUVES/LIVRAISON-EXPL
 ## Avant toute utilisation réelle
 
 Ce laboratoire permet de pratiquer les gates d’une release ; sa présence dans le curriculum ne signifie pas qu’un service est prêt pour la production. Avant d’exposer un système réel, consigne les versions utilisées, les résultats bruts, les scénarios négatifs, les limites connues, la revue de sécurité, le comportement sous charge représentative, la restauration et la procédure de retour arrière. Une revue indépendante et des essais dans l’environnement cible restent nécessaires. Ne marque jamais une étape comme réussie sans preuve observée.
+
+## Références officielles utiles
+
+> **Référence principale vérifiée le 3 novembre 2026 :** la première ressource de ce panneau, également enregistrée dans `source_url`, a été consultée pour le mécanisme versionné traité ici. Les autres liens sont des compléments officiels utiles ; ils ne constituent pas chacun une attestation indépendante de l’exemple du curriculum. Aucune référence ne prouve que l’exemple a été exécuté. Vérifie la version cible et teste dans ton environnement avant un usage réel.
+
+- [NIST : AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- [OWASP GenAI Security Project](https://genai.owasp.org/)
+- [OpenAI : API documentation](https://platform.openai.com/docs/)
+- [Anthropic : API documentation](https://docs.anthropic.com/)
+
+## Détails opérationnels
+
+- [Observabilité](03-OBSERVABILITY.md) : signaux et exploitation.
+- [Sécurité](04-SECURITY.md) : frontières de confiance et contrôles.
+- [Déploiement et runbook](07-DEPLOYMENT-AND-RUNBOOK.md) : procédure d’exploitation et de reprise.
+- [Release gates](08-RELEASE-GATES.md) : conditions de mise en service.
+- [ADR architecture](ADR/ADR-001_architecture.md) : décisions d’architecture du produit de référence.

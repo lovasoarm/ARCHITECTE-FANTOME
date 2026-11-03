@@ -2,37 +2,51 @@
 stability: intemporel
 acte: pratiquer
 route: survie
-cognitive_level: L3
-perturbation_modes: [changement_echelle, regression]
-anti_recipe_key: changement_echelle+regression
-transfer_distance: medium
+cognitive_level: L2
+perturbation_modes: [premiere_execution, correction_erreur]
+anti_recipe_key: premiere_execution+correction_erreur
+transfer_distance: low
 assessment_role: instructional_checkpoint
 ---
 
-> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
-
 # Challenge : `01-GETTING-STARTED`
 
-Temps de lecture ~2 min
+> **Statut : auto-vérification facultative après la première passe.** Ce challenge ne définit pas la sortie obligatoire de Getting Started et ne bloque ni le Prologue ni Fundamentals. La Route 58 et [START HERE](01-START_HERE.md) définissent seuls le parcours requis.
 
-Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **promeut** les
-épreuves déjà écrites dans ce module et fixe ce qui les valide.
+Ce challenge reprend quelques éléments du **noyau de démarrage** pour t’aider à vérifier ce que tu as compris. Tu peux le faire, le différer ou l’ignorer sans perdre l’accès à la suite. Il ne demande ni application complète, ni projet personnel, ni dépôt Git. Le dossier local de travail et un éditeur de texte suffisent.
 
-## Les épreuves de ce module, dans l'ordre
+## Ressources à utiliser
 
-- [05 : Devsec perso : protège ton chakra avant d'affronter les ninjas renégats du net](07-devsec_perso.md)
+1. [Installation](02-install.md) : Node.js répond à `node -v`.
+2. [Shell : survie en territoire hostile](04-shell_survival.md) : ouvrir un terminal et naviguer vers un dossier.
+3. [Day One](03-day_one.md) : créer, exécuter, casser puis corriger un fichier JavaScript.
 
-## Ce qui valide le challenge (les quatre actes, aucun ne se saute)
+La page [DevSec perso](07-devsec_perso.md) est une ressource à traiter avant de manipuler des clés, des secrets ou un compte de forge. Elle n'est pas une condition cachée pour réussir le premier fichier JavaScript ; elle devient nécessaire avant de manipuler réellement ces éléments.
 
-- [ ] **Construire** : le livrable demandé existe dans ton dépôt de projet fil rouge, il tourne.
-- [ ] **Expliquer** : tu décris en cinq lignes ce que tu as construit, sans jargon.
-- [ ] **Justifier** : tu écris pourquoi cette solution et pas l'autre, avec le critère qui a tranché.
-- [ ] **Défendre** : un contradicteur attaque le point faible, tu réponds par écrit.
+## Preuve attendue
 
-Rien ne se coche sur une lecture. Reporte le résultat dans
-[PROGRESSION.md](../../PROGRESSION.md).
+Dans un journal local ou `PREUVES/00-premiere-preuve.md`, note :
 
-## CHECKPOINT DE PROFONDEUR : variation A : prédire avant de réparer
+- la commande `node -v` et le fait qu'elle a répondu (ne copie pas d'information privée) ;
+- le nom du fichier exécuté et la sortie observée ;
+- l'erreur simple que tu as provoquée, ce que tu as repéré dans le message et la correction appliquée ;
+- une question ou difficulté qui reste à clarifier.
 
-Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
-Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+Un fichier texte suffit. Git, GitHub et un dépôt distant ne sont pas requis.
+
+## Auto-vérification facultative
+
+Les cases ci-dessous servent uniquement à noter ce que tu as effectivement observé. Une case non cochée n’est pas une gate et ne bloque pas la suite du parcours. N’inscris `PASS` que si tu as réalisé l’action ; si l’environnement est indisponible, note le blocage sans inventer de preuve.
+
+- [ ] Node.js répond à `node -v` ; si l'installation est bloquée, note le blocage sans prétendre avoir validé l'installation.
+- [ ] Un fichier `.js` a été créé et exécuté ; la sortie observée est notée.
+- [ ] Une erreur de syntaxe simple a été provoquée puis corrigée.
+- [ ] Une trace locale décrit le résultat observé et la correction, sans prétendre avoir réalisé une livraison logicielle.
+
+**Ne fais pas** les quatre actes Construire/Expliquer/Justifier/Défendre sur une application à ce stade. Ils seront demandés lorsqu'un module disposera d'un livrable qui les justifie.
+
+Tu peux reporter le résultat dans [PROGRESSION.md](../../PROGRESSION.md) comme note facultative. `PASS` signifie que les actions cochées ont été réalisées ; un prérequis indisponible reste `BLOCKED`. Ce statut de suivi ne commande pas l’accès au module suivant.
+
+## CHECKPOINT DE PROFONDEUR : facultatif
+
+Quand le premier cycle devient facile, imagine une autre manière de créer le fichier. Compare les deux méthodes et explique laquelle tu choisirais sur ton poste. Ce défi ne conditionne pas la sortie de Getting Started.

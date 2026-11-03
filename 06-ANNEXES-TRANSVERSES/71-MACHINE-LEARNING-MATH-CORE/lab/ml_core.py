@@ -57,6 +57,25 @@ def chronological_split(rows: Sequence[dict[str, str]], train_fraction: float = 
     return list(rows[:cut]), list(rows[cut:])
 
 
+def chronological_train_validation_test_split(
+    rows: Sequence[dict[str, str]],
+    train_fraction: float = 0.6,
+    validation_fraction: float = 0.2,
+):
+    """Split ordered observations without shuffling or reusing future rows."""
+    if train_fraction <= 0 or validation_fraction <= 0:
+        raise ValueError("split_fractions_must_be_positive")
+    if train_fraction + validation_fraction >= 1:
+        raise ValueError("train_and_validation_must_leave_test_rows")
+    if len(rows) < 5:
+        raise ValueError("at_least_five_rows_required")
+    train_end = int(len(rows) * train_fraction)
+    validation_end = train_end + int(len(rows) * validation_fraction)
+    train_end = max(1, min(train_end, len(rows) - 2))
+    validation_end = max(train_end + 1, min(validation_end, len(rows) - 1))
+    return list(rows[:train_end]), list(rows[train_end:validation_end]), list(rows[validation_end:])
+
+
 def sigmoid(value: float) -> float:
     # Numerically stable form avoids overflow for large negative inputs.
     if value >= 0:
@@ -157,3 +176,42 @@ def classification_metrics(labels: Sequence[int], predictions: Sequence[int]) ->
     accuracy = (tp + tn) / len(labels)
     return {"tp": tp, "tn": tn, "fp": fp, "fn": fn,
             "precision": precision, "recall": recall, "f1": f1, "accuracy": accuracy}
+
+
+def brier_score(probabilities: Sequence[float], labels: Sequence[int]) -> float:
+    """Mean squared error of probabilistic predictions; lower is better."""
+    if not probabilities or len(probabilities) != len(labels):
+        raise ValueError("probabilities_and_labels_must_have_same_nonzero_length")
+    if any(label not in (0, 1) for label in labels):
+        raise ValueError("labels_must_be_binary")
+    if any(not 0.0 <= probability <= 1.0 for probability in probabilities):
+        raise ValueError("probabilities_must_be_between_zero_and_one")
+    return sum((probability - label) ** 2 for probability, label in zip(probabilities, labels)) / len(labels)
+
+
+def choose_threshold_by_cost(
+    labels: Sequence[int],
+    probabilities: Sequence[float],
+    *,
+    false_positive_cost: float = 1.0,
+    false_negative_cost: float = 5.0,
+) -> dict[str, float]:
+    """Choose a decision threshold on validation data using an explicit error cost."""
+    if not labels or len(labels) != len(probabilities):
+        raise ValueError("probabilities_and_labels_must_have_same_nonzero_length")
+    if false_positive_cost < 0 or false_negative_cost < 0:
+        raise ValueError("error_costs_must_be_non_negative")
+    if any(label not in (0, 1) for label in labels):
+        raise ValueError("labels_must_be_binary")
+    if any(not 0.0 <= probability <= 1.0 for probability in probabilities):
+        raise ValueError("probabilities_must_be_between_zero_and_one")
+
+    candidates = [i / 100 for i in range(5, 100, 5)] + [0.5]
+    evaluated = []
+    for threshold in sorted(set(candidates)):
+        predictions = predict_labels(probabilities, threshold)
+        metrics = classification_metrics(labels, predictions)
+        cost = (metrics["fp"] * false_positive_cost) + (metrics["fn"] * false_negative_cost)
+        evaluated.append((float(cost), threshold))
+    cost, threshold = min(evaluated, key=lambda item: (item[0], item[1]))
+    return {"threshold": threshold, "validation_error_cost": cost}

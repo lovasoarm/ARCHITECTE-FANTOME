@@ -51,10 +51,10 @@ devient plus cher que le remboursement. Aucun jargon.
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
 
-<!-- AF-P0-2026-10-30: missing_example -->
-
 ### Exemple travaillé : cas métier
 
-Deux améliorations sont proposées : l’une réduit les incidents, l’autre accélère une fonctionnalité ; le budget et l’équipe sont limités. Construis un cas minimal qui illustre « La dette technique déclarée » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+**Exemple résolu (fictif).** Un service sans cache coûte actuellement 3 heures de support par mois et tient correctement jusqu'à 500 utilisateurs actifs. Ajouter un cache coûterait environ deux jours de travail et introduirait une invalidation à surveiller. L'équipe consigne la dette D-01, son intérêt mensuel de 3 heures, son déclencheur `> 500 utilisateurs actifs` et sa date de réexamen. Tant que le seuil n'est pas franchi, elle garde le choix documenté ; si la mesure dépasse durablement le seuil, elle réévalue le remboursement. **Limite :** le seuil doit être confirmé par les métriques réelles du produit.
+
+**À toi :** Deux améliorations sont proposées : l’une réduit les incidents, l’autre accélère une fonctionnalité ; le budget et l’équipe sont limités. Construis un cas minimal qui illustre « La dette technique déclarée » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

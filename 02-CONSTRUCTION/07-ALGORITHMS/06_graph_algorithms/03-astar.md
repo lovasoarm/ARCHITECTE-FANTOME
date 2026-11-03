@@ -332,8 +332,6 @@ A* = Dijkstra + une heuristique qui guide vers l'objectif. La clé : l'heuristiq
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Compare le chemin trouvé à Dijkstra sur de petits graphes. Explique quelle propriété de l’heuristique garantit l’optimalité dans les hypothèses choisies.

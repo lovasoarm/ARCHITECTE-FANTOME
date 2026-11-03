@@ -1,78 +1,82 @@
 ---
-perishability_id: PER-0062
-
-stability: perissable
+stability: stable
 acte: pilotage
 noyau: renfort
-date_releve: 2026-08-18
-perime_apres: 2028-02-18
 cognitive_level: L3
 perturbation_modes: [regression, changement_echelle]
 anti_recipe_key: regression+changement_echelle
 transfer_distance: low
 assessment_role: instructional_checkpoint
-freshness_registry_id: PER-0062
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-01-28
-review_status: a_verifier_date_absente
 ---
 
 > **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.
 
-# Relevé de référence : ordres de grandeur 2026
+# Simulation de budget cloud : données pédagogiques fictives
 
-Temps de lecture ~2 min
+Temps de lecture ~3 min
 
-> **À ne jamais recopier dans ton livrable.** Un `06A-BUDGET-CLOUD.md` qui reprend ces chiffres
-> est refusé au boss fight : la compétence auditée est le **relevé personnel daté**,
-> pas la lecture d'un tableau. Ce fichier s'applique la règle qu'il impose à l'apprenant :
-> chaque prix a une **URL** et une **date** ; au-delà de **18 mois**, le contrôle
-> de livraison **refuse** le dépôt.
+**SIMULATION : AUCUN TARIF RÉEL**
 
-Relevé d'exercice du **2026-08-18**. Péremption mécanique : **2028-02-18**
-(`date_releve` + 18 mois). Région d'ordre : `eu-west` / Europe, hors engagements
-1 an, hors taxes locales.
+Ce document n'est **pas** un relevé tarifaire, ne décrit aucun fournisseur réel et ne doit jamais être cité comme preuve de prix du marché. Les paramètres ci-dessous sont inventés pour entraîner les conversions, les sommes et la comparaison de scénarios. Ils ne représentent ni AWS, ni un autre fournisseur.
 
-## Postes, URL, date
+## 1. Paramètres de simulation
 
-| Poste               | Ordre de grandeur                      |       Date | Source (page publique, à reverifier)          |
-| ------------------- | -------------------------------------- | ---------: | --------------------------------------------- |
-| Stockage objet      | ~0,02 €/Go-mois                        | 2026-08-18 | https://aws.amazon.com/s3/pricing/            |
-| Egress internet     | ~0,08 €/Go                             | 2026-08-18 | https://aws.amazon.com/ec2/pricing/on-demand/ |
-| Calcul sans serveur | ~0,20 € / million d'invocations + s·Go | 2026-08-18 | https://aws.amazon.com/lambda/pricing/        |
-| Petite base managée | ~15 à 60 €/mois                        | 2026-08-18 | https://aws.amazon.com/rds/pricing/           |
-| Journalisation      | ~0,50 €/Go ingéré                      | 2026-08-18 | https://aws.amazon.com/cloudwatch/pricing/    |
-| CDN                 | ~0,01 à 0,05 €/Go                      | 2026-08-18 | https://aws.amazon.com/cloudfront/pricing/    |
+| Poste           |              Paramètre fictif | Mode de calcul                                           |
+| --------------- | ----------------------------: | -------------------------------------------------------- |
+| Calcul          |           0,02 € / vCPU-heure | vCPU-heures consommées × 0,02 €                          |
+| Stockage objet  |             0,023 € / GB-mois | volume moyen en GB × 0,023 €                             |
+| Egress Internet |                   0,08 € / GB | volume sortant en GB × 0,08 €                            |
+| Base managée    | 15 €, 210 € ou 3 100 € / mois | forfait fictif du palier choisi, sans référence à un SKU |
+| Observabilité   |     0 €, 25 € ou 640 € / mois | forfait fictif selon le volume de logs retenu            |
+| CDN / edge      |                  210 € / mois | forfait fictif activé uniquement au palier 1 000 000     |
 
-Ces URL sont des **portes d'entrée** tarifaires, pas une autorisation à copier une ligne
-dans ton budget. Ton relevé cite **ta** région, **ton** SKU, **ta** capture du jour.
+Les paramètres de calcul, de stockage et d'egress sont volontairement simples. Les forfaits de base, d'observabilité et de CDN sont des entrées pédagogiques : aucune conversion en tarif unitaire réel n'est prétendue.
 
-## Comment lire ce tableau
+## 2. Volumes du scénario Lumen
 
-Deux fournisseurs peuvent différer d'un facteur 3 sur un poste et d'un facteur 1 sur le
-total. Compare des **factures complètes**, jamais des lignes isolées.
+| Palier                 | Calcul consommé | Stockage moyen | Egress budgété |          Logs mensuels | Base managée |
+| ---------------------- | --------------: | -------------: | -------------: | ---------------------: | -----------: |
+| 100 utilisateurs       |      365 vCPU-h |         0,5 GB |           2 GB | forfait gratuit fictif |         15 € |
+| 10 000 utilisateurs    |    7 000 vCPU-h |          20 GB |         180 GB |   forfait 10 GB : 25 € |        210 € |
+| 1 000 000 utilisateurs |  240 000 vCPU-h |       2 000 GB |      18 000 GB | forfait 400 GB : 640 € |      3 100 € |
 
-## Règle de fraîcheur (contrôle)
+Les volumes et consommations sont des hypothèses de scénario, pas des observations de production. Les valeurs de pointe (2, 40 et 1 200 requêtes/s dans le modèle S1) sont des hypothèses de dimensionnement distinctes ; elles ne permettent pas, seules, de déduire les vCPU-heures mensuelles.
 
-1. L'en-tête `date_releve` doit être parsable (ISO `YYYY-MM-DD`).
-2. Si `aujourd'hui > date_releve + 18 mois`, ce relevé est **périmé** et ne doit plus
-   être cité comme source (`RELEVE-PERIME`).
-3. Ton `06A-BUDGET-CLOUD.md` doit avoir sa propre date **et** des URL **différentes** de
-   celles de ce fichier, ou le même URL avec une date **à toi** < 30 jours.
+## 3. Calculs de contrôle
 
-Au-delà de 18 mois : ce tableau n'existe plus comme référence. Tu le remplaces après un
-nouveau relevé, ou tu retires les montants. Un chiffre sans source datée se retire, il ne
-se « met à peu près ».
+- Calcul à 100 utilisateurs : `365 vCPU-h × 0,02 € = 7,30 €`.
+- Calcul à 10 000 utilisateurs : `7 000 vCPU-h × 0,02 € = 140,00 €`.
+- Calcul à 1 000 000 utilisateurs : `240 000 vCPU-h × 0,02 € = 4 800,00 €`.
+- Stockage à 20 GB : `20 × 0,023 € = 0,46 € / mois`.
+- Stockage à 2 000 GB : `2 000 × 0,023 € = 46,00 € / mois`.
+- Egress à 180 GB : `180 × 0,08 € = 14,40 € / mois`.
+- Egress à 18 000 GB : `18 000 × 0,08 € = 1 440,00 € / mois`.
 
-## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
+Convention : toutes les unités de données de cette simulation sont décimales (`1 GB = 1 000 000 000 octets`). Les arrondis sont faits au centime après le calcul de chaque ligne.
 
-Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+## 4. Sources officielles pour ton propre relevé
 
-<!-- AF-P0-2026-10-30: missing_example -->
+Les liens ci-dessous sont des pages officielles de tarification consultées le **2026-11-02**. Ils servent de points de départ pour tes propres recherches ; **aucun des paramètres fictifs ci-dessus n'en est extrait**. Le prix dépend notamment de la région, du service exact, de la classe, du type de requête, du volume, du transfert et des options retenues.
 
-### Exemple travaillé : cas métier
+| Service à examiner             | Page officielle                               |
+| ------------------------------ | --------------------------------------------- |
+| Stockage objet S3              | https://aws.amazon.com/s3/pricing/            |
+| Calcul EC2 à la demande        | https://aws.amazon.com/ec2/pricing/on-demand/ |
+| Calcul sans serveur Lambda     | https://aws.amazon.com/lambda/pricing/        |
+| Base relationnelle managée RDS | https://aws.amazon.com/rds/pricing/           |
+| Logs et métriques CloudWatch   | https://aws.amazon.com/cloudwatch/pricing/    |
+| CDN CloudFront                 | https://aws.amazon.com/cloudfront/pricing/    |
 
-Des stations distantes envoient des mesures avec réseau intermittent ; le système doit absorber les reprises sans doubler les écritures. Compare une journée normale et un pic dix fois supérieur. Pour « Relevé de référence : ordres de grandeur 2026 », note le composant, le coût ou le risque qui varie, et le signal observable qui révèle la limite.
+Une page tarifaire est une source à explorer, pas un prix complet à copier : vérifie SKU, région, unité, volume, requêtes, transferts, taxes et remises. Pour S3, par exemple, stockage, requêtes, récupération, transfert, gestion et réplication constituent des postes distincts ; un simple prix au GB ne suffit pas.
 
-**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+## 5. Cas travaillé : vérifier le total à 10 000 utilisateurs
+
+`140,00 + 210,00 + 0,46 + 14,40 + 25,00 = 389,86 € / mois`.
+
+Ce total est le résultat de la simulation uniquement. Il ne permet aucune conclusion sur AWS ou sur un fournisseur concurrent.
+
+## 6. À toi
+
+Modifie une seule entrée (par exemple, l'egress passe de 180 GB à 1 800 GB), prédis l'effet avant de recalculer, puis explique ce qui change et ce qui reste invariant. Une ligne tarifaire réelle ne peut entrer dans ton budget qu'après consultation de sa source officielle et consignation de tous les paramètres.
+
+**Preuve à conserver :** hypothèses, calculs, résultat, cas limite et distinction explicite entre simulation et tarif réel.

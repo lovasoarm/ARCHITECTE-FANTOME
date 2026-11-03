@@ -183,7 +183,7 @@ Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigenc
 - XSS (OWASP A03) : échapper toute donnée utilisateur affichée dans le dashboard.
 - Contrôle d'accès (OWASP A01) : un utilisateur ne voit que les données de son périmètre.
 
-Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `97-CHECKPOINT-PACK` de ce projet contient un test de sécurité qui doit passer.
+Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Ajoute dans le dossier `tests/` de ce projet un test ciblé pour au moins une des menaces retenues. Documente dans le README la commande exacte qui exécute ce test. Aucun pack de correction séparé n’est fourni dans ce projet.
 
 ---
 
@@ -225,3 +225,8 @@ Avant de coder, produis :
 - les critères qui te feront changer d’architecture en cours de route.
 
 Ne cherche pas une architecture « correcte » dans le curriculum : le but est de reconstruire un modèle sous contrainte, puis de défendre pourquoi il tient.
+
+
+## Statut des données et de la charge
+
+Les clubs, matchs, utilisateurs, volumes d’événements, sorties terminal et valeurs de métriques de ce scénario sont synthétiques. Les nombres servent à concevoir les tests de charge. Ils ne prouvent ni un usage réel, ni une latence observée, ni une disponibilité de production. Produis tes propres mesures reproductibles et étiquette-les `LAB`, `PILOT` ou `PRODUCTION` selon le niveau de preuve.

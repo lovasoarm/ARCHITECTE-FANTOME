@@ -47,8 +47,6 @@ Pour chaque point de friction, un patch minimal :
 Tant que la case "re-tournage" n'est pas cochée, la modification n'est **pas**
 mergée.
 
-<!-- AF-P0-2026-10-30: missing_practice -->
-
 ### Pratique autonome : production attendue
 
 À partir de « 04b : first_click_diff.md (template d'itération) », produis une variante indépendante du cas suivant : Tu rejoins une organisation qui possède plusieurs services, une documentation incomplète et un incident ouvert ; il faut comprendre avant de proposer. Travaille sans recopier la solution de la leçon ; conserve l’entrée, les hypothèses, la sortie attendue et un artefact vérifiable (code, requête, schéma, trace ou décision).

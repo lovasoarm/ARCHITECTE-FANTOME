@@ -101,10 +101,56 @@ Prochaine étape : `08A-worker_leak_reproduction.md`.
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Retire un nœud du DOM mais conserve volontairement une référence JS. Vérifie le chemin de rétention dans un heap snapshot avant de conclure à une fuite.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-DIAGRAM:performance -->
+
+## Repère visuel utile : Suivre la rétention de nœuds DOM détachés
+
+```text
+monter puis démonter le composant
+             |
+             v
+nœud absent du document mais retenu
+             |
+             v
+chemin de rétention
+             |
+             v
+supprimer la référence responsable
+             |
+             v
+comparer les instantanés
+```
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Detached DOM leak : le poison des SPA** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Détecter une fuite de nœuds DOM détachés
+
+**Mission liée à « Detached DOM leak : le poison des SPA » :** Dans un écran Kintana, monte puis démonte un composant contenant des événements et références DOM. Cherche les nœuds détachés encore retenus et identifie le propriétaire de la référence.
+
+**Livrable :** Reproduction, chemin de rétention, correctif de nettoyage et vérification après démontage.
+
+**Critères d’acceptation :** Le composant ne perd pas de fonctionnalité ; listeners et références sont libérés au bon moment ; l’état DOM détaché n’est pas confondu avec une preuve unique de fuite.
+
+**Transfert obligatoire :** Le composant est remonté plusieurs fois : vérifie qu’aucune instance précédente ne reste retenue.

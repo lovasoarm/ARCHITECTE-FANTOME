@@ -34,7 +34,25 @@ Prends 5 minutes. Écris ta réponse **sans** relancer l'IA. Nomme :
 
 ## Piste de correction (à ne lire qu'après)
 
-> cache[k] = fetch(k) stocke la Promise, pas le résultat. Et le cache n'a aucune éviction : fuite mémoire garantie en prod. Où l'IA a-t-elle inventé la 'mémoïsation' sans la nommer ?
+> Stocker la Promise peut être intentionnel : cela mutualise les requêtes simultanées pour une même clé. Le défaut est que cet exemple ne définit ni contrat de cache, ni nettoyage des rejets, ni durée de conservation, ni limite de cardinalité. Une croissance mémoire illimitée est un risque si les clés sont nombreuses et gardées longtemps, pas une fuite garantie dans tous les contextes.
+
+### Une correction possible : déduplication des appels en cours
+
+```js
+const pending = new Map();
+async function get(k) {
+  if (pending.has(k)) return pending.get(k);
+  const promise = fetch(k);
+  pending.set(k, promise);
+  try {
+    return await promise;
+  } finally {
+    if (pending.get(k) === promise) pending.delete(k);
+  }
+}
+```
+
+Cette variante ne conserve pas les résultats après la fin : elle mutualise uniquement les appels simultanés. Un cache de résultats est une autre politique et doit définir explicitement TTL, éviction, erreurs et clé.
 
 ## Pourquoi cet exo
 

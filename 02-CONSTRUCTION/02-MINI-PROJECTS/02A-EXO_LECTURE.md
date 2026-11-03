@@ -10,17 +10,17 @@ assessment_role: project_mastery
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
-# EXO LECTURE : 15-25 minutes (02-CONSTRUCTION/02-MINI-PROJECTS)
+# EXO LECTURE : ~20 minutes : questions et auto-évaluation (02-CONSTRUCTION/02-MINI-PROJECTS)
 
-Temps de lecture ~2 min
+**Durée indicative : environ 20 minutes** : environ 2 minutes de prise en main, 10 minutes pour répondre aux questions, jusqu’à 5 minutes pour l’auto-évaluation et quelques minutes pour consigner les réponses. Le checkpoint de profondeur est un prolongement séparé et n’est pas compris dans cette durée.
+
+Lecture de la consigne : ~2 min
 
 > **LOCK : pas d'édition avant HYPOTHESES.md signé.** Tu ne modifies AUCUN fichier avant que ton `HYPOTHESES.md` soit signé (>= 3 hypothèses, chacune avec preuve attendue). Sinon, l'exo ne compte pas.
 >
 > **Budget lecture** : 500 lignes en 15 min chrono. Si tu dépasses, note pourquoi dans `MAP.md`. Objectif progressif : tu dois pouvoir tenir 500 lignes en 15 min à la fin du curriculum.
 >
 > **Protocole de cartographie** : suis `../../05-MAITRISE/06-ANNEXES/23_reading/02-cartographie_15min.md` si tu ne sais pas par où entrer.
-
-Temps de lecture ~2 min
 
 Compétence : lire un README de mini-projet inconnu et en extraire, sans
 coder, ce que le projet évalue vraiment.
@@ -50,6 +50,10 @@ Note tes réponses sur un scratch. Pas de recherche, pas d'IA.
 - 3-4/5 juste : relis le README avec plus d'attention avant d'attaquer.
 - ≤ 2/5 juste : tu allais commencer à coder sans savoir ce qu'on attend
   de toi. C'est **exactement** le piège que ce module veut éviter.
+
+## Livrable
+
+`LECTURE_<nom>.md` : consigne/extrait choisi, réponses aux questions, résultat de l’auto-évaluation et point restant à vérifier. Garde ce fichier dans ton espace de travail apprenant, pas dans le dépôt source du curriculum.
 
 ## RÈGLE READ_ONLY_FIRST (non négociable)
 

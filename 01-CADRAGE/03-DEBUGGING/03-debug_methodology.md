@@ -28,9 +28,9 @@ Ce fichier te donne la carte.
 ## 1) LE PROCESS EN QUATRE ÉTAPES
 
 ```text
-ÉTAPE 1 : REPRODUIRE
- Le bug doit se produire à volonté.
- Si tu ne peux pas le déclencher toi-même : tu ne peux pas le corriger.
+ÉTAPE 1 : ÉTABLIR LE SIGNAL
+ Reproduire de façon contrôlée si possible.
+ Sinon, préserver les éléments fiables de l'incident et ses limites.
 
 ÉTAPE 2 : ISOLER
  Réduire le problème au minimum.
@@ -45,15 +45,18 @@ Ce fichier te donne la carte.
  Rejouer le scénario de reproduction pour confirmer.
 ```
 
-Ces étapes ne sont pas optionnelles. Elles ne changent pas d'ordre.
-Corriger sans reproduire = jouer à pile ou face.
+Ces responsabilités restent nécessaires, mais l'ordre peut s'adapter à l'urgence.
+En production, une atténuation sûre peut précéder la reproduction locale ; consigne
+les preuves et ne présente pas une simulation comme la reproduction originale.
 
 ---
 
-## 2) ÉTAPE 1 : REPRODUIRE
+## 2) ÉTAPE 1 : ÉTABLIR LE SIGNAL ET REPRODUIRE
 
-Un bug qu'on ne peut pas reproduire est un bug qu'on ne peut pas corriger.
-Si quelqu'un dit "j'ai un bug mais je sais pas comment le déclencher" : c'est la première chose à résoudre, pas le bug lui-même.
+Une reproduction minimale aide à isoler la cause et à vérifier le correctif.
+Si le défaut ne se reproduit pas localement, collecte les éléments disponibles :
+trace, identifiant de corrélation, version, données non sensibles, environnement,
+chronologie et hypothèses. Une reproduction réduite peut venir ensuite.
 
 Questions à se poser pour reproduire :
 
@@ -65,27 +68,65 @@ Questions à se poser pour reproduire :
 - Seulement chez certains utilisateurs ? Suspect : état persistant, rôle, locale, navigateur.
 ```
 
-Exemple : le camp de Rick Grimes a un système d'inventaire. Le stock de munitions affiche un nombre négatif. Mais seulement le matin.
+Exemple : le camp de Rick Grimes distribue des munitions à partir d'un stock partagé. Le journal montre que deux demandes ont été acceptées alors qu'une seule aurait dû l'être. Le problème n'est pas « deux lignes JavaScript se sont exécutées exactement au même instant » : c'est une lecture suivie d'une écriture séparée par des attentes asynchrones.
 
 ```js
-// camp.js : gestion du stock
-function consommerMunitions(stock, quantite) {
-  stock.munitions -= quantite; // mutation directe sur l'objet stock
-  return stock;
+// simulation déterministe d'un stockage partagé (ex. service/DB distant)
+let stockCamp = 100;
+
+async function lireStock() {
+  await Promise.resolve(); // point de suspension : plusieurs lectures peuvent partir
+  return stockCamp;
 }
 
-// simulation.js : tick nocturne
-async function rondeNocturne(camp) {
-  const gardes = await getGardes();
-  gardes.forEach(async (garde) => {
-    const tirsEffectues = await simulerTir(garde);
-    consommerMunitions(camp.stock, tirsEffectues); // stock muté en parallèle
+async function enregistrerStock(nouveauStock) {
+  await Promise.resolve(); // autre point de suspension avant l'écriture
+  stockCamp = nouveauStock;
+}
+
+async function consommerMunitions(quantite) {
+  const stockLu = await lireStock();
+  if (stockLu < quantite) return false;
+  await enregistrerStock(stockLu - quantite); // écrit à partir d'une valeur potentiellement périmée
+  return true;
+}
+
+async function reproduire() {
+  stockCamp = 100;
+  const resultats = await Promise.all([
+    consommerMunitions(70),
+    consommerMunitions(70),
+  ]);
+  console.log({
+    resultats, // [true, true] : les deux demandes ont été acceptées
+    stockRestant: stockCamp, // 30 : la seconde écriture a écrasé la première
+    quantiteAccordee: resultats.filter(Boolean).length * 70, // 140 pour un stock initial de 100
   });
+}
+
+reproduire();
+```
+
+Le résultat est déterministe dans cette simulation : les deux appels lisent 100 avant que l'une des écritures soit enregistrée. Le stockage affiche ensuite 30, mais 140 unités ont été autorisées. C'est une **mise à jour perdue** (lost update), issue d'une lecture-modification-écriture non atomique. Le code représente deux opérations asynchrones visant un état partagé ; il ne prétend pas que deux instructions synchrones du même agent JavaScript s'exécutent en parallèle.
+
+Dans le code initial du camp, `forEach(async ...)` posait aussi un problème distinct : `forEach` n'attend pas les Promises et la fonction appelante pouvait terminer trop tôt. Cela ne prouvait pas, à lui seul, une race sur les mutations synchrones. Pour attendre les simulations :
+
+```js
+async function rondeNocturne(camp, gardes, simulerTir) {
+  // Les simulations sont asynchrones ; on attend toutes leurs valeurs.
+  const tirs = await Promise.all(gardes.map((garde) => simulerTir(garde)));
+
+  // La vérification et la décrémentation sont ensuite séquentielles sur cet agent.
+  for (const quantite of tirs) {
+    if (camp.stock.munitions >= quantite) {
+      camp.stock.munitions -= quantite;
+    }
+  }
+  return camp.stock.munitions;
 }
 ```
 
-Reproduction : lancer `rondeNocturne()` avec deux gardes en parallèle et vérifier le stock après.
-C'est reproductible. On peut passer à l'étape 2.
+Sur un seul agent JavaScript, sans `await` entre la vérification et la décrémentation, ces deux instructions s'exécutent dans le même tour de code. Pour un stock partagé entre processus/instances, la protection doit se faire dans le stockage autoritaire (transaction ou mise à jour conditionnelle atomique), pas avec `Promise.all` seul.
 
 ---
 
@@ -105,26 +146,37 @@ Bisect mental : divise par deux à chaque fois.
 
 Ce pattern s'appelle une réduction par bisect (division binaire du problème). `git bisect` fait ça automatiquement pour trouver le commit qui a introduit un bug.
 
-Exemple camp Walking Dead isolé :
+Exemple isolé : la lecture et l'écriture sont les deux seules opérations nécessaires pour reproduire la mise à jour perdue.
 
 ```js
-// Version isolée : juste le minimum pour reproduire
-const stock = { munitions: 100 };
+let stock = 100;
 
-function consommer(stock, n) {
-  stock.munitions -= n; // mutation directe
+async function lire() {
+  await Promise.resolve();
+  return stock;
 }
 
-// Deux appels simultanés sur le même objet
-Promise.all([
-  Promise.resolve().then(() => consommer(stock, 30)),
-  Promise.resolve().then(() => consommer(stock, 30)),
-]).then(() => {
-  console.log(stock.munitions); // attendu : 40, mais parfois 70 (une des deux mutations perdue)
-});
+async function ecrire(valeur) {
+  await Promise.resolve();
+  stock = valeur;
+}
+
+async function retirer(quantite) {
+  const valeurLue = await lire();
+  if (valeurLue < quantite) return false;
+  await ecrire(valeurLue - quantite);
+  return true;
+}
+
+async function reproduireLeCasMinimal() {
+  const autorisations = await Promise.all([retirer(70), retirer(70)]);
+  console.log(autorisations, stock); // [true, true] et 30 : une mise à jour a été perdue
+}
+
+reproduireLeCasMinimal();
 ```
 
-Ici, le bug est visible sans le système entier. C'est un problème de référence partagée plus accès concurrent. Pas besoin du reste du camp pour le voir.
+Le cas minimal conserve le mécanisme : deux opérations lisent le même état, vérifient séparément, puis écrivent toutes deux un résultat calculé à partir de cet état ancien.
 
 ---
 
@@ -132,17 +184,39 @@ Ici, le bug est visible sans le système entier. C'est un problème de référen
 
 Une seule chose à la fois. Toujours.
 
-Si tu changes deux choses et que le bug disparaît : tu ne sais pas laquelle l'a corrigé.
-Si tu changes deux choses et que le bug reste : tu ne sais pas si l'une des deux était sur la bonne piste.
+Une copie immuable ne suffit pas à synchroniser deux opérations concurrentes. Elle est utile pour rendre les transitions explicites, à condition que les transitions soient appliquées séquentiellement :
 
 ```js
-// Correction : ne pas muter l'objet reçu, retourner un nouvel état
-function consommer(stock, n) {
-  return { ...stock, munitions: stock.munitions - n }; // nouvel objet, pas de mutation
+function consommer(stock, quantite) {
+  if (stock.munitions < quantite) {
+    return { ok: false, prochainStock: stock };
+  }
+  return {
+    ok: true,
+    prochainStock: { ...stock, munitions: stock.munitions - quantite },
+  };
 }
+
+let stock = { munitions: 100 };
+for (const quantite of [70, 70]) {
+  const resultat = consommer(stock, quantite);
+  if (resultat.ok) stock = resultat.prochainStock;
+}
+console.log(stock.munitions); // 30 : une demande acceptée, la seconde refusée
 ```
 
-Teste la correction sur le cas reproductible de l'étape 1. Pas sur un autre cas. Sur celui-là exactement.
+Cette boucle séquentielle convient à un état détenu par un seul agent. Pour plusieurs processus ou instances qui modifient une base PostgreSQL, déplace la vérification et le retrait dans une seule instruction atomique :
+
+```sql
+UPDATE camp_stock
+SET munitions = munitions - $1
+WHERE camp_id = $2 AND $1 > 0 AND munitions >= $1
+RETURNING munitions;
+```
+
+Valide aussi `quantite > 0` côté service et conserve une contrainte de données qui interdit un stock négatif. Les paramètres du driver (`$1`, `$2`) évitent la concaténation SQL. Si aucune ligne n'est retournée, la demande n'a pas été acceptée (quantité invalide, stock insuffisant ou camp absent : le contrat applicatif peut distinguer ces cas). Une copie d'objet, un mutex local ou `Promise.all` ne remplacent pas une garantie transactionnelle partagée.
+
+Teste la correction sur le même scénario reproductible de l'étape 1, puis vérifie les cas limites et les autres consommateurs du stock.
 
 ---
 
@@ -178,32 +252,40 @@ debugger   --> puissant, lent à démarrer, bon pour comprendre POURQUOI ça cas
 Ne pas logger une variable : logger un label + une variable.
 
 ```js
-// Mauvais : tu ne sais pas ce que tu regardes
-console.log(stock);
+function consommerAvecDiagnostic(stock, quantite) {
+  // Mauvais réflexe : loguer seulement l'objet sans contexte.
+  console.log(stock);
 
-// Correct : le label te dit immédiatement le contexte
-console.log("[consommer] stock avant:", JSON.parse(JSON.stringify(stock)));
-console.log("[consommer] n:", n);
-console.log("[consommer] stock après:", {
-  ...stock,
-  munitions: stock.munitions - n,
-});
+  // Meilleur diagnostic : contexte + valeurs réellement utilisées.
+  console.log("[consommer] stock avant:", { munitions: stock.munitions });
+  console.log("[consommer] quantité demandée:", quantite);
+
+  if (quantite <= 0 || stock.munitions < quantite) return false;
+  stock.munitions -= quantite;
+  console.log("[consommer] stock après:", { munitions: stock.munitions });
+  return true;
+}
+
+consommerAvecDiagnostic({ munitions: 100 }, 30);
 ```
 
-`JSON.parse(JSON.stringify(x))` : force une copie profonde de l'objet au moment du log.
-Sans ça, Chrome/Node affiche une référence live : quand tu regardes, l'objet a déjà muté.
+Certains outils d'inspection, notamment les DevTools du navigateur, peuvent afficher
+les propriétés d'un objet référencé au moment où tu le développes plutôt qu'au moment
+de l'appel à `console.log`. Le comportement dépend de l'outil et du runtime : ne
+présume pas que tous les environnements loguent de la même façon.
+
+Pour conserver un instantané, préfère un objet neuf contenant les champs utiles.
+`structuredClone(obj)` clone de nombreuses données structurées prises en charge, mais
+échoue notamment sur les fonctions et certaines références non clonables.
+`JSON.parse(JSON.stringify(obj))` n'est pas une copie profonde universelle : les
+propriétés `undefined` d'un objet sont omises, les `Date` deviennent des chaînes,
+les `Map`/`Set` ne sont pas préservées comme telles, les cycles et `BigInt` échouent.
+Réserve cette sérialisation aux données simples compatibles JSON.
 
 ```js
-// Piège classique
 const obj = { count: 0 };
-console.log(obj); // affiche {count: 0}... ou peut-être {count: 3}
-obj.count++;
-obj.count++;
-obj.count++;
-// Chrome loggue la référence, pas la snapshot. Tu vois l'état final, pas l'état au moment du log.
-
-// Correct
-console.log(JSON.parse(JSON.stringify(obj))); // snapshot immutable au moment de l'appel
+const snapshot = structuredClone({ count: obj.count });
+console.log(snapshot); // cet instantané ne change pas avec obj.count
 ```
 
 Nettoyer les logs après : un `console.log('[DEBUG]')` qui reste en prod, ça pue.
@@ -248,43 +330,52 @@ Reproduire force à comprendre la vraie cause. Sans ça, tu patches des symptôm
 
 EXO 1 : Reproduire avant tout (~10 min)
 
-Le système de camp de Rick Grimes remonte un bug : "parfois, les rations distribuées dépassent le stock disponible."
+Le camp possède 200 rations. Deux demandes concurrentes réclament chacune 150 rations.
+Le service doit en accepter au plus une. Le code ci-dessous simule une lecture puis une
+écriture asynchrones séparées : c'est cette frontière qui permet aux deux demandes de
+lire le même ancien stock.
 
 ```js
-// rations.js
 let stockNourriture = 200;
 
-async function distribuerRation(survivant) {
-  const besoin = await calculerBesoin(survivant); // retourne un nombre entre 1 et 5
-  if (stockNourriture >= besoin) {
-    stockNourriture -= besoin;
-    return { survivant: survivant.nom, recu: besoin };
-  }
-  return { survivant: survivant.nom, recu: 0 };
+async function lireStock() {
+  await Promise.resolve();
+  return stockNourriture;
 }
 
-const survivants = [
-  "Rick",
-  "le sniper",
-  "Michonne",
-  "Glenn",
-  "Maggie",
-  "Carl",
-  "Carol",
-  "Abraham",
-  "Rosita",
-  "Sasha",
-];
+async function enregistrerStock(nouveauStock) {
+  await Promise.resolve();
+  stockNourriture = nouveauStock;
+}
 
-survivants.forEach((nom) => distribuerRation({ nom }));
-console.log("Stock restant:", stockNourriture); // peut afficher un négatif
+async function distribuerRation(survivant, besoin) {
+  const stockLu = await lireStock();
+  if (stockLu < besoin) return { survivant, recu: 0 };
+  await enregistrerStock(stockLu - besoin);
+  return { survivant, recu: besoin };
+}
+
+async function reproduire() {
+  stockNourriture = 200;
+  const resultats = await Promise.all([
+    distribuerRation("Rick", 150),
+    distribuerRation("Michonne", 150),
+  ]);
+  console.log(resultats); // deux demandes accordées
+  console.log(stockNourriture); // 50, alors que 300 rations ont été accordées
+}
+
+reproduire();
 ```
 
 Étapes :
 
-1. Reproduis le bug de façon fiable (indice : le problème vient du moment où plusieurs Promises accèdent au même `stockNourriture`)
-2. Isole le code minimal qui produit encore le bug
-3. Explique pourquoi le stock peut devenir négatif malgré la vérification `if (stockNourriture >= besoin)`
+1. Reproduis le résultat avec les deux demandes ci-dessus.
+2. Isole les deux opérations qui lisent la même valeur puis écrivent depuis cette valeur périmée.
+3. Explique pourquoi le test `stockLu < besoin` ne suffit pas quand lecture et écriture sont séparées par `await`.
+4. Propose une correction séquentielle pour un état détenu par un seul agent JavaScript, puis explique pourquoi un état partagé entre plusieurs processus exige une transaction ou une mise à jour atomique dans le stockage autoritaire.
+
+Attention : `forEach(async ...)` ne patiente pas sur les Promises, mais cela ne prouve pas à lui seul une race sur deux mutations synchrones. Distingue toujours le défaut d'attente du défaut d'atomicité.
 
 EXO 2 : Bisect sur un pipeline async (~15 min)
 
@@ -325,3 +416,33 @@ Un bug corrigé sans test : un bug qui reviendra sans prévenir.
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+<!-- AF-LESSON-PROFILE: debug -->
+
+## Repères de décision
+
+- **Pourquoi :** Sans reproduction, un correctif peut masquer le symptôme tout en laissant la cause active. Un diagnostic solide réduit le risque de régression et le temps perdu en production.
+- **Quand l’utiliser / quand l’éviter :** Utilise cette méthode dès qu'un défaut est observable mais sa cause incertaine. Évite de modifier plusieurs variables à la fois ou d'ajouter des logs qui exposent des données sensibles.
+- **Limites :** Un bug intermittent peut disparaître sous instrumentation. Une reproduction locale peut ne pas contenir la charge, le réseau ou les données du terrain ; conserve les limites de ton diagnostic.
+
+## Mécanisme : la version sans magie
+
+Énonce une hypothèse falsifiable, fixe les entrées, reproduis, collecte un signal ciblé, élimine les hypothèses, corrige puis garde un test de non-régression.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Debug methodology : quatre étapes, zéro hasard** se rattache à ce cas concret : Kintana reçoit un signalement de double demande après un délai réseau. Il faut déterminer s'il s'agit d'un double clic, d'un retry, d'un worker rejoué ou d'une transaction non atomique.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Reproduction et correction d'un incident Kintana
+
+> **Arc Walking Dead :** quand l'alerte sonne, courir dans tous les sens ne sauve personne. Reproduis, isole, mesure, puis répare.
+
+**Mission liée à « Debug methodology : quatre étapes, zéro hasard » :** Reproduis un scénario de double création ou de notification manquante. Écris trois hypothèses classées, collecte un identifiant de corrélation, isole une cause puis ajoute un test qui échoue avant le correctif.
+
+**Livrable :** un rapport d'incident court, les étapes de reproduction, le patch minimal, le test de régression et les limites non reproduites.
+
+**Critères d’acceptation :** la cause est étayée par un signal ; une seule variable principale change à la fois ; le test détecte l'ancien défaut ; les données sensibles sont masquées dans les traces.
+
+**Transfert obligatoire :** Change l'ordre des événements ou ajoute une latence variable. Vérifie si la même hypothèse tient toujours.

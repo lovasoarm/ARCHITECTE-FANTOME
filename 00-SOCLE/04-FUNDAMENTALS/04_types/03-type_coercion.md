@@ -193,6 +193,61 @@ La coercition implicite (conversion automatique) : JS convertit les types selon 
 
 Falsy values : `0`, `""`, `null`, `undefined`, `NaN`, `false`. Tout le reste est truthy : y compris `"0"`, `[]`, `{}`.
 
+> **Statut pour la première passe : différé.** Termine d’abord la leçon et la pratique de base. Cette variation n’est pas une gate ; saute-la si elle utilise une notion non encore étudiée et reviens-y après les prérequis.
+
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+<!-- AF-DIAGRAM:types -->
+
+## Repère visuel utile : Validation des entrées à la frontière API
+
+```text
+payload externe (unknown)
+        |
+        v
+  validation de forme
+        |
+        v
+ normalisation explicite
+        |
+  +-----+------+
+  v            v
+valide       invalide
+  |            |
+  v            v
+valeur métier  erreur structurée
+```
+
+<!-- AF-LESSON-PROFILE: types -->
+
+## Repères de décision
+
+- **Pourquoi :** Les types et conversions empêchent une valeur ambiguë de traverser le système et de devenir une décision métier incorrecte.
+- **Quand l’utiliser / quand l’éviter :** Valide et normalise aux frontières (HTTP, formulaire, CSV, stockage). Utilise une conversion explicite quand le format est connu ; rejette une valeur si aucune interprétation sûre n'existe.
+- **Limites :** Les types statiques n'assurent pas la validité des données au runtime. Les conversions peuvent perdre de l'information ; `parseInt`, `Number` et les coercions implicites n'ont pas les mêmes règles.
+
+## Mécanisme : la version sans magie
+
+Lis une entrée comme `unknown`, vérifie sa forme et ses contraintes, puis construis une valeur de domaine typée. Ne confonds pas conversion et validation.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Type coercion : conversion implicite / explicite** se rattache à ce cas concret : Le formulaire Kintana reçoit des nombres, dates et chaînes venant d'appareils différents. Une chaîne vide, une date invalide ou un identifiant mal formé doit être rejeté avant la persistance.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Validation des entrées à la frontière API
+
+> **Statut Kintana : prolongement produit différé, facultatif et sans gate supplémentaire.** Les trois leçons Types décrivent une seule évolution du même parseur ; ne construis pas trois parseurs et ne la réalise pas pendant la première passe. Fais d'abord la pratique locale de la leçon. Reprends l'intégration seulement après Data Basics, Function essentials, Type transformers, puis les modules [API Craft](../../../02-CONSTRUCTION/19-API-CRAFT/README.md) et [Testing](../../../02-CONSTRUCTION/03-TESTING/README.md). Avant ces prérequis, tu peux simplement lire la mission et la laisser de côté.
+
+> **Arc Konoha / Naruto :** une donnée qui arrive de l'extérieur est un rouleau inconnu. Tu ne la crois pas juste parce qu'elle a l'air propre.
+
+**Mission liée à « Type coercion : conversion implicite / explicite » :** Écris un parseur de payload de création de demande Kintana. Il valide les champs, normalise les formats autorisés et retourne des erreurs identifiables sans convertir silencieusement une valeur douteuse.
+
+**Livrable :** un parseur de frontière, un contrat d'entrée/sortie et des tests tabulaires couvrant formes valides, invalides et coercions piégeuses.
+
+**Critères d’acceptation :** aucun payload brut n'entre dans le domaine ; les erreurs indiquent le champ sans révéler de secret ; les cas limites sont déterministes ; le parseur distingue valeur absente, vide et nulle.
+
+**Transfert facultatif, à la reprise :** lorsque le parseur de base est compris et testé, ajoute une deuxième source (CSV ou client mobile) dont les formats diffèrent et compare les règles communes et spécifiques. Cette extension ne bloque pas la progression.

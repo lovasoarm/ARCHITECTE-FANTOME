@@ -22,7 +22,7 @@ noyau: oui
 | 01  | `01_rasengan_engine`                 | CORE                   |        8 h | état, composition, invariants |
 | 02  | `02_garo_no_kronika`                 | DEPTH                  |          : | async concurrent              |
 | 03  | `03_walking_dead_protocol`           | CORE                   |        8 h | legacy + tests + workers      |
-| 04  | `04_breaking_cache`                  | DEPTH                  |          : | algorithmes + profilage       |
+| 04  | `04_breaking_cache`                  | DEPTH                  |          : | cache TTL, hit/miss, invalidation et mesure des appels loader |
 | 05  | `05_prison_break_api`                | CORE                   |        8 h | API + auth + sécurité         |
 | 06  | `06_ultras_dashboard`                | CORE                   |        8 h | live + observabilité + charge |
 | 07  | `07_ballon_dor_cli`                  | DEPTH                  |          : | runtime/CLI/concurrence       |

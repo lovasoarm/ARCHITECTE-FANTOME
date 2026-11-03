@@ -4,7 +4,7 @@ acte: comprendre
 route: complete
 ---
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../03-PILOTAGE/09-TEAM-QUEST/README.md) | [Niveau suivant](../05-CAPSTONE-ARENA/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent dans le bloc Épreuve](../03-REALTIME/README.md) | [Suite d'intégration conseillée, non bloquante](../05-CAPSTONE-ARENA/README.md)
 
 # Module 04-EPREUVE/04-BIG-APP-SNOOP : Big App Snoop
 
@@ -27,28 +27,13 @@ Ce niveau réutilise : niveau [06 (Archi Lab)](../../02-CONSTRUCTION/15-ARCHI-LA
 architecture en couches et une frontière de service, et niveau [07 (API Dojo)](../../02-CONSTRUCTION/20-API-DOJO/README.md)
 pour reconnaître un pattern de repository et un contrat d'appel entre services.
 
-Auto-test d'entrée :
-
-1. Sais-tu expliquer la différence entre le point d'entrée d'exécution d'une requête et son
-   point d'entrée de compréhension pour un lecteur qui découvre le système ?
-2. Sais-tu citer deux façons de repérer un fichier à fort risque dans un dépôt inconnu, sans
-   avoir lu sa logique métier ?
-3. Sais-tu ce qu'est un test de caractérisation et pourquoi il diffère d'un test qui vérifie
-   qu'un comportement est correct ?
-
-Si tu rates une de ces trois questions, remonte au niveau précédent avant de continuer.
-
-**Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
-[le grimoire du niveau précédent](../../03-PILOTAGE/09-TEAM-QUEST/90-grimoire.md) (20 minutes), puis refais son
-[challenge](../../03-PILOTAGE/09-TEAM-QUEST/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
-trou amont, c'est attribuer au module `04-EPREUVE/04-BIG-APP-SNOOP` une difficulté qui vient du module `03-PILOTAGE/09-TEAM-QUEST`.
+**Auto-test d'entrée :** les questions correspondantes et les modules à reprendre sont
+centralisés dans [`00-PREREQUIS.md`](00-PREREQUIS.md). Ce README ne crée pas de second filtre
+ni de dépendance supplémentaire.
 
 **Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
-Prérequis : Module `02-CONSTRUCTION/15-ARCHI-LAB` (Archi Lab) et 07 (API Dojo) terminés. Tu dois savoir reconnaître une
-architecture en couches, un pattern de repository, une frontière de service avant de pouvoir
-les repérer dans le code de quelqu'un d'autre. Sans ce bagage, tu lis des lignes sans voir
-la forme derrière.
+Prérequis : terminer le module précédent du bloc, `04-EPREUVE/03-REALTIME`, ainsi que `02-CONSTRUCTION/15-ARCHI-LAB` et `02-CONSTRUCTION/20-API-DOJO`. Realtime conserve la continuité du bloc ; Archi Lab et API Dojo fournissent les connaissances techniques effectivement réutilisées ici. Le contrat complet d'entrée est dans [`00-PREREQUIS.md`](00-PREREQUIS.md).
 
 ## Ce que tu sais faire à la sortie
 
@@ -131,3 +116,9 @@ fois ce niveau terminé, pas un objectif de ce niveau.
 - [Grimoire : Big App Snoop](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **décision qui traverse les équipes** : Rédige une RFC/ADR sur une décision Kintana qui affecte API, données et exploitation. Compare au moins deux options, demande une revue contradictoire et transforme les objections en critères d’acceptation. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : La décision a un propriétaire, un coût, un plan de migration et une condition de révision ; l’adoption réelle reste « non démontrée » tant qu’une équipe ne l’a pas adoptée.

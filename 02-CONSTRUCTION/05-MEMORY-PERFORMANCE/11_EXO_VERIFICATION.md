@@ -1,47 +1,23 @@
 ---
 stability: stable
 acte: verification
+assessment_role: instructional_checkpoint
 ---
 
-# Vérification : 11_EXO_VERIFICATION.md
+**SCÈNE CRAZYDEVS : atelier de Konoha :** observe les contraintes avant de choisir une technique.
 
-> **SCÈNE CRAZYDEVS : jauge de chakra :** optimiser sans mesurer, c'est demander à Naruto de vider son chakra sans regarder la jauge. D'abord la mesure, ensuite le coup de génie ; sinon tu optimises peut-être le mauvais ralentissement.
+# EXO : cache borné : TTL, capacité et éviction
 
-# EXO IA MENTEUSE : module 08_memory_performance
+Temps indicatif : 20 min.
 
-Temps : ~10 min. Format court, seul ou en binôme.
+Un cache applicatif garde les réponses calculées. Le cache actuel ne possède ni durée de vie ni limite de taille. Cela ne prouve pas une fuite dans tous les contextes, mais une cardinalité non bornée peut faire croître la mémoire sans limite pratique.
 
-## Snippet IA plausible
+**Mission**
 
-L'assistant te propose ce code, l'air confiant :
+1. Propose un cache avec une capacité maximale de 3 entrées et un TTL configurable.
+2. À l’insertion d’une quatrième entrée, évince la moins récemment utilisée (LRU) ou justifie une autre politique.
+3. Définis quand une entrée expirée est supprimée : à la lecture, à l’insertion ou par balayage périodique.
+4. Ajoute des tests pour expiration, rafraîchissement et éviction.
+5. Explique pourquoi le choix TTL/LRU dépend du coût de calcul, de la cardinalité des clés et de la fraîcheur métier.
 
-```js
-const cache = {};
-function get(k) {
-  if (!cache[k]) cache[k] = fetch(k);
-  return cache[k];
-}
-```
-
-Il ajoute : _"C'est propre, testé, prod-ready."_
-
-## Ta question unique
-
-**Où est la faille ?**
-
-Prends 5 minutes. Écris ta réponse **sans** relancer l'IA. Nomme :
-
-1. Le comportement observable qui trompe (pourquoi ça a l'air correct).
-2. Le vrai problème (technique, sécurité, complexité, ou sémantique).
-3. La correction minimale que **toi** tu apporterais.
-
-## Piste de correction (à ne lire qu'après)
-
-> cache[k] = fetch(k) stocke la Promise, pas le résultat. Et le cache n'a aucune éviction : fuite mémoire garantie en prod. Où l'IA a-t-elle inventé la 'mémoïsation' sans la nommer ?
-
-## Pourquoi cet exo
-
-En 2026, l'IA génère du code **plausible** plus vite qu'elle ne le vérifie.
-Le métier n'est plus d'écrire ; c'est de **repérer la faille** dans une
-suggestion qui a l'air correcte. Ce drill de 10 min, une fois par module,
-te transforme de consommateur en pilote.
+**Critère** : le nombre d’entrées vivantes ne dépasse jamais la capacité définie après une opération d’insertion ; le test ne suppose pas qu’un cache doit toujours être conservé en mémoire.

@@ -16,7 +16,7 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~9 min
 
-Chercher un élément. Le truc le plus basique qui soit. Et pourtant la différence entre O(n) et O(log n) peut signifier "trouve en 1 seconde" ou "trouve en 17 jours" sur une base de données réelle.
+Chercher un élément. Le truc le plus basique qui soit. Pourtant, selon le volume, la différence entre O(n) et O(log n) peut changer fortement le nombre de comparaisons nécessaires. Elle ne prédit pas, à elle seule, le temps réel observé.
 
 ---
 
@@ -38,24 +38,29 @@ console.log(linearSearch(buts, 9)); // 3
 console.log(linearSearch(buts, 5)); // -1
 ```
 
-**Complexité :**
+**Nombre de comparaisons :**
 
-- Meilleur cas : O(1) - le premier élément est la cible
-- Moyen : O(n/2) = O(n)
-- Pire : O(n) - cible absente ou en dernière position
+- Meilleur cas : 1 comparaison, si le premier élément est la cible.
+- Cas moyen, sous l’hypothèse que la cible est présente et que chaque position est équiprobable : `(n + 1) / 2` comparaisons.
+- Pire cas : `n` comparaisons, si la cible est absente ou située en dernière position.
+
+Sans hypothèse sur la position de la cible et la fréquence des recherches infructueuses, il n’existe pas une moyenne unique à annoncer. Dans tous les cas, la complexité asymptotique est `O(n)`.
 
 **Quand l'utiliser :**
 
-- tableau non trié
-- petits tableaux (< 50 éléments)
-- recherche sur des structures sans accès indexé (linked list, stream)
-- une seule recherche sur des données qui ne seront pas re-cherchées
+- tableau non trié, surtout pour une recherche ponctuelle ;
+- petit volume, lorsque la simplicité compte davantage qu’un index ou un tri ;
+- collection indexable quand tu dois simplement parcourir les éléments sans construire d’index supplémentaire.
+
+Il n’existe pas de seuil universel (par exemple 50 éléments) : mesure le cas réel si la performance est importante.
 
 ---
 
 ## 2) BINARY SEARCH : O(log n)
 
 Condition : le tableau doit être **trié**.
+
+Avec des doublons, `binarySearch` peut retourner **une occurrence quelconque** de la cible. Pour trouver la première position qui satisfait un seuil, utilise plutôt `lowerBound`.
 
 Idée : diviser l'espace de recherche par deux à chaque étape. Si la cible est plus petite que le milieu, cherche à gauche. Si plus grande, cherche à droite.
 
@@ -137,13 +142,12 @@ n = 1 000    --> 10 étapes
 n = 1 000 000  --> 20 étapes
 n = 1 000 000 000 --> 30 étapes
 
-Comparaison :
-n = 1 million
+Comparaison du nombre de comparaisons pour `n = 1 000 000` :
 
-Linear search : jusqu'à 1 000 000 comparaisons
-Binary search : 20 comparaisons
+- Recherche linéaire : jusqu’à `1 000 000` comparaisons.
+- Recherche binaire : au plus `20` comparaisons pour cette taille.
 
-C'est la différence entre "1 seconde" et "0.00002 ms"
+Ce sont des comptes d’opérations, pas des durées. On ne peut pas en déduire directement un rapport de temps : l’accès mémoire, les constantes, le matériel, le moteur JavaScript et le protocole de mesure influencent le temps observé.
 ```
 
 ```text
@@ -176,26 +180,31 @@ function binarySearchRecursive(arr, target, low = 0, high = arr.length - 1) {
 }
 ```
 
-La version itérative est préférable en JS : pas de risque de stack overflow sur des tableaux très longs. La récursive est plus lisible pédagogiquement.
+Les deux versions ont une profondeur de recherche en `O(log n)`. La version récursive utilise donc `O(log n)` d’espace de pile ; ce risque ne doit pas être exagéré pour un tableau JavaScript de taille ordinaire, car la profondeur reste faible. La version itérative utilise `O(1)` d’espace auxiliaire et évite de consommer la pile d’appels. Choisis selon la lisibilité et les contraintes du contexte.
 
 ---
 
 ## 5) LE CAS QUI CASSE : BINARY SEARCH SUR TABLEAU NON TRIÉ
 
 ```js
-// exemple qui casse
+// Contre-exemple : la cible est présente, mais le tableau n'est pas trié.
 const nonTrie = [7, 2, 9, 1, 5, 3];
-console.log(binarySearch(nonTrie, 9)); // -1 !!!
-// 9 est bien dans le tableau mais binary search ne le trouve pas
-// parce qu'il suppose que le tableau est trié pour décider dans quelle moitié chercher
+console.log(binarySearch(nonTrie, 1)); // -1 : résultat incorrect pour cette entrée
+console.log(linearSearch(nonTrie, 1)); // 3 : la cible est bien présente
 
-// fix : trier avant de chercher
-// mais si tu tris pour une seule recherche --> O(n log n) pour le tri + O(log n) pour la recherche
-// = O(n log n), plus lent qu'un simple O(n) de linear search
-// binary search n'a de sens que si tu vas chercher plusieurs fois dans le même tableau
+// Pourquoi la recherche binaire échoue ici :
+// low=0, high=5, mid=2 -> 9 ; comme 1 < 9, elle élimine les indices 2 à 5.
+// low=0, high=1, mid=0 -> 7 ; comme 1 < 7, elle élimine le reste.
+// L'algorithme s'arrête, alors que 1 se trouvait à l'index 3.
 ```
 
-**Règle :** si tu fais une seule recherche dans un tableau non trié, `linearSearch` est plus rapide. Binary search ne vaut le coup qu'à partir de plusieurs recherches répétées sur la même structure triée.
+**Règle de décision :**
+
+- Si le tableau est déjà trié et donne un accès direct aux indices, la recherche binaire peut être utile même pour une seule recherche.
+- Si le tableau n’est pas trié et que tu n’as qu’une recherche, `linearSearch` évite de payer un tri préalable.
+- Si tu as plusieurs recherches sur les mêmes données, le coût du tri initial peut être amorti : compare `O(n log n + q log n)` au coût de `q` recherches linéaires, et mesure selon le nombre `q` et les opérations réellement effectuées.
+
+Ne transforme donc pas « le tri coûte cher pour une recherche ponctuelle » en « la recherche binaire n’a de sens qu’avec des recherches répétées ».
 
 ---
 
@@ -206,7 +215,9 @@ console.log(binarySearch(nonTrie, 9)); // -1 !!!
 // chercher un ID dans une liste triée d'utilisateurs
 // chercher un timestamp dans un log trié par date
 
-// exemple pratique : trouver le premier élément >= threshold
+// Précondition : arr est trié par ordre croissant.
+// Retourne le premier index i tel que arr[i] >= target.
+// Le résultat peut être arr.length si aucun élément ne convient.
 function lowerBound(arr, target) {
   let low = 0;
   let high = arr.length;
@@ -217,7 +228,7 @@ function lowerBound(arr, target) {
     else high = mid;
   }
 
-  return low; // index du premier élément >= target (-1 si tous < target)
+  return low; // index dans [0, arr.length] ; arr.length si toutes les valeurs sont < target
 }
 
 const scores = [10, 20, 30, 40, 50, 60, 70, 80];
@@ -271,22 +282,55 @@ findRange(butsPar, 6); // [-1, -1] (absent)
 
 _~15 min_
 
-Génère un tableau de 1 million d'entiers triés. Effectue 10 000 recherches aléatoires avec `linearSearch` puis avec `binarySearch`. Mesure le temps total des 10 000 recherches pour chaque méthode. Le rapport de vitesse doit approcher n / log(n) = 1 000 000 / 20 = 50 000x. Vérifie-le.
+Génère un tableau trié de 100 000 entiers et prépare 100 cibles identiques pour les deux méthodes, avec des valeurs présentes et absentes. Lance une courte phase d’échauffement, mesure plusieurs répétitions, puis compare :
+
+1. le nombre théorique de comparaisons (compte les vérifications d’égalité et d’ordre dans ton implémentation) ;
+2. le temps observé sur la même machine et les mêmes cibles.
+
+Note l’environnement, la méthode de mesure et les résultats. **Aucun rapport de temps précis n’est exigé** : le rapport `n / log₂(n)` décrit un ordre de grandeur de comparaisons, pas une promesse de vitesse réelle. Explique les écarts et les limites de ton benchmark.
 
 ---
 
 ## RÉSUMÉ
 
-Linear search : O(n), fonctionne sur n'importe quoi, simple. Binary search : O(log n) sur un tableau trié, divise l'espace de recherche par deux à chaque étape. Sur 1 million d'éléments, binary search fait 20 comparaisons là où linear search en fait 1 million. La condition non négociable : le tableau doit être trié. Si tu tries pour une seule recherche, tu perds. Binary search n'a de sens qu'avec des recherches répétées sur des données triées.
+Linear search : `O(n)`, simple et adaptée notamment aux données non triées. Binary search : `O(log n)` sur des données triées et accessibles par indice ; elle réduit l’intervalle de recherche de moitié à chaque étape. Pour un million d’éléments, elle demande au plus environ 20 comparaisons, tandis qu’une recherche linéaire peut en demander un million. Ces nombres ne sont pas des temps d’exécution. Si les données ne sont pas triées, compare le coût d’un tri préalable à celui de la recherche linéaire. Si elles sont déjà triées, une seule recherche binaire peut déjà être pertinente.
 
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
-
-<!-- AF-P0-2026-10-30: missing_verification -->
 
 ### Vérification observable : critères de réussite
 
 Démontre la précondition de tri avant recherche binaire. Compare au résultat d’une recherche linéaire sur des entrées vides, répétées et non trouvées.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: algorithms -->
+
+## Repères de décision
+
+- **Pourquoi :** Un algorithme transforme une entrée en résultat ; sa complexité détermine si la solution reste viable quand le volume augmente.
+- **Quand l’utiliser / quand l’éviter :** Compare plusieurs approches quand le volume ou la latence est important. Préfère l'algorithme le plus simple qui respecte le besoin et l'enveloppe mesurée.
+- **Limites :** Big-O décrit une croissance asymptotique, pas le temps exact. Les constantes, la distribution des données, le matériel et les coûts I/O comptent aussi.
+
+## Mécanisme : la version sans magie
+
+Décris l'état, les étapes et les invariants ; analyse le meilleur, moyen et pire cas pertinents ; vérifie par tests de propriétés et benchmark.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Linear search vs binary search : la différence qui compte à l'échelle** se rattache à ce cas concret : Le dispatch Kintana doit affecter des demandes à des agents selon capacité, priorité et zone sans créer de biais ou exploser en coût.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Optimiser une opération de dispatch
+
+> **Arc DBZ / Capsule Corp. :** une attaque brillante mais quadratique peut perdre le combat quand la foule arrive. Regarde le coût quand l'entrée grandit.
+
+**Mission liée à « Linear search vs binary search : la différence qui compte à l'échelle » :** Implémente ou compare l'algorithme associé à la leçon sur une tâche de dispatch Kintana. Définis d'abord le résultat attendu et les cas limites, puis calcule le coût et mesure une fixture à plusieurs tailles.
+
+**Livrable :** l'algorithme, tests de propriétés, analyse de complexité et benchmark reproductible si le sujet le permet.
+
+**Critères d’acceptation :** le résultat est correct pour les cas limites ; le coût temporel et mémoire est expliqué ; le benchmark ne confond pas overhead de mesure et algorithme ; les hypothèses sont écrites.
+
+**Transfert obligatoire :** Change le nombre d'acteurs et la distribution des priorités. Identifie le scénario où l'algorithme choisi devient mauvais.

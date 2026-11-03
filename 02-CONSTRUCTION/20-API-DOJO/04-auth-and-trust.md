@@ -194,3 +194,33 @@ scope ou l'expiration n'a pas été vérifié.
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+<!-- AF-LESSON-PROFILE: api -->
+
+## Repères de décision
+
+- **Pourquoi :** Une API stable permet à plusieurs clients d'utiliser un système sans connaître son implémentation interne. Les erreurs et les droits font partie du contrat.
+- **Quand l’utiliser / quand l’éviter :** Expose une API quand un autre composant a besoin d'une capacité. Documente version, validation, erreurs, autorisation et idempotence pour les opérations d'écriture.
+- **Limites :** Un schéma valide ne garantit pas que l'utilisateur est autorisé. Une réponse HTTP 200 ne signifie pas toujours que le traitement métier est terminé ; le retry doit respecter le contrat.
+
+## Mécanisme : la version sans magie
+
+Définis requête, réponse, erreurs et effets ; valide côté serveur ; authentifie et autorise par ressource ; rends les écritures idempotentes quand le client peut réessayer.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Authn vs authz, tokens, scopes, frontières de confiance** se rattache à ce cas concret : Les clients web/mobile et la console agent Kintana peuvent évoluer à des rythmes différents et subir des délais réseau.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Contrat d'API robuste pour les demandes
+
+> **Arc One Piece / Grand Line :** l'API est le contrat entre navires. Si tu changes le format sans prévenir, tout le monde perd sa cargaison.
+
+**Mission liée à « Authn vs authz, tokens, scopes, frontières de confiance » :** Expose ou révise l'opération Kintana concernée. Définis payload, codes d'erreur, règles d'accès par ressource, versionnement et clé d'idempotence si elle écrit. Ajoute les tests de client ancien et d'acteur non autorisé.
+
+**Livrable :** spécification API, implémentation ou contrat, tests positifs/négatifs et exemple d'évolution compatible.
+
+**Critères d’acceptation :** les entrées sont validées côté serveur ; les droits sont vérifiés pour chaque ressource ; le retry ne crée pas de double effet ; les erreurs sont stables et sans fuite d'information.
+
+**Transfert obligatoire :** Le client mobile reste sur l'ancienne version pendant un déploiement serveur. Démontre la compatibilité et le plan de retrait.

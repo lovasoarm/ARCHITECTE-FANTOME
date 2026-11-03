@@ -1,284 +1,194 @@
 ---
-stability: intemporel
-last_reviewed: 2026-07
-depends_on_vendor: false
+stability: stable
+last_reviewed: 2026-10-31
 acte: comprendre
-cognitive_level: L3
+cognitive_level: L2-L3
 perturbation_modes: [changement_contexte, decision_organisationnelle]
 anti_recipe_key: changement_contexte+decision_organisationnelle
 transfer_distance: low
 assessment_role: instructional_checkpoint
 ---
 
-> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+> **SCÈNE CRAZYDEVS : Konoha sous siège :** le navigateur peut garder quelques informations utiles, mais cet espace n'est pas un coffre-fort. Une donnée disponible au code de la page ne doit pas être traitée comme un secret.
 
-# Storage treasure : le trésor du navigateur
+# Storage treasure : le stockage du navigateur
 
-Temps de lecture ~7 min
+Temps de lecture indicatif : 7 à 9 min.
 
-Ton navigateur peut garder des données. Même si la page est rechargée. Même si l'utilisateur ferme le site. Même s'il revient demain matin avec un café.
+Une variable JavaScript disparaît quand la page est rechargée. Le navigateur propose des espaces de stockage pour conserver certaines données entre deux chargements. Ils sont pratiques pour les préférences et les brouillons non sensibles ; ils ne remplacent ni une base de données serveur ni un système d'authentification.
 
-C'est comme un petit coffre-fort.
+## 1. LocalStorage : conserver une préférence
 
-Deux outils principaux : **LocalStorage** et **Cookies**(le seul que le serveur peut lire.). Aujourd'hui on parle surtout de LocalStorage : parce que c'est simple et utilisé partout.
+`localStorage` est un stockage clé-valeur associé à une **origine** (schéma, hôte et port). Une page chargée depuis la même origine peut retrouver ces valeurs après un rechargement et, en général, après la fermeture puis la réouverture du navigateur.
 
----
-
-## 1) LE PROBLÈME DU WEB NORMAL
-
-Un site web classique oublie tout. Tu recharges la page :
-
-**POUF.**
-
-Toutes les variables disparaissent.
+Le mot « permanent » serait trompeur : l'utilisateur, le navigateur, un mode privé ou une politique de stockage peuvent supprimer ou limiter ces données. Ne construis jamais une règle métier qui dépend de leur conservation éternelle.
 
 ```javascript
-let score = 100;
-// refresh la page → score = perdu.
+const storageKey = "af-demo:theme";
+localStorage.setItem(storageKey, "dark");
+
+const theme = localStorage.getItem(storageKey);
+console.log(theme); // "dark" ou null si la clé n'existe pas
 ```
 
-Donc les navigateurs ont inventé **LocalStorage** : un petit disque dur intégré dans ton navigateur.
+`localStorage` stocke des chaînes de caractères. Si tu lui donnes un objet directement, JavaScript le convertit en texte d'une manière qui ne conserve pas sa structure.
 
----
-
-## 2) LOCALSTORAGE : LE COFFRE DU NAVIGATEUR
-
-LocalStorage = stockage **permanent** dans le navigateur.
-
-Permanent veut dire : même après refresh, même après fermeture de l'onglet, même après avoir éteint l'ordi et rallumé trois jours plus tard.
-
-**Règle importante :** LocalStorage stocke uniquement des **strings** (texte). Même les nombres deviennent du texte. On y reviendra.
-
----
-
-## 3) LES 4 OPÉRATIONS
-
-**Sauvegarder :**
+## 2. Les opérations de base
 
 ```javascript
-localStorage.setItem("hero", "Blob");
-// stocke : hero → "Blob"
+localStorage.setItem("af-demo:hero", "Blob");
+const hero = localStorage.getItem("af-demo:hero");
+localStorage.removeItem("af-demo:hero");
 ```
 
-**Lire :**
+`removeItem()` supprime une clé précise. `clear()` supprime **toutes les clés de localStorage pour l'origine courante**, y compris celles créées par d'autres pages ou exercices utilisant cette même origine. Pour apprendre, préfère une clé préfixée par ton application et `removeItem()`.
 
 ```javascript
-let hero = localStorage.getItem("hero");
-console.log(hero); // "Blob"
+// À réserver à un profil ou une origine de test isolée :
+localStorage.clear();
 ```
 
-**Supprimer un élément :**
+Le navigateur peut refuser l'accès au stockage (par exemple selon ses réglages ou son contexte). Dans une application réelle, prévois un comportement de repli et traite les erreurs possibles ; ne suppose pas que le stockage est toujours disponible.
+
+## 3. Enregistrer un objet avec JSON
+
+Pour conserver un objet, transforme-le en chaîne avec `JSON.stringify()`. Pour le relire, utilise `JSON.parse()`.
 
 ```javascript
-localStorage.removeItem("hero");
+const player = { name: "Blob", hp: 100 };
+const playerKey = "af-demo:player";
+
+localStorage.setItem(playerKey, JSON.stringify(player));
+
+const raw = localStorage.getItem(playerKey);
+let restoredPlayer = null;
+
+if (raw !== null) {
+  try {
+    restoredPlayer = JSON.parse(raw);
+  } catch {
+    console.log("La valeur enregistrée n'est pas un JSON valide.");
+  }
+}
+
+console.log(restoredPlayer?.name); // "Blob" si la valeur est valide
 ```
 
-**Tout effacer :**
+`JSON.parse()` peut échouer si le texte est invalide. Les données locales peuvent aussi être modifiées par l'utilisateur ou par un autre script de la même origine : valide leur forme avant de les utiliser.
+
+## 4. Règle de sécurité : aucun secret dans Web Storage
+
+**Ne stocke jamais dans `localStorage` ou `sessionStorage` :**
+
+- mot de passe ou clé privée ;
+- token d'accès, JWT, refresh token ou identifiant de session ;
+- secret d'API ou donnée sensible qui donnerait un accès à un compte.
+
+Ces espaces sont lisibles par le JavaScript exécuté sur la même origine. Une faille XSS peut donc exposer les valeurs qui s'y trouvent. Ils ne chiffrent pas les données et ne constituent pas un coffre-fort. Utilise-les pour des préférences non sensibles, comme un thème ou l'état local d'un exercice.
+
+Pour une session web, le serveur peut utiliser un cookie de session configuré avec des attributs adaptés, notamment `HttpOnly`, `Secure` et `SameSite`, ou une architecture BFF. Le choix exact dépend du modèle de menace ; les protections CSRF nécessaires doivent aussi être étudiées. Cette leçon ne te demande pas de construire un système d'authentification.
+
+## 5. SessionStorage : durée plus courte, pas plus secret
+
+`sessionStorage` suit une page-session, généralement limitée à l'onglet courant et supprimée lorsque cette session d'onglet se termine. Les valeurs survivent aux rechargements de cette page-session, mais restent accessibles au JavaScript de la même origine.
 
 ```javascript
-localStorage.clear(); // détruit tout le coffre : sans confirmation, sans pitié
+sessionStorage.setItem("af-demo:step", "2");
+const step = sessionStorage.getItem("af-demo:step");
+sessionStorage.removeItem("af-demo:step");
 ```
 
----
+Il convient à un état temporaire non sensible, par exemple l'étape d'un quiz local. « Temporaire » ne signifie pas « sécurisé » : n'y place pas de token ou de secret.
 
-## 4) LE PROBLÈME DES OBJETS
+## 6. Cookies : une autre mécanique
 
-LocalStorage n'accepte que des strings. Donc ça ne marche pas :
+Un cookie peut être envoyé automatiquement au serveur avec les requêtes qui correspondent à ses règles de domaine, chemin, sécurité et site. Le navigateur n'envoie pas tous les cookies à tous les serveurs : les règles comptent.
+
+Un cookie n'est pas forcément caché au JavaScript. Sans l'attribut `HttpOnly`, un script de la page peut généralement lire les cookies accessibles via `document.cookie`. Un cookie `HttpOnly` est créé par le serveur dans l'en-tête `Set-Cookie` et n'est pas accessible par `document.cookie`.
+
+Exemple conceptuel d'en-tête envoyé par un serveur pour une session HTTPS :
+
+```http
+Set-Cookie: session=<identifiant-opaque>; Path=/; HttpOnly; Secure; SameSite=Lax
+```
+
+- `HttpOnly` empêche le JavaScript de lire ce cookie ;
+- `Secure` demande son envoi uniquement sur une connexion sécurisée HTTPS ;
+- `SameSite` limite certains envois dans les contextes inter-sites, mais ne remplace pas à lui seul toutes les protections CSRF.
+
+Pour comprendre `document.cookie`, tu peux tester un cookie **non sensible** de préférence sur ton serveur local :
 
 ```javascript
-let player = { name: "Blob", hp: 100 };
-localStorage.setItem("player", player);
-
-localStorage.getItem("player"); // "[object Object]" ← inutilisable
+document.cookie = "af-demo:theme=dark; Max-Age=604800; Path=/; SameSite=Lax";
+console.log(document.cookie);
 ```
 
----
+Ce test ne crée pas un cookie `HttpOnly` et ne doit jamais être transformé en code d'authentification.
 
-## 5) JSON : LA SOLUTION
+## 7. Comparaison utile
 
-```javascript
-JSON.stringify(); // objet → texte
-JSON.parse(); // texte → objet
-```
+|                                      | `localStorage`                                                | `sessionStorage`                                            | Cookie                                                                                |
+| ------------------------------------ | ------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Durée                                | Jusqu'à suppression ou nettoyage ; pas une garantie éternelle | Page-session, généralement jusqu'à la fermeture de l'onglet | Selon `Expires` / `Max-Age` ou la session du navigateur                               |
+| Portée                               | Même origine                                                  | Même origine et page-session                                | Selon domaine, chemin et règles du cookie                                             |
+| Envoyé automatiquement au serveur    | Non                                                           | Non                                                         | Oui, si la requête correspond aux règles                                              |
+| Lisible par le JavaScript de la page | Oui                                                           | Oui                                                         | Généralement oui, sauf `HttpOnly`                                                     |
+| Usage débutant sûr                   | Préférences non sensibles                                     | État temporaire non sensible                                | Préférences non sensibles ; sessions uniquement avec une conception serveur sécurisée |
 
-**Sauvegarder un objet :**
+## Mission utile : première passe
 
-```javascript
-let player = { name: "Blob", hp: 100 };
+Crée une préférence de thème non sensible. Enregistre `"dark"` sous `af-demo:theme`, recharge la page et vérifie que la préférence est relue. Ajoute ensuite un bouton qui supprime uniquement cette clé avec `removeItem()`.
 
-localStorage.setItem("player", JSON.stringify(player));
-// stocke : '{"name":"Blob","hp":100}'
-```
+**Pourquoi :** ce petit cas montre la persistance d'une préférence sans confondre stockage local et authentification.
 
-**Le récupérer :**
+**Quand :** cette première passe se fait après les exemples `setItem()`, `getItem()` et `removeItem()` de la leçon.
 
-```javascript
-let data = localStorage.getItem("player");
-let playerObject = JSON.parse(data);
+**Limites :** l'exercice ne prouve ni la sécurité d'une session, ni une persistance garantie, ni une synchronisation serveur.
 
-console.log(playerObject.name); // "Blob"
-```
+**Mécanisme :** le navigateur associe la clé à l'origine ; le code relit une chaîne et décide comment l'utiliser.
 
-> C'est le pattern universel : `stringify` pour sauvegarder, `parse` pour récupérer. Tu vas l'écrire des centaines de fois.
+## Transfert produit différé : préférences et état Kintana
 
----
+> **Statut : différé et non bloquant.** Ce transfert n'est pas requis pour valider la première passe Storage et ne doit pas conduire à stocker des données d'authentification.
 
-## 6) COOKIES (VERSION RAPIDE)
+**Mission liée :** dans un cas produit fourni ultérieurement, proposer quelles préférences non sensibles peuvent être conservées localement, quelles données doivent rester côté serveur et quelles données ne doivent jamais être placées dans Web Storage. Justifier la suppression ciblée des clés et le comportement si le stockage est indisponible.
 
-Cookies = autre système de stockage, mais avec une différence majeure :
-
-|                   | LocalStorage                        | Cookies                  |
-| ----------------- | ----------------------------------- | ------------------------ |
-| Envoyé au serveur | non                                 | **oui, automatiquement** |
-| Simplicité        | simple                              | plus complexe            |
-| Utilisé pour      | préférences, thème, données locales | auth, sessions, tracking |
-
-LocalStorage reste côté navigateur. Les cookies font l'aller-retour avec le serveur à chaque requête.
-
----
-
-## 7) À QUOI ÇA SERT EN VRAI ?
-
-- Sauvegarder un thème dark/light
-- Garder un token de connexion
-- Stocker la progression d'un jeu
-- Mémoriser les préférences utilisateur
-- Sauvegarder une progression de jeu
-
-C'est un mini disque dur du navigateur. Discret, rapide, et il ne se plaint jamais.
-
----
+**Gate différée :** aucune donnée sensible ou d'authentification dans Web Storage ; la portée de chaque donnée est justifiée ; l'application ne dépend pas d'une conservation éternelle.
 
 ## MISSIONS
 
-## MISSION 1 : LE TRÉSOR DU JOUEUR
+### Mission 1 : Le profil du joueur
 
-Crée un objet joueur :
+Crée cet objet :
 
 ```javascript
 { name: "Blob", gold: 500, level: 3 }
 ```
 
-Sauvegarde-le dans `localStorage`, récupère-le et affiche :
+Enregistre-le sous une clé `af-demo:player`, relis-le avec JSON et affiche `Player chargé : Blob niveau 3`. Si la clé est absente ou le texte invalide, affiche un message explicite au lieu de supposer que le joueur existe.
 
-```text
-"Player chargé : Blob niveau 3"
-```
+### Mission 2 : Le compteur de visites locales
 
----
+Lis `af-demo:visits`, convertis la valeur en nombre, augmente-la de 1 et enregistre-la. Gère le cas où la clé n'existe pas encore. Ce compteur est une démonstration locale : il ne sert pas à mesurer des visiteurs réels ni à appliquer une règle métier.
 
-## MISSION 2 : LE COMPTEUR IMMORTEL
+### Mission 3 : L'inventaire
 
-Crée un compteur qui augmente de `+1` à chaque chargement de page.
+Enregistre `["épée", "potion", "bouclier"]` sous une clé `af-demo:inventory`, relis le tableau après rechargement et affiche chaque élément avec `forEach()`.
 
-Étapes :
+### Mission 4 : Effacer une seule donnée
 
-1. Lire la valeur dans `localStorage`
-2. Convertir en nombre
-3. Augmenter de 1
-4. Sauvegarder
+Crée un bouton qui supprime uniquement `af-demo:player` avec `removeItem()`, puis affiche `Le profil de démonstration a été supprimé.` N'utilise pas `localStorage.clear()` sur une origine partagée.
 
-Affiche : `"Visite numéro : X"`
+### Mission 5 : Le thème clair / sombre
 
----
-
-## MISSION 3 : L'INVENTAIRE MAGIQUE
-
-Crée ce tableau :
-
-```javascript
-["épée", "potion", "bouclier"];
-```
-
-Sauvegarde-le dans `localStorage`. Recharge la page, récupère l'inventaire, affiche chaque item avec `forEach()`.
-
----
-
-## MISSION 4 : LE BOUTON DE L'OUBLI
-
-Crée un bouton HTML. Quand on clique : `localStorage.clear()`. Puis affiche :
-
-```text
-"Le trésor a été détruit."
-```
-
----
-
-## MISSION 5 : LE DARK MODE PERSISTANT
-
-Crée un bouton `"Toggle Dark Mode"`. Au clic :
-
-1. Ajoute ou enlève la classe `"dark"` sur le body
-2. Sauvegarde l'état dans `localStorage`
-
-Quand la page recharge, le thème doit rester. _(Le mode dark ne disparaît pas juste parce que l'utilisateur a appuyé F5.)_
-
-_Indice : `localStorage.getItem("theme")`_
-
----
+Crée un bouton `Toggle Dark Mode`. Au clic, ajoute ou enlève la classe `dark` sur le `body` et enregistre la préférence sous `af-demo:theme`. Au chargement suivant, relis cette préférence et applique le thème. Ne stocke aucune information d'authentification.
 
 ## RÉSUMÉ
 
-```text
-setItem  → sauvegarder
-getItem  → lire
-removeItem → supprimer
-clear   → tout effacer
-```
+- `localStorage` conserve des chaînes associées à une origine, jusqu'à ce qu'elles soient supprimées ou nettoyées ; ce n'est pas une promesse de durée éternelle.
+- `sessionStorage` conserve un état temporaire de page-session ; il n'est pas plus secret.
+- `JSON.stringify()` transforme les objets en texte ; `JSON.parse()` relit ce texte et peut échouer si son contenu est invalide.
+- Les données Web Storage sont accessibles au JavaScript de la même origine : **pas de mots de passe, tokens, sessions ou secrets**.
+- Les cookies suivent des règles d'envoi spécifiques ; `HttpOnly` empêche l'accès par JavaScript, tandis que `Secure` et `SameSite` apportent des protections différentes.
 
-LocalStorage ne parle que strings. Donc :
-
-```javascript
-// Sauvegarder un objet
-localStorage.setItem("key", JSON.stringify(obj));
-
-// Le récupérer
-const obj = JSON.parse(localStorage.getItem("key"));
-```
-
-Si tu maîtrises ça, tu peux construire des apps web intelligentes qui se souviennent de l'utilisateur.
-
----
-
-### Tableau BONUS récap :
-
-|                         | localStorage     | sessionStorage           | Cookie           |
-| ----------------------- | ---------------- | ------------------------ | ---------------- |
-| **Durée**               | Pour toujours    | Jusqu'à fermeture onglet | Tu choisis       |
-| **Serveur peut lire ?** | nope             | nope                     | ok               |
-| **Usage typique**       | Préférences user | Données temporaires      | Authentification |
-
-#### SessionStorage -> La table pendant un cours :
-
-Tes données survivent aux rechargements mais **meurent quand tu fermes l'onglet**. Contrairement à une variable qui meurt au moindre rechargement, elle tient le coup pendant toute ta session.
-
-```js
-// Écrire
-sessionStorage.setItem("etape", "2");
-// Lire
-const etape = sessionStorage.getItem("etape");
-console.log(etape); // "2"
-// Supprimer
-sessionStorage.removeItem("etape");
-```
-
-> Parfait pour : formulaire multi-étapes, quiz en cours, données temporaires sensibles.
-
-#### Cookie -> Le post-it que le serveur peut lire :
-
-Le seul des trois que **le serveur peut lire**. Tu peux lui mettre une date d'expiration. C'est lui qui gère l'authentification et tout ce qui doit traverser le réseau.
-
-```js
-// Écrire un cookie
-document.cookie = "pseudo=Prometheus; max-age=604800"; // expire dans 7 jours
-// Lire les cookies
-console.log(document.cookie); // "pseudo=Prometheus"
-// Supprimer un cookie
-document.cookie = "pseudo=; max-age=0"; // max-age à 0 = suppression
-```
-
-> Parfait pour : session de connexion, langue côté serveur, tracking.
-
-## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
-
-Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+Pour aller plus loin sur les sessions et les tokens, attends le module Sécurité et Authentification. Ne construis pas une authentification à partir de cet exercice de stockage.

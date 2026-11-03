@@ -3,6 +3,13 @@ stability: evolutif
 acte: parcours
 noyau: oui
 route: survie
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "02-CONSTRUCTION/03-TESTING/01-00-why-testing.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 02-CONSTRUCTION/03-TESTING/01-00-why-testing.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # MODULE 03 TESTING
@@ -13,7 +20,7 @@ Pour les exercices cumulatifs, ajoute le [Pack d'exercices systèmes et arbitrag
 
 Pour approfondir le pouvoir réel de la suite, enchaîne avec [63 : Laboratoire de tests](../../06-ANNEXES-TRANSVERSES/63-LAB-TESTING-ENGINEERING.md) : contrat, propriété, mutation, doubles et test de transfert avec correction de référence.
 
-> Palier `02-CONSTRUCTION`. Duree estimee : **16 h 30** (23 fichiers de travail).
+> Palier `02-CONSTRUCTION`. Duree estimee : **15 h 30** (23 fichiers de travail).
 
 ## Sommaire du module
 
@@ -38,12 +45,12 @@ Pour approfondir le pouvoir réel de la suite, enchaîne avec [63 : Laboratoire 
 | [`10-test_strategy_not_framework.md`](10-test_strategy_not_framework.md)                                 | 09 : Stratégie de tests (pas framework)                                         | 45 min |
 | [`56-test_strategy_not_framework_minimini_projet.md`](56-test_strategy_not_framework_minimini_projet.md) | 09 test strategy not framework minimini projet                                  | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                                                                       | Page verrouillée                                                                | 30 min |
-| [`11-EXO_LECTURE.md`](11-EXO_LECTURE.md)                                                                 | EXO LECTURE : 15-25 minutes (Testing)                                           | 45 min |
+| [`11-EXO_LECTURE.md`](11-EXO_LECTURE.md)                                                                 | EXO LECTURE : ~20 minutes : un cycle (Testing)                                  | 20 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                                       | EXO [JEUNE IA] : 02-CONSTRUCTION/03-TESTING                                     | 45 min |
-| [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                                       | EXO IA MENTEUSE : module 02-CONSTRUCTION/03-TESTING                             | 45 min |
+| [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                                       | EXO IA MENTEUSE : module 02-CONSTRUCTION/03-TESTING                             | 10 min |
 | [`99A-PONT.md`](99A-PONT.md)                                                                             | PONT : de prouver du code à raisonner sur les nombres à les bases mathématiques | 45 min |
 
-Total : **16 h 30**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) et le boss (3 h) sont des évaluations séparées et ne sont pas ajoutés au Total sauf s’ils apparaissent comme lignes du tableau.
+Total : **15 h 30**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
 ## Comment travailler ce module
 
@@ -51,7 +58,7 @@ Total : **16 h 30**. Le Total reprend exactement la somme du tableau. Le challen
 2. Passe le controle de prerequis. Un prerequis manquant se repare en amont, jamais ici.
 3. Fais les lecons dans l ordre des numeros. Chaque lecon a un exercice borne : il se rend, il se date.
 4. Le grimoire se lit **apres** la pratique, jamais avant : c est une fiche de rappel, pas un cours.
-5. Le challenge, puis le boss fight, cochent le module. Sans eux, le module est lu, pas acquis.
+5. Termine le challenge et les critères de sortie déclarés. Un boss-fight séparé n'est obligatoire que si le README local le fournit et l'annonce ; à défaut, les checkpoints et preuves de sortie indiqués ici font foi.
 
 ## Ce que ce module produit dans ton depot fil rouge
 
@@ -97,8 +104,8 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [09 : Stratégie de tests (pas framework)](10-test_strategy_not_framework.md)
 - [56-test_strategy_not_framework_minimini_projet.md](56-test_strategy_not_framework_minimini_projet.md)
 - [Page verrouillée](90-grimoire.md)
-- [EXO LECTURE : 15-25 minutes (Testing)](11-EXO_LECTURE.md)
-- [EXO [jeune IA] : 02-construction/03-testing](12_EXO_VERIFICATION.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Testing)](11-EXO_LECTURE.md)
+- [Exercice : tuer une mutation (20 min)](12_EXO_VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/03-TESTING](97-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
 - [PONT : de prouver du code à raisonner sur les nombres à les bases mathématiques](99A-PONT.md)
@@ -106,3 +113,13 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Grimoire : `03-TESTING`](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md) uniquement comme contexte partagé. Pour ce sous-module, applique la mission précise de sa ligne dans la section **Missions ciblées par sous-module** de cette carte ; le challenge local reste la consigne et le critère de validation. Cette référence ne crée ni prérequis ni gate supplémentaire.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.

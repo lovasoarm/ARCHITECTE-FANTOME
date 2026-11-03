@@ -2,7 +2,7 @@
 perishability_id: PER-0071
 
 perennite: intemporel
-stability: perissable
+stability: "perissable"
 duree_de_vie_estimee: 1-2 ans
 raison: Toolchains JS bougent en permanence.
 acte: comprendre
@@ -11,12 +11,21 @@ perturbation_modes: [decision_organisationnelle, defaut_cache]
 anti_recipe_key: decision_organisationnelle+defaut_cache
 transfer_distance: high
 assessment_role: instructional_checkpoint
-freshness_registry_id: PER-0071
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-01-28
-review_status: a_verifier_date_absente
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: "https://nodejs.org/en/about/previous-releases"
+source_type: "primary"
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « Pourquoi ce module mérite ton temps ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 > **Statut de pérennité :** intemporel | évolutif | **périssable**
@@ -24,7 +33,9 @@ review_status: a_verifier_date_absente
 
 # Pourquoi ce module mérite ton temps
 
-> **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
+> **Durée de vie estimée : 1–2 ans pour les outils, configurations et commandes cités.** Les principes (build, format, lint, packaging et debug) restent transférables ; revalide les versions avant chaque nouveau projet.
+>
+> \*\*Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 > Temps de lecture ~9 min
 
 Le camp de Rick a un problème. Pas un zombie. Pas une pénurie. Un problème plus sournois : personne ne sait sur quelle version du plan de défense ils bossent. Glenn a édité le fichier sur son poste, le sniper a une version d'il y a trois jours, et le serveur qui devait tourner le simulateur de menace plante différemment chez chacun. Le code est bon. L'outillage autour est un chaos.
@@ -156,24 +167,27 @@ Ce qui compte : tu retiens pas "comment configurer Vite en 2026". Tu retiens "po
 ## NOYAU DUR OU PÉRIPHÉRIQUE
 
 ```text
-Git         --> noyau dur. Non négociable, point final.
-package manager   --> noyau dur. Tu peux pas livrer du JS moderne sans.
-bundler       --> noyau dur pour le frontend, périphérique pour du pur backend Node.
-Docker        --> noyau dur en équipe et en prod. Périphérique en solo sur un script perso.
-CI/CD        --> noyau dur dès que t'as un déploiement régulier.
+Git         --> capacité fondamentale pour collaborer et livrer ; apprentissage progressif.
+package manager   --> nécessaire dès qu'un projet installe des dépendances.
+bundler       --> nécessaire pour certains projets frontend ; pas pour un script Node simple.
+Docker        --> utile selon le système, l'équipe et les contraintes de déploiement.
+CI/CD        --> devient important lorsqu'un projet doit vérifier et livrer régulièrement.
 ```
+
+**Important pour le débutant :** « noyau dur » décrit l'importance professionnelle d'une capacité, pas une obligation de tout installer au premier jour. AF commence par un fichier JavaScript local ; Git est introduit juste avant la première activité qui le demande. Git avancé ne bloque pas Fundamentals.
 
 ---
 
 ## QUAND L'APPRENDRE DANS TA PROGRESSION
 
 ```text
-Git      --> dès le jour 1, en parallèle de tout le reste
-VSCode setup --> dès le jour 1, c'est ton terrain de jeu quotidien
-package manager --> dès que tu installes ta première dépendance
-bundlers   --> après avoir compris modules ESM/CJS (module 06_modules)
-Docker    --> après avoir compris runtime Node (module 02-CONSTRUCTION/13-RUNTIME-ENV)
-CI/CD     --> après avoir des tests à automatiser (module 02-CONSTRUCTION/03-TESTING)
+Git de base      --> avant la première activité qui demande un dépôt ou un historique
+Git avancé       --> après les commits, branches et fusions de base, selon le besoin
+VSCode setup     --> lorsque tu as besoin d'un éditeur pour travailler confortablement
+package manager  --> dès que tu installes la première dépendance
+bundlers         --> après avoir compris les modules ESM/CJS (module 06_modules)
+Docker           --> après les bases du runtime Node (module 02-CONSTRUCTION/13-RUNTIME-ENV)
+CI/CD            --> après avoir des vérifications à automatiser (module 02-CONSTRUCTION/03-TESTING)
 ```
 
 Prérequis avant d'attaquer ce module :
@@ -229,24 +243,60 @@ Ce qui bougera pas : pourquoi Git existe, pourquoi isoler un environnement, pour
 
 Le camp de Rick a pas besoin du meilleur outil. Il a besoin de comprendre pourquoi chaque outil est là. Le reste, ça s'adapte.
 
-## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+<!-- AF-DIAGRAM:tooling -->
 
-<!-- AF-DIAGRAM:transfer -->
+## Repère visuel utile : Outil reproductible pour l'équipe Kintana
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+problème répétitif
+       |
+       v
+solution native ?
+   | oui       | non
+   v           v
+simple     outil évalué
+               |
+               v
+version + tests + docs
+               |
+               v
+usage reproductible
 ```
 
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+<!-- AF-LESSON-PROFILE: tooling -->
 
-Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+## Repères de décision
+
+- **Pourquoi :** La toolchain et les outils de diagnostic réduisent les tâches répétitives et rendent le comportement du système visible.
+- **Quand l’utiliser / quand l’éviter :** Choisis un outil quand il résout un problème fréquent et mesurable. Vérifie sa licence, sa maintenance, ses versions, ses permissions et son coût avant de l'ajouter.
+- **Limites :** Un outil n'est pas une politique de qualité. Un benchmark, logger ou générateur peut donner une fausse confiance si son protocole et ses limites ne sont pas écrits.
+
+## Mécanisme : la version sans magie
+
+Décris le problème, compare l'outil à une commande native ou à une alternative plus simple, épingle sa version et vérifie le résultat qu'il produit.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce module mérite ton temps** se rattache à ce cas concret : L'équipe Kintana doit pouvoir diagnostiquer une panne et refaire un build sans dépendre d'une configuration cachée sur le poste d'une seule personne.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Outil reproductible pour l'équipe Kintana
+
+> **Arc Capsule Corp. / DBZ :** le bon outil accélère le diagnostic ; dix outils mal choisis ne font que déplacer le bazar.
+
+**Mission liée à « Pourquoi ce module mérite ton temps » :** Automatise une opération récurrente du cycle Kintana (analyse, benchmark, log, build ou debug). Ajoute un mode dry-run si l'action est destructive et une vérification qui empêche l'outil de masquer une erreur.
+
+**Livrable :** outil/script, README d'usage, tests sur succès/échec, version épinglée et comparaison au processus manuel.
+
+**Critères d’acceptation :** les arguments sont validés ; les erreurs ont un code de sortie ; aucune donnée sensible n'est imprimée ; la même commande donne une sortie compréhensible et reproductible.
+
+**Transfert obligatoire :** Exécute l'outil sur une autre machine ou avec une version différente. Documente les prérequis et le mode dégradé.
+
+## Références officielles utiles
+
+> **Référence principale vérifiée le 2 novembre 2026 :** la première ressource de ce panneau, également enregistrée dans `source_url`, a été consultée pour le mécanisme versionné traité ici. Les autres liens sont des compléments officiels utiles ; ils ne constituent pas chacun une attestation indépendante de l’exemple du curriculum. Aucune référence ne prouve que l’exemple a été exécuté. Vérifie la version cible et teste dans ton environnement avant un usage réel.
+
+- [Node.js : Release schedule](https://nodejs.org/en/about/previous-releases)
+- [TypeScript : TSConfig Reference](https://www.typescriptlang.org/tsconfig/)
+- [npm : Documentation](https://docs.npmjs.com/)

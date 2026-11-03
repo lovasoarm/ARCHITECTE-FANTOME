@@ -1,16 +1,22 @@
+---
+stability: intemporel
+acte: pratiquer
+assessment_role: instructional_checkpoint
+---
+
 # Atelier de consolidation : 16-DDD-CONTRATS
 
-> **Statut : complément de remédiation, pas certification.** Leçon source : [06-exercice_architecture_trop_belle.md](06-exercice_architecture_trop_belle.md). Vérifier les faits techniques dans cette leçon ; ne pas considérer ces consignes comme un corrigé de la notion.
+> **Statut : complément de remédiation, pas certification.** Le corrigé associé contient deux exemples travaillés ; ne l’ouvre qu’après ta tentative. Leçon source : [06-exercice_architecture_trop_belle.md](06-exercice_architecture_trop_belle.md). Vérifier les faits techniques dans cette leçon ; ne pas considérer ces consignes comme un corrigé de la notion.
 
 ## Explication approfondie : hypothèses, mécanisme, frontière
 
 Pour **exercice architecture trop belle**, différencier quatre couches : (1) entrée et préconditions, (2) mécanisme et invariants, (3) observation vérifiable, (4) cas limite qui invalide l'hypothèse. Dans la leçon source, retrouver un exemple concret pour chaque couche et expliquer le lien causal, plutôt que mémoriser une recette. En cas de contradiction, documenter exactement la ligne/section concernée ; aucun résultat n'est supposé vrai sans expérience. Le contexte de ce module inclut « 03 cqrs coherence terme » : expliciter ce qui change lorsque la contrainte de ce contexte est activée.
 
-## Deux exemples commentés, à compléter par l'observation
+## Deux situations à traiter avant de consulter le corrigé
 
 **Exemple A : exercice architecture trop belle :** décris un cas d’entrée valide, le mécanisme précis selon `06-exercice_architecture_trop_belle.md`, la sortie attendue et une vérification reproductible. Donne la valeur réelle avant de comparer au résultat.
 
-**Exemple B : contre-exemple 03 cqrs coherence terme :** modifie une seule hypothèse (entrée absente, ordre inversé, donnée périmée ou conflit de responsabilités). Prédis la défaillance puis mesure ou trace la différence. Une réponse « ça marche » sans trace ne valide pas cet exemple.
+**Exemple B : Le refus doit être réversible :** Décris un cas où deux équipes ont des rythmes de livraison incompatibles ou se gênent sous la charge. Définis les mesures qui justifieraient une frontière, puis propose une extraction limitée avec contrat versionné et chemin de retour. Donne aussi le cas où conserver le monolithe reste préférable.
 
 ## Pratique graduée
 
@@ -18,7 +24,7 @@ Pour **exercice architecture trop belle**, différencier quatre couches : (1) en
 
 **Semi-guidé (niveau 2, 20 minutes).** Répéter avec une autre entrée, sans copier le résultat du niveau 1. Imposer une contrainte réaliste (latence, erreur de type, utilisation mémoire, sécurité ou personne absente selon la notion). Justifier un arbitrage avec une métrique ou un critère observable.
 
-**Indépendant (niveau 3, 30 minutes).** Écrire sans modèle un scénario nouveau concernant « 03 cqrs coherence terme » : définition de la preuve, réalisation, deux cas aux limites et décision justifiée. Une production qui ne démontre pas une relation causale ne suffit pas.
+**Indépendant (niveau 3, 30 minutes).** Sans reprendre les exemples précédents, construis un scénario inédit sur « exercice architecture trop belle » : formule une hypothèse, indique une preuve observable, teste deux cas limites et justifie ta décision. Explique le lien causal ; une réponse sans preuve ou sans transfert ne valide pas cet exercice.
 
 ## Test de vérification et cas négatif
 

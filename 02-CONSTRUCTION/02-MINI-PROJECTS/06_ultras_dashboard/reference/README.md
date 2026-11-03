@@ -11,4 +11,17 @@ node -e "console.log(require('./complete').report([1,2]))"
 
 Arborescence : `minimal.js` → `intermediate.js` → `complete.js` → `test.cjs`. Le niveau 1 valide le type d'entrée, le niveau 2 ajoute une règle d'acceptation, le niveau 3 rapporte un diagnostic. Transférer cette mécanique dans **tableau de bord** après lecture du cahier, pas avant. Le parcours apprenant reste dans `../src/` et `../tests/` ; ne pas copier la référence dans la remise.
 
-**Exemple TDD contextualisé :** pour tableau de bord, un tableau nul doit échouer par `TypeError`; un tableau avec valeur manquante doit être refusé. **ADR :** commencer par un contrat `Array` testable avant une entrée réseau ; coût : modèle initial artificiellement étroit. **Postmortem de démonstration :** une entrée partielle était acceptée ; détection par test négatif, correctif au niveau `analyze`, prévention par test de non-régression.
+## Transfert métier spécifique : Agrégation d’événements de match
+
+**À réaliser après le laboratoire générique :** À partir d’événements de match validés, calcule un compteur ou indicateur simple par type et fenêtre. Sépare événements invalides, doublons éventuels et événements acceptés.
+
+**Cas minimaux à traiter :**
+
+- aucun événement
+- type inconnu
+- doublon avec identifiant
+- volume supérieur à la fenêtre
+
+**Critères de réussite :** L’agrégat est déterministe pour une même entrée ; une règle de déduplication est écrite ; aucun débit réel n’est revendiqué.
+
+**Portée :** cette extension est une consigne de travail pour `../src/` et `../tests/`. Elle n’est pas implémentée par `minimal.js`, `intermediate.js` ou `complete.js` et ne doit pas être présentée comme une solution déjà fournie. La référence isolée continue seulement à illustrer une chaîne de validation d’entrée et de diagnostic.

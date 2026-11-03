@@ -1,18 +1,45 @@
 ---
 perishability_id: PER-0021
-
 stability: perissable
 acte: comprendre
 cognitive_level: L4
-perturbation_modes: [fausse_piste, changement_contexte]
+perturbation_modes:
+  - fausse_piste
+  - changement_contexte
 anti_recipe_key: fausse_piste+changement_contexte
 transfer_distance: high
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0021
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: https://www.typescriptlang.org/docs/handbook/declaration-merging.html
+source_type: primary
+review_interval: 6 mois
+review_due: "2027-05-03"
+source_scope: >-
+  Documentation officielle TypeScript consultée pour « Types et interfaces : pas
+  les mêmes armes ». La référence soutient le concept/version explicitement
+  indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque
+  snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées
+  restent limitées au périmètre ci-dessous. Les sources officielles TypeScript
+  couvrent les règles de declaration merging et les membres de même nom ; le
+  Handbook Object Types confirme qu'un type incompatible sur une propriété
+  fusionnée provoque une erreur de compilation. Cette vérification couvre les
+  passages sur declaration merging corrigés dans cette leçon, pas toutes ses
+  affirmations.
+provenance_note: >-
+  V6.4, 2026-11-03 : revue de référence réalisée sur deux pages officielles
+  TypeScript. Le statut « verified_reference » est limité au périmètre indiqué ;
+  il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue
+  experte indépendante. Pour les informations volatiles, reconsulter la source à
+  l'échéance ou avant toute décision. Le reste de la leçon n’a pas fait l’objet
+  d’une revue exhaustive affirmation par affirmation.
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+additional_sources:
+  - https://www.typescriptlang.org/docs/handbook/2/objects.html
+claim_reviewed_on: "2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
 ---
 
 **SCÈNE CRAZYDEVS : Garo :** ton armure ne rend pas le combat correct. Elle rend les erreurs plus difficiles à cacher. Le typage sert à la même chose : rendre les contradictions visibles tôt.
@@ -49,8 +76,9 @@ const naruto: Ninja = {
 };
 ```
 
-Ce qui rend `interface` unique : elle peut se **fusionner**.
-Si tu déclares la même interface deux fois, TypeScript les fusionne. Pas d'erreur. Les deux versions coexistent.
+Ce qui rend `interface` particulière : elle peut se **fusionner**.
+Si tu déclares plusieurs fois une interface portant le même nom dans le même espace de déclaration, TypeScript réunit leurs membres au moment de la vérification des types. Cette fusion n'est pas automatiquement sans erreur : les membres non-fonctionnels de même nom doivent avoir le même type ; les méthodes de même nom suivent les règles de surcharge.
+Cette opération ne crée pas, à elle seule, de propriété JavaScript à l'exécution.
 
 ```ts
 interface Ninja {
@@ -68,7 +96,19 @@ const kakashi: Ninja = {
 };
 ```
 
-C'est la **declaration merging**. Puissant. Et dangereux si tu ne sais pas que ça existe.
+La fusion est possible parce que les deux déclarations ajoutent des membres compatibles. Exemple inverse : ce code doit produire une erreur de compilation (`TS2717`), car la propriété `score` n'a pas le même type dans les deux déclarations.
+
+```ts
+interface ScoreCard {
+  score: number;
+}
+
+interface ScoreCard {
+  score: string; // Erreur : les déclarations de score doivent avoir le même type.
+}
+```
+
+C'est la **declaration merging** : le compilateur construit un contrat de type commun. C'est puissant, mais une augmentation globale ou de module mal maîtrisée peut rendre le typage trompeur. Elle ne modifie pas automatiquement l'objet JavaScript réellement créé.
 
 ---
 
@@ -245,17 +285,45 @@ Réponds sans lancer le code. Vérifie ensuite dans ton éditeur.
 
 `interface` décrit la forme d'un objet et peut se fusionner. `type` fait tout ça plus les unions, intersections, tuples, et types complexes.
 Pour les APIs publiques et les objets extensibles : `interface`. Pour tout ce qui dépasse la forme d'un objet : `type`.
-La declaration merging est la vraie différence runtime : elle permet d'étendre une interface depuis n'importe où dans le projet, ce qui peut créer des bugs invisibles.
-Choisir au hasard entre les deux, c'est exposer ton codebase à des comportements que personne n'a décidés.
+La declaration merging est une différence du système de types : elle permet au compilateur de réunir des déclarations compatibles. Elle ne crée pas à elle seule de comportement runtime. Une augmentation de type peut néanmoins faire croire au code qu'une propriété existe alors qu'aucune valeur ne l'ajoute réellement ; teste donc aussi le comportement JavaScript.
+Choisir au hasard entre les deux, c'est rendre les contrats de ton codebase plus difficiles à comprendre.
 
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
-
-<!-- AF-P0-2026-10-30: missing_verification -->
 
 ### Vérification observable : critères de réussite
 
 Ajoute un nouvel événement au contrat. Vérifie que les consommateurs exhaustifs signalent les branches oubliées et que les champs réellement optionnels sont traités.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: typescript -->
+
+## Repères de décision
+
+- **Pourquoi :** Le typage statique rend les formes de données explicites et déplace certaines erreurs au moment du développement, avant qu'elles arrivent aux utilisateurs.
+- **Quand l’utiliser / quand l’éviter :** Utilise les types aux frontières de modules et dans les contrats partagés. Combine-les avec validation runtime pour les données externes ; n'écris pas des types avancés sans gain lisible.
+- **Limites :** Les types TypeScript sont effacés à l'exécution. Un `as` ou un `any` peut faire taire le compilateur sans rendre la valeur vraie ; un `.d.ts` incorrect ment à tous les consommateurs.
+
+## Mécanisme : la version sans magie
+
+Décris l'état valide avec des types, utilise unions discriminées pour les variantes, génériques pour les comportements réutilisables et guards runtime pour les entrées inconnues.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Types et interfaces : pas les mêmes armes** se rattache à ce cas concret : L'API Kintana et le client mobile doivent partager un contrat de demande sans confondre brouillon, demande soumise et résultat d'erreur.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Contrat TypeScript sûr entre API et client
+
+> **Arc Konoha / Naruto :** le type est un contrat écrit entre les équipes. Il évite que chacun imagine une forme différente du même rouleau.
+
+**Mission liée à « Types et interfaces : pas les mêmes armes » :** Type le contrat Kintana concerné par la leçon. Remplace les `any`/casts non justifiés, modélise les états et ajoute un parseur runtime aux données qui viennent du réseau.
+
+**Livrable :** types, guard/parseur si nécessaire, test de compilation et test runtime de payload invalide.
+
+**Critères d’acceptation :** les états impossibles sont évités par le type ; les données externes restent validées au runtime ; aucun `any` ajouté sans justification ; les versions du contrat sont explicites.
+
+**Transfert obligatoire :** Fais évoluer le serveur avant le client. Distingue compatibilité source, compatibilité runtime et déploiement progressif.

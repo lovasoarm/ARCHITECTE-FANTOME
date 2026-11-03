@@ -1,9 +1,18 @@
 ---
 stability: evolutif
 acte: arbitrer
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/07-CLOUD-FOUNDATIONS/01-00-why-cloud-foundations.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 03-PILOTAGE/07-CLOUD-FOUNDATIONS/01-00-why-cloud-foundations.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # Architectures cloud : réseau, identité, déploiement, coût et reprise
+
+> **Route spécifique du Coffre Imprenable :** avant d’utiliser ce diagramme comme preuve de préparation au projet 07, étudie [Leçon-pont 12 : Fondations réseau](../../05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/12-fondations-reseau-dns-tcp-tls.md). Cette page applique les bases IP, ports, DNS, TCP, TLS et HTTP ; elle ne les enseigne pas depuis zéro. Cette note ne crée pas de gate générale pour les autres apprenants Cloud.
 
 ## 1. Modèle de responsabilité
 
@@ -133,3 +142,33 @@ Dessiner l'architecture d'une API et d'une base gérées dans un cloud, identifi
 Prérequis : réseau, Linux, sécurité, CI/CD et modèle de coût. Suite : Platform Engineering, SLO et leadership.
 
 **Preuve attendue :** diagramme cloud, matrice flux/permissions, déploiement choisi, estimation datée, runbook de reprise et résultat d'un exercice de restauration ou d'une simulation explicitement signalée.
+
+<!-- AF-LESSON-PROFILE: cloud -->
+
+## Repères de décision
+
+- **Pourquoi :** L'infrastructure détermine la disponibilité, la sécurité, le coût et les possibilités de reprise du système.
+- **Quand l’utiliser / quand l’éviter :** Choisis un service managé ou une infrastructure quand il réduit un risque ou un coût total. Ne déploie pas Kubernetes ou plusieurs services pour un système qui tourne proprement plus simplement.
+- **Limites :** Un déploiement local ne valide pas le réseau, les IAM, les quotas, les sauvegardes ni la facture du fournisseur. Les prix changent ; toute estimation doit dater et indiquer son hypothèse.
+
+## Mécanisme : la version sans magie
+
+Décris ressources, identité, réseau, secrets, stockage, health, scaling, backup et rollback ; automatise seulement ce que tu peux tester et exploiter.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Architectures cloud : réseau, identité, déploiement, coût et reprise** se rattache à ce cas concret : Kintana doit supporter un réseau instable côté client et une exploitation prévisible côté service, sans exposer de secret ni exploser les coûts.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Plan de déploiement et d'exploitation Kintana
+
+> **Arc Capsule Corp. / DBZ :** le Cloud n'est pas une baguette magique : tu loues des machines, du réseau et des services, avec une facture et des limites.
+
+**Mission liée à « Architectures cloud : réseau, identité, déploiement, coût et reprise » :** Établis une architecture de déploiement minimale pour une tranche Kintana : ressources, IAM, réseau, secrets, stockage, health/readiness, sauvegarde et rollback. Exécute les éléments locaux disponibles ; étiquette le reste `NOT RUN`.
+
+**Livrable :** diagramme d'infrastructure, estimation de coût datée, manifeste/IaC ou plan exécutable, runbook et preuve de test local.
+
+**Critères d’acceptation :** aucune ressource fictive n'est marquée déployée ; permissions minimales ; coût et limites écrits ; procédure de rollback/restauration vérifiée seulement si elle a été exécutée.
+
+**Transfert obligatoire :** Le trafic est multiplié par cinq et le fournisseur devient indisponible. Identifie le premier goulot et les coûts qui augmentent.

@@ -27,8 +27,8 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [54-tdd_arena_minimini_projet.md](54-tdd_arena_minimini_projet.md)
 - [55-e2e_playwright_beast_minimini_projet.md](55-e2e_playwright_beast_minimini_projet.md)
 - [56-test_strategy_not_framework_minimini_projet.md](56-test_strategy_not_framework_minimini_projet.md)
-- [EXO LECTURE : 15-25 minutes (Testing)](11-EXO_LECTURE.md)
-- [EXO [JEUNE IA] : 02-CONSTRUCTION/03-TESTING](12_EXO_VERIFICATION.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Testing)](11-EXO_LECTURE.md)
+- [Exercice : tuer une mutation](12_EXO_VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/03-TESTING](97-EXO-VERIFICATION.md)
 
 ## Ce qui valide le challenge (les quatre actes, aucun ne se saute)

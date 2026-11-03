@@ -306,10 +306,36 @@ La checklist existe pour que "LGTM" veuille dire quelque chose.
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
-Transfère la revue d’un diff de code à une migration de schéma. Vérifie compatibilité, données existantes, retour arrière et observabilité.
+Transfère la revue d’un diff de code à une migration de schéma. Vérifie compatibilité, données existantes, retour arrière et observabilité. Identifie l’invariant qui doit rester vrai (les anciens lecteurs continuent à fonctionner) et les dimensions qui changent (structure des données, séquence de déploiement et plan de rollback).
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Code review : reviewer sans écraser** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Faire une revue de code utile
+
+**Mission liée à « Code review : reviewer sans écraser » :** Sur un changement fictif de Kintana, relève les défauts démontrables, distingue bloquant, question et suggestion, puis rédige des commentaires localisés et actionnables. Inclue un point positif précis.
+
+**Livrable :** Revue annotée, priorisation et réponse proposée à l’auteur.
+
+**Critères d’acceptation :** Chaque demande cite un risque ou un invariant ; les préférences de style ne sont pas déguisées en blocage ; la décision finale est explicite.
+
+**Transfert obligatoire :** L’auteur conteste un commentaire : transforme ton commentaire en question vérifiable ou retire-le.

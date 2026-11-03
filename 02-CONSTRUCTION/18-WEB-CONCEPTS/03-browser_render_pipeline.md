@@ -339,10 +339,40 @@ LCP, INP, CLS : les trois métriques de Google. Comprendre le pipeline explique 
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Browser render pipeline : de l'html brut au pixel affiché » à un navigateur mobile avec réseau lent et session renouvelée. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: browser -->
+
+## Repères de décision
+
+- **Pourquoi :** Le navigateur est un environnement distinct du serveur : DOM, réseau, stockage local et cycle de vie utilisateur imposent des états et des erreurs spécifiques.
+- **Quand l’utiliser / quand l’éviter :** Utilise ces mécanismes pour rendre le parcours web compréhensible, résilient et accessible. Ne stocke rien de sensible dans le navigateur et ne suppose jamais que le réseau est disponible.
+- **Limites :** Le client ne fait pas autorité pour les droits, les montants ou l'état métier. Le stockage local peut être effacé, altéré ou partagé sur un appareil ; la synchronisation peut produire des conflits.
+
+## Mécanisme : la version sans magie
+
+Modélise les états visibles, annule les requêtes devenues inutiles, traite les réponses réseau comme non fiables et synchronise les brouillons avec un identifiant stable.
+
+## Ancrage produit / terrain : Kintana
+
+Dans le [cas d’étude Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), Le parcours comporte une page publique de présentation d’un centre et de ses services. Elle doit rester lisible sur un téléphone modeste ; le problème étudié ici est le chemin entre HTML reçu, construction des arbres, layout, paint et affichage.
+
+**Niveau de preuve :** Kintana est un scénario fictif. Étiquette le résultat `CONCEPT`, `LAB` ou `SIMULATION` selon le travail réellement effectué ; une fixture synthétique n’est pas une observation de terrain.
+
+## Mission utile : Kintana : Étape 3/8 : rendre la page publique lisible et fluide
+
+> **Arc One Piece / Grand Line :** Le navigateur est le chantier où le plan HTML/CSS devient un écran : chaque étape peut ajouter du délai ou déplacer les éléments.
+
+Sur la page publique Kintana, décris le parcours HTML → DOM, CSS → CSSOM, layout, paint et composite. Identifie un coût ou déplacement évitable (ressource bloquante, image surdimensionnée, layout shift ou travail JavaScript excessif) et propose une amélioration mesurable.
+
+**Livrable :** Un schéma du pipeline de cette page, une hypothèse de ralentissement, le plan de mesure et une correction ciblée avec son effet attendu.
+
+**Critères d’acceptation :** Le diagnostic distingue chargement réseau et travail de rendu ; les améliorations sont reliées à une mesure ou à un scénario reproductible ; aucun gain chiffré n’est inventé.
+
+**Transfert obligatoire :** La page est lente uniquement sur un appareil modeste : précise quelle mesure permet de distinguer un coût réseau d’un coût de rendu.
+
+Cette étape prolonge le même artefact Kintana ; elle ne demande pas de recommencer le projet et n’ajoute pas de gate au parcours.

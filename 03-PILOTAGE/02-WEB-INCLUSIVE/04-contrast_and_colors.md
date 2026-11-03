@@ -51,7 +51,7 @@ Tu n'écriras presque jamais cette formule à la main en prod (les outils le fon
 
 ```text
 Texte normal, niveau AA  --> ratio minimum 4.5:1
-Texte large (18px+ gras) --> ratio minimum 3:1
+Texte large (au moins 18 pt sans gras ou 14 pt gras, soit environ 24 px sans gras ou 18,7 px gras) --> ratio minimum 3:1
 Niveau AAA (plus strict) --> ratio minimum 7:1 pour le texte normal
 ```
 
@@ -133,16 +133,44 @@ Vérifie le contraste de la bordure de focus (l'anneau bleu qui apparaît au Tab
 
 ## RÉSUMÉ
 
-Le contraste se mesure avec un ratio précis, pas une impression visuelle. WCAG fixe 4.5:1 minimum pour le texte normal en niveau AA, 3:1 pour le texte large. La couleur seule ne doit jamais porter une information critique : un daltonique rouge-vert ne fait pas la différence. Toujours tester avec un vrai outil de calcul, surtout sur les éléments discrets qu'on oublie (placeholders, focus, texte désactivé).
+Le contraste se mesure avec un ratio précis, pas une impression visuelle. WCAG 2.2 niveau AA fixe 4,5:1 minimum pour le texte normal et 3:1 pour le grand texte (au moins 18 pt sans gras ou 14 pt gras, soit environ 24 px sans gras ou 18,7 px gras). La couleur seule ne doit jamais porter une information critique. Toujours tester avec un vrai outil de calcul, surtout sur les éléments discrets qu'on oublie (placeholders, focus et états de composants) ; les composants et graphiques informatifs relèvent aussi du critère de contraste non textuel.
 
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
-
-<!-- AF-P0-2026-10-30: missing_transfer -->
 
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Contraste et couleurs : quand le design devient illisible » à une personne qui utilise clavier, contraste renforcé ou lecteur d’écran. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: accessibility -->
+
+## Repères de décision
+
+- **Pourquoi :** L'accessibilité permet à davantage de personnes d'utiliser le produit et rend souvent l'interface plus robuste pour tous, y compris sur mobile et au clavier.
+- **Quand l’utiliser / quand l’éviter :** Teste les parcours critiques avec clavier, lecteur d'écran, contraste et zoom. N'attends pas la fin du design pour corriger la structure sémantique.
+- **Limites :** Un score Lighthouse ou une vérification automatique ne couvre pas tous les usages. Il faut aussi tester manuellement avec plusieurs modes d'interaction et, quand possible, avec des personnes concernées.
+
+## Mécanisme : la version sans magie
+
+Utilise HTML sémantique, labels, focus visible, ordre logique, messages d'état annoncés et alternatives aux interactions pointer-only.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Contraste et couleurs : quand le design devient illisible** se rattache à ce cas concret : Le demandeur Kintana peut utiliser un petit écran, un clavier externe, le zoom ou un lecteur d'écran. Le formulaire doit rester compréhensible dans tous ces cas.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Parcours de demande accessible
+
+> **Arc One Piece / Grand Line :** un parcours n'est pas réussi si seule une partie de l'équipage peut monter à bord. L'accessibilité enlève les obstacles inutiles.
+
+**Mission liée à « Contraste et couleurs : quand le design devient illisible » :** Audite le flux de création d'une demande Kintana. Corrige les labels, focus, erreurs associées, annonces de statut et navigation clavier ; ajoute des tests automatisés plus une vérification manuelle documentée.
+
+**Livrable :** audit WCAG ciblé, patch de composants, matrice clavier/lecteur d'écran et résultats reproductibles.
+
+**Critères d’acceptation :** aucun contrôle sans nom accessible ; focus visible et séquentiel ; erreurs reliées aux champs ; les états ne reposent pas seulement sur la couleur ; limites des outils automatiques reconnues.
+
+**Transfert obligatoire :** Teste le même parcours à 200 % de zoom et avec un lecteur d'écran. Identifie les défauts non détectés par l'audit automatique.

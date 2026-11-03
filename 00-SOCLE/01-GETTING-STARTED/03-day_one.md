@@ -3,39 +3,49 @@ perishability_id: PER-0002
 
 stability: perissable
 acte: comprendre
-cognitive_level: L4
-perturbation_modes: [constraints_injectees, decision_organisationnelle]
-anti_recipe_key: constraints_injectees+decision_organisationnelle
-transfer_distance: medium
-assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0002
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+cognitive_level: L1
+perturbation_modes: [consigne_simple, erreur_observable]
+anti_recipe_key: consigne_simple+erreur_observable
+transfer_distance: low
+assessment_role: instructional_checkpoint
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_type: primary
+source_url: https://github.com/nodejs/learn/blob/main/pages/command-line/run-nodejs-scripts-from-the-command-line.md
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « 03 : DAY ONE (contexte, environnement, premier code) ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
-> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
-# 02 : DAY ONE (contexte, environnement, premier code)
+> **Repère simple :** ton fichier contient les instructions ; Node les exécute ; le terminal montre ce qui s'est passé.
+
+# 03 : DAY ONE (contexte, environnement, premier code)
 
 Temps de lecture ~3 min
 
 ## QUIZ DE NIVEAU (30 secondes, auto-évalué)
 
-Avant de continuer, réponds honnêtement à ces 5 questions :
+Avant de continuer, réponds honnêtement à ces 6 questions :
 
-- [ ] Je sais ouvrir un terminal (Terminal.app, iTerm, Windows Terminal, bash).
+- [ ] Je sais ouvrir une application de terminal (Terminal sur macOS ou Windows Terminal sur Windows).
+- [ ] Je sais reconnaître le shell ouvert (PowerShell, Bash ou zsh).
 - [ ] Je sais lancer `node -v` et lire sa sortie.
-- [ ] Je sais ce qu'est une "stack trace" quand une erreur apparaît (même vaguement).
+- [ ] Je sais lire la sortie qui apparaît après avoir lancé une commande.
 - [ ] Je sais utiliser `cd`, `ls`, `pwd` dans un terminal.
 - [ ] Je sais créer un fichier `.js` avec mon éditeur et le sauvegarder.
 
 **Score** :
 
-- **3+ oui** : fonce, tu es prêt pour la suite de ce fichier.
-- **< 3 oui** : ouvre d'abord `04-shell_survival.md` (dans ce même dossier) et reviens ici après. Aucune honte : ce parcours n'est pas un cours de terminal, mais on te renvoie vers la bonne ressource.
+- **4+ oui** : tu peux continuer.
+- **0 à 3 oui** : ouvre d'abord `04-shell_survival.md` (dans ce même dossier), puis reviens ici. Aucune honte : tu apprends le terminal en même temps que le métier.
 
-Ce quiz n'est pas technique JS. Il ne teste que **l'environnement**. Tu peux ne rien connaître à JS et cocher 5/5.
+Ce quiz n'est pas technique JS. Il ne teste que **l'environnement**. Tu peux ne rien connaître à JS et cocher 6/6.
 
 Temps de pratique : ~15 min
 
@@ -60,19 +70,15 @@ Pas un développeur "qui sait faire une list". Un **ingénieur** qui :
 
 ### Le contrat
 
-- **Tu lis chaque `.md` avant de coder.** Copier une solution sans la
-  comprendre, c'est regarder quelqu'un faire des pompes à ta place.
-- **Tu remplis TDD_JOURNAL et POSTMORTEM.** L'expérience non écrite s'oublie.
-- **Tu mesures ta dépendance à l'IA** (`09-DEPENDENCY_LEDGER.md`). Une règle non
-  mesurée reste une croyance. **Ce fichier n'existe pas encore : crée-le à la
-  racine de ton propre repo maintenant**, en copiant la structure de
-  `../03-REFERENTIEL/09-DEPENDENCY_LEDGER.md` (fourni comme modèle de référence, pas comme
-  contenu à lire).
+- **Lis la consigne et les prérequis de l'activité que tu fais.** Tu n'as pas à lire chaque fichier Markdown du dépôt avant d'écrire ta première ligne.
+- **Note simplement ce que tu prévoyais, ce qui s'est passé et ce que tu as corrigé.** Un journal structuré ou un postmortem sera demandé plus tard, lorsqu'un module en aura besoin ; ce n'est pas un prérequis de cette première séance.
+- **N'installe pas d'outil supplémentaire sans raison.** Pour cet exercice, Node.js et un éditeur suffisent. La mesure de l'usage de l'IA sera introduite dans le Référentiel, au moment prévu par la route.
 
-### Ratio lecture / écriture (règle Thor)
+### La règle de la première séance
 
-> Objectif : **lire du code 10x plus vite que tu n'en écris**. C'est le métier
-> en 2026. L'IA écrit vite. Comprendre reste rare.
+> Exécute une commande à la fois. Observe sa sortie. Avant de passer à la suivante, sois capable de dire simplement ce qu'elle a fait.
+
+---
 
 ---
 
@@ -82,25 +88,18 @@ Le pas-à-pas complet (Windows / macOS / Linux) est dans
 [`02-install.md`](02-install.md). Ici, juste le check express.
 
 ```bash
-node -v   # voir 06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md pour la version attendue
-npm -v    # >= 10
-git --version  # utile ici, mais pas bloquant pour le premier cycle
+node -v       # requis pour le premier exercice
+npm -v        # utile avant une activité qui installe des dépendances
+git --version # utile avant une activité qui demande Git
 ```
 
-Node : voir [06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md](../../06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md) (cible v22, cible v22.23.4).
+Node : voir [06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md](../../06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md) (référence documentaire : v22.23.4).
 
-Si `node -v` ou `npm -v` échoue -> ouvre [`02-install.md`](02-install.md)
-avant d'aller plus loin. **Ne bricole pas.** Un environnement bancal génère des
-bugs fantômes qui te feront perdre des semaines. Git devient requis au moment
-où une activité demande du versioning, une branche ou une revue.
+Si `node -v` échoue, ouvre [`02-install.md`](02-install.md) avant de continuer. Si seul `npm -v` ou `git --version` échoue, le premier exercice reste possible ; répare l'outil concerné avant l'activité qui en dépend.
 
 ### Éditeur
 
-VSCode ou tout éditeur avec :
-
-- coloration syntaxique JS/TS,
-- un debugger pas-à-pas (breakpoints, watch, step over/into),
-- un terminal intégré.
+VS Code ou tout éditeur capable de créer et d'enregistrer un fichier texte avec l'extension `.js`. La coloration syntaxique et le terminal intégré sont pratiques ; le débogueur pas-à-pas n'est pas nécessaire aujourd'hui.
 
 Vérification finale :
 
@@ -116,29 +115,41 @@ Sortie attendue : `ok`. Sinon, retour à `02-install.md`.
 
 ### a. Crée et exécute
 
+Choisis le bloc correspondant à ton terminal. Les deux font la même chose ; n'exécute pas les deux.
+
+**Windows : PowerShell (Windows PowerShell 5.1 ou PowerShell 7) :**
+
+```powershell
+New-Item -ItemType Directory -Force -Name day_one | Out-Null
+Set-Location day_one
+Set-Content -Path hello.js -Value 'console.log(1 + 1)' -Encoding utf8
+node .\hello.js
+```
+
+**macOS / Linux : shell Bash ou zsh dans l'application Terminal :**
+
 ```bash
-mkdir day_one && cd day_one
-echo 'console.log(1 + 1)' > hello.js
+mkdir -p day_one
+cd day_one
+printf '%s\n' 'console.log(1 + 1)' > hello.js
 node hello.js
 ```
 
-Attendu : `2`. Si tu vois autre chose, tu viens de faire ton premier bug.
-Note-le dans un carnet, pas dans ta tête.
+Attendu : `2`. Si tu vois autre chose, note le message affiché et l'étape où ça bloque. Tu viens de faire ta première observation de programme.
 
 ### b. Casse volontairement
+
+Ouvre `hello.js` dans ton éditeur et remplace temporairement son contenu par :
 
 ```js
 console.log(1 + )
 ```
 
-Relance. Lis l'erreur **en entier**. Ne scrolle pas. Ne demande pas à l'IA.
-Repère : le fichier, la ligne, le token attendu. C'est le geste #1 du métier.
+Enregistre puis relance `node .\hello.js` dans PowerShell ou `node hello.js` dans macOS/Linux. Lis l'erreur : repère le fichier, la ligne et l'endroit où la syntaxe devient invalide. Il est normal de ne pas comprendre chaque mot du message.
 
 ### c. Répare
 
-Corrige, relance. Réussi ? Tu viens de boucler ton premier cycle
-_hypothèse -> expérience -> réfutation -> correction_. Tout le module
-`01-CADRAGE/03-DEBUGGING` n'est qu'une version musclée de ça.
+Remets `console.log(1 + 1)`, enregistre et relance la commande. Tu dois retrouver `2`. Tu viens de boucler un premier cycle : prédire → exécuter → observer → corriger. Le module `01-CADRAGE/03-DEBUGGING` approfondira plus tard cette méthode.
 
 ### Ce qu'on ne fait PAS aujourd'hui
 
@@ -146,19 +157,70 @@ _hypothèse -> expérience -> réfutation -> correction_. Tout le module
 - copier-coller une "app en 10 min",
 - suivre un tuto YouTube.
 
-### Ta seule mission
-
-Refais les étapes a->c avec 3 opérations différentes (`*`, `%`, `**`).
-Note dans un fichier `02-TDD-JOURNAL.md` :
-
-- ce que tu attendais,
-- ce que tu as obtenu,
-- ce que tu ne comprends pas encore.
-
 ---
 
-Prochaine étape : [`../03-REFERENTIEL/06-where_you_stand.md`](../03-REFERENTIEL/06-where_you_stand.md) (auto-diagnostic).
+Prochaine étape : retourne à [`01-START_HERE.md`](01-START_HERE.md) et vérifie que le noyau Getting Started est terminé. Ouvre ensuite le [Prologue](../02-PROLOGUE/README.md). Il conduit au Référentiel ; ne saute pas directement à l'auto-diagnostic.
 
-## CHECKPOINT DE PROFONDEUR : variation B : défendre l'inverse
+## Défi facultatif : défendre une autre méthode
 
-Ferme la page et défends pendant quelques minutes une stratégie opposée à celle implicitement recommandée ici. Cherche son meilleur cas d'usage, puis montre le cas où elle casse. Reviens ensuite à la stratégie initiale et justifie le choix par des mécanismes, pas par le vocabulaire du cours.
+Quand le premier cycle devient facile, imagine une autre manière de créer le fichier. Compare les deux méthodes et explique laquelle tu choisirais sur ton poste. Ce défi ne conditionne pas la sortie de Day One.
+
+<!-- AF-DIAGRAM:setup -->
+
+## Repère visuel utile : Environnement reproductible et livraison
+
+```text
+écrire le fichier .js
+       |
+       v
+lancer node fichier.js
+       |
+       v
+lire la sortie ou l'erreur
+       |
+       v
+corriger le fichier
+       |
+       v
+relancer et comparer le résultat
+```
+
+<!-- AF-LESSON-PROFILE: setup -->
+
+## Repères de décision
+
+- **Pourquoi :** La boucle écrire → exécuter → observer → corriger te permet de vérifier ce que fait réellement ton code.
+- **Quand l’utiliser / quand l’éviter :** Utilise-la dès qu'un résultat te surprend. Pour ce premier exercice, une seule instruction suffit ; aucun framework ni outil de test n'est nécessaire.
+- **Limites :** Réussir ce petit exemple montre que Node exécute un fichier simple. Cela ne prouve pas encore que tu maîtrises JavaScript ou que tu sais livrer une application.
+
+## Mécanisme : la version sans magie
+
+Le terminal lance Node, Node exécute le fichier, puis affiche le résultat ou une erreur. Tu changes le fichier et tu relances pour vérifier l'effet de ta correction.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **02 : DAY ONE (contexte, environnement, premier code)** commence par un geste très simple : lancer un fichier, lire la sortie, corriger une erreur puis relancer. Les procédures de clone, de dépendances, de secrets et de livraison arriveront dans les modules qui les enseignent.
+
+**À observer :** la commande réellement lancée, sa sortie et la correction effectuée. À ce stade, une note texte suffit ; aucun rapport formel n'est demandé.
+
+## Mission utile : Kintana : exécuter et expliquer un premier calcul
+
+> **Arc Konoha / Naruto :** avant une grande mission, commence par réussir un geste simple et comprendre ce qu'il fait.
+
+**Mission liée à « 02 : DAY ONE (contexte, environnement, premier code) » :** remplace temporairement le calcul `1 + 1` par `6 * 7`, exécute le fichier, puis explique ce que le programme affiche. Remets ensuite le fichier dans son état initial.
+
+```js
+console.log(6 * 7);
+```
+
+**Livrable :** le fichier exécuté et une phrase expliquant la sortie.
+
+**Critères d’acceptation :** le terminal affiche `42`, l'apprenant sait quelle ligne produit ce résultat et restaure ensuite l'exercice initial. Aucun clone de projet, test automatisé ou document de livraison n'est attendu aujourd'hui.
+
+**Transfert obligatoire :** remplace `6 * 7` par `8 + 5`, prédis la sortie avant d'exécuter, puis vérifie-la. Le but est de refaire le même raisonnement avec une opération différente.
+
+## Sources des commandes de terminal
+
+Les exemples PowerShell de création de dossier/fichier et d'écriture de contenu s'appuient sur la documentation Microsoft : [New-Item](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-item) et [Set-Content pour Windows PowerShell 5.1](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-content?view=powershell-5.1). Les commandes Node sont alignées sur la version AF 22.23.4 : [documentation Node.js v22.23.4](https://nodejs.org/docs/v22.23.4/api/).
+
+Vérification documentaire effectuée le 1er novembre 2026 ; la procédure devra être revérifiée lors d'un changement de runtime ou de shell. Aucune revue experte indépendante n'est revendiquée.

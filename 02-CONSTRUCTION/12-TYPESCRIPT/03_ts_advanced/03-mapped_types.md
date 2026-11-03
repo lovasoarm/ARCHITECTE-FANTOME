@@ -8,12 +8,21 @@ perturbation_modes: [solution_concurrente, fausse_piste]
 anti_recipe_key: solution_concurrente+fausse_piste
 transfer_distance: high
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0030
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: https://www.typescriptlang.org/docs/handbook/2/mapped-types.html
+source_type: primary
+review_interval: "6 mois"
+review_due: "2027-05-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « Mapped types : transformer un type propriété par propriété ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 **SCÈNE CRAZYDEVS : Garo :** ton armure ne rend pas le combat correct. Elle rend les erreurs plus difficiles à cacher. Le typage sert à la même chose : rendre les contradictions visibles tôt.
 
 > **CrazyDevs : clan des ninjas :** une abstraction peut devenir une technique brillante ou une armure impossible à retirer. Le vrai skill est de savoir quand la jeter.
@@ -371,24 +380,53 @@ Crée `StateDiff<T>` et une fonction `computeDiff<T>(before: T, after: T): State
 
 `{ [K in keyof T]: ... }` itère sur les clés de T et génère un nouveau type. `readonly`, `?`, et leurs versions avec `-` modifient les modificateurs de chaque propriété. `as` dans le mapping renomme les clés : `as never` filtre des clés. Les conditional types dans le corps du mapping décident du type de chaque valeur selon ce qu'il était. Les mapped types récursifs descendent dans les objets imbriqués. Piège : `keyof (A | B)` ne donne que les propriétés communes : si tu veux tout, mappe les types séparément.
 
-## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+<!-- AF-DIAGRAM:typescript -->
 
-<!-- AF-DIAGRAM:transfer -->
+## Repère visuel utile : Contrat TypeScript sûr entre API et client
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+JSON réseau (unknown)
+        |
+        v
+validation runtime
+        |
+        v
+type de domaine
+        |
+  +-----+-----+
+  v           v
+état valide  erreur typée
+        |
+        v
+client / API avec contrat partagé
 ```
 
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+<!-- AF-LESSON-PROFILE: typescript -->
 
-Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+## Repères de décision
+
+- **Pourquoi :** Le typage statique rend les formes de données explicites et déplace certaines erreurs au moment du développement, avant qu'elles arrivent aux utilisateurs.
+- **Quand l’utiliser / quand l’éviter :** Utilise les types aux frontières de modules et dans les contrats partagés. Combine-les avec validation runtime pour les données externes ; n'écris pas des types avancés sans gain lisible.
+- **Limites :** Les types TypeScript sont effacés à l'exécution. Un `as` ou un `any` peut faire taire le compilateur sans rendre la valeur vraie ; un `.d.ts` incorrect ment à tous les consommateurs.
+
+## Mécanisme : la version sans magie
+
+Décris l'état valide avec des types, utilise unions discriminées pour les variantes, génériques pour les comportements réutilisables et guards runtime pour les entrées inconnues.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Mapped types : transformer un type propriété par propriété** se rattache à ce cas concret : L'API Kintana et le client mobile doivent partager un contrat de demande sans confondre brouillon, demande soumise et résultat d'erreur.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Contrat TypeScript sûr entre API et client
+
+> **Arc Konoha / Naruto :** le type est un contrat écrit entre les équipes. Il évite que chacun imagine une forme différente du même rouleau.
+
+**Mission liée à « Mapped types : transformer un type propriété par propriété » :** Type le contrat Kintana concerné par la leçon. Remplace les `any`/casts non justifiés, modélise les états et ajoute un parseur runtime aux données qui viennent du réseau.
+
+**Livrable :** types, guard/parseur si nécessaire, test de compilation et test runtime de payload invalide.
+
+**Critères d’acceptation :** les états impossibles sont évités par le type ; les données externes restent validées au runtime ; aucun `any` ajouté sans justification ; les versions du contrat sont explicites.
+
+**Transfert obligatoire :** Fais évoluer le serveur avant le client. Distingue compatibilité source, compatibilité runtime et déploiement progressif.

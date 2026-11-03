@@ -3,17 +3,18 @@ stability: evolutif
 acte: parcours
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "05-MAITRISE/03-EDGE-CASES/01-00-why-edge-cases.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 05-MAITRISE/03-EDGE-CASES/01-00-why-edge-cases.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # MODULE 03 EDGE CASES
 
-> **État pédagogique : 30 octobre 2026 : preuves documentaires complétées.** Les ajouts ciblés couvrent les exemples, pratiques, vérifications et transferts requis pour ce module. Une revue technique indépendante et une validation terrain restent distinctes ; voir [48 : External Review Gate](../../06-ANNEXES-TRANSVERSES/48-EXTERNAL-REVIEW-GATE.md) et [49 : Terrain Maturity Gate](../../06-ANNEXES-TRANSVERSES/49-TERRAIN-MATURITY-GATE.md).
-
-> Palier `05-MAITRISE`. Duree estimee : **12 h** (17 fichiers de travail).
+> Palier `05-MAITRISE`. Duree estimee : **12 h 05** (17 fichiers de travail).
 
 ## Sommaire du module
 
@@ -29,7 +30,7 @@ terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 | [`07-heisenbug_arena.md`](07-heisenbug_arena.md)                                     | HEISENBUG ARENA : LE BUG QUI DISPARAÎT QUAND TU LE REGARDES    | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                                                   | Page verrouillée                                               | 30 min |
 | [`08-b_race_condition_hunt.md`](08-b_race_condition_hunt.md)                         | 07b : Race Condition Hunt (bouclier senior)                    | 45 min |
-| [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                                             | EXO LECTURE : 15-25 minutes (Edge Cases)                       | 45 min |
+| [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                                             | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Edge Cases)    | 50 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                   | EXO [JEUNE IA] : 05-MAITRISE/03-EDGE-CASES                     | 45 min |
 | [`10-SPEC_DRIFT_DRILL.md`](10-SPEC_DRIFT_DRILL.md)                                   | SPEC_DRIFT_DRILL : 45 min                                      | 45 min |
 | [`11-SPEC_FLOU_DRIFT_COMBO_DRILL.md`](11-SPEC_FLOU_DRIFT_COMBO_DRILL.md)             | Drill : spec floue + spec qui dérive (combo)                   | 45 min |
@@ -37,7 +38,7 @@ terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                       | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust        | 45 min |
 | `99A-PONT.md`                                                                        | PONT 28 -> 29 : edge cases -> agents autonomes                 | 45 min |
 
-Total : **12 h**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) et le boss (3 h) sont des évaluations séparées et ne sont pas ajoutés au Total sauf s’ils apparaissent comme lignes du tableau.
+Total : **12 h 05**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
 ## Comment travailler ce module
 
@@ -83,7 +84,7 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Heisenbug arena : le bug qui disparaît quand tu le regardes](07-heisenbug_arena.md)
 - [Page verrouillée](90-grimoire.md)
 - [07b : Race Condition Hunt (bouclier senior)](08-b_race_condition_hunt.md)
-- [EXO LECTURE : 15-25 minutes (Edge Cases)](09-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Edge Cases)](09-EXO_LECTURE.md)
 - [EXO [jeune IA] : 05-maitrise/03-edge-cases](97-EXO-VERIFICATION.md)
 - [SPEC_DRIFT_DRILL : 45 min](10-SPEC_DRIFT_DRILL.md)
 - [Drill : spec floue + spec qui dérive (combo)](11-SPEC_FLOU_DRIFT_COMBO_DRILL.md)
@@ -103,4 +104,13 @@ Le sommaire ci-dessus reste le parcours recommandé. Les index ci-dessous renden
 
 - [PONT : des edge cases au travail durable](99A-PONT.md)
 
-## Standard de complétude et audit
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **incident de demande dupliquée** : Reproduis un incident où un demandeur envoie deux fois la même commande après une réponse lente. Écris les hypothèses, ajoute le signal nécessaire, isole la cause et corrige sans supprimer la preuve du défaut. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : Le défaut est démontré avant correction ; un test de non-régression échoue avant et passe après ; le postmortem distingue cause et symptôme.
+
+## Ressources pratiques associées
+
+- [Atelier de consolidation](ATELIER-CONSOLIDATION.md) : réutiliser les notions du module dans un cas intégré.
+- [Corrigé de référence de l'atelier](corriges/ATELIER-CONSOLIDATION-CORRIGE.md) : à consulter après une tentative autonome.

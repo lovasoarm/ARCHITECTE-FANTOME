@@ -75,3 +75,51 @@ prochain humain qui lit le code.
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+<!-- AF-DIAGRAM:performance -->
+
+## Repère visuel utile : Mesurer avant toute optimisation
+
+```text
+question mesurable
+      |
+      v
+baseline reproductible
+      |
+      v
+charge + répétitions contrôlées
+      |
+      v
+métriques pertinentes
+      |
+      v
+comparaison et décision
+```
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **00 : Mesure avant d'optimiser (règle non négociable)** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Décider à partir d’une mesure reproductible
+
+**Mission liée à « 00 : Mesure avant d'optimiser (règle non négociable) » :** Écris une hypothèse de performance Kintana et définis avant l’essai la charge, l’environnement, les répétitions, la métrique et le seuil d’action. N’optimise que si les données le justifient.
+
+**Livrable :** Fiche d’expérience préenregistrée et baseline avec dispersion.
+
+**Critères d’acceptation :** Le protocole précède le résultat ; les versions et conditions sont identiques ; les écarts et valeurs aberrantes sont expliqués.
+
+**Transfert obligatoire :** La baseline ne confirme pas l’hypothèse : documente la conclusion négative et arrête l’optimisation.

@@ -8,6 +8,8 @@ transfer_distance: high
 assessment_role: instructional_checkpoint
 ---
 
+# Mise en pratique : Fonctions typées : signer un contrat avant d'exécuter
+
 > **SCÈNE CRAZYDEVS : clan des ninjas :** une abstraction peut être une technique secrète… ou une montagne de parchemins pour un problème de trois lignes. Ton défi est de savoir laquelle des deux tu construis.
 
 ## TYPE
@@ -89,3 +91,13 @@ Nouveau contexte
 Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
 
 Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+
+## Livraison produit obligatoire : Kintana : Règle métier et état
+
+> **Fil narratif : Capsule Corp. / DBZ :** Bulma ne gagne pas en ajoutant des boutons au vaisseau : elle comprend le mécanisme, teste ses limites et répare ce qui casse. Ton code doit faire pareil, sans compter sur une transformation magique.
+
+Le micro-exercice existant reste une mise en jambe : il isole un mécanisme, mais ne suffit pas comme preuve de maîtrise. La livraison évaluée améliore le même produit [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
+
+**Mission liée à « 51-functions_typed_minimini_projet » :** Donne à la règle de transition Kintana une signature TypeScript précise : état d’entrée, commande et résultat discriminé. Vérifie que les cas d’erreur sont représentés dans le type de retour.
+
+**Livrable :** incrément intégré, tests ou vérifications, note de décision et contre-exemple. **Gate :** Un cas nominal et deux cas invalides sont testés ; le même scénario peut être rejoué ; un autre développeur peut expliquer l’invariant. Étiquette les résultats locaux `LAB` ; ne revendique `PRODUCTION` qu’après déploiement et observation réels.

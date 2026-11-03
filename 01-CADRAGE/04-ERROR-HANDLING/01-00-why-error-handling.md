@@ -74,7 +74,7 @@ Intemporel dans le principe, en évolution dans la syntaxe. Le `try/catch` exist
 
 Avant, gérer les erreurs voulait souvent dire vérifier un code de retour ou un premier argument de callback (`error-first callback` : convention où le premier paramètre d'un callback est réservé à l'erreur). Fonctionnel, mais un oubli passait inaperçu.
 
-Avec les Promises et `async/await`, le `try/catch` est devenu central : une erreur async se catch comme une erreur synchrone. Mais ça a introduit un nouveau piège : les erreurs dans des Promises non attendues (sans `await`, sans `.catch()`) qui tombent en silence total si on n'ajoute pas un handler global (`unhandledRejection`).
+Avec les Promises et `async/await`, le `try/catch` est devenu central : une erreur async se catch comme une erreur synchrone. Mais ça a introduit un nouveau piège : une Promise rejetée que personne n’attend ni ne traite n’est pas récupérée par le `try/catch` d’une fonction appelante. Le runtime peut émettre un événement ou une exception non interceptée ; dans Node.js, le mode par défaut `--unhandled-rejections=throw` peut terminer le processus si aucun gestionnaire ne traite le rejet. Un gestionnaire global n’est pas un remplacement pour un `await` ou un `.catch()` à l’endroit où l’erreur peut être comprise.
 
 La tendance actuelle va vers des erreurs typées et structurées : avec TypeScript, avec des classes d'erreur custom riches en contexte : parce qu'un message générique "Error" ne suffit plus dans un système distribué où il faut tracer une erreur à travers plusieurs services.
 
@@ -103,3 +103,33 @@ Maintenant, ouvre `02-try_catch_basics.md`. Et apprends ce que `try/catch` attra
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+<!-- AF-LESSON-PROFILE: errors -->
+
+## Repères de décision
+
+- **Pourquoi :** Une politique d'erreur explicite empêche un échec temporaire de devenir une boucle infinie et évite de cacher un défaut métier derrière un message vague.
+- **Quand l’utiliser / quand l’éviter :** Classe l'erreur selon sa cause et sa récupérabilité. Retry uniquement les erreurs transitoires et les opérations idempotentes ; remonte les violations métier et sécurité sans boucle automatique.
+- **Limites :** Un `catch` trop large masque la cause. Un retry peut amplifier une panne et doubler un effet ; une erreur personnalisée ne rend pas un message sûr à exposer au client.
+
+## Mécanisme : la version sans magie
+
+Capture au niveau qui peut décider, enrichis avec le contexte utile, transforme en contrat stable et préserve la cause originale pour le diagnostic.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce module mérite ton temps : error handling** se rattache à ce cas concret : La création de demande Kintana doit distinguer validation, refus d'accès, conflit d'idempotence, timeout fournisseur et panne de base.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Contrat d'erreur stable pour l'API Kintana
+
+> **Arc Walking Dead :** une erreur n'est pas toujours un zombie à abattre. Certaines se récupèrent ; d'autres doivent arrêter la mission immédiatement.
+
+**Mission liée à « Pourquoi ce module mérite ton temps : error handling » :** Définis les erreurs du parcours de création de demande. Ajoute une conversion stable vers les réponses API, une politique retry par classe et des tests qui vérifient qu'un secret ou une pile interne ne fuit pas.
+
+**Livrable :** un catalogue d'erreurs, un mapper HTTP, des tests de contrat et une table de décision retry/no-retry.
+
+**Critères d’acceptation :** les erreurs métier, techniques et de sécurité sont séparées ; les causes sont conservées côté serveur ; aucun retry n'est fait sur opération non idempotente sans clé ; les réponses client restent stables.
+
+**Transfert obligatoire :** Ajoute une panne fournisseur qui récupère après deux tentatives et compare le comportement avec une validation refusée.

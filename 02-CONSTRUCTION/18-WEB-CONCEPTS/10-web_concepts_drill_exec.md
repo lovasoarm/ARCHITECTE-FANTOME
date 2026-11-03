@@ -6,6 +6,13 @@ perturbation_modes: [temps_limite, transmission]
 anti_recipe_key: temps_limite+transmission
 transfer_distance: medium
 assessment_role: instructional_checkpoint
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "02-CONSTRUCTION/18-WEB-CONCEPTS/01-00-why-web-concepts.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 02-CONSTRUCTION/18-WEB-CONCEPTS/01-00-why-web-concepts.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
@@ -94,8 +101,6 @@ Simuler côté client ne reproduit ni le comportement des proxies (Vary, cache-p
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
-
-<!-- AF-P0-2026-10-30: missing_transfer -->
 
 ### Transfert : changer de contexte
 

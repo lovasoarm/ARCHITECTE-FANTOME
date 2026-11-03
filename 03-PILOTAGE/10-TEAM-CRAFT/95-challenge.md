@@ -21,7 +21,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 ## Les épreuves de ce module, dans l'ordre
 
 - [DRILL 3 AUDIENCES : TU EXPLIQUES OU TU NE COMPRENDS PAS](14-three_audiences_drill.md)
-- [EXO LECTURE : 15-25 minutes (Team Craft)](16-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Team Craft)](16-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 03-PILOTAGE/10-TEAM-CRAFT](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 03-PILOTAGE/10-TEAM-CRAFT](97-EXO-VERIFICATION.md)
 

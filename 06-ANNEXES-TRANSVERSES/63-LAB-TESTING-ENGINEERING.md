@@ -3,6 +3,13 @@ stability: evolutif
 acte: apprendre-et-pratiquer
 noyau: renfort
 route: formation-complete
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # 63 : Laboratoire de tests : spécifier, falsifier et préserver un contrat
@@ -112,3 +119,52 @@ Un zéro sur un invariant de sécurité ou d'intégrité des données bloque la 
 ## Suite logique
 
 Après ce laboratoire, reprends [Testing](../02-CONSTRUCTION/03-TESTING/README.md), applique la méthode à ton fil rouge, puis utilise [59 : DevOps/SRE](59-LAB-DEVOPS-LIFECYCLE.md) et [60 : Service IA/RAG](60-LAB-SERVICE-IA-END-TO-END.md) pour vérifier que tes tests protègent aussi le système en dehors du processus unitaire.
+
+<!-- AF-DIAGRAM:contract -->
+
+## Repère visuel utile : Compatibilité API entre client et fournisseur
+
+```text
+client version N -> contrat publié <- API version N
+        |                         |
+        v                         v
+ test consommateur       vérification fournisseur
+        |                         |
+        +-----------+-------------+
+                    v
+             pipeline compatible
+                    |
+           +--------+--------+
+           v                 v
+         PASS              BREAK
+```
+
+<!-- AF-LESSON-PROFILE: contract -->
+
+## Repères de décision
+
+- **Pourquoi :** Les tests de contrat vérifient que deux composants indépendants restent compatibles sur leurs échanges, sans devoir lancer tout le système à chaque changement.
+- **Quand l’utiliser / quand l’éviter :** Utilise-les quand un client et un fournisseur évoluent séparément ou sont déployés à des rythmes différents. Ne les confonds pas avec des tests unitaires ni avec une preuve complète d'intégration.
+- **Limites :** Un contrat ne prouve que les interactions décrites. Il ne prouve pas les performances, la sécurité globale, la sémantique métier non modélisée ni la compatibilité de toutes les versions possibles.
+
+## Mécanisme : la version sans magie
+
+Le consommateur décrit les interactions attendues ; le fournisseur vérifie qu'il les satisfait ; le contrat versionné est exécuté dans le pipeline des deux côtés.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](77-FIL-ROUGE-KINTANA/README.md), **63 : Laboratoire de tests : spécifier, falsifier et préserver un contrat** se rattache à ce cas concret : Le client mobile Kintana peut rester plusieurs versions derrière l'API. Un changement de champ ou d'erreur doit être détecté avant déploiement.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Compatibilité API entre client et fournisseur
+
+> **Arc One Piece / Grand Line :** un contrat d'API est une promesse entre équipages. Si le fournisseur change sa réponse sans prévenir, le client échoue en mer.
+
+**Mission liée à « 63 : Laboratoire de tests : spécifier, falsifier et préserver un contrat » :** Définis un contrat pour une opération Kintana consommée par le client web/mobile. Ajoute les réponses nominales, erreurs stables, champs obligatoires/optionnels et une version de contrat. Fais vérifier le contrat par le fournisseur et simule un client ancien.
+
+**Livrable :** contrat OpenAPI ou pacte consommateur-fournisseur, fixtures, vérification côté fournisseur et test de compatibilité d'une ancienne version.
+
+**Critères d’acceptation :** la rupture intentionnelle échoue dans le test ; les erreurs et champs sont documentés ; le contrat reflète le comportement réellement implémenté ; les limites non couvertes sont nommées.
+
+**Transfert obligatoire :** Le fournisseur ajoute un champ ou change un code d'erreur. Décide si l'évolution est compatible et teste le déploiement dans l'ordre inverse.

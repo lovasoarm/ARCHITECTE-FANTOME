@@ -14,12 +14,19 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~5 min
 
-> Tu ne dois **pas** entrer dans ce module si tu ne peux pas répondre à ces questions
-> **sans regarder**. Ce n'est pas un test noté, c'est un filtre anti-illusion.
-> **Ce prereq_check est différent des autres** : il ne teste pas un seul
-> module précédent, mais ta capacité à transférer et à défendre ce que tu
-> as appris sur l'ensemble du curriculum : cohérent avec le rôle des
-> annexes (transferability, portfolio, interview).
+> Avant de commencer ce module, essaie de répondre à ces questions **sans regarder**.
+> Ce diagnostic n’est pas noté : il sert à repérer les bases déjà acquises et les notions à revoir, pas à te fermer l’accès.
+> **Ce diagnostic est facultatif et non bloquant.** Les annexes sont des
+> ressources de transfert, de portfolio et de préparation : elles peuvent
+> être consultées séparément, au moment où leur sujet devient utile. Les
+> questions ci-dessous aident à choisir une annexe ; elles ne constituent
+> pas un prérequis global à l'ensemble du curriculum.
+>
+> Pour choisir une annexe sans connaître tout le catalogue, commence par
+> [Comment utiliser le parcours](../../06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md)
+> ou par la [présentation des annexes](01-00-why-annexes.md). Chaque annexe doit
+> être suivie selon les prérequis indiqués dans son propre dossier ; ce
+> questionnaire global ne remplace pas ces repères locaux.
 
 ## Questions
 
@@ -30,11 +37,10 @@ Temps de lecture ~5 min
 
 ## Verdict
 
-- **3+ réponses solides** → tu peux entrer.
-- **2 ou moins** → retourne d'abord consolider tes mini-projets (`02-CONSTRUCTION/02-MINI-PROJECTS/`)
-  avant d'attaquer les annexes de transfert et de préparation.
+- **3+ réponses solides** → commence le module et garde les points hésitants comme objectifs de révision.
+- **2 ou moins** → choisis une annexe courte ou une ressource de remédiation liée à ton objectif. Tu peux commencer les annexes dès maintenant ; aucun mini-projet publiable ni aucune soutenance orale ne sont exigés pour y accéder.
 
-> Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
+> Le but n’est pas de te bloquer : ce diagnostic t’aide à choisir une révision utile.
 
 ## CHECKPOINT DE PROFONDEUR : variation A : prédire avant de réparer
 

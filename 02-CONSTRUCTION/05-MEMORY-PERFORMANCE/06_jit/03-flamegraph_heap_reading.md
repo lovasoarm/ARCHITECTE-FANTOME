@@ -213,10 +213,36 @@ Un flamegraph se lit en cherchant la barre la plus large possible au niveau le p
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « Lire un flamegraph et un heap snapshot : voir ce que le JIT fait vraiment », puis conserve le résultat et explique tout écart.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Lire un flamegraph et un heap snapshot : voir ce que le JIT fait vraiment** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Croiser profil CPU et heap snapshot sans les confondre
+
+**Mission liée à « Lire un flamegraph et un heap snapshot : voir ce que le JIT fait vraiment » :** Sur un même parcours Kintana, collecte un profil CPU et un heap snapshot. Établis séparément un suspect de calcul et un suspect de rétention, puis vérifie si leurs causes sont liées.
+
+**Livrable :** Deux artefacts annotés et une synthèse des liens/corrélations vérifiés.
+
+**Critères d’acceptation :** Le temps CPU n’est pas inféré du heap ; la taille mémoire n’est pas inférée du flamegraph ; les causes supposées sont étiquetées.
+
+**Transfert obligatoire :** Les deux signaux évoluent ensemble : propose une expérience qui permet de vérifier s’ils partagent une cause.

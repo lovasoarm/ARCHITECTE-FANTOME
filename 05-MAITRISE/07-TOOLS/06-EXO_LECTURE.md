@@ -1,32 +1,33 @@
 ---
-perishability_id: PER-0079
-
-stability: perissable
+stability: "intemporel"
 acte: pratiquer
 cognitive_level: L4
 perturbation_modes: [temps_limite, changement_contexte]
 anti_recipe_key: temps_limite+changement_contexte
 transfer_distance: high
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0079
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-01-28
-review_status: a_verifier_date_absente
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+canonical_resource: "05-MAITRISE/07-TOOLS/README.md"
+source_scope: "Référence interne du module Tools liée à l’exercice de lecture et d’investigation."
+provenance_note: "Référence interne explicitement reliée au sujet ; elle ancre le parcours mais ne constitue pas une preuve externe. Aucun contenu n’est déclaré revérifié par cette mise à jour."
 ---
+
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
-# EXO LECTURE : 15-25 minutes (05-MAITRISE/07-TOOLS)
+# EXO LECTURE : ~20 minutes : questions et auto-évaluation (05-MAITRISE/07-TOOLS)
 
-Temps de lecture ~2 min
+**Durée indicative : environ 20 minutes** : environ 2 minutes de prise en main, 10 minutes pour répondre aux questions, jusqu’à 5 minutes pour l’auto-évaluation et quelques minutes pour consigner les réponses. Le checkpoint de profondeur est un prolongement séparé et n’est pas compris dans cette durée.
+
+Lecture de la consigne : ~2 min
 
 > **LOCK : pas d'édition avant HYPOTHESES.md signé.** Tu ne modifies AUCUN fichier avant que ton `HYPOTHESES.md` soit signé (>= 3 hypothèses, chacune avec preuve attendue). Sinon, l'exo ne compte pas.
 >
 > **Budget lecture** : 500 lignes en 15 min chrono. Si tu dépasses, note pourquoi dans `MAP.md`. Objectif progressif : tu dois pouvoir tenir 500 lignes en 15 min à la fin du curriculum.
 >
 > **Protocole de cartographie** : suis `../06-ANNEXES/23_reading/02-cartographie_15min.md` si tu ne sais pas par où entrer.
-
-Temps de lecture ~2 min
 
 Compétence : lire une doc d'outil (logger, benchmark, debug toolkit) et
 identifier ce qui est spécifique à l'outil versus ce qui est un principe
@@ -48,12 +49,16 @@ que tu n'as pas encore fait).
 4. Si tu devais intégrer cet outil dans un mini-projet du bloc 30, lequel
    choisirais-tu et pourquoi ?
 
-## Auto-évaluation
+## Auto-évaluation (5 min, repère indicatif)
 
 - 4/4 juste : tu as extrait l'invariant. C'est ce qui te rendra difficile
   à remplacer par une IA qui recopie une doc.
 - < 4/4 : relis en te posant explicitement la question « qu'est-ce qui
   survit à un changement d'outil ? » à chaque paragraphe.
+
+## Livrable
+
+`LECTURE_<nom>.md` : consigne/extrait choisi, réponses aux questions, résultat de l’auto-évaluation et point restant à vérifier. Garde ce fichier dans ton espace de travail apprenant, pas dans le dépôt source du curriculum.
 
 ## RÈGLE READ_ONLY_FIRST (non négociable)
 

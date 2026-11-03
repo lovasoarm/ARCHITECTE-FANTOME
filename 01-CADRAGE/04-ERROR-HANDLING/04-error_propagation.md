@@ -38,20 +38,31 @@ si main ne catch pas --> crash
 ```
 
 ```js
-function queryDB(sql) {
-  // connexion échoue
+class DatabaseError extends Error {
+  constructor(operation, message) {
+    super(message);
+    this.name = "DatabaseError";
+    this.operation = operation;
+  }
+}
+
+async function queryDB(sql, params) {
+  // Stub pédagogique : il représente un driver qui rejette la Promise.
+  // sql et params montrent la forme de l'appel ; aucune base n'est appelée ici.
+  void sql;
+  void params;
   throw new DatabaseError("SELECT", "timeout après 5000ms");
 }
 
-function chargerJoueurs(matchId) {
-  // pas de try/catch ici
-  // l'erreur de queryDB traverse et remonte
-  return queryDB(`SELECT * FROM joueurs WHERE match_id = ${matchId}`);
+async function chargerJoueurs(matchId) {
+  // PostgreSQL : les valeurs passent séparément du texte SQL.
+  // Pas de try/catch ici : la Promise rejetée traverse et remonte.
+  return queryDB("SELECT * FROM joueurs WHERE match_id = $1", [matchId]);
 }
 
-function processerMatch(matchId) {
+async function processerMatch(matchId) {
   try {
-    const joueurs = chargerJoueurs(matchId);
+    const joueurs = await chargerJoueurs(matchId);
     return analyserJoueurs(joueurs);
   } catch (e) {
     // c'est ici que DatabaseError arrive
@@ -82,9 +93,11 @@ niveau app (main)    : catcher et logger sans crash
 Mauvais pattern : catch sans action :
 
 ```js
-function chargerJoueurs(matchId) {
+async function chargerJoueurs(matchId) {
   try {
-    return queryDB(`SELECT * FROM joueurs WHERE match_id = ${matchId}`);
+    return await queryDB("SELECT * FROM joueurs WHERE match_id = $1", [
+      matchId,
+    ]);
   } catch (e) {
     console.log("erreur");
     // on retourne undefined silencieusement
@@ -98,15 +111,17 @@ function chargerJoueurs(matchId) {
 Bon pattern : laisser remonter ou transformer :
 
 ```js
-function chargerJoueurs(matchId) {
-  // pas de try/catch : l'erreur remonte, c'est voulu
-  return queryDB(`SELECT * FROM joueurs WHERE match_id = ${matchId}`);
+async function chargerJoueurs(matchId) {
+  // pas de try/catch : la Promise rejetée remonte, c'est voulu
+  return queryDB("SELECT * FROM joueurs WHERE match_id = $1", [matchId]);
 }
 
 // ou transformer si tu as de la valeur à ajouter
-function chargerJoueurs(matchId) {
+async function chargerJoueurs(matchId) {
   try {
-    return queryDB(`SELECT * FROM joueurs WHERE match_id = ${matchId}`);
+    return await queryDB("SELECT * FROM joueurs WHERE match_id = $1", [
+      matchId,
+    ]);
   } catch (e) {
     // transformer avec du contexte supplémentaire
     throw new DatabaseError(
@@ -164,15 +179,14 @@ Parfois tu veux ajouter du contexte sans perdre l'original.
 ```js
 class ServiceError extends Error {
   constructor(message, cause) {
-    super(message);
+    super(message, { cause }); // option standard Error cause depuis ES2022
     this.name = "ServiceError";
-    this.cause = cause; // l'erreur originale préservée
   }
 }
 
-function serviceJoueurs(matchId) {
+async function serviceJoueurs(matchId) {
   try {
-    return chargerJoueurs(matchId);
+    return await chargerJoueurs(matchId);
   } catch (e) {
     // wrapping : contexte métier + cause originale préservée
     throw new ServiceError(
@@ -182,13 +196,17 @@ function serviceJoueurs(matchId) {
   }
 }
 
-try {
-  serviceJoueurs(42);
-} catch (e) {
-  console.log(e.message); // "Impossible de charger les joueurs pour le match 42"
-  console.log(e.cause.message); // "DB failure pendant "SELECT" : timeout après 5000ms"
-  console.log(e.cause.name); // "DatabaseError"
+async function exempleService() {
+  try {
+    await serviceJoueurs(42);
+  } catch (e) {
+    console.log(e.message); // contexte métier ajouté
+    console.log(e.cause.message); // cause initiale conservée
+    console.log(e.cause.name); // "DatabaseError"
+  }
 }
+
+exempleService();
 ```
 
 `e.cause` c'est un standard ES2022. Il préserve toute la chaîne de causalité.
@@ -211,7 +229,8 @@ Request HTTP
 // couche basse:soulève sans catcher
 class MatchRepository {
   async trouver(id) {
-    const result = await this.db.query("SELECT * FROM matchs WHERE id = ?", [
+    // Exemple PostgreSQL : $1 est un paramètre, pas une concaténation SQL.
+    const result = await this.db.query("SELECT * FROM matchs WHERE id = $1", [
       id,
     ]);
     if (!result.rows.length) {
@@ -368,3 +387,33 @@ L'architecture en couches donne à chaque niveau un rôle clair : lever, transfo
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+
+<!-- AF-LESSON-PROFILE: errors -->
+
+## Repères de décision
+
+- **Pourquoi :** Une politique d'erreur explicite empêche un échec temporaire de devenir une boucle infinie et évite de cacher un défaut métier derrière un message vague.
+- **Quand l’utiliser / quand l’éviter :** Classe l'erreur selon sa cause et sa récupérabilité. Retry uniquement les erreurs transitoires et les opérations idempotentes ; remonte les violations métier et sécurité sans boucle automatique.
+- **Limites :** Un `catch` trop large masque la cause. Un retry peut amplifier une panne et doubler un effet ; une erreur personnalisée ne rend pas un message sûr à exposer au client.
+
+## Mécanisme : la version sans magie
+
+Capture au niveau qui peut décider, enrichis avec le contexte utile, transforme en contrat stable et préserve la cause originale pour le diagnostic.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Propagation d'erreurs : qui catch quoi et à quel niveau** se rattache à ce cas concret : La création de demande Kintana doit distinguer validation, refus d'accès, conflit d'idempotence, timeout fournisseur et panne de base.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Contrat d'erreur stable pour l'API Kintana
+
+> **Arc Walking Dead :** une erreur n'est pas toujours un zombie à abattre. Certaines se récupèrent ; d'autres doivent arrêter la mission immédiatement.
+
+**Mission liée à « Propagation d'erreurs : qui catch quoi et à quel niveau » :** Définis les erreurs du parcours de création de demande. Ajoute une conversion stable vers les réponses API, une politique retry par classe et des tests qui vérifient qu'un secret ou une pile interne ne fuit pas.
+
+**Livrable :** un catalogue d'erreurs, un mapper HTTP, des tests de contrat et une table de décision retry/no-retry.
+
+**Critères d’acceptation :** les erreurs métier, techniques et de sécurité sont séparées ; les causes sont conservées côté serveur ; aucun retry n'est fait sur opération non idempotente sans clé ; les réponses client restent stables.
+
+**Transfert obligatoire :** Ajoute une panne fournisseur qui récupère après deux tentatives et compare le comportement avec une validation refusée.

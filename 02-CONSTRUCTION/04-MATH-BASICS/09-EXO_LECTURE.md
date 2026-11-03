@@ -12,9 +12,11 @@ assessment_role: diagnostic_mastery
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
-# EXO LECTURE : 15-25 minutes (Math Basics)
+# EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Math Basics)
 
-Temps de lecture ~2 min
+**Durée indicative : environ 50 minutes** : 45 minutes de travail chronométré (3 cycles de 15 minutes, chacun avec un extrait différent), plus environ 2 minutes de prise en main et une petite marge de préparation. Le checkpoint de profondeur, s’il est présent, est un prolongement séparé et n’est pas compris dans cette durée.
+
+Lecture de la consigne : ~2 min
 
 > **LOCK : pas d'édition avant HYPOTHESES.md signé.** Tu ne modifies AUCUN fichier avant que ton `HYPOTHESES.md` soit signé (>= 3 hypothèses, chacune avec preuve attendue). Sinon, l'exo ne compte pas.
 >
@@ -22,13 +24,11 @@ Temps de lecture ~2 min
 >
 > **Protocole de cartographie** : suis `../../05-MAITRISE/06-ANNEXES/23_reading/02-cartographie_15min.md` si tu ne sais pas par où entrer.
 
-Temps de lecture ~2 min
-
 Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT de le modifier. C'est une part importante du métier.
 
 ## L'extrait
 
-On te fournit un extrait qui manipule des flottants ou des grands entiers (bit ops, modulo, IEEE 754) : issu de `02-CONSTRUCTION/04-MATH-BASICS/` ou d'un utilitaire mathématique. 15-25 minutes de lecture, pas plus.
+On te fournit un extrait qui manipule des flottants ou des grands entiers (bit ops, modulo, IEEE 754) : issu de `02-CONSTRUCTION/04-MATH-BASICS/` ou d'un utilitaire mathématique. 15 minutes de protocole par cycle ; traite un seul extrait pendant chaque cycle.
 
 ## Le protocole (15 min chrono)
 
@@ -38,7 +38,7 @@ On te fournit un extrait qui manipule des flottants ou des grands entiers (bit o
 
 ## Livrable
 
-`LECTURE_<nom>.md` avec tes 3 sections remplies. Interdiction absolue de modifier l'extrait avant que les 3 sections soient écrites au propre. Cf `../11-REFACTORING/07-do_not_touch_before_explain.md`.
+`LECTURE_<nom>.md` avec les trois cycles réunis dans un seul fichier, sous trois sections datées `Cycle 1`, `Cycle 2` et `Cycle 3`. Chaque section contient les trois parties du protocole. Ne remplace pas les résultats d’un cycle par ceux du suivant.
 
 ## (attention) Ce que l'exo révèle
 
@@ -46,7 +46,7 @@ Si ton hypothèse était fausse, tant mieux : tu viens d'apprendre où ton modè
 
 ## Enchainement
 
-- Fait 3 fois de suite avec 3 extraits différents avant de passer au prochain module.
+- Réalise trois cycles avec trois extraits différents ; conserve les résultats dans les trois sections datées de `LECTURE_<nom>.md`.
 - Croise avec `EXO_VERIFICATION.md` du même module quand il existe : compare ton hypothèse humaine à celle qu'une IA produirait sur le même extrait.
 
 ---

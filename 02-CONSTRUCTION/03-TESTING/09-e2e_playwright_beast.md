@@ -10,12 +10,21 @@ perturbation_modes: [decision_organisationnelle, regression]
 anti_recipe_key: decision_organisationnelle+regression
 transfer_distance: high
 assessment_role: instructional_checkpoint
-freshness_registry_id: PER-0013
-freshness_audit_date: 2026-10-30
-freshness_status: date_declaree_non_revalidee_dans_cette_edition
-review_due: 2027-04-28
-review_status: date_declaree_non_revalidee_dans_cette_edition
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: https://playwright.dev/docs/intro
+source_type: primary
+review_interval: "6 mois"
+review_due: "2027-05-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « E2e playwright beast : simuler un vrai utilisateur ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 # E2e playwright beast : simuler un vrai utilisateur
@@ -24,7 +33,7 @@ Temps de lecture ~8 min
 
 Un unit test vérifie une fonction.
 Un test d'intégration vérifie plusieurs modules.
-Un test E2E vérifie ce que l'utilisateur voit et fait : du clic jusqu'à la base de données.
+Un test E2E vérifie un parcours observable de bout en bout du point de vue de l’utilisateur, à travers les composants réellement inclus dans l’environnement de test. Il peut traverser l’API et la base de données si elles sont branchées au scénario ; un test UI avec API simulée ne vérifie pas la base de données.
 
 Le soir de la cérémonie du Ballon d'Or, des milliers de journalistes accèdent à la plateforme de vote en même temps. Chacun clique, sélectionne, confirme. Si le bouton "Voter" plante pour 5% d'entre eux à cause d'un bug de timing, personne ne l'a vu venir en unit test. Playwright l'aurait vu.
 
@@ -194,7 +203,7 @@ E2E : le bouton "Voter" est désactivé après un vote, mais
    Playwright le voit en 30 secondes.
 ```
 
-L'E2E teste le technique comme un utilisateur l'utilise. Les comportements liés au timing, aux animations, aux interactions UI : invisibles ailleurs.
+L’E2E teste un parcours comme un utilisateur le vit. Les éléments réellement traversés dépendent de l’environnement : navigateur, interface, API ou stockage peuvent être réels ou simulés. Décris ce qui est effectivement inclus dans ton test.
 
 ---
 
@@ -255,24 +264,52 @@ Playwright attend automatiquement les éléments : utilise `expect(...).toBeVisi
 E2E attrape ce que les autres tests ne voient pas : timing, UI, interactions complexes.
 Ne mets pas tout en E2E : c'est lent. Réserve-les aux flux critiques.
 
-## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+<!-- AF-DIAGRAM:testing -->
 
-<!-- AF-DIAGRAM:transfer -->
+## Repère visuel utile : Protéger un invariant Kintana contre la régression
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+risque / invariant
+       |
+       v
+choisir le niveau de test
+  |       |        |
+ unité  intégr.  contrat / E2E
+  |       |        |
+  +-------+--------+
+          v
+   test rouge -> correctif
+          |
+          v
+   test vert + mutation volontaire
 ```
 
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+<!-- AF-LESSON-PROFILE: testing -->
 
-Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+## Repères de décision
+
+- **Pourquoi :** Les tests protègent un contrat observable pendant que le code évolue. Ils rendent les régressions moins coûteuses à diagnostiquer et à corriger.
+- **Quand l’utiliser / quand l’éviter :** Choisis le niveau de test selon le risque : unité pour une règle isolée, intégration pour plusieurs composants, contrat pour les échanges, E2E pour un parcours critique. N'utilise pas des mocks pour simuler ce que tu dois réellement vérifier.
+- **Limites :** Une suite verte ne prouve que les cas exécutés et les assertions observées. Les tests ne remplacent pas revue, sécurité, monitoring ou test de charge réaliste.
+
+## Mécanisme : la version sans magie
+
+Formule un invariant, prépare un état contrôlé, exécute l'action et affirme un résultat public. Ajoute le cas limite et vérifie que le test échoue si le bug revient.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **E2e playwright beast : simuler un vrai utilisateur** se rattache à ce cas concret : Kintana doit préserver l'unicité d'une demande, les transitions autorisées, l'isolation des rôles et l'absence de double notification.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Protéger un invariant Kintana contre la régression
+
+> **Arc DBZ / Capsule Corp. :** un test est un radar, pas une médaille. Il doit détecter le défaut qui ferait tomber le produit, pas juste colorer la console en vert.
+
+**Mission liée à « E2e playwright beast : simuler un vrai utilisateur » :** Choisis l'invariant qui correspond à cette leçon. Écris d'abord un test rouge, puis le plus petit correctif. Ajoute un cas nominal, un cas limite et une défaillance réaliste au niveau de test approprié.
+
+**Livrable :** une suite de tests déterministe, une matrice risque/niveau de test et un exemple de régression injectée détectée.
+
+**Critères d’acceptation :** le test échoue avant le correctif ; il observe le contrat public ; les fixtures sont reproductibles ; le niveau de test est justifié ; un mock ne masque pas la frontière critique.
+
+**Transfert obligatoire :** Fais évoluer le contrat sans prévenir le consommateur. Identifie quel test détecte la rupture et lequel ne peut pas la voir.

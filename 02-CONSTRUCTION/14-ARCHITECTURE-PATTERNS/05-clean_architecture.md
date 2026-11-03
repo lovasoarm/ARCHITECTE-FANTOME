@@ -66,12 +66,12 @@ Prérequis : `04-mvc_pattern.md`, `../10-DESIGN-PATTERNS/02_structural/03-adapte
 
 ---
 
-| Couche | Responsabilité | Direction des dépendances |
-|---|---|---|
-| Domaine / entités | Règles métier stables | Ne dépend ni des use cases ni de l’infrastructure |
-| Application / use cases | Orchestration des scénarios, définition des ports nécessaires | Dépend du domaine et des contrats internes |
-| Adapters / interfaces | Traduit HTTP, formats externes et résultats vers les ports | Dépend des contrats internes ; peut utiliser des bibliothèques de bord |
-| Frameworks & drivers | Base de données, serveur HTTP, SDK et outils techniques | Implémentations concrètes situées à la périphérie |
+| Couche                  | Responsabilité                                                | Direction des dépendances                                              |
+| ----------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Domaine / entités       | Règles métier stables                                         | Ne dépend ni des use cases ni de l’infrastructure                      |
+| Application / use cases | Orchestration des scénarios, définition des ports nécessaires | Dépend du domaine et des contrats internes                             |
+| Adapters / interfaces   | Traduit HTTP, formats externes et résultats vers les ports    | Dépend des contrats internes ; peut utiliser des bibliothèques de bord |
+| Frameworks & drivers    | Base de données, serveur HTTP, SDK et outils techniques       | Implémentations concrètes situées à la périphérie                      |
 
 **Règle de source :** la direction des dépendances pointe vers l’intérieur. Un adapter concret peut utiliser un framework ou un driver ; les use cases et le domaine ne doivent pas dépendre de ces détails. À l’exécution, un use case appelle le port interne, dont l’implémentation externe lui a été injectée.
 
@@ -418,3 +418,33 @@ La Clean Architecture impose une seule règle vraiment importante : les dépenda
 
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+
+<!-- AF-LESSON-PROFILE: architecture -->
+
+## Repères de décision
+
+- **Pourquoi :** Les frontières réduisent le coût de changement et clarifient les responsabilités. Elles doivent répondre aux contraintes de l'équipe, des données et de l'exploitation.
+- **Quand l’utiliser / quand l’éviter :** Découpe un système quand une frontière protège une règle ou un rythme de changement. Ne crée pas de microservice tant que l'autonomie, la charge ou la gouvernance ne justifient pas le coût distribué.
+- **Limites :** Chaque frontière ajoute contrats, réseau, déploiement, observabilité et coordination. Un diagramme propre ne prouve ni la faisabilité ni la performance.
+
+## Mécanisme : la version sans magie
+
+Part des cas d'usage, repère invariants et propriétaires de données, définis les contrats, compare les options et mesure les conséquences du changement.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Clean architecture : le domaine au centre** se rattache à ce cas concret : Kintana commence comme monolithe modulaire. Les demandes, réservations et notifications doivent avoir des frontières explicites sans fragmenter trop tôt le déploiement.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Défendre une frontière de domaine Kintana
+
+> **Arc Capsule Corp. / DBZ :** une architecture est le plan du vaisseau et les coûts qu'il impose. Si chaque pièce doit connaître toutes les autres, le vaisseau ne décolle jamais.
+
+**Mission liée à « Clean architecture : le domaine au centre » :** Dessine le flux réel d'une création de demande. Identifie les invariants, propriétaires de données et dépendances ; compare monolithe modulaire et service séparé dans un ADR. Simule une évolution et mesure le nombre de composants touchés.
+
+**Livrable :** diagramme de composants/flux, ADR avec deux options, contrat de frontière et test de changement.
+
+**Critères d’acceptation :** la frontière possède une responsabilité claire ; les données ont un propriétaire ; le coût d'exploitation est explicite ; le microservice n'est pas choisi par prestige ; une condition de révision est écrite.
+
+**Transfert obligatoire :** Le nombre d'équipes ou le volume double. Indique quel signal justifierait de séparer un composant et quel coût tu acceptes.

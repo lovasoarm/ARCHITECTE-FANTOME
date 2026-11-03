@@ -17,8 +17,7 @@ Temps de lecture ~2 min
 
 Acte attendu : évaluer. Trois minutes, seul, sans ouvrir le module.
 
-Si une seule ligne ci-dessous te fait hésiter, tu ouvres d'abord ce qu'elle nomme. Ouvrir ce
-module sans ces acquis coûte la séance : tu apprendrais le prérequis à la place du module.
+Le parcours recommandé passe par `14-ARCHITECTURE-PATTERNS`. Ce diagnostic prépare le laboratoire évalué ; il ne ferme pas la lecture de ce module. Si tu n'as pas encore étudié les patterns, commence par la ressource de remédiation ci-dessous et reporte seulement l'exercice qui les suppose.
 
 ## Ce que tu dois déjà savoir faire
 

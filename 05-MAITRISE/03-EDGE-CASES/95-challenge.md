@@ -20,7 +20,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 
 ## Les épreuves de ce module, dans l'ordre
 
-- [EXO LECTURE : 15-25 minutes (Edge Cases)](09-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Edge Cases)](09-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 05-MAITRISE/03-EDGE-CASES](97-EXO-VERIFICATION.md)
 - [SPEC_DRIFT_DRILL : 45 min](10-SPEC_DRIFT_DRILL.md)
 - [Drill : spec floue + spec qui dérive (combo)](11-SPEC_FLOU_DRIFT_COMBO_DRILL.md)

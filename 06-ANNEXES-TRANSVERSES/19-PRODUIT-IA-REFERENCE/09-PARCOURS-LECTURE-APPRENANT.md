@@ -3,6 +3,13 @@ stability: evolutif
 acte: apprendre
 noyau: renfort
 route: formation-complete
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "06-ANNEXES-TRANSVERSES/19-PRODUIT-IA-REFERENCE/02-COST.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 06-ANNEXES-TRANSVERSES/19-PRODUIT-IA-REFERENCE/02-COST.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # Parcours de lecture apprenant : comprendre `retrieval-gateway`
@@ -127,3 +134,56 @@ Sans lire tes notes :
 ## Passage vers le projet complet
 
 Après cette lecture, enchaîne sur [60 : Laboratoire IA de bout en bout](../60-LAB-SERVICE-IA-END-TO-END.md), puis [RAG Blindé](../../05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/03-rag-blinde.md). Le premier fait pratiquer la chaîne globale ; le second transforme ces mécanismes en projet plus complet. Aucun des deux ne prouve à lui seul une sécurité de production universelle.
+
+<!-- AF-DIAGRAM:ai -->
+
+## Repère visuel utile : FAQ IA en lecture seule et évaluable
+
+```text
+question utilisateur
+       |
+       v
+contrôle d'accès + retrieval
+       |
+       v
+sources autorisées ?
+   | oui        | non
+   v            v
+générer + citer   abstention
+   |
+   v
+validation / sécurité
+   |
+   v
+réponse lecture seule
+```
+
+<!-- AF-LESSON-PROFILE: ai -->
+
+## Repères de décision
+
+- **Pourquoi :** L'ingénierie IA consiste à intégrer une capacité probabiliste dans un système déterministe qui doit gérer droits, qualité, coût et échecs.
+- **Quand l’utiliser / quand l’éviter :** Utilise LLM/RAG/agents seulement quand la valeur est claire et une solution non-IA ne suffit pas. En lecture seule, l'IA peut assister ; elle ne doit pas effectuer une action métier sans autorisation et confirmation séparées.
+- **Limites :** Une réponse plausible peut être fausse. Un score d'évaluation ne garantit pas la sécurité ; un prompt n'est pas une frontière d'autorisation ; une simulation n'est pas une mesure utilisateur.
+
+## Mécanisme : la version sans magie
+
+Définis contrat, sources, droits, abstention et évaluation ; observe retrieval, génération et post-traitement séparément ; garde les outils dans un périmètre minimal.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../77-FIL-ROUGE-KINTANA/README.md), **Parcours de lecture apprenant : comprendre `retrieval-gateway`** se rattache à ce cas concret : La FAQ IA Kintana répond à partir de documents approuvés, cite ses sources et s'abstient quand le contenu manque. Elle ne crée ni annule ni modifie une demande.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : FAQ IA en lecture seule et évaluable
+
+> **Arc Capsule Corp. / DBZ :** l'IA est un copilote puissant, pas le Hokage. Elle peut proposer ; c'est ton système qui doit vérifier, limiter et refuser si besoin.
+
+**Mission liée à « Parcours de lecture apprenant : comprendre `retrieval-gateway` » :** Ajoute ou évalue une tranche FAQ Kintana : corpus synthétique approuvé, retrieval, citations, questions sans réponse, contradiction de source et prompt injection. Vérifie que toute action d'écriture métier reste impossible.
+
+**Livrable :** jeu d'évaluation versionné, rapport retrieval/génération, tests sécurité, règle d'abstention et dossier de coûts/latence LAB.
+
+**Critères d’acceptation :** les sources sont traçables ; les réponses sans support s'abstiennent ; l'injection ne donne pas de droits ; aucune action métier n'est exposée ; les métriques ne sont pas présentées comme production.
+
+**Transfert obligatoire :** Le fournisseur IA tombe ou renvoie une sortie mal formée. Vérifie le mode dégradé, la reprise et le comportement sûr.

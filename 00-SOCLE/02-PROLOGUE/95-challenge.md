@@ -16,51 +16,49 @@ Temps de lecture ~2 min
 
 [Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau](README.md) | [Grimoire](90-grimoire.md)
 
-Ce niveau n'enseigne aucune technique, mais il produit un livrable daté, réutilisé par les
-quinze niveaux suivants : le contrat que tu signes avec toi-même sur ton projet fil rouge.
+Ce niveau n'enseigne aucune technique. Il produit un **contrat provisoire de domaine candidat**. Le fil rouge définitif sera qualifié après les premiers travaux de Cadrage ; ce document conserve tes hypothèses de départ, sans te forcer à simuler une expertise métier que tu n’as pas encore.
 
-## Durée cible
+## Repère de durée
 
-45 minutes. Au-delà, tu es en train de choisir un projet que tu ne connais pas assez.
+Environ 20 à 45 minutes, sans chronomètre ni note. Si tu n'as pas assez d'informations, arrête-toi et écris `inconnu` ou `à vérifier`. Dépasser ce repère ne signifie pas un échec : le but n'est pas de choisir définitivement un projet ni d'inventer un domaine que tu ne connais pas.
 
 ## Livrable
 
-Un fichier `JOURNAL.md`, à la racine de ton projet fil rouge, contenant :
+Une entrée datée dans ton journal local ou `PREUVES/00-SOCLE/02-PROLOGUE.md`, contenant :
 
-1. Le tableau de calibrage du projet fil rouge, celui de [README.md](README.md), rempli sur
-   ses six colonnes (les cinq critères, plus la colonne « ce qu'il faut pouvoir écrire »),
-   aucune cellule vide.
-2. Le nom du domaine choisi, en une phrase, sans jargon.
-3. Une phrase de non-objectif, même approximative : « ce projet ne fera pas X ».
-4. La date du jour et ta signature.
+1. Le domaine candidat et la personne ou catégorie d’utilisateur qui pourrait rencontrer le problème.
+2. Le problème supposé, en une phrase sans jargon.
+3. Une première phrase de non-objectif : « ce projet ne fera pas X ».
+4. Les cinq questions de repérage : marque `connu`, `à vérifier` ou `inconnu`. Tu n’as pas à rechercher les mots techniques ni à inventer une réponse ; les cinq lignes peuvent rester `inconnu`, sans note ; aucun score minimal n'est exigé pour terminer le Prologue.
+5. La date et les hypothèses que tu devras vérifier pendant le Cadrage.
 
-## Critères de réussite mesurables (binaires)
-
-```text
-[ ] Le tableau est rempli sur les six colonnes, aucune cellule vide
-[ ] Le domaine choisi ne figure PAS dans la liste interdite :
-    , blog, e-commerce, login, "utilisateur/produit"
-[ ] Une phrase de non-objectif est ecrite des maintenant
-[ ] La date est anterieure a la premiere ligne de code du fil rouge
-[ ] Un lecteur qui ne connait pas le projet dit, en une lecture, qui l'utilise
-    et ce que ca lui evite de faire a la main
-```
-
-La quatrième condition est la même mécanique d'antériorité que celle qui note l'ADR face à
-[l'enveloppe scellée](../../04-EPREUVE/05-CAPSTONE-ARENA/08-SCELLE-MESSAGE-CLIENT-JALON-2.md) au module `04-EPREUVE/05-CAPSTONE-ARENA` : un
-contrat écrit après coup décrit, il n'oriente pas. Si tu as déjà écrit du code sur ce
-projet, tu changes de projet ou tu acceptes que ce challenge vaille 0.
-
-## Comment vérifier l'antériorité
+## Exemple de niveau attendu (tu peux le reprendre)
 
 ```text
-git log --reverse --format=%cI | head -1      --> premiere ligne de code
-git log -1 --format=%cI -- JOURNAL.md          --> date du contrat
-Condition : date du contrat < premiere ligne de code
+Domaine : prêt de matériel dans un lycée
+Utilisateur candidat : responsable du matériel
+Problème supposé : retrouver qui a emprunté un équipement prend trop de temps.
+Non-objectif : gérer les paiements.
+Critères encore inconnus : règles de retard, droits exacts, historique à conserver.
 ```
 
-Si ton projet fil rouge n'est pas encore versionné, la date manuscrite dans `JOURNAL.md`
-suffit, à condition qu'aucun fichier de code n'existe encore dans le dossier.
+Cet exemple est suffisant comme point de départ. Il n'affirme pas que le besoin a été observé : il reste une hypothèse à vérifier pendant le Cadrage. Tu n’as pas à compléter les cinq notions techniques maintenant ; marque-les `inconnu` si tu ne sais pas encore.
+
+## Critères de réussite mesurables
+
+```text
+[ ] Le domaine et l’utilisateur candidat sont identifiables
+[ ] Le problème est formulé comme une tâche ou une friction, pas comme une technologie
+[ ] Une limite ou un non-objectif est écrit
+[ ] Les cinq questions de repérage sont marquées connu / à vérifier / inconnu, même si les réponses restent toutes inconnues
+[ ] Les hypothèses non vérifiées sont visibles ; aucune n’est présentée comme un fait
+```
+
+Ce contrat est une trace d’hypothèses initiales, pas un choix de projet définitif ni un ADR final. Tu peux reprendre un des exemples de la page README ; aucun domaine original n'est exigé. Tu peux utiliser un simple fichier texte dans un dossier local ; Git n’est pas requis. Si un prototype ou du code existe déjà, note-le honnêtement et conserve l’historique ; tu n’as pas à détruire ton travail ni à choisir artificiellement un autre projet. Au Cadrage, valide les besoins et la chronologie réelle avant d’en faire une preuve de décision initiale.
+
+## Comment vérifier la chronologie sans falsifier l'histoire
+
+Si le projet est nouveau et versionné dès le départ, conserve le commit initial et vérifie que le contrat de domaine candidat le précède. Si le projet, un prototype ou du code existe déjà, conserve cet historique : date le contrat maintenant, indique ce qui existait avant et distingue les hypothèses initiales des décisions prises après coup. **Ne présente jamais un document rédigé après le code comme une preuve de cadrage antérieur.** L'objectif est une chronologie honnête, pas une obligation de détruire ou recommencer un travail existant.
 
 ## Piège classique
 
@@ -71,11 +69,9 @@ ton propre domaine, il n'est pas le tien : reprends la grille de calibrage.
 
 ## Ce que tu dois savoir défendre
 
-1. Pourquoi ton projet coche au moins 4 des 5 critères de calibrage, exemple concret à
-   l'appui pour chacun.
-2. Quelle est la règle de concurrence de ton projet : quelle ressource, et qui gagne.
-3. Ce que ton non-objectif t'interdit de faire au 05-MVP-SPLIT, quand la tentation d'élargir
-   le périmètre arrivera.
+1. Quelles hypothèses du domaine sont encore inconnues et comment tu les vérifieras au 01-PROBLEM-HUNT.
+2. Pourquoi tes critères encore inconnus doivent rester des hypothèses jusqu’au Cadrage.
+3. Quelle observation pendant `01-CADRAGE/01-PROBLEM-HUNT` pourrait te faire confirmer, transformer ou abandonner ce domaine candidat.
 
 ## CHECKPOINT DE PROFONDEUR : variation A : prédire avant de réparer
 

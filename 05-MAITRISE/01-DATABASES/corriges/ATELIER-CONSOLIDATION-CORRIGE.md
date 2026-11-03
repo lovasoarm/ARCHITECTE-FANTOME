@@ -1,3 +1,9 @@
+---
+stability: intemporel
+acte: reference
+assessment_role: instructional_support
+---
+
 # Corrigé différé : 01-DATABASES
 
 **Ne lire qu'après l'atelier.** Ce document est un guide de correction et non une sortie d'exécution certifiée.
@@ -10,17 +16,29 @@
 4. Expliquer causalement la divergence : précondition, transformation, puis effet. Une simple copie de réponse échoue au critère d'autonomie.
 5. Répéter le cas positif et le cas volontairement faux ; mesurer ou décrire le changement.
 
-## Exemple de réponse structurée (à instancier à partir du cours)
+## Exemples résolus : SQL de base
 
-- **Contexte :** `sql basics`, source `02-sql_basics.md`.
-- **Prédiction :** « avec l'entrée X et la précondition P, la propriété Y doit tenir ».
-- **Cas négatif :** « si P est supprimée, Y n'est plus garantie ; je vérifie un échec par assertion, mesure ou refus explicite ».
-- **Diagnostic :** « l'hypothèse P manque », pas « mauvais code ».
-- **Correctif :** vérifier P à la frontière ou ajuster le modèle ; relancer exactement les deux cas.
-- **Transfert :** montrer l'impact de P dans une fonctionnalité réelle et consigner son test de non-régression.
+Les exemples ci-dessous sont des **fixtures pédagogiques** : les résultats sont déduits des entrées affichées ou des hypothèses explicitement données. Ils ne prétendent pas qu’une commande, un service ou une infrastructure a été exécuté dans cette release.
+
+### Exemple A : Compter les demandes par statut
+
+Fixture pédagogique : `reservations` contient `('R1','confirmed')`, `('R2','pending')`, `('R3','confirmed')`.
+
+```sql
+SELECT status, COUNT(*) AS total
+FROM reservations
+GROUP BY status
+ORDER BY status;
+```
+
+Résultat attendu : `confirmed = 2`, `pending = 1`. La requête forme un groupe par statut puis compte ses lignes. Ce résultat vient de la fixture décrite, pas d’une base réellement exécutée.
+
+### Exemple B : Filtrer avant de compter
+
+Pour ne compter que les réservations confirmées, ajoute `WHERE status = 'confirmed'` avant `GROUP BY status`. Si tu mets une condition sur le résultat agrégé (par exemple `COUNT(*) > 1`), elle relève de `HAVING`, après la formation des groupes. Confondre `WHERE` et `HAVING` change le niveau auquel la condition s’applique.
 
 ## Barème / 10
 
 Prédiction précise (2), preuve reproductible (2), cas négatif observé (2), diagnostic et correctif (2), transfert contextualisé (2). **Un cas inventé ou sans trace obtient zéro sur le critère de preuve.**
 
-**Limite :** les sorties attendues dépendant de la leçon et de l'environnement n'ont pas été calculées ici ; elles doivent être contrôlées par le formateur. Ne pas confondre ce guide avec une solution technique entièrement implémentée.
+**Limite :** les sorties qui dépendent d’une exécution n’ont pas été calculées ici : exécute l’exercice dans l’environnement prévu par la leçon, compare le résultat à ces critères et conserve ta preuve. Ne présente jamais un résultat attendu comme une exécution réellement observée. Ce corrigé guide le raisonnement ; il ne prétend pas fournir une implémentation complète.

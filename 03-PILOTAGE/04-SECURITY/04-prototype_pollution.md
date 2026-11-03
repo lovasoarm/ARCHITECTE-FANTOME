@@ -8,12 +8,21 @@ perturbation_modes: [changement_echelle, changement_contexte]
 anti_recipe_key: changement_echelle+changement_contexte
 transfer_distance: low
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0041
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-01-28
-review_status: a_verifier_date_absente
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: https://cheatsheetseries.owasp.org/cheatsheets/Prototype_Pollution_Prevention_Cheat_Sheet.html
+source_type: primary
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « Prototype pollution ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : Attack on Titan :** ta frontière de confiance est un mur. Le problème n'est pas seulement de savoir s'il tient ; il faut savoir **qui peut passer, par où, avec quelle preuve et que se passe-t-il quand le mur est percé**.
 
 # Prototype pollution
@@ -149,8 +158,11 @@ Le correctif doit intervenir **avant toute fusion** et à chaque niveau récursi
 
 ```js
 const forbiddenKeys = new Set(["__proto__", "prototype", "constructor"]);
-const isRecord = (value) => value !== null && typeof value === "object" &&
-  (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
+const isRecord = (value) =>
+  value !== null &&
+  typeof value === "object" &&
+  (Object.getPrototypeOf(value) === Object.prototype ||
+    Object.getPrototypeOf(value) === null);
 
 // Valider tout l'arbre avant de modifier la cible : aucune fusion partielle en cas de clé interdite.
 function assertSafeJson(value, path = "$") {
@@ -160,12 +172,14 @@ function assertSafeJson(value, path = "$") {
   }
   if (isRecord(value)) {
     for (const key of Object.keys(value)) {
-      if (forbiddenKeys.has(key)) throw new TypeError(`clé interdite à ${path}.${key}`);
+      if (forbiddenKeys.has(key))
+        throw new TypeError(`clé interdite à ${path}.${key}`);
       assertSafeJson(value[key], `${path}.${key}`);
     }
     return;
   }
-  if (value === null || ["string", "number", "boolean"].includes(typeof value)) return;
+  if (value === null || ["string", "number", "boolean"].includes(typeof value))
+    return;
   throw new TypeError(`valeur JSON inattendue à ${path}`);
 }
 
@@ -175,7 +189,10 @@ function cloneSafeJson(value) {
     const copy = Object.create(null);
     for (const key of Object.keys(value)) {
       Object.defineProperty(copy, key, {
-        value: cloneSafeJson(value[key]), enumerable: true, configurable: true, writable: true,
+        value: cloneSafeJson(value[key]),
+        enumerable: true,
+        configurable: true,
+        writable: true,
       });
     }
     return copy;
@@ -193,15 +210,31 @@ function safeMergeJson(target, source) {
   const safeSource = cloneSafeJson(source);
   for (const key of Object.keys(safeSource)) {
     const value = safeSource[key];
-    const existing = Object.hasOwn(target, key) && isRecord(target[key]) ? target[key] : null;
+    const existing =
+      Object.hasOwn(target, key) && isRecord(target[key]) ? target[key] : null;
     if (Array.isArray(value)) {
-      Object.defineProperty(target, key, { value, enumerable: true, configurable: true, writable: true });
+      Object.defineProperty(target, key, {
+        value,
+        enumerable: true,
+        configurable: true,
+        writable: true,
+      });
     } else if (isRecord(value)) {
       const child = existing || Object.create(null);
-      Object.defineProperty(target, key, { value: child, enumerable: true, configurable: true, writable: true });
+      Object.defineProperty(target, key, {
+        value: child,
+        enumerable: true,
+        configurable: true,
+        writable: true,
+      });
       safeMergeJson(child, value);
     } else {
-      Object.defineProperty(target, key, { value, enumerable: true, configurable: true, writable: true });
+      Object.defineProperty(target, key, {
+        value,
+        enumerable: true,
+        configurable: true,
+        writable: true,
+      });
     }
   }
   return target;
@@ -252,10 +285,12 @@ Une démonstration exécutable et testée se trouve dans [`examples/safe-merge.m
 ```js
 import { z } from "zod"; // Zod : bibliothèque de validation et typage runtime
 
-const configSchema = z.object({
-  timeout: z.number().int().min(1).max(60_000).optional(),
-  retries: z.number().int().min(0).max(5).optional(),
-}).strict(); // les propriétés inconnues provoquent un refus
+const configSchema = z
+  .object({
+    timeout: z.number().int().min(1).max(60_000).optional(),
+    retries: z.number().int().min(0).max(5).optional(),
+  })
+  .strict(); // les propriétés inconnues provoquent un refus
 
 app.post("/config", (req, res) => {
   const result = configSchema.safeParse(req.body);
@@ -290,7 +325,8 @@ const checkPollution = () => {
 
 // Une propriété propre n'est pas une preuve d'autorisation fiable.
 const user = getUser(id);
-const hasOwnAdminFlag = user != null && Object.prototype.hasOwnProperty.call(user, "isAdmin");
+const hasOwnAdminFlag =
+  user != null && Object.prototype.hasOwnProperty.call(user, "isAdmin");
 if (hasOwnAdminFlag) {
   // Cette lecture exclut seulement une valeur héritée ; elle ne fait pas de ce champ une preuve.
 }
@@ -331,3 +367,33 @@ Prototype pollution devient possible quand des données contrôlées par une sou
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+<!-- AF-LESSON-PROFILE: security -->
+
+## Repères de décision
+
+- **Pourquoi :** La sécurité protège les utilisateurs, les données et la continuité du service. Un contrôle absent à une frontière peut exposer tous les tenants.
+- **Quand l’utiliser / quand l’éviter :** Modélise la menace avant une exposition, une nouvelle permission ou une intégration. Applique authentification et autorisation côté serveur ; n'utilise jamais l'interface comme frontière de confiance.
+- **Limites :** Un test négatif ne prouve pas l'absence de vulnérabilité. Une checklist ne remplace pas revue, configuration, mises à jour et surveillance ; les logs ne doivent pas contenir secrets ou données sensibles inutiles.
+
+## Mécanisme : la version sans magie
+
+Identifie actifs, acteurs, frontières et abus possibles ; applique le contrôle minimal côté serveur ; vérifie avec des tests négatifs et conserve un audit sans divulgation.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Prototype pollution** se rattache à ce cas concret : Un demandeur Kintana ne doit pas lire la demande d'un autre utilisateur, et un agent ne doit agir que sur son périmètre.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Contrôle d'accès multi-rôle et multi-tenant
+
+> **Arc Walking Dead :** une porte qui semble fermée ne protège personne si le contrôle est seulement peint sur le mur. Vérifie l'autorisation là où l'action est exécutée.
+
+**Mission liée à « Prototype pollution » :** Crée une matrice acteur/action/ressource pour Kintana. Implémente un contrôle d'autorisation serveur et teste demandeur, agent, superviseur, compte anonyme et tenant étranger. Vérifie les lectures autant que les écritures.
+
+**Livrable :** mini threat model, matrice de permissions, tests négatifs, journal d'audit masqué et note de remédiation.
+
+**Critères d’acceptation :** le refus est côté serveur ; aucune ressource étrangère n'est divulguée ; l'identité vient de la session fiable ; les logs ne révèlent pas de secret ; les tests couvrent horizontal et vertical privilege escalation.
+
+**Transfert obligatoire :** Ajoute un nouveau rôle et une route alternative (mobile ou batch). Vérifie que la règle s'applique à toutes les surfaces.

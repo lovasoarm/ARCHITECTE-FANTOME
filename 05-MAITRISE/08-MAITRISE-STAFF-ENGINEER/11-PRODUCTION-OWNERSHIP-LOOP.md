@@ -104,10 +104,36 @@ Sur un même fil rouge, garder au minimum trois états datés du système, un ch
 
 Un benchmark synthétique exécuté une seule fois ne ferme pas ce gate. Une simulation peut fermer un niveau d'exercice initial, mais elle ne doit jamais être présentée comme une preuve d'expérience terrain avancée. Créer `PREUVES/OWNERSHIP-LOOP.md` avec horodatages, mesures, décisions et écarts ; un tiers doit pouvoir comprendre le dossier sans explication orale.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Production ownership loop : posséder le résultat en production » à une décision qui touche plusieurs équipes pendant plusieurs trimestres. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Production ownership loop : posséder le résultat en production** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Fermer la boucle de responsabilité en production
+
+**Mission liée à « Production ownership loop : posséder le résultat en production » :** Pour un service Kintana, relie objectif de fiabilité, SLI/SLO, alertes actionnables, runbook, décision d’incident, rollback et revue après changement.
+
+**Livrable :** Fiche de responsabilité opérationnelle et scénario d’incident annoté.
+
+**Critères d’acceptation :** Chaque alerte mène à une action ; les seuils ont une justification ; l’astreinte et l’escalade ont un propriétaire ; le retour d’expérience produit des actions suivies.
+
+**Transfert obligatoire :** Le SLO est respecté mais les utilisateurs souffrent : identifie le signal manquant.

@@ -1,19 +1,49 @@
 ---
 perishability_id: PER-0008
-
 stability: perissable
 acte: comprendre
 cognitive_level: L3
-perturbation_modes: [defaut_cache, regression]
+perturbation_modes:
+  - defaut_cache
+  - regression
 anti_recipe_key: defaut_cache+regression
 transfer_distance: low
 assessment_role: instructional_checkpoint
-freshness_registry_id: PER-0008
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: https://nodejs.org/docs/v22.23.4/api/process.html#event-unhandledrejection
+source_type: primary
+review_interval: 6 mois
+review_due: "2027-05-03"
+source_scope: >-
+  Documentation officielle versionnée Node.js 22.23.4 sur `process` et
+  `unhandledRejection`. La portée confirmée concerne les noms et le comportement
+  documenté des événements Node.js ; les effets du processus et les commandes
+  doivent rester liés à la version indiquée. La leçon comprend aussi des passages
+  sur `fetch`, CORS et les statuts HTTP : MDN documente le comportement de `fetch`
+  et CORS côté navigateur ; Undici documente l'absence de contrôles CORS navigateur
+  par défaut. La vérification est limitée aux affirmations corrigées sur
+  `fetch`/CORS et les statuts HTTP ; les autres mécanismes asynchrones de la leçon
+  ne sont pas entièrement revus.
+provenance_note: >-
+  V6.4, 2026-11-03 : revue de référence réalisée à partir de Node.js 22.23.4,
+  MDN et Undici. Le statut « verified_reference » est limité au périmètre indiqué ;
+  il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue
+  experte indépendante. Le reste de la leçon n’a pas fait l’objet d’une revue
+  exhaustive affirmation par affirmation. Pour les informations volatiles,
+  reconsulter la source à l'échéance ou avant toute décision.
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "VERSIONED_NODE_PROCESS_EVENT_REFERENCE_CONFIRMED_2026-11-03"
+additional_sources:
+  - https://nodejs.org/docs/v22.23.4/api/cli.html#--unhandled-rejectionsmode
+  - https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS
+  - https://github.com/nodejs/undici#cors
+  - https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch
+claim_reviewed_on: "2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : Mission Konoha :** trois clones partent en même temps, mais un seul doit avoir le dernier mot. Si tu ne distingues pas file d'attente, concurrence et ordre d'exécution, les clones vont te livrer leurs résultats dans un ordre qui te fera accuser le mauvais ninja.
 
 # Async error traps : les erreurs qui tombent en silence
@@ -22,7 +52,7 @@ Temps de lecture ~6 min
 
 En synchrone, une erreur non catchée crash le programme immédiatement. Tu vois le problème.
 
-En async, une erreur non catchée peut disparaître complètement. Ton code continue de tourner. Tu penses que tout va bien. En fait tu livres des données corrompues à l'opérateur depuis 3 heures.
+En async, une erreur non traitée peut être signalée tardivement ou faire terminer le processus : le résultat dépend du runtime et de sa configuration. Dans Node.js, le comportement par défaut actuel est de traiter un rejet non géré comme une exception non interceptée. Le code appelant doit donc récupérer ou transmettre l’erreur explicitement.
 
 C'est ça le vrai danger de l'async.
 
@@ -46,8 +76,10 @@ chargerStatsMatch(99999); // ID inexistant
 // la Promise rejette
 // personne ne l'attrape
 // Node émet un warning "UnhandledPromiseRejection"
-// en prod Node < 15 : le warning est loggué et le process continue
-// en prod Node 15+ : le process crash avec exit code 1
+// depuis Node.js 15, le mode par défaut est --unhandled-rejections=throw
+// sans gestionnaire unhandledRejection, le rejet devient une exception non interceptée
+// et le processus se termine normalement avec un code de sortie non nul
+// le flag --unhandled-rejections ou un gestionnaire peut modifier ce comportement
 ```
 
 ```text
@@ -109,7 +141,11 @@ async function chargerStatsMatch(id) {
 }
 ```
 
-Attention : `fetch` ne rejette la Promise que sur des erreurs réseau (pas de connexion, CORS). Un status 404 ou 500 : la Promise résout quand même. Tu dois tester `res.ok` toi-même.
+Attention : distingue le runtime.
+
+- **Dans un navigateur**, `fetch` applique la politique CORS. Une réponse cross-origin qui ne satisfait pas cette politique n'est pas exposée au JavaScript et la requête échoue comme une erreur réseau.
+- **Dans Node.js 22**, le `fetch` natif s'appuie sur Undici, qui n'applique pas par défaut les contrôles CORS du navigateur : il n'envoie pas automatiquement de préflight CORS et ne valide pas `Access-Control-Allow-Origin`. Cela ne rend pas un fetch serveur sûr pour autant : valide les destinations autorisées et protège-toi notamment contre les requêtes SSRF.
+- **Dans les deux environnements**, un statut HTTP 404 ou 500 ne rejette pas automatiquement la Promise. Vérifie `res.ok` et transforme les statuts non réussis en erreurs adaptées au contrat de ton application.
 
 ---
 
@@ -174,8 +210,9 @@ const [statsA, statsB, statsC] = await Promise.all([
   chargerStats(3), // ok, mais jamais utilisé
 ]);
 // si chargerStats(999) rejette :
-// les résultats de 1 et 3 sont perdus
-// même si ils ont réussi
+// Promise.all ne renvoie aucun tableau de résultats si l’une des Promises rejette
+// les autres opérations ne sont pas annulées : elles peuvent continuer leurs effets
+// si tu dois connaître chaque issue, utilise Promise.allSettled
 ```
 
 ```js
@@ -346,16 +383,50 @@ Utilise-la pour wrapper `chargerStats` et teste avec un match existant et un ine
 
 ## RÉSUMÉ
 
-En async, les erreurs ne crashent pas forcément : elles disparaissent. C'est pire.
+En async, une erreur n’est pas automatiquement récupérée par le code appelant. Selon le runtime et sa configuration, un rejet non géré peut être journalisé, transmis à un gestionnaire ou terminer le processus. Dans tous les cas, traite-le explicitement au plus près de l’opération.
 
 `forEach` avec `async` : les erreurs sont perdues. Utilise `for...of` ou `Promise.allSettled`.
 
-`fetch` ne throw pas sur les 404/500 : teste `res.ok` toi-même.
+`fetch` ne rejette pas automatiquement sur les 404/500 : teste `res.ok`. Les règles CORS s'appliquent dans le navigateur ; le `fetch` natif Node/Undici ne les applique pas par défaut.
 
 Les EventEmitters ne gèrent pas les erreurs async de leurs handlers. Wrap systématiquement.
 
-Un `UnhandledPromiseRejection` en prod c'est une bombe à retardement : ça crash Node 15+ immédiatement.
+Dans Node.js, le mode par défaut `--unhandled-rejections=throw` transforme un rejet non géré en exception non interceptée lorsqu’aucun gestionnaire `unhandledRejection` ne le prend en charge. Ne compte pas sur ce comportement comme stratégie de gestion d’erreurs : récupère ou propage les rejets explicitement.
 
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+<!-- AF-LESSON-PROFILE: errors -->
+
+## Repères de décision
+
+- **Pourquoi :** Une politique d'erreur explicite empêche un échec temporaire de devenir une boucle infinie et évite de cacher un défaut métier derrière un message vague.
+- **Quand l’utiliser / quand l’éviter :** Classe l'erreur selon sa cause et sa récupérabilité. Retry uniquement les erreurs transitoires et les opérations idempotentes ; remonte les violations métier et sécurité sans boucle automatique.
+- **Limites :** Un `catch` trop large masque la cause. Un retry peut amplifier une panne et doubler un effet ; une erreur personnalisée ne rend pas un message sûr à exposer au client.
+
+## Mécanisme : la version sans magie
+
+Capture au niveau qui peut décider, enrichis avec le contexte utile, transforme en contrat stable et préserve la cause originale pour le diagnostic.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Async error traps : les erreurs qui tombent en silence** se rattache à ce cas concret : La création de demande Kintana doit distinguer validation, refus d'accès, conflit d'idempotence, timeout fournisseur et panne de base.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Contrat d'erreur stable pour l'API Kintana
+
+> **Arc Walking Dead :** une erreur n'est pas toujours un zombie à abattre. Certaines se récupèrent ; d'autres doivent arrêter la mission immédiatement.
+
+**Mission liée à « Async error traps : les erreurs qui tombent en silence » :** Définis les erreurs du parcours de création de demande. Ajoute une conversion stable vers les réponses API, une politique retry par classe et des tests qui vérifient qu'un secret ou une pile interne ne fuit pas.
+
+**Livrable :** un catalogue d'erreurs, un mapper HTTP, des tests de contrat et une table de décision retry/no-retry.
+
+**Critères d’acceptation :** les erreurs métier, techniques et de sécurité sont séparées ; les causes sont conservées côté serveur ; aucun retry n'est fait sur opération non idempotente sans clé ; les réponses client restent stables.
+
+**Transfert obligatoire :** Ajoute une panne fournisseur qui récupère après deux tentatives et compare le comportement avec une validation refusée.
+
+## Référence runtime à vérifier
+
+Le comportement décrit ici correspond au mode par défaut de Node.js **22.23.4**, version épinglée par cette édition. Le flag `--unhandled-rejections` et l’événement `unhandledRejection` sont documentés dans la [référence `process` de Node.js 22.23.4](https://nodejs.org/docs/v22.23.4/api/process.html#event-unhandledrejection) et la [référence CLI de Node.js 22.23.4](https://nodejs.org/docs/v22.23.4/api/cli.html#--unhandled-rejectionsmode). Une option de lancement ou un gestionnaire installé par l’application peut changer le comportement observé.

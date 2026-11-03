@@ -35,3 +35,9 @@ Finis `02-CONSTRUCTION/07-ALGORITHMS` en entier. Reviens ici si tu veux aller pl
 - [Suffix array : chercher dans des strings comme un moteur](04-suffix_array.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md) uniquement comme contexte partagé. Pour ce sous-module, applique la mission précise de sa ligne dans la section **Missions ciblées par sous-module** de cette carte ; le challenge local reste la consigne et le critère de validation. Cette référence ne crée ni prérequis ni gate supplémentaire.

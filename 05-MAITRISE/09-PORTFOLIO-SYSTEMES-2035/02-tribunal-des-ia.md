@@ -3,6 +3,13 @@ stability: evolutif
 acte: maitrise
 noyau: non
 route: depth
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/02-evaluation-et-llm-judge.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/02-evaluation-et-llm-judge.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # 02 : Le Tribunal des IA
@@ -11,6 +18,16 @@ route: depth
 
 **Place dans le parcours :** Fondation de confiance pour tout projet intégrant des modèles.  
 **Prérequis :** Tests et CI de base, JSON/HTTP, jeu de données versionné ; laboratoire 19-PRODUIT-IA-REFERENCE et G8.
+
+## Parcours de préparation obligatoire
+
+Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0--socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
+
+- [Testing](../../02-CONSTRUCTION/03-TESTING/README.md), surtout [contract testing](../../02-CONSTRUCTION/03-TESTING/08-contract_testing_pact.md) et [stratégie de tests](../../02-CONSTRUCTION/03-TESTING/10-test_strategy_not_framework.md).
+- [Quality Shield : CI et revue](../../03-PILOTAGE/03-QUALITY-SHIELD/04-review-and-ci.md).
+- [Parcours de lecture du produit IA de référence](../../06-ANNEXES-TRANSVERSES/19-PRODUIT-IA-REFERENCE/09-PARCOURS-LECTURE-APPRENANT.md), [gabarit G8](../../06-ANNEXES-TRANSVERSES/19-PRODUIT-IA-REFERENCE/05-GABARIT-EVALUATION-IA.md), [matrice sécurité/évaluation](../../06-ANNEXES-TRANSVERSES/19-PRODUIT-IA-REFERENCE/06-MATRICE-EVALUATION-IA-SECURITE.md), puis [Leçon-pont 02](LECONS-PONTS/02-evaluation-et-llm-judge.md).
+
+**Gate d'entrée :** tu sais écrire des assertions déterministes, versionner des cas d'évaluation, mesurer un résultat sur un jeu fixe et faire échouer une CI sur une régression connue. Un score moyen seul ne valide pas ce gate. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-2--route-ia).
 
 ## Mission
 

@@ -7,13 +7,13 @@ route_family: core
 
 # 26 : PROTOCOLE DE LEÇON PROFONDE
 
-> Ce protocole s'applique aux leçons CORE existantes. Il n'oblige pas à réécrire tous les fichiers : il change la manière de les traverser.
+> Ce protocole décrit les critères d'une leçon approfondie : explication du mécanisme, repère visuel lorsqu'il aide, ancrage dans un cas concret et pratique qui permet de vérifier la compréhension. Les annexes, grimoire, corrigés et ressources de navigation restent évalués selon leur rôle : ils ne sont pas artificiellement transformés en leçons.
 
 ## Mode d'emploi dans la formation complète
 
 Cette méthode est détaillée dans la [route apprenant cohérente](58-ROUTE-APPRENANT-COHERENTE.md). Pour consigner une séance, utilise la [fiche de preuve d'apprentissage](62-FICHE-APPRENTISSAGE-PREUVE.md) ; pour pratiquer le transfert inter-domaines, prends un exercice du [pack systèmes et arbitrages](61-PACK-EXERCICES-SYSTEMES-ET-ARBITRAGES.md).
 
-Les leçons historiques n'ont pas toutes été réécrites à ce format. Lorsque le texte fournit une définition mais pas un exemple travaillé, un exercice autonome, une correction ou un test de transfert, complète ces éléments dans ta fiche. Ce travail comble un manque de pratique sans prétendre que la ressource source contenait déjà ces éléments.
+Les leçons de la route complète rendent visibles le concept, la pratique, les critères de réussite, la preuve à conserver et le transfert. Les pratiques sont reliées au [cas d'étude Kintana](77-FIL-ROUGE-KINTANA/README.md). Un document d'index, un corrigé, un grimoire ou une fiche de suivi n'est pas une leçon : on ne lui ajoute pas un faux exercice pour cocher une case. Chaque ressource est évaluée selon son rôle réel.
 
 ## Avant la leçon : prédiction
 
@@ -105,7 +105,7 @@ Une ressource dont le rôle est index, grimoire, exemple travaillé ou challenge
 
 - Pour annoncer une maîtrise **4/4**, conserver l'artefact de l'apprenant, le résultat de correction/test, la date, le contexte et idéalement une revue indépendante.
 - Aucun critère inférieur à 4/4 ne peut être masqué par une moyenne. Une leçon critique reste `À_REVOIR` si un invariant de sécurité, de correction ou de transfert échoue.
-- Les ressources historiques du dépôt ne sont pas réputées satisfaire ce gate par le seul ajout de ce protocole. Leur statut reste `non audité` jusqu'à vérification par ressource ou chaîne de leçons.
+- Les ressources déjà présentes ne sont pas réputées satisfaire ce gate par le seul ajout de ce protocole. Évalue chaque ressource ou chaîne de leçons selon les critères ci-dessus avant de conclure.
 - Échantillonner des leçons améliore la confiance du curriculum, mais ne prouve pas que tous les documents ont atteint 4/4. Publier la couverture exacte des ressources évaluées et les limites restantes.
 
 Ce gate est exigeant intentionnellement : il protège la différence entre « la notion existe dans le dépôt » et « l'apprenant peut l'appliquer, la vérifier et la transférer ».

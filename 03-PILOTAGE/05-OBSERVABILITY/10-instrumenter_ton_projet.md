@@ -1,7 +1,7 @@
 ---
 perishability_id: PER-0054
 
-stability: perissable
+stability: "perissable"
 last_reviewed: 2026-07
 depends_on_vendor: false
 acte: pratiquer
@@ -10,12 +10,21 @@ perturbation_modes: [preuve_partielle, decision_organisationnelle]
 anti_recipe_key: preuve_partielle+decision_organisationnelle
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0054
-freshness_audit_date: 2026-10-30
-freshness_status: date_declaree_non_revalidee_dans_cette_edition
-review_due: 2027-04-28
-review_status: date_declaree_non_revalidee_dans_cette_edition
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: "https://opentelemetry.io/docs/languages/js/"
+source_type: "primary"
+review_interval: "6 mois"
+review_due: "2027-05-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « 09 : Instrumenter TON projet (OpenTelemetry local, zéro compte externe) ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : finale au stade :** 99,9 % de disponibilité sur un slide ne sauve personne à 03:17 quand le service hurle. La vraie compétence commence quand il faut transformer la métrique en décision.
 
 # 09 : Instrumenter TON projet (OpenTelemetry local, zéro compte externe)
@@ -85,6 +94,8 @@ services:
     ports: ["3000:3000"]
 ```
 
+> **Statut des versions de ce laboratoire :** les tags ci-dessus (`0.100.0`, `1.56`, `v2.52.0`, `11.0.0`) sont des pins historiques conservés pour que le même exercice puisse être reproduit à l’identique. Ils ne sont pas présentés comme les versions actuelles, ni comme un ensemble dont la compatibilité a été retestée dans cette édition documentaire. Avant de changer un tag, consulte les notes de version et la matrice de compatibilité du composant concerné, puis teste l’ensemble Collector / backend / dashboards. Les commandes et images du lab peuvent nécessiter une mise à jour pour un environnement récent.
+
 ## INSTRUMENTATION JS (extrait)
 
 ```js
@@ -106,3 +117,11 @@ endpoint OTLP répond pendant la démo apprenant.
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+## Références officielles utiles
+
+> **Référence principale vérifiée le 2 novembre 2026 :** la première ressource de ce panneau, également enregistrée dans `source_url`, a été consultée pour le mécanisme versionné traité ici. Les autres liens sont des compléments officiels utiles ; ils ne constituent pas chacun une attestation indépendante de l’exemple du curriculum. Aucune référence ne prouve que l’exemple a été exécuté. Vérifie la version cible et teste dans ton environnement avant un usage réel.
+
+- [OpenTelemetry JS : documentation et support runtime](https://opentelemetry.io/docs/languages/js/)
+- [OpenTelemetry : Getting started Node.js](https://opentelemetry.io/docs/languages/js/getting-started/nodejs/)
+- [OpenTelemetry Collector : Docker](https://opentelemetry.io/docs/collector/install/docker/)

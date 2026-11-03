@@ -147,10 +147,40 @@ CSR balance un squelette vide et laisse le navigateur tout construire : rapide �
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « SEO et rendering : où ton HTML naît vraiment », puis conserve le résultat et explique tout écart.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: browser -->
+
+## Repères de décision
+
+- **Pourquoi :** Le navigateur est un environnement distinct du serveur : DOM, réseau, stockage local et cycle de vie utilisateur imposent des états et des erreurs spécifiques.
+- **Quand l’utiliser / quand l’éviter :** Utilise ces mécanismes pour rendre le parcours web compréhensible, résilient et accessible. Ne stocke rien de sensible dans le navigateur et ne suppose jamais que le réseau est disponible.
+- **Limites :** Le client ne fait pas autorité pour les droits, les montants ou l'état métier. Le stockage local peut être effacé, altéré ou partagé sur un appareil ; la synchronisation peut produire des conflits.
+
+## Mécanisme : la version sans magie
+
+Modélise les états visibles, annule les requêtes devenues inutiles, traite les réponses réseau comme non fiables et synchronise les brouillons avec un identifiant stable.
+
+## Ancrage produit / terrain : Kintana
+
+Dans le [cas d’étude Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), Kintana expose des pages publiques de centres et de services, mais aussi des espaces privés contenant demandes et informations de compte. Le mode de rendu doit tenir compte de la fraîcheur, du référencement et de la confidentialité.
+
+**Niveau de preuve :** Kintana est un scénario fictif. Étiquette le résultat `CONCEPT`, `LAB` ou `SIMULATION` selon le travail réellement effectué ; une fixture synthétique n’est pas une observation de terrain.
+
+## Mission utile : Kintana : Étape 8/8 : choisir où le HTML est produit
+
+> **Arc One Piece / Grand Line :** Certaines informations peuvent être affichées sur la place publique ; les dossiers privés restent derrière la porte, jamais dans la vitrine.
+
+Sépare les routes publiques (présentation d’un centre, description de service) des routes privées (compte, demandes, suivi). Pour chaque route, choisis CSR, SSR, SSG ou ISR et justifie ce choix selon fraîcheur, personnalisation, coût et indexation.
+
+**Livrable :** Une matrice route/mode de rendu/fraîcheur/cache/indexation et un exemple de métadonnées pour une page publique.
+
+**Critères d’acceptation :** Aucune donnée personnelle ou demande privée ne fuit dans le HTML pré-rendu, le cache public ou les métadonnées ; une page publique périssable possède une stratégie de revalidation ; chaque choix a un compromis explicite.
+
+**Transfert obligatoire :** Une page publique est générée à l’avance alors que le contenu change chaque jour : explique comment la fraîcheur est maintenue, puis pourquoi la même stratégie ne convient pas au dossier privé.
+
+Cette étape prolonge le même artefact Kintana ; elle ne demande pas de recommencer le projet et n’ajoute pas de gate au parcours.

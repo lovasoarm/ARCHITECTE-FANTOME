@@ -1,7 +1,7 @@
 ---
 perishability_id: PER-0077
 
-stability: perissable
+stability: "perissable"
 last_reviewed: 2026-07
 depends_on_vendor: false
 acte: comprendre
@@ -10,12 +10,21 @@ perturbation_modes: [fausse_piste, decision_inversee]
 anti_recipe_key: fausse_piste+decision_inversee
 transfer_distance: high
 assessment_role: instructional_checkpoint
-freshness_registry_id: PER-0077
-freshness_audit_date: 2026-10-30
-freshness_status: date_declaree_non_revalidee_dans_cette_edition
-review_due: 2027-01-28
-review_status: date_declaree_non_revalidee_dans_cette_edition
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: "https://nodejs.org/en/learn/getting-started/debugging"
+source_type: "primary"
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « Debug toolkit : savoir où ça casse sans semer des console.log partout ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : traqueur de jutsu :** Naruto voit l'explosion finale et accuse le dernier fichier touché. Mauvais réflexe. Ton enquête doit remonter le flux, figer les hypothèses et retrouver la première trace qui ne colle plus.
 
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
@@ -228,24 +237,57 @@ EXO 3 : La trace qui révèle le bug :
 
 Un `console.log` isolé montre une valeur sans contexte ni vérification. Une assertion vérifie une hypothèse et plante immédiatement avec une cause claire si elle est fausse. Un inspecteur d'état fige un snapshot complet et fiable grâce à un clone profond, sans casser le flux du code. Un traceur suit un chemin d'exécution étape par étape, utile pour des bugs de logique répartis sur plusieurs calculs liés. Ces outils maison complètent le débogueur intégré de l'éditeur, ils le remplacent pas : chacun a son terrain où il excelle.
 
-## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+<!-- AF-DIAGRAM:performance -->
 
-<!-- AF-DIAGRAM:transfer -->
+## Repère visuel utile : Choisir un signal de diagnostic
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+symptôme observé
+      |
+      v
+reproduction minimale
+      |
+      v
+signal adapté au problème
+      |
+      v
+collecte ciblée
+      |
+      v
+isolement puis confirmation
 ```
 
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+<!-- AF-LESSON-PROFILE: performance -->
 
-Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Debug toolkit : savoir où ça casse sans semer des console.log partout** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Structurer un diagnostic sans spammer les logs
+
+**Mission liée à « Debug toolkit : savoir où ça casse sans semer des console.log partout » :** Pour un incident Kintana, construis une séquence de diagnostic à partir des symptômes, des hypothèses et des outils disponibles. Chaque collecte doit discriminer au moins deux hypothèses.
+
+**Livrable :** Runbook de diagnostic, arbre de décision et preuve attendue à chaque étape.
+
+**Critères d’acceptation :** Les commandes ne modifient pas l’état sans avertissement ; les données sensibles sont protégées ; les hypothèses éliminées restent documentées.
+
+**Transfert obligatoire :** Aucune hypothèse n’est discriminée : définis la plus petite instrumentation supplémentaire.
+
+## Références officielles utiles
+
+> **Référence principale vérifiée le 2 novembre 2026 :** la première ressource de ce panneau, également enregistrée dans `source_url`, a été consultée pour le mécanisme versionné traité ici. Les autres liens sont des compléments officiels utiles ; ils ne constituent pas chacun une attestation indépendante de l’exemple du curriculum. Aucune référence ne prouve que l’exemple a été exécuté. Vérifie la version cible et teste dans ton environnement avant un usage réel.
+
+- [Node.js : Debugging](https://nodejs.org/en/learn/getting-started/debugging)
+- [Chrome DevTools : JavaScript debugging](https://developer.chrome.com/docs/devtools/javascript/)

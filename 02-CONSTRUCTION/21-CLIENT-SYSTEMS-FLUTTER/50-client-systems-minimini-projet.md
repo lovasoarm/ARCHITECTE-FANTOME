@@ -1,6 +1,13 @@
 ---
 stability: evolutif
 acte: créer
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "02-CONSTRUCTION/21-CLIENT-SYSTEMS-FLUTTER/01-00-why-client-systems.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 02-CONSTRUCTION/21-CLIENT-SYSTEMS-FLUTTER/01-00-why-client-systems.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : Prison Break :** le serveur coupe le courant au milieu de l’évasion. Ton app doit continuer sans faire croire que tout va bien.
@@ -33,7 +40,6 @@ Construis une petite app Flutter reliée à une API du fil rouge.
 
 **Aucun corrigé n’est fourni.** Le but est précisément de construire et découvrir le modèle.
 
-
 ## Comprendre les tests avant de commencer
 
 Ce fichier est un **brief de mini-projet**, pas un dépôt Flutter préconfiguré. À l'état initial, il ne faut pas supposer qu'un `pubspec.yaml`, une application ou des tests exécutables sont déjà présents dans ce dossier. Les tests de référence du module sont les contrôles que tu écris à partir des critères ci-dessous ; il n'y a pas de suite de tests Flutter préécrite dans ce brief.
@@ -65,12 +71,12 @@ Les noms de fichiers et packages sont laissés à ton choix ; le README doit doc
 
 ## Matrice de vérification
 
-| Catégorie | À démontrer | Résultat attendu |
-|---|---|---|
-| Tests initiaux | Version Flutter/Dart et dépendances | Environnement reproductible, aucune fausse promesse de tests préinstallés |
-| Tests TDD rouges | Tests métier écrits avant le code | Échec explicable sur le comportement absent |
-| Tests apprenant | Offline, outbox, retry, conflit, auth, UI, observabilité | Chaque comportement possède au moins un test ciblé |
-| Validation finale | Suite complète répétée après redémarrage | Tous les tests attendus verts, aucun test ignoré sans justification |
+| Catégorie         | À démontrer                                              | Résultat attendu                                                          |
+| ----------------- | -------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Tests initiaux    | Version Flutter/Dart et dépendances                      | Environnement reproductible, aucune fausse promesse de tests préinstallés |
+| Tests TDD rouges  | Tests métier écrits avant le code                        | Échec explicable sur le comportement absent                               |
+| Tests apprenant   | Offline, outbox, retry, conflit, auth, UI, observabilité | Chaque comportement possède au moins un test ciblé                        |
+| Validation finale | Suite complète répétée après redémarrage                 | Tous les tests attendus verts, aucun test ignoré sans justification       |
 
 ## Critères de réussite
 
@@ -83,3 +89,15 @@ Pour une liste de rendez-vous, le cache local contient `appointmentId`, `serverV
 **Vérification.** Un test simule fermeture immédiate après modification locale puis redémarrage : la mutation et son entrée d'outbox sont toutes deux présentes, ou aucune des deux. Un second test rejoue deux fois le même `operationId` et vérifie l'absence de double effet. Ce modèle est un exemple de contrat à adapter, pas une consigne d'utiliser une base précise.
 
 **Transfert.** Le même outbox pattern s'applique à une application de caisse ou de logistique ; les conflits et règles de priorité restent spécifiques au domaine.
+
+## Livraison produit obligatoire : Kintana : Parcours client sous réseau instable
+
+> **Fil narratif : Capsule Corp. / DBZ :** Bulma ne gagne pas en ajoutant des boutons au vaisseau : elle comprend le mécanisme, teste ses limites et répare ce qui casse. Ton code doit faire pareil, sans compter sur une transformation magique.
+
+Le micro-exercice existant reste une mise en jambe : il isole un mécanisme, mais ne suffit pas comme preuve de maîtrise. La livraison évaluée améliore le même produit [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
+
+**Mission liée à « Mini-projet : Client survivant » :** Dans Kintana, réalise un parcours utilisable sur petit écran et réseau instable ; conserve le brouillon, annonce les états et évite les doubles envois.
+
+Implémente un morceau du parcours mobile/web de création ou suivi de demande. Ajoute états loading/empty/error, accessibilité clavier et conservation du brouillon quand la connexion disparaît.
+
+**Livrable :** incrément intégré, tests ou vérifications, note de décision et contre-exemple. **Gate :** Une coupure ne détruit pas la saisie ; une reprise ne crée pas de doublon ; l’état reste compréhensible sur petit écran. Étiquette les résultats locaux `LAB` ; ne revendique `PRODUCTION` qu’après déploiement et observation réels.

@@ -23,23 +23,13 @@ Un module ne peut être marqué `route: complete` ou `noyau: oui` que si les exi
 ## Gate module
 
 - Tous les concepts noyaux ont une leçon approfondie, pas seulement une liste.
-- Le challenge vérifie l'application intégrée ; le boss fight ajoute ambiguïté, incident ou arbitrage.
+- Le challenge vérifie l'application intégrée lorsqu'il est déclaré comme pièce de sortie. Un boss-fight séparé ajoute ambiguïté, incident ou arbitrage uniquement lorsque le module le fournit et l'annonce. Un module sans `96-boss-fight.md` peut être complet si ses autres preuves et critères de sortie satisfont son objectif.
 - Les tests démarrent dans un état documenté : verts de référence, rouges TDD attendus, ou absents à créer.
 - Les chemins, liens, ancres, métadonnées et commandes sont vérifiés.
 - Les limites de version/fraîcheur et les sources sont datées.
 - La charge de travail et les prérequis sont réalistes pour le public annoncé.
 - Une personne autre que l'auteur peut suivre le parcours et évaluer la preuve sans deviner les critères.
 
-## Signification des métadonnées
+## Contrat local des pièces
 
-- `route: complete` signifie que tous les gates pédagogiques et de navigation du module sont remplis et contrôlés.
-- `noyau: oui` signifie que le module porte un concept structurel nécessaire au parcours ; ce statut exige une profondeur complète et des preuves d'appropriation.
-- `review_status: a_verifier` interdit de présenter une ressource périssable comme fraîchement validée.
-- `noyau: en_validation` signifie que le module reste prévu comme noyau, mais que les preuves pédagogiques ne suffisent pas encore à le certifier.
-- `route: review-required` interdit de présenter la progression comme entièrement complétée jusqu’à la nouvelle revue.
-- `paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING` signifie que les marqueurs de complétude et les preuves pédagogiques ont été ajoutés et contrôlés, mais qu'une relecture technique indépendante reste attendue.
-- `paper_audit_status: CERTIFIÉ_SUR_PAPIER` est une ancienne valeur à ne plus utiliser dans les nouvelles éditions : elle peut être interprétée comme une certification. Préférer `STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING` avec `expert_review: pending`, et enregistrer séparément les limites terrain dans `terrain_validation`.
-- `expert_review: pending` interdit de prétendre qu'un spécialiste indépendant a validé la justesse technique de toutes les leçons.
-- `terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT` signifie que l'exécution réelle sur la plateforme ou le fournisseur concerné reste à réaliser.
-
-En cas d'écart, corriger le contenu ou retirer honnêtement la déclaration de complétude. Ne jamais réduire le standard pour conserver un badge ou un statut.
+Le `README.md` du module est l'autorité pour la liste de ses fichiers, ses prérequis, ses exercices et ses critères de sortie. Les conventions de nommage sont des aides, pas une obligation de reproduire le même squelette partout. `95-challenge.md`, `96-boss-fight.md`, `99A-PONT.md` et `99-PORTAGE-MENTAL.md` sont obligatoires seulement lorsque le README du module ou la Route 58 les déclare explicitement. Une absence n'est pas une lacune si la fonction pédagogique est couverte par une autre preuve déclarée. Les gates de bloc ou de mini-projet sont distincts des exigences d'un module et ne deviennent bloquants que pour les éléments qu'ils nomment.

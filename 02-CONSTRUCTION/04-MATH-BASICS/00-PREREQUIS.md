@@ -16,8 +16,8 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~5 min
 
-> Tu ne dois **pas** entrer dans ce module si tu ne peux pas répondre à ces questions
-> **sans regarder**. Ce n'est pas un test noté, c'est un filtre anti-illusion.
+> Avant de commencer ce module, essaie de répondre à ces questions **sans regarder**.
+> Ce diagnostic n’est pas noté : il sert à repérer les bases déjà acquises et les notions à revoir, pas à te fermer l’accès.
 > Ces questions portent sur `02-CONSTRUCTION/03-TESTING`, le module que tu viens de finir.
 
 ## Questions
@@ -29,10 +29,10 @@ Temps de lecture ~5 min
 
 ## Verdict
 
-- **3+ réponses solides** → tu peux entrer.
-- **2 ou moins** → retour à `02-CONSTRUCTION/03-TESTING/`, ou à sa synthèse `90-grimoire.md`.
+- **3+ réponses solides** → commence le module et garde les points hésitants comme objectifs de révision.
+- **2 ou moins** → relis le [grimoire du module précédent](../03-TESTING/90-grimoire.md), puis refais ce diagnostic. Il t’aide à choisir une révision utile ; il ne ferme pas l’accès au module.
 
-> Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
+> Le but n’est pas de te bloquer : ce diagnostic t’aide à choisir une révision utile.
 
 > **Note pour ce module précis** : log base 2, le modulo, la complexité
 > O(n) vs O(log n), et le piège `0.1 + 0.2 !== 0.3` sont le contenu que ce

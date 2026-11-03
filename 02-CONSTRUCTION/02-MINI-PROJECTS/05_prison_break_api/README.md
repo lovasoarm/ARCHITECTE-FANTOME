@@ -75,7 +75,7 @@ src/
 ├── middleware/
 │  ├── authMiddleware.js  # vérifie et décode le JWT
 │  ├── rateLimiter.js   # 5 tentatives max / 15min par IP sur /evasion/badge
-│  ├── sanitizer.js    # nettoyage des inputs contre XSS et injection SQL
+│  ├── requestValidator.js # validation de type, format et longueur des entrées
 │  └── errorHandler.js   # handler global : format d'erreur uniforme
 │
 ├── services/
@@ -105,8 +105,8 @@ Flux d'une requête :
 ```text
 client
  --> rateLimiter (bloque si trop de tentatives)
- --> sanitizer (nettoie l'input)
- --> authMiddleware (vérifie le JWT si route protégée)
+ --> authMiddleware (vérifie le JWT sur les routes protégées ; exception pour la route de connexion)
+ --> requestValidator (valide le schéma et les contraintes d'entrée)
  --> route handler
  --> service
  --> db
@@ -118,23 +118,24 @@ client
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module                            | Où ça se voit                                            |
-| --------------------------------- | -------------------------------------------------------- |
-| `02-CONSTRUCTION/19-API-CRAFT`    | Express complet, CRUD, error middleware, OpenAPI         |
-| `03-PILOTAGE/04-SECURITY`         | JWT, bcrypt, rate limiting, sanitization XSS/SQL         |
-| `05-MAITRISE/01-DATABASES`        | SQLite, modélisation, indexes, Redis cache sur les plans |
-| `02-CONSTRUCTION/18-WEB-CONCEPTS` | HTTP verbes, status codes, browser render pipeline       |
+| Module                            | Où ça se voit                                                    |
+| --------------------------------- | ---------------------------------------------------------------- |
+| `02-CONSTRUCTION/19-API-CRAFT`    | Express complet, CRUD, error middleware, OpenAPI                 |
+| `03-PILOTAGE/04-SECURITY`         | JWT, Argon2id, rate limiting, rendu XSS sûr, paramètres SQL liés |
+| `05-MAITRISE/01-DATABASES`        | SQLite, modélisation, indexes, Redis cache sur les plans         |
+| `02-CONSTRUCTION/18-WEB-CONCEPTS` | HTTP verbes, status codes, browser render pipeline               |
 
 ---
 
 ## RÈGLES NON-NÉGOCIABLES DE CE PROJET
 
 ```text
-1. Zéro mot de passe en clair dans la DB : bcrypt uniquement, coût minimum 12
-2. Chaque endpoint protégé vérifie le JWT avant tout traitement
-3. Rate limiter actif sur /evasion/badge avant même de chercher le prisonnier en DB
-4. Tous les inputs de l'utilisateur passent par le sanitizer avant d'atteindre la DB
-5. Les erreurs ne leak jamais de stack trace ni de détail interne vers le client
+1. Aucun mot de passe en clair dans la DB : Argon2id pour toute nouvelle création de compte ; bcrypt uniquement pour vérifier un hash hérité explicitement identifié et le migrer après authentification réussie.
+2. Chaque endpoint protégé vérifie le JWT avant le traitement métier ; la route d'authentification reste l'exception.
+3. Le rate limiter s'exécute sur `/evasion/badge` avant toute recherche en DB.
+4. Les entrées sont validées selon leur type, format, taille et règles métier ; les valeurs SQL sont toujours liées comme paramètres, jamais concaténées. Les identifiants SQL dynamiques viennent d'une allowlist serveur. Le rendu des données non fiables est protégé au bon contexte ; aucun sanitizer universel ne remplace ces contrôles distincts.
+5. Les contenus texte renvoyés par l'API restent des données : tout client qui les affiche utilise `textContent` ou l'échappement automatique de son framework. Si du HTML utilisateur est volontairement accepté, il est assaini avec DOMPurify au point de rendu.
+6. Les erreurs ne révèlent ni stack trace ni détail interne au client.
 ```
 
 ---
@@ -251,3 +252,34 @@ Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STAND
 - **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
 
 **Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.
+
+<!-- AF-PROJECT-REAL-WORLD-GATE-1.1 -->
+
+## Mission produit évaluée : API sécurisée multi-tenant Kintana
+
+Fox River reste une scène pour comprendre les contrôles d'accès et les erreurs de sécurité. Le produit évalué est une **API multi-tenant de demandes et de rendez-vous**, plus proche d'un service professionnel.
+
+### Mission évaluée : API Kintana sécurisée
+
+Construis au minimum ces capacités :
+
+- `POST /v1/requests` avec clé d'idempotence ;
+- `GET /v1/requests/:id` avec contrôle propriétaire/tenant ;
+- `POST /v1/requests/:id/assign` réservé au superviseur ;
+- `PATCH /v1/requests/:id/status` avec transition autorisée ;
+- `GET /v1/audit` avec accès restreint et pagination.
+
+Impose validation serveur, requêtes paramétrées, mots de passe hachés si authentification locale, expiration/révocation documentée des sessions, limitation de débit et erreurs sans fuite. Sépare authentification (qui es-tu ?) et autorisation (as-tu le droit sur cette ressource ?).
+
+**Produit de référence :** [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
+
+**Livrables :** API exécutable, schéma et migrations, contrat OpenAPI, tests d'intégration et tests négatifs entre deux utilisateurs et deux tenants, journal d'audit et ADR.
+
+**Gate :** aucun accès croisé ; aucune injection ; aucune donnée sensible dans les logs ; doublons idempotents ; erreurs stables. Une validation dans le navigateur ne remplace jamais le contrôle serveur.
+
+**Règle de livraison :** la kata d’origine reste utile pour isoler le concept et son univers narratif. La validation finale du projet repose sur la mission métier ci-dessus, ses tests, ses limites et les preuves produites par l’apprenant. Les résultats de simulation ne sont jamais présentés comme des résultats de production.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.
+- [Référence technique différée](reference/README.md) : à consulter après la tentative, sans recopier dans le livrable.

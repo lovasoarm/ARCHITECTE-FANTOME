@@ -4,7 +4,13 @@ acte: vérifier
 cognitive_level: L4
 assessment_role: executable_code_review
 last_reviewed: 2026-10-30
-review_status: source_reviewed_execution_server_not_run
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "05-MAITRISE/01-DATABASES/01-00-why-databases.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 05-MAITRISE/01-DATABASES/01-00-why-databases.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # Exercice 10 : Empêcher l'injection SQL et préserver le périmètre tenant
@@ -118,13 +124,13 @@ La validation de format améliore l'expérience utilisateur, mais ce n'est pas l
 
 ## Critères d'évaluation (10 points)
 
-| Critère                 | Points | Réussite observable                                                                    |
-| ----------------------- | -----: | -------------------------------------------------------------------------------------- |
-| Séparation code/données |      3 | Tous les inputs sont des paramètres liés ; aucune concaténation de valeur utilisateur  |
-| Identité tenant         |      2 | Le tenant vient du contexte serveur ; un tenant fourni par le client est ignoré/rejeté |
-| Identifiant dynamique   |      2 | Le tri utilise une allowlist constante ; aucun identifiant SQL brut                    |
-| Tests négatifs          |      2 | Injection de chaîne et fuite inter-tenant sont couvertes                               |
-| Limites `LIKE`          |      1 | L'effet de `%` et `_` est distingué de l'injection                                     |
+| Critère                 | Points | Réussite observable                                                                                                              |
+| ----------------------- | -----: | -------------------------------------------------------------------------------------------------------------------------------- |
+| Séparation code/données |      3 | Toutes les valeurs utilisateur sont liées ; tout identifiant dynamique vient d'une allowlist constante ; aucun fragment SQL brut |
+| Identité tenant         |      2 | Le tenant vient du contexte serveur ; un tenant fourni par le client est ignoré/rejeté                                           |
+| Identifiant dynamique   |      2 | Le tri utilise une allowlist constante ; aucun identifiant SQL brut                                                              |
+| Tests négatifs          |      2 | Injection de chaîne et fuite inter-tenant sont couvertes                                                                         |
+| Limites `LIKE`          |      1 | L'effet de `%` et `_` est distingué de l'injection                                                                               |
 
 **Seuil : 8/10**, sans défaut sur la paramétrisation ou l'isolation tenant. Un rapport écrit sans test ne valide pas les points de tests.
 

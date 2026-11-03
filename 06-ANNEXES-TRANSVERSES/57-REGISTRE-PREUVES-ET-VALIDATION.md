@@ -74,6 +74,9 @@ Ce YAML est un modèle, pas une preuve. Remplacer toutes les valeurs « à rense
 - Toute preuve critique doit contenir au moins un cas négatif ou contradictoire.
 - Un test qui passe sur une version de runtime différente de la version épinglée prouve seulement le résultat sur la version effectivement exécutée.
 - Une auto-évaluation ne remplace pas une revue indépendante pour les gates Staff/Principal.
+- Les 26 exercices recensés dans [85 : Statut et retours des 26 exercices](85-STATUT-EXERCICES-AUTO-EVALUATION-V6.5.md) sont des entraînements non certifiants : aucun corrigé/oracle indépendant n’y est livré. Le [protocole de retour fiable](85-STATUT-EXERCICES-AUTO-EVALUATION-V6.5.md#procedure-de-retour-fiable) distingue la revue humaine indépendante de l’auto-retour guidé. Un `learner-verifier.js` écrit par l’apprenant ne devient pas un oracle indépendant parce qu’il passe.
+- Une case cochée, un journal personnel, un SHA-256 ou une déclaration « sans IA » est une trace ou une auto-déclaration, pas une preuve indépendante d’auteur, de date, d’absence d’assistance ou de maîtrise.
+- La revue d’un tiers n’est pas requise pour pratiquer un exercice ordinaire ; elle est requise uniquement lorsque la gate choisie exige explicitement `REVIEWED` ou une validation externe.
 - Le niveau de maturité terrain T0–T4 est consigné séparément du statut pédagogique.
 
 ## Conditions de sortie

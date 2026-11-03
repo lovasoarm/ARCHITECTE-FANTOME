@@ -35,7 +35,7 @@ Avant de considérer le projet fini, tu dois traiter ces exigences OWASP context
 - Audit de dépendances (OWASP A06 - Vulnerable Components) : lancer `npm audit`, documenter les CVE trouvées dans `ONBOARDING.md`, patcher ou justifier chaque vulnérabilité laissée.
 - Secrets (OWASP A07) : vérifier qu'aucune clé/API token n'est committée dans l'historique du repo repris avant de le publier.
 
-Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Le `97-CHECKPOINT-PACK` de ce projet contient un test de sécurité qui doit passer.
+Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Ajoute dans le dossier `tests/` de ce projet un test ciblé pour au moins une des menaces retenues. Documente dans le README la commande exacte qui exécute ce test. Aucun pack de correction séparé n’est fourni dans ce projet.
 
 ## AUTO-ÉVALUATION
 

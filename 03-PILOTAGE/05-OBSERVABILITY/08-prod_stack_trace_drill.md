@@ -1,19 +1,28 @@
 ---
 perishability_id: PER-0052
 
-stability: perissable
+stability: "perissable"
 acte: pratiquer
 cognitive_level: L3
 perturbation_modes: [changement_contexte, fausse_piste]
 anti_recipe_key: changement_contexte+fausse_piste
 transfer_distance: high
 assessment_role: instructional_checkpoint
-freshness_registry_id: PER-0052
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: "https://nodejs.org/docs/v22.23.4/api/errors.html"
+source_type: "primary"
+review_interval: "6 mois"
+review_due: "2027-05-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « Lire une stack trace de prod quand le code source n'existe plus ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : finale au stade :** 99,9 % de disponibilité sur un slide ne sauve personne à 03:17 quand le service hurle. La vraie compétence commence quand il faut transformer la métrique en décision.
 
 # Lire une stack trace de prod quand le code source n'existe plus
@@ -228,3 +237,10 @@ Nouveau contexte
 Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
 
 Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+
+## Références officielles utiles
+
+> **Référence principale vérifiée le 2 novembre 2026 :** la première ressource de ce panneau, également enregistrée dans `source_url`, a été consultée pour le mécanisme versionné traité ici. Les autres liens sont des compléments officiels utiles ; ils ne constituent pas chacun une attestation indépendante de l’exemple du curriculum. Aucune référence ne prouve que l’exemple a été exécuté. Vérifie la version cible et teste dans ton environnement avant un usage réel.
+
+- [Node.js : Errors](https://nodejs.org/docs/v22.23.4/api/errors.html)
+- [Node.js : Source maps](https://nodejs.org/docs/v22.23.4/api/module.html#source-map-v3-support)

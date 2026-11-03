@@ -9,6 +9,13 @@ perturbation_modes: [constraints_injectees, defaut_cache]
 anti_recipe_key: constraints_injectees+defaut_cache
 transfer_distance: medium
 assessment_role: diagnostic_mastery
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "02-CONSTRUCTION/18-WEB-CONCEPTS/02-http_rest_basics.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 02-CONSTRUCTION/18-WEB-CONCEPTS/02-http_rest_basics.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
@@ -103,3 +110,35 @@ Maintenant, ouvre `02-http_rest_basics.md`. Et apprends enfin à lire une requê
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+<!-- AF-LESSON-PROFILE: browser -->
+
+## Repères de décision
+
+- **Pourquoi :** Le navigateur est un environnement distinct du serveur : DOM, réseau, stockage local et cycle de vie utilisateur imposent des états et des erreurs spécifiques.
+- **Quand l’utiliser / quand l’éviter :** Utilise ces mécanismes pour rendre le parcours web compréhensible, résilient et accessible. Ne stocke rien de sensible dans le navigateur et ne suppose jamais que le réseau est disponible.
+- **Limites :** Le client ne fait pas autorité pour les droits, les montants ou l'état métier. Le stockage local peut être effacé, altéré ou partagé sur un appareil ; la synchronisation peut produire des conflits.
+
+## Mécanisme : la version sans magie
+
+Modélise les états visibles, annule les requêtes devenues inutiles, traite les réponses réseau comme non fiables et synchronise les brouillons avec un identifiant stable.
+
+## Ancrage produit / terrain : Kintana
+
+Dans le [cas d’étude Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), Le point de départ est le besoin du demandeur : consulter un centre, comprendre le service, envoyer une demande puis suivre son état. Repère le navigateur, le réseau, l’API et la source de vérité ; aucun de ces éléments ne doit être confondu avec un autre.
+
+**Niveau de preuve :** Kintana est un scénario fictif. Étiquette le résultat `CONCEPT`, `LAB` ou `SIMULATION` selon le travail réellement effectué ; une fixture synthétique n’est pas une observation de terrain.
+
+## Mission utile : Kintana : Étape 1/8 : cadrer le parcours web
+
+> **Arc One Piece / Grand Line :** Avant de construire le navire, trace la route, les ports et les zones où la cargaison peut se perdre.
+
+À partir du scénario Kintana, cartographie le parcours du demandeur depuis l’ouverture d’une page jusqu’à la confirmation serveur. Délimite les responsabilités du navigateur, du réseau, de l’API et du domaine ; note les hypothèses et ce qui reste inconnu.
+
+**Livrable :** Une carte de contexte et de séquence, une liste de non-objectifs, trois risques de rupture et les questions à poser avant de coder.
+
+**Critères d’acceptation :** La source de vérité métier est identifiée côté serveur ; les états locaux ne sont pas présentés comme des confirmations ; chaque frontière a une responsabilité explicite.
+
+**Transfert obligatoire :** Le réseau coupe juste après l’envoi : indique ce que le navigateur sait, ce que le serveur peut savoir et ce qui doit encore être réconcilié.
+
+Cette étape prolonge le même artefact Kintana ; elle ne demande pas de recommencer le projet et n’ajoute pas de gate au parcours.

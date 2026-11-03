@@ -16,10 +16,7 @@ route: complete
 2. Pourquoi un double submit sur un formulaire peut-il creer deux fois la meme ressource si l'idempotence n'est pas geree ?
 3. Qu'est-ce qu'une UI optimiste, et quel est son risque principal ?
 
-**Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
-[le grimoire du niveau précédent](../01-USER-WIZARD/90-grimoire.md) (20 minutes), puis refais son
-[challenge](../01-USER-WIZARD/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
-trou amont, c'est attribuer au 08-DATA-SPELLS une difficulté qui vient du 01-USER-WIZARD.
+**Verdict de l'auto-test :** ce diagnostic oriente la révision, il ne ferme pas l'accès. Si les états d'interface ou l'idempotence sont flous, relis le [grimoire du niveau précédent](../01-USER-WIZARD/90-grimoire.md), puis refais son [challenge](../01-USER-WIZARD/95-challenge.md) si cela t'aide. Tu peux commencer la lecture de Data Spells en parallèle ; les notions SQL sont introduites dans ce niveau.
 
 **Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
@@ -36,10 +33,9 @@ pensée n'est pas un bug qu'on corrige, c'est une dette qu'on porte pendant des 
 
 ## Ce que tu sais déjà en arrivant ici
 
-- Tu sais écrire des requêtes SQL simples et créer des tables avec des clés étrangères.
-- Tu as déjà utilisé un ORM pour lire et écrire des données.
-- Tu n'as jamais eu à décider seul comment modéliser une relation many-to-many avec de l'historique,
-  ni à écrire une migration réversible sur une table déjà pleine de données réelles.
+- Tu sais lire les données et les états d'un parcours utilisateur, ou tu peux revoir le grimoire de User Wizard.
+- Tu sais reconnaître un besoin de persistance : une donnée qui doit rester disponible après le redémarrage du programme.
+- Tu n'as pas besoin d'avoir déjà utilisé SQL, créé une clé étrangère ou manipulé un ORM. Les exemples de ce niveau introduisent progressivement les tables, les clés, les relations et les requêtes utiles. Les transactions et les niveaux d'isolation sont approfondis dans la leçon 05 ; ils ne sont pas exigés avant le démarrage.
 
 ## Ce que tu sauras faire à la sortie
 
@@ -89,10 +85,9 @@ Palier 3 (4 h)  05       --> livrable : une requete lente identifiee, mesuree av
 Chaque palier se termine par une entrée datée dans `JOURNAL.md`. Si tu décroches, tu reprends
 au palier, pas au niveau.
 
-## Prérequis
+## Repères utiles avant la pratique
 
-Module `02-CONSTRUCTION/01-USER-WIZARD`, ou une expérience équivalente d'écriture d'API avec base de données relationnelle. Tu dois
-savoir écrire une jointure SQL et une transaction basique avant d'attaquer la leçon 3.
+Le module `02-CONSTRUCTION/01-USER-WIZARD` (ou une expérience équivalente) fournit le contexte des états d'interface, des créations répétées et de l'idempotence. Il est recommandé dans l'ordre du parcours, mais ne constitue pas une barrière d'accès. **Aucune connaissance préalable de SQL, de jointure, de transaction ou d'ORM n'est exigée** : les leçons 02 et 03 introduisent le modèle relationnel et les premières instructions SQL ; la leçon 05 enseigne les transactions et la concurrence avant de les évaluer dans le challenge.
 
 ## Comment progresser
 
@@ -153,3 +148,9 @@ un manque de motivation, c'est un blocage d'outillage. Applique l'issue 1 le jou
 - [Grimoire : Module 02-CONSTRUCTION/08-DATA-SPELLS, Data Spells](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md) uniquement comme contexte partagé. Pour ce sous-module, applique la mission précise de sa ligne dans la section **Missions ciblées par sous-module** de cette carte ; le challenge local reste la consigne et le critère de validation. Cette référence ne crée ni prérequis ni gate supplémentaire.

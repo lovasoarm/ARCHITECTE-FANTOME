@@ -1,19 +1,24 @@
 ---
 perishability_id: PER-0089
 
-statut: revu
-last_reviewed: 2026-08
-proprietaire: mainteneur TECH-ILA
-revue: trimestrielle
 companion: ce parcours
 stability: perissable
 acte: comprendre
-freshness_registry_id: PER-0089
-freshness_audit_date: 2026-10-30
-freshness_status: date_declaree_non_revalidee_dans_cette_edition
-review_due: 2027-04-28
-review_status: date_declaree_non_revalidee_dans_cette_edition
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_type: primary
+source_url: https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « Niveau 3 : Backend (section 6) ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 [← Sommaire TECH-ILA](../README.md)
@@ -63,14 +68,14 @@ Temps de lecture ~43 min
 
 ### 6.1 : Express (et les micro-frameworks)
 
-**Express** : Tag : PROFESSIONNELLE (omniprésent en legacy et en petit service) ·
-Coût : ~8 h avant utilité · Durée de vie : ~6 ans · À apprendre après : `node:http`, composition de fonctions
+**Express** : Tag : PROFESSIONNELLE (présent dans de nombreux services et bases de code existants) ·
+Coût d’apprentissage : dépend de l’expérience et de la profondeur visée · Durée de vie : ne se résume pas à un nombre d’années ; la compatibilité dépend de la version · À apprendre après : `node:http`, composition de fonctions
 
 - **Ancrage ce parcours** : [02-express_from_scratch.md](../../../02-CONSTRUCTION/19-API-CRAFT/02-express_from_scratch.md), tu as déjà écrit le routeur et la chaîne de middlewares à la main
 - **Ce qu'il ajoute** : un routeur, une chaîne de middlewares, et rien d'autre. C'est sa force et sa limite.
-- **Ce qu'il masque** : qu'une erreur jetée dans un handler `async` n'est pas attrapée par défaut, et qu'une variable capturée au niveau module est partagée par toutes les requêtes.
-- **Ce qu'il ne résout pas** : l'organisation du code passé une certaine taille d'équipe ; aucune validation, aucune injection de dépendances par défaut.
-- **Quand ne pas le choisir** : pas avant que l'équipe dépasse trois personnes sur une API qui grossit : sans structure imposée, chacun invente la sienne.
+- **Ce qu'il masque** : la différence de propagation des erreurs asynchrones entre Express 4 et Express 5, et le fait qu'une variable capturée au niveau module est partagée par toutes les requêtes.
+- **Ce qu'il ne résout pas** : l'organisation du code, la validation des entrées ni l'injection de dépendances ; ces choix restent à concevoir ou à ajouter.
+- **Quand ne pas le choisir** : quand l'équipe a besoin d'un cadre architectural imposé, d'une injection de dépendances intégrée ou de conventions strictes dès le départ. La taille de l'équipe seule ne suffit pas à décider.
 - **Exemple qui casse** : une route `async` qui jette est invisible pour le gestionnaire d'erreurs ; le client attend jusqu'au timeout, et le process affiche parfois `ERR_UNHANDLED_REJECTION` avant de mourir si rien ne capte le rejet au niveau global.
 - **Preuve que c'est acquis** : tu sais écrire un middleware d'erreur unique qui voit toutes tes routes, y compris les async · **Si tu bloques, reviens à** : [02-express_from_scratch.md](../../../02-CONSTRUCTION/19-API-CRAFT/02-express_from_scratch.md)
 
@@ -94,7 +99,7 @@ requête → [logger] → [cors] → [auth] → [validation] → [handler] → r
 
 C'est une **composition de fonctions** ([04-composition.md](../../../02-CONSTRUCTION/09-FUNCTIONAL-JS/04-composition.md)) où chaque maillon peut court-circuiter ou passer la main. Si tu as compris la composition et le pattern Chain of Responsibility (`02-CONSTRUCTION/10-DESIGN-PATTERNS/`), tu as compris Express en dix minutes.
 
-**Ce qu'il masque : la frontière async invisible.** Dans Express 4, une erreur jetée dans un handler `async` n'est **pas** attrapée par le gestionnaire d'erreurs : la promesse rejetée n'est vue par personne. Le client attend jusqu'au timeout, et un `unhandledRejection` non traité au niveau du process peut afficher `ERR_UNHANDLED_REJECTION` avant de faire crasher l'application. C'est [05-async_error_traps.md](../../../01-CADRAGE/04-ERROR-HANDLING/05-async_error_traps.md) en production. Correctif : un wrapper `asyncHandler`, ou Express 5, ou un framework qui gère l'async nativement.
+**Ce qu'il masque : la frontière async invisible.** Avec Express 4, une promesse rejetée par un handler `async` n'est pas automatiquement transmise au middleware d'erreur : il faut la transmettre explicitement (par exemple avec un wrapper). Express 5 transmet les rejets de promesse retournés par les handlers et middlewares. Vérifie donc la version réellement utilisée avant de reprendre un exemple. C'est [05-async_error_traps.md](../../../01-CADRAGE/04-ERROR-HANDLING/05-async_error_traps.md) en production.
 
 **Sécurité dans le code, pas seulement en prose :**
 
@@ -129,8 +134,8 @@ app.post("/streams/:id/events", requireApiKey, async (req, res, next) => {
 - **Le code HTTP mal choisi.** Une route qui renvoie `500` pour un identifiant introuvable déclenche l'alerting à tort, fait réessayer un client qui croit à une panne transitoire, et noie le vrai incident du lendemain dans le bruit. C'était un `404`.
 - **Le succès qui ment.** Une API qui renvoie `{ "error": "Utilisateur introuvable" }` avec un statut `200` pousse chaque consommateur à parser le message lui-même. Le jour où la phrase change, les intégrations qui la comparaient cassent en silence. Un code stable (`USER_NOT_FOUND`) et le bon statut HTTP rendent la faute impossible.
 
-**Quand le choisir.** Petit service, prototype, code legacy à maintenir, besoin de contrôle total sans opinion imposée.
-**Quand ne pas le choisir.** Équipe de plus de trois personnes sur une API qui grossit : sans structure imposée, chacun invente la sienne. Six mois plus tard, personne ne sait où mettre un nouveau fichier.
+**Quand le choisir.** Petit service, prototype, code legacy à maintenir, équipe qui préfère assembler explicitement ses composants et besoin de contrôle sans conventions imposées.
+**Quand l'éviter.** Lorsque l'équipe a besoin de conventions partagées, de frontières de modules ou d'une injection de dépendances intégrée, mais ne veut pas prendre en charge leur conception et leur maintien. Ces besoins peuvent aussi être satisfaits par des conventions et bibliothèques autour d'Express ; le framework ne décide pas seul de la qualité de l'architecture.
 
 #### Alternatives
 
@@ -161,14 +166,14 @@ Le concept de middleware est identique partout.
 
 ### 6.2 : NestJS
 
-**NestJS** : Tag : PROFESSIONNELLE (dominant sur les gros backends Node en Europe) ·
-Coût : ~35 h avant utilité · Durée de vie : ~7 ans · À apprendre après : POO, TypeScript, patrons de conception, architecture propre
+**NestJS** : Tag : PROFESSIONNELLE (framework structurant de l'écosystème Node.js / TypeScript) ·
+Coût d’apprentissage : dépend de l'expérience TypeScript, POO et injection de dépendances · Durée de vie : ne se résume pas à un nombre d’années ; vérifier les versions et le rythme de maintenance · À apprendre après : POO, TypeScript, patrons de conception, architecture propre
 
 - **Ancrage ce parcours** : [03-solid_principles.md](../../../02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md), l'injection de dépendances est l'inversion de dépendance de SOLID
 - **Ce qu'il ajoute** : une architecture imposée, décorateurs, injection de dépendances, guards/interceptors/pipes ordonnés.
 - **Ce qu'il masque** : le conteneur d'injection et la résolution des dépendances : symptôme typique, un module qui n'exporte pas ce qu'un autre importe.
 - **Ce qu'il ne résout pas** : ton modèle de domaine ; Nest range les fichiers, il ne conçoit pas ton métier.
-- **Quand ne pas le choisir** : pas avant d'avoir une équipe de plusieurs personnes et un backend fait pour durer : un petit service ou une fonction serverless paie un coût d'entrée disproportionné.
+- **Quand ne pas le choisir** : lorsque son architecture, ses abstractions ou son coût d'initialisation dépassent le besoin réel ; un petit service ou une fonction serverless peut alors être plus simple avec un framework plus léger. La taille de l'équipe, isolément, ne constitue pas un critère suffisant.
 - **Exemple qui casse** : `Nest can't resolve dependencies of the IngestService (?). Please make sure that the argument at index 0 is available in the current context.` : un module n'exporte pas ce qu'un autre importe.
 - **Preuve que c'est acquis** : tu sais réciter l'ordre exact middleware → guard → interceptor → pipe → handler → interceptor → filtre, et dire à quelle étape une requête invalide est rejetée · **Si tu bloques, reviens à** : [03-solid_principles.md](../../../02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md)
 
@@ -296,444 +301,215 @@ Petit service, fonction serverless, prototype, équipe rebutée par les classes 
 
 #### Matrice de décision : Express / Fastify / NestJS
 
-| Contrainte                                                         | Express                                | Fastify                        | NestJS                                                  |
-| ------------------------------------------------------------------ | -------------------------------------- | ------------------------------ | ------------------------------------------------------- |
-| Équipe de 1-2 personnes, prototype rapide                          | bon                                    | bon                            | coût d'entrée trop élevé                                |
-| Équipe de 4+ personnes, backend qui vivra des années               | risqué sans discipline forte           | correct si conventions écrites | **choix par défaut si tu n'as pas le temps**            |
-| Débit très élevé, latence critique                                 | correct                                | **meilleur défaut mesuré**     | correct mais overhead du conteneur DI                   |
-| Beaucoup de préoccupations transverses (auth, traçage, validation) | tout à câbler soi-même                 | à câbler avec des plugins      | **structure déjà prévue**                               |
-| Fonction serverless, cold start critique                           | **léger, démarre vite**                | léger                          | coût de démarrage du conteneur DI perceptible           |
-| Code legacy à maintenir sans réécriture                            | **déjà là, ne pas migrer sans raison** | migration à évaluer en ADR     | migration coûteuse, à réserver à une réécriture assumée |
+| Contrainte                                       | Express                                            | Fastify                                             | NestJS                                                                                                |
+| ------------------------------------------------ | -------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Petit service ou prototype                       | Peu de conventions imposées ; démarrage direct     | Structure légère avec validation intégrable         | Cadre plus structuré, parfois disproportionné pour un besoin très simple                              |
+| Plusieurs personnes ou plusieurs équipes         | Discipline et conventions à définir explicitement  | Plugins et conventions d'équipe à définir           | Modules, injection de dépendances et conventions intégrées ; utiles si l'équipe les adopte réellement |
+| Débit élevé ou latence critique                  | Peut convenir ; mesurer le service réel            | Peut être un bon candidat ; mesurer le service réel | Mesurer aussi le coût du framework et des composants utilisés                                         |
+| Authentification, validation, traçage et erreurs | Choisir et assembler les middlewares               | Choisir et assembler les plugins                    | Plusieurs points d'extension structurés sont intégrés                                                 |
+| Fonction serverless / démarrage à froid          | Vérifier taille, initialisation et runtime         | Vérifier taille, initialisation et runtime          | Vérifier le coût réel de l'initialisation du conteneur                                                |
+| Code existant à maintenir                        | Préserver le choix existant sauf raison documentée | Migration à justifier par un bénéfice mesurable     | Migration à justifier par un bénéfice mesurable                                                       |
 
-**Choix par défaut si tu n'as pas le temps de trancher** : Fastify pour un service neuf sans contrainte de structure imposée ; NestJS si l'équipe dépasse trois personnes et que le projet doit vivre plus de deux ans.
+**Repère de décision :** ne choisis pas un framework à partir d'un seuil universel de taille d'équipe ou de durée de projet. Pars des compétences déjà présentes, du besoin de conventions, des exigences d'exploitation, des bibliothèques nécessaires, du coût de démarrage et de la facilité de maintenance. Si plusieurs options restent plausibles, compare un petit parcours vertical représentatif et consigne le compromis dans un ADR.
 
 #### Alternatives et transfert
 
-<!-- AF-DIAGRAM:transfer -->
+<!-- AF-DIAGRAM:reference -->
 
-```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
-```
+<a id="sec-auth-cache-files-realtime"></a>
 
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
-
-|                  | NestJS                      | Spring Boot (PROFESSIONNELLE) | .NET / ASP.NET Core (PROFESSIONNELLE) | FastAPI (PROFESSIONNELLE) |
-| ---------------- | --------------------------- | ----------------------------- | ------------------------------------- | ------------------------- |
-| DI               | conteneur + décorateurs     | conteneur + annotations       | conteneur intégré                     | dépendances par fonction  |
-| Validation       | pipes + class-validator/Zod | Bean Validation               | DataAnnotations / FluentValidation    | Pydantic                  |
-| Filtres d'erreur | exception filters           | `@ControllerAdvice`           | middleware / filtres                  | handlers d'exception      |
-| Interception     | interceptors                | AOP / aspects                 | middleware / filtres                  | dépendances + middleware  |
-
-Regarde ce tableau. **Ce sont les mêmes idées avec des noms différents.** Apprendre NestJS sérieusement, c'est apprendre 70 % de Spring Boot d'avance. C'est exactement l'objectif du niveau 5.
-
-> **Exercice : Rate limiting distribué avec Redis**
-> **Temps réaliste** : 2 h · **Prérequis matériel / compte** : Redis local (conteneur) · **Coût max** : 0 €
-> **Mode** : assistant autorisé
-> **Contraintes** : implémente un guard qui limite le débit par clé d'API, avec compteur en Redis ; la limite doit tenir avec plusieurs instances du service, et un dépassement renvoie 429 avec un header `Retry-After`.
-> **Réutilise** : [06-race_condition_hunter.md](../../../05-MAITRISE/03-EDGE-CASES/06-race_condition_hunter.md)
-> **Piège** : la version naïve `get` puis `set` a une race condition : prouve-la avec 200 requêtes concurrentes, puis corrige-la avec une opération atomique (`INCR` + `EXPIRE` ou script Lua).
-> **À observer** : le nombre de requêtes réellement acceptées sur 200 envoyées en rafale, avec et sans correction.
-> **Vérification** (observable, chiffrée) : avec la version naïve, le nombre accepté dépasse la limite fixée ; avec la version corrigée, il ne la dépasse jamais, sur 10 exécutions.
-> **Repli 100 % local et gratuit** : Redis en conteneur local, aucune instance cloud nécessaire.
-> **Extension** : que se passe-t-il si Redis devient indisponible pendant une rafale : le guard doit-il fermer (bloquer tout) ou ouvrir (laisser tout passer) ?
-
-**Moment Thor.** Tu ne récites plus "NestJS c'est structuré". Tu sais que la structure est un ordre d'exécution, que la DI est un point de test, et que rien de tout ça ne remplace un modèle de domaine correct.
-
----
-
-<a id="sec-auth"></a>
 <a id="63-validation-authentification-autorisation"></a>
 
-### 6.3 : Validation, authentification, autorisation
+### 6.3 : Authentification et autorisation
 
-**Auth / validation** : Tag : NOYAU DURABLE ·
-Coût : ~12 h avant utilité · Durée de vie : ~10 ans (concepts) · À apprendre après : Express ou NestJS
+Authentifier une personne répond à **« qui présente cette preuve d'identité ? »**. Autoriser une action répond à **« cette identité peut-elle agir sur cette ressource, dans ce contexte ? »**. Les deux contrôles sont liés, mais ne sont pas interchangeables.
 
-- **Ancrage ce parcours** : [05-auth_flows.md](../../../03-PILOTAGE/04-SECURITY/05-auth_flows.md), la différence entre prouver qui tu es et obtenir un droit
-- **Ce qu'elle ajoute** : une frontière explicite entre données non fiables et logique métier.
-- **Ce qu'elle masque** : que vérifier la présence d'un token ne vérifie pas la propriété de la ressource : l'écart entre authentification et autorisation.
-- **Ce qu'elle ne résout pas** : la conception du modèle de rôles ; une validation parfaite avec des rôles mal pensés reste exploitable.
-- **Quand ne pas la choisir de façon superficielle** : ne jamais valider "juste côté client" : la validation client est un confort, jamais une protection.
-- **Exemple qui casse** : un utilisateur authentifié change un identifiant dans l'URL et lit les données d'un autre : aucune erreur serveur, juste une mauvaise autorisation qui laisse passer.
-- **Preuve que c'est acquis** : tu as des tests qui prouvent qu'un utilisateur A ne peut ni lire, ni modifier, ni supprimer une ressource de B en étant authentifié · **Si tu bloques, reviens à** : [06-auth_authz.md](../../../02-CONSTRUCTION/18-WEB-CONCEPTS/06-auth_authz.md)
-
-#### Ce que ce parcours permet déjà de comprendre
-
-- [05-auth_flows.md](../../../03-PILOTAGE/04-SECURITY/05-auth_flows.md) : la différence entre prouver qui tu es et obtenir un droit est déjà posée.
-- [06-auth_authz.md](../../../02-CONSTRUCTION/18-WEB-CONCEPTS/06-auth_authz.md) : pourquoi vérifier la présence d'un token ne vérifie pas la propriété de la ressource.
-- [05-auth_jwt.md](../../../02-CONSTRUCTION/19-API-CRAFT/05-auth_jwt.md) : ce qu'un JWT contient, et pourquoi ce contenu vieillit mal.
-- [06-hashing_bcrypt.md](../../../03-PILOTAGE/04-SECURITY/06-hashing_bcrypt.md) : sel, coût, algorithme dédié : un hachage rapide est un défaut, pas une optimisation.
-- [02-nan_undefined_null.md](../../../05-MAITRISE/03-EDGE-CASES/02-nan_undefined_null.md) : une valeur absente n'est pas une valeur fausse ; beaucoup de contournements d'autorisation viennent de là.
-
-**Validation.** Règle unique : **rien n'entre dans ton système sans être validé à la frontière**. Body, query, params, headers, webhooks (appels HTTP entrants déclenchés chez toi par un service tiers), messages de file, variables d'environnement au démarrage. Un schéma, une erreur 400 explicite, et un type dérivé. Zod côté TS, Pydantic côté Python, Bean Validation côté Java, DataAnnotations côté .NET : même geste.
-
-**Authentification (qui es-tu ?) vs autorisation (as-tu le droit ?).** Confondre les deux produit la faille la plus courante des API : un utilisateur authentifié qui lit les données d'un autre en changeant un ID dans l'URL. Il faut vérifier **la propriété de la ressource**, pas seulement la présence d'un token.
-
-**Sécurité dans le code, pas seulement en prose :**
-
-```ts
-async function getInvoice(req: AuthedRequest, res: Response) {
-  const invoice = await db.query(
-    "SELECT * FROM invoices WHERE id = $1 AND owner_id = $2", // requête paramétrée + filtre de propriété
-    [req.params.id, req.user.id],
-  );
-  // MAUVAIS : const invoice = await db.query(`SELECT * FROM invoices WHERE id = ${req.params.id}`);
-  // MAUVAIS (l'erreur classique) : oublier `AND owner_id = $2` : la requête est "sûre" contre l'injection
-  // mais n'importe quel utilisateur authentifié peut lire la facture de n'importe qui.
-  if (!invoice) return res.status(404).end();
-  return res.json(invoice);
-}
-```
-
-**Sessions vs JWT : le vrai compromis :**
-
-|             | Session serveur                    | JWT                                                                |
-| ----------- | ---------------------------------- | ------------------------------------------------------------------ |
-| Révocation  | immédiate                          | difficile (il faut une liste de révocation, donc… un état serveur) |
-| Scalabilité | nécessite un store partagé (Redis) | sans état                                                          |
-| Taille      | cookie court                       | token plus lourd à chaque requête                                  |
-| Piège       | store à opérer                     | on met des données périmées dedans, on ne peut plus les invalider  |
-
-Il n'y a pas de gagnant. Il y a un contexte. Un JWT de 24 h pour une application bancaire est une mauvaise décision ; pour une API machine-à-machine, c'est raisonnable.
-
-**Mots de passe.** Jamais en clair, jamais en SHA-256 nu. Algorithme dédié au hachage de mot de passe (bcrypt, scrypt, argon2), avec sel, coût paramétrable ([06-hashing_bcrypt.md](../../../03-PILOTAGE/04-SECURITY/06-hashing_bcrypt.md)). Et si tu peux déléguer à un fournisseur d'identité, délègue.
-
-**Autorisation à l'échelle.** RBAC (rôles) est simple et suffit souvent. ABAC (attributs) est plus fin et plus complexe. Règle transférable : **les rôles ne se stockent jamais côté client, ni dans un champ modifiable par l'utilisateur.** Sinon, escalade de privilèges triviale.
-
-#### Alternatives
-
-| Alternative                       | Tag             | Ce qu'elle échange contre quoi                                                                                  |
-| --------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------- |
-| **Valibot**                       | CONTEXTUELLE    | tu gagnes un bundle nettement plus léger que Zod, tu paies un écosystème et une communauté plus petits          |
-| **TypeBox**                       | CONTEXTUELLE    | tu gagnes un schéma JSON Schema natif, réutilisable hors TypeScript, tu paies une API moins ergonomique que Zod |
-| **Sessions serveur** (contre JWT) | PROFESSIONNELLE | tu gagnes une révocation immédiate, tu paies un store partagé à opérer (Redis)                                  |
-
-> **Exercice : Prouver l'absence de fuite entre utilisateurs** : jeûne d’IA obligatoire
-> **Temps réaliste** : 2 h · **Prérequis matériel / compte** : aucun · **Coût max** : 0 €
-> **Mode** : jeûne d’IA obligatoire
-> **Contraintes** : prends une API à trois endpoints ; écris les tests qui prouvent qu'un utilisateur A ne peut pas lire, modifier ni supprimer une ressource de B, en étant parfaitement authentifié.
-> **Réutilise** : [06-auth_authz.md](../../../02-CONSTRUCTION/18-WEB-CONCEPTS/06-auth_authz.md)
-> **Piège** : un endpoint peut être protégé en lecture et oublié en écriture : teste les trois verbes, pas seulement GET.
-> **À observer** : le code HTTP renvoyé pour chaque tentative croisée (403 ou 404, jamais 200 ni 500).
-> **Vérification** (observable, chiffrée) : 3 endpoints × 3 verbes × 1 tentative croisée = 9 tests, tous rouges avant correction, tous verts après.
-> **Repli 100 % local et gratuit** : base de test locale ou en mémoire, aucun service externe nécessaire.
-> **Extension** : ajoute un rôle admin qui peut légitimement tout voir : comment le tests-tu sans casser les 9 précédents ?
-> **Preuve du jeûne demandée** : avant d'écrire les tests, note en 5 lignes ton hypothèse écrite sur l'endroit précis où la vérification de propriété doit se faire (couche route, service, ou requête SQL), horodatée avant toute exécution.
-
----
-
-<a id="sec-redis"></a>
-<a id="64-redis"></a>
-
-### 6.4 : Redis
-
-**Redis** : Tag : PROFESSIONNELLE ·
-Coût : ~10 h avant utilité · Durée de vie : ~8 ans · À apprendre après : structures de données de base, stratégies de cache
-
-- **Ancrage ce parcours** : `02-CONSTRUCTION/06-DATA-STRUCTURES/`, les mêmes structures que tu connais, partagées entre processus et persistantes au redémarrage
-- **Ce qu'il ajoute** : un espace de structures de données en mémoire partagé par toutes tes instances : chaînes, hashes, ensembles, ensembles triés, listes, flux, compteurs atomiques, verrous, pub/sub.
-- **Ce qu'il masque** : que « mettre en cache » n'est pas gratuit : chaque cache introduit une deuxième source de vérité, donc une question d'invalidation jamais totalement résolue.
-- **Ce qu'il ne résout pas** : la cohérence. Deux sources de vérité (base + cache) divergeront toujours à un moment.
-- **Quand ne pas le choisir** : pas comme base principale de données que tu ne peux pas te permettre de perdre sans configuration de persistance sérieuse ; pour un cache local à un seul process, une Map avec TTL suffit.
-- **Son mode de panne principal : l'invalidation.** Une clé très demandée expire, des milliers de requêtes constatent le vide au même instant et frappent la base simultanément (cache stampede) : le cache censé protéger la base la tue.
-- **Exemple qui casse** : une page d'accueil met son bloc de statistiques en cache 300 s. Un déploiement vide le cache ; à la réouverture, 4 000 requêtes simultanées trouvent le vide et partent toutes en base sur la même requête d'agrégation à 900 ms. La base sature, les timeouts commencent, les clients réessaient, la charge double : sans aucun message d'erreur avant l'effondrement complet.
-- **Preuve que c'est acquis** : tu sais nommer, sans hésiter, ce que tu ne mets jamais dans Redis, et le compromis fraîcheur/coût de chaque clé que tu y places · **Si tu bloques, reviens à** : [05-redis_caching.md](../../../05-MAITRISE/01-DATABASES/05-redis_caching.md)
-
-**Ce que c'est vraiment.** Un espace de structures de données en mémoire, partagé par toutes tes instances. Pas juste "un cache" : chaînes, hashes, ensembles, ensembles triés, listes, flux, compteurs atomiques, verrous, publication/abonnement.
-
-#### Ce que ce parcours permet déjà de comprendre
-
-Redis n'introduit aucune structure nouvelle : il te donne celles que tu connais **partagées entre processus et persistantes au redémarrage de ton app**. Un `Set` JavaScript meurt avec ton process ; un `SET` Redis survit et est vu par toutes tes instances.
-
-- `02-CONSTRUCTION/06-DATA-STRUCTURES/` : chaînes, hashes, ensembles, listes, ensembles triés : déjà implémentées, ici exposées par le réseau.
-- [05-redis_caching.md](../../../05-MAITRISE/01-DATABASES/05-redis_caching.md) : ce qu'on met en cache, pour combien de temps, et ce qu'on n'y met jamais.
-- [05-caching_strategies.md](../../../02-CONSTRUCTION/18-WEB-CONCEPTS/05-caching_strategies.md) : TTL, invalidation, `stale-while-revalidate` : le compromis fraîcheur/coût est déjà connu.
-- [06-race_condition_hunter.md](../../../05-MAITRISE/03-EDGE-CASES/06-race_condition_hunter.md) : un `get` puis `set` sur un compteur partagé est une race condition, même côté client mono-thread.
-- `02-CONSTRUCTION/05-MEMORY-PERFORMANCE/01_gc/` : un cache sans limite de taille est une fuite mémoire avec un joli nom.
-
-**Cas d'usage honnêtes :**
-
-| Usage                 | Pourquoi Redis            | Piège                                                 |
-| --------------------- | ------------------------- | ----------------------------------------------------- |
-| Cache de lecture      | latence sub-milliseconde  | invalidation : le problème difficile                  |
-| Rate limiting         | compteurs atomiques + TTL | sans atomicité, race condition                        |
-| Sessions              | partagé entre instances   | attention à la durabilité                             |
-| File de tâches légère | listes / streams          | pas de garanties d'un vrai broker                     |
-| Verrou distribué      | `SET NX PX`               | plus subtil qu'il n'y paraît : expiration et horloges |
-
-#### Ce que tu logues ici et avec quel identifiant
-
-Journalise chaque `MISS` de cache avec la clé demandée et l'identifiant de corrélation de la requête entrante, jamais la valeur mise en cache elle-même si elle contient des données personnelles. Journalise chaque invalidation explicite avec la clé, la raison (expiration naturelle, invalidation manuelle, purge) et l'identifiant de corrélation, pour pouvoir reconstituer après coup pourquoi une donnée était périmée au moment d'un incident.
-
-**Exemple qui casse : la ruée sur le cache (cache stampede).** Une clé très demandée expire. 3 000 requêtes constatent le vide au même instant et frappent la base simultanément. La base s'effondre. Le cache censé protéger la base vient de la tuer. Correctifs : verrou de recalcul, expiration avec jitter, ou `stale-while-revalidate` (servir le périmé pendant qu'on recalcule).
-
-**Ce que Redis ne résout pas.** La cohérence. Deux sources de vérité (base + cache) divergeront. Le seul cache toujours correct est celui qui n'existe pas. Chaque cache est un **compromis assumé entre fraîcheur et coût** : et ce compromis doit être écrit quelque part, pas subi.
-
-**Quand ne pas l'utiliser.** Comme base principale de données que tu ne peux pas te permettre de perdre, sans configuration de persistance sérieuse. Et pour un cache local à un seul process, une Map avec TTL suffit : n'ajoute pas un service pour ça.
-
-#### Alternatives
-
-| Alternative                              | Tag             | Ce qu'elle échange contre quoi                                                                                                             |
-| ---------------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Cache mémoire du process** (Map + TTL) | PROFESSIONNELLE | tu gagnes zéro dépendance réseau et une latence quasi nulle, tu paies un cache non partagé entre instances                                 |
-| **Table PostgreSQL**                     | PROFESSIONNELLE | tu gagnes une seule source de vérité et une transaction, tu paies une latence plus élevée qu'une structure en mémoire                      |
-| **CDN**                                  | CONTEXTUELLE    | tu gagnes un cache au plus près de l'utilisateur pour du contenu peu personnalisé, tu paies une invalidation beaucoup plus lente que Redis |
-
-> **Exercice : Provoquer puis éteindre une ruée sur le cache**
-> **Temps réaliste** : 2 h · **Prérequis matériel / compte** : Redis local (conteneur) · **Coût max** : 0 €
-> **Mode** : assistant autorisé
-> **Contraintes** : place un cache Redis devant une requête coûteuse (au moins 300 ms) avec un TTL court ; envoie 500 requêtes concurrentes juste après l'expiration de la clé, compte les appels réellement arrivés à la base, puis ramène ce nombre à un seul.
-> **Réutilise** : [06-race_condition_hunter.md](../../../05-MAITRISE/03-EDGE-CASES/06-race_condition_hunter.md)
-> **Piège** : la première idée qui vient (allonger le TTL) déplace le problème au lieu de le résoudre : mesure-le.
-> **À observer** : le nombre d'appels à la base par vague, la latence p99 des 500 requêtes, et le comportement quand le recalcul lui-même échoue.
-> **Vérification** (observable, chiffrée) : la même vague relancée trois fois donne le même nombre d'appels ; sinon ton correctif est chanceux, pas correct.
-> **Repli 100 % local et gratuit** : Redis en conteneur local, script de charge en local, aucun service cloud requis.
-> **Extension** : compare verrou de recalcul, TTL avec jitter et `stale-while-revalidate`, et dis en trois lignes lequel tu déploies.
-
----
-
-<a id="sec-queues"></a>
-<a id="65-files-de-messages-et-workers"></a>
-
-### 6.5 : Files de messages et workers
-
-**Files / queues** : Tag : NOYAU DURABLE (le pattern) / CONTEXTUELLE (l'outil) ·
-Coût : ~15 h avant utilité · Durée de vie : ~10 ans (pattern) / ~4 ans (outil) · À apprendre après : Redis, event-driven
-
-- **Ancrage ce parcours** : [08-message_queues.md](../../../05-MAITRISE/02-SCALABILITY/08-message_queues.md), file, producteur, consommateur, livraison au moins une fois
-- **Ce qu'elle ajoute** : une réponse rapide à l'appelant, un traitement lent découplé et rejouable.
-- **Ce qu'elle masque** : que « au moins une fois » signifie qu'un job sera parfois livré deux fois : l'idempotence n'est pas optionnelle, elle est la condition de correction.
-- **Ce qu'elle ne résout pas** : l'ordre global (presque jamais garanti) ni la visibilité (sans métrique de profondeur de file, le problème se découvre par un client).
-- **Quand ne pas la choisir** : pas avant d'avoir un vrai volume ou un vrai besoin de découplage : introduire Kafka pour 50 messages par minute ajoute un système distribué à opérer pour un problème qu'une table PostgreSQL réglait.
-- **Exemple qui casse** : un worker tué en plein traitement (`docker kill`) relance le même job au redémarrage ; sans idempotence, la ligne est comptée deux fois, sans aucune erreur visible.
-- **Preuve que c'est acquis** : tu sais faire tourner deux workers en parallèle et prouver qu'aucun traitement n'est compté deux fois · **Si tu bloques, reviens à** : [08-message_queues.md](../../../05-MAITRISE/02-SCALABILITY/08-message_queues.md)
-
-**Le problème.** Une requête HTTP doit répondre vite. Certains travaux sont lents : génération de rapport, transformation de fichiers, appel à un tiers capricieux, envoi en masse. Les faire dans le handler, c'est bloquer l'utilisateur et perdre le travail si le process redémarre.
-
-#### Ce que ce parcours permet déjà de comprendre
-
-- [08-message_queues.md](../../../05-MAITRISE/02-SCALABILITY/08-message_queues.md) : file, producteur, consommateur, livraison au moins une fois : le modèle est déjà posé.
-- [06-event_driven.md](../../../02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/06-event_driven.md) : publier un événement au lieu d'appeler une fonction, et ce que ça coûte en traçabilité.
-- [04A-backpressure.md](../../../01-CADRAGE/02-ASYNC/04A-backpressure.md) : un producteur plus rapide que ses workers finit toujours par remplir quelque chose.
-- `02-CONSTRUCTION/10-DESIGN-PATTERNS/` (patron Command) : un job est une commande sérialisée, c'est pour ça qu'il peut être rejoué.
-- [06-error_strategy.md](../../../01-CADRAGE/04-ERROR-HANDLING/06-error_strategy.md) : quelle erreur mérite un retry et laquelle part en dead-letter est une stratégie, pas un réflexe.
+- **Session** : état serveur ou référence de session permettant de rattacher plusieurs requêtes à une identité. Un identifiant de session doit être imprévisible, protégé et renouvelé lors d'un changement de privilège.
+- **Access token** : preuve de courte durée qui accompagne une requête. Pour un JWT, vérifier explicitement signature, algorithme autorisé, émetteur (`iss`), destinataire (`aud`), expiration (`exp`) et contexte attendu. Décoder un JWT n'est pas le vérifier.
+- **Refresh token** : credential de renouvellement à forte valeur. Un modèle robuste utilise une valeur opaque, une rotation à usage unique, une détection de réutilisation et une révocation liée à la session ou à la famille de tokens.
+- **Autorisation** : vérifier côté serveur chaque action sur chaque ressource. Une identité valide ne donne pas automatiquement accès à tous les objets ni à tous les tenants.
 
 ```text
-HTTP  →  valide  →  publie un job  →  202 Accepted (immédiat)
-                          ↓
-                     [ FILE ]
-                          ↓
-                  Worker (autre process, scalable indépendamment)
-                          ↓
-              résultat stocké / notification / webhook
+requête
+  │
+  ▼
+preuve d'identité valide ? ── non ──► 401
+  │ oui
+  ▼
+action permise sur cette ressource et ce tenant ?
+  │ non
+  └────────────────────────────────► 403
+  │ oui
+  ▼
+règle métier et opération
 ```
 
-**Les cinq notions qui comptent, indépendamment de l'outil :**
+**Pièges fréquents :**
 
-1. **Au moins une fois** : ton job sera parfois livré deux fois. Donc **tes handlers doivent être idempotents**. Ce n'est pas optionnel.
-2. **Retry avec backoff exponentiel** : réessayer immédiatement en boucle achève un service déjà en difficulté.
-3. **Dead-letter queue (DLQ)** (file d'attente de mise à l'écart des messages définitivement en échec) : après N échecs, on met de côté au lieu de boucler à l'infini.
-4. **Ordre** : presque jamais garanti globalement. Si tu en as besoin, c'est une contrainte forte et coûteuse.
-5. **Visibilité** : combien de jobs en attente, quel âge a le plus vieux ? Sans cette métrique, tu découvres le problème par un client.
+- mettre un secret, un refresh token ou un token complet dans les logs ;
+- utiliser `decode()` comme si la signature était validée ;
+- accepter l'algorithme annoncé par le token sans liste autorisée ;
+- stocker un rôle ou un tenant dans le client et lui faire confiance au moment de l'autorisation ;
+- vérifier les droits à la création, mais pas à la lecture, à la modification, à l'export ou à la suppression ;
+- laisser les accès de plusieurs comptes partager un cache ou un singleton avec état utilisateur.
 
-#### Ce que tu logues ici et avec quel identifiant
+Si les cookies transportent automatiquement la session, documente les protections adaptées contre les requêtes intersites (par exemple `SameSite`, jeton CSRF lorsque nécessaire, vérification d'origine) et les attributs `HttpOnly` / `Secure`. Pour une application native, le stockage des secrets doit utiliser les mécanismes sécurisés de la plateforme. Il n'existe pas une recette unique qui convienne à toutes les architectures.
 
-Journalise, à la publication du job, l'identifiant de job et l'identifiant de corrélation de la requête d'origine, propagés ensemble jusqu'au worker. Journalise, à chaque tentative du worker, le numéro de tentative et le résultat (succès, échec retryable, échec définitif vers la DLQ) sous ce même identifiant de job : sans ce fil, un job qui échoue trois fois puis réussit apparaît comme trois incidents distincts au lieu d'un seul.
+**Preuve de compréhension :** construis une matrice acteur × action × ressource × tenant ; explique pourquoi un utilisateur authentifié reçoit parfois `403`, et comment une opération de révocation invalide une session déjà ouverte.
 
-#### Alternatives
+Sources : [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html), [OWASP Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html), [RFC 8725 : JSON Web Token Best Current Practices](https://www.rfc-editor.org/rfc/rfc8725.html).
 
-| Alternative             | Tag             | Ce qu'elle échange contre quoi                                                                                                                            |
-| ----------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **BullMQ** (Redis)      | PROFESSIONNELLE | tu gagnes le même Redis que la fiche 6.4, les jobs sont des structures Redis sérialisées, tu paies l'absence de persistance forte propre à un vrai broker |
-| **RabbitMQ**            | PROFESSIONNELLE | tu gagnes un routage riche par exchange, le modèle producteur/consommateur devient explicite, tu paies un service de plus à opérer                        |
-| **Kafka**               | CONTEXTUELLE    | tu gagnes un débit très élevé et des flux rejouables (log distribué), tu paies un coût opérationnel élevé pour un besoin souvent surdimensionné           |
-| **SQS**                 | CONTEXTUELLE    | tu gagnes un service managé avec visibilité et DLQ natives, tu paies une latence de livraison plus élevée                                                 |
-| **pgboss** (PostgreSQL) | PROFESSIONNELLE | tu gagnes une file qui vit dans ta base existante, sans nouveau service, tu paies un débit plus faible qu'un vrai broker à grande échelle                 |
+<a id="sec-redis-cache"></a>
 
-**Le piège d'architecture.** Introduire Kafka pour 50 messages par minute. Tu viens d'ajouter un système distribué à opérer pour un problème qu'une table PostgreSQL réglait. C'est une décision qui se défend en ADR, ou qui ne se prend pas.
+<a id="64-redis"></a>
 
-> **Exercice : Pipeline résilient au redémarrage d'un worker**
-> **Temps réaliste** : 3 h · **Prérequis matériel / compte** : Docker local · **Coût max** : 0 €
-> **Mode** : assistant autorisé
-> **Contraintes** : construis un pipeline : un endpoint accepte un fichier de mesures, publie un job, un worker le traite par lots et écrit un résumé ; le worker est tué au milieu du traitement (fais-le vraiment, `docker kill`), le job doit reprendre sans doublon, et un job qui échoue trois fois part en dead-letter.
-> **Réutilise** : [08-message_queues.md](../../../05-MAITRISE/02-SCALABILITY/08-message_queues.md)
-> **Piège** : rendre un job idempotent en le vérifiant "s'il existe déjà" introduit sa propre race condition si deux workers le voient en même temps : teste avec deux workers en parallèle, pas un seul.
-> **À observer** : le nombre de lignes comptées dans le résumé final, le nombre de tentatives par job, et le contenu de la dead-letter après un échec forcé.
-> **Vérification** (observable, chiffrée) : lance deux workers en parallèle et prouve qu'aucune ligne n'est comptée deux fois, sur au moins 3 exécutions du scénario `docker kill`.
-> **Repli 100 % local et gratuit** : file en conteneur local (Redis ou PostgreSQL selon l'outil choisi), aucun service managé nécessaire.
-> **Extension** : que se passe-t-il si le worker crashe juste après avoir écrit le résumé mais avant d'accuser réception du job ?
+### 6.4 : Cache et Redis
 
-**Arme débloquée.** Tu peux désormais lire une architecture asynchrone sans confondre "ça marche" et "ça survit à un redémarrage".
+Un cache conserve temporairement une copie calculée ou lue ailleurs afin de réduire une latence, une charge ou un coût. **Par défaut, un cache n'est pas la source de vérité.** Redis peut servir de cache, de stockage temporaire, de compteur ou de primitive de coordination ; le choix dépend du modèle de données et des garanties attendues.
 
----
+**Cache-aside (lecture à la demande) :**
 
-<a id="sec-temps-reel"></a>
+```text
+requête
+  │
+  ▼
+clé présente ? ── oui ──► vérifier fraîcheur ──► retourner valeur
+  │ non / expirée
+  ▼
+source de vérité (ex. base SQL)
+  │
+  ▼
+mettre en cache avec TTL ──► retourner valeur
+```
+
+Points à décider explicitement :
+
+1. **Clé** : inclure les dimensions qui changent la réponse (tenant, locale, droits, version de schéma). Une clé trop large peut exposer les données d'un autre utilisateur.
+2. **TTL** : durée maximale pendant laquelle la copie peut être réutilisée. Un TTL long réduit les lectures mais augmente le risque de donnée périmée.
+3. **Invalidation** : définir ce qui se passe après une écriture, une suppression ou un changement de droits. « On videra le cache plus tard » n'est pas une stratégie.
+4. **Concurrence** : une expiration collective peut provoquer une ruée sur la source (cache stampede). Un jitter, un verrou de courte durée ou `stale-while-revalidate` peuvent aider selon le besoin.
+5. **Panne** : décider si l'application continue sans cache, ralentit, ou refuse une opération. Ne fais pas dépendre une donnée durable de la seule mémoire volatile du cache.
+
+Redis peut aussi soutenir un compteur de tentatives ou une limitation de débit. Il faut alors définir la fenêtre, l'identité de la clé, les limites par utilisateur/IP/tenant et le comportement si Redis est indisponible. Un compteur de sécurité mal configuré peut devenir une voie de contournement ou une cause de déni de service.
+
+**Preuve de compréhension :** dessine le chemin d'une mise à jour de profil et démontre comment un cache peut ne pas afficher l'ancienne valeur indéfiniment, y compris après une suppression.
+
+Source : [documentation officielle Redis](https://redis.io/docs/latest/).
+
+<a id="sec-files-object-storage"></a>
+
+### 6.5 : Fichiers et stockage objet
+
+Un fichier reçu par une API est une entrée non fiable, même si son nom se termine par `.pdf`, `.png` ou `.csv`. Le nom, l'extension, le type MIME déclaré et le contenu peuvent se contredire.
+
+**Chaîne de traitement prudente :**
+
+```text
+upload
+  │
+  ▼
+limite de taille + authentification + autorisation
+  │
+  ▼
+nom généré côté serveur + stockage temporaire/quarantaine
+  │
+  ▼
+validation du contenu et analyse adaptée au risque
+  │
+  ▼
+association à une ressource métier autorisée
+  │
+  ▼
+accès privé ou URL signée de durée limitée
+```
+
+- Contrôle la taille, le nombre de fichiers, les quotas et le temps de transfert avant de charger tout le contenu en mémoire.
+- Génère un identifiant de stockage côté serveur ; ne construis pas un chemin à partir d'un nom fourni par l'utilisateur.
+- Vérifie le type réel selon le format et l'usage ; le MIME déclaré par le navigateur n'est pas une preuve.
+- Privilégie le streaming pour les gros fichiers. Sépare le stockage objet de la métadonnée métier (propriétaire, tenant, état de validation, taille, empreinte, politique de rétention).
+- Garde les objets privés par défaut. Une URL signée est un jeton d'accès : sa durée doit être limitée et sa portée étroite.
+- Selon le risque, ajoute quarantaine, antivirus ou analyse spécialisée avant de rendre le fichier disponible. Un scan n'est pas une garantie absolue.
+
+**Preuve de compréhension :** énumère les contrôles effectués avant qu'un fichier ne soit téléchargeable, et explique comment le système empêche un utilisateur de lire le fichier d'un autre tenant en devinant son identifiant.
+
+Référence de sécurité : [OWASP File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
+
+<a id="sec-events-realtime"></a>
+
+<a id="65-files-de-messages-et-workers"></a>
 <a id="66-temps-réel-websocket-et-sse"></a>
 
-### 6.6 : Temps réel : WebSocket et SSE
+### 6.6 : Files de messages, événements et temps réel
 
-**Temps réel** : Tag : NOYAU DURABLE (les concepts) ·
-Coût : ~10 h avant utilité · Durée de vie : ~9 ans · À apprendre après : files de messages, event loop
+Une file découple le moment où un travail est demandé du moment où il est exécuté. Cela absorbe des pointes et permet de reprendre un travail ; cela introduit aussi des retards, des doublons possibles, de l'ordre non garanti et des erreurs à traiter.
 
-- **Ancrage ce parcours** : `04-EPREUVE/03-REALTIME/`, connexion persistante, flux d'événements, reconnexion
-- **Ce qu'il ajoute** : un canal ouvert qui pousse des données sans que le client les redemande.
-- **Ce qu'il masque** : qu'une connexion ouverte est un état attaché à une instance précise du serveur : avec plusieurs instances, un message publié sur A doit atteindre un client connecté à B.
-- **Ce qu'il ne résout pas** : la décision produit "que se passe-t-il pour les messages émis pendant une coupure réseau" : perdus, rejoués, signalés comme trou dans le flux.
-- **Quand ne pas le choisir** : pas avant que le client ait un vrai besoin d'émettre en continu : si le client n'a rien à envoyer, SSE suffit et coûte dix fois moins cher en complexité que WebSocket.
-- **Exemple qui casse** : un handler de socket qui capture l'état d'un utilisateur dans une closure le garde en vie après sa déconnexion : fuite mémoire multipliée par le nombre de clients, sans erreur visible avant la saturation.
-- **Preuve que c'est acquis** : tu sais dire, pour ton cas, ce qui arrive aux messages émis pendant une coupure de 20 secondes, et pourquoi tu as choisi cette réponse · **Si tu bloques, reviens à** : [04A-backpressure.md](../../../01-CADRAGE/02-ASYNC/04A-backpressure.md)
+**Cycle d'un message :**
 
-#### Ce que ce parcours permet déjà de comprendre
+```text
+producteur ──► file ──► consommateur
+                   │         │
+                   │         ├─ succès ─► ACK
+                   │         └─ erreur ─► retry borné / dead-letter
+                   │
+                   └─ message parfois livré plus d'une fois
+```
 
-- `04-EPREUVE/03-REALTIME/` : le module entier : connexion persistante, flux d'événements, reconnexion.
-- `02-CONSTRUCTION/10-DESIGN-PATTERNS/` (patron Observer) : un abonnement sans désabonnement est une fuite, ici multipliée par le nombre de clients.
-- [04A-backpressure.md](../../../01-CADRAGE/02-ASYNC/04A-backpressure.md) : émettre plus vite que le client ne consomme fait monter la mémoire du serveur, pas celle du client.
-- [04-closure_trap.md](../../../00-SOCLE/04-FUNDAMENTALS/02_scope/04-closure_trap.md) : un handler de socket qui capture l'état d'un utilisateur le garde en vie après sa déconnexion.
+- Conçois le consommateur pour être **idempotent** : traiter deux fois le même message ne doit pas produire deux paiements ou deux effets métier indésirables.
+- Définis les tentatives, le backoff, le délai maximal, l'expiration et une file de quarantaine (dead-letter) avec un processus de reprise.
+- Un accusé de réception (`ACK`) signifie que le consommateur a atteint le point de durabilité défini. Il ne doit pas être envoyé avant le commit métier si cela crée un risque de perte.
+- Les garanties « au moins une fois », « au plus une fois » et « exactement une fois » sont des contrats différents. L'effet métier exactement une fois nécessite généralement une conception d'idempotence et de déduplication ; ne l'attribue pas magiquement à la file.
+- Le **transactional outbox** aide à éviter la double écriture non atomique (enregistrer une donnée en base puis publier un événement) : l'événement est écrit dans la même transaction que la donnée, puis publié par un processus séparé.
 
-|                 | SSE                                                    | WebSocket                                |
-| --------------- | ------------------------------------------------------ | ---------------------------------------- |
-| Sens            | serveur → client                                       | bidirectionnel                           |
-| Transport       | HTTP standard                                          | protocole distinct après upgrade         |
-| Reconnexion     | automatique, avec `Last-Event-ID`                      | à ta charge                              |
-| Proxies / infra | passe partout                                          | parfois bloqué, config nécessaire        |
-| Bon pour        | notifications, flux de logs, progression, streaming IA | collaboration, jeux, chat bidirectionnel |
+**Temps réel :**
 
-**Règle de décision honnête :** si le client n'a rien à envoyer en continu, SSE suffit et coûte dix fois moins cher en complexité. Beaucoup d'équipes déploient du WebSocket pour afficher une barre de progression.
+- **WebSocket** : canal bidirectionnel persistant, utile lorsque client et serveur doivent échanger des messages dans les deux sens.
+- **Server-Sent Events (SSE)** : flux unidirectionnel serveur → client sur HTTP ; le client peut se reconnecter, et le serveur doit gérer l'identité, les autorisations et la reprise.
 
-**Ce que personne n'anticipe :**
+Dans les deux cas, prévois authentification, autorisation par canal/ressource, limites de débit, taille maximale des messages, reconnexion et gestion de la contre-pression (backpressure). Une connexion ouverte ne signifie pas qu'un droit d'accès reste valide indéfiniment : réévalue les droits selon le modèle de session.
 
-- **La montée en charge.** Une connexion ouverte est un état sur une instance précise. Avec plusieurs instances, un message publié sur l'instance A doit atteindre un client connecté à l'instance B → il te faut un bus (Redis pub/sub, broker).
-- **La reconnexion.** Le réseau mobile coupe. Que se passe-t-il pour les messages émis pendant la coupure ? Perdus ? Rejoués ? Cette question est une décision produit, pas technique.
-- **La backpressure.** Si tu émets plus vite que le client ne consomme, la mémoire serveur monte. Tu as déjà vu ça : [04A-backpressure.md](../../../01-CADRAGE/02-ASYNC/04A-backpressure.md).
+**Preuve de compréhension :** explique ce qu'il arrive si un consommateur plante après avoir validé l'opération métier mais avant l'ACK, et pourquoi l'idempotence évite le doublon à la reprise.
 
-#### Ce qui casse en production
-
-Un tableau de bord diffuse chaque événement à **tous** les clients connectés, sans filtrage ni regroupement. En démonstration, quatre navigateurs : tout va bien. En production, 900 clients et 200 événements par minute donnent 180 000 messages par minute ; la boucle d'événements du serveur ne redescend plus, et le service tombe en cascade. Le correctif n'est pas de changer de bibliothèque : c'est de regrouper les événements par fenêtre de temps et de n'envoyer qu'aux abonnés réellement concernés.
-
-#### Alternatives
-
-| Alternative      | Tag        | Ce qu'elle échange contre quoi                                                                                                                 |
-| ---------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Polling**      | PÉRISSABLE | tu gagnes une infrastructure triviale (juste du HTTP répété), tu paies de la latence et des requêtes inutiles quand rien n'a changé            |
-| **Long polling** | PÉRISSABLE | tu gagnes une latence bien meilleure que le polling simple sans changer de protocole, tu paies des connexions HTTP maintenues ouvertes à gérer |
-
-> **Exercice : Reconnexion sans trou silencieux**
-> **Temps réaliste** : 2 h · **Prérequis matériel / compte** : aucun · **Coût max** : 0 €
-> **Mode** : assistant autorisé
-> **Contraintes** : diffuse un flux d'événements à plusieurs clients avec SSE ; coupe le réseau d'un client 20 secondes ; à la reconnexion, il doit récupérer ce qu'il a manqué, ou recevoir explicitement un signal "trou dans le flux".
-> **Réutilise** : `04-EPREUVE/03-REALTIME/`
-> **Piège** : `Last-Event-ID` ne fonctionne que si le serveur a conservé un historique : sans buffer côté serveur, la reconnexion "automatique" ne rattrape rien et masque silencieusement une perte.
-> **À observer** : les événements reçus par le client avant coupure, pendant, et juste après reconnexion.
-> **Vérification** (observable, chiffrée) : sur 5 coupures de 20 s répétées, le client affiche à chaque fois soit la totalité des événements manqués soit un signal explicite de trou, jamais un silence.
-> **Repli 100 % local et gratuit** : tout l'exercice tourne en local avec une coupure simulée (couper le processus client), aucun service externe requis.
-> **Extension** : choisis, et justifie en trois lignes, ce que tu ferais si le volume manqué pendant la coupure dépassait la taille du buffer serveur.
+Sources : [RabbitMQ : Reliability Guide](https://www.rabbitmq.com/docs/reliability), [Transactional Outbox](https://microservices.io/patterns/data/transactional-outbox.html), [MDN : WebSocket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket), [MDN : Server-Sent Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events).
 
 ---
 
-### 6.7 : GraphQL
+## Repère visuel utile : Référentiel de compétences par preuves
 
-**GraphQL** : Tag : CONTEXTUELLE ·
-Coût : ~15 h avant utilité · Durée de vie : ~6 ans · À apprendre après : REST solide, N+1 et bases de données
+```text
+compétence -> tâche observable -> artefact
+     ^                         |
+     |                         v
+révision datée <- verdict <- critère explicite
+     |
+     +-> remédiation ou nouvelle preuve
+```
 
-- **Ancrage ce parcours** : [06-graphql_basics.md](../../../02-CONSTRUCTION/19-API-CRAFT/06-graphql_basics.md), schéma, requête, résolveur
-- **Ce qu'il ajoute** : un schéma typé fort, une seule requête pour un graphe de données, une évolution sans versioning brutal.
-- **Ce qu'il masque** : que le cache HTTP standard disparaît (tout passe par un `POST /graphql`), et que l'autorisation doit se faire par champ, pas par endpoint.
-- **Ce qu'il ne résout pas** : le N+1 : une requête imbriquée génère des centaines de requêtes SQL sans DataLoader, GraphQL ne le prévient pas de lui-même.
-- **Quand ne pas le choisir** : pas avant d'avoir vraiment plusieurs clients aux besoins divergents : une API, un client, du CRUD, REST suffit et se cache mieux.
-- **Exemple qui casse** : une requête imbriquée sur 50 entités liées génère des centaines de requêtes SQL individuelles, invisible avec 3 entités de test, écroulant en production à partir d'un certain volume.
-- **Preuve que c'est acquis** : tu sais activer le log SQL, compter les requêtes réellement émises, et les ramener à un ordre de grandeur constant avec un DataLoader · **Si tu bloques, reviens à** : [06-db_in_js.md](../../../05-MAITRISE/01-DATABASES/06-db_in_js.md)
+<!-- AF-LESSON-PROFILE: reference -->
 
-**Le problème résolu.** Des clients hétérogènes (web, mobile, tiers) qui ont besoin de formes de données différentes, et une API REST qui multiplie les endpoints ou sur-transfère.
+## Repères de décision
 
-#### Ce que ce parcours permet déjà de comprendre
+- **Pourquoi :** Un référentiel sert à rendre les compétences observables et à éviter de confondre familiarité, autonomie et maîtrise.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le pour établir un point de départ, prioriser une révision ou préparer une revue de portfolio. Ne l'utilise pas comme classement de valeur personnelle.
+- **Limites :** Une auto-évaluation est biaisée. Le niveau doit être confirmé par une tâche inconnue, un artefact reproductible et, aux paliers avancés, une revue externe.
 
-- [06-graphql_basics.md](../../../02-CONSTRUCTION/19-API-CRAFT/06-graphql_basics.md) : schéma, requête, résolveur : les trois pièces sont déjà connues.
-- `02-CONSTRUCTION/06-DATA-STRUCTURES/` (graphes, BFS/DFS) : une requête GraphQL est un parcours de graphe, et sa profondeur est ton coût.
-- [06-db_in_js.md](../../../05-MAITRISE/01-DATABASES/06-db_in_js.md) : le N+1 vient de ce qu'un résolveur ignore ce que son voisin a déjà chargé.
-- [05-caching_strategies.md](../../../02-CONSTRUCTION/18-WEB-CONCEPTS/05-caching_strategies.md) : ce que tu perds en faisant passer tout le trafic par un `POST` unique.
-- `03-PILOTAGE/04-SECURITY/` : l'autorisation par champ est le même raisonnement que par endpoint, appliqué N fois.
+## Mécanisme : la version sans magie
 
-**Ce qu'il ajoute.** Un schéma typé fort, une seule requête pour un graphe de données, une évolution sans versioning brutal, un outillage de découverte excellent.
+Associe une compétence à une tâche, un critère, une preuve, une date et un statut. Réévalue quand le contexte ou la technologie change.
 
-**Ce qu'il complique : et c'est sérieux :**
+## Ancrage produit / terrain : Kintana
 
-| Problème        | Détail                                                                                                           |
-| --------------- | ---------------------------------------------------------------------------------------------------------------- |
-| N+1             | une requête imbriquée génère des centaines de requêtes SQL sans DataLoader                                       |
-| Cache HTTP      | perdu : tout passe par un `POST /graphql`                                                                        |
-| Autorisation    | à faire **par champ**, pas par endpoint                                                                          |
-| Déni de service | une requête profondément imbriquée peut écrouler le serveur → limite de profondeur et de complexité obligatoires |
-| Observabilité   | toutes les requêtes sur une seule URL : les métriques par endpoint ne veulent plus rien dire                     |
+Dans [Kintana](../../77-FIL-ROUGE-KINTANA/README.md), **Niveau 3 : Backend (section 6)** se rattache à ce cas concret : Pour Kintana, une compétence comme l'idempotence n'est acquise que si tu sais l'expliquer, l'implémenter et vérifier le rejeu et les conflits.
 
-**Quand le choisir.** Beaucoup de clients aux besoins divergents, un domaine réellement en graphe, une équipe capable d'opérer ces cinq points.
-**Quand ne pas le choisir.** Une API, un client, du CRUD. REST + un bon typage partagé (ou tRPC en monorepo TypeScript) est plus simple, mieux caché, plus facile à observer.
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-C'est **CONTEXTUELLE** et pas **PROFESSIONNELLE** dans ce document parce que son adoption est réelle mais très inégale selon les secteurs. Sache le lire, sache quand le refuser.
+## Mission utile : Kintana : Référentiel de compétences par preuves
 
-#### Alternatives
+> **Arc DBZ / Capsule Corp. :** Bulma ne dit pas « je suis forte » parce qu'elle a lu le manuel. Elle vérifie ce que l'outil permet réellement.
 
-| Alternative                    | Tag             | Ce qu'elle échange contre quoi                                                                                                          |
-| ------------------------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| **REST bien fait**             | PROFESSIONNELLE | tu gagnes le cache HTTP standard et une observabilité par endpoint, tu paies parfois plusieurs allers-retours ou du sur-transfert       |
-| **BFF** (Backend for Frontend) | CONTEXTUELLE    | tu gagnes une forme de données taillée pour chaque client sans schéma global, tu paies une couche supplémentaire à maintenir par client |
+**Mission liée à « Niveau 3 : Backend (section 6) » :** Établis ton état initial sur une tranche Kintana : sélectionne trois compétences, réalise une tâche de chacune sans suivre un corrigé, garde les tests et note ce que tu n'as pas pu démontrer.
 
-> **Exercice : Rendre visible puis corriger le N+1**
-> **Temps réaliste** : 2 h 30 · **Prérequis matériel / compte** : base PostgreSQL locale · **Coût max** : 0 €
-> **Mode** : assistant autorisé
-> **Contraintes** : expose trois entités liées (flux → mesures → auteur) en GraphQL, puis rends visible et corrige le N+1 ; active le log SQL, écris une requête imbriquée sur 50 flux, compte les requêtes SQL réellement émises, puis ramène ce nombre à un ordre de grandeur constant.
-> **Réutilise** : [06-db_in_js.md](../../../05-MAITRISE/01-DATABASES/06-db_in_js.md)
-> **Piège** : avec trois flux de test tout va bien ; le bug n'existe qu'à partir d'un certain volume, exactement comme en production.
-> **À observer** : le nombre de requêtes SQL par requête GraphQL, la latence p95, et l'effet d'un `DataLoader` sur les deux.
-> **Vérification** (observable, chiffrée) : la même requête sur 5, 50 puis 500 flux : le nombre de requêtes SQL ne doit pas suivre le nombre de flux.
-> **Repli 100 % local et gratuit** : base PostgreSQL en conteneur local, données de test générées par script.
-> **Extension** : ajoute une limite de profondeur et de complexité, puis écris la requête qui aurait écroulé le serveur sans elle.
+**Livrable :** un registre de compétences avec preuves liées, statut honnête, date de révision et prochain test de transfert.
 
----
+**Critères d’acceptation :** chaque statut pointe vers un artefact ; une compétence non testée reste `NON ÉVALUÉE` ; aucune preuve déclarative ne vaut une exécution ; les lacunes ont une action de remédiation.
 
-### 6.8 : Exercice de lecture de codebase : backend Node/TypeScript
-
-**Section de méthode** : pas de tag, pas de Coût, pas de Durée de vie : ce geste survit aux outils qui l'implémentent.
-
-> **Exercice : Cartographier un backend Nest ou Fastify open source**
-> **Temps réaliste** : 2 h · **Prérequis matériel / compte** : accès à un dépôt public (GitHub) · **Coût max** : 0 €
-> **Mode** : assistant autorisé
-> **Contraintes** : choisis un backend Nest ou Fastify open source d'au moins 5 000 lignes ; réponds aux 9 questions de la grille de lecture du niveau 5 (point d'entrée, dépendances critiques, flux d'une requête typique, gestion d'erreur, tests existants, configuration et secrets, points d'extension, dette visible, ce que tu changerais en premier) sans exécuter le code au-delà du démarrage local.
-> **Réutilise** : la grille de lecture de codebase du niveau 5 (`07-niveau-5-transfert.md`)
-> **Piège** : le point d'entrée réel n'est presque jamais `main.ts` : c'est le premier module importé qui déclenche la cascade de providers ; le confondre avec le fichier de démarrage fait rater la moitié de la carte.
-> **À observer** : le nombre de modules avant d'atteindre un premier handler HTTP, la présence ou l'absence de validation en frontière, et la façon dont les secrets sont chargés.
-> **Vérification** (observable, chiffrée) : les 9 questions sont répondues avec au moins une preuve textuelle (extrait de fichier, nom de ligne) pour chacune, et la carte tient sur une seule page.
-> **Repli 100 % local et gratuit** : clone en local, aucune exécution en production ni compte cloud nécessaire.
-> **Extension** : présente ta carte à quelqu'un qui ne connaît pas le projet ; chronomètre le temps qu'il lui faut pour situer où il modifierait un endpoint existant.
-> **Livrable** : une carte en une page (texte ou schéma) répondant aux 9 questions, remise avant toute exécution de code au-delà du démarrage local.
-
----
-
-### 6.9 : ADR : choix du framework backend
-
-**Section de méthode** : pas de tag, pas de Coût, pas de Durée de vie : ce geste survit aux outils qui l'implémentent.
-
-> **Exercice : ADR : Express, Fastify ou NestJS pour ce projet** : jeûne d’IA obligatoire
-> **Temps réaliste** : 1 h 30 · **Prérequis matériel / compte** : aucun · **Coût max** : 0 €
-> **Mode** : jeûne d’IA obligatoire
-> **Contraintes** : rédige un ADR complet (contexte, options considérées, décision, conséquences) sur le choix du framework backend pour un projet réel ou fictif que tu peux décrire en 5 lignes ; utilise la matrice de décision de la section 6.2.
-> **Réutilise** : la matrice de décision Express / Fastify / NestJS ci-dessus
-> **Piège** : un ADR qui ne mentionne que des critères techniques (performance, syntaxe) sans contrainte d'équipe (taille, expérience, durée de vie attendue) n'est pas un ADR défendable : un vrai ADR pèse aussi le coût humain.
-> **À observer** : est-ce que ta décision resterait la même si l'équipe passait de 2 à 8 personnes ? Si non, dis-le dans l'ADR.
-> **Vérification** (observable, chiffrée) : l'ADR tient sur une page, cite au moins deux options rejetées avec leur raison, et une personne qui ne connaît pas le projet peut dire, après lecture, ce qui ferait changer la décision.
-> **Repli 100 % local et gratuit** : exercice purement écrit, aucun coût.
-> **Extension** : réécris la même décision en 5 lignes pour un responsable produit, sans un seul nom de techno.
-> **Preuve du jeûne demandée** : rédige d'abord, à la main et sans assistance, la liste des critères que tu comptes utiliser, horodatée avant de commencer la rédaction complète de l'ADR.
-
----
-
-[← 02-niveau-2-frontend](04-niveau-2-frontend.md) · [Sommaire](../README.md) · [04-niveau-4-systemes →](06-niveau-4-systemes.md)
+**Transfert obligatoire :** Reprends une compétence dans un langage ou un composant différent et vérifie si le principe se transfère réellement.

@@ -5,7 +5,7 @@ acte: pratiquer
 
 > **CrazyDevs : briefing de mission :** ce concept doit survivre au moment où quelqu’un te demande « pourquoi ? » en plein chaos. Garde l’explication technique exacte, puis donne-lui une image qu’on peut raconter demain.
 
-# Journal TDD : à écrire par l'apprenant
+# Journal TDD : 04 BREAKING CACHE : à écrire par l'apprenant
 
 Ce fichier est un **carnet de combat**, pas un corrigé. Rien n'est rempli à ta place. Chaque étape doit être écrite pendant que tu construis le projet.
 
@@ -20,6 +20,8 @@ Pour chaque comportement important :
 - **Risque résiduel :** qu'est-ce qui pourrait encore casser ?
 
 ## 2. Décisions sous tension
+
+Exemples propres à ce projet : frontière TTL, clé tenant/boutique, invalidation après commit, absence de cache après échec du loader.
 
 Documente au moins trois moments où une solution “évidente” semblait séduisante mais a dû être refusée.
 

@@ -8,6 +8,8 @@ transfer_distance: low
 assessment_role: instructional_checkpoint
 ---
 
+# Mise en pratique : Chaîner des opérations async sans perdre les erreurs en route
+
 > **SCÈNE CRAZYDEVS : Mission Konoha :** trois clones partent en même temps, mais un seul doit avoir le dernier mot. Si tu ne distingues pas file d'attente, concurrence et ordre d'exécution, les clones vont te livrer leurs résultats dans un ordre qui te fera accuser le mauvais ninja.
 
 ## TYPE
@@ -79,3 +81,15 @@ Tu as réduit le temps de rendu serveur de ta page d'accueil, mesuré. Commit.
 ## CHECKPOINT DE PROFONDEUR : variation B : défendre l'inverse
 
 Ferme la page et défends pendant quelques minutes une stratégie opposée à celle implicitement recommandée ici. Cherche son meilleur cas d'usage, puis montre le cas où elle casse. Reviens ensuite à la stratégie initiale et justifie le choix par des mécanismes, pas par le vocabulaire du cours.
+
+## Livraison produit obligatoire : Kintana : Notification fiable
+
+> **Fil narratif : Équipe 7 / Naruto :** Kakashi ne lance pas l’équipe dans le brouillard sans objectif ni plan de sortie. Ici, la mission commence par une hypothèse vérifiable, pas par un clavier en surchauffe.
+
+Le micro-exercice existant reste une mise en jambe : il isole un mécanisme, mais ne suffit pas comme preuve de maîtrise. La livraison évaluée améliore le même produit [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
+
+**Mission liée à « 51-promise_chain_reactor_minimini_projet » :** Dans Kintana, traite une notification ou un événement soumis à délai, doublon et panne. Définis la politique de reprise et prouve qu’un rejeu ne double pas l’effet.
+
+Intègre cette notion au traitement asynchrone des notifications Kintana. Simule au moins un timeout, un retry et un événement reçu deux fois ; conserve une clé stable pour empêcher un double effet.
+
+**Livrable :** incrément intégré, tests ou vérifications, note de décision et contre-exemple. **Gate :** Le système ne perd pas silencieusement l’événement ; il ne double pas l’effet ; le délai et le nombre de tentatives sont observables. Étiquette les résultats locaux `LAB` ; ne revendique `PRODUCTION` qu’après déploiement et observation réels.

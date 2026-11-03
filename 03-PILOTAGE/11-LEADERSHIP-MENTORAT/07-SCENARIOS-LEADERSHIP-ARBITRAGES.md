@@ -142,3 +142,51 @@ Choisir deux scénarios et produire une note décisionnelle d'une page chacun. F
 ## Transfert inter-équipe
 
 Choisis un des scénarios et rejoue-le avec une autre contrainte : équipe distante, budget réduit de moitié ou échéance réglementaire avancée. Garde les faits invariants, mets à jour les options et justifie ce qui change. **Vérification :** l'ADR ou la note de décision doit nommer l'hypothèse qui a basculé le choix et l'indicateur qui fera réexaminer la décision.
+
+<!-- AF-DIAGRAM:leadership -->
+
+## Repère visuel utile : Traiter un arbitrage de leadership
+
+```text
+situation et acteurs
+       |
+       v
+intérêts + contraintes
+       |
+       v
+options et coûts
+       |
+       v
+décision expliquée
+       |
+       v
+suivi et apprentissage
+```
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Sept situations de leadership : décider, expliquer et obtenir un mouvement collectif** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Résoudre un arbitrage de leadership de bout en bout
+
+**Mission liée à « Sept situations de leadership : décider, expliquer et obtenir un mouvement collectif » :** Choisis deux scénarios parmi les situations du dossier et traite-les comme des décisions Kintana : diagnostic, personnes concernées, options, décision, communication, suivi et condition de révision.
+
+**Livrable :** Deux fiches d’arbitrage et une synthèse des principes réutilisables.
+
+**Critères d’acceptation :** Les conséquences sur plusieurs équipes sont visibles ; la décision a un propriétaire ; la consultation n’est pas confondue avec un veto collectif.
+
+**Transfert obligatoire :** Un scénario devient irréversible : identifie les points de contrôle à déplacer avant l’engagement.

@@ -3,6 +3,13 @@ stability: evolutif
 acte: maitrise
 noyau: non
 route: depth
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/01-rag-recherche-hybride.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/01-rag-recherche-hybride.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # 03 : RAG Blindé
@@ -11,6 +18,19 @@ route: depth
 
 **Place dans le parcours :** Projet phare IA : le premier système documentaire complet.  
 **Prérequis :** API/DB, indexation et requêtes, sécurité/auth, tests ; tribunal IA ; connaissances d’embeddings et de recherche lexicale à acquérir via le pont RAG.
+
+## Parcours de préparation obligatoire
+
+Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0--socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
+
+Étudie dans cet ordre :
+
+1. [SQL et modélisation](../01-DATABASES/README.md) ; [HTTP/REST](../../02-CONSTRUCTION/18-WEB-CONCEPTS/02-http_rest_basics.md) et [API Craft](../../02-CONSTRUCTION/19-API-CRAFT/README.md).
+2. [Authentification/autorisation](../../02-CONSTRUCTION/18-WEB-CONCEPTS/06-auth_authz.md), [RBAC/ABAC/IDOR](../../03-PILOTAGE/04-SECURITY/13-autorisation_rbac.md) et [transactions](../../06-ANNEXES-TRANSVERSES/65-LAB-DONNEES-API-ET-TRANSACTIONS.md).
+3. [Parcours de lecture IA](../../06-ANNEXES-TRANSVERSES/19-PRODUIT-IA-REFERENCE/09-PARCOURS-LECTURE-APPRENANT.md), [Lab 60](../../06-ANNEXES-TRANSVERSES/60-LAB-SERVICE-IA-END-TO-END.md), puis [Leçon-pont 01 : RAG/recherche hybride](LECONS-PONTS/01-rag-recherche-hybride.md) et [02 : Évaluation IA](LECONS-PONTS/02-evaluation-et-llm-judge.md).
+4. Termine [02 : Tribunal des IA](02-tribunal-des-ia.md) avec un verdict `PASS` avant de construire RAG Blindé : le pont 02 prépare les notions, mais ne remplace pas la preuve du projet.
+
+**Gate d'entrée :** le [Tribunal des IA](02-tribunal-des-ia.md) a un verdict `PASS` traçable ; tu peux produire un baseline lexical, un baseline vectoriel, mesurer le retrieval sur des labels, expliquer le chunking/embedding et prouver une ACL cross-tenant côté serveur. Si tu n'as qu'une démo qui « répond bien », tu n'es pas `READY`. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-2--route-ia).
 
 ## Mission
 

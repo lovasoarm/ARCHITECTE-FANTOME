@@ -50,18 +50,14 @@ Tu peux lire ça à voix haute. Tu peux expliquer ça à quelqu'un qui code pas.
 Un contrat, c'est la promesse qu'un module fait à ceux qui l'appellent.
 
 ```text
-// Contrat de calculerClassement
-// entrée : Match[] -- tous les matchs joués jusqu'ici
-// sortie : Classement[] -- trié par points décroissants
-// jamais : de mutation sur les matchs en entrée
-// jamais : d'effet de bord (pas d'écriture en DB, pas de log)
-
-function calculerClassement(matchs: Match[]): Classement[] {
- // ...
-}
+Contrat : calculer le classement
+Entrée : la liste des matchs déjà joués.
+Sortie : la liste des équipes classées par points décroissants.
+Ne doit pas : modifier les matchs reçus.
+Ne doit pas : écrire en base de données ni produire un effet externe.
 ```
 
-Le contrat se définit AVANT le corps de la fonction. C'est pas un commentaire décoratif. C'est une décision.
+Le contrat se définit AVANT le corps de la fonction. C'est une décision, pas un commentaire décoratif. Ici, une description en français courant suffit : la signature avec types sera étudiée plus tard dans le module TypeScript.
 
 ---
 
@@ -148,33 +144,32 @@ type StatutMatch =
 Un bon modèle se lit comme une histoire.
 
 ```text
-// Ce modèle raconte :
-// Un Chevalier d'Or a un nom, une armure, et un statut
-// L'armure peut être portée, détruite ou en recharge
-// Un Chevalier ne peut combattre que si son armure est "portée"
-// Un combat a une durée : si elle dépasse 99.9 secondes, l'armure se détruit
+Chevalier
+- identifiant : texte
+- nom : texte
+- armure : statut + temps restant
 
-type StatutArmure = "portée" | "détruite" | "enRecharge"
+Statuts possibles de l'armure
+- portée
+- détruite
+- en recharge
 
-type Chevalier = {
- id: string
- nom: string
- armure: { statut: StatutArmure; tempsRestant: number }
-}
+Combat
+- chevalier concerné
+- adversaire
+- heure de début
+- durée maximale : 99 900 millisecondes
 
-type Combat = {
- chevalier: Chevalier
- horror: Horror
- débutAt: number    // timestamp
- duréeMax: 99900    // en ms -- loi immuable des Chevaliers d'Or
-}
+Règle : un chevalier ne peut combattre que si son armure est portée.
 ```
 
-Si quelqu'un lit ce modèle et comprend le domaine sans que tu expliques : c'est un bon modèle.
+Si quelqu'un lit ce modèle et comprend le domaine sans explication supplémentaire, c'est un bon modèle. Les déclarations `type` et les unions TypeScript seront revues après le module TypeScript ; ici, les mots et les règles suffisent.
 
 ---
 
 ## EXERCICES
+
+> **Périmètre de cette première passe :** décris les données, invariants et transitions en langage courant, tableau ou pseudo-code. Les exemples TypeScript ne sont pas des prérequis ; aucune implémentation TypeScript n'est attendue avant le module `02-CONSTRUCTION/12-TYPESCRIPT`. Le prolongement après TypeScript est facultatif.
 
 ## EXO 1 : Modélise le système d'évasion de Michael Scofield
 
@@ -211,7 +206,7 @@ Un vote du Ballon d'Or peut être dans ces états :
 
 Modélise les transitions autorisées (format `A --> B`).
 Identifie deux transitions qui doivent être impossibles.
-Implémente le type discriminant qui les rend impossibles en TypeScript.
+Présente le résultat sous forme de tableau ou de schéma : aucun code n'est demandé dans cette première passe. Après le module TypeScript, tu pourras revenir à cet exercice pour traduire le modèle en type discriminant ; ce prolongement est différé et ne bloque pas Problem Solving.
 
 ---
 
@@ -236,3 +231,35 @@ Modéliser avant de coder : c'est décider de la forme des données et des contr
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+<!-- AF-LESSON-PROFILE: debug -->
+
+## Repères de décision
+
+- **Pourquoi :** Sans reproduction, un correctif peut masquer le symptôme tout en laissant la cause active. Un diagnostic solide réduit le risque de régression et le temps perdu en production.
+- **Quand l’utiliser / quand l’éviter :** Utilise cette méthode dès qu'un défaut est observable mais sa cause incertaine. Évite de modifier plusieurs variables à la fois ou d'ajouter des logs qui exposent des données sensibles.
+- **Limites :** Un bug intermittent peut disparaître sous instrumentation. Une reproduction locale peut ne pas contenir la charge, le réseau ou les données du terrain ; conserve les limites de ton diagnostic.
+
+## Mécanisme : la version sans magie
+
+Énonce une hypothèse falsifiable, fixe les entrées, reproduis, collecte un signal ciblé, élimine les hypothèses, corrige puis garde un test de non-régression.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Modéliser avant de coder** se rattache à ce cas concret : Kintana reçoit un signalement de double demande après un délai réseau. Il faut déterminer s'il s'agit d'un double clic, d'un retry, d'un worker rejoué ou d'une transaction non atomique.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Reproduction et correction d'un incident Kintana
+
+> **Statut Kintana : prolongement produit différé, facultatif et sans gate supplémentaire.** La première passe de Problem Solving se fait avec les exercices fictifs de Noa et les pratiques locales de cette leçon. La reproduction d'un incident Kintana suppose des notions d'API, de persistance, de concurrence, de logs et de tests qui sont enseignées plus tard. Ne tente pas de corriger un vrai système et ne fabrique pas de preuve terrain : reprends cette extension après les modules techniques concernés, sur une simulation locale.
+
+> **Arc Walking Dead :** quand l'alerte sonne, courir dans tous les sens ne sauve personne. Reproduis, isole, mesure, puis répare.
+
+**Mission liée à « Modéliser avant de coder » :** Reproduis un scénario de double création ou de notification manquante. Écris trois hypothèses classées, collecte un identifiant de corrélation, isole une cause puis ajoute un test qui échoue avant le correctif.
+
+**Livrable :** un rapport d'incident court, les étapes de reproduction, le patch minimal, le test de régression et les limites non reproduites.
+
+**Critères d’acceptation :** la cause est étayée par un signal ; une seule variable principale change à la fois ; le test détecte l'ancien défaut ; les données sensibles sont masquées dans les traces.
+
+**Transfert facultatif, à la reprise :** change l'ordre des événements ou ajoute une latence variable dans la simulation locale. Vérifie si la même hypothèse tient toujours ; conserve le résultat comme `SIMULATION`, pas comme preuve de terrain.

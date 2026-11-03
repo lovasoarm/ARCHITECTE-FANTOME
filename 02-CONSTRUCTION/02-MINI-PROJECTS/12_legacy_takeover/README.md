@@ -160,22 +160,19 @@ Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un do
 
 Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
 
-### État des tests à la réception
+### État initial, tests et validation
 
-- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
-- **Tests verts de référence :** aucun.
-- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
-- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
-- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
-
-**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.
-
-### Détails d’implémentation et de validation à la réception
-
-- **Code de départ :** aucun système legacy n'est embarqué ; `src/README.md` et `tests/README.md` sont des instructions.
+- **Code de départ :** aucun système legacy n'est embarqué. `src/README.md` et `tests/README.md` sont des consignes ; le dépôt à étudier est choisi par l'apprenant.
 - **Tests de référence verts :** aucun dans AF.
-- **Tests volontairement rouges :** aucun test exécutable AF n'est fourni. Le rouge/vert doit être créé dans le dépôt legacy autorisé choisi par l'apprenant.
-- **Prérequis :** Git, accès à un dépôt que tu es autorisé à cloner, environnement et outils explicitement requis par ce dépôt. Fixe un commit SHA ; ne travaille pas sur une branche mouvante sans le noter.
-- **Démarrage :** `git clone <URL_AUTORISEE> legacy-target`, puis `git -C legacy-target rev-parse HEAD`. Le placeholder doit être remplacé. Lis les scripts et la politique de contribution avant toute commande d'installation ou de test.
-- **Tests à créer :** caractérisation du comportement existant, cas métier, sécurité, non-régression, et test prouvant chaque correction. Ne transforme pas une bizarrerie legacy en règle sans validation métier.
-- **Validation finale :** rejouer exactement la suite documentée au commit initial et au commit corrigé ; comparer sorties, migrations et compatibilité. Le résultat attendu est un dossier de preuves (diagnostic, patch, tests, ADR, plan de rollback), non un programme fourni dans AF.
+- **Tests volontairement rouges :** aucun test exécutable AF n'est fourni. Le premier cycle rouge/vert doit être créé dans un dépôt legacy que l'apprenant est autorisé à utiliser.
+- **Prérequis :** Git, autorisation d'accès au dépôt choisi, environnement et outils explicitement requis par ce dépôt. Figer un commit SHA ; ne pas travailler sur une branche mouvante sans relever le commit.
+- **Démarrage sûr :** remplacer `<URL_AUTORISEE>` dans `git clone <URL_AUTORISEE> legacy-target`, puis relever `git -C legacy-target rev-parse HEAD`. Lire les scripts et la politique de contribution avant toute installation ou commande de test.
+- **Tests à créer :** caractérisation du comportement existant, cas métier, sécurité, non-régression et test prouvant chaque correction. Ne transforme pas une bizarrerie legacy en règle métier sans validation.
+- **Ordre de travail :** cartographier le dépôt et ses points d'entrée, établir les tests de caractérisation, diagnostiquer, proposer le patch, puis comparer les comportements avant/après.
+- **Validation finale :** rejouer exactement la suite documentée au commit initial et au commit corrigé ; comparer sorties, migrations et compatibilité.
+- **Preuve attendue :** diagnostic, commit de référence, patch, tests, ADR et plan de rollback. Le livrable AF est un dossier de preuves, pas un programme legacy préfabriqué.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.
+- [Référence technique différée](reference/README.md) : à consulter après la tentative, sans recopier dans le livrable.

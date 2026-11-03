@@ -1,6 +1,6 @@
 ---
 stability: intemporel
-last_reviewed: 2026-07
+last_reviewed: 2026-10-31
 depends_on_vendor: false
 acte: comprendre
 cognitive_level: L3
@@ -10,7 +10,7 @@ transfer_distance: medium
 assessment_role: instructional_checkpoint
 ---
 
-> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+> **Repère :** `const` interdit de réaffecter le binding ; il ne gèle pas automatiquement l’objet désigné.
 
 # The const trap : const ne veut pas dire immuable
 
@@ -25,11 +25,11 @@ Temps de lecture ~6 min
 `const` bloque la **réassignation** de la variable. Pas la modification du contenu.
 
 ```js
-const team = [{ name: "Zombie1", hp: 100 }];
+const tasks = [{ id: "TASK-101", status: "open" }];
 
-team[0].hp = 0; // autorisé : on modifie le contenu
-team.push({ name: "Zombie2", hp: 80 }); // autorisé : on modifie le tableau
-team = []; // TypeError (erreur de type : opération incompatible avec le type de donnée) : on réassigne la variable
+tasks[0].status = "done"; // autorisé : on modifie le contenu
+tasks.push({ id: "TASK-102", status: "open" }); // autorisé : on modifie le tableau
+tasks = []; // TypeError (erreur de type : opération incompatible avec le type de donnée) : on réassigne la variable
 ```
 
 ---
@@ -37,14 +37,14 @@ team = []; // TypeError (erreur de type : opération incompatible avec le type d
 ## 2) LE SCHÉMA MENTAL
 
 ```text
-const team --> [ adresse mémoire ]
-        |
-        v
-     [ { name, hp }, ... ] <-- ce contenu, tu peux le modifier
+binding `tasks` --> [valeur de référence]
+                 |
+                 v
+          [ { id, status }, ... ] <-- le contenu reste mutable
 ```
 
-`const` dit : **cette variable pointera toujours vers la même adresse**.
-Il ne dit pas : **le contenu à cette adresse ne changera pas**.
+`const` dit : **ce binding ne pourra pas recevoir une autre valeur**.
+Il ne dit pas : **l'objet désigné est immuable**. Le moteur n'a pas à exposer une adresse physique.
 
 ---
 
@@ -56,20 +56,20 @@ arr1 = [4, 5, 6]; // let autorise la réassignation
 
 const arr2 = [1, 2, 3];
 arr2 = [4, 5, 6]; // TypeError
-arr2.push(4); // le contenu reste modifiable : tu vas à l'adresse 0x1A et tu modifies ce qu'il y a dedans. const s'en fout complètement, il surveille juste la variable, pas le contenu.
+arr2.push(4); // autorisé : l'objet tableau est modifié, le binding arr2 n'est pas réassigné.
 ```
 
 ---
 
-## 4) POUR VRAIMENT FREEZER UN OBJET
+## 4) BLOQUER LES MODIFICATIONS DIRECTES AVEC FREEZE
 
-Si tu veux qu'un objet soit **vraiment immuable**, utilise `Object.freeze (gel d'objet : méthode empêchant toute modification de ses propriétés directes)` :
+Pour bloquer les changements de propriétés directes d'un objet, utilise `Object.freeze()` (gel superficiel : les propriétés propres ne peuvent plus être ajoutées, supprimées ou réaffectées) :
 
 ```js
 const config = Object.freeze({ env: "production", debug: false });
-config.debug = true; // ignoré silencieusement
-config.newProp = "oops"; // ignoré aussi
-console.log(config.debug); // false : rien n'a changé
+config.debug = true; // en mode strict : TypeError ; hors mode strict : l'écriture échoue sans exception
+// Même règle pour l'ajout de config.newProp.
+console.log(config.debug); // false : la propriété reste inchangée
 ```
 
 > Attention : `Object.freeze` est shallow. Les objets imbriqués restent mutables.
@@ -84,7 +84,7 @@ const config = Object.freeze({
   database: { host: "localhost", port: 5432 },
 });
 
-config.env = "dev"; // mur de glace : ignoré
+config.env = "dev"; // mode strict : TypeError ; hors mode strict : écriture ignorée
 config.database.port = 9999; // passe à travers : objet imbriqué vivant
 ```
 
@@ -93,57 +93,22 @@ config.database.port = 9999; // passe à travers : objet imbriqué vivant
 ```text
 config
  |-- env   --> "production"  <-- gelé, intouchable
- |-- database --> [ adresse ]  <-- l'adresse est gelée... pas ce qu'elle pointe
+ |-- database --> [valeur de référence]  <-- le binding de propriété est gelé... pas l'objet imbriqué
 ```
 
 Il protège la **clé**, pas la **maison derrière la clé**. Même arnaque que le shallow copy.
 
-> Pour un vrai deep freeze, il faudrait appeler `Object.freeze` récursivement sur chaque niveau. JS te laisse faire ça toi-même. Sympa de sa part.
-
----
-
-## MISSION : Trouve le Bug
-
-### Objectif
-
-Identifier quelle ligne plante et pourquoi.
-
-### Instructions
-
-Lis ce code. Sans l'exécuter, dis quelle ligne va lancer une erreur et explique pourquoi.
-
-```js
-const heroes = [
-  { name: "Shadow", hp: 200 },
-  { name: "Blaze", hp: 150 },
-];
-
-heroes[0].hp -= 50; // ligne A
-heroes.push({ name: "Frost", hp: 180 }); // ligne B
-heroes = []; // ligne C
-heroes[1].hp = 0; // ligne D
-```
-
-### Réponse attendue
-
-```text
-Ligne A --> autorisé : on modifie le contenu d'un objet
-Ligne B --> autorisé : on modifie le tableau (pas la variable)
-Ligne C --> TypeError : Assignment to constant variable
-      const bloque la réassignation, pas la mutation
-Ligne D --> ne s'exécute jamais : le crash vient avant (jamais atteinte : le crash a déjà tué l'exécution. Tout ce qui vient après le mur n'existe plus.)
-```
+> Pour figer aussi les objets imbriqués, il faut parcourir récursivement la structure et appliquer `Object.freeze()` à chaque objet atteint. Il faut définir le traitement des cycles et des types spéciaux : un simple appel ne suffit pas.
 
 ---
 
 ## Résumé
 
-| Action                       | `const` | `let` |
-| ---------------------------- | ------- | ----- |
-| Réassigner la variable       | non     | ok    |
-| Modifier le contenu          | ok      | ok    |
-| Freezer le contenu           | non     | non   |
-| Freezer avec `Object.freeze` | ok      | ok    |
+| Action                                               | `const` | `let` |
+| ---------------------------------------------------- | ------- | ----- |
+| Réassigner la variable                               | non     | ok    |
+| Modifier le contenu                                  | ok      | ok    |
+| Bloquer les changements directs avec `Object.freeze` | oui     | oui   |
 
 > `const` = la clé est soudée à ta main. Mais la maison, tu peux toujours la repeindre.
 
@@ -153,10 +118,54 @@ Ligne D --> ne s'exécute jamais : le crash vient avant (jamais atteinte : le cr
 
 `const` interdit la réassignation de la variable : tu ne peux pas pointer vers un autre objet. Mais il n'empêche pas de modifier le contenu de l'objet déjà pointé.
 
-Si tu veux un objet vraiment immuable : `Object.freeze()`. Et `freeze` ne gèle que le premier niveau, donc les objets imbriqués restent mutables.
+`Object.freeze()` bloque les changements directs des propriétés propres, mais ne fige pas récursivement les objets imbriqués. Il ne rend donc pas automatiquement toute une structure profondément immuable.
 
-La règle : `const` = référence verrouillée. Pas objet immuable.
+La règle : `const` = binding non réassignable. `Object.freeze()` = gel superficiel des propriétés propres. Aucun des deux ne garantit à lui seul une immutabilité profonde.
 
-## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
+> **Statut : approfondissement facultatif.** Termine d’abord la mission de base et vérifie que tu comprends l’exemple principal. Ce checkpoint n’est pas une gate et ne conditionne pas le passage au sous-module suivant. S’il utilise une notion que tu n’as pas encore étudiée, saute-le pour la première passe et reviens-y plus tard.
+
+## Approfondissement facultatif : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+<!-- AF-LESSON-PROFILE: variables -->
+
+## Repères de décision
+
+- **Pourquoi :** `const` rend le binding non réassignable ; `Object.freeze()` bloque les changements des propriétés directes d'un objet. Ce sont deux protections différentes.
+- **Quand l’utiliser / quand l’éviter :** Utilise `const` pour un nom qui ne doit pas être réaffecté. Utilise `Object.freeze()` si tu as réellement besoin de protéger la surface d'un objet, en sachant que le gel est superficiel.
+- **Limites :** Ni `const` ni un appel simple à `Object.freeze()` ne rendent automatiquement tout un graphe d'objets profondément immuable.
+
+## Mécanisme : la version sans magie
+
+`const` interdit de remplacer la valeur associée au binding. Il n'interdit pas de modifier l'objet désigné. `Object.freeze()` bloque l'ajout, la suppression et la réaffectation des propriétés directes ; les objets imbriqués restent modifiables tant qu'ils ne sont pas gelés eux aussi.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), une configuration peut être référencée par un binding `const`. Cela empêche de remplacer ce binding, mais ne protège pas automatiquement les propriétés de la configuration ni ses objets imbriqués.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : distinguer binding constant et objet gelé
+
+> **Arc Capsule Corp. :** verrouiller l'étiquette ne verrouille pas automatiquement tout ce qu'elle désigne. Il faut savoir quelle frontière est réellement protégée.
+
+**Mission liée à « The const trap : const ne veut pas dire immuable » :** Prédis les opérations autorisées sur une configuration déclarée avec `const`, puis sur un objet passé à `Object.freeze()`. Distingue la réaffectation du binding, la mutation d'une propriété et la mutation d'un objet imbriqué.
+
+```js
+"use strict";
+const config = Object.freeze({
+  mode: "test",
+  database: { host: "localhost" },
+});
+
+config.database.host = "db.internal"; // autorisé : l'objet imbriqué n'est pas gelé
+// config.mode = "production"; // TypeError en mode strict : propriété directe gelée
+// config = {}; // TypeError : binding const non réassignable
+```
+
+**Livrable :** un tableau `opération / autorisée ou refusée / raison` pour les trois lignes.
+
+**Critères d’acceptation :** les deux erreurs sont expliquées séparément ; l'apprenant sait que `Object.freeze()` est superficiel ; il sait que `const` empêche la réaffectation du binding, pas toute mutation de l'objet.
+
+**Transfert obligatoire :** explique quelles propriétés seraient encore modifiables si `database` contenait à son tour un objet `credentials`.

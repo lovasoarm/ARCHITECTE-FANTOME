@@ -7,6 +7,13 @@ perturbation_modes: [changement_contexte, changement_echelle]
 anti_recipe_key: changement_contexte+changement_echelle
 transfer_distance: medium
 assessment_role: instructional_checkpoint
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/07-CLOUD-FOUNDATIONS/01-00-why-cloud-foundations.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 03-PILOTAGE/07-CLOUD-FOUNDATIONS/01-00-why-cloud-foundations.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.
@@ -52,10 +59,10 @@ Remplis la grille pour deux fournisseurs sur ton fil rouge, avec des prix relev�
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
 
-<!-- AF-P0-2026-10-30: missing_example -->
-
 ### Exemple travaillé : cas métier
 
-Des stations distantes envoient des mesures avec réseau intermittent ; le système doit absorber les reprises sans doubler les écritures. Compare une journée normale et un pic dix fois supérieur. Pour « Choisir un fournisseur : la grille, et la porte de sortie », note le composant, le coût ou le risque qui varie, et le signal observable qui révèle la limite.
+**Exemple résolu (hypothétique, non tarifaire).** Deux offres permettent d'héberger une API. L'offre A coûte moins cher à capacité nominale mais facture séparément le trafic sortant ; l'offre B coûte davantage par heure mais inclut une enveloppe de trafic et une restauration automatisée. L'équipe estime son volume de requêtes, les octets sortants et le coût de sortie avant de comparer. Elle choisit A pour un pilote réversible, mais écrit un seuil d'alerte sur le trafic et conserve une procédure d'export. **Pourquoi :** le coût pertinent dépend de l'unité consommée et du coût de sortie, pas du seul prix affiché par heure.
+
+**À toi :** Des stations distantes envoient des mesures avec réseau intermittent ; le système doit absorber les reprises sans doubler les écritures. Compare une journée normale et un pic dix fois supérieur. Pour « Choisir un fournisseur : la grille, et la porte de sortie », note le composant, le coût ou le risque qui varie, et le signal observable qui révèle la limite.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

@@ -1,18 +1,19 @@
 ---
-perishability_id: PER-0053
 
-stability: perissable
+stability: "intemporel"
 acte: pratiquer
 cognitive_level: L4
 perturbation_modes: [constraints_injectees, decision_organisationnelle]
 anti_recipe_key: constraints_injectees+decision_organisationnelle
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0053
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/05-OBSERVABILITY/01-00-why-observability.md"
+source_scope: "Référence interne de fond sur observabilité et lecture des signaux ; le scénario d’astreinte est pédagogique."
+provenance_note: "Référence interne explicitement reliée au sujet ; elle ancre le parcours mais ne constitue pas une preuve externe. Aucun contenu n’est déclaré revérifié par cette mise à jour."
 ---
 > **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.
 

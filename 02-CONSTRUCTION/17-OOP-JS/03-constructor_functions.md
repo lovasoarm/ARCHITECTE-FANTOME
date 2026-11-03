@@ -266,10 +266,32 @@ Remplacer `.prototype` entièrement après coup ne touche jamais les instances d
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Constructor functions : la façon old school avant "class" » à un troisième fournisseur dont l’API ne ressemble pas aux deux premiers. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: oop-constructor-functions -->
+
+## Repères de décision
+
+- **Pourquoi :** Les fonctions constructrices expliquent les anciens modèles JavaScript, la mécanique de `new`, le partage des méthodes et les bugs causés par un appel sans `new`.
+- **Quand l’utiliser / quand l’éviter :** Comprends-les pour maintenir du code historique ou analyser une bibliothèque qui les expose. Pour du nouveau code applicatif, préfère généralement `class` lorsque sa syntaxe rend le contrat plus lisible ; ne crée pas de constructeur pour un simple objet de données.
+- **Limites :** L’appel sans `new` peut donner un résultat différent selon le mode strict et polluer l’objet global en mode non strict. `instanceof` vérifie la chaîne de prototypes, pas une vérité universelle sur le type ou l’origine d’un objet.
+
+## Mécanisme : la version sans magie
+
+`new C(args)` crée un objet, relie son prototype à `C.prototype`, appelle `C` avec cet objet comme `this`, puis retourne cet objet sauf si le constructeur retourne explicitement un autre objet. Les méthodes placées sur `C.prototype` sont partagées entre les instances.
+
+## Ancrage produit / terrain : Kintana
+
+Un ancien module Kintana expose encore une fonction `Demande`. Le mainteneur doit comprendre comment ses instances sont créées et pourquoi une méthode placée dans le constructeur est recréée à chaque appel.
+
+## Mission utile : Kintana : sécuriser un constructeur historique
+
+**Livrable :** un exemple de fonction constructrice, une méthode partagée sur `.prototype`, un cas d’appel sans `new` et une protection ou une migration vers `class` justifiée.
+
+**Critères d’acceptation :** tu décris les quatre effets de `new` ; les méthodes partagées ne sont pas recréées par instance ; le comportement sans `new` est maîtrisé ; les limites d’`instanceof` sont mentionnées.
+
+**Transfert obligatoire :** explique ce qui change lorsqu’une instance traverse une frontière de contexte JavaScript, par exemple un `iframe` ou un worker, et pourquoi `instanceof` peut alors être insuffisant.

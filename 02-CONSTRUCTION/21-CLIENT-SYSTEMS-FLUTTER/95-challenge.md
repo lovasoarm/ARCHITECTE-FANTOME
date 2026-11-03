@@ -1,6 +1,13 @@
 ---
 stability: evolutif
 acte: évaluer
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "02-CONSTRUCTION/21-CLIENT-SYSTEMS-FLUTTER/01-00-why-client-systems.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 02-CONSTRUCTION/21-CLIENT-SYSTEMS-FLUTTER/01-00-why-client-systems.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : Garo contre le réseau :** le backend change son contrat pendant que tu es en prod. Le héros qui « corrige vite » casse la moitié des clients. Le héros Staff commence par mesurer.

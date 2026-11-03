@@ -8,12 +8,23 @@ perturbation_modes: [defaut_cache, fausse_piste]
 anti_recipe_key: defaut_cache+fausse_piste
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0006
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: "https://nodejs.org/docs/v22.23.4/api/errors.html"
+source_type: primary
+review_interval: "6 mois"
+review_due: "2027-05-03"
+source_scope: "Documentation officielle versionnée Node.js 22.23.4 Errors, rapprochée du contenu ciblé sur Error, Error.stack, captureStackTrace et les traces. Le contenu officiel versionné a été consulté via le miroir officiel R2 lorsque nodejs.org ne rendait pas la page directement. Les commandes locales ne sont pas certifiées pour tous les OS."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+additional_sources:
+  - "https://v8.dev/docs/stack-trace-api"
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "VERSIONED_NODE_ERRORS_REFERENCE_AND_NAMED_SCOPE_CHECKED_2026-11-03"
+claim_reviewed_on: "2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : mur de siège :** le bug n'est pas “où ça a explosé ?”, mais “où la première fissure est-elle apparue ?”. Ici, chaque log, test et reproduction est une empreinte dans le mur.
 
 # Lire une stack trace : la carte qui te dit où le code a explosé
@@ -21,10 +32,10 @@ review_status: a_verifier_date_absente
 Temps de lecture ~6 min
 
 Tu vois du rouge dans ta console. Dix lignes. Peut-être vingt.
-Premier réflexe de 90% des devs : copier-coller sur Google sans lire.
+Un réflexe fréquent consiste à copier-coller le message sur un moteur de recherche sans lire la trace.
 
-Mauvais réflexe. La stack trace te dit déjà tout ce dont tu as besoin.
-C'est pas une punition : c'est une carte du chemin que le code a pris avant de planter.
+Mauvais réflexe. La stack trace donne des indices sur le chemin d'exécution, mais elle ne dit pas toujours tout : elle peut être limitée en nombre de frames, ne montrer qu'une partie du parcours asynchrone et varier selon le moteur, la version ou les outils.
+C'est pas une punition : c'est une carte partielle qu'il faut recouper avec le message, le code et la reproduction.
 
 Ce fichier t'apprend à la lire, ligne par ligne, sans panique.
 
@@ -32,12 +43,9 @@ Ce fichier t'apprend à la lire, ligne par ligne, sans panique.
 
 ## 1) CE QU'EST UNE STACK TRACE
 
-Quand JS plante, il prend une photo de la call stack (pile d'appels) au moment du crash.
-Cette photo, c'est la stack trace.
+Une stack trace est une représentation des frames d'appel associées à une erreur. Dans Node/V8, la propriété `error.stack` est généralement rattachée au moment où l'objet `Error` est créé (ou quand `Error.captureStackTrace()` est appelé), puis sa chaîne est formatée à la lecture. Pour une erreur native comme ce `TypeError`, le moteur construit la trace autour du point où l'erreur est produite.
 
-La call stack (pile d'appels) : l'empilement des fonctions en cours d'exécution.
-Chaque appel de fonction ajoute une entrée. Chaque retour en enlève une.
-Quand ça plante, JS affiche cette pile du moment.
+La call stack (pile d'appels) : l'empilement des fonctions actives. Chaque appel ajoute une frame ; le retour en retire une. La trace disponible n'est pas nécessairement toute l'histoire : `Error.stackTraceLimit`, les frontières async et les outils peuvent en limiter le contenu.
 
 ```text
 CALL STACK au moment du crash
@@ -48,7 +56,7 @@ CALL STACK au moment du crash
  <anonymous>    <-- point d'entrée du script
 ```
 
-La stack trace lit cette pile de haut en bas : du plus récent au plus ancien.
+Dans les exemples V8 ci-dessous, la première frame utile est généralement la plus proche de l'erreur, puis viennent les appelants. Vérifie toujours la convention affichée par ton runtime.
 
 ---
 
@@ -74,7 +82,7 @@ simulerCombat(
 );
 ```
 
-Résultat dans le terminal :
+Exemple de forme possible dans le terminal (le format et les frames exactes varient selon Node/V8) :
 
 ```text
 TypeError: Cannot read properties of undefined (reading 'defense')
@@ -121,8 +129,7 @@ Le chemin d'appel : `simulerCombat` -> `lancerJutsu` -> `calculerDegats` -> cras
   at Module._extensions..js ...
 ```
 
-Ces lignes commencent par `node:internal` ou `node:` : ce sont les internes de Node.
-Tu n'as pas écrit ce code. Tu ne peux pas le modifier. Tu les ignores.
+Ces lignes commencent par `node:internal` ou `node:` : elles décrivent le chemin dans le runtime Node. Elles ne sont généralement pas le premier endroit à corriger pour un bug métier, mais ne les ignore pas systématiquement : elles peuvent montrer une frontière utile (chargement de module, timer, réseau, filesystem) ou aider à identifier une erreur du runtime / d'une API.
 
 ---
 
@@ -133,13 +140,12 @@ at calculerDegats (combat.js:2:39)     <- ton code : lis cette ligne
 at lancerJutsu  (combat.js:7:10)     <- ton code : lis cette ligne
 at simulerCombat (combat.js:11:10)     <- ton code : lis cette ligne
 at Object.<anonymous> (combat.js:14:1)   <- ton code (point d'entrée)
-at Module._compile (node:internal/...)   <- Node interne : ignore
-at Module._extensions (node:internal/...)  <- Node interne : ignore
-at Module.load  (node:internal/...)    <- Node interne : ignore
+at Module._compile (node:internal/...)   <- runtime : inspecte si pertinent
+at Module._extensions (node:internal/...)  <- runtime : inspecte si pertinent
+at Module.load  (node:internal/...)    <- runtime : inspecte si pertinent
 ```
 
-Règle simple : dès que tu vois `node:internal`, `node:`, ou un chemin dans `node_modules` :
-tu t'arrêtes de lire. Tout ce qui est au-dessus, c'est le tien.
+Règle de départ : commence par la première frame de ton code, puis remonte les appelants. Les frames `node:internal` et `node_modules` ne sont pas automatiquement inutiles : inspecte-les si ton code les traverse directement, si l'erreur concerne une API ou si la première frame applicative n'explique pas le problème. Une dépendance peut aussi être la source du défaut.
 
 ---
 
@@ -170,21 +176,16 @@ TypeError: Cannot read properties of null (reading 'armer')
   at envoyerAlerte (patrouille.js:3:24)
   at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 
-Node.js v22.23.3
-(Use `node --async-stack-traces` for better stack traces)
+Sortie illustrative  : le texte exact dépend de Node/V8.
+(Aucune option supplémentaire n'est normalement nécessaire pour les frames async prises en charge par V8.)
 ```
 
-Deux différences par rapport à une stack synchrone :
+Deux points à comprendre :
 
-Première différence : la trace est plus courte. Le contexte async est partiellement perdu.
-Node affiche souvent `process.processTicksAndRejections` : c'est un interne, ignore.
+- Une fonction qui a déjà terminé (`trouverChevalier`, ici) n'apparaît pas forcément comme une frame active au moment de l'erreur. V8 peut toutefois reconstruire certaines frontières `await` et les ajouter comme frames marquées `async`.
+- `process.processTicksAndRejections` est une frame du mécanisme de Promises de Node. Elle explique le passage par la file de microtâches ; ce n'est pas nécessairement la cause du défaut.
 
-Deuxième différence : `trouverChevalier` n'apparaît pas dans la trace.
-Pourquoi : l'erreur s'est produite dans `envoyerAlerte`, après que `trouverChevalier`
-avait déjà résolu sa Promise et libéré sa frame de la stack.
-
-Option utile en Node : `node --async-stack-traces patrouille.js`
-Donne une trace plus complète en mode développement. En prod : impact perf, désactiver.
+**À propos de `--async-stack-traces` :** V8 active les traces asynchrones « zero-cost » par défaut depuis V8 7.3. Tu n'as normalement pas besoin d'ajouter cette option à Node 22. La reconstruction concerne surtout les sites `await`, `Promise.all()` et `Promise.any()` documentés par V8 ; elle ne reconstitue pas tous les callbacks ni tout l'historique du programme. Si une frame manque, inspecte le flux de Promises, les erreurs `cause`, les logs corrélés et les points d'entrée plutôt que de compter sur un drapeau magique.
 
 ---
 
@@ -204,15 +205,21 @@ RangeError: Maximum call stack size exceeded
 
 Lecture :
 
-- Type : `RangeError`, message `Maximum call stack size exceeded` : c'est une récursion infinie.
+- Type : `RangeError`, message `Maximum call stack size exceeded` : la profondeur d'appels a dépassé la limite du runtime.
 - Fonction en cause : `puissance` dans `dbz.js`.
-- Lignes 4 et 5 en alternance : la fonction s'appelle elle-même sans condition d'arrêt.
-- Le fichier `dbz.js`, ligne 8 : c'est là où `puissance` a été appelée la première fois.
+- La répétition des frames suggère une récursion ou un enchaînement d'appels trop profond.
+- La ligne 8 est un point d'entrée possible ; vérifie les arguments transmis et le chemin qui mène à la récursion.
 
-Diagnostic : vérifier le cas de base (base case) de la récursion dans `puissance`.
-S'il est absent ou jamais atteint : récursion infinie garantie.
+Diagnostic : vérifie le cas de base (base case), la progression de l'argument et les entrées extrêmes. Une récursion infinie est une cause possible, mais une récursion finie trop profonde peut aussi dépasser la limite. Le message seul ne prouve donc pas l'absence de condition d'arrêt.
 
 ---
+
+## Références ciblées
+
+- [Node.js v22.23.4 : Errors](https://nodejs.org/docs/v22.23.4/api/errors.html) : `Error.stack`, `Error.captureStackTrace` et `Error.stackTraceLimit`.
+- [V8 : Stack Trace API](https://v8.dev/docs/stack-trace-api) : capture des frames et limites des traces asynchrones zero-cost.
+
+Ces références soutiennent les mécanismes décrits ci-dessus ; elles ne garantissent pas que chaque trace produite par ton environnement aura exactement la même forme.
 
 ## EXERCICES
 
@@ -268,3 +275,55 @@ En async, la trace est parfois incomplète : `node --async-stack-traces` aide en
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+
+<!-- AF-DIAGRAM:debug -->
+
+## Repère visuel utile : Reproduction et correction d'un incident Kintana
+
+```text
+signal utilisateur
+      |
+      v
+hypothèses falsifiables
+      |
+      v
+reproduction stable ? -- non --> instrumenter
+      | oui
+      v
+isoler la cause
+      |
+      v
+patch minimal + test de régression
+```
+
+<!-- AF-LESSON-PROFILE: debug -->
+
+## Repères de décision
+
+- **Pourquoi :** Sans reproduction, un correctif peut masquer le symptôme tout en laissant la cause active. Un diagnostic solide réduit le risque de régression et le temps perdu en production.
+- **Quand l’utiliser / quand l’éviter :** Utilise cette méthode dès qu'un défaut est observable mais sa cause incertaine. Évite de modifier plusieurs variables à la fois ou d'ajouter des logs qui exposent des données sensibles.
+- **Limites :** Un bug intermittent peut disparaître sous instrumentation. Une reproduction locale peut ne pas contenir la charge, le réseau ou les données du terrain ; conserve les limites de ton diagnostic.
+
+## Mécanisme : la version sans magie
+
+Énonce une hypothèse falsifiable, fixe les entrées, reproduis, collecte un signal ciblé, élimine les hypothèses, corrige puis garde un test de non-régression.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Lire une stack trace : la carte qui te dit où le code a explosé** se rattache à ce cas concret : Kintana reçoit un signalement de double demande après un délai réseau. Il faut déterminer s'il s'agit d'un double clic, d'un retry, d'un worker rejoué ou d'une transaction non atomique.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Reproduction et correction d'un incident Kintana
+
+> **Arc Walking Dead :** quand l'alerte sonne, courir dans tous les sens ne sauve personne. Reproduis, isole, mesure, puis répare.
+
+**Mission liée à « Lire une stack trace : la carte qui te dit où le code a explosé » :** Reproduis un scénario de double création ou de notification manquante. Écris trois hypothèses classées, collecte un identifiant de corrélation, isole une cause puis ajoute un test qui échoue avant le correctif.
+
+**Livrable :** un rapport d'incident court, les étapes de reproduction, le patch minimal, le test de régression et les limites non reproduites.
+
+**Critères d’acceptation :** la cause est étayée par un signal ; une seule variable principale change à la fois ; le test détecte l'ancien défaut ; les données sensibles sont masquées dans les traces.
+
+**Transfert obligatoire :** Change l'ordre des événements ou ajoute une latence variable. Vérifie si la même hypothèse tient toujours.
+
+> **À garder en tête :** la forme d’une stack trace dépend du runtime, des source maps, de la transpilation et parfois de la minification. Lis les chemins et numéros de ligne comme des indices propres à l’exécution observée, pas comme une preuve que le code source affiché correspond exactement au fichier livré. Référence : [documentation officielle Node.js sur les erreurs](https://nodejs.org/docs/v22.23.4/api/errors.html).

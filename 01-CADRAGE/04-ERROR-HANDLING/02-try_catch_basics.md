@@ -210,23 +210,27 @@ try {
 ## 6) FINALLY : LE BLOC QUI TOURNE TOUJOURS
 
 ```js
-function chargerDonneeesMatch(id) {
-  let connexion = null;
+const { open } = require("node:fs/promises");
+
+async function lireFichier(path) {
+  // open() acquiert la ressource avant le try ; s'il échoue, aucun handle n'existe à fermer.
+  const handle = await open(path, "r");
 
   try {
-    connexion = ouvrirConnexion();
-    const data = connexion.query(`SELECT * FROM matchs WHERE id = ${id}`);
-    return data;
-  } catch (e) {
-    console.error("erreur pendant la requête :", e.message);
-    return null;
+    return await handle.readFile({ encoding: "utf8" });
   } finally {
-    // peu importe ce qui s'est passé dans try ou catch
-    // on ferme la connexion
-    if (connexion) connexion.close();
+    // readFile() est terminé avant le nettoyage ; close() est lui-même asynchrone.
+    await handle.close();
   }
 }
 ```
+
+Cet exemple utilise le module natif `node:fs/promises` de Node.js. Il suppose que le
+chemin désigne un fichier accessible. Le `finally` attend la fermeture du handle aussi
+bien après une lecture réussie qu'après un rejet. Dans une application réelle, définis
+également comment traiter une éventuelle erreur de fermeture sans masquer la cause
+initiale ; les abstractions de ressources et les bibliothèques peuvent proposer leur
+propre contrat de nettoyage.
 
 Le `finally` s'exécute même si le `try` a un `return`. C'est garanti.
 
@@ -338,3 +342,33 @@ Si une erreur n'est pas de ton ressort : `throw e`. Ne jamais avaler silencieuse
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+<!-- AF-LESSON-PROFILE: errors -->
+
+## Repères de décision
+
+- **Pourquoi :** Une politique d'erreur explicite empêche un échec temporaire de devenir une boucle infinie et évite de cacher un défaut métier derrière un message vague.
+- **Quand l’utiliser / quand l’éviter :** Classe l'erreur selon sa cause et sa récupérabilité. Retry uniquement les erreurs transitoires et les opérations idempotentes ; remonte les violations métier et sécurité sans boucle automatique.
+- **Limites :** Un `catch` trop large masque la cause. Un retry peut amplifier une panne et doubler un effet ; une erreur personnalisée ne rend pas un message sûr à exposer au client.
+
+## Mécanisme : la version sans magie
+
+Capture au niveau qui peut décider, enrichis avec le contexte utile, transforme en contrat stable et préserve la cause originale pour le diagnostic.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Try/catch : ce qu'il attrape et ce qu'il laisse filer** se rattache à ce cas concret : La création de demande Kintana doit distinguer validation, refus d'accès, conflit d'idempotence, timeout fournisseur et panne de base.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Contrat d'erreur stable pour l'API Kintana
+
+> **Arc Walking Dead :** une erreur n'est pas toujours un zombie à abattre. Certaines se récupèrent ; d'autres doivent arrêter la mission immédiatement.
+
+**Mission liée à « Try/catch : ce qu'il attrape et ce qu'il laisse filer » :** Définis les erreurs du parcours de création de demande. Ajoute une conversion stable vers les réponses API, une politique retry par classe et des tests qui vérifient qu'un secret ou une pile interne ne fuit pas.
+
+**Livrable :** un catalogue d'erreurs, un mapper HTTP, des tests de contrat et une table de décision retry/no-retry.
+
+**Critères d’acceptation :** les erreurs métier, techniques et de sécurité sont séparées ; les causes sont conservées côté serveur ; aucun retry n'est fait sur opération non idempotente sans clé ; les réponses client restent stables.
+
+**Transfert obligatoire :** Ajoute une panne fournisseur qui récupère après deux tentatives et compare le comportement avec une validation refusée.

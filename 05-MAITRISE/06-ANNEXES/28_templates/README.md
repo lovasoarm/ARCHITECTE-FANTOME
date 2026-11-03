@@ -11,11 +11,11 @@ Cet emplacement regroupe les templates qui servent à plusieurs modules à la
 fois. Chaque module peut y pointer sans dépendre d'un chemin d'un autre
 module.
 
-| Template | Rôle | Utilisé par |
-|---|---|---|
-| `02-POSTMORTEM.md` | Squelette de post-mortem d'incident ou de mini-projet | 02-CONSTRUCTION/02-MINI-PROJECTS, 03-PILOTAGE/05-OBSERVABILITY, 03-PILOTAGE/04-SECURITY |
-| `HYPOTHESES.md` | Grille d'hypothèses pour un debug méthodique | 01-CADRAGE/03-DEBUGGING, 05-MAITRISE/03-EDGE-CASES, 03-PILOTAGE/05-OBSERVABILITY |
-| `PUBLICATION_CHECKLIST.md` | Checklist avant de publier un billet ou un repo | 02-CONSTRUCTION/02-MINI-PROJECTS, 03-PILOTAGE/10-TEAM-CRAFT, 05-MAITRISE/06-ANNEXES/16_career |
+| Template                   | Rôle                                                  | Utilisé par                                                                                   |
+| -------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `02-POSTMORTEM.md`         | Squelette de post-mortem d'incident ou de mini-projet | 02-CONSTRUCTION/02-MINI-PROJECTS, 03-PILOTAGE/05-OBSERVABILITY, 03-PILOTAGE/04-SECURITY       |
+| `HYPOTHESES.md`            | Grille d'hypothèses pour un debug méthodique          | 01-CADRAGE/03-DEBUGGING, 05-MAITRISE/03-EDGE-CASES, 03-PILOTAGE/05-OBSERVABILITY              |
+| `PUBLICATION_CHECKLIST.md` | Checklist avant de publier un billet ou un repo       | 02-CONSTRUCTION/02-MINI-PROJECTS, 03-PILOTAGE/10-TEAM-CRAFT, 05-MAITRISE/06-ANNEXES/16_career |
 
 ## Convention
 
@@ -34,3 +34,9 @@ module.
 - [POSTMORTEM : {titre}](02-POSTMORTEM.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **décision qui traverse les équipes** : Rédige une RFC/ADR sur une décision Kintana qui affecte API, données et exploitation. Compare au moins deux options, demande une revue contradictoire et transforme les objections en critères d’acceptation. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : La décision a un propriétaire, un coût, un plan de migration et une condition de révision ; l’adoption réelle reste « non démontrée » tant qu’une équipe ne l’a pas adoptée.

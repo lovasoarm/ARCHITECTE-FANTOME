@@ -13,85 +13,66 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~3 min
 
-## Contexte : exercice `09-exo_repro_deterministe.md`, bug `flaky.js`
+## Contexte : exercice `09-exo_repro_deterministe.md`, fixture `11A-flaky.js`
 
-> Livrable de référence. À ouvrir APRÈS avoir tenté l'exercice tout seul.
-> Sert de calibrage : voilà à quoi ressemble un `HYPOTHESES.md` correct,
-> pas juste le template vide. La longueur (60 lignes environ) est la
-> cible ; en-dessous c'est trop vague, au-dessus tu digresses.
+> Livrable de référence à ouvrir APRÈS avoir tenté l'exercice. Il montre
+> comment formuler des hypothèses, fournir une preuve falsifiable et
+> séparer une déduction du code d'une observation réellement exécutée.
 
 ## 1. Hypothèses envisagées
 
-Bug observé : parfois la fonction retournée par `debounce(fn, 100)` déclenche
-`fn` deux fois pour un même burst d'appels, parfois zéro fois, parfois une
-fois correctement. Aucun ordre reproductible en l'état.
+Symptôme : `computeTotal([1, 2, 3])` renvoie normalement `6`, mais une branche rare peut renvoyer `NaN`.
 
-Ordre de probabilité au moment T :
+Hypothèses initiales :
 
-- Hypothèse A : le `timer` est partagé entre plusieurs closures et son
-  identifiant est écrasé par un appel concurrent avant le `clearTimeout`.
-- Hypothèse B : `setTimeout(..., ms)` n'est pas garanti "au moins ms" quand
-  l'event loop est saturé, donc l'ordre entre deux timers proches est
-  non-déterministe.
-- Hypothèse C : `debounce` est appelée plusieurs fois -> plusieurs closures
-  indépendantes, chacune avec son propre `timer`, et le test global les
-  observe empilées.
-- Hypothèse D : bug dans le runner de test (Node --test), pas dans le code.
+- A : Le tableau contient parfois une valeur non numérique.
+- B : Le résultat change à cause de l'ordonnancement de Promises.
+- C : La branche rare affecte `undefined` au bonus, puis l'addition propage `NaN`.
+- D : Le contrat du test est faux : un bonus absent devrait-il vraiment valoir zéro ?
 
-## 2. Preuves d'écartement
+## 2. Preuves et réfutations
 
-- Hypothèse D écartée car : le bug se reproduit aussi avec `node -e` sans
-  runner de test. Le runner n'est pas en cause.
-- Hypothèse B écartée car : en réduisant `ms` à `0` et en isolant deux
-  appels séparés par un `await new Promise(r => setImmediate(r))`, le
-  résultat reste non-déterministe. La saturation de l'event loop n'est
-  pas la cause principale.
-- Hypothèse A écartée car : en instrumentant `debounce` pour logger l'id
-  du `timer`, on voit bien un `clearTimeout` correct à chaque appel dans
-  la même closure. Pas de course intra-closure.
+La fixture valide que les éléments du tableau sont des nombres finis ; cette validation ne soutient donc pas A pour l'entrée `[1, 2, 3]`.
+
+Le code ne contient aucune opération asynchrone ; B ne décrit pas le mécanisme montré.
+
+L'appel contrôlé `computeTotal([1, 2, 3], () => 0.5)` suit la branche normale et retourne `6`. L'appel `computeTotal([1, 2, 3], () => 0)` force la branche rare : `bonus` vaut `undefined`, et `6 + undefined` donne `NaN`. Cette conclusion découle du code et du comportement défini de l'addition JavaScript ; elle ne prétend pas être une mesure de fréquence en production.
+
+D doit être tranchée par la règle métier. Dans cette fixture, l'énoncé définit l'absence de bonus comme « aucun ajout » : la valeur neutre attendue est donc `0`.
 
 ## 3. Hypothèse retenue
 
-Hypothèse C reformulée en une phrase falsifiable :
-"Chaque appel à `debounce(fn, ms)` crée une NOUVELLE closure avec son propre
-`timer`, donc N appels à `debounce` produisent N débounceurs indépendants ;
-le test qui appelle plusieurs fois `debounce(...)` au lieu de réutiliser
-une seule instance observe des déclenchements superposés, à un rythme
-dicté par l'ordre de résolution des `setTimeout`."
+La cause est la branche rare qui renvoie `undefined` pour une quantité additive. Le défaut est déterministe dès que cette branche est forcée ; son apparence intermittente vient de la source aléatoire qui ne la sélectionne que rarement.
 
-Test de falsifiabilité : si on APPELLE `debounce(fn, 100)` UNE seule fois,
-qu'on garde la fonction retournée dans une variable, et qu'on l'appelle 10
-fois de suite -> on doit voir exactement 1 appel à `fn`, systématiquement,
-sur 10/10 exécutions. Si l'hypothèse est fausse, on verra encore du flaky.
+## 4. Reproduction falsifiable
 
-## 4. Preuve de confirmation
-
-Expérience minimale :
+Le test à écrire attend `6` lorsque la source injectée retourne `0` :
 
 ```js
-const debounced = debounce(() => console.log("fired"), 100);
-for (let i = 0; i < 10; i++) debounced();
-setTimeout(() => process.exit(0), 300);
+const test = require("node:test");
+const assert = require("node:assert/strict");
+const { computeTotal } = require("./11A-flaky.js");
+
+test("un bonus absent ne change pas le total", () => {
+  assert.equal(
+    computeTotal([1, 2, 3], () => 0),
+    6,
+  );
+});
 ```
 
-Résultat attendu : "fired" apparaît exactement 1 fois, systématiquement.
-Résultat observé sur 10/10 lancements : "fired" apparaît 1 fois. Confirmé.
+Avant le correctif, le test échoue puisque la valeur obtenue est `NaN`. Après le correctif, il doit passer. Ce document donne le résultat déduit de la fixture ; ajoute tes propres commandes, environnement et sorties lorsque tu as réellement exécuté le test. Ne recopie pas une fréquence ou un « 10/10 » non mesuré.
 
 ## 5. Correction et vérification
 
-- Correction : documenter dans la JSDoc que `debounce` doit être appelée
-  UNE fois pour créer un débounceur, et NE PAS être rappelée pour chaque
-  event. Ajouter un exemple dans le README. Le code de `debounce` est
-  correct ; c'est son usage qui était bogué.
-- Test de non-régression : `repro.test.js` qui construit UN débounceur,
-  l'appelle 10 fois dans un burst, attend 200 ms, assert que `fn` a été
-  appelée 1 fois exactement. Passe 10/10 fois.
+- Remplacer le ternaire fautif par `const bonus = 0;` : les deux branches représentent ici un bonus absent.
+- Garder le test qui injecte `() => 0` pour protéger la branche rare.
+- Conserver un cas normal qui injecte `() => 0.5` et attend également `6`.
+- Après exécution, documenter séparément le test rouge avant le patch et le test vert après le patch.
 
 ## 6. Ce que j'ai appris
 
-Le non-déterminisme n'était pas dans le CODE de `debounce` mais dans son
-USAGE dans la codebase appelante. Prochaine fois : quand un module utilitaire
-est incriminé, vérifier d'abord ses call-sites avant de le réécrire.
+Un défaut rare n'est pas forcément une race condition. Une source aléatoire injectable permet de choisir une branche déterminée et de rendre le défaut reproductible. La fixture est volontairement simple : dans un système réel, la règle métier du bonus doit être confirmée avant de fixer la valeur par défaut.
 
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 

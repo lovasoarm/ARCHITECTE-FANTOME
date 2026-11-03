@@ -39,7 +39,7 @@ Ce document ne remplace aucun exercice. Il rend visible **où la progression dem
 | Reprise de legacy          | `02-CONSTRUCTION/02-MINI-PROJECTS/12_legacy_takeover/`   | découverte contradictoire après lecture initiale    | hypothèse initiale, preuve, changement de plan                      | D7           |
 | Produit / coût / risque    | `03-PILOTAGE/08-PRODUIT-COUT-ROI/`                       | budget ou objectif business modifié                 | arbitrage avant/après + métrique d’impact                           | D7           |
 | Sécurité / fiabilité       | `03-PILOTAGE/04-SECURITY/` + mini-project gates          | incident ou nouvelle contrainte de sécurité         | menace réévaluée + décision + rollback/mitigation                   | D7           |
-| Revue de code humain/IA    | `02-CONSTRUCTION/02-MINI-PROJECTS/18_human_vs_ai_smell/` | edge case qui invalide l’intuition initiale         | audit des hypothèses + correction justifiée                         | D7           |
+| Revue comparative de code  | `02-CONSTRUCTION/02-MINI-PROJECTS/18_human_vs_ai_smell/` | edge case qui invalide l’intuition initiale         | audit des hypothèses + correction justifiée                         | D7           |
 | Gouvernance IA             | `02-CONSTRUCTION/02-MINI-PROJECTS/19_supervise_the_ai/`  | proposition IA contradictoire                       | accept/reject/escalate + raisons + garde-fous                       | D7           |
 | Synthèse Staff             | capstone                                                 | perturbation importante après première architecture | reconstruction complète du modèle et transfert à un contexte inédit | D8           |
 

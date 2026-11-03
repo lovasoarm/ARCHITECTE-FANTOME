@@ -4,7 +4,17 @@ acte: apprendre-et-pratiquer
 noyau: oui
 route: formation-complete
 niveau: C-F
-last_reviewed: 2026-10-30
+last_reviewed: 2026-10-31
+prerequis:
+  - 05-MAITRISE/01-DATABASES/README.md
+  - 05-MAITRISE/02-SCALABILITY/README.md
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # 70 : Data Engineering : du fichier au pipeline fiable
@@ -17,32 +27,37 @@ Le but n'est pas de mémoriser Kafka, Spark ou Airflow. Le but est de savoir **c
 
 ## Place dans AF
 
-Ce module devient une étape obligatoire de la route complète. Il renforce les axes Backend & Databases, Architecture, Cloud/DevOps, AI Engineering et Distributed Systems. Il prépare le capstone [72 : Système intégré](../72-DISTINGUISHED-SYSTEMS-CAPSTONE.md).
+Ce module devient une étape obligatoire de la route complète, après les étapes 5 et 8 de la Route 58. L'apprenant doit déjà avoir validé Databases (SQL, transactions et idempotence) et Scalability ; il les réutilise ici au lieu de les découvrir après le laboratoire. Il renforce les axes Backend & Databases, Architecture, Cloud/DevOps, AI Engineering et Distributed Systems. Il prépare le capstone [72 : Système intégré](../72-DISTINGUISHED-SYSTEMS-CAPSTONE.md).
 
 ## Prérequis
 
+Avant toute exécution Python, réalise ou valide par preuve la [passerelle Python pour débutants absolus](../../00-SOCLE/07-PYTHON-PASSERELLE/README.md). Elle enseigne le langage utilisé ici ; elle ne remplace pas les prérequis SQL, mathématiques ou ML propres à ce module.
+
 - savoir lire et écrire des fichiers CSV/JSON ;
 - comprendre fonctions, exceptions, tests et structures de données ;
-- connaître les bases de SQL et des transactions ;
-- savoir expliquer idempotence et retries ;
-- Python 3.12 ou plus récent pour le laboratoire local (bibliothèque standard uniquement).
+- avoir terminé [Databases](../../05-MAITRISE/01-DATABASES/README.md) : SQL, transactions et idempotence ;
+- avoir terminé [Scalability](../../05-MAITRISE/02-SCALABILITY/README.md) : charge, limites et raisonnement distribué ;
+- savoir expliquer retries et leurs effets ;
+- Compatibilité minimale annoncée : Python 3.12+ (bibliothèque standard uniquement) ; installation apprenant recommandée au 31 octobre 2026 : Python 3.15.x, dernier correctif de la branche stable. Python 3.12 est en sécurité uniquement et ne doit pas être conseillé comme choix d’installation par défaut. Voir [versions prises en charge](https://devguide.python.org/versions/).
 
 Un prérequis échoué doit être repris avant d'ajouter une plateforme distribuée.
 
 ## Progression obligatoire
 
-| Étape | Sujet                            | Ce que tu dois savoir faire                                                                    | Preuve                                           |
-| ----- | -------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| 1     | Cycle de vie, batch et streaming | Distinguer source, ingestion, validation, transformation, stockage, exposition et consommation | Schéma de flux et contrat de données             |
-| 2     | Ingestion batch                  | Lire des fichiers, gérer formats, encodage, checkpoints et reprises                            | Pipeline local rejouable                         |
-| 3     | Qualité et contrats              | Contrôler schéma, valeurs, fraîcheur, unicité, complétude et quarantaine                       | Rapport de qualité + jeux invalides              |
-| 4     | SQL analytique et modélisation   | Séparer événements bruts, données nettoyées et modèle analytique                               | DDL, requêtes et tests d'intégrité               |
-| 5     | Streaming et Kafka               | Raisonner sur partitions, clés, offsets, consumer groups, relecture et duplication             | Simulation de panne consommateur + déduplication |
-| 6     | Calcul distribué et Spark        | Définir schéma, transformations, agrégations, partitions, skew et coût du shuffle              | Job reproductible et plan expliqué               |
-| 7     | Orchestration                    | Construire un DAG idempotent, avec retries, dépendances, backfill et alertes                   | DAG et scénario de reprise                       |
-| 8     | Exploitation et gouvernance      | Tracer provenance, droits, rétention, qualité, coûts, SLO et incident                          | Runbook, lineage et post-mortem                  |
+| Étape | Sujet                            | Ce que tu dois savoir faire                                                                    | Preuve attendue de l'apprenant                                                                           |
+| ----- | -------------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| 1     | Cycle de vie, batch et streaming | Distinguer source, ingestion, validation, transformation, stockage, exposition et consommation | Schéma de flux + contrat de données (preuve de conception)                                               |
+| 2     | Ingestion batch                  | Lire des fichiers, gérer formats, encodage, checkpoints et reprises                            | Pipeline local rejouable (CORE exécutable sans service externe)                                          |
+| 3     | Qualité et contrats              | Contrôler schéma, valeurs, fraîcheur, unicité, complétude et quarantaine                       | Rapport de qualité + jeux invalides (CORE exécutable localement)                                         |
+| 4     | SQL analytique et modélisation   | Séparer événements bruts, données nettoyées et modèle analytique                               | DDL, requêtes et tests d'intégrité ; l'exécution SQL nécessite un serveur (extension)                    |
+| 5     | Streaming et Kafka               | Raisonner sur partitions, clés, offsets, consumer groups, relecture et duplication             | Trace de livraison/rejeu + décision d'idempotence ; la preuve broker exige une exécution Kafka distincte |
+| 6     | Calcul distribué et Spark        | Définir schéma, transformations, agrégations, partitions, skew et coût du shuffle              | Job reproductible, plan et mesures ; la preuve d'exécution exige Spark                                   |
+| 7     | Orchestration                    | Construire un DAG idempotent, avec retries, dépendances, backfill et alertes                   | DAG, retry et reprise ; la preuve d'exécution exige Airflow ou un orchestrateur équivalent               |
+| 8     | Exploitation et gouvernance      | Tracer provenance, droits, rétention, qualité, coûts, SLO et incident                          | Runbook, lineage et post-mortem ; simulation ≠ incident de production                                    |
 
-## Laboratoire local sans dépendance externe
+## Laboratoire CORE local sans dépendance externe
+
+**Statut de preuve dans cette archive :** le pipeline batch Python est fourni et ses tests locaux peuvent être rejoués avec la bibliothèque standard. Les fichiers SQL, Kafka, Spark et Airflow sont des supports d'extension : ils ne sont pas présentés comme des services lancés ni comme des intégrations validées dans cette release. Une commande ou un extrait de configuration n'est pas une preuve d'exécution.
 
 Le noyau pratique utilise uniquement Python standard. Il ingère des mesures d'équipements, normalise les événements, rejette les lignes invalides en quarantaine, déduplique par `event_id`, écrit un manifeste et permet un rejeu idempotent.
 
@@ -52,24 +67,26 @@ python run_pipeline.py --input data/events.csv --output build
 python -m unittest discover -s tests -v
 ```
 
-Résultats attendus avec le jeu fourni : 8 lignes lues, 3 événements acceptés, 1 doublon écarté et 4 lignes en quarantaine. Le manifeste indique les compteurs et les empreintes SHA-256. Le pipeline doit produire les mêmes octets de sortie lorsqu'il est relancé sur la même entrée.
+Résultats attendus avec le jeu fourni : 8 lignes lues, 3 événements acceptés, 1 identifiant dupliqué (dont 1 conflit de contenu) et 4 lignes invalides en quarantaine. Un doublon strictement identique et un identifiant réutilisé avec un contenu différent ne sont pas équivalents : le second est écrit dans `duplicate_conflicts/events.jsonl` avec les deux payloads normalisés. Le pipeline ne choisit pas silencieusement entre deux versions contradictoires. Le manifeste indique les compteurs, les empreintes SHA-256 et permet de vérifier la réconciliation `read = accepted + duplicates + quarantined`. Le pipeline doit produire les mêmes octets de sortie lorsqu'il est relancé sur la même entrée.
+
+Le lot de 8 lignes est une fixture lisible, pas un benchmark de capacité. Les tests incluent aussi un lot généré de 3 110 lignes pour vérifier la réconciliation, les doublons stricts et la quarantaine à une échelle moins triviale. Cela reste un test local de quelques milliers de lignes, pas une preuve de débit Big Data.
 
 ## Extensions plateformes : à réaliser dans cet ordre
 
-Les outils sont des implémentations possibles des concepts, pas des prérequis pour comprendre le premier laboratoire. Les versions ci-dessous sont une photographie datée du **30 octobre 2026** ; ne mélange pas des versions de runtimes au hasard.
+Les outils sont des implémentations possibles des concepts, pas des prérequis pour comprendre le premier laboratoire. Les versions ci-dessous sont une photographie documentaire datée du **31 octobre 2026** ; elles ne signifient pas que les outils ont été installés ou testés dans cette archive. Ne mélange pas des versions de runtimes au hasard.
 
-| Technologie    | Version de référence datée | Usage pédagogique                                                  | Référence officielle                                                                                              |
-| -------------- | -------------------------: | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| PostgreSQL     |                       18.6 | SQL transactionnel, contraintes, zone de staging et entrepôt       | [Politique de version](https://www.postgresql.org/support/versioning/)                                            |
-| Apache Kafka   |                      4.4.0 | Streaming, partitions, offsets, relecture et consumer groups       | [Téléchargements et versions supportées](https://kafka.apache.org/community/downloads/)                           |
-| Apache Spark   |                      4.2.1 | Traitement batch/distribué, DataFrames, shuffle et partitionnement | [Téléchargements](https://spark.apache.org/downloads)                                                             |
-| Apache Airflow |                      3.3.2 | Orchestration, DAG, retries, backfill et observabilité des tâches  | [Versions supportées](https://airflow.apache.org/docs/apache-airflow/stable/installation/supported-versions.html) |
+| Technologie    | Version de référence datée | Usage pédagogique                                                  | Référence officielle                                                                                                                                     |
+| -------------- | -------------------------: | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PostgreSQL     |                       18.6 | SQL transactionnel, contraintes, zone de staging et entrepôt       | [Politique de version](https://www.postgresql.org/support/versioning/)                                                                                   |
+| Apache Kafka   |                      4.4.0 | Streaming, partitions, offsets, relecture et consumer groups       | [Téléchargements et versions supportées](https://kafka.apache.org/community/downloads/)                                                                  |
+| Apache Spark   |                      4.3.0 | Traitement batch/distribué, DataFrames, shuffle et partitionnement | [Annonce officielle du 30 octobre 2026](https://spark.apache.org/news/spark-4-3-0-released.html) · [Téléchargements](https://spark.apache.org/downloads) |
+| Apache Airflow |                      3.3.2 | Orchestration, DAG, retries, backfill et observabilité des tâches  | [Versions supportées](https://airflow.apache.org/docs/apache-airflow/stable/installation/supported-versions.html)                                        |
 
-Avant d'installer une version, relis ses notes, la matrice de compatibilité avec ton Python/Java/Scala et les alertes de sécurité du fournisseur. La version la plus récente n'est pas automatiquement celle qui convient à une stack existante. Ne copie pas un tag `latest` dans un environnement reproductible.
+Avant d'installer une version, relis ses notes, la matrice de compatibilité avec ton Python/Java/Scala et les alertes de sécurité du fournisseur. Spark 4.3.0 est la référence documentaire publiée le 30 octobre 2026 ; son statut de version la plus récente n'en fait pas une recommandation de production ni une version testée par AF. La version la plus récente n'est pas automatiquement celle qui convient à une stack existante. Ne copie pas un tag `latest` dans un environnement reproductible.
 
 ### Extension PostgreSQL
 
-Exécute [le schéma d'entrepôt](lab/sql/warehouse.sql) dans une base jetable PostgreSQL 15+ (PostgreSQL 18.6 est la référence datée de ce module). Vérifie les contraintes et le `ON CONFLICT`. Le fichier SQL est fourni, mais la validation dans ce paquet ne prétend pas qu'un serveur PostgreSQL a été démarré.
+Exécute [le schéma d'entrepôt](lab/sql/warehouse.sql) dans une base jetable PostgreSQL 15+ (PostgreSQL 18.6 est la référence datée de ce module). Vérifie les contraintes et le `ON CONFLICT`. Le fichier SQL est fourni, mais la validation dans ce paquet ne prétend pas qu'un serveur PostgreSQL a été démarré. Le `ON CONFLICT DO NOTHING` du fragment est seulement une démonstration d'unicité ; pour une ingestion réelle, compare le payload existant et place tout conflit de contenu dans une quarantaine d'investigation, comme le fait le pipeline Python.
 
 ### Extension Kafka
 
@@ -85,7 +102,7 @@ Orchestre `extract → validate → load → quality_check`. Chaque tâche de ch
 
 ## Patterns techniques à savoir lire et adapter
 
-Les extraits suivants sont des points de départ pédagogiques, pas des jobs de production certifiés. Ils doivent être exécutés avec les versions compatibles de la table ci-dessus et adaptés au schéma réel. Le laboratoire Python reste la partie testée dans cette archive.
+Les extraits suivants sont des points de départ pédagogiques, pas des jobs de production certifiés ni des preuves d'exécution. Ils doivent être exécutés avec des versions compatibles et adaptés au schéma réel. Dans cette archive, seule la partie batch Python locale dispose d'une suite de tests autonome ; les extensions SQL/Kafka/Spark/Airflow restent `DECLARED` tant qu'elles ne sont pas exécutées dans leurs environnements respectifs.
 
 ### Kafka : créer un topic, produire et consommer
 
@@ -182,7 +199,7 @@ Tu réussis lorsque tu peux démontrer, pas simplement raconter :
 - les coûts et la latence sont mesurés sur une charge décrite ;
 - le choix batch/streaming/outil est justifié par le besoin, pas par la mode.
 
-**Barrière anti-survente :** un pipeline local réussi prouve une compétence locale. Il ne prouve ni une exploitation Kafka/Spark à grande échelle, ni une expérience de production, ni un niveau Staff/Principal/Distinguished.
+**Barrière anti-survente :** le laboratoire Python et les simulations de raisonnement prouvent uniquement les comportements qu'ils exécutent localement. Ils ne prouvent ni l'interopérabilité d'un broker Kafka, ni les performances d'un cluster Spark, ni l'orchestration réelle par Airflow, ni une exploitation Big Data à grande échelle, ni une expérience de production, ni un niveau Staff/Principal/Distinguished. Pour les extensions non lancées, inscris `NOT RUN` ; ne transforme jamais un scénario décrit en test réussi.
 
 ## Références de progression
 

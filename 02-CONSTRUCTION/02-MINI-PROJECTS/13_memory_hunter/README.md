@@ -89,22 +89,18 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 
 Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
 
-### État des tests à la réception
+### État initial, tests et validation
 
-- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
-- **Tests verts de référence :** aucun.
-- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
-- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
-- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
-
-**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.
-
-### Détails d’implémentation et de validation à la réception
-
-- **Code fourni :** `00_fixture/00_leaky.js` est la fixture volontairement suspecte ; le code de mesure/fix et la suite de tests sont à construire.
+- **Code fourni :** aucun code de mesure ni correctif n'est livré dans `src/`, qui reste un scaffold documentaire. `00_fixture/00_leaky.js` est la fixture JavaScript volontairement suspecte à lire et analyser ; ce n'est ni le correctif ni un test automatisé.
 - **Tests de référence verts :** aucun test automatisé livré.
-- **Tests volontairement rouges :** aucun. La fixture est un sujet d'analyse, pas un test qui doit échouer.
-- **Prérequis :** Node.js 22.x. `--expose-gc` peut aider à rendre l'observation du GC plus contrôlable, mais `global.gc()` n'est pas une preuve que l'objet sera collecté immédiatement.
-- **Commandes initiales sûres :** `node --check 00_fixture/00_leaky.js` (syntaxe), puis lire le fichier. N'exécute pas de charge non bornée ni d'allocation massive sur ta machine principale.
-- **Tests à créer :** reproduire le maintien de référence, isoler le chemin de rétention, comparer avant/après sous une charge bornée, vérifier la libération fonctionnelle sans supposer un instant exact du GC.
-- **Validation finale :** rapport avec heap snapshots/profils comparables, protocole de mesure, warm-up, version Node, taille/volume des données et limites. Preuve : réduction reproductible de la rétention sans régression fonctionnelle.
+- **Tests volontairement rouges :** aucun. La fixture est un sujet d'analyse ; elle n'est pas censée échouer comme un test.
+- **Prérequis :** Node.js 22.x. `--expose-gc` peut aider à rendre l'observation plus contrôlable, mais `global.gc()` ne garantit pas une collecte immédiate.
+- **Premières commandes sûres :** `node --check 00_fixture/00_leaky.js`, puis lecture du fichier. N'exécute pas de charge non bornée ni d'allocation massive sur ta machine principale.
+- **Travail à construire :** reproduire la rétention, isoler le chemin qui conserve la référence et comparer avant/après sous une charge bornée. Vérifie la libération fonctionnelle sans supposer un instant exact pour le GC.
+- **Validation finale :** rapport avec heap snapshots ou profils comparables, protocole de mesure, warm-up, version Node, taille/volume des données et limites.
+- **Preuve attendue :** réduction reproductible de la rétention sans régression fonctionnelle ; `tests/README.md` décrit les artefacts à produire, pas une suite déjà livrée.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.
+- [Référence technique différée](reference/README.md) : à consulter après la tentative, sans recopier dans le livrable.

@@ -14,11 +14,13 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~7 min
 
-T'as appris ARIA, le clavier, le contraste, les lecteurs d'écran. Maintenant : comment tu vérifies, sur une vraie page, que tout ça tient debout ? Un audit a11y (accessibilité) combine outils automatiques et tests manuels. Les deux sont obligatoires : un outil automatique détecte environ 30 à 40% des problèmes réels. Le reste, c'est toi qui le trouves à la main.
+T'as appris ARIA, le clavier, le contraste, les lecteurs d'écran. Maintenant : comment tu vérifies, sur une vraie page, que tout ça tient debout ? Un audit a11y (accessibilité) combine outils automatiques et tests manuels. Les outils automatiques repèrent certaines violations vérifiables dans le code et le rendu, mais ils ne couvrent pas tous les critères, peuvent produire des faux positifs et ne jugent pas seuls la qualité d'un parcours. Il n'existe pas de pourcentage de couverture universel valable pour tous les sites, outils et périmètres. Les contrôles manuels et le jugement humain restent nécessaires.
+
+Référence de méthode : [W3C WAI : Selecting Web Accessibility Evaluation Tools](https://www.w3.org/WAI/test-evaluate/tools/selecting/).
 
 ## 1) AXE : LE SCANNER AUTOMATIQUE
 
-axe (de Deque Systems) est l'outil le plus utilisé en industrie. Il scanne le DOM et liste les violations WCAG détectables automatiquement.
+axe-core (de Deque Systems) est un moteur d'analyse automatisée pour les interfaces HTML. Il scanne le DOM et signale les violations WCAG qu'il sait détecter ; son rapport ne remplace pas les contrôles manuels.
 
 ```js
 // Utilisation en test automatisé (avec jest-axe par exemple)
@@ -127,24 +129,54 @@ Construit volontairement une modal avec un focus trap cassé (Tab qui sort de la
 
 axe et Lighthouse détectent les violations de balisage automatiquement (alt manquant, contraste, labels), mais ratent les problèmes de comportement réel (focus trap, ordre de lecture, annonces incohérentes). Un audit complet combine toujours outil automatique et test manuel au clavier et au lecteur d'écran. Respecter `prefers-reduced-motion` n'est pas un détail cosmétique : ça évite des vrais malaises physiques à certains utilisateurs. Un score parfait sur un scanner ne garantit jamais une expérience réellement accessible.
 
-## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+<!-- AF-DIAGRAM:accessibility -->
 
-<!-- AF-DIAGRAM:transfer -->
+## Repère visuel utile : Parcours de demande accessible
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+action utilisateur
+       |
+       v
+structure sémantique + nom
+       |
+  +----+-----+
+  v          v
+clavier   lecteur d'écran
+  |          |
+  +----+-----+
+       v
+état / erreur annoncé
+       |
+       v
+parcours utilisable
 ```
 
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+<!-- AF-LESSON-PROFILE: accessibility -->
 
-Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+## Repères de décision
+
+- **Pourquoi :** L'accessibilité permet à davantage de personnes d'utiliser le produit et rend souvent l'interface plus robuste pour tous, y compris sur mobile et au clavier.
+- **Quand l’utiliser / quand l’éviter :** Teste les parcours critiques avec clavier, lecteur d'écran, contraste et zoom. N'attends pas la fin du design pour corriger la structure sémantique.
+- **Limites :** Un score Lighthouse ou une vérification automatique ne couvre pas tous les usages. Il faut aussi tester manuellement avec plusieurs modes d'interaction et, quand possible, avec des personnes concernées.
+
+## Mécanisme : la version sans magie
+
+Utilise HTML sémantique, labels, focus visible, ordre logique, messages d'état annoncés et alternatives aux interactions pointer-only.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Auditer une page : les outils et la méthode** se rattache à ce cas concret : Le demandeur Kintana peut utiliser un petit écran, un clavier externe, le zoom ou un lecteur d'écran. Le formulaire doit rester compréhensible dans tous ces cas.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Parcours de demande accessible
+
+> **Arc One Piece / Grand Line :** un parcours n'est pas réussi si seule une partie de l'équipage peut monter à bord. L'accessibilité enlève les obstacles inutiles.
+
+**Mission liée à « Auditer une page : les outils et la méthode » :** Audite le flux de création d'une demande Kintana. Corrige les labels, focus, erreurs associées, annonces de statut et navigation clavier ; ajoute des tests automatisés plus une vérification manuelle documentée.
+
+**Livrable :** audit WCAG ciblé, patch de composants, matrice clavier/lecteur d'écran et résultats reproductibles.
+
+**Critères d’acceptation :** aucun contrôle sans nom accessible ; focus visible et séquentiel ; erreurs reliées aux champs ; les états ne reposent pas seulement sur la couleur ; limites des outils automatiques reconnues.
+
+**Transfert obligatoire :** Teste le même parcours à 200 % de zoom et avec un lecteur d'écran. Identifie les défauts non détectés par l'audit automatique.

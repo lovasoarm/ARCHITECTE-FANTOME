@@ -175,3 +175,31 @@ Quand l'utiliser :
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **08 : Heap snapshot workshop (fuite par closure)** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Enquêter sur une fuite par closure
+
+**Mission liée à « 08 : Heap snapshot workshop (fuite par closure) » :** Reproduis une closure Kintana qui retient un grand tableau après la fin du parcours. Compare les snapshots avant/après, remonte le chemin des retainers et vérifie si un listener ou un cache conserve encore la fonction.
+
+**Livrable :** Trois snapshots comparables, chaîne de rétention annotée et note de correction.
+
+**Critères d’acceptation :** Les tailles sont décrites comme des mesures propres à l’environnement, pas comme des constantes ; snapshot et profil d’allocation sont distingués ; la correction conserve les callbacks encore nécessaires.
+
+**Transfert obligatoire :** Après `cache.clear()`, un EventTarget retient encore le handler : indique comment retirer proprement l’écouteur et vérifier le cycle de vie.

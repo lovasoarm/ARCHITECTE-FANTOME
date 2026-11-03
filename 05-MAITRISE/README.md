@@ -30,7 +30,7 @@ le palier n'est pas franchissable.
 L'intégration pédagogique est explicitée dans [58 : Route apprenant cohérente](../06-ANNEXES-TRANSVERSES/58-ROUTE-APPRENANT-COHERENTE.md). Pour relier les projets aux leçons d'IA et DevOps/SRE, utilise [60 : Laboratoire IA](../06-ANNEXES-TRANSVERSES/60-LAB-SERVICE-IA-END-TO-END.md) et [59 : Atelier DevOps/SRE](../06-ANNEXES-TRANSVERSES/59-LAB-DEVOPS-LIFECYCLE.md) ; ils ne remplacent pas les projets, ils rendent leurs preuves comparables.
 
 Le [Portefeuille avancé de systèmes 2035+](09-PORTFOLIO-SYSTEMES-2035/README.md) assemble dix projets approfondis
-sans les transformer en prérequis CORE. Le contrat commun et les six leçons-ponts sont ouverts selon les besoins
+sans les transformer en prérequis CORE. Le contrat commun et les douze leçons-ponts sont ouverts selon les besoins
 réels ; commence par La Tour de Contrôle et le Tribunal des IA, puis suis les prérequis de chaque projet.
 
 Rétrospective : [02A-RETRO-BLOC-5-MAITRISE.md](02A-RETRO-BLOC-5-MAITRISE.md). Ensuite :
@@ -53,3 +53,9 @@ Rétrospective : [02A-RETRO-BLOC-5-MAITRISE.md](02A-RETRO-BLOC-5-MAITRISE.md). E
 <!-- CONTENU-DOSSIER:fin -->
 
 > **Compagnons actifs :** [Code d'honneur CrazyDevs](../06-ANNEXES-TRANSVERSES/07-FUN-CODE-HONNEUR.md) · [Synchronisation TECH-ILA](../06-ANNEXES-TRANSVERSES/04-TECH-ILA/02-SYNCHRONISATION-PARCOURS.md) · [Assimilation psychologie](08-MAITRISE-STAFF-ENGINEER/05-PSYCHOLOGIE-DECISION/01-BOOSTER-REFLEXION-INTEGRATION.md)
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **décision qui traverse les équipes** : Rédige une RFC/ADR sur une décision Kintana qui affecte API, données et exploitation. Compare au moins deux options, demande une revue contradictoire et transforme les objections en critères d’acceptation. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : La décision a un propriétaire, un coût, un plan de migration et une condition de révision ; l’adoption réelle reste « non démontrée » tant qu’une équipe ne l’a pas adoptée.

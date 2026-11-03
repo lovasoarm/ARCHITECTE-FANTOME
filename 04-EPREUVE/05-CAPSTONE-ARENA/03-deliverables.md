@@ -82,9 +82,21 @@ franchi, au même titre qu'une revue de risques non signée ne compte pas comme 
 
 ## Livrable 3 : Version 1 fonctionnelle
 
-- Un système déployé et accessible (même en environnement de démonstration), pas seulement
-  en local, couvrant au minimum : compte adhérent partagé entre les trois salles, création de
+- **Voie standard :** un système déployé et accessible dans un environnement de démonstration
+  distant, couvrant au minimum : compte adhérent partagé entre les trois salles, création de
   créneaux par salle, réservation avec comptage de capacité fiable sous accès concurrent.
+- **Voie `DEMO_LOCALE` sans frais :** si l'apprenant ne dispose d'aucun hébergement gratuit ou
+  environnement partagé accessible sans moyen de paiement, le même système peut être exécuté
+  sur sa machine et présenté pendant une revue. Le dépôt doit fournir une procédure de démarrage
+  reproductible, le jeu de données, les commandes, les résultats réels des tests et une capture
+  ou un enregistrement daté de la démonstration. L'artefact porte le statut `DEMO_LOCALE` ; il ne
+  doit jamais être décrit comme déployé publiquement ou en production. Cette voie valide le
+  comportement technique observé dans son périmètre local, mais ne ferme pas à elle seule S6
+  (livraison/exploitation réelle) ni S7 (portage exécuté chez un second fournisseur).
+
+Aucun achat, abonnement, compte cloud payant ou saisie de carte bancaire n'est requis pour
+réaliser le Capstone. Ne lance pas de ressource facturable pour satisfaire ce livrable.
+
 - Un jeu de données de démonstration réaliste (trois salles, adhérents, créneaux) qui permet
   de tester le scénario de bout en bout sans configuration manuelle supplémentaire.
 - Au moins un test automatisé qui vérifie explicitement que le comptage de capacité résiste à
@@ -124,41 +136,25 @@ franchi, au même titre qu'une revue de risques non signée ne compte pas comme 
 
 ## Livrable 7 : TRANSFERT.md
 
-<!-- AF-DIAGRAM:transfer -->
+<!-- AF-DIAGRAM:architecture -->
+
+## Repère visuel utile : Défendre une frontière de domaine Kintana
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+client -> API / application
+               |
+               v
+        domaine Kintana
+        /      |      \
+       v       v       v
+ demandes  réservations  rôles
+       \       |       /
+        v      v      v
+        persistance + outbox
+                |
+                v
+          worker notification
 ```
-
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
-
-- Un fichier `TRANSFERT.md` à la racine du dépôt, au même niveau d'exigence que les six
-  livrables précédents, en trois sections.
-- **La décision reprise.** Tu choisis une décision déjà validée et notée dans ton propre
-  capstone : soit le modèle de données du jalon Architecture (celui qui a résisté à l'analyse
-  de concurrence, critère "Justesse architecturale"), soit le contrat d'API du même jalon. Tu
-  ne réécris pas tout le projet : tu retranscris une seule décision précise.
-- **La retranscription.** La même décision, réécrite en pseudo-code strictement typé
-  indépendant de tout langage (pas de syntaxe TypeScript), ou dans un second langage réel de
-  ton choix (Python avec SQLAlchemy, Go avec un ORM léger, Java avec JPA). Le niveau
-  d'exigence technique reste identique : si la version TypeScript posait une contrainte
-  d'exclusion sur une période, la version transférée doit poser l'équivalent exact dans le
-  nouveau langage, pas une approximation vague.
-- **Ce qui reste vrai, ce qui change, et pourquoi.** Un texte d'une demi-page maximum qui
-  nomme précisément ce qui est un mécanisme intemporel (l'invariant métier, la garantie de
-  concurrence) et ce qui est une syntaxe remplaçable (la façon d'écrire la contrainte). C'est
-  le test réel : qui ne sait pas faire cette distinction n'a pas compris le principe, il a
-  mémorisé une syntaxe.
 
 ## Analogie
 
@@ -212,19 +208,20 @@ capstone/
 
 - `02-CAHIER-DES-CHARGES.md` : reformulation finale du besoin, incluant les hypothèses du Livrable 1
   et les ajustements survenus après changement de spec (voir `05-changement-de-spec.md`).
-- `README.md` : comment lancer le projet, jeu de données de démonstration, limites connues.
+- `README.md` : comment lancer le projet, jeu de données de démonstration, limites connues et statut exact de l'environnement (`DEMO_DISTANTE` ou `DEMO_LOCALE`).
 - `05-TDD-JOURNAL.md` : journal daté des décisions de conception et des changements de spec, avec
   leur coût mesuré en fichiers touchés et en heures.
 - `POSTMORTEM.md` : ce qui a mal tourné, ce qui a bien tourné, ce que tu ferais différemment.
 - `REVUE-DE-RISQUES.md` : revue de risques du projet (sécurité, coûts, données personnelles),
-  produite selon le gabarit du Module `04-EPREUVE/01-BONUS-VAULT` (voir `../01-BONUS-VAULT/95-challenge.md`).
+  produite selon les critères de la grille Capstone. Le guide et le gabarit de `BONUS-VAULT`
+  (`../01-BONUS-VAULT/95-challenge.md`) sont une aide facultative, pas un prérequis.
 - `HYPOTHESES.md` : le protocole d'enquête d'un vrai bug rencontré pendant le capstone, au
   format à 6 champs, avec au moins une hypothèse réfutée et la preuve de non-régression sur
   200 exécutions (voir [`../02-TOOL-CAVE/03-debugging-toolkit.md`](../02-TOOL-CAVE/03-debugging-toolkit.md)).
 - `TRANSFERT.md` : la retranscription d'une décision du jalon Architecture hors de la stack du
   projet, avec la distinction explicite entre mécanisme intemporel et syntaxe remplaçable.
-- `ADR/` : un fichier par décision structurante, au format du Module `04-EPREUVE/01-BONUS-VAULT`
-  (`../01-BONUS-VAULT/05-decision-templates.md`).
+- `ADR/` : un fichier par décision structurante. Le format de référence facultatif de `BONUS-VAULT`
+  (`../01-BONUS-VAULT/05-decision-templates.md`) peut être repris ; le module lui-même n’est pas requis.
 - `SLO.md` : l'objectif de service chiffré (fenêtre, budget d'erreur en requêtes ratées par
   semaine, alerte qui réveille) et le RTO mesuré au chronomètre lors d'un drill de restauration
   réel, exigés par [`06-addendum-staff-engineer.md`](06-addendum-staff-engineer.md).
@@ -260,9 +257,9 @@ couvert par au moins un test dans `tests/`, au même titre que le test de concur
 exigé sur le comptage de capacité : une requête non autorisée doit retourner 403 ou 404,
 jamais 200 avec les données de la victime.
 
-Ce fichier doit être signé et daté par toi avant la présentation finale : une revue de
-risques non signée ne compte pas comme livrée, au même titre qu'une note de cadrage non
-datée.
+Ce fichier doit être signé et daté **avant le premier commit de code du jalon 3** :
+l'antériorité est vérifiée dans `05-TDD-JOURNAL.md` et la grille d'évaluation. Une revue
+signée après le début du développement ne respecte pas le contrat du jalon.
 
 ## Compromis
 
@@ -294,3 +291,33 @@ temps. Elle rend un seul livrable de décision, décrit dans
 [07-semaine-double-derive.md](07-semaine-double-derive.md).
 
 <!-- CAPSTONE-DOUBLE-DERIVE:fin -->
+
+<!-- AF-LESSON-PROFILE: architecture -->
+
+## Repères de décision
+
+- **Pourquoi :** Les frontières réduisent le coût de changement et clarifient les responsabilités. Elles doivent répondre aux contraintes de l'équipe, des données et de l'exploitation.
+- **Quand l’utiliser / quand l’éviter :** Découpe un système quand une frontière protège une règle ou un rythme de changement. Ne crée pas de microservice tant que l'autonomie, la charge ou la gouvernance ne justifient pas le coût distribué.
+- **Limites :** Chaque frontière ajoute contrats, réseau, déploiement, observabilité et coordination. Un diagramme propre ne prouve ni la faisabilité ni la performance.
+
+## Mécanisme : la version sans magie
+
+Part des cas d'usage, repère invariants et propriétaires de données, définis les contrats, compare les options et mesure les conséquences du changement.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Les livrables** se rattache à ce cas concret : Kintana commence comme monolithe modulaire. Les demandes, réservations et notifications doivent avoir des frontières explicites sans fragmenter trop tôt le déploiement.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Défendre une frontière de domaine Kintana
+
+> **Arc Capsule Corp. / DBZ :** une architecture est le plan du vaisseau et les coûts qu'il impose. Si chaque pièce doit connaître toutes les autres, le vaisseau ne décolle jamais.
+
+**Mission liée à « Les livrables » :** Dessine le flux réel d'une création de demande. Identifie les invariants, propriétaires de données et dépendances ; compare monolithe modulaire et service séparé dans un ADR. Simule une évolution et mesure le nombre de composants touchés.
+
+**Livrable :** diagramme de composants/flux, ADR avec deux options, contrat de frontière et test de changement.
+
+**Critères d’acceptation :** la frontière possède une responsabilité claire ; les données ont un propriétaire ; le coût d'exploitation est explicite ; le microservice n'est pas choisi par prestige ; une condition de révision est écrite.
+
+**Transfert obligatoire :** Le nombre d'équipes ou le volume double. Indique quel signal justifierait de séparer un composant et quel coût tu acceptes.

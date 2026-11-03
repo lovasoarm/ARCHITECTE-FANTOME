@@ -10,16 +10,23 @@ route: complete
 
 Temps de lecture ~2 min
 
-Acte attendu : évaluer. Trois minutes, seul, sans ouvrir le module.
+Acte attendu : évaluer. Réponds sans ouvrir le module.
 
-Si une seule ligne ci-dessous te fait hésiter, tu ouvres d'abord ce qu'elle nomme. Ouvrir ce
-module sans ces acquis coûte la séance : tu apprendrais le prérequis à la place du module.
+## Ce que tu dois déjà avoir
 
-## Ce que tu dois déjà savoir faire
+- Terminé [`01-ROADMAP-RUN`](../../03-PILOTAGE/01-ROADMAP-RUN/README.md).
+- Disposer d'un cas de bug non trivial à analyser : il peut venir d'un projet personnel, académique, d'un exercice ou d'une fixture pédagogique. **Aucune expérience professionnelle ni incident de production réel n'est exigé.** Si tu n'as encore rien rencontré, prends un scénario du module [Debugging](../../01-CADRAGE/03-DEBUGGING/README.md) et construis une reproduction locale.
 
-- Tu as terminé [`01-BONUS-VAULT`](../../04-EPREUVE/01-BONUS-VAULT/README.md), module précédent du fil.
+## Questions
+
+1. Avant d'investiguer un bug intermittent, quelle information cherches-tu à rendre reproductible ?
+2. Pourquoi faut-il noter le résultat attendu et le résultat observé séparément ?
+3. Qu'est-ce qui rend une mesure de performance non représentative de l'environnement réel ?
 
 ## Verdict
 
-- [ ] Toutes les lignes passent → ouvre [`README.md`](README.md).
-- [ ] Une ligne ne passe pas → reviens ici quand elle passe. Note la date, pas l'excuse.
+- [ ] Le bug vécu est décrit et au moins deux réponses sont solides → ouvre [`README.md`](README.md).
+- [ ] Le bug n'est pas encore reproductible ou les réponses manquent → utilise une fixture ou un scénario local du module [Debugging](../../01-CADRAGE/03-DEBUGGING/README.md), écris séparément résultat attendu et observé, puis reviens au diagnostic. Un incident professionnel n'est pas nécessaire.
+
+**Important :** Bonus Vault n'est pas un prérequis de Tool Cave. C'est un coffre de référence
+consultable séparément, dans l'ordre ou hors ordre.

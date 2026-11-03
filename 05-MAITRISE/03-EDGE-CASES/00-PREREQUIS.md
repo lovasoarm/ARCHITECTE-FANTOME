@@ -16,29 +16,22 @@ assessment_role: diagnostic_mastery
 
 Temps de lecture ~5 min
 
-> Tu ne dois **pas** entrer dans ce module si tu ne peux pas répondre à ces questions
-> **sans regarder**. Ce n'est pas un test noté, c'est un filtre anti-illusion.
-> Ces questions portent sur `03-PILOTAGE/10-TEAM-CRAFT`, le module que tu viens de finir.
+> Avant de commencer ce module, essaie de répondre à ces questions **sans regarder**.
+> Ce diagnostic n’est pas noté et ne ferme pas l’accès : il repère seulement les bases réutilisées. Les races conditions, les pièges de dates, les formulaires et les erreurs off-by-one sont enseignés dans ce module ; tu n’as pas à déjà les maîtriser.
 
 ## Questions
 
-1. Cite trois critères d'un bon commit.
-2. Pourquoi dire "je ne sais pas" en équipe est-il un signe de force, pas de faiblesse ?
-3. Quelle est LA règle non négociable d'une PR review, celle qu'on ne casse jamais ?
-4. À quoi sert une revue de code, au-delà de trouver des bugs ?
+1. Quand un test échoue, comment distingues-tu le résultat attendu du résultat observé ?
+2. Quelle première information recueilles-tu pour reproduire un bug de façon fiable ?
+3. À quoi sert `try/catch`, et que doit-on éviter de faire lorsqu’une erreur est récupérée ?
+4. Pourquoi faut-il préciser les unités et les hypothèses d’un calcul numérique ?
 
 ## Verdict
 
-- **3+ réponses solides** → tu peux entrer.
-- **2 ou moins** → retour à `03-PILOTAGE/10-TEAM-CRAFT/`, ou à sa synthèse `90-grimoire.md`.
+- **3+ réponses solides** → commence le module et garde les points hésitants comme objectifs de révision.
+- **2 ou moins** → revois au besoin les bases de tests (`02-CONSTRUCTION/03-TESTING/`), de debugging (`01-CADRAGE/03-DEBUGGING/`), de gestion d’erreurs (`01-CADRAGE/04-ERROR-HANDLING/`) ou de mathématiques (`02-CONSTRUCTION/04-MATH-BASICS/`). Tu peux poursuivre ensuite : ce diagnostic oriente la révision, il ne bloque pas l’accès.
 
-> Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
-
-> **Note pour ce module précis** : la définition d'une race condition, les
-> cas limites d'un formulaire, l'erreur off-by-one, et les pièges des
-> fuseaux horaires sont le contenu que ce module va t'enseigner :
-> normal de ne pas encore les maîtriser. Ta compréhension est testée en
-> fin de module, dans `90-grimoire.md`.
+> Le but n’est pas de te bloquer : les notions avancées d’edge cases sont précisément ce que ce module doit t’apprendre.
 
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 

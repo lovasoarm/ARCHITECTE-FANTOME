@@ -36,13 +36,15 @@ Le fil rouge commence au cadrage et ne disparaît jamais. Les notions anciennes 
 nouvelles contraintes ; cette répétition est volontaire.
 
 ## 2. Règles de navigation
+> **Repère canonique :** les blocs, paliers, phases, étapes et gates sont des couches différentes. Consulte la [matrice des progressions](80-MATRICE-PROGRESSIONS.md) pour leurs correspondances.
 
-1. Ouvre le `README.md` du palier avant le premier module.
-2. Dans un module, lis `00-PREREQUIS.md` ou son équivalent, puis `README.md`, puis les leçons.
-3. Une pratique doit produire un artefact avant qu’un Boss puisse la compter comme acquise.
-4. `99A-PONT.md` ferme un module et donne la transition vers le suivant.
-5. `PROGRESSION.md` est l’interface de suivi ; `18-COMPTEURS-DU-PARCOURS.md` est l’autorité des compteurs.
-6. `PREUVES-STAFF-ENGINEER.md` décrit les preuves attendues ; il ne certifie jamais que l’apprenant les possède.
+
+1. Ouvre le `README.md` du bloc physique avant son premier module ; le README racine reste l'entrée unique du curriculum.
+2. Dans un module, suis le `README.md` local et les prérequis qu'il déclare, puis les leçons.
+3. Une pratique doit produire l'artefact ou la preuve de sortie explicitement attendue.
+4. `99A-PONT.md` n'est une transition obligatoire que si le README ou la Route 58 le déclare ; certains ponts sont différés ou facultatifs.
+5. `PROGRESSION.md` est l'interface de suivi ; `18-COMPTEURS-DU-PARCOURS.md` est l'autorité des compteurs.
+6. `PREUVES-STAFF-ENGINEER.md` décrit les preuves attendues ; il ne certifie jamais que l'apprenant les possède.
 
 ### 03-PILOTAGE : renforcement 2026
 
@@ -58,7 +60,7 @@ Après `07-CLOUD-FOUNDATIONS`, le parcours réutilise le cloud dans `12-PLATFORM
 
 | Élément                       | Valeur |
 | ----------------------------- | -----: |
-| Paliers obligatoires          |      6 |
+| Blocs physiques principaux (`00` à `05`) |      6 |
 | Modules pédagogiques directs  |     54 |
 | Mini-projets                  |     19 |
 | Pièces `99-PORTAGE-MENTAL.md` |     38 |
@@ -95,9 +97,9 @@ La couche de **maturation décisionnelle** du palier `08-MAITRISE-STAFF-ENGINEER
 
 Le [Portefeuille avancé de systèmes 2035+](../05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/README.md)
 propose dix projets Depth, réalisés un à la fois. Ils réutilisent le cours existant et ajoutent des contrats de preuve
-spécifiques plutôt que des modules IA-native obligatoires. Les six leçons-ponts traitent seulement les concepts qui
+spécifiques plutôt que des modules centrés sur l’IA obligatoires. Les douze leçons-ponts traitent seulement les concepts qui
 nécessitent une explication supplémentaire. La réussite d'un projet ne vaut pas certification d'un titre d'entreprise.
 
-## 6. Prérequis et topologie## 6. Prérequis et topologie
+## 6. Prérequis et topologie
 
-Une relation `CE MODULE RÉUTILISE` doit toujours être satisfaite dans l’ordre public. Si un module suppose une compétence non encore acquise, retourne au prérequis avant de poursuivre.
+Une relation `CE MODULE RÉUTILISE` doit toujours être satisfaite avant le module qui la déclare. Le README local définit les pièces et critères de sortie du module ; la Route 58 gouverne l'ordre opérationnel ; la matrice 80 définit les couches de progression. Un `96-boss-fight.md` ou un `99A-PONT.md` n'est obligatoire que lorsqu'il est explicitement déclaré par le contrat concerné. Le nombre six décrit les blocs physiques, pas six niveaux de capacité.

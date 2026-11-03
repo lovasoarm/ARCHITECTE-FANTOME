@@ -65,6 +65,8 @@ légèrement en retard sans conséquence ?". Une position GPS pour affichage sur
 être en retard de quelques secondes. Une position GPS utilisée pour calculer un ETA facturé
 au client ne le peut pas de la même façon : il faut décider explicitement, pas par défaut.
 
+> **Schéma conceptuel uniquement : ne pas exécuter.** Ce fragment sert à illustrer une séparation de données ; il ne constitue pas un cours SQL. Tu peux ignorer sa syntaxe pendant la première passe.
+
 ```sql
 -- Modèle explicite : séparer l'état "affichage" (tolère l'incohérence)
 -- de l'état "calcul métier" (doit être cohérent au moment du calcul)
@@ -112,26 +114,26 @@ Ce tri, fait une seule fois par système, évite la sur-ingénierie (mettre un v
 "par précaution") autant que le sous-dimensionnement (ne verrouiller nulle part et découvrir
 le bug en charge réelle).
 
-### Un cas chiffré : le coût d'un état mal identifié
+### Exemple chiffré fictif : le coût d'un état mal identifié
 
-Sur un système réel de tournées de livraison avec 40 chauffeurs actifs, un champ de position
-GPS non protégé a produit, sur un mois de charge normale, environ 12 incohérences d'ETA visibles
-côté client (ETA qui recule au lieu d'avancer). Chaque incohérence a généré en moyenne un appel
-au support client de 6 minutes. Coût mensuel direct : 72 minutes de support, pour un correctif
-qui aurait pris moins d'une heure de développement si l'état avait été correctement identifié
-dès la conception. Le ratio coût de prévention / coût de correction tardive n'est presque
+Dans cet exemple chiffré fictif, un système de tournées de livraison avec 40 chauffeurs
+actifs subit environ 12 incohérences d'ETA visibles côté client pendant un mois de charge
+illustrative. Chaque incohérence génère un appel au support de 6 minutes, soit 72 minutes
+mensuelles. Ces chiffres servent uniquement à exercer le calcul : ils ne décrivent pas un
+système réel et ne constituent pas une mesure observée. Un correctif hypothétique aurait pu
+prendre moins d'une heure si l'état avait été identifié dès la conception. Le ratio coût de prévention / coût de correction tardive n'est presque
 jamais en faveur du "on verra plus tard".
 
-### Contre-exemple : sur-protéger un état qui ne le mérite pas
+### Contre-exemple fictif : sur-protéger un état qui ne le mérite pas
 
-L'erreur inverse existe et coûte aussi cher. Sur le même système de tournées, un développeur
+L'erreur inverse existe et coûte aussi cher. Dans le même scénario pédagogique de tournées, un développeur
 ajoute un verrou pessimiste (transaction bloquante) autour de la lecture du nom du chauffeur
 affiché dans l'interface de suivi, "par précaution". Cette donnée change une fois par mois
 en moyenne (changement d'affectation), elle est lue des centaines de fois par seconde en
 période de pointe. Le verrou transforme un simple affichage en goulot d'étranglement : les
 écrans de suivi rament pour tout le monde à chaque lecture, pour protéger une donnée qui
-n'a jamais eu besoin de cohérence stricte. Le coût de la sur-ingénierie est aussi réel que
-celui de la sous-ingénierie, simplement moins visible en démo.
+n'a jamais eu besoin de cohérence stricte. Dans cet exemple, le coût de la sur-ingénierie est aussi important que
+celui de la sous-ingénierie, simplement moins visible en démo. Ce contre-exemple illustre un mécanisme ; il ne rapporte pas un incident observé.
 
 ```text
    Sous-protection : pas de verrou sur une donnée critique
@@ -142,7 +144,7 @@ celui de la sous-ingénierie, simplement moins visible en démo.
             visible en permanence, pour un risque qui n'existait pas
 ```
 
-### Vérifier son propre modèle avant de le déployer
+### Vérifier un modèle avant un éventuel déploiement
 
 Une méthode rapide pour éviter les deux excès : pour chaque donnée jugée "à protéger",
 demande combien de fois par mois elle est réellement modifiée en concurrence, et combien de
@@ -174,8 +176,7 @@ notification de conflit a posteriori) suffit largement.
 
 ## Ce que tu dois savoir défendre
 
-1. Pour un système que tu connais, identifie une donnée qui devrait être un état "tolérant à
-   l'incohérence" et une autre qui doit être strictement cohérente : justifie la différence.
+1. Dans le cas fictif Kintana (ou dans un système simple que tu connais), identifie une donnée qui peut tolérer un léger retard et une autre qui doit rester cohérente : justifie la différence. Tu peux rester entièrement dans le scénario fourni.
 2. Explique pourquoi ajouter un champ à une table existante n'est jamais un acte neutre du
    point de vue du modèle en système.
 3. Donne un exemple d'effet de bord qu'on oublie facilement de considérer comme tel.
@@ -187,8 +188,40 @@ fait X, le système répond Y". Elle ne décrit presque jamais l'état partagé 
 réflexe à construire : avant d'écrire du code, reformule la spec en termes d'entrées, d'état
 touché, et d'effets de bord déclenchés, puis pose la question de la concurrence sur chaque
 état identifié. Ce travail prend cinq à dix minutes et coûte beaucoup moins cher que le bug
-de course découvert en production, trois semaines plus tard, sur un système déjà utilisé.
+de course qui pourrait apparaître en production, trois semaines plus tard, sur un système déjà utilisé.
 
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+<!-- AF-LESSON-PROFILE: architecture -->
+
+## Repères de décision
+
+- **Pourquoi :** Les frontières réduisent le coût de changement et clarifient les responsabilités. Elles doivent répondre aux contraintes de l'équipe, des données et de l'exploitation.
+- **Quand l’utiliser / quand l’éviter :** Découpe un système quand une frontière protège une règle ou un rythme de changement. Ne crée pas de microservice tant que l'autonomie, la charge ou la gouvernance ne justifient pas le coût distribué.
+- **Limites :** Chaque frontière ajoute contrats, réseau, déploiement, observabilité et coordination. Un diagramme propre ne prouve ni la faisabilité ni la performance.
+
+## Mécanisme : la version sans magie
+
+Part des cas d'usage, repère invariants et propriétaires de données, définis les contrats, compare les options et mesure les conséquences du changement.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Penser en systèmes** se rattache à ce cas concret : Kintana commence comme monolithe modulaire. Les demandes, réservations et notifications doivent avoir des frontières explicites sans fragmenter trop tôt le déploiement.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : compléter la note de conception (partie 2/3)
+
+> **Arc Capsule Corp. / DBZ :** une architecture est le plan du vaisseau et les coûts qu'il impose. Si chaque pièce doit connaître toutes les autres, le vaisseau ne décolle jamais.
+
+> **Statut :** exercice conceptuel facultatif de première passe. Reprends la note commencée dans [Pourquoi ce niveau existe](01-01-why-this-level.md) ; ne recrée pas un livrable. Le scénario demeure fictif et aucune donnée réelle n'est à collecter.
+
+**Mission liée à « Penser en systèmes » :** ajoute à la même note un schéma avec les acteurs, les entrées, les sorties, l'état et les deux invariants déjà identifiés. Pour chaque élément, indique qui le modifie et qui l'utilise. Ne choisis pas encore une architecture distribuée.
+
+**Livrable :** la même note enrichie d'un schéma simple et de deux lignes « qui écrit / qui lit ». Un dessin à la main ou du texte suffit.
+
+**Critères d’acceptation :** les flèches ont un sens ; les acteurs sont distingués des données ; les hypothèses restent identifiées ; tu peux expliquer le schéma à voix haute en une minute.
+
+**Transfert facultatif :** modifie un acteur dans le scénario fictif et indique quelle partie du schéma doit changer.

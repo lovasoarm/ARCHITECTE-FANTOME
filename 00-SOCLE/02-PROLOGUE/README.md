@@ -6,45 +6,54 @@ route: complete
 
 # Module 00-SOCLE/02-PROLOGUE : Prologue
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | Niveau précédent : aucun | [Niveau suivant](../06-MINDSET/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Module précédent : Getting Started](../01-GETTING-STARTED/README.md) | [Module suivant : Référentiel](../03-REFERENTIEL/README.md)
 
-**Ce niveau réutilise :** Rien : c'est le point d'entrée du parcours, il n'y a pas de niveau amont.
+**Dépendance de parcours :** terminer `01-GETTING-STARTED` pour disposer de l'environnement et connaître la navigation. **Prérequis conceptuel :** aucun ; aucune connaissance de programmation n'est exigée.
 
-**Auto-test d'entrée :**
+**Auto-test d'entrée : sans note :**
 
-1. Es-tu prêt à lire ce curriculum dans l'ordre sans sauter d'étape même si un chapitre te semble déjà connu ?
-2. Sais-tu déjà pourquoi "j'ai codé cette feature" n'est pas en soi une preuve de compétence ?
-3. As-tu un projet fil rouge réel (ou es-tu prêt à en choisir un) pour appliquer chaque niveau, plutôt que de rester en lecture passive ?
+1. Es-tu prêt à avancer étape par étape et à noter honnêtement ce que tu ne sais pas encore ?
+2. As-tu un sujet qui t'intéresse, ou préfères-tu partir d'un des exemples fournis dans ce module ?
 
-**Verdict de l'auto-test :** ces trois questions n'ont pas de note. Une seule réponse
-hésitante n'empeche pas d'entrer ici : c'est le point de depart du parcours.
+**Verdict :** aucune réponse n'est éliminatoire. Tu peux entrer sans idée de projet, sans vocabulaire métier et sans connaître les critères d'architecture. Le Prologue sert justement à noter quelques pistes et inconnues ; il ne teste pas ta capacité à concevoir un système.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** aucune durée globale n’est promise. Les temps par fichier sont des estimations ; le CORE 16 semaines / 192 heures est un scénario facultatif et limité, décrit dans [Formation complète](../../FORMATION-COMPLETE-INGENIERIE.md).
 
-## Test de calibrage du projet fil rouge
+## Repérage du domaine candidat : pas encore un choix définitif
 
-Ton projet fil rouge conditionne les 130 heures suivantes. Trop petit, le 08-DATA-SPELLS n'a rien à
-modéliser et le capstone est vide. Trop gros, le capstone est ingérable et tu abandonnes à la
-semaine dix. Tu n'as pas encore le jugement pour trancher à l'instinct : utilise la grille.
+À ce stade, tu ne choisis qu’un **domaine candidat**. La qualification du fil rouge définitif se fera pendant le Cadrage, après l’apprentissage des notions nécessaires pour identifier acteurs, entités, concurrence, historique et contraintes temporelles. Tu n’as pas besoin de prétendre connaître ces critères maintenant.
 
-Coche, honnêtement, en écrivant l'exemple concret à côté de chaque ligne :
+### Comment faire sans connaître le métier ni le vocabulaire technique
 
-| #   | Critère binaire                                                                | Ce qu'il faut pouvoir écrire                        |
-| --- | ------------------------------------------------------------------------------ | --------------------------------------------------- |
-| 1   | Au moins **4 entités métier distinctes**                                       | leurs noms, et ce qui les distingue                 |
-| 2   | Au moins **2 rôles d'utilisateur aux droits différents**                       | qui peut faire quoi, et surtout quoi il ne peut pas |
-| 3   | Au moins **1 règle de concurrence** : deux personnes veulent la même ressource | la ressource, et qui gagne                          |
-| 4   | Un **historique qui doit rester vrai** même si le présent change               | le fait figé, et pourquoi il ne doit pas bouger     |
-| 5   | Une **contrainte de temps réelle** : créneau, échéance, délai, expiration      | la contrainte, et ce qui casse si elle est violée   |
+Tu peux choisir un exemple de ce module et le décrire avec des mots ordinaires. Par exemple :
 
-**Verdict :** moins de 4 critères sur 5, tu changes de projet maintenant. Pas dans deux semaines.
+- **Domaine candidat :** prêt de matériel dans un lycée.
+- **Personne concernée :** la personne qui remet le matériel aux élèves.
+- **Problème supposé :** elle perd du temps à retrouver qui a emprunté un équipement.
+- **Limite provisoire :** le système ne gère pas les paiements.
+- **Ce que je ne sais pas encore :** les règles de retard, les droits exacts et la manière de conserver l'historique.
+
+Tu peux copier ce niveau de simplicité. Les cinq critères ci-dessous sont des **questions à explorer plus tard**, pas un contrôle de connaissances à réussir maintenant. Tu peux marquer `inconnu` pour les cinq critères, sans être bloqué et sans devoir inventer une réponse. Aucun score minimal n'est attendu au Prologue.
+
+Pour garder une trace, tu peux noter une piste à côté de chaque question. **Tu n'as pas à connaître les mots techniques ni à répondre correctement maintenant.** Si une question est difficile, écris simplement `inconnu` ; tu pourras la reprendre après avoir appris les notions correspondantes.
+
+|   # | Question simple à se poser aujourd'hui                                                                                                           | Notion qui sera étudiée plus tard              |
+| --: | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- |
+|   1 | Quelles sont les principales choses dont ce service devrait garder la trace ? Par exemple : un élève, un équipement, un emprunt, un responsable. | Entités métier (éléments distincts du domaine) |
+|   2 | Qui pourrait utiliser le service ? Est-ce que tout le monde pourrait faire les mêmes actions ?                                                   | Rôles et droits d'accès                        |
+|   3 | Que se passerait-il si deux personnes voulaient le même équipement au même moment ?                                                              | Concurrence et règle de priorité               |
+|   4 | Quelle information passée faudrait-il pouvoir retrouver même après un changement ?                                                               | Historique et invariants                       |
+|   5 | Une date, une heure ou un délai pourrait-il changer la façon de traiter une demande ?                                                            | Contraintes temporelles                        |
+
+Ces cinq questions **ne sont pas un examen et ne conditionnent pas la sortie du Prologue**. Elles servent à préparer le Cadrage. Tu peux écrire `inconnu` sur les cinq lignes, ou reprendre l'exemple fourni sans ajouter de détail.
+
+**Verdict provisoire :** note uniquement ce que tu sais déjà et laisse le reste inconnu. Ne rejette pas un domaine parce qu'un concept pas encore étudié te semble absent. La sélection définitive intervient après `01-CADRAGE/01-PROBLEM-HUNT`.
 
 Exemples calibrés : réservation de salles d'un club de sport, planning de bénévoles d'une
 association, suivi de prêts de matériel dans un lycée, facturation d'un artisan avec acomptes.
-Exemples disqualifiés : list (0/5), blog personnel (1/5), portfolio (0/5), clone d'une
-application connue sans utilisateur réel (aucun besoin observé, donc rien à cadrer au 01-PROBLEM-HUNT).
+Exemples qui ne suffisent pas encore à définir un besoin métier : liste personnelle, blog personnel, portfolio ou clone d'une application connue sans utilisateur identifié. Ce ne sont pas des sujets interdits pour toujours : ils demandent simplement un besoin et un contexte plus précis au Cadrage. Si tu n'as aucune piste, reprends l'un des exemples calibrés ci-dessus.
 
-Écris ce tableau rempli et daté dans ton journal : c'est le livrable du 00-SOCLE.
+Écris ce tableau rempli et daté dans ton journal local ou dans `PREUVES/00-SOCLE/02-PROLOGUE.md`. Un dossier sur ton ordinateur suffit : aucun dépôt Git ou projet logiciel n’est demandé. C’est le livrable du Prologue.
 
 ## Ce que c'est
 
@@ -53,13 +62,13 @@ un clavier avec l'intention de "monter en compétence". C'est le niveau qu'on sa
 et c'est pour ça que la plupart des parcours d'apprentissage produisent des gens qui savent
 écrire du code mais pas décider quoi écrire, ni pourquoi, ni jusqu'où.
 
-Prérequis : aucun. C'est l'entrée du jeu.
+Prérequis conceptuel : aucun. Prérequis de parcours : `01-GETTING-STARTED` terminé, pour disposer de l'environnement et connaître la navigation. Aucune connaissance de programmation préalable n'est exigée.
 
 ## Ce que tu sais faire à la sortie
 
 - Tu sais pourquoi "j'ai codé cette feature" n'est pas une compétence.
-- Tu sais comment utiliser ce curriculum sans le trahir (pas de shortcuts, pas de saut de niveau).
-- Tu connais la carte complète des 6 paliers et ce que chacun débloque concrètement.
+- Tu sais respecter les prérequis et les gates sans confondre maîtrise démontrée et lecture obligatoire de chaque fichier.
+- Tu distingues les six blocs physiques, les huit paliers de capacité et les étapes de la route ; voir la [matrice des progressions](../../06-ANNEXES-TRANSVERSES/80-MATRICE-PROGRESSIONS.md).
 - Tu connais les 7 règles du joueur, celles qui reviennent dans chaque niveau suivant.
 - Tu as un grimoire de référence à relire quand tu doutes.
 
@@ -67,14 +76,14 @@ Prérequis : aucun. C'est l'entrée du jeu.
 
 - [01-01-why-this-quest.md](01-01-why-this-quest.md) : pourquoi la plupart des devs stagnent
 - [02-how-to-use-this-curriculum.md](02-how-to-use-this-curriculum.md) : règle du livrable, rythme, auto-évaluation
-- [03-the-map.md](03-the-map.md) : les 6 paliers, ce qu'ils débloquent
+- [03-the-map.md](03-the-map.md) : les huit verbes de progression mentale et leurs limites
 - [04-rules-of-the-game.md](04-rules-of-the-game.md) : les 7 règles du joueur
 - [95-challenge.md](95-challenge.md) : ton contrat de départ, le livrable daté du niveau
 - [90-grimoire.md](90-grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 
-Dans l'ordre. Chaque fichier suppose le précédent lu. Ne saute pas `04-rules-of-the-game.md`
+Lis les fichiers dans l’ordre proposé pour comprendre le contrat du parcours. Une lecture courte par séance suffit ; tu n'as pas à maîtriser tous les termes dès cette première exposition. Tu peux revenir sur une section déjà comprise si une preuve équivalente le démontre ; ne saute jamais une compétence ou un prérequis non validé. Ne saute pas `04-rules-of-the-game.md`
 même s'il te semble être du bon sens : c'est le fichier que tu relis dans six mois quand un
 projet dérape.
 
@@ -90,8 +99,7 @@ Ce niveau n'a pas de `96-boss-fight.md`, et son fichier d'ouverture s'appelle
 Raison : le prologue n'enseigne aucune compétence technique, il pose les règles du jeu. Un
 boss-fight suppose une compétence à mettre sous pression : il n'y en a pas encore. Le nom
 « why-this-quest » marque l'entrée dans le parcours entier, pas dans un niveau.
-Ce qui reste obligatoire ici : [95-challenge.md](95-challenge.md), parce que le choix du projet
-fil rouge est un vrai livrable daté, réutilisé par tous les niveaux suivants.
+Ce qui reste obligatoire ici : [95-challenge.md](95-challenge.md), parce que le repérage du domaine candidat et les hypothèses de départ constituent une trace datée. Cette trace pourra être corrigée ou abandonnée au Cadrage ; elle ne vaut pas qualification du fil rouge personnel.
 
 <!-- PIECES-MODULE:debut -->
 
@@ -107,12 +115,18 @@ fil rouge est un vrai livrable daté, réutilisé par tous les niveaux suivants.
 
 <!-- CONTENU-DOSSIER:debut -->
 
-- [Auto-test d'entrée : `02-PROLOGUE`](00-PREREQUIS.md)
+- [Vérification de la dépendance de parcours : `02-PROLOGUE`](00-PREREQUIS.md)
 - [Pourquoi la plupart des devs stagnent](01-01-why-this-quest.md)
 - [Comment utiliser ce curriculum](02-how-to-use-this-curriculum.md)
-- [La carte : six paliers, 54 modules pédagogiques directs, un seul fil](03-the-map.md)
+- [La carte : huit verbes de progression, un seul fil canonique](03-the-map.md)
 - [Les 7 règles du joueur](04-rules-of-the-game.md)
 - [Challenge 00 : ton contrat de départ](95-challenge.md)
 - [Grimoire : Module 00-SOCLE/02-PROLOGUE, Prologue](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.

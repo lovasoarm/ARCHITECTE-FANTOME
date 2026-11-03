@@ -102,10 +102,10 @@ curriculum où on te force la main sur ce geste.
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
 
-<!-- AF-P0-2026-10-30: missing_example -->
-
 ### Exemple travaillé : cas métier
 
-Les événements peuvent arriver en retard, en double, hors ordre, avec une date ambiguë, une valeur absente ou une précision inattendue. Construis un cas minimal qui illustre « SPEC_DRIFT_DRILL : 45 min » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+**Exemple résolu (fictif).** La spécification initiale dit « accepter les mesures d'une station active ». Après une réunion, le produit ajoute « conserver aussi les mesures des stations suspendues pendant 24 heures ». Le code continue à rejeter les stations suspendues : c'est un drift, car une exigence explicite a changé. Le correctif met à jour le contrat et ajoute un test pour le nouvel état ; il ne modifie pas le comportement des stations supprimées. **Preuve :** ancienne exigence, nouvelle exigence datée, test qui échoue avant et passe après.
+
+**À toi :** Les événements peuvent arriver en retard, en double, hors ordre, avec une date ambiguë, une valeur absente ou une précision inattendue. Construis un cas minimal qui illustre « SPEC_DRIFT_DRILL : 45 min » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

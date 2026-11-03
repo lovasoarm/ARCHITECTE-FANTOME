@@ -237,3 +237,34 @@ Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STAND
 - **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
 
 **Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.
+
+<!-- AF-PROJECT-REAL-WORLD-GATE-1.1 -->
+
+## Mission produit évaluée : Orchestrateur fiable de notifications et d'affectation
+
+La scène Garo sert à visualiser le parallélisme et les événements. L'EventEmitter local n'est pas un broker durable et le streaming simulé n'est pas une preuve SSE en production.
+
+### Mission évaluée : orchestrateur Kintana de notifications et d'affectation
+
+Construis un worker d'événements qui traite les notifications de demandes :
+
+- concurrence bornée et priorités de traitement ;
+- timeout explicite avec distinction entre abandon local et opération distante ;
+- retries avec backoff et jitter, nombre maximal et politique d'erreur permanente ;
+- déduplication/idempotence par identifiant d'événement ;
+- file d'échec (dead-letter) et procédure de rejeu ;
+- arrêt propre : aucun événement accepté ne disparaît silencieusement ;
+- suivi de l'état et corrélation par identifiant de demande.
+
+**Produit de référence :** [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
+
+**Livrables :** worker, adaptateur de queue (in-memory pour le lab, broker réel uniquement si le module le demande), tests avec horloge contrôlée, scénario d'injection de panne et ADR sur at-least-once vs garanties plus fortes.
+
+**Gate :** événements dupliqués sans double notification, erreur permanente non rejouée en boucle, saturation visible, concurrence plafonnée, arrêt/reprise vérifiés. Marque tout test local `LAB`.
+
+**Règle de livraison :** la kata d’origine reste utile pour isoler le concept et son univers narratif. La validation finale du projet repose sur la mission métier ci-dessus, ses tests, ses limites et les preuves produites par l’apprenant. Les résultats de simulation ne sont jamais présentés comme des résultats de production.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.
+- [Référence technique différée](reference/README.md) : à consulter après la tentative, sans recopier dans le livrable.

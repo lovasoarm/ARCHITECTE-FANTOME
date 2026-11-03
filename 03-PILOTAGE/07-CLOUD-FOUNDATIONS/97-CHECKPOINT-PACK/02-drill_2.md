@@ -7,6 +7,13 @@ perturbation_modes: [constraints_injectees, changement_contexte]
 anti_recipe_key: constraints_injectees+changement_contexte
 transfer_distance: low
 assessment_role: instructional_checkpoint
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/07-CLOUD-FOUNDATIONS/97-CHECKPOINT-PACK/97-checklist_releve.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 03-PILOTAGE/07-CLOUD-FOUNDATIONS/97-CHECKPOINT-PACK/97-checklist_releve.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : finale au stade :** 99,9 % de disponibilité sur un slide ne sauve personne à 03:17 quand le service hurle. La vraie compétence commence quand il faut transformer la métrique en décision.
@@ -46,10 +53,10 @@ chaque ligne.
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
 
-<!-- AF-P0-2026-10-30: missing_example -->
-
 ### Exemple travaillé : cas métier
 
-Des stations distantes envoient des mesures avec réseau intermittent ; le système doit absorber les reprises sans doubler les écritures. Compare une journée normale et un pic dix fois supérieur. Pour « Drill 2 : le chiffrage à froid, en 20 minutes », note le composant, le coût ou le risque qui varie, et le signal observable qui révèle la limite.
+**Exemple résolu (hypothétique).** Pour comparer deux architectures, l'équipe remplace « serveur moins cher » par un mois d'unités comparables : heures d'instance, Go stockés, Go transférés et opérations gérées. Elle note 720 heures d'instance, 80 Go-mois de stockage et 120 Go de sortie ; elle laisse chaque tarif comme variable à renseigner depuis la page officielle du fournisseur. **Résultat :** le calcul est reproductible et les hypothèses sont visibles ; aucune facture n'est annoncée sans tarifs vérifiés.
+
+**À toi :** Des stations distantes envoient des mesures avec réseau intermittent ; le système doit absorber les reprises sans doubler les écritures. Compare une journée normale et un pic dix fois supérieur. Pour « Drill 2 : le chiffrage à froid, en 20 minutes », note le composant, le coût ou le risque qui varie, et le signal observable qui révèle la limite.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

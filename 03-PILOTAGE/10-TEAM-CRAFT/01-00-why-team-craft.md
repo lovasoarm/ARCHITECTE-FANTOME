@@ -1,5 +1,5 @@
 ---
-perennite: evolutif
+perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: "Communication, revue de code, mentorat : intemporels."
@@ -259,3 +259,31 @@ C'est un module d'ingénierie collaborative avec un ROI direct sur la qualité d
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi team craft mérite ton temps** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Diagnostiquer une friction d’équipe
+
+**Mission liée à « Pourquoi team craft mérite ton temps » :** Choisis un point de friction du cycle de livraison Kintana (handoff, revue, clarification ou incident). Sépare symptômes, causes plausibles et contraintes organisationnelles, puis propose une expérience limitée.
+
+**Livrable :** Carte du flux actuel, hypothèse, expérience de deux semaines et signal d’arrêt.
+
+**Critères d’acceptation :** L’expérience est réversible, mesurable et n’accuse pas une personne ; le signal choisi est observable.
+
+**Transfert obligatoire :** Le signal s’améliore mais la qualité baisse : explique pourquoi tu ne déclares pas l’expérience gagnante.

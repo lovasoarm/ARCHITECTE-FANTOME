@@ -1,19 +1,20 @@
 ---
 perishability_id: PER-0086
 
-statut: revu
-last_reviewed: 2026-08
-proprietaire: mainteneur TECH-ILA
-revue: trimestrielle
 companion: ce parcours
-stability: perissable
+stability: "evolutif"
 acte: comprendre
-freshness_registry_id: PER-0086
-freshness_audit_date: 2026-10-30
-freshness_status: date_declaree_non_revalidee_dans_cette_edition
-review_due: 2027-04-28
-review_status: date_declaree_non_revalidee_dans_cette_edition
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+review_interval: "3 mois"
+perishability_scope: "Correspondances technologiques et liens d’orientation TECH-ILA vers les ressources pédagogiques canoniques."
+canonical_resource: "06-ANNEXES-TRANSVERSES/04-TECH-ILA/README.md"
+source_scope: "Notion et parcours internes reliés à 06-ANNEXES-TRANSVERSES/04-TECH-ILA/README.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
+
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 [← Sommaire TECH-ILA](../README.md)
@@ -23,6 +24,10 @@ review_status: date_declaree_non_revalidee_dans_cette_edition
 > **Ensuite** : [Niveau 1 : Socle professionnel](03-niveau-1-socle.md)
 
 # Orientation : lire, classer, ordonner (sections 0 à 3)
+
+> **Périmètre de suivi (3 mois) :** Correspondances technologiques et liens d’orientation TECH-ILA vers les ressources pédagogiques canoniques.
+
+Pour la première passe Getting Started → Prologue → Fundamentals, aucune lecture TECH-ILA obligatoire. Les correspondances sont des repères de consultation ; elles ne constituent pas une gate globale.
 
 <!-- AF-DIAGRAM:incident -->
 
@@ -37,39 +42,30 @@ Triage ─► Mitigation ─► Recovery ─► Postmortem
 
 La gestion d’incident transforme un signal de panne en restauration puis en apprentissage durable.
 
-<!-- AF-DIAGRAM:transfer -->
+<!-- AF-DIAGRAM:reference -->
+
+## Repère visuel utile : Référentiel de compétences par preuves
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+compétence -> tâche observable -> artefact
+     ^                         |
+     |                         v
+révision datée <- verdict <- critère explicite
+     |
+     +-> remédiation ou nouvelle preuve
 ```
-
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
-
-Temps de lecture ~10 min
-
----
 
 ## 0 : Comment lire ce document
 
 Trois usages. Choisis le tien.
 
-**Usage 1 : parcours.** Tu avances dans ce parcours. Après chaque module, tu ouvres la section TECH-ILA correspondante ([section 10](08-cartes-parcours-technologies.md#10-carte-du-parcours-technologies-module-par-module)) et tu appliques le concept dans une techno réelle.
+**Usage 1 : parcours.** La Route 58 et les modules principaux restent prioritaires. Tu ouvres une section TECH-ILA seulement lorsqu’un jalon te la signale, et après avoir atteint ses prérequis locaux. Le tableau de correspondance sert à retrouver une fiche ; il ne transforme pas chaque correspondance en lecture obligatoire.
 
 **Usage 2 : dépannage.** Tu es en galère sur React ou NestJS. Tu ouvres la [carte inverse](08-cartes-parcours-technologies.md#11-carte-inverse-technologie-fichiers-du-parcours), tu retrouves le fichier du parcours qui explique le mécanisme sous-jacent, tu relis, tu reviens. En situation d'incident réel (prod qui casse), tu n'ouvres pas ce document : tu ouvres le [mode urgence](./09-mode-urgence.md).
 
 **Usage 3 : décision.** Tu dois choisir un outil. Tu ouvres la fiche techno, tu lis "Quand ne pas la choisir" et "Alternatives", tu écris un ADR (`03-PILOTAGE/10-TEAM-CRAFT/03-adr_writing.md`).
 
-Le pipeline obligatoire, valable pour chaque techno de ce document :
+Le pipeline ci-dessous décrit une progression possible lorsqu’une fiche TECH-ILA est effectivement utile ; il ne s’applique pas à chaque technologie et ne constitue pas une gate globale :
 
 ```text
 Fondamentaux ce parcours
@@ -101,12 +97,12 @@ Les technos seulement citées : dans un tableau d'alternatives ou en passant (Fa
 
 Ce document te dit de garder « la doc ouverte, jamais par cœur ». Encore faut-il savoir la lire vite et sans te faire avoir.
 
-1. **Vérifie la version en premier.** Chaque doc a un sélecteur de version ou une mention en tête de page. Une doc sans version visible est suspecte.
-2. **Cherche le changelog** avant de lire le guide. Il te dit ce qui a bougé récemment : donc ce qui est probablement périssable.
-3. **Lis les notes de migration** si tu passes d'une version à l'autre. C'est là que sont les ruptures, pas dans le guide de démarrage.
-4. **Distingue guide marketing et référence.** La page d'accueil vend l'outil ; la référence API décrit son comportement réel. Va toujours vérifier dans la seconde.
-5. **Regarde la date de la page.** Une doc communautaire (blog, Stack Overflow, tutoriel) sans date est à traiter comme périmée par défaut.
-6. **Cherche un exemple exécutable**, pas un extrait tronqué. Si tu ne peux pas le coller et le lancer tel quel, tu n'as pas encore compris ce qu'il fait.
+1. **Identifie la version ciblée.** Utilise le sélecteur de version lorsqu’il existe ; sinon, relève la version dans les notes de version, le paquet, le dépôt ou la configuration. Si tu ne peux pas identifier la version, note cette limite au lieu de supposer qu’il s’agit de la dernière.
+2. **Consulte les changements lorsque c’est utile.** Pour une migration, une régression ou un comportement susceptible d’avoir changé, lis le changelog et les notes de migration avant d’appliquer un guide ancien. Pour apprendre un concept stable, commence par le guide adapté à ton niveau.
+3. **Lis les notes de migration** lorsque tu passes d’une version à une autre. Repère les changements incompatibles et vérifie s’ils touchent ton usage réel.
+4. **Choisis la source selon la question.** Un guide explique le parcours ; une référence API décrit les paramètres et comportements ; une spécification définit un protocole ; une page de présentation donne le contexte du produit. Croise-les si la décision a un impact important.
+5. **Évalue la date et la provenance.** Une page communautaire non datée ne suffit pas à confirmer un comportement versionné. Recherche une source primaire ou indique explicitement que le point reste à vérifier.
+6. **Interprète les exemples dans leur contexte.** Un extrait peut omettre imports, configuration, variables d’environnement ou fichiers voisins. Identifie ce qui manque, puis reproduis-le dans un petit projet adapté lorsque c’est nécessaire ; ne suppose pas qu’un extrait est autonome.
 
 ---
 
@@ -163,18 +159,18 @@ Aucune de ces quatre choses ne s'apprend en collectionnant des noms.
 
 Chaque techno de ce document porte un tag. Le tag décide de ton investissement.
 
-| Tag                 | Définition                                                            | Investissement                          | Exemple                                                        |
-| ------------------- | --------------------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------- |
-| **NOYAU DURABLE**   | Concept dont les principes survivront à tout produit qui l'implémente | Profond, mémorisé, pratiqué             | HTTP, SQL, Git, modèle relationnel, Linux, stratégies de rendu |
-| **PROFESSIONNELLE** | Largement utilisée aujourd'hui, dans plusieurs contextes              | Sérieux, jusqu'à l'autonomie            | React, Node.js, TypeScript, Docker, PostgreSQL                 |
-| **CONTEXTUELLE**    | Utile selon secteur, équipe, architecture                             | À la demande, quand le contexte l'exige | GraphQL, Next.js, Spring Boot, .NET, MongoDB, Kafka            |
-| **PÉRISSABLE**      | Syntaxe, API, config susceptible de changer sous 2-3 ans              | Jamais par cœur, doc ouverte            | API d'un routeur, flags CLI, config d'un bundler               |
+| Tag                 | Définition                                                            | Investissement                                          | Exemple                                                        |
+| ------------------- | --------------------------------------------------------------------- | ------------------------------------------------------- | -------------------------------------------------------------- |
+| **NOYAU DURABLE**   | Concept dont les principes survivront à tout produit qui l'implémente | Profond, mémorisé, pratiqué                             | HTTP, SQL, Git, modèle relationnel, Linux, stratégies de rendu |
+| **PROFESSIONNELLE** | Largement utilisée aujourd'hui, dans plusieurs contextes              | Sérieux, jusqu'à l'autonomie                            | React, Node.js, TypeScript, Docker, PostgreSQL                 |
+| **CONTEXTUELLE**    | Utile selon secteur, équipe, architecture                             | À la demande, quand le contexte l'exige                 | GraphQL, Next.js, Spring Boot, .NET, MongoDB, Kafka            |
+| **PÉRISSABLE**      | Syntaxe, API ou configuration susceptible de changer entre versions   | Jamais par cœur ; vérifier la version et la doc ciblées | API d'un routeur, flags CLI, config d'un bundler               |
 
 **Ce que le tag ne dit pas.** PROFESSIONNELLE qualifie l'usage sur le marché, pas la longévité. Certaines technos PROFESSIONNELLES (PostgreSQL, Docker en tant que format d'image OCI) ont une longévité de NOYAU DURABLE. C'est la ligne « Durée de vie » de chaque fiche qui fait foi, pas le tag. Le tag oriente ton investissement d'aujourd'hui ; le chiffre engage la techno sur la durée.
 
 **Les tags qualifient des TECHNOLOGIES.** Les sections de méthode (ADR, grille de lecture d'écosystème, postmortem, audit d'une réponse d'IA) n'en portent pas : une méthode ne se périme pas de la même façon qu'un outil, et sa durée de vie est celle de ta carrière. Elles sont repérables à leur absence de ligne « Coût / Durée de vie ». Ce n'est pas un oubli, c'est une exception assumée et déclarée ici. Une section de méthode le DÉCLARE en une ligne sous son titre (« **Section de méthode** … », ou « **Section de synthèse** … » pour une section de clôture de niveau). L'absence de déclaration ET de Coût/Durée est un bug du document.
 
-**Deux horizons, à ne pas confondre.** L'horizon du DOCUMENT est 2028 : au-delà, la sélection des technos et les alternatives citées ne sont plus garanties, il faut une révision. L'horizon des TECHNOLOGIES, ce sont les durées de vie chiffrées de chaque fiche : elles engagent la techno, pas le document. SQL sera encore là quand ce texte ne le sera plus. Règle de lecture : un tag NOYAU DURABLE est un pari sur dix ans et plus, un tag PÉRISSABLE est un pari sur trois ans, et le document, lui, se révise tous les trois mois.
+**Deux niveaux de révision, à ne pas confondre.** Ce document est prévu pour une revue trimestrielle : cela signifie que sa sélection de technologies et ses liens doivent être réexaminés, pas que chaque entrée devient obsolète à une date fixe. Les durées de vie chiffrées des fiches sont des estimations pédagogiques, pas des garanties de marché. Un tag NOYAU DURABLE indique qu’on investit surtout dans le mécanisme sous-jacent ; un tag PÉRISSABLE signale qu’une syntaxe, une API ou une configuration doit être revérifiée pour la version utilisée. Aucun tag ne prédit avec certitude la durée de vie d’un produit.
 
 Règle brutale : **on n'apprend jamais une syntaxe par cœur, on apprend le problème qu'elle résout.**
 
@@ -226,39 +222,69 @@ L'absence d'outil est une option à part entière, pas un renoncement. Sur un do
 
 ```text
 NIVEAU 1  SOCLE          terminal · Git · Node · TS · HTTP · SQL · Docker
-    ↓                    (aucun métier n'existe sans ça : aucun prérequis)
+                         (référentiel de sujets ; chaque fiche garde ses prérequis locaux)
 NIVEAU 2  FRONTEND       React · état · routing · Next.js · perf · a11y
-    ↓                    (prérequis : niveau 1 complet : HTTP et Node en particulier)
+    ↓                    (prérequis selon la fiche : HTTP, DOM ou runtime ; pas le niveau 1 entier)
 NIVEAU 3  BACKEND        Express/NestJS · auth · validation · Redis · files
-    ↓                    (prérequis : niveau 1 complet, SQL et Docker en particulier)
+    ↓                    (prérequis selon la fiche : SQL, Docker ou API ; pas le niveau 1 entier)
 NIVEAU 4  SYSTÈMES       CI/CD · cloud · observabilité · messaging · résilience
-    ↓                    (prérequis : niveau 3 complet : tu exploites ce que tu as construit)
+    ↓                    (prérequis propre à la fiche : un service et ses bases d’exploitation)
 NIVEAU 5  TRANSFERT      Python/FastAPI · Java/Spring · .NET
-    ↓                    (prérequis : niveau 3 complet : tu transposes un raisonnement acquis)
+    ↓                    (prérequis propre à la fiche : le mécanisme source déjà compris)
 NIVEAU 6  IA             diriger · vérifier · refuser
-                         (prérequis : avoir livré au moins un projet de niveau 3 sans IA,
-                         pour savoir reconnaître une réponse fausse quand l'IA en produit une)
+                         (approfondissement avancé : une livraison de niveau 3 sans IA
+                         est nécessaire avant cette famille de fiches, pas avant le parcours débutant)
 ```
 
 À côté de ces six niveaux, un fichier n'est pas un niveau : le [mode urgence](./09-mode-urgence.md) est une page de consultation en incident, pas de lecture linéaire : index par message d'erreur, index par symptôme, procédure d'incident en une page.
 
-Tu n'as pas besoin de finir un niveau pour toucher le suivant. Mais tu ne sautes pas le niveau 1. Jamais.
+Les numéros organisent les familles de sujets ; ils ne créent ni ordre de lecture ni obligation de terminer un niveau. Respecte les prérequis indiqués dans chaque fiche. La Route 58 peut ne renvoyer qu’à une section précise, ou à aucune section TECH-ILA.
 
 ### Ordre conseillé en parallèle de ce parcours
 
-| Modules ce parcours en cours                             | Section TECH-ILA à ouvrir en parallèle       |
-| -------------------------------------------------------- | -------------------------------------------- |
-| 00 → 02 (getting started, fondamentaux, problem solving) | Terminal, Git, Node, npm/pnpm                |
-| 03 → 08 (async, debugging, erreurs, testing, perf)       | Node runtime, Vitest, DevTools, HTTP         |
-| 09 → 13 (structures, algos, FP, patterns, refacto)       | rien de nouveau : consolide, code            |
-| 14 → 15 (TypeScript, runtime)                            | TypeScript pro, Vite, packaging              |
-| 16 → 17 (architecture, web)                              | React, routing, Next.js                      |
-| 18 → 22 (OOP, a11y, temps réel, API, sécurité)           | NestJS, PostgreSQL, auth, WebSocket/SSE      |
-| 24 → 26 (bases de données, scalabilité, observabilité)   | Redis, files, Docker, OpenTelemetry, CI/CD   |
-| 27 → 31 (team craft, edge cases, agents, projets)        | Cloud, transfert Python/Java/.NET, portfolio |
+| Modules ce parcours en cours                             | Section TECH-ILA à ouvrir en parallèle                                       |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| 00 → 02 (getting started, fondamentaux, problem solving) | Aucune lecture TECH-ILA obligatoire ; suivre le Socle principal              |
+| 03 → 08 (async, debugging, erreurs, testing, perf)       | Fiches ciblées seulement si la Route 58 les demande et après leurs prérequis |
+| 09 → 13 (structures, algos, FP, patterns, refacto)       | rien de nouveau : consolide, code                                            |
+| 14 → 15 (TypeScript, runtime)                            | Fiches TypeScript/runtime ciblées après les acquis correspondants            |
+| 16 → 17 (architecture, web)                              | React, routing, Next.js                                                      |
+| 18 → 22 (OOP, a11y, temps réel, API, sécurité)           | NestJS, PostgreSQL, auth, WebSocket/SSE                                      |
+| 24 → 26 (bases de données, scalabilité, observabilité)   | Redis, files, Docker, OpenTelemetry, CI/CD                                   |
+| 27 → 31 (team craft, edge cases, agents, projets)        | Cloud, transfert Python/Java/.NET, portfolio                                 |
 
 **Seuil franchi.** Tu viens de comprendre que l'ordre n'est pas décoratif : chaque techno arrive au moment où tu as déjà le mécanisme en tête. Apprendre React avant les closures, c'est apprendre à conduire en regardant la radio.
 
 ---
 
 [← Sommaire](../README.md) · [Niveau 1 →](03-niveau-1-socle.md)
+
+<!-- AF-LESSON-PROFILE: reference -->
+
+## Repères de décision
+
+- **Pourquoi :** Un référentiel sert à rendre les compétences observables et à éviter de confondre familiarité, autonomie et maîtrise.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le pour établir un point de départ, prioriser une révision ou préparer une revue de portfolio. Ne l'utilise pas comme classement de valeur personnelle.
+- **Limites :** Une auto-évaluation est biaisée. Le niveau doit être confirmé par une tâche inconnue, un artefact reproductible et, aux paliers avancés, une revue externe.
+
+## Mécanisme : la version sans magie
+
+Associe une compétence à une tâche, un critère, une preuve, une date et un statut. Réévalue quand le contexte ou la technologie change.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../77-FIL-ROUGE-KINTANA/README.md), **Orientation : lire, classer, ordonner (sections 0 à 3)** se rattache à ce cas concret : Pour Kintana, une compétence comme l'idempotence n'est acquise que si tu sais l'expliquer, l'implémenter et vérifier le rejeu et les conflits.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Référentiel de compétences par preuves
+
+> **Arc DBZ / Capsule Corp. :** Bulma ne dit pas « je suis forte » parce qu'elle a lu le manuel. Elle vérifie ce que l'outil permet réellement.
+
+**Mission liée à « Orientation : lire, classer, ordonner (sections 0 à 3) » :** Établis ton état initial sur une tranche Kintana : sélectionne trois compétences, réalise une tâche de chacune sans suivre un corrigé, garde les tests et note ce que tu n'as pas pu démontrer.
+
+**Livrable :** un registre de compétences avec preuves liées, statut honnête, date de révision et prochain test de transfert.
+
+**Critères d’acceptation :** chaque statut pointe vers un artefact ; une compétence non testée reste `NON ÉVALUÉE` ; aucune preuve déclarative ne vaut une exécution ; les lacunes ont une action de remédiation.
+
+**Transfert obligatoire :** Reprends une compétence dans un langage ou un composant différent et vérifie si le principe se transfère réellement.

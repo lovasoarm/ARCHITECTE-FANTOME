@@ -190,3 +190,33 @@ typage, il faudrait le réintroduire volontairement.
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+<!-- AF-LESSON-PROFILE: ui -->
+
+## Repères de décision
+
+- **Pourquoi :** Un flux utilisateur clair réduit les erreurs, les doubles actions et les abandons. L'interface doit montrer les états réels du système, pas inventer un succès optimiste.
+- **Quand l’utiliser / quand l’éviter :** Modélise les parcours et états avant d'ajouter des écrans. Sur un réseau instable, prévois attente, reprise et conflit ; sur une action sensible, demande confirmation si nécessaire.
+- **Limites :** Le front ne remplace ni autorisation serveur ni cohérence transactionnelle. Les états offline ne sont pas des confirmations serveur ; les tests visuels seuls ne prouvent pas l'accessibilité.
+
+## Mécanisme : la version sans magie
+
+Décris l'état métier, l'état de la requête et l'état de l'interface séparément. Définis les transitions et les messages pour chaque résultat.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Dessiner le parcours avant l'écran** se rattache à ce cas concret : Un demandeur Kintana peut perdre le réseau en envoyant une demande. Il doit voir si elle est en attente, confirmée ou rejetée et ne pas la renvoyer au hasard.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Parcours multi-états pour le demandeur Kintana
+
+> **Arc One Piece / Grand Line :** le parcours doit rester lisible même quand le réseau fait des vagues. L'utilisateur ne doit pas deviner si son action est partie.
+
+**Mission liée à « Dessiner le parcours avant l'écran » :** Construis le parcours de création et suivi d'une demande avec loading, empty, error, success et offline. Ajoute navigation clavier, annonces de statut et prévention du double envoi.
+
+**Livrable :** un flux d'écran, les composants d'état, une matrice de parcours et des tests clavier / réseau simulé.
+
+**Critères d’acceptation :** chaque écran correspond à un état réel ; le succès attend le serveur ; les erreurs sont récupérables ; le brouillon et la clé d'idempotence évitent la duplication ; les contrôles sont accessibles.
+
+**Transfert obligatoire :** Le serveur accepte la demande mais la réponse se perd. Explique ce que l'interface doit afficher et comment réconcilier le statut.

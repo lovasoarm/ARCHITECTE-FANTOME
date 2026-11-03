@@ -35,7 +35,7 @@ Avant de considérer le projet fini, tu dois traiter ces exigences OWASP context
 - Parité de validation (OWASP A03) : les mêmes validations d'entrée que la version JS doivent exister dans le portage ; un edge case bloqué en JS ne doit pas passer en Python/Go.
 - Gestion d'erreurs (OWASP A09 - Logging) : ne pas logger d'infos sensibles ou de stack complète en prod dans le langage cible non plus.
 
-Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Le `97-CHECKPOINT-PACK` de ce projet contient un test de sécurité qui doit passer.
+Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Ajoute dans le dossier `tests/` de ce projet un test ciblé pour au moins une des menaces retenues. Documente dans le README la commande exacte qui exécute ce test. Aucun pack de correction séparé n’est fourni dans ce projet.
 
 ## AUTO-ÉVALUATION
 

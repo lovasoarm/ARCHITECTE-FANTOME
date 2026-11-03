@@ -368,10 +368,40 @@ Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois inf
 
 ## Transfert vérifiable : estimer l'espace de recherche avant de coder
 
-Le nombre de combinaisons détermine souvent si une recherche exhaustive est viable. Pour choisir `k` éléments parmi `n`, le nombre de possibilités est \(inom{n}{k}\). Une boucle imbriquée peut donc devenir impraticable même si chaque itération est rapide. Les contraintes (ordre, répétition, exclusions) changent la formule : écris-les avant de compter.
+Le nombre de combinaisons détermine souvent si une recherche exhaustive est viable. Pour choisir `k` éléments parmi `n`, le nombre de possibilités est \(\binom{n}{k}\). Une boucle imbriquée peut donc devenir impraticable même si chaque itération est rapide. Les contraintes (ordre, répétition, exclusions) changent la formule : écris-les avant de compter.
 
 **Exercice terrain.** Un moteur de recommandations doit comparer toutes les paires parmi 5 000 produits. Calcule le nombre de paires, estime la durée à 2 millions d'évaluations/s, puis propose une réduction (préfiltrage, top-k, index ou échantillonnage) et indique le biais possible.
 
 **Vérification.** Le résultat attendu pour les paires non ordonnées sans répétition est `n*(n-1)/2 = 12 497 500`. À 2 000 000 évaluations/s, le plancher théorique est environ 6,25 s, hors I/O, allocation et contention. Un benchmark réel doit remplacer l'estimation avant engagement de performance.
 
 **Lien aval.** Ce raisonnement prépare l'analyse de complexité dans `07-ALGORITHMS`, les index et requêtes dans Databases, puis le capacity planning dans Scalability.
+
+<!-- AF-LESSON-PROFILE: math -->
+
+## Repères de décision
+
+- **Pourquoi :** Les maths rendent explicites la capacité, l'incertitude, le coût et les limites d'un algorithme. Elles évitent de décider au feeling quand le système grandit.
+- **Quand l’utiliser / quand l’éviter :** Utilise la formule adaptée à la question (capacité, probabilité, hachage, logique ou combinatoire). Vérifie unités et hypothèses avant de coder ; ne sors pas une formule parce qu'elle a l'air savante.
+- **Limites :** Un calcul exact sur des hypothèses fausses donne une réponse fausse. Les données réelles ont bruit, biais et limites d'échantillonnage ; une simulation n'est pas une mesure de terrain.
+
+## Mécanisme : la version sans magie
+
+Définis les variables, unités et domaine de validité ; dérive ou explique la formule ; calcule un cas de base, un cas limite et une sensibilité.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Combinatorics lite : compter avant de bruteforcer** se rattache à ce cas concret : Kintana doit dimensionner les créneaux, estimer une charge de notification ou choisir un seuil de contrôle sans masquer l'incertitude.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Décision quantitative pour la capacité Kintana
+
+> **Arc DBZ / Capsule Corp. :** les chiffres ne sont pas de la déco. Une formule mal choisie peut envoyer tout le système dans le mur, même si le code compile.
+
+**Mission liée à « Combinatorics lite : compter avant de bruteforcer » :** Choisis une question chiffrée cohérente avec la notion : capacité de créneaux, probabilité de collision, taille d'un espace de recherche ou seuil d'alerte. Formalise les hypothèses et compare deux scénarios.
+
+**Livrable :** un calcul reproductible (tableur ou script), les unités, hypothèses, sensibilité et une décision argumentée.
+
+**Critères d’acceptation :** les dimensions sont cohérentes ; le résultat est vérifié par un cas simple ; les hypothèses et l'incertitude sont exposées ; aucune précision injustifiée n'est revendiquée.
+
+**Transfert obligatoire :** Change le volume ou le taux de base et observe si la décision reste la même. Explique le point où elle bascule.

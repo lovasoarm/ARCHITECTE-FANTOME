@@ -3,8 +3,9 @@ import unittest
 from pathlib import Path
 
 from ml_core import (
-    apply_standardizer, classification_metrics, chronological_split,
-    dot, fit_standardizer, predict_labels, predict_probabilities,
+    apply_standardizer, brier_score, choose_threshold_by_cost, classification_metrics,
+    chronological_split, chronological_train_validation_test_split, dot, fit_standardizer,
+    predict_labels, predict_probabilities,
     sigmoid, train_logistic_regression,
 )
 
@@ -57,6 +58,37 @@ class MathAndMLTests(unittest.TestCase):
     def test_threshold_bounds_are_enforced(self):
         with self.assertRaises(ValueError):
             predict_labels([0.3, 0.8], 1.5)
+
+    def test_three_way_chronological_split_has_no_overlap(self):
+        rows = [{"observed_at": str(i)} for i in range(100)]
+        train, validation, test = chronological_train_validation_test_split(rows)
+        self.assertEqual((len(train), len(validation), len(test)), (60, 20, 20))
+        self.assertLess(train[-1]["observed_at"], validation[0]["observed_at"])
+        self.assertLess(validation[-1]["observed_at"], test[0]["observed_at"])
+
+    def test_three_way_split_rejects_invalid_fractions(self):
+        with self.assertRaises(ValueError):
+            chronological_train_validation_test_split([{"t": str(i)} for i in range(10)], 0.8, 0.2)
+
+    def test_brier_score_checks_bounds_and_labels(self):
+        self.assertAlmostEqual(brier_score([0.9, 0.2], [1, 0]), 0.025)
+        with self.assertRaises(ValueError):
+            brier_score([1.2], [1])
+
+    def test_threshold_is_chosen_from_validation_cost(self):
+        result = choose_threshold_by_cost([1, 1, 0, 0], [0.4, 0.6, 0.3, 0.8],
+                                          false_positive_cost=1, false_negative_cost=4)
+        self.assertGreaterEqual(result["threshold"], 0.05)
+        self.assertLessEqual(result["threshold"], 0.95)
+        self.assertGreaterEqual(result["validation_error_cost"], 0)
+
+    def test_regenerated_dataset_has_sufficient_chronological_rows(self):
+        with (ROOT / "data" / "maintenance.csv").open(encoding="utf-8", newline="") as stream:
+            rows = list(csv.DictReader(stream))
+        self.assertEqual(len(rows), 480)
+        train, validation, test = chronological_train_validation_test_split(rows)
+        for partition in (train, validation, test):
+            self.assertEqual({int(row["overheat"]) for row in partition}, {0, 1})
 
 
 if __name__ == "__main__":

@@ -10,10 +10,10 @@ Temps de lecture ~4 min
 Support reproductible pour `06-heap_snapshot_hands_on.md`. Deux scripts
 volontairement instrumentés :
 
-| Script | Rôle |
-|---|---|
-| `leak_case.js` | Reproduit deux fuites classiques (cache non borné + listeners orphelins). Une dérive du RSS peut être observée en corrélation avec les références retenues ; sa forme exacte dépend du runtime et de l'OS. |
-| `fixed_case.js` | Version corrigée avec cache LRU borné et listener attaché une seule fois. RSS stable. |
+| Script          | Rôle                                                                                                                                                                                                       |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `leak_case.js`  | Reproduit deux fuites classiques (cache non borné + listeners orphelins). Une dérive du RSS peut être observée en corrélation avec les références retenues ; sa forme exacte dépend du runtime et de l'OS. |
+| `fixed_case.js` | Version corrigée avec cache LRU borné et listener attaché une seule fois. RSS stable.                                                                                                                      |
 
 ## Procédure minimale (5 min)
 
@@ -58,3 +58,9 @@ l'apprenant après avoir fait l'exercice, pas avant).
 - [`01_leak_case.js`](01_leak_case.js)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.

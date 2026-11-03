@@ -3,11 +3,42 @@ stability: evolutif
 acte: evaluer
 noyau: oui
 route: formation-complete
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # 67 : Gate de maîtrise et capstone : ce que le projet doit prouver
 
 Ce document unifie les critères de sortie des modules, des mini-projets et du fil rouge. Il évite deux erreurs : confondre un grand dépôt avec une compétence acquise, et laisser un bon score moyen masquer un défaut critique.
+
+## Mode d'emploi selon la Route 58 : ne pas anticiper le capstone
+
+Ce document rassemble des repères communs et le déroulé complet du capstone. **Sa présence dans une étape de la route ne demande jamais de réaliser tout le document à ce moment-là.**
+
+| Moment de la Route 58              | Repère autorisé à ce moment                                                                                                                                                                                                                     | Ce qui n'est pas demandé                                                                                                   |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Étape 3 : Tests et changement sûr  | Utiliser uniquement le **repère minimal de test** ci-dessous : invariant testé, cas nominal/limite pertinent, résultat attendu, résultat observé et verdict. La section 1 sert seulement à nommer honnêtement l'état (`COMPRIS` ou `PRATIQUE`). | Ni dossier complet de la section 2, ni barème 100 points de la section 3, ni revue système, ni F0–F6, ni capstone.         |
+| Étape 7 : Exploitabilité et DevOps | Utiliser le même repère minimal pour une seule preuve d'exploitation pertinente : signal, seuil, comportement attendu, récupération observée et limite.                                                                                         | Ni dossier complet de la section 2, ni barème 100 points de la section 3, ni capstone ; une simulation reste `SIMULATION`. |
+| Étape 12 : Capstone                | Utiliser le dossier intégré complet, les critères non compensatoires, le barème et le déroulé F0–F6.                                                                                                                                            | Ne pas présenter une simulation comme production ni une auto-évaluation comme revue externe.                               |
+
+### Repère minimal de preuve : étapes 3 et 7 uniquement
+
+Pour une activité locale, une fiche courte suffit. À l’étape 3, elle porte sur le test ; à l’étape 7, elle porte sur le signal et la récupération :
+
+1. **Invariant ou comportement visé :** une phrase qui décrit ce qui doit rester vrai.
+2. **Scénario et mesure :** à l’étape 3, une entrée nominale et, si pertinente, une entrée limite ou dégradée ; à l’étape 7, un signal, un seuil et un scénario de panne/récupération pertinent.
+3. **Résultat attendu :** écrit avant l'exécution.
+4. **Résultat observé :** sortie, trace ou mesure réellement obtenue ; `NOT RUN` si rien n'a été exécuté.
+5. **Verdict et limite :** `PASS` seulement si l'observation correspond au critère ; préciser ce que cet essai ne démontre pas.
+
+Cette fiche ne constitue ni un dossier de maîtrise complet ni un score. Elle ne demande pas les 12 pièces listées en section 2 et n'ouvre pas les évaluations intégrées de section 3. La section 2 et le barème de la section 3 sont réservés aux gates de maîtrise intégrées et au capstone, sauf si une évaluation de module annonce explicitement un sous-ensemble adapté.
+
+L'étape 3 ne valide pas par avance les compétences des étapes 4 à 12. L'étape 7 ne déclenche pas le capstone. Le capstone complet appartient à l'étape 12, après ses prérequis. Un apprenant peut consulter les définitions sans s'attribuer un statut ni ouvrir une gate. **Aucun passage vers Fundamentals ou une étape antérieure n'est conditionné par ce document.**
 
 ## 1. Les quatre états d'un apprentissage
 
@@ -20,9 +51,11 @@ Ce document unifie les critères de sortie des modules, des mini-projets et du f
 
 Une revue externe peut ensuite ajouter un statut de revue, mais elle n'est pas simulée par une auto-évaluation. Les statuts décrivent une preuve disponible, pas une identité professionnelle.
 
-## 2. Dossier obligatoire pour une compétence critique
+**Application aux exercices V6.5 :** les 26 pages recensées dans [85 : Statut et retours des 26 exercices](85-STATUT-EXERCICES-AUTO-EVALUATION-V6.5.md) sont des entraînements non certifiants et ne ferment jamais, à elles seules, une gate. Les 25 drills de code reposent sur un contrat et un vérificateur écrits par le même apprenant ; l’exercice de cadrage est autoévalué. Ils peuvent alimenter un dossier de pratique, mais ne valent ni corrigé indépendant ni preuve de transfert. Le [protocole de retour fiable](85-STATUT-EXERCICES-AUTO-EVALUATION-V6.5.md#procedure-de-retour-fiable) permet une revue humaine indépendante ou, lorsqu’aucun reviewer n’est disponible, un auto-retour explicitement non indépendant. `REVIEWED` n’est consigné que pour une revue humaine réellement effectuée. Ne pas imposer une revue externe à la simple réalisation pédagogique de ces exercices.
 
-Le dossier contient les éléments suivants, adaptés au domaine :
+## 2. Dossier de maîtrise complet pour une compétence critique
+
+Le dossier complet ci-dessous s’applique aux gates de maîtrise intégrées et au capstone, ou à un checkpoint qui l’exige explicitement. Une leçon ou un exercice local ne doit reprendre que les éléments pertinents annoncés à l’avance. Il contient, selon le domaine :
 
 1. objectif et prérequis explicites ;
 2. prédiction datée avant l'expérience ;

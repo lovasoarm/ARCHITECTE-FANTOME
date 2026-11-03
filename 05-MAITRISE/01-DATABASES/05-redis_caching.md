@@ -14,12 +14,12 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~10 min
 
-Ta DB répond en 50ms à une requête. C'est rapide sur le papier. Mais si 10 000 shinobis demandent le même profil de mission à la seconde, tu refais ce calcul de 50ms 10 000 fois pour le même résultat. Le cache (mémoire tampon rapide) dit : calcule une fois, garde le résultat, ressors-le instantanément la prochaine fois.
+Imagine une lecture fréquente qui coûte 50 ms dans ton environnement de test. Si beaucoup d'utilisateurs demandent la même donnée, un cache peut éviter de recalculer ou relire la même chose à chaque fois. Ces 50 ms sont un exemple de scénario, pas une mesure universelle. Le cache (mémoire tampon) garde une copie temporaire ; au prochain accès, l'application peut la réutiliser.
 
-Redis (Remote Dictionary Server) est la DB clé-valeur en mémoire (RAM) la plus utilisée pour ça. Vu dans `02_nosql_basics` côté famille clé-valeur, ici on rentre dans le concret : comment l'utiliser sans se tirer une balle dans le pied.
+Redis (Remote Dictionary Server) est un moteur clé-valeur en mémoire très utilisé pour ce type d'accès. Vu dans `02_nosql_basics` côté famille clé-valeur, ici on rentre dans le concret : comment l'utiliser sans se tirer une balle dans le pied.
 
-Avantage : latence (temps de réponse) en sous-milliseconde, simplicité d'usage.
-Inconvénient : c'est une source de vérité TEMPORAIRE, jamais la source de vérité PRINCIPALE.
+Avantage possible : une lecture en mémoire évite certains coûts d'accès à une base durable. La latence observée dépend aussi du réseau, du client, de la sérialisation, de la charge, de la persistance et du déploiement.
+Inconvénient : un cache est une copie temporaire, jamais la source de vérité métier.
 
 ---
 
@@ -127,13 +127,13 @@ await redis.del(`mission:${missionId}`); // invalide le cache immédiatement
 
 ```text
 SANS invalidation à l'écriture :
-DB mise à jour --> cache PAS mis à jour --> incohérence pendant tout le TTL restant
+DB commit réussi --> suppression Redis échoue --> l'ancienne valeur peut rester servie jusqu'à correction/expiration
 
-AVEC invalidation à l'écriture :
-DB mise à jour --> cache supprimé immédiatement --> prochaine lecture recharge le frais
+APRÈS commit + invalidation confirmée :
+DB mise à jour --> clé cache supprimée --> prochaine lecture recharge la valeur depuis la source
 ```
 
-Le risque réel (exemple qui casse) : un ninja accepte une mission marquée "disponible" dans le cache, alors qu'elle vient d'être assignée à quelqu'un d'autre en DB depuis 20 minutes. Deux ninjas sur la même mission : conflit, chaos, ticket support. La règle d'or : toute écriture qui change une donnée cachée doit invalider (ou mettre à jour) le cache correspondant, dans la même opération logique.
+Le risque réel (exemple qui casse) : un ninja accepte une mission marquée "disponible" dans le cache, alors qu'elle vient d'être assignée à quelqu'un d'autre en DB depuis 20 minutes. Deux ninjas sur la même mission : conflit, chaos, ticket support. La règle d'or : définis précisément quand invalider ou mettre à jour le cache. Une transaction SQL et une commande Redis ne forment pas automatiquement une transaction distribuée atomique. Si l'invalidation doit survivre à une panne entre les deux, utilise un mécanisme fiable (par exemple outbox + worker idempotent, version de donnée ou stratégie de TTL borné) et teste le scénario où le processus tombe après le commit SQL.
 
 ---
 
@@ -182,19 +182,19 @@ CACHE-ASIDE (lazy loading)
  --> simple, le cache ne contient que ce qui a vraiment été demandé
 
 WRITE-THROUGH
- --> chaque écriture en DB écrit AUSSI dans le cache, immédiatement
- --> cache toujours à jour, mais chaque écriture coûte un peu plus cher
+ --> le chemin d'écriture met à jour la source durable puis le cache selon un ordre défini
+ --> réduit la fenêtre de données périmées si les erreurs partielles sont traitées ; ne garantit pas à lui seul une atomicité DB + Redis
 
 WRITE-BEHIND (write-back)
- --> l'écriture va d'abord dans le cache, puis est répercutée en DB plus tard (async)
- --> très rapide à l'écriture, mais risque de perte si le cache crash avant la sync DB
+ --> l'écriture est acceptée dans le cache puis répercutée vers la source durable plus tard
+ --> risque de perte ou de retard si le cache, la file ou le worker tombe ; à réserver aux données reconstructibles ou aux pertes explicitement acceptées et contrôlées
 
 STALE-WHILE-REVALIDATE (vu aussi dans 02-CONSTRUCTION/18-WEB-CONCEPTS/04_caching_strategies)
  --> sert la version en cache MÊME périmée, tout en rafraîchissant en arrière-plan
  --> le shinobi n'attend jamais, au prix d'une fraîcheur légèrement décalée
 ```
 
-Le quand : cache-aside pour la majorité des cas (simple, sûr). Write-through quand la cohérence cache/DB est critique. Write-behind quand la vitesse d'écriture prime sur tout (analytics, compteurs de vues) et qu'une perte rare est tolérable.
+Le quand : cache-aside est souvent le point de départ le plus simple. Un write-through peut réduire la fenêtre de fraîcheur, à condition de gérer les écritures partielles. Un write-behind exige une file durable, des reprises idempotentes et une politique de perte explicite ; ne l'utilise pas pour une donnée métier qui ne peut pas être perdue.
 
 ---
 
@@ -270,10 +270,38 @@ Redis cache pour éviter de recalculer ou re-requêter ce qui a déjà une répo
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Écris une assertion sur l’invariant de « Se souvenir vite pour ne pas redemander à chaque fois », puis teste cas normal, concurrence/duplicat, interruption et reprise. Fournis la requête ou la trace et explique ce que le test ne démontre pas.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: redis -->
+
+## Repères de décision
+
+- **Pourquoi :** Un cache réduit certains coûts de lecture ou fournit des primitives rapides, mais introduit une copie temporaire qui peut devenir incohérente.
+- **Quand l’utiliser / quand l’éviter :** Utilise un cache pour des lectures répétées et mesurées ou une primitive adaptée (rate limit, coordination courte). Ne mets pas dans Redis une donnée de vérité sans stratégie de persistance et de reprise.
+- **Limites :** TTL seul ne garantit pas la cohérence ; invalidation et cache stampede restent des risques. Redis n'est pas automatiquement une base primaire ni un verrou distribué sûr sans analyser son modèle.
+
+## Mécanisme : la version sans magie
+
+Choisis clé, valeur, TTL et stratégie d'invalidation ; précise le comportement en cache miss, panne, stale data et déploiement ; mesure hit ratio et coût.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Se souvenir vite pour ne pas redemander à chaque fois** se rattache à ce cas concret : Kintana peut mettre en cache des listes de disponibilités, mais une réservation doit revalider la capacité dans la base transactionnelle au moment de l'écriture.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Cache des disponibilités sans casser les réservations
+
+> **Arc DBZ / Capsule Corp. :** Redis peut accélérer le vaisseau, mais un turbo mal invalidé sert des coordonnées périmées avec beaucoup de confiance.
+
+**Mission liée à « Se souvenir vite pour ne pas redemander à chaque fois » :** Ajoute un cache-aside pour la lecture des créneaux Kintana. Définis TTL et invalidation après réservation, puis prouve qu'une ancienne valeur en cache ne permet jamais de réserver une capacité épuisée.
+
+**Livrable :** adaptateur de cache, stratégie de clé/TTL, test d'invalidation, test de panne Redis et métriques hit/miss simulées.
+
+**Critères d’acceptation :** la base reste source de vérité ; l'écriture revalide la capacité ; cache miss/panne a un fallback défini ; les métriques sont des mesures LAB si Redis n'est pas déployé.
+
+**Transfert obligatoire :** Deux instances écrivent en même temps et Redis devient indisponible. Décris ce qui reste correct et quelles performances tu acceptes de perdre.

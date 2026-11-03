@@ -27,7 +27,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [54-partial_application_minimini_projet.md](54-partial_application_minimini_projet.md)
 - [55-iterators_symbol_minimini_projet.md](55-iterators_symbol_minimini_projet.md)
 - [FP CHALLENGE : LE PIPELINE QUI PROUVE QUE C'EST PAS QUE THÉORIQUE](95-challenge.md)
-- [EXO LECTURE : 15-25 minutes (Programmation fonctionnelle)](08-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Programmation fonctionnelle)](08-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 02-CONSTRUCTION/09-FUNCTIONAL-JS](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/09-FUNCTIONAL-JS](97-EXO-VERIFICATION.md)
 

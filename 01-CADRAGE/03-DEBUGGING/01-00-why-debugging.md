@@ -24,13 +24,13 @@ Temps de lecture ~4 min
 
 > **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Principe universel : un bug n'est pas résolu tant que tu ne peux pas le reproduire à la demande, puis l'expliquer. Vrai en JS, en Rust, en SQL, en réseau, en prod à 3h du matin.
+> Règle de méthode : cherche d'abord à reproduire le bug dans des conditions documentées, puis explique ce que tu as observé. Si une reproduction déterministe reste impossible (intermittence, timing, charge ou environnement), isole les conditions connues, instrumente le système et formule explicitement l'incertitude. Cette méthode s'applique en JS, en Rust, en SQL, en réseau et en production.
 
 ## Le problème que ce module résout
 
 La plupart des devs ne débuggent pas : ils bricolent. Ils changent une ligne au hasard, rechargent, prient, recommencent. Ça marche parfois, par accident, et le vrai bug reste tapi dans l'ombre comme un Horror dans Garo : invisible, patient, prêt à ressortir en production quand un vrai shinobi passe.
 
-Ce module installe une méthode : un bug est un puzzle avec une solution garantie, pas une malédiction.
+Ce module installe une méthode : un bug est un problème à investiguer avec des preuves, pas une malédiction ni une devinette résolue au hasard.
 
 ## Qui souffre quand personne ne sait débugger
 
@@ -52,7 +52,7 @@ Le debugging n'est pas une étape après le code : c'est un mode de pensée pré
 
 1. Lire une stack trace comme un plan de métro : point d'entrée, frames, ligne fautive.
 2. Formuler des hypothèses réfutables AVANT de toucher au code, et les consigner dans un `HYPOTHESES.md`.
-3. Reproduire un bug de manière déterministe avant de le corriger. Pas de repro, pas de fix.
+3. Chercher une reproduction déterministe avant le correctif. Si elle reste impossible, ne pas arrêter l'enquête : documenter les conditions connues, instrumenter, collecter un signal représentatif et tester la correction sur le scénario le plus proche disponible.
 4. Débugger à l'aveugle : trouver la cause sans même voir la ligne fautive, par élimination.
 5. Utiliser les bons outils : breakpoints, `console` structuré, bisection, logs corrélés par id.
 
@@ -69,9 +69,11 @@ Le debugging n'est pas une étape après le code : c'est un mode de pensée pré
 
 ## Prérequis
 
-- Savoir lire une erreur JS de base (module `01-CADRAGE/04-ERROR-HANDLING`).
-- Connaître l'event loop pour les bugs async (module `01-CADRAGE/02-ASYNC`).
-- Un terminal et un debugger Node configurés (voir `00-PREREQUIS.md`).
+- Savoir lire une erreur JavaScript simple : repérer le message, le fichier et la ligne, comme dans le premier exercice `Day One` de Getting Started. Il n'est pas nécessaire de maîtriser toute la gestion des erreurs.
+- Connaître l'event loop pour analyser les bugs asynchrones (module `01-CADRAGE/02-ASYNC`, placé avant Debugging dans la Route 58).
+- Disposer du terminal et du debugger Node configurés selon `00-PREREQUIS.md`.
+
+**Ce qui vient après :** le module `01-CADRAGE/04-ERROR-HANDLING` approfondit la propagation, la classification et le traitement des erreurs. La Route 58 le place volontairement après Debugging ; il n'est donc pas un prérequis de ce module.
 
 ## Erreurs classiques de débutant
 
@@ -91,7 +93,7 @@ Prévenir plutôt que guérir : tests, types, revue de code réduisent le nombre
 
 ## À la fin du module
 
-Tu passes de "j'ai peur des bugs" à "un bug est un puzzle avec une solution garantie". Et pour chaque exercice, tu livreras un `HYPOTHESES.md` : la preuve que tu as pensé avant de coder.
+Tu passes de "j'ai peur des bugs" à "je sais conduire une enquête à partir de preuves, même quand le défaut est intermittent". Et pour chaque exercice, tu livreras un `HYPOTHESES.md` : la trace de ton raisonnement avant le correctif.
 
 ---
 
@@ -100,3 +102,53 @@ Tu passes de "j'ai peur des bugs" à "un bug est un puzzle avec une solution gar
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+<!-- AF-DIAGRAM:debug -->
+
+## Repère visuel utile : Reproduction et correction d'un incident Kintana
+
+```text
+signal utilisateur
+      |
+      v
+hypothèses falsifiables
+      |
+      v
+reproduction stable ? -- non --> instrumenter
+      | oui
+      v
+isoler la cause
+      |
+      v
+patch minimal + test de régression
+```
+
+<!-- AF-LESSON-PROFILE: debug -->
+
+## Repères de décision
+
+- **Pourquoi :** Sans reproduction, un correctif peut masquer le symptôme tout en laissant la cause active. Un diagnostic solide réduit le risque de régression et le temps perdu en production.
+- **Quand l’utiliser / quand l’éviter :** Utilise cette méthode dès qu'un défaut est observable mais sa cause incertaine. Évite de modifier plusieurs variables à la fois ou d'ajouter des logs qui exposent des données sensibles.
+- **Limites :** Un bug intermittent peut disparaître sous instrumentation. Une reproduction locale peut ne pas contenir la charge, le réseau ou les données du terrain ; conserve les limites de ton diagnostic.
+
+## Mécanisme : la version sans magie
+
+Énonce une hypothèse falsifiable, fixe les entrées, reproduis, collecte un signal ciblé, élimine les hypothèses, corrige puis garde un test de non-régression.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **00 : Pourquoi le debugging** se rattache à ce cas concret : Kintana reçoit un signalement de double demande après un délai réseau. Il faut déterminer s'il s'agit d'un double clic, d'un retry, d'un worker rejoué ou d'une transaction non atomique.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Reproduction et correction d'un incident Kintana
+
+> **Arc Walking Dead :** quand l'alerte sonne, courir dans tous les sens ne sauve personne. Reproduis, isole, mesure, puis répare.
+
+**Mission liée à « 00 : Pourquoi le debugging » :** Reproduis un scénario de double création ou de notification manquante. Écris trois hypothèses classées, collecte un identifiant de corrélation, isole une cause puis ajoute un test qui échoue avant le correctif.
+
+**Livrable :** un rapport d'incident court, les étapes de reproduction, le patch minimal, le test de régression et les limites non reproduites.
+
+**Critères d’acceptation :** la cause est étayée par un signal ; une seule variable principale change à la fois ; le test détecte l'ancien défaut ; les données sensibles sont masquées dans les traces.
+
+**Transfert obligatoire :** Change l'ordre des événements ou ajoute une latence variable. Vérifie si la même hypothèse tient toujours.

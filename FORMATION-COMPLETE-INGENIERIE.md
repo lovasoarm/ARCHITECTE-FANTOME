@@ -6,7 +6,7 @@ scope: full-formation
 
 # Formation complète : ingénierie logicielle, systèmes, IA et leadership technique
 
-> **Route canonique sans durée promise.** Ce document est le point d'entrée principal de la formation. Le CORE de 16 semaines / 192 h est conservé comme parcours d'orientation facultatif ; il ne constitue ni la formation complète, ni une condition suffisante pour revendiquer une maîtrise avancée.
+> **Référence globale de la formation, sans durée promise.** L’entrée effective se fait par [START HERE](00-SOCLE/01-GETTING-STARTED/01-START_HERE.md). Ce document décrit la cible, les domaines et les paliers ; il n’est pas une lecture obligatoire avant le premier exercice. Le CORE de 16 semaines / 192 h est conservé comme parcours d’orientation facultatif ; il ne constitue ni la formation complète, ni une condition suffisante pour revendiquer une maîtrise avancée.
 
 ## Contrat de formation
 
@@ -15,6 +15,8 @@ AF vise à développer, par preuves progressives, une capacité durable à compr
 La maîtrise de niveau Distinguished Engineer n'est ni une certification délivrée par ce dépôt ni une conséquence automatique de la fin du cursus. AF peut préparer les compétences et structurer un portfolio ; un niveau professionnel de portée Distinguished suppose un impact réel, durable, transversal et évalué dans un contexte extérieur.
 
 ## Comment utiliser la route
+
+> **Repère canonique :** les blocs, paliers, phases, étapes et gates sont des couches différentes. Consulte la [matrice des progressions](06-ANNEXES-TRANSVERSES/80-MATRICE-PROGRESSIONS.md) pour leurs correspondances.
 
 La carte qui transforme cette vue d'ensemble en séquence concrète se trouve dans [58 : Route apprenant cohérente](06-ANNEXES-TRANSVERSES/58-ROUTE-APPRENANT-COHERENTE.md). Utilise-la pour choisir les ressources exactes, les livrables et la remédiation. Pour travailler les preuves plutôt que réciter, utilise le [laboratoire de fondations](06-ANNEXES-TRANSVERSES/64-LAB-FONDATIONS-ET-RAISONNEMENT.md), le [laboratoire données/API/transactions](06-ANNEXES-TRANSVERSES/65-LAB-DONNEES-API-ET-TRANSACTIONS.md), le [laboratoire sécurité/architecture](06-ANNEXES-TRANSVERSES/66-LAB-SECURITE-ET-ARCHITECTURE.md), le [laboratoire de tests](06-ANNEXES-TRANSVERSES/63-LAB-TESTING-ENGINEERING.md), le [pack d'exercices systèmes](06-ANNEXES-TRANSVERSES/61-PACK-EXERCICES-SYSTEMES-ET-ARBITRAGES.md) et la [fiche de preuve](06-ANNEXES-TRANSVERSES/62-FICHE-APPRENTISSAGE-PREUVE.md). Le [gate de maîtrise/capstone](06-ANNEXES-TRANSVERSES/67-GATE-MAITRISE-ET-CAPSTONE.md) fixe les critères de sortie communs. Les ateliers intégrateurs [DevOps/SRE](06-ANNEXES-TRANSVERSES/59-LAB-DEVOPS-LIFECYCLE.md) et [service IA/RAG](06-ANNEXES-TRANSVERSES/60-LAB-SERVICE-IA-END-TO-END.md) sont des fils transversaux, pas de nouvelles technologies à mémoriser avant d'en comprendre le besoin.
 
@@ -41,6 +43,8 @@ La carte qui transforme cette vue d'ensemble en séquence concrète se trouve da
 Ces paliers ne sont pas des années ni des semaines. L'entrée dans un palier est autorisée par les prérequis observés ; la sortie demande des preuves reproductibles, répétées et transférables. Les paliers G et H nécessitent une expérience progressive en équipe et dans des systèmes vivants.
 
 ## Curriculum par domaines et ordre de dépendance
+
+> **Spécialisations et frontières :** [82 : Cartographie DEPTH, MLOps et applicabilité juridique](06-ANNEXES-TRANSVERSES/82-CARTOGRAPHIE-DEPTH-ET-APPLICABILITE.md).
 
 ### Phase 1 : Fondations de programmation et pensée informatique
 
@@ -74,11 +78,19 @@ Ces paliers ne sont pas des années ni des semaines. L'entrée dans un palier es
 
 À maîtriser : threat modeling, identité et autorisation, secrets, supply chain, permissions minimales, tests de sécurité, Linux, conteneurs, CI/CD, IaC, déploiements progressifs, rollback, SBOM, observabilité, SLO/SLI, budget d'erreur, incidents, sauvegardes, restauration et coûts.
 
-**Gate :** reconstruire depuis une machine propre, publier un artefact, le surveiller, effectuer un rollback et restaurer une donnée en démontrant l'intégrité.
+**Ressources pratiques :** [59 : Lab DevOps/SRE](06-ANNEXES-TRANSVERSES/59-LAB-DEVOPS-LIFECYCLE.md) et [75 : Platform Operations Lab](06-ANNEXES-TRANSVERSES/75-LAB-PLATFORM-OPERATIONS/README.md).
+
+**Gate :** reconstruire depuis une machine propre, publier un artefact, le surveiller, effectuer un rollback et restaurer une donnée en démontrant l'intégrité. La partie conteneurisée du lab 75 doit être réellement exécutée avec Docker ; elle reste `NOT RUN` dans tout environnement sans moteur disponible.
 
 ### Phase 6 : Data Engineering, Mathématiques, Machine Learning et IA
 
-**Ressources obligatoires :** [70 : Data Engineering Core](06-ANNEXES-TRANSVERSES/70-DATA-ENGINEERING-CORE/README.md), [71 : Mathématiques & Machine Learning Core](06-ANNEXES-TRANSVERSES/71-MACHINE-LEARNING-MATH-CORE/README.md), puis [74 : AI Engineering Release Gate](06-ANNEXES-TRANSVERSES/74-AI-ENGINEERING-RELEASE-GATE.md), [pont maths → IA/ML/LLM](06-ANNEXES-TRANSVERSES/41-PONT-MATHS-IA-ML-LLM.md) et [service IA/RAG de bout en bout](06-ANNEXES-TRANSVERSES/60-LAB-SERVICE-IA-END-TO-END.md).
+**Ressources et ordre d'apprentissage : alignés sur la Route 58, étape 9 :**
+
+1. **Data Engineering :** après les étapes 5 (Databases) et 8 (systèmes distribués), suivre [70 : Data Engineering Core](06-ANNEXES-TRANSVERSES/70-DATA-ENGINEERING-CORE/README.md). Valide la [passerelle Python](00-SOCLE/07-PYTHON-PASSERELLE/README.md) avant la première activité Python si ces bases ne sont pas déjà maîtrisées.
+2. **Mathématiques et ML :** suivre le [pont maths → IA/ML/LLM](06-ANNEXES-TRANSVERSES/41-PONT-MATHS-IA-ML-LLM.md), puis [71 : Mathématiques & Machine Learning Core](06-ANNEXES-TRANSVERSES/71-MACHINE-LEARNING-MATH-CORE/README.md), puis les [labs ML](06-ANNEXES-TRANSVERSES/45-LABS-IA-ML-DEPTH.md). La passerelle Python n'est à refaire que si les compétences Python requises ne sont pas acquises.
+3. **AI Engineering :** lire les leçons-ponts [RAG](05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/01-rag-recherche-hybride.md) et [évaluation](05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/02-evaluation-et-llm-judge.md), réaliser [60 : Service IA/RAG de bout en bout](06-ANNEXES-TRANSVERSES/60-LAB-SERVICE-IA-END-TO-END.md), puis passer [74 : AI Engineering Release Gate](06-ANNEXES-TRANSVERSES/74-AI-ENGINEERING-RELEASE-GATE.md).
+
+Les prérequis détaillés et les gates de chaque ressource restent prioritaires. Cette synthèse ne les remplace pas.
 
 À maîtriser : ingestion batch/streaming, ETL/ELT, SQL analytique, contrats, qualité, provenance, quarantaine, idempotence, Kafka, Spark, orchestration, statistiques, probabilités, algèbre linéaire, optimisation, entraînement, validation sans fuite, métriques, baselines, calibration, drift, LLM/RAG, retrieval, citations, prompt injection, ACL, refus, coûts, latence, gouvernance et human-in-the-loop.
 
@@ -86,7 +98,7 @@ Ces paliers ne sont pas des années ni des semaines. L'entrée dans un palier es
 
 ### Phase 7 : Plateformes, produit et leadership technique
 
-À maîtriser : paved roads, developer experience, standards, gestion des interfaces entre équipes, stratégie d'investissement, migration, réduction de risque, analyse économique, mentorat, revues, négociation d'architecture et communication écrite/orale des compromis. Réalise le [73 : Technical Leadership Practicum](06-ANNEXES-TRANSVERSES/73-TECHNICAL-LEADERSHIP-PRACTICUM.md) pour transformer ces notions en décisions et comportements observables.
+À maîtriser : paved roads, developer experience, standards, gestion des interfaces entre équipes, stratégie d'investissement, migration, réduction de risque, analyse économique, mentorat, revues, négociation d'architecture et communication écrite/orale des compromis. Réalise le [73 : Technical Leadership Practicum](06-ANNEXES-TRANSVERSES/73-TECHNICAL-LEADERSHIP-PRACTICUM.md), puis utilise le [76 : Leadership Field Proof Pack](06-ANNEXES-TRANSVERSES/76-LEADERSHIP-FIELD-PROOF/README.md) pour documenter l'adoption, le mentorat, l'impact et la revue indépendante.
 
 **Gate :** défendre un ADR contradictoire, conduire un exercice d'incident, arbitrer une roadmap avec un budget contraint, développer l'autonomie d'un pair et prouver qu'un standard aide réellement d'autres ingénieurs.
 
@@ -94,7 +106,13 @@ Ces paliers ne sont pas des années ni des semaines. L'entrée dans un palier es
 
 Il n'existe pas de checklist qui crée une portée Distinguished. AF prépare les capacités suivantes : modéliser des problèmes ambigus, identifier les investissements techniques à fort levier, concevoir des systèmes qui durent, faire converger plusieurs équipes, éviter les risques systémiques, développer d'autres leaders et influencer une direction technique au-delà de sa seule codebase. Réalise le [72 : Capstone systèmes intégrés](06-ANNEXES-TRANSVERSES/72-DISTINGUISHED-SYSTEMS-CAPSTONE.md) comme démonstration d'intégration des huit axes.
 
-**Preuves requises :** historiques de décisions, effets mesurés sur plusieurs équipes ou systèmes, adoption par des tiers, résultats durables, retour critique indépendant et distinction explicite entre contribution personnelle et résultat collectif. Le capstone peut démontrer une maîtrise intégrée dans un contexte ; il ne remplace pas l'expérience réelle nécessaire à Staff, Principal ou Distinguished.
+**Preuves requises :** historiques de décisions, effets mesurés sur plusieurs équipes ou systèmes, adoption par des tiers, résultats durables, retour critique indépendant et distinction explicite entre contribution personnelle et résultat collectif. Le pack 76 fournit des modèles ; un modèle rempli par l'auteur n'est pas une preuve tant que les éléments n'ont pas été corroborés. Le capstone peut démontrer une maîtrise intégrée dans un contexte ; il ne remplace pas l'expérience réelle nécessaire à Staff, Principal ou Distinguished.
+
+## Cartes de référence complémentaires
+
+- [80 : Matrice des progressions](06-ANNEXES-TRANSVERSES/80-MATRICE-PROGRESSIONS.md).
+- [81 : Traçabilité Staff](06-ANNEXES-TRANSVERSES/81-MATRICE-TRACEABILITE-STAFF.md).
+- [82 : DEPTH, MLOps et applicabilité juridique](06-ANNEXES-TRANSVERSES/82-CARTOGRAPHIE-DEPTH-ET-APPLICABILITE.md).
 
 ## Projet fil rouge : évolution longitudinale
 
@@ -154,3 +172,7 @@ Le [protocole de leçon profonde](06-ANNEXES-TRANSVERSES/26-PROTOCOLE-LECON-PROF
 ## Règle de fin
 
 AF est terminé pour un apprenant à un palier précis lorsque les preuves correspondantes sont évaluées : jamais simplement parce qu’il a atteint la dernière page. La formation elle-même reste un système vivant à réviser, mesurer et corriger. Pour toute utilisation d’un service logiciel dans un contexte réel, distingue toujours les exercices réussis, les revues externes réalisées et les conditions d’exploitation effectivement testées ; la lecture de ce curriculum ne constitue pas une certification de production.
+
+## Passerelle Python conditionnelle
+
+Le parcours JavaScript reste le cœur du Socle. Avant les activités Python des laboratoires Data Engineering, ML et Platform Operations, un apprenant débutant en Python doit valider la [passerelle Python](00-SOCLE/07-PYTHON-PASSERELLE/README.md). Elle n'est pas une étape universelle ni un prérequis du début du cursus.

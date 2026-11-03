@@ -1,45 +1,26 @@
 ---
 stability: stable
 acte: verification
+assessment_role: instructional_checkpoint
 ---
 
-# Vérification : 12_EXO_VERIFICATION.md
+**SCÈNE CRAZYDEVS : atelier de Konoha :** observe les contraintes avant de choisir une technique.
 
-> **SCÈNE CRAZYDEVS : coupe du monde :** un bon algorithme ne gagne pas parce qu'il connaît un mouvement célèbre ; il gagne parce qu'il réduit le nombre d'actions nécessaires quand le terrain explose.
+# EXO : compter des fréquences avec Map
 
-# EXO IA MENTEUSE : module DATA-STRUCTURES
+Temps indicatif : 15 min.
 
-Temps : ~10 min. Format court, seul ou en binôme.
-
-## Snippet IA plausible
-
-L'assistant te propose ce code, l'air confiant :
+On reçoit une liste d’événements et l’on veut compter le nombre d’apparitions de chaque type.
 
 ```js
-function contains(arr, x) {
-  return arr.indexOf(x) >= 0;
-} // 'O(1) sur gros tableaux'
+const events = ["login", "purchase", "login", "logout", "purchase", "login"];
 ```
 
-Il ajoute : _"C'est propre, testé, prod-ready."_
+**Mission**
 
-## Ta question unique
+1. Écris `countByType(events)` qui renvoie un `Map` : `login → 3`, `purchase → 2`, `logout → 1`.
+2. Ajoute les cas d’entrée vide et d’une seule valeur.
+3. Explique pourquoi une boucle avec `Map.get` / `Map.set` parcourt la liste une fois et pourquoi le coût d’accès moyen à `Map` est sublinéaire selon le langage, sans promettre un O(1) strict garanti par ECMAScript.
+4. Dis quand un objet simple pourrait suffire et quand `Map` est plus adapté.
 
-**Où est la faille ?**
-
-Prends 5 minutes. Écris ta réponse **sans** relancer l'IA. Nomme :
-
-1. Le comportement observable qui trompe (pourquoi ça a l'air correct).
-2. Le vrai problème (technique, sécurité, complexité, ou sémantique).
-3. La correction minimale que **toi** tu apporterais.
-
-## Piste de correction (à ne lire qu'après)
-
-> indexOf sur un tableau est O(n), pas O(1). L'IA appelle un Set 'array'. Où le nom de structure ment sur la complexité ?
-
-## Pourquoi cet exo
-
-En 2026, l'IA génère du code **plausible** plus vite qu'elle ne le vérifie.
-Le métier n'est plus d'écrire ; c'est de **repérer la faille** dans une
-suggestion qui a l'air correcte. Ce drill de 10 min, une fois par module,
-te transforme de consommateur en pilote.
+**Critère** : aucun élément n’est perdu, les comptes sont exacts et la complexité annoncée distingue le nombre de passages de la garantie d’implémentation du moteur.

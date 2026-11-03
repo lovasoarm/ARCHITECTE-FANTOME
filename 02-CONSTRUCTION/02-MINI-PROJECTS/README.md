@@ -14,21 +14,15 @@ Ce bloc rassemble les mini-projets qui obligent à assembler ce que les
 modules `00-SOCLE/04-FUNDAMENTALS` a `05-MAITRISE/03-EDGE-CASES` t'ont appris. Chaque mini-projet a un README propre, un
 POSTMORTEM à remplir, un TDD_JOURNAL, et au moins un ADR.
 
-## Ordre pédagogique
+## Ordre pédagogique et prérequis
 
-Les projets sont numérotés dans l'ordre où l'ambition monte, pas dans
-l'ordre où tu dois les faire strictement. Recommandation :
+Les projets sont numérotés dans un ordre d'ambition croissante, mais **les numéros ne créent pas à eux seuls une séquence obligatoire**. L'ancien gate global qui imposait les modules « 6, 14, 22, 29 » et des livrables avant l'entrée a été supprimé : il ne correspondait pas à la structure canonique du curriculum.
 
-- **01 → 05** : dès que tu as fini les modules `00-SOCLE/04-FUNDAMENTALS` a `02-CONSTRUCTION/04-MATH-BASICS` (fundamentals,
-  problem solving, async, debugging, errors, testing, math).
-- **06 → 10** : après les modules `02-CONSTRUCTION/05-MEMORY-PERFORMANCE` a `02-CONSTRUCTION/11-REFACTORING` (mémoire, structures, algos,
-  fp, patterns, refactoring).
-- **11 → 14** : après `02-CONSTRUCTION/13-RUNTIME-ENV` à `02-CONSTRUCTION/20-API-DOJO` (runtime,
-  architecture, DDD, web, API).
-- **15 → 17** : après `03-PILOTAGE/04-SECURITY` à `05-MAITRISE/03-EDGE-CASES`
-  (sécurité, observabilité, team craft, bases de données, scalabilité, edge cases).
-- **18 → 19** : après `05-MAITRISE/03-EDGE-CASES` (juger le code
-  produit par une IA, puis superviser une IA qui code à ta place).
+Le contrôle d'entrée est désormais **spécifique à chaque projet**. Commence par [`00-PREREQUIS.md`](00-PREREQUIS.md) : tu y trouveras le socle commun, les leçons exactes à étudier pour chacun des 19 projets, une preuve minimale d'entrée et la règle `READY / NOT READY`. Il n'est pas nécessaire de terminer tous les modules d'un palier lorsqu'une poignée de leçons suffit à maîtriser le mécanisme utilisé.
+
+Quelques dépendances d'ordre sont réellement bloquantes et restent explicites : `15` demande d'avoir réalisé `01` ; `17` demande `15` ; `18` demande `10` ; `19` demande d'avoir terminé `01` à `18` ainsi que ses leçons de leadership et de gouvernance IA. Les autres projets peuvent être commencés dès que leur propre gate est validé.
+
+Les vagues `01–05`, `06–10` et `11–17` restent un **ordre conseillé** pour réduire les sauts de difficulté, pas une règle qui oblige à finir tous les projets d'une vague avant d'en ouvrir un autre. Les extensions Cloud, Docker, broker ou API réelle ne sont requises que lorsque la fiche du projet les rend explicitement obligatoires.
 
 ## Liste
 
@@ -51,10 +45,10 @@ l'ordre où tu dois les faire strictement. Recommandation :
 | 15  | `15_porte_rasengan_engine_multilang` | Transfert de compétence (Go)                                                         |
 | 16  | `16_distributed_arena`               | Systèmes distribués, idempotence                                                     |
 | 17  | `17_polyglot_forge`                  | Bonus : intégration multi-langages                                                   |
-| 18  | `18_human_vs_ai_smell`               | Revue critique de code généré par IA : détecter le smell qu'une IA ne voit pas       |
+| 18  | `18_human_vs_ai_smell`               | Deux implémentations, un contrat : revue comparative fondée sur les preuves          |
 | 19  | `19_supervise_the_ai`                | Architecte-superviseur : zero code applicatif, ADR + consigne + reviews + POSTMORTEM |
 
-Les projets `18` et `19` forment une paire de discernement terminal : `18` apprend à démonter une production humaine et une production IA à périmètre identique ; `19` demande ensuite de déléguer sans déléguer le jugement. Ils renforcent la lecture critique de l'IA et le contrôle transversal G8, ainsi que la maturation Staff ; ils ne remplacent pas S6 (livraison & exploitation) et ne constituent pas un second cursus.
+Les projets `18` et `19` forment une paire de discernement terminal : `18` apprend à comparer deux implémentations sur un contrat commun et à démontrer leurs défauts par des preuves ; `19` demande ensuite de déléguer sans déléguer le jugement. Ils renforcent la lecture critique des sorties assistées et le contrôle transversal G8, ainsi que la maturation Staff ; ils ne remplacent pas S6 (livraison & exploitation) et ne constituent pas un second cursus.
 
 ## Contrat d’exécution
 
@@ -153,10 +147,28 @@ ADR non defendu = projet non livre.
 - [`17_polyglot_forge/`](17_polyglot_forge/README.md)
 - [`18_human_vs_ai_smell/`](18_human_vs_ai_smell/README.md)
 - [`19_supervise_the_ai/`](19_supervise_the_ai/README.md)
-- [EXO LECTURE : 15-25 minutes (02-CONSTRUCTION/02-MINI-PROJECTS)](02A-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : questions et auto-évaluation (02-CONSTRUCTION/02-MINI-PROJECTS)](02A-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/02-mini-projects](97A-EXO-VERIFICATION.md)
 - [`97-templates/`](97-templates/README.md)
 - [Challenge : `02-MINI-PROJECTS`](95-challenge.md)
 - [Grimoire : `02-MINI-PROJECTS`](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-PROJECT-REAL-WORLD-GATE-1.1 -->
+
+## Règle commune : la kata entraîne, le produit prouve
+
+Les univers Naruto, Garo, Breaking Bad, Prison Break et les autres scénarios servent de crochets de mémoire pour isoler des mécanismes. Ils restent dans le parcours, mais **ne valent pas automatiquement une preuve de projet professionnel**. Les projets `01_rasengan_engine`, `02_garo_no_kronika`, `04_breaking_cache`, `05_prison_break_api`, `07_ballon_dor_cli` et `18_human_vs_ai_smell` ont maintenant une mission produit obligatoire reliée à Kintana ; leurs cahiers précisent les gates et livrables.
+
+Le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md) fournit un contexte partagé pour relier les notions. Il ne remplace pas le fil rouge personnel, choisi et qualifié par l’apprenant après le Cadrage. Les mini-projets conservent leur domaine lorsqu’il apporte une preuve utile (streaming, dashboard, migration legacy, OSS, memory leak, architecture distribuée, polyglotte) ; ne les force pas tous dans Kintana.
+
+**Règle qualité :** pas de mesure inventée, pas de test affaibli, pas de technologie ajoutée pour décorer. Chaque livraison mentionne environnement, commande, résultat, limite et statut (`LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION`).
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.
+
+## Cartes et vérification transversales
+
+- [Carte de réexposition](01-REEXPOSURE-MAP.md) : retrouver où chaque mécanisme est repris et transféré.

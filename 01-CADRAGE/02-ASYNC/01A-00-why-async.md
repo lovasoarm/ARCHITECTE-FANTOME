@@ -63,7 +63,7 @@ Les microtasks sont traitées avant de passer à la prochaine task.
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 > Temps de lecture ~8 min
 
-Ton code JS tourne sur un seul thread (fil d'exécution). Une seule ligne à la fois, jamais deux en même temps. Et pourtant ton serveur gère 10 000 requêtes simultanées sans bloquer. Si tu ne comprends pas comment, tu codes avec un fantôme que tu ne contrôles pas.
+Dans un agent JavaScript donné, un seul thread d'exécution traite le code de cet agent à la fois. Un environnement peut toutefois lancer des workers ou d'autres agents avec leurs propres contextes d'exécution. Un serveur peut gérer de nombreuses opérations en attente sans exécuter chacune d'elles simultanément sur le thread JavaScript principal. Si tu ne distingues pas exécution et attente d'I/O, tu codes avec un fantôme que tu ne contrôles pas.
 
 L'event loop (boucle d'événements), c'est le moteur caché derrière chaque `fetch`, chaque `setTimeout`, chaque réponse API. Tant que tu ne le vois pas, tu codes async au hasard.
 
@@ -73,7 +73,7 @@ L'event loop (boucle d'événements), c'est le moteur caché derrière chaque `f
 
 Un serveur qui lit un fichier, interroge une base de données, ou attend une réponse réseau ne peut pas juste freezer pendant l'attente. Si JS bloquait sur chaque opération lente, ton serveur planterait dès 2 utilisateurs simultanés : le premier bloquerait tout le monde pendant qu'il attend sa réponse.
 
-L'event loop résout exactement ça : il permet à JS de lancer une opération longue, de continuer à faire autre chose en attendant, puis de revenir traiter le résultat quand il est prêt. Pas de thread supplémentaire. Pas de magie. Juste une file d'attente bien organisée et un ordre d'exécution précis entre microtasks (tâches micro : promises) et macrotasks (tâches macro : setTimeout, I/O).
+La boucle d'événements orchestre le travail d'un agent : le code JavaScript courant s'exécute jusqu'à rendre la main ; les opérations prises en charge par l'hôte (réseau, disque, timers) progressent selon le runtime, puis leurs suites sont planifiées. Les microtasks et les tâches sont deux catégories utiles, mais leur ordonnancement dépend de l'environnement. L'attente d'une I/O ne signifie pas qu'un nouveau thread JavaScript est créé pour chaque opération.
 
 Sans comprendre ce mécanisme, le code async devient une boîte noire : tu écris `async/await` parce que "ça marche", mais tu ne sais pas pourquoi deux promises s'exécutent dans un ordre qui te surprend à chaque fois.
 
@@ -105,9 +105,7 @@ Chaque fois que ton code attend quelque chose qui ne dépend pas du CPU local (r
 
 ## 4) MODERNE, LEGACY, OU INTEMPOREL ?
 
-Le mécanisme est intemporel : l'event loop existe depuis les origines de JS dans le navigateur, et Node l'a repris tel quel côté serveur. Ce qui a évolué, c'est la syntaxe pour l'utiliser.
-
-La compréhension de l'event loop lui-même ne se démode jamais. Le moteur tourne pareil en 2026 qu'en 2015 : une seule pile d'exécution, une queue de microtasks, une queue de macrotasks, et un ordre de traitement précis entre les deux.
+Les idées fondamentales restent utiles : une pile d'exécution par agent, du travail planifié par l'hôte, des microtasks et des tâches. Mais il n'existe pas un unique schéma détaillé valable à l'identique partout. Dans le navigateur, le modèle HTML distingue notamment tâches, microtasks et rendu ; les agents Worker ont leur propre boucle. Node.js possède un ordonnancement avec des phases propres au runtime. Comprendre le modèle commun aide à raisonner ; pour prédire l'ordre exact, il faut consulter le contrat de l'hôte utilisé.
 
 ---
 
@@ -129,7 +127,7 @@ Oui, directement dans le noyau dur défini par le curriculum. `01 + 03` (fundame
 
 ## 7) POURQUOI ÇA MÉRITE ENCORE TON TEMPS DANS 5 ANS
 
-Les frameworks changeront leur façon d'exposer l'async (nouveaux hooks, nouvelles abstractions), mais le moteur dessous restera le même tant que JS reste mono-thread avec un event loop. Comprendre ce mécanisme, c'est comprendre pourquoi `async/await` n'est qu'un emballage par-dessus les Promises, qui elles-mêmes ne sont qu'un emballage par-dessus les callbacks et la queue de tâches.
+Les frameworks changeront leur façon d'exposer l'asynchrone, mais le contrat dépend toujours du runtime. Comprendre les jobs, les microtasks, les tâches et les agents permet d'expliquer pourquoi `async/await` s'appuie sur les Promises sans confondre ce modèle de langage avec l'ordonnancement complet du navigateur ou de Node.js.
 
 Un dev qui maîtrise l'event loop débugue un problème de performance async en minutes. Un dev qui ne le maîtrise pas ajoute des `await` partout en espérant que ça règle un problème qu'il ne comprend pas.
 
@@ -204,3 +202,39 @@ recites.
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+
+<!-- AF-LESSON-PROFILE: async -->
+
+## Repères de décision
+
+- **Pourquoi :** L'asynchronisme permet au système de continuer pendant l'attente, mais introduit ordre, concurrence, annulation et erreurs différées.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le pour I/O, tâches longues, notifications ou flux continus. Évite les traitements concurrents sans limite ; impose timeout, annulation et backpressure quand le producteur peut dépasser le consommateur.
+- **Limites :** `Promise.race` ne tue pas l'opération perdante ; `Promise.all` rejette au premier échec observable ; `allSettled` collecte les résultats mais ne fournit pas de stratégie de reprise. La mémoire partagée exige une synchronisation explicite.
+
+## Mécanisme : la version sans magie
+
+Sépare tâche, attente et consommation. Fixe un délai, une politique d'annulation, une limite de concurrence et une règle de rejeu/idempotence selon les effets.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce module mérite ton temps : async & event loop** se rattache à ce cas concret : Le service de notification Kintana traite plusieurs demandes. Un fournisseur lent ne doit pas bloquer toute la file ni provoquer des doublons au retry.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Worker de notifications asynchrones fiable
+
+> **Arc One Piece / Grand Line :** un message peut arriver tard, deux fois ou pas du tout. Le navigateur ne promet pas que tout le monde rame à la même vitesse.
+
+**Mission liée à « Pourquoi ce module mérite ton temps : async & event loop » :** Implémente un worker pour les notifications Kintana avec concurrence bornée, timeout, annulation quand elle est supportée, backoff avec jitter et clé de déduplication. Instrumente le nombre en attente et l'âge du plus vieux message.
+
+**Livrable :** un worker, une horloge contrôlée dans les tests, un test de timeout, un test de rejeu et un scénario de saturation.
+
+**Critères d’acceptation :** la concurrence ne dépasse jamais la limite ; le message échoué est classé ; un replay ne double pas l'effet ; l'annulation est distinguée d'un timeout ; le backlog est observable.
+
+**Transfert obligatoire :** Augmente le débit producteur jusqu'à dépasser le débit consommateur. Explique quand appliquer backpressure, rejeter ou stocker temporairement.
+
+### Références de précision
+
+- [MDN : Modèle d'exécution JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Execution_model) : agents, pile d'exécution, jobs et distinction tâches/microtasks.
+- [MDN : Microtasks en profondeur](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth) : boucle d'événements navigateur et agents Worker.
+- [Node.js : Event Loop, timers et `process.nextTick`](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick) : phases propres à Node.js.

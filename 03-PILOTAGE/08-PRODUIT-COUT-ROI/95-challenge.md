@@ -1,7 +1,5 @@
 ---
-perishability_id: PER-0064
-
-stability: perissable
+stability: "intemporel"
 acte: pilotage
 noyau: oui
 cognitive_level: L4
@@ -9,11 +7,13 @@ perturbation_modes: [fausse_piste, decision_organisationnelle]
 anti_recipe_key: fausse_piste+decision_organisationnelle
 transfer_distance: low
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0064
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/08-PRODUIT-COUT-ROI/01-00-why-produit-cout-roi.md"
+source_scope: "Référence interne sur arbitrage produit, valeur, coût et ROI ; les nombres du challenge doivent rester sourcés par l’apprenant."
+provenance_note: "Référence interne explicitement reliée au sujet ; elle ancre le parcours mais ne constitue pas une preuve externe. Aucun contenu n’est déclaré revérifié par cette mise à jour."
 ---
 
 > **SCÈNE CRAZYDEVS : coach du village :** tu n'as pas 40 matchs à préparer, tu en as trois cette semaine. La question n'est donc pas “que peut-on construire ?” mais “quel pari vaut le terrain maintenant ?”.

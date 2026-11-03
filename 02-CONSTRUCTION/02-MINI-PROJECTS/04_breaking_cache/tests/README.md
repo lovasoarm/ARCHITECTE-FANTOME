@@ -3,34 +3,32 @@ stability: intemporel
 acte: pratiquer
 ---
 
-# `tests/` : 04_breaking_cache
+# `tests/` : tests à écrire pour 04 BREAKING CACHE
 
-<!-- AF-DIAGRAM:cache -->
+Aucun test exécutable ou test de référence n'est fourni par le ZIP. Écris des tests qui observent le contrat, pas seulement les détails internes de ton implémentation. Le projet démarre en CommonJS pour ses fichiers `.js` ; si tu optes pour ESM, utilise `.mjs` ou déclare `"type": "module"` dans ton `package.json`.
 
-```text
-Request
-  │
-  ▼
-┌──────────┐
-│  Cache   │
-└─┬────┬───┘
-  │hit │miss
-  ▼    ▼
-Value  ┌──────────┐
-       │ Database │
-       └────┬─────┘
-            ▼
-         populate
+Priorités :
+
+- hit/miss, y compris `null` ou `undefined` ;
+- TTL invalide et frontière `now === expiresAt` avec horloge contrôlée ;
+- `delete` et `clear` ;
+- loader appelé seulement sur miss et absence de cache sur erreur ;
+- invalidation après commit réussi, pas après échec ;
+- isolation tenant/boutique, y compris les identifiants contenant `:` qui pourraient créer une collision avec une concaténation naïve ;
+- logs sans payload sensible.
+
+Commande, après création des fichiers :
+
+```bash
+node --test
 ```
 
-Le cache court-circuite la source de vérité en cas de hit et la recharge en cas de miss.
-
-Tu déposes ici tes tests de ce mini-projet, un fichier de test par comportement.
+`npm test` n'existe pas dans le ZIP de base (aucun `package.json` n'est fourni).
 
 ## Contenu du dossier
 
 <!-- CONTENU-DOSSIER:debut -->
 
-_Rien a lister pour l'instant : depose tes fichiers ici._
+_Aucun test n'est livré. Ajoute tes fichiers de test ici._
 
 <!-- CONTENU-DOSSIER:fin -->

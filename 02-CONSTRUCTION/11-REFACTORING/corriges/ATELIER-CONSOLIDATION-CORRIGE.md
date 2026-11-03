@@ -1,3 +1,9 @@
+---
+stability: intemporel
+acte: reference
+assessment_role: instructional_support
+---
+
 # Corrigé différé : 11-REFACTORING
 
 **Ne lire qu'après l'atelier.** Ce document est un guide de correction et non une sortie d'exécution certifiée.
@@ -10,17 +16,20 @@
 4. Expliquer causalement la divergence : précondition, transformation, puis effet. Une simple copie de réponse échoue au critère d'autonomie.
 5. Répéter le cas positif et le cas volontairement faux ; mesurer ou décrire le changement.
 
-## Exemple de réponse structurée (à instancier à partir du cours)
+## Exemples résolus : Les principes SOLID sans sur-abstraction
 
-- **Contexte :** `solid principles`, source `04-solid_principles.md`.
-- **Prédiction :** « avec l'entrée X et la précondition P, la propriété Y doit tenir ».
-- **Cas négatif :** « si P est supprimée, Y n'est plus garantie ; je vérifie un échec par assertion, mesure ou refus explicite ».
-- **Diagnostic :** « l'hypothèse P manque », pas « mauvais code ».
-- **Correctif :** vérifier P à la frontière ou ajuster le modèle ; relancer exactement les deux cas.
-- **Transfert :** montrer l'impact de P dans une fonctionnalité réelle et consigner son test de non-régression.
+Les exemples ci-dessous sont des **fixtures pédagogiques** : les résultats sont déduits des entrées affichées ou des hypothèses explicitement données. Ils ne prétendent pas qu’une commande, un service ou une infrastructure a été exécuté dans cette release.
+
+### Exemple A : Responsabilité séparée
+
+Un `InvoiceService` calcule le total, enregistre la facture et envoie aussi un email SMTP. Une évolution du format email oblige à toucher le calcul métier. Séparer le calcul (`InvoiceCalculator`) de l’envoi (`InvoiceNotifier`) réduit les raisons de changement. Le service d’orchestration coordonne les deux ; les tests du calcul n’ont pas besoin d’un serveur email.
+
+### Exemple B : Dépendre d’un contrat sans fabriquer une cathédrale
+
+Le service de facturation a besoin d’une opération `send(invoice)`, pas de connaître SMTP, un fournisseur ou un SDK. Injecter un petit contrat `InvoiceNotifier` permet de tester le service avec un faux notifier. Si une seule implémentation existera durablement et qu’aucun changement indépendant n’est attendu, une abstraction supplémentaire peut coûter plus qu’elle ne rapporte. SOLID sert à réduire le couplage réellement observé.
 
 ## Barème / 10
 
 Prédiction précise (2), preuve reproductible (2), cas négatif observé (2), diagnostic et correctif (2), transfert contextualisé (2). **Un cas inventé ou sans trace obtient zéro sur le critère de preuve.**
 
-**Limite :** les sorties attendues dépendant de la leçon et de l'environnement n'ont pas été calculées ici ; elles doivent être contrôlées par le formateur. Ne pas confondre ce guide avec une solution technique entièrement implémentée.
+**Limite :** les sorties qui dépendent d’une exécution n’ont pas été calculées ici : exécute l’exercice dans l’environnement prévu par la leçon, compare le résultat à ces critères et conserve ta preuve. Ne présente jamais un résultat attendu comme une exécution réellement observée. Ce corrigé guide le raisonnement ; il ne prétend pas fournir une implémentation complète.

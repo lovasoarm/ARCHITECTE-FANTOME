@@ -9,6 +9,13 @@ perturbation_modes: [changement_echelle, changement_contexte]
 anti_recipe_key: changement_echelle+changement_contexte
 transfer_distance: medium
 assessment_role: diagnostic_mastery
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/05-OBSERVABILITY/02-structured_logging.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 03-PILOTAGE/05-OBSERVABILITY/02-structured_logging.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.
@@ -132,3 +139,33 @@ Maintenant, ouvre `02-structured_logging.md`. Et commence à donner à ton syst�
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+<!-- AF-LESSON-PROFILE: observability -->
+
+## Repères de décision
+
+- **Pourquoi :** L'observabilité réduit le temps entre un symptôme et une hypothèse vérifiable. Elle aide à savoir si le problème est local, partagé ou externe.
+- **Quand l’utiliser / quand l’éviter :** Instrumente un parcours critique et chaque frontière qui peut échouer. Évite les logs sans action associée, les cardinalités infinies et les identifiants personnels.
+- **Limites :** Plus de télémétrie n'est pas toujours mieux : stockage, coûts, bruit et données sensibles augmentent. Une métrique isolée ne prouve pas une cause.
+
+## Mécanisme : la version sans magie
+
+Relie logs structurés, métriques et traces par un identifiant de corrélation ; choisis des signaux qui répondent à une question opérationnelle ; définis l'action attendue sur alerte.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce module mérite ton temps : observability** se rattache à ce cas concret : Le parcours Kintana création -> réservation -> notification doit pouvoir être suivi sans enregistrer le contenu personnel de la demande.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Traçage du parcours critique Kintana
+
+> **Arc Walking Dead :** quand le camp crie « ça ne marche plus », les logs, métriques et traces doivent te dire où regarder sans exposer les habitants.
+
+**Mission liée à « Pourquoi ce module mérite ton temps : observability » :** Instrumente le parcours choisi avec correlation ID, événements structurés et métriques utiles. Injecte une panne dans une frontière et rédige un diagnostic qui s'appuie uniquement sur les signaux collectés.
+
+**Livrable :** schéma de logs, métriques avec unités et labels bornés, trace corrélée, règle d'alerte et runbook de diagnostic.
+
+**Critères d’acceptation :** chaque signal répond à une question ; les secrets et contenus personnels sont exclus ; cardinalité maîtrisée ; l'alerte possède une action ; les résultats simulés restent LAB/SIMULATION.
+
+**Transfert obligatoire :** Une dépendance externe dégrade sa latence sans tomber. Explique quels signaux distinguent saturation, lenteur fournisseur et erreur interne.

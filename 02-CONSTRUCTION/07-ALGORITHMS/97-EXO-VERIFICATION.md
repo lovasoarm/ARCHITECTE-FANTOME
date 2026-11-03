@@ -33,7 +33,27 @@ Prends 5 minutes. Écris ta réponse **sans** relancer l'IA. Nomme :
 
 ## Piste de correction (à ne lire qu'après)
 
-> Fib récursif naïf est O(2^n). Fib(40) déjà pénible, Fib(50) impossible. Où l'IA t'a-t-elle vendu 'assez rapide' sans mesure ?
+> Pour cette implémentation avec `F(0) = 0` et `F(1) = 1`, le nombre d'appels récursifs vérifie `T(n) = 2 × F(n + 1) − 1`. Pour `n = 50`, cela représente **40 730 022 147 appels** : ce n'est pas mathématiquement impossible, mais le coût rend cette approche inadaptée à un usage courant. La complexité est `Θ(φ^n)` ; `O(2^n)` est une borne supérieure correcte mais moins précise, pas une estimation serrée.
+
+### Vérification complémentaire
+
+```js
+function fibIterative(n) {
+  if (!Number.isSafeInteger(n) || n < 0) {
+    throw new RangeError("n doit être un entier sûr positif ou nul");
+  }
+  let a = 0n;
+  let b = 1n;
+  for (let i = 0; i < n; i += 1) {
+    [a, b] = [b, a + b];
+  }
+  return a;
+}
+
+console.log(fibIterative(10)); // 55n
+```
+
+Cette implémentation renvoie un `BigInt`, car la suite dépasse rapidement la précision entière exacte des `number`. Elle effectue `n` itérations ; le coût de chaque addition `BigInt` dépend toutefois de la taille des valeurs manipulées.
 
 ## Pourquoi cet exo
 

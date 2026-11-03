@@ -182,3 +182,31 @@ En Python, un GC par comptage de références + détection de cycles ; les fuite
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce module mérite ton temps : memory & performance** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Établir une baseline avant toute optimisation
+
+**Mission liée à « Pourquoi ce module mérite ton temps : memory & performance » :** Choisis un parcours Kintana et formule une hypothèse observable sur le temps CPU, la mémoire ou la réactivité. Définis une charge représentative, une baseline répétable et un critère qui justifierait de ne rien changer.
+
+**Livrable :** Protocole de mesure, profil initial et décision motivée.
+
+**Critères d’acceptation :** Contexte, version, charge et répétitions sont consignés ; les mesures synthétiques sont étiquetées ; une optimisation n’est pas présumée nécessaire.
+
+**Transfert obligatoire :** La mesure varie fortement : identifie les sources de bruit et reporte la décision plutôt que de choisir le meilleur chiffre.

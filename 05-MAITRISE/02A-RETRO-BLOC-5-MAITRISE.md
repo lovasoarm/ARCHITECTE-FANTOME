@@ -13,10 +13,11 @@ Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opératio
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
 est désormais faux, et pourquoi ce n'était pas visible à l'époque.
 
-Durée : 60 à 90 minutes. À faire après avoir terminé le 04-EPREUVE/01-BONUS-VAULT, donc à la fin
-du parcours, avant d'ouvrir [14-EPILOGUE.md](../06-ANNEXES-TRANSVERSES/14-EPILOGUE.md). Ne saute pas cette étape : c'est la
-seule fois du parcours où tu juges tes propres habitudes de travail, et non un livrable
-technique isolé.
+Durée : 60 à 90 minutes. À faire à la fin de la progression de Maîtrise, avant d'ouvrir
+[14-EPILOGUE.md](../06-ANNEXES-TRANSVERSES/14-EPILOGUE.md). Bonus Vault est un coffre
+facultatif : sa lecture ou son challenge ne conditionne pas cette rétrospective. Ne saute pas
+la rétrospective lorsque tu as atteint ce point : elle juge tes habitudes de travail, pas
+seulement un livrable technique isolé.
 
 ## Contrôle d'antériorité du bloc
 
@@ -31,8 +32,8 @@ relire ta solution. C'est deux heures. Elles valent les vingt heures du bloc sui
 ## Ce que tu rouvres
 
 - ta routine d'apprentissage écrite au module `05-MAITRISE/05-DAY-TO-LEGEND` ([95-challenge.md](05-DAY-TO-LEGEND/95-challenge.md)),
-- ton `HYPOTHESES.md` et ton relevé de temps de résolution du module `04-EPREUVE/02-TOOL-CAVE` ([95-challenge.md](../04-EPREUVE/02-TOOL-CAVE/95-challenge.md)),
-- ta `REVUE-DE-RISQUES.md` du capstone, relue à la lumière du module `04-EPREUVE/01-BONUS-VAULT` ([01-BONUS-VAULT/04-security-cost-privacy.md](../04-EPREUVE/01-BONUS-VAULT/04-security-cost-privacy.md)),
+- si tu as réalisé Tool Cave : ton `HYPOTHESES.md` et ton relevé de temps de résolution ([95-challenge.md](../04-EPREUVE/02-TOOL-CAVE/95-challenge.md)); sinon, utilise un autre bug documenté de ton fil rouge,
+- ta `REVUE-DE-RISQUES.md` du capstone, relue à partir de critères concrets de sécurité, coût et données personnelles ; le coffre Bonus Vault est une ressource facultative pour cette relecture ([04-security-cost-privacy.md](../04-EPREUVE/01-BONUS-VAULT/04-security-cost-privacy.md)),
 - le journal de bord que tu tiens depuis le 00-SOCLE, s'il existe encore.
 
 Tu les rouvres sans les corriger tout de suite. D'abord tu lis, ensuite tu annotes, enfin tu

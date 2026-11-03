@@ -1,9 +1,9 @@
 ---
 perishability_id: PER-0074
 
-perennite: evolutif
-stability: perissable
-duree_de_vie_estimee: 1-2 ans
+perennite: "evolutif"
+stability: "evolutif"
+duree_de_vie_estimee: "2-3 ans"
 raison: "Outils : bougent chaque année. Lis pour saisir la logique, pas pour mémoriser."
 acte: comprendre
 cognitive_level: L4
@@ -11,12 +11,17 @@ perturbation_modes: [fausse_piste, constraints_injectees]
 anti_recipe_key: fausse_piste+constraints_injectees
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0074
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-01-28
-review_status: a_verifier_date_absente
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+review_interval: "3 mois"
+perishability_scope: "Noms d’outils, versions, interfaces, commandes et intégrations du module Tools ; les principes build/format/lint/package restent transférables."
+canonical_resource: "05-MAITRISE/07-TOOLS/02-logger_structure.md"
+source_scope: "Notion et parcours internes reliés à 05-MAITRISE/07-TOOLS/02-logger_structure.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
+
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 > **Statut de pérennité :** intemporel | **évolutif** | périssable
@@ -24,16 +29,16 @@ review_status: a_verifier_date_absente
 
 > **TL;DR (4 lignes)**
 >
-> - Ta chaîne d'outils (linter, formatter, bundler, LSP, debugger) est ton exosquelette. Un dev sans outils bien réglés perd 30% de son temps à des tâches automatisables.
+> - Ta chaîne d'outils (linter, formatter, bundler, LSP, debugger) est ton exosquelette. Des outils bien réglés réduisent les tâches répétitives et les erreurs de manipulation ; le gain dépend du projet, de l’équipe et du niveau d’automatisation. Aucun pourcentage universel n’est affirmé ici.
 > - Ce module te fait construire ta propre chaîne, pas suivre une config copiée-collée d'un tuto de 2021.
-> - Densité forte car périssable : privilégie la compréhension du **rôle** de chaque outil, pas la config du jour.
-> - En 2028, l'IA écrit le code. Ce sont **tes outils** qui te rendent plus rapide qu'elle.
+> - Densité forte car les versions et intégrations évoluent : privilégie la compréhension du **rôle** de chaque outil, pas la config du jour.
+> - Les assistants IA et les chaînes d’outils évoluent rapidement. La compétence durable consiste à vérifier leurs sorties, automatiser les contrôles pertinents et garder la maîtrise du résultat.
 
 > **CE MODULE RÉUTILISE** : runtime (02-CONSTRUCTION/13-RUNTIME-ENV), modules (00-SOCLE/04-FUNDAMENTALS), et transversalement tout module ayant produit du code à builder/lint/packager. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
-> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
+> **OUTIL ÉVOLUTIF** : les interfaces et versions du tooling JS changent. Traite les commandes comme des exemples datés et revalide-les avant un nouveau projet. Les principes de lint, format, build, package et debug restent transférables. Le lien TypeScript éventuellement mentionné dans un exercice ne valide pas les autres outils : consulte la documentation officielle propre à chaque outil avant de reprendre une commande.
 
-> **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
+> **Sous-partie périssable suivie au registre :** les noms d’outils, interfaces, versions et commandes illustrées doivent être revalidés avant réutilisation. Le module reste classé **évolutif** ; les principes (build, format, lint, package) sont transférables.
 
 # Pourquoi ce module mérite ton temps
 
@@ -247,3 +252,40 @@ Ce qui changera pas : le réflexe de structurer tes logs, mesurer avant d'optimi
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce module mérite ton temps** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Choisir un outil en fonction d’un diagnostic
+
+**Mission liée à « Pourquoi ce module mérite ton temps » :** Prends un problème Kintana et compare deux outils possibles. Mesure le temps pour obtenir une preuve utile et note le coût d’installation, de maintenance et de compréhension.
+
+**Livrable :** Matrice problème/outil/preuve/coût et recommandation.
+
+**Critères d’acceptation :** L’outil sert une question définie ; les coûts d’usage sont visibles ; le choix ne repose pas sur la popularité seule.
+
+**Transfert obligatoire :** L’outil fournit beaucoup de données mais pas la preuve recherchée : change la question ou l’outil.
+
+## Références officielles utiles
+
+> **Référence principale vérifiée le 2 novembre 2026 :** la première ressource de ce panneau, également enregistrée dans `source_url`, a été consultée pour le mécanisme versionné traité ici. Les autres liens sont des compléments officiels utiles ; ils ne constituent pas chacun une attestation indépendante de l’exemple du curriculum. Aucune référence ne prouve que l’exemple a été exécuté. Vérifie la version cible et teste dans ton environnement avant un usage réel.
+
+- [TypeScript : Documentation](https://www.typescriptlang.org/docs/)
+- [ESLint : Documentation](https://eslint.org/docs/latest/)
+- [Prettier : Documentation](https://prettier.io/docs/)
+- [Vite : Documentation](https://vite.dev/guide/)

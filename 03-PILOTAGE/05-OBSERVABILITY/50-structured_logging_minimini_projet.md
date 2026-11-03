@@ -8,6 +8,8 @@ transfer_distance: medium
 assessment_role: instructional_checkpoint
 ---
 
+# Mise en pratique : Arrête d'écrire des logs que personne ne peut chercher
+
 > **SCÈNE CRAZYDEVS : finale au stade :** 99,9 % de disponibilité sur un slide ne sauve personne à 03:17 quand le service hurle. La vraie compétence commence quand il faut transformer la métrique en décision.
 
 ## TYPE
@@ -103,3 +105,15 @@ Tu as rendu ton propre site observable. Commit `docs/observability.md`.
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+## Livraison produit obligatoire : Kintana : Parcours observable
+
+> **Fil narratif : Walking Dead :** Quand le camp est sous pression, le joli plan ne nourrit personne : il faut savoir qui agit, quel signal surveiller et comment revenir d’une panne. Bienvenue côté exploitation.
+
+Le micro-exercice existant reste une mise en jambe : il isole un mécanisme, mais ne suffit pas comme preuve de maîtrise. La livraison évaluée améliore le même produit [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
+
+**Mission liée à « 50-structured_logging_minimini_projet » :** Dans Kintana, instrumente une requête de bout en bout, injecte une panne et rédige le diagnostic avec les seuls signaux autorisés.
+
+Instrumente un parcours complet de création de demande : identifiant de corrélation, métrique utile et signal d’erreur. Déclenche une panne simulée puis utilise uniquement les signaux collectés pour la localiser.
+
+**Livrable :** incrément intégré, tests ou vérifications, note de décision et contre-exemple. **Gate :** Un opérateur retrouve le parcours sans lire de secret ; le signal a un seuil ou une action associée ; la charge de télémétrie est justifiée. Étiquette les résultats locaux `LAB` ; ne revendique `PRODUCTION` qu’après déploiement et observation réels.

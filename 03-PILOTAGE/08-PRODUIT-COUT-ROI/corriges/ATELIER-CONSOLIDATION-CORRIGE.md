@@ -1,3 +1,9 @@
+---
+stability: intemporel
+acte: reference
+assessment_role: instructional_support
+---
+
 # Corrigé différé : 08-PRODUIT-COUT-ROI
 
 **Ne lire qu'après l'atelier.** Ce document est un guide de correction et non une sortie d'exécution certifiée.
@@ -10,17 +16,20 @@
 4. Expliquer causalement la divergence : précondition, transformation, puis effet. Une simple copie de réponse échoue au critère d'autonomie.
 5. Répéter le cas positif et le cas volontairement faux ; mesurer ou décrire le changement.
 
-## Exemple de réponse structurée (à instancier à partir du cours)
+## Exemples résolus : Dette technique déclarée
 
-- **Contexte :** `dette technique declaree`, source `04-dette_technique_declaree.md`.
-- **Prédiction :** « avec l'entrée X et la précondition P, la propriété Y doit tenir ».
-- **Cas négatif :** « si P est supprimée, Y n'est plus garantie ; je vérifie un échec par assertion, mesure ou refus explicite ».
-- **Diagnostic :** « l'hypothèse P manque », pas « mauvais code ».
-- **Correctif :** vérifier P à la frontière ou ajuster le modèle ; relancer exactement les deux cas.
-- **Transfert :** montrer l'impact de P dans une fonctionnalité réelle et consigner son test de non-régression.
+Les exemples ci-dessous sont des **fixtures pédagogiques** : les résultats sont déduits des entrées affichées ou des hypothèses explicitement données. Ils ne prétendent pas qu’une commande, un service ou une infrastructure a été exécuté dans cette release.
+
+### Exemple A : Dette choisie et bornée
+
+Pour la première version, l’équipe décide de ne pas ajouter de cache. La charge prévue reste sous 500 utilisateurs actifs et la lecture en base tient le budget de latence. La dette est inscrite avec propriétaire, symptôme surveillé, risque de hausse de latence, seuil de déclenchement (p95 > 300 ms pendant 15 minutes sous charge représentative) et date de revue. La décision est défendable parce qu’elle est explicite et réversible.
+
+### Exemple B : Dette subie et non gouvernée
+
+Le code copie la même règle de calcul dans quatre services pour livrer vite, mais personne ne l’inscrit. Après une évolution, trois services appliquent le nouveau taux et le quatrième conserve l’ancien : les résultats divergent. Ce n’est pas une dette « stratégique » documentée ; c’est un risque caché. Le correctif consiste à enregistrer la duplication, son impact, le propriétaire, la solution cible et un déclencheur mesurable de consolidation.
 
 ## Barème / 10
 
 Prédiction précise (2), preuve reproductible (2), cas négatif observé (2), diagnostic et correctif (2), transfert contextualisé (2). **Un cas inventé ou sans trace obtient zéro sur le critère de preuve.**
 
-**Limite :** les sorties attendues dépendant de la leçon et de l'environnement n'ont pas été calculées ici ; elles doivent être contrôlées par le formateur. Ne pas confondre ce guide avec une solution technique entièrement implémentée.
+**Limite :** les sorties qui dépendent d’une exécution n’ont pas été calculées ici : exécute l’exercice dans l’environnement prévu par la leçon, compare le résultat à ces critères et conserve ta preuve. Ne présente jamais un résultat attendu comme une exécution réellement observée. Ce corrigé guide le raisonnement ; il ne prétend pas fournir une implémentation complète.

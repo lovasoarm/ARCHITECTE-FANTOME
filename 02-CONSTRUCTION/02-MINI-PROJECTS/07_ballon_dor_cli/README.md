@@ -17,7 +17,7 @@ Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `
 
 -> ~6 min
 
-Les journalistes du monde entier votent. Les points s'agrègent. Le classement se met à jour. La v1 a été codée en une nuit par un stagiaire pressé : elle fonctionne, mais personne n'ose la toucher. La v2, c'est toi qui l'écris. Et cette fois, elle est testée, refactorisée, containerisée.
+Un club sportif collecte des bulletins pseudonymisés, vérifie les règles et publie un classement traçable. Tu construis une CLI neuve à partir d'un contrat métier : aucun dépôt v1 ou code legacy n'est fourni. La mission est de concevoir des modules testables, de rendre les imports idempotents et d'expliquer les limites de la persistance locale.
 
 ---
 
@@ -36,7 +36,7 @@ CLASSEMENT BALLON D'OR 2026
 ═══════════════════════════════════════
 
 $ node src/cli.js simulate --votes 500
-[SIM] 500 votes aléatoires générés et enregistrés (4 Worker Threads)
+[EXEMPLE DE SORTIE  : SIMULATION] 500 bulletins synthétiques générés ; aucun résultat de benchmark n'est revendiqué
 
 $ node src/cli.js export --format csv
 [EXPORT] classement_2026-06-23.csv créé (23 lignes)
@@ -71,7 +71,7 @@ src/
 ├── commands/
 │  ├── voteCommand.js # logique de la commande vote
 │  ├── rankCommand.js # logique de la commande rank
-│  ├── simCommand.js  # logique de la commande simulate (Worker Threads)
+│  ├── simCommand.js  # génération contrôlée de lots synthétiques
 │  ├── resetCommand.js # remet les votes à zéro
 │  └── exportCommand.js # exporte en CSV ou JSON
 │
@@ -79,7 +79,7 @@ src/
 │  └── voteStore.js  # lecture/écriture JSON sur le disque (persistence)
 │
 ├── workers/
-│  └── simWorker.js  # Worker Thread pour la génération de votes en parallèle
+│  └── simWorker.js  # optionnel : génération synthétique uniquement, aucun accès au store
 │
 ├── errors/
 │  ├── InvalidVoteError.js
@@ -120,12 +120,12 @@ cli.js --> parseArgs()
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module                           | Où ça se voit                                                   |
-| -------------------------------- | --------------------------------------------------------------- |
-| `02-CONSTRUCTION/13-RUNTIME-ENV` | `process.argv`, `fs`, Worker Threads pour la simulation         |
-| `02-CONSTRUCTION/11-REFACTORING` | v1 spaghetti → v2 modulaire : SRP sur chaque commande           |
-| `01-CADRAGE/04-ERROR-HANDLING`   | `InvalidVoteError`, `PlayerNotFoundError`, `QuotaExceededError` |
-| `05-MAITRISE/06-ANNEXES`         | Git workflow, Docker, CI/CD sur chaque push                     |
+| Module                           | Où ça se voit                                                                              |
+| -------------------------------- | ------------------------------------------------------------------------------------------ |
+| `02-CONSTRUCTION/13-RUNTIME-ENV` | `process.argv`, `fs` ; Worker Threads facultatifs pour fabriquer des fixtures synthétiques |
+| `02-CONSTRUCTION/11-REFACTORING` | conception modulaire greenfield : SRP, domaine séparé des adaptateurs                      |
+| `01-CADRAGE/04-ERROR-HANDLING`   | `InvalidVoteError`, `PlayerNotFoundError`, `QuotaExceededError`                            |
+| `05-MAITRISE/06-ANNEXES`         | Git workflow, Docker, CI/CD sur chaque push                                                |
 
 ---
 
@@ -134,7 +134,7 @@ cli.js --> parseArgs()
 ```text
 1. Chaque commande est dans son propre fichier : un fichier = une responsabilité
 2. Les erreurs ont des classes custom avec des messages précis
-3. La commande simulate utilise Worker Threads : jamais bloquer l'event loop principal
+3. Le processus principal est l'unique writer du journal ; un worker éventuel ne génère que des fixtures et renvoie les données au processus principal
 4. voteStore.js ne fait que lire et écrire, jamais de logique métier
 5. Le Dockerfile est multi-stage : image de prod aussi légère que possible
 ```
@@ -168,7 +168,7 @@ Voir `02-CONSTRUCTION/05-MEMORY-PERFORMANCE/02A-measure_first.md`.
 
 ## Pitch 3 lignes
 
-Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un produit (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
+Ce projet démontre une compétence clé : transformer un besoin d'audit de bulletins en CLI déterministe, testée et documentée. La capacité à reprendre un codebase inconnu est évaluée dans d'autres projets du parcours ; ce dépôt ne simule pas la présence d'un legacy absent.
 
 ## Empreinte carbone (critère d'acceptation)
 
@@ -243,3 +243,33 @@ Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STAND
 - **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
 
 **Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.
+
+<!-- AF-BALLO-DOR-REAL-PRODUCT-GATE-1.1 -->
+
+## Mission produit évaluée : Ballot Integrity & Audit CLI
+
+Le classement sportif est le crochet narratif. Le livrable portfolio est un outil d'import, de validation, de classement et d'audit de bulletins pseudonymisés pour une association sportive. **Données synthétiques uniquement** : pas d'élection réelle, pas de données personnelles, pas de promesse de scrutin juridiquement valable.
+
+**À livrer :** commandes `validate`, `import`, `rank`, `audit`, `export` et `simulate` ; import CSV/JSON avec quarantaine des lignes invalides ; unicité par pseudonyme/concours ; import idempotent ; journal append-only avec corrections traçables ; règle de score/départage versionnée ; classement déterministe ; export CSV correctement échappé ; tests de doublons, concurrence, reprise et panne.
+
+**Schéma de flux :**
+
+```text
+CSV/JSON -> validation -> quarantaine des erreurs
+                    |
+                    v
+            pseudonyme + idempotence
+                    |
+                    v
+           journal append-only
+                    |
+                    v
+       score versionné -> audit -> export
+```
+
+Le stockage local JSON/SQLite est acceptable pour le lab et ses limites doivent être démontrées. Il ne constitue pas une architecture multi-hôte. Un `Worker Thread` éventuel génère seulement des données de simulation ; le processus principal reste l'unique writer. Consulte le cahier des charges pour les gates détaillées et les limites de sécurité.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.
+- [Référence technique différée](reference/README.md) : à consulter après la tentative, sans recopier dans le livrable.

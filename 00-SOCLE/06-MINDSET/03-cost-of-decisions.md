@@ -192,3 +192,35 @@ réexamen. Ce n'est pas un document lourd, c'est un garde-fou contre l'oubli du 
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+<!-- AF-LESSON-PROFILE: architecture -->
+
+## Repères de décision
+
+- **Pourquoi :** Les frontières réduisent le coût de changement et clarifient les responsabilités. Elles doivent répondre aux contraintes de l'équipe, des données et de l'exploitation.
+- **Quand l’utiliser / quand l’éviter :** Découpe un système quand une frontière protège une règle ou un rythme de changement. Ne crée pas de microservice tant que l'autonomie, la charge ou la gouvernance ne justifient pas le coût distribué.
+- **Limites :** Chaque frontière ajoute contrats, réseau, déploiement, observabilité et coordination. Un diagramme propre ne prouve ni la faisabilité ni la performance.
+
+## Mécanisme : la version sans magie
+
+Part des cas d'usage, repère invariants et propriétaires de données, définis les contrats, compare les options et mesure les conséquences du changement.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Le coût des décisions** se rattache à ce cas concret : Kintana commence comme monolithe modulaire. Les demandes, réservations et notifications doivent avoir des frontières explicites sans fragmenter trop tôt le déploiement.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : comparer deux choix (partie 3/3)
+
+> **Arc Capsule Corp. / DBZ :** une architecture est le plan du vaisseau et les coûts qu'il impose. Si chaque pièce doit connaître toutes les autres, le vaisseau ne décolle jamais.
+
+> **Statut :** exercice conceptuel facultatif de première passe. Complète la même note commencée dans les deux leçons précédentes. Il s'agit d'un raisonnement sur papier, pas d'une décision de production ni d'une preuve terrain.
+
+**Mission liée à « Le coût des décisions » :** compare deux options simples pour le scénario : garder les fonctions dans un même programme organisé en modules (monolithe modulaire) ou les séparer en services déployés indépendamment. Pour chaque option, donne un avantage, un coût et un risque. Choisis provisoirement une option et indique quel changement futur te ferait réexaminer ce choix.
+
+**Livrable :** un tableau de deux options ajouté à la note unique Kintana. Un ADR formel, un contrat technique et un test de changement ne sont pas demandés à ce stade.
+
+**Critères d’acceptation :** chaque option possède au moins un avantage et un coût ; le choix est relié au scénario fourni ; une condition de révision est explicite ; le niveau de preuve reste `SIMULATION`.
+
+**Transfert facultatif :** imagine que le nombre d'équipes double. Explique quel coût pourrait changer et si cela suffit, à lui seul, à justifier un service séparé.

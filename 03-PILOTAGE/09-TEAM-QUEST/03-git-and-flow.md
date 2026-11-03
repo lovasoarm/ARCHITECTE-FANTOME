@@ -226,3 +226,31 @@ Où l'analogie casse : en cuisine on se croise en se parlant, sur Git on se croi
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Branches, PR, releases, feature flags** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Sécuriser le flux de livraison
+
+**Mission liée à « Branches, PR, releases, feature flags » :** Propose pour Kintana une stratégie de branches, de pull requests, de release et de feature flags adaptée à une petite évolution risquée. Décris le chemin normal, le correctif urgent et le retour arrière.
+
+**Livrable :** Schéma du flux, règles de revue, checklist de release et scénario de rollback.
+
+**Critères d’acceptation :** Chaque étape a un responsable ; la branche principale reste intégrable ; le flag ne remplace pas une stratégie de migration ; le rollback a un déclencheur.
+
+**Transfert obligatoire :** Une release doit être interrompue après détection d’un défaut : indique quelle preuve autorise la reprise.

@@ -47,6 +47,8 @@ saches toi-même où tu en es avant de démarrer :
 > Aucune case cochée ici ne t'empêche d'avancer. Ce test n'a qu'un seul but :
 > calibrer ta vitesse de lecture sur ce premier module, pas te bloquer.
 
+> **Statut pour la première passe : différé.** Termine d’abord la leçon et la pratique de base. Cette variation n’est pas une gate ; saute-la si elle utilise une notion non encore étudiée et reviens-y après les prérequis.
+
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?

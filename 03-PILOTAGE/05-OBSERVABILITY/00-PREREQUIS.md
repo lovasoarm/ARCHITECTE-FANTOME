@@ -1,18 +1,19 @@
 ---
-perishability_id: PER-0045
 
-stability: perissable
+stability: "intemporel"
 acte: évaluer
 cognitive_level: L3
 perturbation_modes: [decision_inversee, changement_echelle]
 anti_recipe_key: decision_inversee+changement_echelle
 transfer_distance: medium
 assessment_role: instructional_checkpoint
-freshness_registry_id: PER-0045
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/05-OBSERVABILITY/README.md"
+source_scope: "Référence interne du module Observability pour le contrôle des prérequis SLI/SLO/error budget."
+provenance_note: "Référence interne explicitement reliée au sujet ; elle ancre le parcours mais ne constitue pas une preuve externe. Aucun contenu n’est déclaré revérifié par cette mise à jour."
 ---
 > **SCÈNE CRAZYDEVS : finale au stade :** 99,9 % de disponibilité sur un slide ne sauve personne à 03:17 quand le service hurle. La vraie compétence commence quand il faut transformer la métrique en décision.
 
@@ -60,23 +61,25 @@ Logs, métriques et traces donnent trois angles complémentaires pour reconstrui
 
 Temps de lecture ~5 min
 
-> Tu ne dois **pas** entrer dans ce module si tu ne peux pas répondre à ces questions
-> **sans regarder**. Ce n'est pas un test noté, c'est un filtre anti-illusion.
-> Ces questions portent sur `03-PILOTAGE/04-SECURITY`, le module que tu viens de finir.
+> Avant de commencer ce module, essaie de répondre à ces questions **sans regarder**.
+> Ce diagnostic n’est pas noté : il sert à repérer les bases déjà acquises et les notions à revoir, pas à te fermer l’accès.
+> Ces questions vérifient les notions nécessaires pour observer un système. Le module précédent sur la sécurité est utile, mais connaître bcrypt ou JWT n’est pas une condition pour apprendre les logs, métriques et traces.
 
 ## Questions
 
-1. XSS vs CSRF : qui exécute quoi, et quelle défense pour chacun ?
-2. Pourquoi bcrypt est-il volontairement lent, et à quoi sert le salt ?
-3. JWT : ce que la signature garantit, et ce que le payload ne protège pas.
-4. Cite deux entrées de la checklist OWASP que tu vérifies avant une mise en production.
+1. Dans une réponse HTTP, comment distinguer un succès d’une erreur à partir du statut ?
+2. Quelle différence fais-tu entre un événement (un fait ponctuel) et une mesure répétée dans le temps ?
+3. Pourquoi associer un identifiant de corrélation à plusieurs logs d’une même requête ?
+4. Qu’est-ce que la latence d’une requête, et dans quelle unité peux-tu la mesurer ?
+
+**Repères à revoir :** [bases du Web](../../00-SOCLE/04-FUNDAMENTALS/05_web_basics/README.md), [gestion des erreurs](../../01-CADRAGE/04-ERROR-HANDLING/) et [bases des métriques](./05-metrics_alerting.md). La différence logs/métriques/traces et SLI/SLO sera enseignée dans ce module : elle n’est pas un prérequis.
 
 ## Verdict
 
-- **3+ réponses solides** → tu peux entrer.
-- **2 ou moins** → retour à `03-PILOTAGE/04-SECURITY/`, ou à sa synthèse `90-grimoire.md`.
+- **3+ réponses solides** → commence le module et garde les points hésitants comme objectifs de révision.
+- **2 ou moins** → retour aux seuls sujets à revoir indiqués juste au-dessus : bases du Web, gestion des erreurs ou bases des métriques (selon la question). La sécurité applicative n’est pas un prérequis de cette porte d’entrée.
 
-> Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
+> Le but n’est pas de te bloquer : ce diagnostic t’aide à choisir une révision utile.
 
 > **Note pour ce module précis** : la différence logs/metrics/traces, ce
 > que fait un correlation ID, et la différence SLI/SLO sont le contenu que

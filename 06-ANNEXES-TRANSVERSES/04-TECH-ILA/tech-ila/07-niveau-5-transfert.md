@@ -1,19 +1,24 @@
 ---
 perishability_id: PER-0091
 
-statut: revu
-last_reviewed: 2026-08
-proprietaire: mainteneur TECH-ILA
-revue: trimestrielle
 companion: ce parcours
-stability: perissable
+stability: "perissable"
 acte: comprendre
-freshness_registry_id: PER-0091
-freshness_audit_date: 2026-10-30
-freshness_status: date_declaree_non_revalidee_dans_cette_edition
-review_due: 2027-04-28
-review_status: date_declaree_non_revalidee_dans_cette_edition
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: "https://go.dev/doc/"
+source_type: "primary"
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « Niveau 5 : Transfert vers d'autres écosystèmes (section 8) ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 [← Sommaire TECH-ILA](../README.md)
@@ -47,27 +52,18 @@ review_status: date_declaree_non_revalidee_dans_cette_edition
 
 await suspend la reprise de la fonction async, pas l’ensemble du runtime.
 
-<!-- AF-DIAGRAM:transfer -->
+<!-- AF-DIAGRAM:reference -->
+
+## Repère visuel utile : Référentiel de compétences par preuves
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+compétence -> tâche observable -> artefact
+     ^                         |
+     |                         v
+révision datée <- verdict <- critère explicite
+     |
+     +-> remédiation ou nouvelle preuve
 ```
-
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
-
-Temps de lecture ~24 min
-
----
 
 ## 8 : Niveau 5 : Transfert vers d'autres écosystèmes
 
@@ -602,3 +598,43 @@ Cette phrase est vérifiable en entretien. Elle vaut plus que dix lignes de logo
 ---
 
 [← Niveau 4 : Systèmes professionnels](06-niveau-4-systemes.md) · [Sommaire](../README.md) · Niveau 6 : IA →
+
+<!-- AF-LESSON-PROFILE: reference -->
+
+## Repères de décision
+
+- **Pourquoi :** Un référentiel sert à rendre les compétences observables et à éviter de confondre familiarité, autonomie et maîtrise.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le pour établir un point de départ, prioriser une révision ou préparer une revue de portfolio. Ne l'utilise pas comme classement de valeur personnelle.
+- **Limites :** Une auto-évaluation est biaisée. Le niveau doit être confirmé par une tâche inconnue, un artefact reproductible et, aux paliers avancés, une revue externe.
+
+## Mécanisme : la version sans magie
+
+Associe une compétence à une tâche, un critère, une preuve, une date et un statut. Réévalue quand le contexte ou la technologie change.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../77-FIL-ROUGE-KINTANA/README.md), **Niveau 5 : Transfert vers d'autres écosystèmes (section 8)** se rattache à ce cas concret : Pour Kintana, une compétence comme l'idempotence n'est acquise que si tu sais l'expliquer, l'implémenter et vérifier le rejeu et les conflits.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Référentiel de compétences par preuves
+
+> **Arc DBZ / Capsule Corp. :** Bulma ne dit pas « je suis forte » parce qu'elle a lu le manuel. Elle vérifie ce que l'outil permet réellement.
+
+**Mission liée à « Niveau 5 : Transfert vers d'autres écosystèmes (section 8) » :** Établis ton état initial sur une tranche Kintana : sélectionne trois compétences, réalise une tâche de chacune sans suivre un corrigé, garde les tests et note ce que tu n'as pas pu démontrer.
+
+**Livrable :** un registre de compétences avec preuves liées, statut honnête, date de révision et prochain test de transfert.
+
+**Critères d’acceptation :** chaque statut pointe vers un artefact ; une compétence non testée reste `NON ÉVALUÉE` ; aucune preuve déclarative ne vaut une exécution ; les lacunes ont une action de remédiation.
+
+**Transfert obligatoire :** Reprends une compétence dans un langage ou un composant différent et vérifie si le principe se transfère réellement.
+
+## Références officielles utiles
+
+> **Référence principale vérifiée le 2 novembre 2026 :** la première ressource de ce panneau, également enregistrée dans `source_url`, a été consultée pour le mécanisme versionné traité ici. Les autres liens sont des compléments officiels utiles ; ils ne constituent pas chacun une attestation indépendante de l’exemple du curriculum. Aucune référence ne prouve que l’exemple a été exécuté. Vérifie la version cible et teste dans ton environnement avant un usage réel.
+
+- [Go : Documentation](https://go.dev/doc/)
+- [Python : asyncio](https://docs.python.org/3/library/asyncio.html)
+- [Java 21 : Virtual Threads](https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html)
+- [.NET : SynchronizationContext](https://learn.microsoft.com/en-us/dotnet/api/system.threading.synchronizationcontext)
+- [Rust : The Rust Book](https://doc.rust-lang.org/book/)

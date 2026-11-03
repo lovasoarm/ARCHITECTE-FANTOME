@@ -8,21 +8,21 @@ transfer_distance: high
 assessment_role: instructional_checkpoint
 ---
 
-> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+> **Repère :** une carte de progression aide à repérer ce que tu as déjà observé et ce qui reste à apprendre. Elle ne remplace pas les exercices.
+
+> **SCÈNE CRAZYDEVS :** un apprenant voit une longue carte de compétences et croit devoir tout maîtriser aujourd’hui. La carte sert à s’orienter, pas à passer tous les examens d’un coup.
 
 # Référentiel de compétences : où t'en es vraiment
 
-Temps de lecture ~7 min
+Temps de lecture indicatif : 10 à 15 min.
 
--> ~12 min
+> Pas un quiz. Pas une note sur 20. Une carte de référence.
+> Tu peux la lire pour comprendre les quatre axes ; tu ne dois pas te noter avant d'avoir des tâches et des preuves à examiner.
 
-> Pas un quiz. Pas une note sur 20. Une carte.
-> Tu l'ouvres quand tu veux savoir ce que tu maîtrises et ce qui te manque encore.
-
-Ce référentiel sert à te situer avant, pendant et après un bloc de travail. Tu peux le consulter rapidement au démarrage, puis revenir aux axes détaillés après les premières épreuves.
+Ce fichier décrit des capacités qui se construisent sur plusieurs modules. Au début du parcours, il est normal que plusieurs axes restent `NON ÉVALUÉS`. Lis-le comme une carte, puis reviens à un axe après avoir étudié les notions et réalisé une tâche qui permet réellement de l'observer.
 
 Connaître `Array.prototype.map` par coeur, c'est de la syntaxe.
-Savoir pourquoi un objet partagé entre deux modules vient de niquer ton état global à 3h du mat, c'est autre chose.
+Savoir pourquoi un objet partagé entre deux modules peut perturber un état global, c'est autre chose.
 
 ce parcours construit quatre capacités. Pas quatre listes de méthodes. Quatre façons de penser.
 
@@ -182,11 +182,7 @@ T'as 54 modules pédagogiques directs devant toi. Si tu regardes la montagne ent
   monde galère dessus la première fois. Le `../04-FUNDAMENTALS/02_scope/05-scope_escape_room.md` et compagnie
   sont là exactement pour ça. Refais l'exercice avant de passer à la suite, même si ça prend
   deux essais.
-- **`where_you_stand.md` n'est pas un quiz à remplir.** C'est
-  une carte que tu consultes seul, quand tu veux savoir si tu stagnes sur un axe précis
-  (Runtime, Lecture, Debug, Architecture) pendant que les autres avancent. Personne te demande
-  ton score. T'es le seul à le lire. Premier coup d'oeil utile : après le bloc 01-04, pas avant,
-  sinon les 4 axes te parlent encore de rien de concret.
+- **`where_you_stand.md` n'est pas un quiz à remplir ni un prérequis.** Au premier passage, lis seulement les noms des quatre axes et garde-les comme repères. Une auto-évaluation n'a de sens qu'après une tâche liée à l'axe et une preuve consultable. Pour l'architecture, attends d'avoir étudié et pratiqué les modules de construction correspondants ; avant cela, laisse le niveau `NON ÉVALUÉ`.
 - **L'event loop, le call stack, le cycle HTTP : tu vas les croiser dans plusieurs modules.**
   `05-MAITRISE/06-ANNEXES/03-ascii_charte.md` regroupe les 8 schémas canoniques. Même schéma partout, pas
   une version différente à chaque module. Si un dessin te paraît familier, c'est normal,
@@ -238,28 +234,49 @@ un module en amont mal digéré. Remonte d'un cran avant d'insister sur celui qu
 
 ## Et maintenant ?
 
-Tu sais où te situer, tu sais comment t'organiser. Reste plus qu'à voir l'ordre exact.
+Si tu débutes, retourne à la route canonique sans chercher à t'attribuer un niveau. Le référentiel est une carte à revisiter lorsque tu disposes de preuves ; ce n'est pas une étape supplémentaire à réussir.
 
-Ouvre `README.md` à la racine, lis la ROADMAP, et lance-toi.
+Suis le [parcours apprenant](README.md) du dépôt et réalise les premières activités prévues.
 
-## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+<!-- AF-DIAGRAM:reference -->
 
-<!-- AF-DIAGRAM:transfer -->
+## Repère visuel utile : Référentiel de compétences par preuves
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+compétence -> tâche observable -> artefact
+     ^                         |
+     |                         v
+révision datée <- verdict <- critère explicite
+     |
+     +-> remédiation ou nouvelle preuve
 ```
 
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+<!-- AF-LESSON-PROFILE: reference -->
 
-Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+## Repères de décision
+
+- **Pourquoi :** Un référentiel sert à rendre les compétences observables et à éviter de confondre familiarité, autonomie et maîtrise.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le pour établir un point de départ, prioriser une révision ou préparer une revue de portfolio. Ne l'utilise pas comme classement de valeur personnelle.
+- **Limites :** Une auto-évaluation est biaisée. Le niveau doit être confirmé par une tâche inconnue, un artefact reproductible et, aux paliers avancés, une revue externe.
+
+## Mécanisme : la version sans magie
+
+Associe une compétence à une tâche, un critère, une preuve, une date et un statut. Réévalue quand le contexte ou la technologie change.
+
+## Ancrage produit / terrain : Kintana (activité unique et différée)
+
+Kintana est un cas d'étude fictif. Cette page d'auto-positionnement est une référence à ouvrir après avoir conservé de vraies preuves. **La mission ci-dessous n'est accessible qu'après validation des prérequis correspondants de la Route 58 : étape 3 (tests et changement sûr), étape 4 (design, interfaces et API), étape 5 (persistance et cohérence) et étape 8 (systèmes distribués).** Si l'une de ces étapes n'a pas été étudiée, laisse cette activité en attente. Elle ne conditionne ni l'entrée dans Fundamentals ni l'ouverture des étapes précédentes.
+
+**À observer, lorsque les prérequis sont acquis :** comportement attendu, cas de rejeu, conflit éventuel, preuve obtenue et niveau réel (`CONCEPT`, `LAB` ou `SIMULATION`). N'étiquette jamais `PRODUCTION` sans exploitation réelle. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana, activité unique facultative et différée après les étapes 3, 4, 5 et 8
+
+Sur le cas fictif Kintana, étudie un scénario où une même demande peut être reçue deux fois. Décris le comportement attendu, l'invariant qui doit rester vrai et un scénario de rejeu. Une simulation sur papier est acceptable si l'implémentation n'est pas prévue par la route au moment de l'exercice.
+
+**Livrable minimal :** une page avec le scénario, l'invariant, le résultat attendu, le résultat réellement observé (ou `NOT RUN`) et une limite. Une seule compétence liée à ce scénario suffit ; ne sélectionne pas trois compétences et ne réalise pas un transfert inter-langage obligatoire.
+
+**Statut :** facultatif, non bloquant, sans gate autonome. Si les prérequis ou l'environnement manquent, reporte la mission et poursuis la route canonique.
+
+### Transfert : facultatif
+
+Un transfert vers une autre technologie pourra être tenté uniquement après que le parcours l'aura enseigné et que le scénario initial aura été compris. Il n'est pas une condition de réussite de cette mission.

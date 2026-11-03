@@ -187,7 +187,7 @@ route handler --> next(new NotFoundError())
 ## 4) ERREURS ASYNC : LE PIÈGE CLASSIQUE
 
 Express ne catch pas les erreurs async automatiquement (avant Express 5).
-Une Promise rejetée sans catch crashe le processus silencieusement.
+Une Promise rejetée sans `await` ni `catch` n’est pas récupérée par le `try/catch` appelant. Dans Node.js, le mode par défaut `--unhandled-rejections=throw` peut transformer le rejet non géré en exception non interceptée et terminer le processus ; ce comportement dépend du runtime et de ses options. Le traitement explicite de la Promise reste la bonne solution.
 
 ```js
 // BUG : si db.findPlayer() rejecte, Express ne le catch pas

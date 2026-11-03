@@ -8,57 +8,28 @@ transfer_distance: high
 assessment_role: instructional_checkpoint
 ---
 
-> **SCÈNE CRAZYDEVS : Attack on Titan :** ta frontière de confiance est un mur. Le problème n'est pas seulement de savoir s'il tient ; il faut savoir **qui peut passer, par où, avec quelle preuve et que se passe-t-il quand le mur est percé**.
+> **SCÈNE CRAZYDEVS : Attack on Titan :** une langue est un contexte d'exécution, pas un simple drapeau décoratif. Le même message doit garder son sens quand la locale, le format ou le fuseau change.
 
 # 00 : Prereq check : i18n
 
-Temps de lecture ~5 min
+Temps de travail indicatif ~10 min
 
-> Tu ne dois **pas** entrer dans ce sous-module si tu ne peux pas répondre à ces
-> questions **sans regarder**. Ce n'est pas un test noté, c'est un filtre
-> anti-illusion. Ces questions portent sur la partie accessibilité de
-> `03-PILOTAGE/02-WEB-INCLUSIVE` que tu viens de finir, avant ce sous-dossier i18n.
+> Avant de commencer ce sous-parcours, réponds à ces questions **sans regarder**. Ce diagnostic n'est pas noté et ne ferme jamais l'accès ; il aide à repérer les bases JavaScript et données utiles pour suivre les exemples.
 
 ## Questions
 
-1. Que fait un lecteur d'écran sur une page mal structurée ?
-2. Quel est le contraste minimum exigé par WCAG AA ?
-3. Pourquoi une `div` cliquable sans `<button>` est-elle un piège d'accessibilité ?
-4. Cite un attribut ARIA et explique à quoi il sert.
+1. Dans un objet JavaScript, comment lire une valeur à partir d'une clé ? Que peux-tu obtenir si la clé n'existe pas ?
+2. Quelle différence fais-tu entre une chaîne (`"42"`) et un nombre (`42`) ? Pourquoi cette différence compte-t-elle lorsqu'on formate une valeur ?
+3. À quoi sert un paramètre explicite dans une fonction, et pourquoi est-il préférable à une dépendance implicite à la machine qui exécute le code ?
+4. Quelle différence y a-t-il entre une valeur représentant un instant, une date civile et une durée ? Si tu ne sais pas encore, indique-le : la distinction sera enseignée dans ce sous-parcours.
 
 ## Verdict
 
-- **3+ réponses solides** → tu peux entrer.
-- **2 ou moins** → retour à `03-PILOTAGE/02-WEB-INCLUSIVE/` (partie accessibilité), ou à sa
-  synthèse `90-grimoire.md`.
+- **3+ réponses solides** → commence le sous-parcours et garde les points hésitants comme objectifs de révision.
+- **2 ou moins** → revois les bases sur les objets, les types et les fonctions JavaScript dans les leçons déjà terminées, puis refais le diagnostic. Cette révision est un conseil, pas une condition d'accès.
 
-> Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
+> Le but n'est pas de te bloquer. Les locales, la pluralisation, `Intl`, les règles de dates et les fuseaux horaires sont enseignés dans les leçons qui suivent ; tu n'as pas à les connaître avant de commencer.
 
-> **Note pour ce sous-module précis** : pourquoi la pluralisation est
-> difficile à internationaliser, les pièges CSS du RTL, et pourquoi ne
-> jamais concaténer des morceaux de phrase pour traduire sont le contenu
-> que ce sous-module va t'enseigner (notamment `05-pluralization.md`) :
-> normal de ne pas encore les maîtriser. Ta compréhension est testée en
-> fin de sous-module, dans `90-grimoire.md`.
+## CHECKPOINT DE PROFONDEUR : variation H : changer de locale
 
-## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
-
-<!-- AF-DIAGRAM:transfer -->
-
-```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
-```
-
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
-
-Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+Prends une valeur et décris ce qui doit rester invariant lorsque la locale change, puis ce qui doit être formaté différemment. Distingue le sens des données de leur représentation affichée.

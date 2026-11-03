@@ -1,6 +1,6 @@
 ---
 stability: intemporel
-last_reviewed: 2026-07
+last_reviewed: 2026-10-31
 depends_on_vendor: false
 acte: comprendre
 cognitive_level: L3
@@ -10,7 +10,7 @@ transfer_distance: medium
 assessment_role: instructional_checkpoint
 ---
 
-> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+> **Repère :** une copie superficielle du conteneur peut laisser les objets imbriqués partagés ; vérifie chaque niveau.
 
 # Mutation madness : shallow vs deep copy
 
@@ -24,29 +24,33 @@ Temps de lecture ~6 min
 
 ---
 
+## Scène concrète : modifier le prix d’un produit
+
+Un inventaire contient des produits. Chaque produit possède un prix décrit par un objet imbriqué. Une copie superficielle du tableau ne recopie pas automatiquement cet objet interne.
+
 ## 1) LE PROBLÈME DU SHALLOW COPY (COPIE SUPERFICIELLE) AVEC DES OBJETS IMBRIQUÉS
 
 ```js
-let monsters = [
-  { name: "Goblin", hp: 100, attack: { dmg: 20, type: "slash" } },
-  { name: "Orc", hp: 150, attack: { dmg: 30, type: "smash" } },
+let products = [
+  { name: "Carnet", stock: 10, price: { amount: 1200, currency: "MGA" } },
+  { name: "Stylo", stock: 30, price: { amount: 500, currency: "MGA" } },
 ];
 
-let shallowMonsters = [...monsters];
+let shallowProducts = [...products];
 ```
 
 Le tableau est nouveau. Mais les objets à l'intérieur ? **Même référence.**
 
 ```text
-monsters    --> [ obj1, obj2 ]
-shallowMonsters --> [ obj1, obj2 ] <-- mêmes objets, pas des copies
+products       --> [ obj1, obj2 ]
+shallowProducts --> [ obj1, obj2 ] <-- mêmes objets, pas des copies
 ```
 
 Donc :
 
 ```js
-shallowMonsters[0].attack.dmg += 10;
-console.log(monsters[0].attack.dmg); // 30 -> modifié aussi
+shallowProducts[0].price.amount += 100;
+console.log(products[0].price.amount); // 1300 -> modifié aussi
 ```
 
 ---
@@ -65,74 +69,24 @@ console.log(monsters[0].attack.dmg); // 30 -> modifié aussi
 **Manuelle avec `map` + spread** : quand t'as un niveau d'imbrication :
 
 ```js
-let deepMonsters = monsters.map((monster) => ({
-  ...monster,
-  attack: { ...monster.attack }, // on recopie aussi l'objet imbriqué
+let independentProducts = products.map((product) => ({
+  ...product,
+  price: { ...product.price }, // on recopie aussi l'objet imbriqué
 }));
 ```
 
 **`structuredClone`** : la méthode moderne, pour tout le reste :
 
 ```js
-let deepMonsters = structuredClone(monsters);
+let independentProducts = structuredClone(products);
+
+independentProducts[0].price.amount += 100;
+console.log(products[0].price.amount); // reste 1300
 ```
 
 Un seul appel. Tous les niveaux copiés. Fini le chaos.
 
 > Limite de `structuredClone` : ne fonctionne pas avec les `Function` et les classes complexes. Pour du JSON classique, c'est parfait.
-
----
-
-## MISSION : La Team Chaotique
-
-### Objectif
-
-Comprendre la différence entre shallow et deep copy sur des objets imbriqués.
-
-### Instructions
-
-**Partie 1 : Le chaos**
-
-1. Crée `monsters` avec 3 monstres `{ name, hp, attack: { dmg, type } }`.
-2. Crée `shallowMonsters` avec le spread operator `[...]`.
-3. Modifie le `dmg` du premier monstre via `shallowMonsters`.
-4. Affiche `monsters` et `shallowMonsters` : observe que **les deux ont changé**.
-
-**Partie 2 : Le contrôle**
-
-5. Crée `deepMonsters` avec `map` + spread imbriqué.
-6. Modifie le `dmg` du deuxième monstre via `deepMonsters`.
-7. Affiche `monsters` et `deepMonsters` , `monsters` **doit rester intact**.
-
-**Bonus : structuredClone**
-
-8. Refais la partie 2 en une ligne avec `structuredClone`.
-9. Même résultat, zéro effort.
-
-### Code de départ
-
-```js
-let monsters = [
-  { name: "Goblin", hp: 100, attack: { dmg: 20, type: "slash" } },
-  { name: "Orc", hp: 150, attack: { dmg: 30, type: "smash" } },
-  { name: "Troll", hp: 200, attack: { dmg: 40, type: "crush" } },
-];
-// Ton code ici
-```
-
-### Résultat attendu
-
-```text
-// Après partie 1
-monsters[0].attack.dmg   --> 30  // modifié : shallow copy piégé
-shallowMonsters[0].attack.dmg --> 30 // idem : même référence
-
-// Après partie 2
-monsters[1].attack.dmg   --> 30  // intact : deep copy protège l'original
-deepMonsters[1].attack.dmg --> 10  // modifié uniquement ici
-```
-
-> Comprends. Ne regarde pas juste le résultat. Réfléchis à la mémoire.
 
 ---
 
@@ -144,6 +98,52 @@ Deep copy (copie profonde) : tout l'arbre est dupliqué. `structuredClone()` est
 
 Le bon réflexe : avant de muter un objet reçu en paramètre, demande-toi si tu travailles sur l'original ou sur une copie.
 
-## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
+> **Statut : approfondissement facultatif.** Termine d’abord la mission de base et vérifie que tu comprends l’exemple principal. Ce checkpoint n’est pas une gate et ne conditionne pas le passage au sous-module suivant. S’il utilise une notion que tu n’as pas encore étudiée, saute-le pour la première passe et reviens-y plus tard.
+
+## Approfondissement facultatif : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+<!-- AF-LESSON-PROFILE: variables -->
+
+## Repères de décision
+
+- **Pourquoi :** Une copie évite qu'une modification destinée à une nouvelle version touche aussi l'état d'origine. La profondeur de copie détermine quelles références restent partagées.
+- **Quand l’utiliser / quand l’éviter :** Fais une copie lorsque tu as besoin d'un instantané indépendant ou d'un état modifiable séparément. Choisis explicitement le niveau de profondeur correspondant aux données réellement imbriquées.
+- **Limites :** Le spread et `slice()` sont superficiels. Une copie profonde coûte du temps et de la mémoire et ne doit pas être appliquée automatiquement à chaque objet.
+
+## Mécanisme : la version sans magie
+
+Une copie superficielle crée un nouvel objet ou tableau externe, mais conserve les références des objets imbriqués. Une copie plus profonde recrée aussi les niveaux nécessaires. La bonne profondeur dépend de ce qui doit rester partagé et de ce qui doit devenir indépendant.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), un composant peut préparer une nouvelle version des métadonnées d'une demande sans modifier l'état d'origine. Une copie superficielle suffit parfois ; lorsque les propriétés imbriquées doivent être indépendantes, il faut copier ces niveaux aussi.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : choisir la profondeur d'une copie
+
+> **Repère concret :** copier le dossier parent ne duplique pas automatiquement chaque sous-dossier. Vérifie la profondeur de la copie avant de promettre un instantané indépendant.
+
+**Mission liée à « Mutation madness : shallow vs deep copy » :** Kintana conserve une demande contenant un objet `metadata`. Crée une copie superficielle, modifie une propriété imbriquée et observe si l'original change. Construis ensuite une copie adaptée à cette structure et vérifie que la modification ne traverse plus la frontière voulue.
+
+```js
+const original = { id: "REQ-105", metadata: { retries: 0 } };
+const shallow = { ...original };
+shallow.metadata.retries = 1;
+console.log(original.metadata.retries); // 1 : objet imbriqué partagé
+
+const independent = {
+  ...original,
+  metadata: { ...original.metadata },
+};
+independent.metadata.retries = 2;
+console.log(original.metadata.retries); // reste 1
+```
+
+**Livrable :** le code et un schéma des références avant/après chaque copie.
+
+**Critères d’acceptation :** l'apprenant identifie exactement le niveau copié par le spread ; il explique pourquoi le premier changement affecte l'original et pourquoi le second ne l'affecte pas ; il ne choisit une copie profonde que si la structure et le besoin la justifient.
+
+**Transfert obligatoire :** indique comment tu adapterais la stratégie si `metadata` contenait un troisième niveau d'imbrication.

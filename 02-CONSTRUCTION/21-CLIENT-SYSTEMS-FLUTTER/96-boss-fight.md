@@ -1,6 +1,13 @@
 ---
 stability: evolutif
 acte: maitriser
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "02-CONSTRUCTION/21-CLIENT-SYSTEMS-FLUTTER/01-00-why-client-systems.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 02-CONSTRUCTION/21-CLIENT-SYSTEMS-FLUTTER/01-00-why-client-systems.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : Attack on Titan :** le mur tombe, le trafic monte et le dernier build ne parle plus exactement au backend. Tu ne reçois pas la solution. Tu reçois la catastrophe.

@@ -16,11 +16,12 @@ Temps de lecture ~2 min
 
 ## Consigne
 
-Ce coffre porte un livrable obligatoire, annoncé dans le curriculum : la revue de risques du
-projet fil rouge que tu mènes au Module `04-EPREUVE/05-CAPSTONE-ARENA` (Capstone Arena). Produis un fichier
-`REVUE-DE-RISQUES.md`, signé et daté, couvrant trois familles de risques : sécurité, coûts,
-données personnelles. Ce livrable n'est pas optionnel : il est un critère éliminatoire de
-`../05-CAPSTONE-ARENA/04-evaluation-grid.md`.
+Ce challenge fournit un **parcours guidé facultatif** pour préparer un livrable obligatoire
+du Capstone : la revue de risques du projet fil rouge. Le livrable obligatoire appartient au
+Capstone, pas au coffre Bonus Vault. Tu peux utiliser ce gabarit ou produire le même document
+à partir des critères de `../05-CAPSTONE-ARENA/04-evaluation-grid.md` et de
+`../05-CAPSTONE-ARENA/03-deliverables.md`. La revue couvre trois familles de risques :
+sécurité, coûts et données personnelles.
 
 ## Gabarit imposé de REVUE-DE-RISQUES.md
 
@@ -68,7 +69,7 @@ plan d'action concret, pas une intention vague.]
   des accès, ou autre).
 - La section "Risque le plus critique et plan d'action" désigne un seul risque, avec une
   action concrète et datée, pas une liste de bonnes intentions.
-- Le fichier est signé et daté avant la présentation finale du capstone.
+- Le fichier est signé et daté **avant le premier commit de code du jalon 3** du Capstone.
 
 ## Ce qui invalide le challenge
 
@@ -80,10 +81,10 @@ plan d'action concret, pas une intention vague.]
 
 ## Lien vers le capstone qui la consomme
 
-Ce livrable est intégré tel quel dans l'arborescence de livraison du capstone, voir
-`../05-CAPSTONE-ARENA/03-deliverables.md`, et évalué comme critère éliminatoire dans
-`../05-CAPSTONE-ARENA/04-evaluation-grid.md`. Produis-le pendant le jalon 3 (V1 et preuve) du
-capstone, voir `../05-CAPSTONE-ARENA/95-challenge.md`, jamais après la présentation finale.
+La revue de risques est intégrée à l'arborescence de livraison du Capstone et évaluée
+dans sa grille. Le document doit exister avant le premier commit de code du jalon 3 :
+prépare-le à l'ouverture de ce jalon, puis conserve sa date et son historique. Tu peux
+utiliser ce challenge comme méthode guidée, mais terminer Bonus Vault n'est pas requis.
 
 ## Durée cible
 

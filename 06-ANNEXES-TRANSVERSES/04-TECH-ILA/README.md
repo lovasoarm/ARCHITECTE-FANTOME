@@ -1,15 +1,19 @@
 ---
-statut: revu
-last_reviewed: 2026-08
-last_counted: 2026-08
-proprietaire: mainteneur TECH-ILA
-revue: trimestrielle
 companion: ce parcours
-stability: intemporel
+stability: evolutif
 acte: comprendre
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "06-ANNEXES-TRANSVERSES/04-TECH-ILA/01-00-why-tech-ila.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 06-ANNEXES-TRANSVERSES/04-TECH-ILA/01-00-why-tech-ila.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # TECH-ILA
+
+> **Statut de fraîcheur :** les principes de transfert sont durables, mais les références d’outils, versions, API et commandes peuvent évoluer. La valeur `evolutif` signale que ces exemples doivent être recontrôlés avant un usage réel ; `freshness_status: not_verified` ne certifie pas leur actualité.
 
 <!-- AF-DIAGRAM:event_loop -->
 
@@ -51,19 +55,15 @@ Nouveau contexte
 
 Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
 
-> **ce parcours enseigne le cerveau. TECH-ILA montre où ce cerveau s'utilise.**
-> Les exercices vérifient la compréhension. Les mini-projets prouvent la capacité d'action. Le portfolio montre les décisions prises.
+> **Ce parcours enseigne les mécanismes ; TECH-ILA montre où ils réapparaissent dans des technologies concrètes.** Les exercices vérifient la compréhension, les mini-projets la capacité d'action et le portfolio les décisions prises.
 
-> **Attention : lu seul, ce document ment sur ta compétence.**
-> Lu sans ce parcours, ce document produit un faux sentiment de compétence. Tu reconnaîtrais des gestes, des noms d'outils, des tableaux de comparaison : sans jamais avoir touché le mécanisme qu'ils supposent acquis. Avant d'ouvrir le niveau 1, fais au minimum ces trois modules :
->
-> - [00-SOCLE/01-GETTING-STARTED/01A-00-why-getting-started.md](../../00-SOCLE/01-GETTING-STARTED/01A-00-why-getting-started.md) : installation, terminal, premier jour.
-> - [00-SOCLE/03-REFERENTIEL/01-00-why-referentiel.md](../../00-SOCLE/03-REFERENTIEL/01-00-why-referentiel.md) : le référentiel de compétences et la grille intemporel/périssable.
-> - [00-SOCLE/04-FUNDAMENTALS/01A-00-why-fundamentals.md](../../00-SOCLE/04-FUNDAMENTALS/01A-00-why-fundamentals.md) : variables, scope, fonctions : le socle sur lequel toute fiche de ce document s'appuie.
+> **Ne commence pas ici.** La porte d'entrée unique reste [START HERE](../../00-SOCLE/01-GETTING-STARTED/01-START_HERE.md). TECH-ILA est une annexe-compagnon : elle ne fait pas partie des lectures obligatoires du premier passage, ne conditionne pas l'accès au Prologue ou à Fundamentals et ne constitue pas une deuxième progression à terminer.
 
-> **Un seul parcours logique, dix fichiers de compagnon.** TECH-ILA relie les mécanismes du curriculum aux technologies et systèmes où ils apparaissent réellement. Les dix fichiers sont découpés pour permettre une lecture ciblée et réutilisable ; ils ne constituent ni une certification parallèle ni une seconde progression.
+> **Attention : une fiche ne remplace pas la pratique.** Lire le nom d'un outil ou son fonctionnement ne prouve pas qu'on sait l'utiliser. Ouvre uniquement la section à laquelle la Route 58 ou le module courant te renvoie, après avoir atteint ses prérequis locaux. Chaque fiche indique ce qu'il faut déjà savoir ; ces prérequis locaux priment sur le nom de son niveau. Le fichier Niveau 1, par exemple, comprend des sujets qui supposent déjà des acquis Node.js et TypeScript : il ne doit pas être lu intégralement au démarrage.
 
-TECH-ILA n'est pas un second curriculum. C'est le **compagnon technologique intégré** de ce parcours : ouvre la section correspondante quand un jalon t'y renvoie, ou utilise-la comme référence ciblée en cas de besoin.
+> **Un seul parcours principal, des lectures ciblées en compagnon.** Les fichiers TECH-ILA ne sont ni une certification parallèle ni une liste de lectures cumulatives. Tu n'as pas à lire les dix fichiers ni à parcourir un niveau entier avant de poursuivre la Route 58.
+
+TECH-ILA est un **compagnon technologique intégré** : ouvre la section correspondante quand le parcours principal te l'indique, ou consulte-la comme référence ciblée lorsque tu as acquis les prérequis.
 
 ce parcours te donne le runtime, la mémoire, l'asynchrone, le debugging, l'architecture. Excellent. Mais un diplômé qui comprend l'event loop et n'a jamais lu un `docker-compose.yml`, jamais ouvert une migration SQL, jamais vu un `guard` NestJS, reste bloqué au premier jour de mission.
 
@@ -75,22 +75,22 @@ Ce document répond à une seule question, répétée des dizaines de fois :
 
 ## Sommaire
 
-Le contenu est découpé par niveau, un fichier par étape du parcours. Lis dans l'ordre ; chaque fichier est autonome et renvoie ici. En incident, ne lis rien dans l'ordre : ouvre directement le fichier 09.
+Le contenu est un index de consultation, pas une séquence à lire. Ouvre uniquement la fiche ciblée par la Route 58 ou le module courant, après vérification de ses prérequis locaux. Les numéros classent les sujets ; ils ne créent aucune gate. En incident, ouvre directement le fichier 09.
 
-| #     | Fichier                                                                           | Section                            | Taille indicative | Ce que tu y gagnes                                  |
-| ----- | --------------------------------------------------------------------------------- | ---------------------------------- | ----------------- | --------------------------------------------------- |
-| 0-3   | [02-orientation.md](tech-ila/02-orientation.md)                                   | Lire, classer, ordonner            | 221 lignes        | La méthode, la classification, la carte des niveaux |
-| 4     | [03-niveau-1-socle.md](tech-ila/03-niveau-1-socle.md)                             | Niveau 1 : Socle professionnel     | 866 lignes        | Terminal, Git, Node, TS, HTTP, SQL, Docker          |
-| 5     | [04-niveau-2-frontend.md](tech-ila/04-niveau-2-frontend.md)                       | Niveau 2 : Frontend                | 562 lignes        | React, état, stratégies de rendu, perf, a11y        |
-| 6     | [05-niveau-3-backend.md](tech-ila/05-niveau-3-backend.md)                         | Niveau 3 : Backend                 | 676 lignes        | Express, NestJS, auth, Redis, files, temps réel     |
-| 7     | [06-niveau-4-systemes.md](tech-ila/06-niveau-4-systemes.md)                       | Niveau 4 : Systèmes professionnels | 608 lignes        | CI/CD, cloud, observabilité, résilience             |
-| 8     | [07-niveau-5-transfert.md](tech-ila/07-niveau-5-transfert.md)                     | Niveau 5 : Transfert               | 485 lignes        | Python, Java/Spring, .NET                           |
-| 9     | 06-niveau-6-IA.md                                                                 | Niveau 6 : IA                      | 317 lignes        | Diriger, vérifier, refuser                          |
-| 10-11 | [08-cartes-parcours-technologies.md](tech-ila/08-cartes-parcours-technologies.md) | Cartes du parcours ↔ technologies  | 311 lignes        | Le mapping module par module, et l'inverse          |
-| 12-14 | 08-IA-exercices-marche-audit.md                                                   | Exercices, marché, audit           | 216 lignes        | Ce qui reste ton travail, la preuve, l'honnêteté    |
-| :     | [09-mode-urgence.md](tech-ila/09-mode-urgence.md)                                 | Mode urgence                       | 81 lignes         | Trouver la bonne page en incident en moins de 30 s  |
+| # | Fichier | Section | Taille indicative | Ce que tu y gagnes |
+|---|---|---|---:|---|
+| 0-3 | [02-orientation.md](tech-ila/02-orientation.md) | Lire, classer, ordonner | 294 lignes | La méthode, la classification, la carte des niveaux |
+| 4 | [03-niveau-1-socle.md](tech-ila/03-niveau-1-socle.md) | Niveau 1 : Socle professionnel | 975 lignes | Terminal, Git, Node, TS, HTTP, SQL, Docker |
+| 5 | [04-niveau-2-frontend.md](tech-ila/04-niveau-2-frontend.md) | Niveau 2 : Frontend | 658 lignes | React, état, stratégies de rendu, perf, a11y |
+| 6 | [05-niveau-3-backend.md](tech-ila/05-niveau-3-backend.md) | Niveau 3 : Backend | 517 lignes | Express, NestJS, auth, Redis, fichiers, temps réel |
+| 7 | [06-niveau-4-systemes.md](tech-ila/06-niveau-4-systemes.md) | Niveau 4 : Systèmes professionnels | 771 lignes | CI/CD, cloud, observabilité, résilience |
+| 8 | [07-niveau-5-transfert.md](tech-ila/07-niveau-5-transfert.md) | Niveau 5 : Transfert | 642 lignes | Python, Java/Spring, .NET |
+| 9 | [06-niveau-6-IA.md](tech-ila/06-niveau-6-IA.md) | Niveau 6 : IA | 165 lignes | Diriger, vérifier, refuser |
+| 10-11 | [08-cartes-parcours-technologies.md](tech-ila/08-cartes-parcours-technologies.md) | Cartes du parcours ↔ technologies | 362 lignes | Le mapping module par module, et l’inverse |
+| 12-14 | [08-IA-exercices-marche-audit.md](tech-ila/08-IA-exercices-marche-audit.md) | Exercices, marché, audit | 123 lignes | Ce qui reste ton travail, la preuve, l’honnêteté |
+| 15 | [09-mode-urgence.md](tech-ila/09-mode-urgence.md) | Mode urgence | 126 lignes | Trouver la bonne page en incident en moins de 30 s |
 
-Ces chiffres sont recomptés à chaque revue trimestrielle. S'ils sont faux, c'est un bug : signale-le.
+Les nombres de lignes sont indicatifs : ils donnent une idée du volume, pas une consigne de lecture ni un prérequis.
 
 Le niveau 6 (fichier 06) intègre désormais l'ancienne section « angles morts de l'IA » : une doctrine de vérification unifiée, documentée à un endroit de référence puis réutilisée depuis les modules concernés.
 
@@ -98,11 +98,11 @@ Le niveau 6 (fichier 06) intègre désormais l'ancienne section « angles morts 
 
 <a id="rituel-de-revue-trimestrielle"></a>
 
-## Sections à surveiller
+## Points qui évoluent plus vite
 
-Ce document ne date rien par principe (aucune version épinglée), mais il vieillit quand même. Les zones suivantes bougent plus vite que le reste du corpus. À chaque revue trimestrielle, ouvre-les en premier et pose-toi la question associée.
+Certaines zones bougent plus vite que les mécanismes de fond. Avant de réutiliser une information de ces sections dans une décision technique, vérifie la documentation officielle et le contexte de version correspondant.
 
-| Section périssable              | Fichier                                                       | Question à se reposer chaque trimestre                                                                             |
+| Zone susceptible d’évoluer      | Fichier                                                       | Point à revalider avant réutilisation                                                                              |
 | ------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | Next.js et stratégies de rendu  | [04-niveau-2-frontend.md](tech-ila/04-niveau-2-frontend.md)   | App Router / Pages Router / RSC ont-ils encore la même forme, ou une nouvelle stratégie de rendu a-t-elle émergé ? |
 | Défaillances IA par technologie | 06-niveau-6-IA.md                                             | Les modèles produisent-ils encore les mêmes erreurs types sur ces technos, ou la liste est-elle obsolète ?         |
@@ -110,9 +110,7 @@ Ce document ne date rien par principe (aucune version épinglée), mais il vieil
 | Threads virtuels Java           | [07-niveau-5-transfert.md](tech-ila/07-niveau-5-transfert.md) | Le statut (preview, stable, par défaut) a-t-il changé depuis la dernière revue ?                                   |
 | Express 4 vs 5                  | [05-niveau-3-backend.md](tech-ila/05-niveau-3-backend.md)     | La version majeure recommandée par défaut a-t-elle changé ?                                                        |
 
-Ce tableau est aussi l'index des conditions de péremption : les fiches concernées portent un champ « Se périme si : » qui dit ce qui déclencherait leur révision.
-
-Chaque revue met à jour `last_reviewed` dans le front-matter du ou des fichiers concernés, et `last_counted` quand le rituel de recomptage a été exécuté en entier.
+Ce tableau aide à repérer les sujets volatils ; les fiches concernées précisent les conditions qui justifient une nouvelle vérification. Les dates et statuts de source conservés dans leur front-matter décrivent le périmètre documentaire, sans garantir l’actualité d’une version au moment où tu la réutilises.
 
 ## Contenu du dossier
 
@@ -138,3 +136,6 @@ Le module [`12-PLATFORM-ENGINEERING`](../../03-PILOTAGE/12-PLATFORM-ENGINEERING/
 ### CMS comme terrain, pas comme spécialité
 
 Le lab [`06-CMS-ARCHITECTURE-LAB`](../../03-PILOTAGE/08-PRODUIT-COUT-ROI/06-CMS-ARCHITECTURE-LAB/README.md) montre comment une technologie encore largement utilisée devient un exercice Staff : choisir, mesurer, migrer, sécuriser, sortir.
+
+
+Il n’y a aucune progression à terminer dans TECH-ILA ; ses niveaux ne constituent pas une gate générale du parcours.

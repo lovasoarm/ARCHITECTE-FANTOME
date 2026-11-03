@@ -1,6 +1,6 @@
 ---
 stability: intemporel
-last_reviewed: 2026-07
+last_reviewed: 2026-10-31
 depends_on_vendor: false
 acte: comprendre
 cognitive_level: L4
@@ -38,7 +38,7 @@ AbortController créé
 
 Temps de lecture ~3 min
 
-Tu lances un fetch. L'utilisateur navigue ailleurs. Le fetch continue quand même, consomme de la bande passante, et si la réponse arrive, ton callback s'exécute sur un composant qui n'existe plus. C'est un memory leak classique, et c'est évitable depuis ES2020 avec `AbortController`.
+Tu lances un fetch. L'utilisateur navigue ailleurs. La requête peut continuer à consommer des ressources et une réponse devenue obsolète peut encore tenter de mettre à jour l'interface. C'est un travail inutile et un risque de résultat périmé ; ce n'est pas automatiquement une fuite mémoire. `AbortController` permet au client d'interrompre les opérations qui écoutent son signal.
 
 ---
 
@@ -49,7 +49,7 @@ Tu lances un fetch. L'utilisateur navigue ailleurs. Le fetch continue quand mêm
 async function rechercherJoueur(nom) {
   const résultat = await fetch(`/api/joueurs?q=${nom}`);
   const data = await résultat.json();
-  afficherRésultats(data); // si le composant est démonté : crash silencieux
+  afficherRésultats(data); // si la vue a changé : résultat obsolète ou mise à jour hors contexte
 }
 
 // l'utilisateur tape vite
@@ -82,51 +82,67 @@ const signal = controller.signal; // l'objet qu'on passe aux opérations
 const réponse = await fetch("/api/joueurs", { signal });
 
 // annuler depuis n'importe où :
-controller.abort(); // le fetch est annulé, lance une DOMException 'AbortError'
+controller.abort(); // Fetch rejette côté client avec une erreur AbortError
 ```
 
-`signal` est l'AbortSignal (signal d'abandon). `fetch` le connaît nativement : dès que `.abort()` est appelé, le fetch en cours est annulé et lance une erreur de type `AbortError`.
+`signal` est l'AbortSignal (signal d'abandon). `fetch` le connaît nativement : quand
+`.abort()` intervient pendant que l'opération est encore annulable, Fetch interrompt son
+travail côté client et rejette la Promise avec `AbortError`. Cela ne prouve pas que le
+serveur n'a pas déjà reçu ou exécuté la requête.
 
 ---
 
-## 3) PATTERN COMPLET : DEBOUNCE + ABORT
+## 3) PATTERN COMPLET : ANNULER ET IGNORER LES RÉSULTATS OBSOLÈTES
+
+Ce pattern annule la requête précédente quand une nouvelle recherche démarre. Ce n'est
+pas un debounce : un debounce attend une courte période sans nouvelle frappe avant de
+lancer la requête. Ici, chaque appel démarre immédiatement une requête.
 
 ```js
 let controller = null;
+let derniereRecherche = 0;
 
 async function rechercherJoueur(nom) {
-  // annuler la requête précédente si elle est encore en cours
-  if (controller) {
-    controller.abort();
-  }
-
-  // créer un nouveau controller pour cette requête
-  controller = new AbortController();
+  const rechercheId = ++derniereRecherche;
+  controller?.abort(); // demande l'arrêt côté client de l'ancienne requête
+  const monController = new AbortController();
+  controller = monController;
 
   try {
-    const réponse = await fetch(`/api/joueurs?q=${nom}`, {
-      signal: controller.signal,
-    });
+    const url = `/api/joueurs?q=${encodeURIComponent(nom)}`;
+    const réponse = await fetch(url, { signal: monController.signal });
+    if (!réponse.ok) throw new Error(`HTTP ${réponse.status}`);
     const data = await réponse.json();
-    afficherRésultats(data);
+
+    // Une ancienne réponse peut déjà être arrivée ou une API peut ignorer le signal.
+    // Ne publie les résultats que si cette recherche est encore la plus récente.
+    if (rechercheId === derniereRecherche) afficherRésultats(data);
   } catch (err) {
-    if (err.name === "AbortError") {
-      // annulation volontaire : ne pas traiter comme une vraie erreur
-      return;
-    }
-    // vraie erreur réseau : la propager
-    throw err;
+    if (err.name === "AbortError") return null; // annulation attendue
+    throw err; // autre erreur : la propager
+  } finally {
+    if (controller === monController) controller = null;
   }
 }
 
-// maintenant si l'utilisateur tape vite :
-rechercherJoueur("Na"); // fetch lancé
-rechercherJoueur("Nar"); // fetch précédent annulé, nouveau lancé
-rechercherJoueur("Naru"); // fetch précédent annulé, nouveau lancé
-// seule la dernière requête aboutit
+// Si l'utilisateur tape vite, chaque appel annule le précédent.
+void rechercherJoueur("Na").catch((error) =>
+  console.error("Recherche impossible", error),
+);
+void rechercherJoueur("Nar").catch((error) =>
+  console.error("Recherche impossible", error),
+);
+void rechercherJoueur("Naru").catch((error) =>
+  console.error("Recherche impossible", error),
+);
 ```
 
-La distinction `err.name === 'AbortError'` est obligatoire : une annulation volontaire n'est pas une erreur réseau. Si tu l'ignores, ton error handler va traiter toutes les annulations comme des bugs.
+L'identifiant de recherche protège l'interface même si l'ancienne réponse s'est déjà
+terminée ou si une API maison ne respecte pas le signal. L'annulation réduit le travail
+côté client ; le contrôle de génération empêche une réponse périmée de remplacer la plus
+récente. La distinction `err.name === "AbortError"` évite de traiter une annulation
+volontaire comme une panne réseau. Dans un handler d'interface réel, traite aussi les
+erreurs non liées à l'annulation au niveau adapté.
 
 ---
 
@@ -138,35 +154,48 @@ La distinction `err.name === 'AbortError'` est obligatoire : une annulation volo
 // avant : simuler un timeout à la main
 async function fetchAvecTimeout(url, ms) {
   const promesseFetch = fetch(url);
-  const promesseTimeout = new Promise((_, reject) =>
-    setTimeout(() => reject(new Error("timeout")), ms),
-  );
-  return Promise.race([promesseFetch, promesseTimeout]);
-  // PROBLÈME : le fetch continue en arrière-plan même si le timeout gagne
+  let timeoutId;
+  const promesseTimeout = new Promise((_, reject) => {
+    timeoutId = setTimeout(() => reject(new Error("timeout")), ms);
+  });
+  try {
+    return await Promise.race([promesseFetch, promesseTimeout]);
+  } finally {
+    clearTimeout(timeoutId); // évite de conserver le timer si fetch gagne
+  }
+  // Limite : si le timeout gagne, Promise.race ne stoppe pas le fetch.
 }
 
-// avec AbortController : annulation propre
+// avec AbortController : annulation côté client
 async function fetchAvecTimeout(url, ms) {
   const controller = new AbortController();
-
-  const timeoutId = setTimeout(() => {
-    controller.abort(); // annule le fetch après ms millisecondes
-  }, ms);
+  const timeoutId = setTimeout(() => controller.abort(), ms);
 
   try {
     const réponse = await fetch(url, { signal: controller.signal });
-    clearTimeout(timeoutId); // réponse arrivée à temps : annuler le timeout
+    // Le délai reste actif pendant la lecture du corps, pas seulement jusqu'aux headers.
     return await réponse.json();
   } catch (err) {
     if (err.name === "AbortError") {
-      throw new Error(`Timeout : pas de réponse après ${ms}ms`);
+      const timeoutError = new Error(
+        `Timeout : opération interrompue côté client après ${ms}ms`,
+      );
+      timeoutError.name = "TimeoutError";
+      throw timeoutError;
     }
     throw err;
+  } finally {
+    clearTimeout(timeoutId);
   }
 }
 ```
 
-La différence avec `Promise.race` : avec `Promise.race` le fetch continue à consommer des ressources en arrière-plan même après le timeout. `AbortController` annule vraiment le fetch.
+`AbortController` demande au client Fetch d'interrompre l'opération locale et de libérer les
+ressources qu'il contrôle. Il ne garantit pas que le serveur n'a pas déjà reçu ou traité la
+requête. Pour une écriture (POST, paiement, commande), un timeout ou un abort ne justifie pas
+à lui seul un nouvel envoi : utilise une clé d'idempotence, vérifie le statut de l'opération
+ou rapproche les résultats. Un abort volontaire doit aussi être distingué d'un timeout
+lorsqu'un même `AbortSignal` sert à plusieurs causes d'annulation.
 
 ---
 
@@ -221,16 +250,19 @@ Un `AbortController` est à usage unique. Une fois `.abort()` appelé, son signa
 
 ## EXO 1 : la recherche live sans spam
 
-Le moteur de recherche du dashboard Champions League envoie une requête à chaque frappe de clavier. Sans AbortController : si l'utilisateur tape "Mbappé" en 300ms, 6 requêtes partent, arrivent dans un ordre aléatoire, et le résultat final peut être celui de "M" plutôt que "Mbappé".
+Le moteur de recherche du dashboard Champions League envoie une requête à chaque frappe de clavier. Sans annulation et contrôle de fraîcheur : si l'utilisateur tape "Mbappé" en 300ms, plusieurs requêtes peuvent partir et revenir dans un ordre différent de celui des frappes. Une réponse ancienne ne doit pas remplacer le résultat de la recherche la plus récente.
 
 Implémente une fonction `rechercheJoueur(nom)` qui :
 
-- Annule automatiquement la requête précédente avant d'en lancer une nouvelle.
-- Ignore silencieusement les AbortError.
-- Propage les vraies erreurs réseau.
-- Retourne `null` si la requête est annulée avant de se terminer.
+- Annule côté client la requête précédente avant d'en lancer une nouvelle.
+- Ignore les `AbortError` attendus sans masquer les autres erreurs.
+- Vérifie `response.ok` et encode le terme de recherche dans l'URL.
+- Protège l'interface contre une réponse ancienne qui arriverait malgré l'annulation.
+- Retourne `null` si la requête courante est annulée avant de se terminer.
 
-Teste que si tu appelles `rechercheJoueur('M')` puis immédiatement `rechercheJoueur('Mbappé')`, seule la deuxième requête aboutit.
+Décris aussi le cas où la première réponse est arrivée juste avant le second appel : l'annulation
+ne peut pas la retirer rétroactivement. Le garde de génération doit empêcher toute publication
+ultérieure d'un résultat qui n'est plus courant.
 
 ---
 
@@ -249,12 +281,42 @@ Implémente `fetchAvecDeadline(url, secondes)` :
 
 ## RÉSUMÉ
 
-`AbortController` permet d'annuler des opérations asynchrones : fetch, mais aussi n'importe quoi qui accepte un `AbortSignal`.
+`AbortController` permet de demander l'annulation côté client d'un fetch ou de toute opération qui observe un `AbortSignal`.
 Un `AbortController` est à usage unique : une fois `.abort()` appelé, son signal reste aborted. Créer un nouveau controller par requête.
-Toujours distinguer `AbortError` (annulation volontaire) des vraies erreurs réseau.
+Toujours distinguer `AbortError` (annulation demandée) des vraies erreurs réseau et des timeouts.
 `signal.aborted` permet de vérifier l'état avant de démarrer une opération longue.
-`setTimeout + controller.abort()` est plus propre que `Promise.race` pour les timeouts : la requête est vraiment annulée, pas juste ignorée.
+`setTimeout + controller.abort()` arrête le travail client qui écoute le signal ; `Promise.race` seul ne fait que choisir le premier résultat. Aucun des deux ne garantit qu'un serveur n'a pas déjà traité une écriture distante.
 
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
+
+<!-- AF-LESSON-PROFILE: async -->
+
+## Repères de décision
+
+- **Pourquoi :** L'asynchronisme permet au système de continuer pendant l'attente, mais introduit ordre, concurrence, annulation et erreurs différées.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le pour I/O, tâches longues, notifications ou flux continus. Évite les traitements concurrents sans limite ; impose timeout, annulation et backpressure quand le producteur peut dépasser le consommateur.
+- **Limites :** `Promise.race` ne tue pas l'opération perdante ; `Promise.all` rejette au premier échec observable ; `allSettled` collecte les résultats mais ne fournit pas de stratégie de reprise. La mémoire partagée exige une synchronisation explicite.
+
+## Mécanisme : la version sans magie
+
+Sépare tâche, attente et consommation. Fixe un délai, une politique d'annulation, une limite de concurrence et une règle de rejeu/idempotence selon les effets.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Abortcontroller : annuler ce qui ne doit plus se terminer** se rattache à ce cas concret : Le service de notification Kintana traite plusieurs demandes. Un fournisseur lent ne doit pas bloquer toute la file ni provoquer des doublons au retry.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Worker de notifications asynchrones fiable
+
+> **Arc One Piece / Grand Line :** un message peut arriver tard, deux fois ou pas du tout. Le navigateur ne promet pas que tout le monde rame à la même vitesse.
+
+**Mission liée à « Abortcontroller : annuler ce qui ne doit plus se terminer » :** Implémente un worker pour les notifications Kintana avec concurrence bornée, timeout, annulation quand elle est supportée, backoff avec jitter et clé de déduplication. Instrumente le nombre en attente et l'âge du plus vieux message.
+
+**Livrable :** un worker, une horloge contrôlée dans les tests, un test de timeout, un test de rejeu et un scénario de saturation.
+
+**Critères d’acceptation :** la concurrence ne dépasse jamais la limite ; le message échoué est classé ; un replay ne double pas l'effet ; l'annulation est distinguée d'un timeout ; le backlog est observable.
+
+**Transfert obligatoire :** Augmente le débit producteur jusqu'à dépasser le débit consommateur. Explique quand appliquer backpressure, rejeter ou stocker temporairement.

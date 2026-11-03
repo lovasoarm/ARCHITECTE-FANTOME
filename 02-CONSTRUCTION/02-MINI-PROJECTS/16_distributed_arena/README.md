@@ -151,22 +151,18 @@ Le dépôt pédagogique ne fournit ni `node_modules/` ni lockfile de ton futur d
 
 Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
 
-### État des tests à la réception
+### État initial, tests et validation
 
-- **Code de départ :** aucun fichier source exécutable ; `src/` est un scaffold de documentation.
-- **Tests verts de référence :** aucun.
-- **Tests volontairement rouges :** aucun fichier de test exécutable n'est fourni à l'état initial. Le premier test rouge est à écrire par l'apprenant avant le code.
-- **Tests à créer :** traduire chaque invariant du cahier en test ; ajouter limites, erreurs et contrôles de sécurité.
-- **Validation finale :** définir et documenter un runner, créer une suite qui couvre les critères d'acceptation, puis l'exécuter depuis un environnement propre. `tests/README.md` n'est pas un test.
-
-**Ordre de construction :** lire les règles et le cahier, cartographier entrées/sorties, écrire tests du domaine, implémenter modèle et règles, ajouter adaptateurs, orchestration et tests d'intégration. Pour un projet de reprise de legacy, inspecter et caractériser le comportement existant avant la refactorisation.
-
-### Détails d’implémentation et de validation à la réception
-
-- **Code fourni :** aucun moteur distribué dans `src/`. `00_fixtures/` contient des consignes/fixtures de travail ; les services, stockage et orchestration sont à construire.
+- **Code fourni :** aucun moteur distribué dans `src/`. `00_fixtures/` contient des consignes et fixtures de travail ; services, stockage et orchestration sont à construire.
 - **Tests de référence verts :** aucun test automatisé livré.
 - **Tests volontairement rouges :** aucun test exécutable n'est livré au démarrage.
-- **Prérequis :** connaître les bases de concurrence, messages et persistance. Docker ou un broker réel ne sont pas exigés pour la conception initiale ; si utilisés, leurs versions et coûts doivent être consignés.
-- **Tests à créer :** livraison au moins une fois, doublons, idempotence, ordre partiel, retry/backoff, poison message, panne de nœud, redémarrage, partition, cohérence et rétention.
-- **Validation sur papier :** définir invariants, modèle d'état, transitions, contrat d'événement, clé d'idempotence, stratégie de reprise et test de chaos simulé. Une phrase « exactly once » sans modèle d'effet et de déduplication ne passe pas.
+- **Prérequis :** bases de concurrence, messages et persistance. Docker ou un broker réel ne sont pas exigés pour la conception initiale ; s'ils sont utilisés, consigne leurs versions et coûts.
+- **Tests/scénarios à définir :** livraison au moins une fois, doublons, idempotence, ordre partiel, retry/backoff, poison message, panne de nœud, redémarrage, partition, cohérence et rétention.
+- **Validation sur papier :** définir invariants, modèle d'état, transitions, contrat d'événement, clé d'idempotence, stratégie de reprise et test de chaos simulé. Une affirmation « exactly once » sans modèle d'effet et de déduplication ne passe pas.
+- **Ordre de travail :** définir le modèle de défaillance, les invariants et les états ; décrire les transitions et les effets ; simuler le rejeu, le redémarrage et les partitions avant de choisir les composants.
 - **Validation finale :** démontrer qu'un redémarrage et un rejeu ne dupliquent pas l'effet métier, avec journaux et états avant/après.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.
+- [Référence technique différée](reference/README.md) : à consulter après la tentative, sans recopier dans le livrable.

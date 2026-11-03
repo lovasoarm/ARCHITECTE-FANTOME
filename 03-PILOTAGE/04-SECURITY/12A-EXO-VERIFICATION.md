@@ -3,57 +3,50 @@ stability: stable
 acte: verification
 ---
 
-# Vérification : 12A-EXO-VERIFICATION.md
+# Exercice pratique : Sécurité applicative
 
 > **SCÈNE CRAZYDEVS : armure Garo :** une protection qui existe mais n'est jamais vérifiée est juste un costume brillant. Ici, chaque garde-fou doit être testable et attaquable.
 
-# EXO : Vérifier une IA séduisante
-
-# EXO [IA séduisante] : 03-pilotage/04-security
-
 Temps de lecture ~2 min
 
-> Tag `[IA séduisante]` : solution totalement coupee (IA/Claude/ChatGPT desactives).
-> Duree : 45 min chrono. Auto-verifiable par le `97-CHECKPOINT-PACK` du module.
-> Convention ce parcours : le `drill_2` est le niveau intermediaire de chaque `97-CHECKPOINT-PACK`, assez concret pour prouver la comprehension du concept-cle, sans etre un simple exercice de decouverte.
+> Tag `[IA séduisante]` : contrainte pédagogique de travail sans assistance de solution ni autocomplétion générative. Cette contrainte repose sur l’auto-déclaration de l’apprenant ; elle n’est pas vérifiable techniquement par ce document.
+> Durée indicative : 45 min. Aucun pack de correction indépendant n’est fourni dans ce module ; cette activité repose sur une auto-vérification explicitement limitée.
+> **Statut V6.5 : entraînement non certifiant :** tu peux réaliser cet exercice sans reviewer, mais ton contrat, ton code et ton vérificateur ne constituent pas un corrigé indépendant. Cette page ne ferme aucune gate. Pour obtenir un retour fiable, suis le [protocole de retour fiable](../../06-ANNEXES-TRANSVERSES/85-STATUT-EXERCICES-AUTO-EVALUATION-V6.5.md#procedure-de-retour-fiable) ; sans reviewer compétent, conserve le statut `PRATIQUE  : AUTOÉVALUÉ` et note les incertitudes.
 
 ## Consigne
 
-Sans aucune assistance solution, sans autocomplétion générative, redige de memoire un mini-drill couvrant le concept-cle du module (definition d'une ligne, exemple minimal runnable, un piege classique qui casse). Ecris le critere binaire de reussite (une commande `node learner-verifier.js`, une sortie attendue exacte), puis lance-le.
+Sans assistance de solution ni autocomplétion générative pendant cette activité, choisis le concept-clé du module et rédige d’abord `SPEC-DRILL.md` **avant toute implémentation**. Ce fichier doit fixer : le contrat de la fonction (entrée, sortie et erreurs attendues), au moins trois cas précis (nominal, limite et invalide) et leurs résultats attendus.
 
-## Critere de reussite (deterministe)
+Implémente ensuite ton propre module `drill-2.js`. Écris `learner-verifier.js` pour importer ce module et vérifier son comportement réel avec `node:assert/strict`. Les assertions doivent contrôler les résultats ou effets attendus ; elles ne doivent pas seulement vérifier ou imprimer un message de réussite. La fonction testée doit être exportée par `drill-2.js` et importée dans le vérificateur selon le système de modules du projet. N’importe aucun corrigé du curriculum. Le message final `drill 2 OK` ne doit être affiché qu’après la réussite de toutes les assertions.
+
+## Critère de réussite (deterministe)
 
 ```bash
 node learner-verifier.js
-# doit afficher exactement : drill 2 OK
+# doit sortir avec le code 0 et afficher exactement : drill 2 OK
 ```
 
-binaire : soit la sortie matche caractere pour caractere, soit non. Pas de zone grise. Ecris toi-meme le `console.log('drill 2 OK')` final quand ton drill valide toutes ses assertions internes.
+Le résultat est accepté uniquement si les assertions de `learner-verifier.js` portent sur le comportement du module `drill-2.js` et passent toutes. Un simple `console.log` sans assertions effectives ne valide pas l’activité.
 
 ## Livrable
 
-- ta `learner-verifier.js` (aucun import solution, aucune completion generative acceptee).
-- capture d'ecran de ton editeur avec solution/IA off.
-- ton `HYPOTHESES.md` si tu as bloque > 10 min.
-- ton `02-TDD-JOURNAL.md` optionnel : temps ecoule, blocages, ce que tu as du re-comprendre.
+- `SPEC-DRILL.md` : contrat et cas de test écrits avant l’implémentation.
+- `drill-2.js` : ta propre implémentation du concept choisi.
+- `learner-verifier.js` : assertions exécutables qui importent et testent `drill-2.js`.
+- `JOURNAL-EXERCICE.md` facultatif : temps, blocages et notions à revoir.
 
 ## Auto-evaluation (a cocher honnetement)
 
-- [ ] solution coupee de bout en bout (0 completion, 0 chat).
-- [ ] critere binaire passe en < 45 min.
+- [ ] j’ai suivi la contrainte sans assistance (auto-déclaration, non vérifiable indépendamment).
+- [ ] les assertions comportementales passent dans le temps indicatif (auto-évaluation).
 - [ ] Je peux expliquer le concept a un debutant en 3 minutes, sans notes.
 
 ## Pourquoi c'est vital
 
-Coder a la main un check timing-safe (drill_2_timing_safe), c'est prouver que tu sais pourquoi un `===` sur un token est deja une faille. Sans ce reflexe interiorise, l'IA te generera un code vulnerable par defaut.
+Coder à la main un contrôle adapté aux secrets (drill_2_timing_safe), c’est vérifier que tu comprends pourquoi une comparaison ordinaire de chaînes, comme `===`, peut exposer un risque de canal auxiliaire temporel dans certains contextes. Ce n’est pas automatiquement une faille exploitable : le risque dépend notamment de l’environnement, de la possibilité de mesurer les variations de temps et du modèle de menace. Lorsque la plateforme fournit une primitive dédiée, utilise-la en respectant ses préconditions et sa documentation (par exemple `crypto.timingSafeEqual` dans Node.js : les deux entrées doivent être des `Buffer`, `TypedArray` ou `DataView` de même longueur en octets). Cette primitive ne garantit pas, à elle seule, que le code environnant soit également résistant aux attaques temporelles. Voir la [documentation Node.js](https://nodejs.org/api/crypto.html#cryptotimingsafeequala-b).
 
-## Preuve tracable (proof-of-work)
+## Journal personnel (auto-déclaré, non indépendant)
 
-L'auto-evaluation ci-dessus repose sur ton honnetete. Pour transformer ca en preuve horodatee : demarre un chrono visible (`date` avant + `date` apres), colle les deux timestamps + un SHA256 de ta solution (`shasum -a 256 learner-verifier.js`) dans un fichier `FASTING.md` a cote de la solution. C'est ta ligne de progression : relis-la dans 3 mois pour voir la courbe.
+Le journal peut conserver les dates déclarées et le SHA-256 du fichier pour suivre tes propres versions. Ces éléments locaux ne prouvent ni la date réelle de création, ni l’absence d’assistance, ni l’indépendance du test.
 
 ---
-
-3. Ensuite seulement, tu ouvres l'editeur.
-
-Un exo `[IA séduisante]` sans ces deux artefacts ecrits **avant** le premier
-caractere de code est considere invalide par le `97-CHECKPOINT-PACK`.

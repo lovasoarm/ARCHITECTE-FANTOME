@@ -98,10 +98,56 @@ laquelle relevait du théâtre. Note dans `REPONSES.md` un `## Debrief` final.
 
 Ferme la page et défends pendant quelques minutes une stratégie opposée à celle implicitement recommandée ici. Cherche son meilleur cas d'usage, puis montre le cas où elle casse. Reviens ensuite à la stratégie initiale et justifie le choix par des mécanismes, pas par le vocabulaire du cours.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « 03 OBJECTION STORM : défense orale sous objection dynamique », puis conserve le résultat et explique tout écart.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-DIAGRAM:leadership -->
+
+## Repère visuel utile : Répondre à une objection par la preuve
+
+```text
+proposition
+     |
+     v
+objection la plus forte
+     |
+     v
+preuve et hypothèses
+     |
+     v
+compromis reconnu
+     |
+     v
+réponse ou proposition révisée
+```
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **03 OBJECTION STORM : défense orale sous objection dynamique** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Répondre à des objections sans défendre son ego
+
+**Mission liée à « 03 OBJECTION STORM : défense orale sous objection dynamique » :** Prépare une proposition Kintana et liste les objections les plus fortes sur coût, sécurité, exploitation et réversibilité. Réponds avec des preuves ou modifie la proposition.
+
+**Livrable :** Proposition initiale, registre d’objections et version révisée.
+
+**Critères d’acceptation :** Les objections sont formulées loyalement ; les réponses distinguent preuve et hypothèse ; une objection peut faire changer la décision.
+
+**Transfert obligatoire :** Une objection reste sans réponse : transforme-la en condition de blocage ou en action de vérification.

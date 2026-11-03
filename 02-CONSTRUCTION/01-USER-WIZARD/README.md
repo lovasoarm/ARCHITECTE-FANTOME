@@ -16,10 +16,7 @@ route: complete
 2. Pourquoi une estimation qui cache son incertitude derriere un chiffre unique est-elle malhonnete ?
 3. Donne un exemple concret ou dire non a un ajout de perimetre protege la livraison.
 
-**Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
-[le grimoire du niveau précédent](../../01-CADRAGE/05-MVP-SPLIT/90-grimoire.md) (20 minutes), puis refais son
-[challenge](../../01-CADRAGE/05-MVP-SPLIT/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
-trou amont, c'est attribuer au 01-USER-WIZARD une difficulté qui vient du 05-MVP-SPLIT.
+**Verdict de l'auto-test :** ce diagnostic oriente la révision, il ne ferme pas l'accès. Si une réponse hésite, relis le [grimoire du niveau précédent](../../01-CADRAGE/05-MVP-SPLIT/90-grimoire.md) et, si nécessaire, refais son [challenge](../../01-CADRAGE/05-MVP-SPLIT/95-challenge.md). Tu peux commencer la lecture de User Wizard en parallèle ; consolide le cadrage avant de défendre le périmètre de ton propre parcours utilisateur.
 
 **Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
@@ -71,10 +68,9 @@ trois personnes qui attendent).
 - [96-boss-fight.md](96-boss-fight.md) : situation adverse réaliste, avec grille d'évaluation.
 - [90-grimoire.md](90-grimoire.md) : mémo dense à garder sous la main.
 
-## Prérequis
+## Repères utiles avant la pratique
 
-Module `00-SOCLE/02-PROLOGUE` à 03 (ou équivalent) : bases HTTP, état de composant, notion de requête asynchrone.
-Tu dois savoir ce qu'est une race condition, même vaguement, avant d'attaquer la leçon 2.
+Savoir lire un composant simple, reconnaître une requête HTTP et comprendre qu'une opération réseau est asynchrone facilite le démarrage. Ces repères sont révisables dans `00-SOCLE/02-PROLOGUE/` et `01-CADRAGE/02-ASYNC/` ; une expérience équivalente convient. **Les race conditions, le double submit et les réponses concurrentes ne sont pas des prérequis** : le module les introduit et te demande de les observer, de les provoquer puis de les traiter.
 
 ## Comment progresser
 
@@ -110,3 +106,9 @@ tu as lu les mots.
 - [Grimoire : Module 02-CONSTRUCTION/01-USER-WIZARD, User Wizard](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.

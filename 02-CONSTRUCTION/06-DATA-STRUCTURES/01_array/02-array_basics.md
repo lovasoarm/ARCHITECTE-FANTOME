@@ -1,6 +1,6 @@
 ---
 stability: intemporel
-last_reviewed: 2026-07
+last_reviewed: 2026-10-31
 depends_on_vendor: false
 acte: comprendre
 cognitive_level: L3
@@ -20,31 +20,30 @@ Temps de lecture ~8 min
 
 Un tableau JS, t'en utilises tous les jours. Mais est-ce que tu sais ce qui se passe en mémoire quand tu fais `splice(0, 1)` ? Ou pourquoi accéder à `arr[999]` est aussi rapide qu'accéder à `arr[0]` ?
 
-Un tableau c'est un bloc continu en mémoire. Chaque index pointe vers un emplacement. C'est pour ça que lire un élément est instantané : O(1). Mais insérer au milieu ? C'est une tout autre histoire.
+Un `Array` JavaScript est un objet indexé avec une propriété `length` et des propriétés d’index. Les moteurs optimisent souvent les tableaux denses pour rendre l’accès par index très rapide, mais le langage ne garantit ni un bloc physique contigu ni une formule de coût précise pour chaque représentation. Les trous, les types d’éléments et les changements de forme peuvent modifier les optimisations.
 
-On apprend pas juste les méthodes. On apprend ce qu'elles coûtent.
+On apprend donc le coût algorithmique attendu des opérations, sans transformer une représentation courante du moteur en promesse du langage.
 
 ---
 
 ## 1) LA MÉMOIRE DERRIÈRE LE TABLEAU
 
-Un tableau c'est une séquence d'emplacements contigus en mémoire. L'index, c'est juste un offset depuis le début.
+Conceptuellement, un tableau expose une suite d’indices. Le moteur peut choisir différentes représentations internes ; le modèle JavaScript ne promet pas que les valeurs occupent des emplacements physiques contigus.
 
 ```text
-index :  0    1    2    3
-      ┌───────┬───────┬───────┬───────┐
-valeur :  │"Naruto"│"Sasuke"│"Sakura"│"Kakashi"│
-      └───────┴───────┴───────┴───────┘
-adresse : 0x100  0x108  0x110  0x118
+index :   0        1        2        3
+      ┌────────┬────────┬────────┬────────┐
+valeur: │ Naruto │ Sasuke │ Sakura │Kakashi │
+      └────────┴────────┴────────┴────────┘
+      représentation logique, pas plan d’adresses mémoire
 ```
 
-Accéder à `arr[2]` = aller directement à `adresse_base + (2 * taille_slot)`.
-Pas de recherche. Pas de boucle. Juste un calcul.
+Accéder à `arr[2]` signifie lire la propriété d’index `2`. Dans les implémentations courantes, cet accès est généralement très rapide pour les tableaux ordinaires. Mais JavaScript ne prescrit pas une adresse de base ni une taille de slot : ne déduis pas le calcul machine exact du code source.
 
 ```js
 const crew = ["Naruto", "Sasuke", "Sakura", "Kakashi"];
 
-// O(1) : accès direct, peu importe la taille du tableau
+// O(1) attendu dans les implémentations courantes : accès indexé direct, sans garantie de complexité imposée par la spécification
 console.log(crew[0]); // "Naruto"
 console.log(crew[3]); // "Kakashi"
 ```
@@ -53,31 +52,28 @@ console.log(crew[3]); // "Kakashi"
 
 ## 2) INDEXING, SLICING, SPREADING : LES COÛTS
 
-<!-- AF-DIAGRAM:slo -->
+<!-- AF-DIAGRAM:array-indexing-cost -->
 
 ```text
-SLO
- │
- ├──► SLI mesuré ───► conformité
- │
- └──► Error Budget ─► capacité à prendre du risque
-                         │
-                         ▼
-                  freeze / release / invest
+Tableau logique : [ A | B | C | D ]
+Index :             0   1   2   3
+
+lecture arr[2]  -> C
+slice(1, 3)     -> [ B | C ] (nouveau tableau)
 ```
 
-Le SLO définit la cible, le SLI mesure le service et l’error budget relie fiabilité et cadence de changement.
+Ce dessin montre les index et la portion copiée par `slice`. Il ne représente pas l’agencement physique de la mémoire du moteur.
 
-### Indexing : O(1)
+### Indexing : accès généralement rapide en pratique
 
 ```js
 const scores = [88, 95, 72, 61, 99];
 
-// lire un élément : instantané
+// lecture par index : accès généralement très rapide
 const best = scores[4]; // 99
 
-// modifier un élément : aussi instantané
-scores[2] = 80; // on écrase directement la case mémoire
+// modifier la propriété d’index
+scores[2] = 80; // remplace la valeur associée à l’index 2
 ```
 
 ### Slicing : O(k) où k = taille du slice
@@ -120,7 +116,7 @@ C'est là que ça devient intéressant. Insérer à la fin coûte presque rien. 
 Avant :  [ A | B | C | D ]
             ↑
           push("E")
-Après :  [ A | B | C | D | E ]  // O(1) : on ajoute juste à la fin
+Après :  [ A | B | C | D | E ]  // coût généralement amorti O(1)
 ```
 
 ```text
@@ -128,13 +124,13 @@ Avant :  [ A | B | C | D ]
      ↑
     unshift("Z")
 Après :  [ Z | A | B | C | D ]
-     // O(n) : tout le monde décale d'une case vers la droite
+     // O(n) attendu : les indices suivants sont décalés ou réindexés
 ```
 
 ```js
 const jugadores = ["Messi", "Neymar", "Mbappé"];
 
-// fin du tableau : O(1) amortized
+// ajout en fin : généralement O(1) amorti sur les implémentations usuelles
 jugadores.push("Benzema");
 // ["Messi", "Neymar", "Mbappé", "Benzema"]
 
@@ -152,15 +148,15 @@ jugadores.splice(2, 0, "De Bruyne");
 ```text
 Opération      Position   Coût
 ─────────────────────────────────────────
-Lecture / Écriture  n'importe  O(1)
-push / pop      fin     O(1) *
+Lecture / écriture par index   O(1) usuel *
+push / pop en fin               O(1) amorti usuel *
 unshift / shift   début    O(n)
 splice insert    milieu    O(n)
 splice delete    milieu    O(n)
 indexOf / find    partout   O(n)
 slice        n'importe  O(k)
 
-* O(1) amorti : JS agrandit le tableau par blocs, pas case par case
+* O(1) amorti : modèle de coût habituel pour les tableaux dynamiques ; la stratégie de capacité/allocation dépend du moteur et n’est pas prescrite par ECMAScript.
 ```
 
 ---
@@ -176,9 +172,9 @@ sparse[100] = "Walter White";
 console.log(sparse.length); // 101
 console.log(sparse[0]); // undefined
 
-// Le tableau a 101 cases. 100 sont vides.
-// forEach, map, filter : ces cases vides sont IGNORÉES
-// mais elles occupent de la mémoire
+// length vaut 101. Les indices absents sont des trous, pas des valeurs `undefined` explicitement stockées.
+// forEach, map, filter : ces indices absents sont ignorés.
+// Leur représentation mémoire dépend du moteur : ne suppose pas 100 slots physiques alloués.
 
 sparse.forEach((x) => console.log(x)); // affiche seulement "Walter White"
 ```
@@ -249,16 +245,48 @@ console.log(rareItems.length); // qu'est-ce qui s'affiche ?
 
 ## RÉSUMÉ
 
-Un tableau JS c'est un bloc mémoire continu : lire par index est O(1) car c'est juste un calcul d'adresse. Tout ce qui déplace des éléments (unshift, splice en milieu) coûte O(n) parce que JS doit recaler tout ce qui suit. Slice crée une copie : c'est intentionnel, utilise-le comme tel. Les tableaux épars sont un piège : JS les autorise mais les méthodes comme `forEach` les ignorent silencieusement. Connaître ces coûts c'est la différence entre un code qui scale et un code qui rame à 10k éléments.
+Un `Array` JavaScript expose des indices et une propriété `length` ; sa représentation physique dépend du moteur et peut varier selon la densité et les types d’éléments. L’accès par index est généralement modélisé en O(1) dans les implémentations courantes, sans garantie de complexité ni d’adresse imposée par le langage. Les opérations qui insèrent ou retirent au début/milieu déplacent ou réindexent typiquement de nombreux éléments et se modélisent en O(n). `slice()` crée un nouveau tableau de premier niveau ; les objets imbriqués restent partagés. Les tableaux épars sont autorisés : plusieurs méthodes d’itération sautent les indices absents, ce qui doit être pris en compte. Ces ordres de grandeur servent à raisonner, pas à remplacer une mesure sur les données réelles.
 
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
-
-<!-- AF-P0-2026-10-30: missing_verification -->
 
 ### Vérification observable : critères de réussite
 
 Compare ton résultat à une méthode naïve sur de petites entrées. Vérifie entrée vide, un élément, doublons et cas limite. Pour « Array basics : ce que chaque opération coûte vraiment », justifie aussi le coût théorique et une mesure reproductible.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: structures -->
+
+## Repères de décision
+
+- **Pourquoi :** La structure choisie détermine le coût des opérations dominantes et la façon dont l'état évolue.
+- **Quand l’utiliser / quand l’éviter :** Choisis à partir des opérations fréquentes, du volume et des contraintes d'ordre. N'utilise pas une structure sophistiquée si un tableau ou une Map répond au besoin mesuré.
+- **Limites :** La complexité moyenne ne garantit pas les performances réelles. Mémoire, distribution des clés, ordre, synchronisation et sérialisation peuvent changer le coût.
+
+## Mécanisme : la version sans magie
+
+Liste les opérations, leur fréquence et les garanties attendues ; compare complexité, mémoire et comportement aux cas limites.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Array basics : ce que chaque opération coûte vraiment** se rattache à ce cas concret : Kintana doit retrouver une demande, dédupliquer les événements ou ordonner des notifications sans parcourir toute l'historique à chaque action.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Choisir la structure selon le trafic métier
+
+> **Arc One Piece / Grand Line :** choisir une structure de données, c'est choisir comment la cargaison circule. Une mauvaise structure transforme chaque recherche en traversée de l'océan.
+
+**Mission liée à « Array basics : ce que chaque opération coûte vraiment » :** Prends une opération de Kintana (lookup par ID, file de notification, regroupement par tenant ou historique ordonné). Compare deux structures avec un coût théorique et un test reproductible sur données synthétiques.
+
+**Livrable :** une implémentation courte, tests d'invariants, tableau coût/avantages et mesure locale si elle est pertinente.
+
+**Critères d’acceptation :** les opérations dominantes sont identifiées ; l'ordre et les doublons sont traités explicitement ; la complexité est expliquée ; le choix n'est pas justifié par la mode.
+
+**Transfert obligatoire :** Multiplie par dix le volume et change la distribution des clés. Réévalue le choix et indique si un index persistant devient nécessaire.
+
+## Références techniques
+
+- [MDN : Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) : modèle objet indexé, propriétés et trous.

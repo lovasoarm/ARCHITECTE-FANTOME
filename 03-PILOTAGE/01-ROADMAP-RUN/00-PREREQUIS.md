@@ -12,8 +12,7 @@ Temps de lecture ~2 min
 
 Acte attendu : évaluer. Trois minutes, seul, sans ouvrir le module.
 
-Si une seule ligne ci-dessous te fait hésiter, tu ouvres d'abord ce qu'elle nomme. Ouvrir ce
-module sans ces acquis coûte la séance : tu apprendrais le prérequis à la place du module.
+Le parcours conseillé arrive après `20-API-DOJO`. Ce diagnostic prépare les activités de planification ; il ne ferme pas la lecture. Si le contrat API est nouveau, consulte le module précédent avant les exercices qui s'appuient dessus.
 
 ## Ce que tu dois déjà savoir faire
 

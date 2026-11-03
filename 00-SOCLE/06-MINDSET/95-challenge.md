@@ -8,103 +8,70 @@ transfer_distance: medium
 assessment_role: diagnostic_mastery
 ---
 
-> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+# Challenge : note de conception + ADR sur un cas Kintana
 
-# Challenge : Note de conception + ADR sur ton projet fil rouge
+## Contexte et périmètre
 
-Temps de lecture ~4 min
+Tu n'as pas encore qualifié ton fil rouge personnel : cela se fera pendant le Cadrage. Ce challenge utilise donc le cas fictif commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), déjà décrit dans le curriculum. **Kintana est un support de simulation, pas ton projet personnel, pas un service réel et pas une preuve de production.**
 
-## Contexte
+Scénario borné : deux demandeurs essaient de réserver la dernière place disponible dans un centre. Une réponse réseau tarde ; un demandeur peut renvoyer sa demande sans savoir si la première a été prise en compte. Kintana doit éviter une double réservation et conserver une trace compréhensible.
 
-Tu as choisi un projet fil rouge au Module `00-SOCLE/02-PROLOGUE`. Ce projet n'a probablement encore aucune
-ligne de code, et c'est très bien : ce challenge se joue entièrement à l'écrit, avant toute
-implémentation. L'objectif n'est pas de trancher la meilleure architecture possible, mais de
-prouver que tu sais raisonner et écrire une décision qui résiste à la contradiction.
+Tu dois raisonner et écrire. Aucune base de données, API, transaction, file de messages, intégration ou ligne de code n'est requise dans ce module.
 
-Si ton projet fil rouge te semble trop simple pour contenir une vraie décision difficile,
-c'est un signal : cherche la décision qui deviendra difficile dans six mois, pas celle qui
-est facile aujourd'hui. Exemple : "comment on identifie un utilisateur" semble trivial au
-jour 1, mais devient une décision lourde dès qu'il faut gérer les comptes partagés, les
-invités, ou la suppression de compte.
+## Décision à étudier
 
-## Ce qu'on attend de toi
+Choisis et compare au moins trois options plausibles, par exemple :
 
-Choisis, sur ton projet fil rouge, une décision technique ou produit qui remplit ces trois
-conditions :
+1. **Traitement manuel** : les demandes ambiguës sont mises en attente pour qu'un agent vérifie la disponibilité. Coût : délai et charge opérateur. Bénéfice : limite les décisions automatiques en cas d'incertitude.
+2. **Réservation confirmée uniquement après vérification centrale** : la disponibilité est vérifiée au moment de confirmer la réservation. Coût : demande un mécanisme central cohérent à concevoir et à tester plus tard. Bénéfice : une seule décision fait autorité.
+3. **Liste d'attente / confirmation différée** : la demande est enregistrée comme attente, puis confirmée quand une place est réellement attribuable. Coût : parcours plus long et statut supplémentaire à expliquer. Bénéfice : évite de promettre immédiatement une place indisponible.
 
-- elle a au moins deux options sérieusement défendables (pas une option évidente et un
-  épouvantail) ;
-- elle est coûteuse à défaire une fois prise (règle du Module `00-SOCLE/06-MINDSET`, leçon 03) ;
-- elle repose sur au moins une hypothèse non vérifiée (leçon 04).
+Ces options sont des pistes, pas une réponse attendue. Tu peux en proposer d'autres si elles sont réellement défendables. À ce stade, traite les mécanismes techniques comme des concepts ; ne choisis pas une technologie ni n'invente un test d'implémentation.
 
-Livre deux documents distincts, dans un dossier `decisions/` de ton projet :
+## Livrables
 
-### 1. Une note de conception (`design-doc-XX.md`)
+Conserve les deux documents dans un dossier local, par exemple `PREUVES/00-SOCLE/06-MINDSET/`. Git et un projet personnel ne sont pas requis.
 
-Doit contenir, dans cet ordre :
+### 1. Note de conception : `design-kintana-reservation.md`
 
-- **Problème** : ce qui est observé ou anticipé, pour qui, avec quel impact si rien n'est
-  fait.
-- **Contraintes** : ce qui est non négociable (délai, budget, compétences de l'équipe,
-  contraintes techniques déjà en place).
-- **Non-objectifs** : au moins deux choses que cette note ne cherche pas à résoudre.
-- **Hypothèses** : au moins une hypothèse formulée avec un seuil chiffré (leçon 04), et le
-  moyen le moins cher de la vérifier avant de s'engager complètement.
-- **Critères de succès** : comment tu sauras, dans trois mois, que la décision était la
-  bonne.
+Maximum indicatif : 500 mots. Elle doit contenir :
 
-### 2. Un ADR (`ADR-XX-titre.md`)
+- **Problème** : ce qui arrive, pour qui, avec quel impact.
+- **Contraintes connues** : dernière place, délai réseau, rôles et besoin de traçabilité. Sépare ce qui est fourni de ce que tu supposes.
+- **Non-objectifs** : au moins deux sujets hors du périmètre de cette décision.
+- **Hypothèse mesurable** : formule un seuil chiffré comme hypothèse de travail, pas comme donnée réelle. Décris une vérification en moins d'une journée à partir d'un scénario ou d'un jeu synthétique ; indique ce que cette simulation ne pourra pas prouver.
+- **Critères de succès** : observations qui permettraient de juger la décision après une période d'utilisation réelle. Marque-les comme critères futurs, non mesurés.
 
-Doit contenir, dans cet ordre :
+### 2. ADR : `ADR-kintana-reservation.md`
 
-- **Statut** et date.
-- **Contexte** : peut reprendre le problème de la note de conception, en plus court.
-- **Options considérées** : au minimum trois options réelles, chacune avec son coût et son
-  bénéfice : pas de version caricaturée pour faire gagner ton option préférée d'avance.
-- **Décision** : l'option choisie, en une phrase.
-- **Justification** : pourquoi celle-là précisément, en distinguant explicitement les faits
-  vérifiables des jugements assumés (leçon 05).
-- **Conséquences** : ce que tu acceptes de perdre, et la condition observable qui devrait te
-  faire revenir sur cette décision.
+Un **ADR** (Architecture Decision Record) est une courte fiche qui garde la trace d’une décision : le contexte, les options, le choix proposé et ses conséquences. Tu ne dois pas connaître de format ou d’outil particulier.
+
+Maximum indicatif : 500 mots. Il doit contenir, dans cet ordre :
+
+- **Statut et date** : `PROPOSITION  : SIMULATION` (cela signifie que tu proposes une décision sur un cas fictif, sans prétendre l’avoir mise en œuvre).
+- **Contexte** : résumé du problème.
+- **Options considérées** : au moins trois options réelles, chacune avec au moins un coût et un bénéfice.
+- **Décision proposée** : une option choisie pour le scénario, explicitement provisoire.
+- **Justification** : distinguer les faits du scénario, les hypothèses et les jugements.
+- **Conséquences** : ce que tu acceptes de perdre et la condition observable qui te ferait réviser la proposition.
 
 ## Critères de réussite mesurables
 
-Ton livrable est validé si, et seulement si :
+1. La note contient une hypothèse chiffrée, marquée comme hypothèse, et un test de simulation faisable en moins d'une journée.
+2. L'ADR compare au moins trois options, avec coûts et bénéfices non caricaturaux.
+3. La condition de révision est observable ; « on verra plus tard » ne suffit pas.
+4. Un lecteur qui ne connaît pas le scénario peut reconstituer le problème, les options et la raison de la proposition.
+5. Les documents distinguent explicitement `FAIT DU SCÉNARIO`, `HYPOTHÈSE`, `JUGEMENT` et `NON MESURÉ`.
+6. Aucun résultat de simulation n'est présenté comme une observation auprès de vrais utilisateurs ou comme une preuve d'implémentation.
 
-1. La note de conception contient au moins une hypothèse avec un seuil chiffré et une
-   expérience concrète, réalisable en moins d'une journée, pour la tester : pas "on
-   demandera aux utilisateurs" sans préciser comment ni à combien.
-2. L'ADR présente au moins trois options, et pour chacune un coût _et_ un bénéfice réels,
-   si une option n'a aucun bénéfice listé, elle est probablement un épouvantail à retirer.
-3. La section "Conséquences" de l'ADR contient une condition de révision observable et
-   vérifiable (un seuil, un événement, une métrique) : pas "on réévaluera si besoin".
-4. Un tiers qui n'a jamais discuté du projet avec toi peut lire les deux documents et
-   reconstituer, sans te poser de question, pourquoi tu as choisi cette option plutôt que les
-   deux autres.
-5. Aucun des deux documents ne dépasse une page A4 imprimée (environ 500 mots) : la
-   contrainte de longueur force à couper le remplissage et garder l'essentiel.
+## Ce qui ne valide pas le fil rouge personnel
 
-## Comment savoir si tu as raté
-
-Si tu peux répondre "peu importe, on aurait fait pareil de toute façon" à la question "qu'est-ce
-qui aurait dû se passer pour que tu choisisses une autre option", ton ADR ne documente pas une
-vraie décision : il documente une évidence. Recommence avec une décision qui avait réellement
-deux issues possibles.
+Ce challenge valide uniquement l'exercice de raisonnement sur le cas partagé Kintana. Il ne sélectionne, ne qualifie et ne remplace pas ton projet personnel. Il ne constitue pas une décision appliquée ni une preuve d'un système réel. Après le Cadrage, tu pourras reprendre la méthode sur ton domaine qualifié et réévaluer cette décision avec les faits recueillis. N'antidate pas cette reprise et ne présente pas l'ADR de simulation comme une décision déjà prise pour ton propre projet.
 
 ## Durée cible
 
-6 h, cohérent avec la durée annoncée pour ce niveau dans CURRICULUM.md. Si tu dépasses
-largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
-de bâcler la fin du livrable.
+Jusqu'à 6 h, selon la lecture et la qualité de la comparaison. La durée est une estimation d'exercice, pas une obligation de produire deux documents artificiellement longs.
 
-## Horodatage
+## CHECKPOINT DE PROFONDEUR : conflit d'acteurs
 
-En tête de ton livrable, note deux dates à la minute : le moment où tu as écrit la première
-ligne, le moment où tu as écrit la dernière. Note aussi si tu avais déjà commencé à imaginer
-la solution avant la première date. Cette dernière mention n'est pas une confession : c'est la
-seule façon de savoir, plus tard, si ce document a orienté ta décision ou s'il l'a maquillée
-après coup.
-
-## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
-
-Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+Ajoute deux parties prenantes dont les objectifs se contredisent. Qui gagne, qui supporte le coût, quelle incitation perverse pourrait apparaître et quelle observation permettrait de renégocier la décision ? Ce checkpoint approfondit le raisonnement ; il n'ajoute pas une nouvelle gate logicielle.

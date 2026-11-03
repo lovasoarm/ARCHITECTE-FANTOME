@@ -75,3 +75,9 @@ La note de maîtrise est bornée par l'axe le plus faible qui est critique pour 
 - Prochaine reprise :
 
 Si le rappel ou le transfert échoue, rétrograde le statut et remédie la cause. Une révision réussie est une nouvelle preuve, pas une permission de cocher définitivement le sujet.
+
+## Limite de preuve et validation externe
+
+Une production personnelle, un test écrit par l’apprenant ou une simulation montrent ce qui a été tenté dans le contexte décrit ; ils ne constituent pas, à eux seuls, une validation indépendante de compétence ni une preuve de comportement en production.
+
+Pour toute affirmation plus forte, indique séparément la source de vérification : revue par un pair identifié, évaluation indépendante, observation sur un environnement réel ou retour d’une cohorte. Si cette vérification n’a pas eu lieu, écris **« non évalué »** ou **« non observé »** au lieu de transformer une intention, une simulation ou un résultat local en validation.

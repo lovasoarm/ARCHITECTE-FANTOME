@@ -25,7 +25,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [52-error_propagation_minimini_projet.md](52-error_propagation_minimini_projet.md)
 - [53-async_error_traps_minimini_projet.md](53-async_error_traps_minimini_projet.md)
 - [54-error_strategy_minimini_projet.md](54-error_strategy_minimini_projet.md)
-- [EXO LECTURE : 15-25 minutes (Error Handling)](07-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Error Handling)](07-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 01-CADRAGE/04-ERROR-HANDLING](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 01-CADRAGE/04-ERROR-HANDLING](97-EXO-VERIFICATION.md)
 

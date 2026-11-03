@@ -3,6 +3,13 @@ stability: evolutif
 acte: maitrise
 noyau: non
 route: depth
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/08-platform-engineering-gitops.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/08-platform-engineering-gitops.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # 06 : Mini-Heroku
@@ -10,7 +17,17 @@ route: depth
 > Petite plateforme interne : build, déploiement, rollback, autoscaling guidé, GitOps et FinOps.
 
 **Place dans le parcours :** Avancé : plateforme comme produit.  
-**Prérequis :** Linux, Git, processus, containers de base, CI/CD, santé/observabilité, sécurité de secrets, coût et limites de ressources.
+**Prérequis :** Linux, Git, processus, Docker Basics validé avant le pont Platform Engineering, CI/CD, santé/observabilité, sécurité de secrets, coût et limites de ressources.
+
+## Parcours de préparation obligatoire
+
+Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0--socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
+
+- [Shell Survival](../../00-SOCLE/01-GETTING-STARTED/04-shell_survival.md), [Git 101](../../00-SOCLE/01-GETTING-STARTED/05-git_101.md), [process/env](../../02-CONSTRUCTION/13-RUNTIME-ENV/05-process_env_argv.md), puis la leçon complète [Docker Basics](../06-ANNEXES/29_toolchain/06-docker_basics.md) (image, conteneur, port, logs, Dockerfile, Compose et multi-stage).
+- [Cloud Foundations](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/README.md), [architecture réseau/identité/reprise](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/08-ARCHITECTURES-RESEAUX-IDENTITES-REPRISE.md), [Quality Shield](../../03-PILOTAGE/03-QUALITY-SHIELD/README.md).
+- [GitOps](../../03-PILOTAGE/12-PLATFORM-ENGINEERING/02-gitops-and-drift.md), [IDP](../../03-PILOTAGE/12-PLATFORM-ENGINEERING/03-internal-developer-platform.md), [Lab Platform Operations 75](../../06-ANNEXES-TRANSVERSES/75-LAB-PLATFORM-OPERATIONS/README.md), [Atelier DevOps/SRE 59](../../06-ANNEXES-TRANSVERSES/59-LAB-DEVOPS-LIFECYCLE.md), puis [Leçon-pont 08](LECONS-PONTS/08-platform-engineering-gitops.md).
+
+**Gate d'entrée :** tu as terminé [Docker Basics](../06-ANNEXES/29_toolchain/06-docker_basics.md) et tu peux, sans copier la solution, builder une image locale, lancer/arrêter un conteneur, publier un port, lire ses logs, utiliser Compose avec `condition: service_healthy`, lancer un service avec configuration séparée, tester health/readiness, faire échouer une release et restaurer la version précédente. Kubernetes et Terraform ne sont pas requis pour entrer. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-1--systèmes-en-production).
 
 ## Mission
 

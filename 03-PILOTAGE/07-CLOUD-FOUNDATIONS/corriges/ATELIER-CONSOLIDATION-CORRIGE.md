@@ -1,26 +1,40 @@
+---
+stability: intemporel
+acte: reference
+assessment_role: instructional_support
+---
+
 # Corrigé différé : 07-CLOUD-FOUNDATIONS
 
-**Ne lire qu'après l'atelier.** Ce document est un guide de correction et non une sortie d'exécution certifiée.
+**Ne lire qu'après l'atelier.** Ce corrigé résout les calculs du scénario fictif. Il ne rapporte aucune exécution d'infrastructure ni aucun prix fournisseur.
 
-## Raisonnement attendu
+## Résultat attendu : palier 10 000 utilisateurs
 
-1. Identifier dans `07-RELEVE-REFERENCE-2026.md` la précondition déterminante pour `RELEVE REFERENCE 2026`.
-2. Produire une prédiction spécifique et falsifiable ; relever les entrées, l'environnement et la commande exacte.
-3. Comparer la sortie observée à la prédiction. Ne pas modifier plusieurs facteurs en même temps.
-4. Expliquer causalement la divergence : précondition, transformation, puis effet. Une simple copie de réponse échoue au critère d'autonomie.
-5. Répéter le cas positif et le cas volontairement faux ; mesurer ou décrire le changement.
+| Poste          |               Entrée | Formule                       |            Résultat |
+| -------------- | -------------------: | ----------------------------- | ------------------: |
+| Calcul         |         7 000 vCPU-h | 7 000 × 0,02 €                |            140,00 € |
+| Base managée   |       forfait simulé | entrée fixe                   |            210,00 € |
+| Stockage objet |           20 GB-mois | 20 × 0,023 €                  |              0,46 € |
+| Egress         |               180 GB | 180 × 0,08 €                  |             14,40 € |
+| Observabilité  | forfait simulé 10 GB | entrée fixe                   |             25,00 € |
+| **Total**      |                      | 140 + 210 + 0,46 + 14,40 + 25 | **389,86 € / mois** |
 
-## Exemple de réponse structurée (à instancier à partir du cours)
+Chaque poste doit rester marqué `SIMULATION`. Les forfaits de base et d'observabilité sont des entrées fictives et ne se calculent pas à partir d'un prix unitaire.
 
-- **Contexte :** `RELEVE REFERENCE 2026`, source `07-RELEVE-REFERENCE-2026.md`.
-- **Prédiction :** « avec l'entrée X et la précondition P, la propriété Y doit tenir ».
-- **Cas négatif :** « si P est supprimée, Y n'est plus garantie ; je vérifie un échec par assertion, mesure ou refus explicite ».
-- **Diagnostic :** « l'hypothèse P manque », pas « mauvais code ».
-- **Correctif :** vérifier P à la frontière ou ajuster le modèle ; relancer exactement les deux cas.
-- **Transfert :** montrer l'impact de P dans une fonctionnalité réelle et consigner son test de non-régression.
+## Cas de transfert : egress multiplié par dix
+
+Le volume passe de 180 GB à 1 800 GB. Le coût passe de `180 × 0,08 = 14,40 €` à `1 800 × 0,08 = 144,00 €`, soit +129,60 €. Les autres postes restent identiques par hypothèse ; le nouveau total est `519,46 € / mois`.
+
+## Cas négatif : ligne sans région ni SKU
+
+La ligne est **non comparable**, pas automatiquement fausse. Sans région et sans configuration précise, un tiers ne peut pas reconstruire le tarif ni confirmer qu'il correspond au besoin. Il faut compléter la source ou refuser le montant.
 
 ## Barème / 10
 
-Prédiction précise (2), preuve reproductible (2), cas négatif observé (2), diagnostic et correctif (2), transfert contextualisé (2). **Un cas inventé ou sans trace obtient zéro sur le critère de preuve.**
+- Formules et unités exactes : 2 points.
+- Total à 389,86 € : 2 points.
+- Nouvelle ligne egress à 144 € : 2 points.
+- Total modifié à 519,46 € : 2 points.
+- Distinction simulation / tarif réel et détection de la ligne non comparable : 2 points.
 
-**Limite :** les sorties attendues dépendant de la leçon et de l'environnement n'ont pas été calculées ici ; elles doivent être contrôlées par le formateur. Ne pas confondre ce guide avec une solution technique entièrement implémentée.
+**Limite :** ce corrigé fournit des résultats calculés à partir des entrées affichées. Il ne prouve ni déploiement, ni facture réelle, ni mesure de production.

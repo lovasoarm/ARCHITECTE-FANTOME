@@ -28,7 +28,6 @@ lie l'ADR décisif et le postmortem le plus instructif, note-toi de 0 à 5
 (0 = pas fait, 5 = je peux le défendre 6 mois après). Génère la version
 finale avec `05-MAITRISE/06-ANNEXES/15-generate_portfolio_report.md`.
 
-
 ## 1A. Lecture professionnelle honnête
 
 Ce portfolio ne donne pas automatiquement un titre Staff Engineer. Il sépare la **preuve pédagogique**, la **preuve terrain** et la **preuve revue par une personne externe**. Utilise la ligne de statut suivante pour chaque pièce :
@@ -44,15 +43,15 @@ Pour les familles Staff, renseigne la preuve principale S1–S6 dans ton dossier
 
 ### Fiche rapide pour un reviewer
 
-| Champ | Contenu à montrer |
-|---|---|
-| Contexte | problème, utilisateur/équipe, contraintes |
+| Champ    | Contenu à montrer                            |
+| -------- | -------------------------------------------- |
+| Contexte | problème, utilisateur/équipe, contraintes    |
 | Décision | choix et alternatives réellement considérées |
-| Preuve | lien vers code, ADR, test, incident ou démo |
-| Statut | SIMULATION / TERRAIN / REVIEW / IMPACT |
-| Résultat | observation mesurée ou résultat observable |
-| Limites | ce qui n'a pas été prouvé |
-| Suite | prochaine amélioration concrète |
+| Preuve   | lien vers code, ADR, test, incident ou démo  |
+| Statut   | SIMULATION / TERRAIN / REVIEW / IMPACT       |
+| Résultat | observation mesurée ou résultat observable   |
+| Limites  | ce qui n'a pas été prouvé                    |
+| Suite    | prochaine amélioration concrète              |
 
 Une lecture en moins de dix minutes doit permettre de comprendre ce qui est **produit**, ce qui est **réellement utilisé**, ce qui a été **revu**, et ce qui reste **non démontré**.
 
@@ -103,3 +102,53 @@ prêt à publier ce portfolio : cible d'abord les lignes à 0-2.
 
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+
+<!-- AF-DIAGRAM:architecture -->
+
+## Repère visuel utile : Défendre une frontière de domaine Kintana
+
+```text
+client -> API / application
+               |
+               v
+        domaine Kintana
+        /      |      \
+       v       v       v
+ demandes  réservations  rôles
+       \       |       /
+        v      v      v
+        persistance + outbox
+                |
+                v
+          worker notification
+```
+
+<!-- AF-LESSON-PROFILE: architecture -->
+
+## Repères de décision
+
+- **Pourquoi :** Les frontières réduisent le coût de changement et clarifient les responsabilités. Elles doivent répondre aux contraintes de l'équipe, des données et de l'exploitation.
+- **Quand l’utiliser / quand l’éviter :** Découpe un système quand une frontière protège une règle ou un rythme de changement. Ne crée pas de microservice tant que l'autonomie, la charge ou la gouvernance ne justifient pas le coût distribué.
+- **Limites :** Chaque frontière ajoute contrats, réseau, déploiement, observabilité et coordination. Un diagramme propre ne prouve ni la faisabilité ni la performance.
+
+## Mécanisme : la version sans magie
+
+Part des cas d'usage, repère invariants et propriétaires de données, définis les contrats, compare les options et mesure les conséquences du changement.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **portfolio.md : la sortie unique du curriculum** se rattache à ce cas concret : Kintana commence comme monolithe modulaire. Les demandes, réservations et notifications doivent avoir des frontières explicites sans fragmenter trop tôt le déploiement.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Défendre une frontière de domaine Kintana
+
+> **Arc Capsule Corp. / DBZ :** une architecture est le plan du vaisseau et les coûts qu'il impose. Si chaque pièce doit connaître toutes les autres, le vaisseau ne décolle jamais.
+
+**Mission liée à « portfolio.md : la sortie unique du curriculum » :** Dessine le flux réel d'une création de demande. Identifie les invariants, propriétaires de données et dépendances ; compare monolithe modulaire et service séparé dans un ADR. Simule une évolution et mesure le nombre de composants touchés.
+
+**Livrable :** diagramme de composants/flux, ADR avec deux options, contrat de frontière et test de changement.
+
+**Critères d’acceptation :** la frontière possède une responsabilité claire ; les données ont un propriétaire ; le coût d'exploitation est explicite ; le microservice n'est pas choisi par prestige ; une condition de révision est écrite.
+
+**Transfert obligatoire :** Le nombre d'équipes ou le volume double. Indique quel signal justifierait de séparer un composant et quel coût tu acceptes.

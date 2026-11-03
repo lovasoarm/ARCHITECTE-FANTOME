@@ -38,10 +38,10 @@ Si tu galères sur la version #1 (l'enfant), c'est que tu n'as pas compris. Tu r
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
 
-<!-- AF-P0-2026-10-30: missing_example -->
-
 ### Exemple travaillé : cas métier
 
-Une décision affecte trois équipes, chacune ayant des contraintes et des données différentes ; les désaccords doivent devenir des options testables. Construis un cas minimal qui illustre « Drill 3 audiences : tu expliques ou tu ne comprends pas » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+**Exemple résolu (fictif).** Même décision, trois explications : **utilisateur** : « votre demande ne sera pas perdue si le réseau coupe ; elle sera reprise quand la connexion revient » ; **responsable métier** : « la reprise réduit les ressaisies, mais nous devons surveiller les doublons » ; **ingénieur** : « nous persistons un identifiant d'opération et rendons le traitement idempotent ; le test de rejeu vérifie un seul effet final ». Le mécanisme ne change pas, seul le vocabulaire et le niveau de détail s'adaptent.
+
+**À toi :** Une décision affecte trois équipes, chacune ayant des contraintes et des données différentes ; les désaccords doivent devenir des options testables. Construis un cas minimal qui illustre « Drill 3 audiences : tu expliques ou tu ne comprends pas » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

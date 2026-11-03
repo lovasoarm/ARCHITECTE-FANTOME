@@ -3,39 +3,40 @@ stability: evolutif
 acte: parcours
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "02-CONSTRUCTION/04-MATH-BASICS/01-00-why-math-basics.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 02-CONSTRUCTION/04-MATH-BASICS/01-00-why-math-basics.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # MODULE 04 MATH BASICS
 
-> **État pédagogique : 30 octobre 2026 : structure documentaire revue.** Les contrôles de contenu ne remplacent pas une revue technique indépendante ni une validation terrain ; voir le [standard de complétude AF](../../06-ANNEXES-TRANSVERSES/69-STANDARD-COMPLETUDE-MODULE.md).
-
-> Palier `02-CONSTRUCTION`. Duree estimee : **10 h 30** (15 fichiers de travail).
+> Palier `02-CONSTRUCTION`. Duree estimee : **10 h 00** (15 fichiers de travail).
 
 ## Sommaire du module
 
-| Fichier                                                          | Objet                                                   | Duree  |
-| ---------------------------------------------------------------- | ------------------------------------------------------- | ------ |
-| [`00-PREREQUIS.md`](00-PREREQUIS.md)                             | 00 : Prereq check : Math                                | 15 min |
-| [`01-00-why-math-basics.md`](01-00-why-math-basics.md)           | POURQUOI CE MODULE MÉRITE TON TEMPS : LES MATHS UTILES  | 45 min |
-| [`02-boolean_logic.md`](02-boolean_logic.md)                     | BOOLEAN LOGIC : LA LOGIQUE QUI PILOTE TOUT              | 45 min |
-| [`03-modular_arithmetic.md`](03-modular_arithmetic.md)           | ARITHMÉTIQUE MODULAIRE : LE MODULO QUI TOURNE EN BOUCLE | 45 min |
-| [`04-bit_manipulation.md`](04-bit_manipulation.md)               | BIT MANIPULATION : MANIPULER LES DONNÉES À L'OS         | 45 min |
-| [`05-hashing_basics.md`](05-hashing_basics.md)                   | HASHING BASICS : L'EMPREINTE QUI NE MENT PAS            | 45 min |
-| [`06-probability_random.md`](06-probability_random.md)           | PROBABILITY & RANDOM : LE RNG QUI NE MENT PAS           | 45 min |
-| [`07-combinatorics_lite.md`](07-combinatorics_lite.md)           | COMBINATORICS LITE : COMPTER AVANT DE BRUTEFORCER       | 45 min |
-| [`99A-PONT.md`](99A-PONT.md)                                     | 07 bits and memory bridge                               | 45 min |
-| [`08-geometry_for_dev.md`](08-geometry_for_dev.md)               | GÉOMÉTRIE POUR DÉVELOPPEUR                              | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                               | Page verrouillée                                        | 30 min |
-| [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                         | EXO LECTURE : 15-25 minutes (Math Basics)               | 45 min |
-| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)               | EXO [JEUNE IA] : 02-CONSTRUCTION/04-MATH-BASICS         | 45 min |
-| [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)               | EXO IA MENTEUSE : module 02-CONSTRUCTION/04-MATH-BASICS | 45 min |
-| [`10-PONT-MEMORY-PERFORMANCE.md`](10-PONT-MEMORY-PERFORMANCE.md) | PONT BITS ET MÉMOIRE                                    | 45 min |
+| Fichier                                                          | Objet                                                        | Duree  |
+| ---------------------------------------------------------------- | ------------------------------------------------------------ | ------ |
+| [`00-PREREQUIS.md`](00-PREREQUIS.md)                             | 00 : Prereq check : Math                                     | 15 min |
+| [`01-00-why-math-basics.md`](01-00-why-math-basics.md)           | POURQUOI CE MODULE MÉRITE TON TEMPS : LES MATHS UTILES       | 45 min |
+| [`02-boolean_logic.md`](02-boolean_logic.md)                     | BOOLEAN LOGIC : LA LOGIQUE QUI PILOTE TOUT                   | 45 min |
+| [`03-modular_arithmetic.md`](03-modular_arithmetic.md)           | ARITHMÉTIQUE MODULAIRE : LE MODULO QUI TOURNE EN BOUCLE      | 45 min |
+| [`04-bit_manipulation.md`](04-bit_manipulation.md)               | BIT MANIPULATION : MANIPULER LES DONNÉES À L'OS              | 45 min |
+| [`05-hashing_basics.md`](05-hashing_basics.md)                   | HASHING BASICS : L'EMPREINTE QUI NE MENT PAS                 | 45 min |
+| [`06-probability_random.md`](06-probability_random.md)           | PROBABILITY & RANDOM : LE RNG QUI NE MENT PAS                | 45 min |
+| [`07-combinatorics_lite.md`](07-combinatorics_lite.md)           | COMBINATORICS LITE : COMPTER AVANT DE BRUTEFORCER            | 45 min |
+| [`99A-PONT.md`](99A-PONT.md)                                     | 07 bits and memory bridge                                    | 45 min |
+| [`08-geometry_for_dev.md`](08-geometry_for_dev.md)               | GÉOMÉTRIE POUR DÉVELOPPEUR                                   | 45 min |
+| [`90-grimoire.md`](90-grimoire.md)                               | Page verrouillée                                             | 30 min |
+| [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                         | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Math Basics) | 50 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)               | EXO [JEUNE IA] : 02-CONSTRUCTION/04-MATH-BASICS              | 45 min |
+| [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)               | EXO IA MENTEUSE : module 02-CONSTRUCTION/04-MATH-BASICS      | 10 min |
+| [`10-PONT-MEMORY-PERFORMANCE.md`](10-PONT-MEMORY-PERFORMANCE.md) | PONT BITS ET MÉMOIRE                                         | 45 min |
 
-Total : **10 h 30**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) et le boss (3 h) sont des évaluations séparées et ne sont pas ajoutés au Total sauf s’ils apparaissent comme lignes du tableau.
+Total : **10 h 00**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
 ## Comment travailler ce module
 
@@ -82,7 +83,7 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [99A-PONT.md](99A-PONT.md)
 - [Géométrie pour développeur](08-geometry_for_dev.md)
 - [Page verrouillée](90-grimoire.md)
-- [EXO LECTURE : 15-25 minutes (Math Basics)](09-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Math Basics)](09-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/04-math-basics](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/04-MATH-BASICS](97-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
@@ -100,4 +101,8 @@ Le sommaire ci-dessus reste le parcours recommandé. Les index ci-dessous renden
 
 - [Vérification : 11_EXO_VERIFICATION.md](11_EXO_VERIFICATION.md)
 
-## Standard de complétude et audit
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **mesurer avant d’optimiser** : Choisis une opération Kintana liée à cette leçon et crée un benchmark reproductible sur un jeu synthétique d’au moins 10 000 entrées lorsque le sujet le permet. Compare une baseline et une variante. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : Le protocole indique machine, volume, concurrence et répétitions ; tu présentes p50/p95 ou mémoire ; tu expliques le coût secondaire et refuses toute extrapolation non justifiée.

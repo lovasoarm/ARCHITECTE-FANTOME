@@ -39,10 +39,10 @@ Temps de lecture ~2 min
 - [ ] 0-2 hésitations > 5 s → promesse tenue pour ce sujet
 - [ ] 3+ hésitations > 5 s → promesse cassée, remplir `04b_first_click_diff.md`
 
-<!-- AF-P0-2026-10-30: missing_example -->
-
 ### Exemple travaillé : cas métier
 
-Tu rejoins une organisation qui possède plusieurs services, une documentation incomplète et un incident ouvert ; il faut comprendre avant de proposer. Construis un cas minimal qui illustre « 04a : first_click_log.md (template de livrable) » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+**Exemple résolu (fictif).** `09:05  : but : trouver où la route /orders est définie ; action : recherche du texte /orders ; observation : route déclarée dans routes.ts ; hypothèse : le contrôleur est appelé par OrderController ; vérification suivante : suivre l'import et retrouver le test associé ; confiance : moyenne`. Cette entrée décrit un fait observable et la prochaine vérification. Elle n'affirme pas que le flux entier est compris avant d'avoir suivi les dépendances.
+
+**À toi :** Tu rejoins une organisation qui possède plusieurs services, une documentation incomplète et un incident ouvert ; il faut comprendre avant de proposer. Construis un cas minimal qui illustre « 04a : first_click_log.md (template de livrable) » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

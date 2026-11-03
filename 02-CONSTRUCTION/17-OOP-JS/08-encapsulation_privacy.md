@@ -263,10 +263,32 @@ L'underscore `_champ` est une convention sociale entre devs, jamais une protecti
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Encapsulation & privacy : ce qu'on protège vraiment » à un troisième fournisseur dont l’API ne ressemble pas aux deux premiers. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: oop-encapsulation-privacy -->
+
+## Repères de décision
+
+- **Pourquoi :** L’encapsulation protège les invariants en contrôlant la façon dont l’état est lu ou modifié. Elle réduit les changements accidentels depuis l’extérieur.
+- **Quand l’utiliser / quand l’éviter :** Utilise les champs privés `#` lorsqu’un état doit être inaccessible hors de la classe ; utilise une closure lorsqu’une fabrique doit retenir un état privé sans exposer l’objet qui le porte. Une propriété préfixée par `_` n’est qu’une convention.
+- **Limites :** La privacy de JavaScript est une garantie de langage, pas une frontière de sécurité contre le code qui contrôle déjà le processus ou l’environnement. Trop cacher rend le diagnostic et les tests difficiles ; expose un contrat public utile plutôt que des détails internes.
+
+## Mécanisme : la version sans magie
+
+`_champ` reste accessible par convention. Une closure conserve des variables dans son environnement lexical et ne les expose pas directement. Un champ `#champ` est vérifié par le langage et accessible seulement depuis le corps de la classe qui le déclare.
+
+## Ancrage produit / terrain : Kintana
+
+Le statut d’une demande Kintana ne doit pas être modifié librement par n’importe quel appelant : les transitions doivent passer par les opérations qui vérifient les invariants.
+
+## Mission utile : Kintana : empêcher une transition invalide
+
+**Livrable :** une classe ou une fabrique qui garde l’état d’une demande privé, expose une lecture contrôlée et refuse une transition interdite.
+
+**Critères d’acceptation :** l’accès direct non autorisé échoue ou n’est pas exposé ; les transitions valides et invalides sont testées ; tu distingues convention, closure et champ `#` ; aucun secret sensible n’est placé dans l’objet sous prétexte qu’il est privé.
+
+**Transfert obligatoire :** compare le même contrat avec une API distante : explique pourquoi la privacy du langage ne remplace pas l’autorisation côté serveur.

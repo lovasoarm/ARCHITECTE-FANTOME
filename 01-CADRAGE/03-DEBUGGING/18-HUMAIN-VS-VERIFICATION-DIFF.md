@@ -3,116 +3,134 @@ stability: intemporel
 acte: comprendre
 ---
 
-> **SCÈNE CRAZYDEVS : mur de siège :** le bug n'est pas “où ça a explosé ?”, mais “où la première fissure est-elle apparue ?”. Ici, chaque log, test et reproduction est une empreinte dans le mur.
+> **SCÈNE CRAZYDEVS : salle de revue :** deux patches arrivent dans la même PR. Ton travail n’est pas de deviner qui les a écrits ; c’est de vérifier lequel respecte le contrat, ce qu’il laisse sans preuve et quel risque il introduit.
 
-# Humain vs solution : deux patches, un bug, trouve l'auteur
+# Revue de patch : prouver le comportement, pas deviner l’auteur
 
-Temps de lecture ~10 min
+Temps de lecture : ~10 min · Exercice : ~35 min
 
-Deux patches de la même fonction, deux auteurs : un humain junior fatigué, une IA générative confiante. Les deux compilent. Un seul est juste. Ton job : identifier l'auteur par les **tells** (indices révélateurs) avant d'exécuter les tests.
+## Pourquoi cette leçon existe
 
-Où l'analogie casse : les tells ci-dessous décrivent des tendances 2025-2026 des IA génératives. Elles évoluent vite : dans 18 mois, certains tells auront disparu, d'autres apparaîtront. Le fond (raisonner avant d'exécuter) survit ; la liste de tells vieillit.
+Un patch écrit par une personne ou proposé par un outil peut être correct, incomplet, excessif ou faux. Le style, la longueur, les commentaires, le nom des variables et l’indentation ne permettent pas d’établir fiablement son origine ni sa qualité.
 
----
+Une revue utile juge des éléments observables : contrat, comportement, tests, dépendances réelles, effets de bord, sécurité et coût de maintenance. **Ne classe jamais un patch comme « humain » ou « IA » à partir de son apparence.** Si la provenance est utile pour la traçabilité, elle se consigne séparément ; elle ne remplace pas l’analyse technique.
 
-## 1) LE BUG
+## 1. Le contrat avant le patch
 
-Fonction cible : `moyenne(nombres)` doit retourner la moyenne d'un tableau. Le test qui casse : `moyenne([])` doit retourner `null`, pas `NaN`.
+La fonction `moyenne(nombres)` doit respecter ce contrat explicite :
 
-### Patch X
+- `nombres` doit être un tableau de nombres finis ; sinon, la fonction lève `TypeError` ;
+- un tableau vide retourne `null` ;
+- un tableau valide non vide retourne sa moyenne arithmétique ;
+- la fonction ne modifie pas le tableau fourni.
+
+Sans ce contrat, deux comportements différents peuvent sembler raisonnables. La première tâche du reviewer est donc de repérer ce qui est spécifié, ce qui ne l’est pas et ce qui doit être clarifié.
+
+## 2. Deux patches à examiner
+
+### Patch A
 
 ```js
 function moyenne(nombres) {
   if (!Array.isArray(nombres) || nombres.length === 0) {
     return null;
   }
-  const somme = nombres.reduce((acc, n) => acc + n, 0);
+  const somme = nombres.reduce((acc, nombre) => acc + nombre, 0);
   return somme / nombres.length;
 }
 ```
 
-### Patch Y
+### Patch B
 
 ```js
-/**
- * Calcule la moyenne d'un tableau de nombres.
- * @param {number[]} nombres - Le tableau d'entrée.
- * @returns {number|null} La moyenne, ou null si le tableau est vide.
- * @throws {TypeError} Si l'entrée n'est pas un tableau.
- */
 function moyenne(nombres) {
-  // Vérification de l'entrée
   if (!Array.isArray(nombres)) {
     throw new TypeError("nombres doit être un tableau");
   }
-  // Cas particulier : tableau vide
+  if (
+    nombres.some(
+      (nombre) => typeof nombre !== "number" || !Number.isFinite(nombre),
+    )
+  ) {
+    throw new TypeError("toutes les valeurs doivent être des nombres finis");
+  }
   if (nombres.length === 0) {
     return null;
   }
-  // Calcul de la somme via reduce
-  const somme = nombres.reduce((acc, n) => acc + n, 0);
-  // Retour de la moyenne arithmétique
+  const somme = nombres.reduce((acc, nombre) => acc + nombre, 0);
   return somme / nombres.length;
 }
 ```
 
----
+Le patch A traite le tableau vide, mais confond une entrée invalide avec ce cas et n’applique pas toutes les validations du contrat. Le patch B couvre les validations annoncées et le cas vide. Cette conclusion vient du contrat et du comportement du code, **pas d’une hypothèse sur l’auteur**. Les deux patches pourraient avoir été écrits par la même personne, par deux personnes ou par un outil.
 
-## 2) LES TELLS À OBSERVER (checklist)
+## 3. Protocole de revue fondé sur des preuves
 
-**Tells solution (patch souvent gonflé)** :
+1. **Contrat :** écris les entrées autorisées, les sorties, les erreurs et les invariants avant de juger l’implémentation.
+2. **Couverture :** relie chaque règle à au moins un cas de vérification ; relève les règles non testées.
+3. **Comportement :** simule les cas limites et vérifie les effets de bord, l’ordre et l’état partagé pertinents.
+4. **Dépendances :** confirme les méthodes et versions dans la documentation ou le code de la dépendance réellement utilisée ; ne valide pas une API supposée.
+5. **Risque :** examine sécurité, confidentialité, autorisations, coût, complexité et compatibilité selon le périmètre du changement.
+6. **Verdict :** formule un constat précis, sa preuve, son impact et la correction ou clarification attendue.
 
-- Docstring JSDoc complète, alignée, avec `@throws` alors que le contexte ne l'exige pas.
-- Commentaires qui redisent ce que le code fait (`// Calcul de la somme via reduce`).
-- Gestion d'un cas non demandé (`TypeError` alors que la consigne ne le mentionne pas).
-- Style ultra-régulier, aucune abréviation, jamais de raccourci idiomatique.
-- Choix "safe par défaut" partout, même là où on ne l'a pas demandé.
+Un test vert prouve seulement que le cas testé passe. Il ne démontre pas à lui seul que le contrat entier est respecté. Inversement, une différence de style n’est pas un défaut tant qu’elle n’a pas de conséquence démontrable.
 
-**Tells humain junior fatigué** :
+## 4. Exercice : revue contradictoire (35 min)
 
-- Une seule garde compacte (`if (!Array.isArray(nombres) || nombres.length === 0)`).
-- Pas de commentaire redondant.
-- Choix de retour minimal (`return null`) sans exception détaillée.
-- Parfois une faute mineure (variable mal nommée, condition en double).
+1. Écris le contrat de `moyenne` avec tes propres mots et transforme chaque règle en cas de test.
+2. Pour les patches A et B, remplis une matrice `règle / comportement observé / preuve / verdict`.
+3. Ajoute un cas qui n’est pas déjà représenté dans les exemples, puis explique pourquoi il est utile.
+4. Rédige une review de cinq lignes maximum : défaut bloquant, preuve, impact, demande de correction et condition d’acceptation.
+5. Demande à un pair de contester ton verdict ou, sans pair disponible, écris l’objection la plus forte et réponds-y explicitement comme exercice individuel.
 
-Verdict "type" : **Patch Y = solution**, **Patch X = humain**. Vérifie en lançant les tests : les deux passent ici, mais un recruteur repérerait tout de suite le patch "trop propre pour être vrai".
+**Interdit pédagogique :** ne donne aucune étiquette d’auteur (`humain`, `IA`, `généré`, `junior`) à un patch à partir de son style. Ce n’est ni le but ni une preuve valide.
 
----
+## Ancrage produit / terrain : Kintana
 
-## 3) POURQUOI ÇA IMPORTE
+Une PR Kintana modifie la création d’une demande après un retry réseau. Le reviewer ne cherche pas si le patch « ressemble à de l’IA » : il vérifie le contrat d’idempotence, le comportement en cas de double soumission, la transaction, les clés de corrélation et le test qui distingue une création unique de deux créations.
 
-Une IA générative écrit du code **plausible** avant tout. Cette plausibilité :
+**Preuve à conserver :** contrat, matrice de cas, extrait de diff, résultat des vérifications et limites non couvertes. Distingue toujours `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` et `PRODUCTION` selon le travail réellement effectué.
 
-- ajoute du bruit défensif inutile (surcode) ;
-- rassure faussement (le lecteur croit que le code est audité parce qu'il est bien peigné) ;
-- masque parfois des erreurs subtiles (une garde qui protège un cas irréel et laisse passer le vrai cas critique).
+## Résumé
 
-Un humain junior fatigué écrit un code plus **compact et honnête** : ce qui est là est ce qu'il a compris. Ni plus, ni moins. C'est plus dur à lire mais plus facile à auditer.
+Une revue solide ne devine pas une origine. Elle confronte un changement à son contrat et à des preuves reproductibles, puis expose clairement ce qui reste inconnu.
 
-L'ingénieur senior lit les deux avec la même méfiance et **prouve** par les tests, pas par l'apparence.
+<!-- AF-DIAGRAM:debug -->
 
----
+## Repère visuel utile : revue de patch
 
-## 4) ARÈNE : 3 DIFFS À CLASSER
+```text
+contrat explicite
+      |
+      v
+cas attendus + cas limites
+      |
+      v
+comportement vérifié
+      |
+      v
+risques et écarts documentés
+      |
+      v
+verdict traçable
+```
 
-Sur `01-CADRAGE/03-DEBUGGING/humain_vs_ia_diff/`, tu trouveras (à créer par toi si absent, cf. exercice 2) trois paires `patch_A.js` / `patch_B.js` pour trois bugs différents. Ta mission :
+<!-- AF-LESSON-PROFILE: debug -->
 
-1. Classe chaque patch (solution / humain) **avant** de lire les tests.
-2. Lance les tests. Note le taux de bonne classification.
-3. Écris pour chaque paire les 3 tells qui t'ont fait décider.
+## Repères de décision
 
----
+- **Pourquoi :** Une revue protège le contrat métier et révèle les écarts que les tests existants ne couvrent pas encore.
+- **Quand l’utiliser / quand l’éviter :** Utilise cette démarche pour toute modification qui change un comportement, une dépendance ou un risque. N’infère pas la compétence ou l’origine d’un auteur à partir du style.
+- **Limites :** Une revue ne prouve que ce qui a été examiné. Sans environnement, données ou test pertinents, formule une limite au lieu de présenter une hypothèse comme un fait.
 
-## EXERCICES
+## Mécanisme : la version sans magie
 
-**EXO 1** : Reprends le bug ci-dessus. Réécris **toi-même** Patch X et Patch Y les yeux fermés (IA off), en essayant de reproduire le styl'IA sur l'un et le style humain sur l'autre. Compare avec les originaux, puis avec la version main d'un pair si tu peux. (25 min)
+Définis le contrat, relie les exigences aux comportements observables, cherche les cas non couverts, évalue les conséquences et formule un verdict lié à une preuve.
 
-**EXO 2** : Choisis un bug de `./12-HYPOTHESES_EXEMPLE.md`. Demande à une IA générative un patch (session enregistrée). Note les 3 tells qui te sautent aux yeux, sans réécrire toi-même. (15 min)
+## Mission utile : Kintana : revue d’un changement d’idempotence
 
-**EXO 3** : Rédige une checklist "review de PR humain vs solution" en 10 puces max, à afficher dans `05-MAITRISE/06-ANNEXES/`. (15 min)
+**Livrable :** une review courte d’une PR fictive ou autorisée, accompagnée du contrat, des cas de test, de la preuve observée et des risques résiduels.
 
----
+**Critères d’acceptation :** chaque remarque cite un comportement ou une exigence ; les faux positifs stylistiques sont écartés ; les données sensibles ne sont pas exposées ; le verdict distingue bloquant, question et suggestion.
 
-## RÉSUMÉ
-
-Deux patches valides ne se valent pas : l'un peut cacher un surcodage solution qui trompe l'audit visuel, l'autre peut cacher une garde humaine imprécise. La méthode reste la même : classer par tells, **prouver par tests**, ne jamais confondre "propre" et "correct". C'est le pont explicite entre `10_legacy_dungeon` (code humain incohérent) et `04-EPREUVE/04-BIG-APP-SNOOP/07_solo_vs_solution_drill` (code IA plausible mais faux).
+**Transfert obligatoire :** applique la même grille à un changement qui touche une API externe ou une migration de données. Explique quelles preuves supplémentaires deviennent nécessaires.

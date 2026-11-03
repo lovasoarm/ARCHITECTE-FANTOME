@@ -4,7 +4,7 @@ acte: comprendre
 route: complete
 ---
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md) | [Niveau suivant](../01-BONUS-VAULT/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Prérequis de contexte](../../03-PILOTAGE/01-ROADMAP-RUN/README.md) | [Autre module du bloc Épreuve](../03-REALTIME/README.md) | [Coffre de référence facultatif](../01-BONUS-VAULT/README.md)
 
 # Module 04-EPREUVE/02-TOOL-CAVE : Tool Cave
 
@@ -21,13 +21,12 @@ IDE changent tous les deux ans. Les méthodes de debug, la logique d'un shell, e
 correcte face à un outil d'IA générative restent vraies bien plus longtemps. C'est ce qu'on
 travaille ici.
 
-Prérequis : avoir livré au moins un projet avec un bug non trivial (Module `03-PILOTAGE/01-ROADMAP-RUN` ou plus). Sans
-un vrai bug vécu, la méthode de debug de ce niveau reste abstraite.
+Prérequis : avoir terminé `03-PILOTAGE/01-ROADMAP-RUN` et avoir vécu au moins un bug non trivial dans un projet. Tu dois pouvoir décrire le résultat attendu, le résultat observé et une tentative de reproduction. Sans ce cas concret, la méthode de debug de ce niveau reste abstraite. Le contrôle d'entrée est centralisé dans [`00-PREREQUIS.md`](00-PREREQUIS.md).
 
-Ce niveau réutilise : la méthode de reproduction et d'isolation posée au
-[Module `03-PILOTAGE/01-ROADMAP-RUN`](../../03-PILOTAGE/01-ROADMAP-RUN/README.md) (si le bug n'est pas reproductible, aucune méthode
-d'outillage ne compense), et la notion de compromis assumé introduite au
-[Module `05-MAITRISE/05-DAY-TO-LEGEND`](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md).
+Ce niveau réutilise la méthode de reproduction et d'isolation posée dans
+[Roadmap Run](../../03-PILOTAGE/01-ROADMAP-RUN/README.md). Si le bug n'est pas
+reproductible, aucune méthode d'outillage ne compense cette absence. Les autres méthodes
+sont enseignées dans Tool Cave et validées par son challenge et son boss-fight. Realtime est un autre module du bloc ; son contrôle d'entrée indique ses propres prérequis.
 
 Auto-test d'entrée :
 
@@ -38,10 +37,10 @@ Auto-test d'entrée :
 3. Un profiler te dit qu'une fonction prend 2% du temps total. Dans quelles conditions ce
    chiffre peut-il te mentir par omission ?
 
-**Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
-[le grimoire du niveau précédent](../../05-MAITRISE/05-DAY-TO-LEGEND/90-grimoire.md) (20 minutes), puis refais son
-[challenge](../../05-MAITRISE/05-DAY-TO-LEGEND/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
-trou amont, c'est attribuer au module `04-EPREUVE/02-TOOL-CAVE` une difficulté qui vient du module `05-MAITRISE/05-DAY-TO-LEGEND`.
+**Verdict de l'auto-test :** si la reproduction du bug ou deux réponses sur trois manquent,
+reprends [Roadmap Run](../../03-PILOTAGE/01-ROADMAP-RUN/90-grimoire.md) et son
+[challenge](../../03-PILOTAGE/01-ROADMAP-RUN/95-challenge.md). Bonus Vault est un coffre
+facultatif consultable à tout moment et ne conditionne pas l'entrée dans Tool Cave.
 
 **Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
@@ -118,3 +117,18 @@ transmissible, quel que soit l'outil que tu tiens dans la main.
 - [Grimoire : Module 04-EPREUVE/02-TOOL-CAVE, Tool Cave](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.
+
+## Audits et vérification
+
+- [Audit d’une décision technique](04-audit-dune-decision-technique.md) : vérifier contraintes, options et conséquence.
+- [Audit d’une réponse vérifiée](97-audit-dune-reponse-verification.md) : distinguer réponse plausible et preuve indépendante.

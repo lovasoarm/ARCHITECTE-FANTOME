@@ -1,6 +1,6 @@
 ---
 stability: intemporel
-last_reviewed: 2026-07
+last_reviewed: 2026-10-31
 depends_on_vendor: false
 acte: comprendre
 cognitive_level: L3
@@ -44,9 +44,9 @@ La durée de vie des cadres d’exécution et la récupération des objets dépe
 
 ---
 
-## 2) MARK-AND-SWEEP : L'ALGORITHME QUI NETTOIE
+## 2) MARK-AND-SWEEP : UN MODÈLE DE BASE
 
-Le GC de V8 (le moteur JS de Chrome et Node) utilise mark-and-sweep.
+Mark-and-sweep décrit un principe des garbage collectors traçants : partir des racines, marquer les objets atteignables, puis récupérer ceux qui ne le sont plus. Les moteurs modernes combinent plusieurs techniques et phases ; ne réduis pas le GC de V8 à une seule passe mark-and-sweep.
 
 Le principe est brutal et efficace :
 
@@ -354,16 +354,42 @@ function registerNinja(ninja) {
 
 ## RÉSUMÉ
 
-Le GC de V8 utilise mark-and-sweep : tout ce qui est atteignable depuis les roots survit, le reste meurt. Une fuite mémoire, c'est un objet qu'on ne veut plus mais qu'une référence maintient en vie : tableau global qui grossit, listener non retiré, closure qui capture trop. `WeakMap` et `WeakSet` résolvent le cas où tu veux associer des données à un objet sans empêcher sa destruction. Comprendre le GC, c'est comprendre pourquoi ton app ralentit sans raison apparente.
+Le modèle traçant part des roots : les objets atteignables restent vivants pendant ce cycle de collecte ; les objets inatteignables peuvent être récupérés. Le moteur peut combiner plusieurs stratégies et phases. Une fuite mémoire, c'est un objet qu'on ne veut plus mais qu'une référence maintient en vie : tableau global qui grossit, listener non retiré, closure qui capture trop. `WeakMap` et `WeakSet` résolvent le cas où tu veux associer des données à un objet sans empêcher sa destruction. Comprendre le GC, c'est comprendre pourquoi ton app ralentit sans raison apparente.
 
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
-
-<!-- AF-P0-2026-10-30: missing_transfer -->
 
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Le garbage collector : le nettoyeur que tu n'entends jamais » à un service long-vivant plutôt qu’un script ponctuel. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Le garbage collector : le nettoyeur que tu n'entends jamais** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Observer le cycle de vie des objets
+
+**Mission liée à « Le garbage collector : le nettoyeur que tu n'entends jamais » :** Construis une petite expérience Kintana qui crée, conserve puis libère des objets. Distingue objet inaccessible, objet encore référencé et mémoire effectivement rendue au système.
+
+**Livrable :** Schéma des références, expérience contrôlée et observations documentées.
+
+**Critères d’acceptation :** Aucune durée de collecte n’est présentée comme garantie ; les racines sont identifiées ; heap utilisé et mémoire réservée sont distingués.
+
+**Transfert obligatoire :** Une mémoire réservée ne redescend pas immédiatement : explique pourquoi cela ne prouve pas à lui seul une fuite.

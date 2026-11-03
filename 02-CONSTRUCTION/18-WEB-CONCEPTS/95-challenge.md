@@ -26,7 +26,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [53-caching_strategies_minimini_projet.md](53-caching_strategies_minimini_projet.md)
 - [54-serialization_minimini_projet.md](54-serialization_minimini_projet.md)
 - [55-seo_and_rendering_minimini_projet.md](55-seo_and_rendering_minimini_projet.md)
-- [EXO LECTURE : 15-25 minutes (Web Concepts)](09-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Web Concepts)](09-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 02-CONSTRUCTION/18-WEB-CONCEPTS](97A-EXO-VERIFICATION.md)
 - [Web concepts : Drill exécutable](10-web_concepts_drill_exec.md)
 

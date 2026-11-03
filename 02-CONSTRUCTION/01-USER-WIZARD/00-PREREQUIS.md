@@ -17,18 +17,16 @@ Temps de lecture ~2 min
 
 Acte attendu : évaluer. Trois minutes, seul, sans ouvrir le module.
 
-Si une seule ligne ci-dessous te fait hésiter, tu ouvres d'abord ce qu'elle nomme. Ouvrir ce
-module sans ces acquis coûte la séance : tu apprendrais le prérequis à la place du module.
+Ce diagnostic repère les notions réutilisées, mais ne ferme pas l’accès. Les courses entre requêtes, le double submit et les réponses concurrentes font partie des problèmes étudiés dans ce module : tu n’as pas à les maîtriser avant d’entrer.
 
 ## Ce que tu dois déjà savoir faire
 
-Module `00-SOCLE/02-PROLOGUE` à 03 (ou équivalent) : bases HTTP, état de composant, notion de requête asynchrone.
-Tu dois savoir ce qu'est une race condition, même vaguement, avant d'attaquer la leçon 2.
+Repères utiles : savoir lire un composant simple, reconnaître une requête HTTP et comprendre qu’une opération réseau est asynchrone. Tu peux revoir ces bases dans `00-SOCLE/02-PROLOGUE/` et `01-CADRAGE/02-ASYNC/`. Une race condition n’est pas un prérequis : le module introduit les situations concrètes qui permettent de la comprendre.
 
 ## Verdict
 
-- [ ] Toutes les lignes passent → ouvre [`README.md`](README.md).
-- [ ] Une ligne ne passe pas → reviens ici quand elle passe. Note la date, pas l'excuse.
+- **Les repères sont connus** → ouvre [`README.md`](README.md).
+- **Un repère est nouveau** → ouvre quand même le module ; garde le lien de remédiation à proximité et vérifie la notion au moment où la leçon l’utilise. Ce diagnostic ne bloque pas l’accès.
 
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 

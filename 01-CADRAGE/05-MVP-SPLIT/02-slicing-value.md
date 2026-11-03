@@ -165,3 +165,33 @@ construit assez solide pour être réutilisé sans construire une fondation comp
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+<!-- AF-LESSON-PROFILE: mvp -->
+
+## Repères de décision
+
+- **Pourquoi :** Découper par valeur limite le travail engagé avant d'avoir appris quelque chose. Une tranche verticale valide un parcours complet plutôt qu'une couche technique isolée.
+- **Quand l’utiliser / quand l’éviter :** Utilise le slicing pour prioriser une livraison incertaine. Ne coupe pas une règle de sécurité, une transaction ou une preuve obligatoire juste pour annoncer un MVP plus vite.
+- **Limites :** Un MVP n'est pas une version bâclée. Réduire le périmètre ne réduit pas l'exigence de sécurité, d'intégrité des données ou de réversibilité.
+
+## Mécanisme : la version sans magie
+
+Choisis un acteur, un problème, un flux complet et un résultat mesurable. Liste les non-objectifs, puis garde une capacité de retour arrière.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Découper par valeur, pas par couche** se rattache à ce cas concret : Le premier slice Kintana peut permettre à un demandeur de créer et suivre une demande, sans encore introduire toutes les fonctions de reporting ou d'automatisation.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Découper une tranche verticale utile
+
+> **Arc Naruto / Konoha :** une mission n'est pas meilleure parce qu'elle a 40 étapes. Le bon premier slice prouve une valeur sans mettre le village en danger.
+
+**Mission liée à « Découper par valeur, pas par couche » :** Prends une demande Kintana trop large. Découpe-la en slices qui traversent UI, API et persistance. Choisis le premier slice, écris les non-objectifs et ajoute un critère de sortie qui protège les invariants métier.
+
+**Livrable :** un backlog priorisé, une tranche bout-en-bout, critères d'acceptation et plan de rollback ou de désactivation.
+
+**Critères d’acceptation :** la tranche apporte une valeur testable à un acteur ; les dépendances et risques sont explicites ; aucun contrôle d'accès ou de cohérence n'est reporté au motif de MVP.
+
+**Transfert obligatoire :** Le budget ou le délai est divisé par deux. Réduis le périmètre sans casser le parcours utile ni les invariants de sécurité.

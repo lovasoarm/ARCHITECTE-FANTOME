@@ -59,6 +59,44 @@ New-Item -ItemType Directory -Force -Path src/utils,src/fighters,src/jutsus,src/
 
 Il n'y a pas de `npm install` nécessaire tant qu'aucune dépendance externe n'est déclarée. Lorsque tu ajoutes volontairement une dépendance, justifie-la dans un ADR, puis exécute `npm install` pour enregistrer le lockfile et les dépendances. Le projet impose de privilégier le JavaScript natif.
 
+### Étape B0 : apprendre ton premier test (aucune expérience préalable requise)
+
+Tu n'as pas besoin d'avoir suivi le module `03-TESTING`. Voici le minimum pour comprendre ce que tu vas faire. Un test est un petit programme qui appelle une fonction et vérifie un résultat attendu.
+
+1. Crée d'abord `tests/ajouterBonus.test.js` :
+
+```js
+import test from "node:test";
+import assert from "node:assert/strict";
+import { ajouterBonus } from "../src/utils/ajouterBonus.js";
+
+test("ajoute le bonus au score de base", () => {
+  assert.equal(ajouterBonus(7, 5), 12);
+});
+```
+
+2. Lance le test :
+
+```bash
+node --test tests/ajouterBonus.test.js
+```
+
+Au tout premier lancement, Node peut signaler que le module importé n'existe pas encore. C'est normal : tu as écrit le besoin avant la fonction. Crée alors `src/utils/ajouterBonus.js` avec une première version volontairement incomplète :
+
+```js
+export function ajouterBonus(score, bonus) {
+  return 0;
+}
+```
+
+3. Relance la commande. Cette fois, le test doit échouer sur la valeur (`0` au lieu de `12`). C'est un **rouge utile** : le test s'exécute, mais le comportement n'est pas encore correct.
+4. Remplace le corps par `return score + bonus;`, puis relance la commande. Le test doit devenir vert.
+5. Modifie une entrée, prédis le résultat, puis ajoute un second test. Ne conserve pas cet exemple artificiel comme preuve du moteur de combat : il sert uniquement à apprendre le runner et les assertions.
+
+`test(...)` nomme le comportement vérifié ; `assert.equal(actual, expected)` compare le résultat obtenu à celui que tu attends. `node:test` et `node:assert/strict` sont fournis par Node : aucune bibliothèque externe ni aucun compte en ligne n'est nécessaire. Si tu utilises `npm test`, cette commande n'est disponible qu'après la création du `package.json` et du script `"test": "node --test"` décrits à l'étape A.
+
+**Tu peux maintenant passer à l'étape B.** Les tests du moteur devront porter sur de vrais comportements (RNG, dégâts, cooldowns, transitions d'état), pas sur une addition d'exemple.
+
 ### Étape B : TDD et création du code
 
 Crée d'abord un premier test, par exemple `tests/rng.test.js`, puis exécute :
@@ -255,7 +293,7 @@ Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigenc
 - Validation d'entrée (OWASP A03 - Injection) : le moteur doit rejeter proprement une commande/config malformée sans exposer sa stack interne.
 - Déni de service (OWASP A05) : borner toute boucle/récursion pilotée par l'entrée pour éviter un blocage du process.
 
-Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `97-CHECKPOINT-PACK` de ce projet contient un test de sécurité qui doit passer.
+Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Ajoute dans le dossier `tests/` de ce projet un test ciblé pour au moins une des menaces retenues. Documente dans le README la commande exacte qui exécute ce test. Aucun pack de correction séparé n’est fourni dans ce projet.
 
 ---
 
@@ -290,3 +328,30 @@ Avant de coder, produis :
 - les critères qui te feront changer d’architecture en cours de route.
 
 Ne cherche pas une architecture « correcte » dans le curriculum : le but est de reconstruire un modèle sous contrainte, puis de défendre pourquoi il tient.
+
+<!-- AF-PROJECT-REAL-WORLD-GATE-1.1 -->
+
+## Mission produit évaluée : Moteur de règles et de capacité Kintana
+
+Le simulateur de combat Naruto/Sasuke reste une **kata d'entrée** pour fonctions pures, stratégies et état immuable. Il n'est plus, à lui seul, le livrable de portfolio.
+
+### Mission évaluée : moteur de règles et de capacité Kintana
+
+Construis le moteur de décision du parcours de demande et de réservation :
+
+- règles d'éligibilité selon le type de demande, le centre, le rôle et l'état courant ;
+- calcul de capacité disponible avec priorité métier explicite ;
+- transitions d'état autorisées/interdites et raisons de refus stables ;
+- idempotence d'une commande répétée ;
+- concurrence sur le dernier créneau (aucun double-booking) ;
+- données de test synthétiques, reproductibles et sans informations personnelles.
+
+**Produit de référence :** [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
+
+**Livrables :** module de domaine indépendant de l'interface, tests table-driven, test de concurrence/transaction, ADR comparant au moins deux stratégies et rapport de mesure sur un volume annoncé.
+
+**Gate :** zéro mutation cachée ; invariant de capacité vérifié ; même commande rejouée sans double effet ; cas limite et contre-exemple documentés. Un benchmark local reste `LAB`.
+
+**Hors scope :** pas de microservices ni de moteur de règles générique tant que le besoin ne les justifie.
+
+**Règle de livraison :** la kata d’origine reste utile pour isoler le concept et son univers narratif. La validation finale du projet repose sur la mission métier ci-dessus, ses tests, ses limites et les preuves produites par l’apprenant. Les résultats de simulation ne sont jamais présentés comme des résultats de production.

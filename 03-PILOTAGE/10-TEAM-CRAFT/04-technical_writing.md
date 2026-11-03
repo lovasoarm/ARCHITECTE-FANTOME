@@ -1,19 +1,19 @@
 ---
-perishability_id: PER-0065
-
-stability: perissable
+stability: intemporel
 acte: comprendre
 cognitive_level: L4
 perturbation_modes: [decision_organisationnelle, changement_contexte]
 anti_recipe_key: decision_organisationnelle+changement_contexte
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0065
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+canonical_resource: "06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md"
+source_scope: "Leçon interne de rédaction technique reliée au cas Kintana ; les exemples de versions et de commandes du document sont illustratifs, pas une matrice de support actuelle."
 ---
+
 > **SCÈNE CRAZYDEVS : vestiaire après match :** deux personnes peuvent être techniquement en désaccord sans devenir ennemies. Le vrai skill est de séparer le problème, le modèle, la décision… et l'ego.
 
 # Technical writing : écrire pour des devs
@@ -154,9 +154,9 @@ setTimeout(() => {
 }, 0);
 
 // CAS 2 : workaround (contournement) avec sa raison
-// workaround : Chromium 112 ignore `pointer-events: none` sur les SVG imbriqués
-// ticket upstream : https://bugs.chromium.org/p/chromium/issues/detail?id=XXXXX
-// à supprimer quand Chromium 115 sera le minimum supporté
+// Exemple fictif : un navigateur donné ignore une propriété sur un SVG imbriqué.
+// Ticket fictif : BUG-EXAMPLE-123  : ce n’est pas une référence publique.
+// Supprimer le contournement lorsque la version minimale supportée ne présente plus ce bug.
 svgElement.style.pointerEvents = "all";
 
 // CAS 3 : logique métier non déductible du code
@@ -364,3 +364,51 @@ Un post-mortem identifie les problèmes systémiques, sans blame individuel.
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
+
+<!-- AF-DIAGRAM:leadership -->
+
+## Repère visuel utile : Écrire une procédure vérifiable
+
+```text
+lecteur et tâche
+      |
+      v
+prérequis et avertissements
+      |
+      v
+étapes ordonnées
+      |
+      v
+résultat attendu
+      |
+      v
+dépannage et mise à jour
+```
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Technical writing : écrire pour des devs** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Écrire une procédure technique exploitable
+
+**Mission liée à « Technical writing : écrire pour des devs » :** Rédige pour Kintana une note permettant à un développeur qui ne connaît pas le module de comprendre le flux, d’exécuter la tâche documentée et de diagnostiquer un échec courant.
+
+**Livrable :** README ou runbook court, prérequis, procédure, sortie attendue et dépannage.
+
+**Critères d’acceptation :** Les commandes et chemins sont cohérents avec le dépôt ; les hypothèses sont explicites ; les étapes dangereuses comportent une vérification préalable.
+
+**Transfert obligatoire :** Un lecteur n’a pas le même environnement : sépare prérequis indispensables et variantes.

@@ -6,20 +6,21 @@ route: complete
 
 # Module 03-PILOTAGE/09-TEAM-QUEST : Team Quest
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../03-QUALITY-SHIELD/README.md) | [Niveau suivant](../../04-EPREUVE/04-BIG-APP-SNOOP/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../08-PRODUIT-COUT-ROI/README.md) | [Niveau suivant](../10-TEAM-CRAFT/README.md)
 
 **Ce niveau réutilise :** [08-ROADMAP-RUN](../01-ROADMAP-RUN/04-tracking-reality.md) : les signaux de derive, réutilises pour reperer un desaccord d'equipe avant qu'il bloque un jalon.
 
-**Auto-test d'entrée :**
+**Auto-test d'entrée :** les questions ci-dessous vérifient les acquis de Product Cost & ROI
+et de Roadmap Run, pas le contenu de Team Quest.
 
-1. Sur quel critère choisis-tu quoi tester : une règle de couverture ou le coût réel d'une panne ?
-2. Qu'est-ce qu'un postmortem sans blame, et pourquoi cette contrainte existe-t-elle ?
-3. Que doit permettre une bonne observabilite sans avoir a se connecter en SSH ?
+1. Pourquoi une grille de décision doit-elle inclure valeur, coût, risque et coût d'opportunité ?
+2. Pourquoi « ne rien faire » est-elle une option de référence utile ?
+3. Quel signal de dérive dans un plan ou un jalon doit conduire à réexaminer la décision ?
 
-**Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
-[le grimoire du niveau précédent](../03-QUALITY-SHIELD/90-grimoire.md) (20 minutes), puis refais son
-[challenge](../03-QUALITY-SHIELD/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
-trou amont, c'est attribuer au module `03-PILOTAGE/09-TEAM-QUEST` une difficulté qui vient du module `03-PILOTAGE/03-QUALITY-SHIELD`.
+**Verdict de l'auto-test :** si deux réponses ou plus manquent, reprends le grimoire du
+[niveau précédent, Product Cost & ROI](../08-PRODUIT-COUT-ROI/90-grimoire.md) et, si nécessaire,
+celui de [Roadmap Run](../01-ROADMAP-RUN/90-grimoire.md). Roadmap Run est un prérequis amont
+réutilisé, pas le précédent immédiat dans l'ordre du bloc.
 
 **Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
@@ -33,8 +34,7 @@ en friction qu'en bugs. Ce niveau construit les règles implicites qui doivent d
 explicites, le flux Git qui absorbe le travail parallèle sans collision, et la communication
 qui tient sous pression sans dégénérer en silence ou en conflit ouvert.
 
-Prérequis : Module `03-PILOTAGE/01-ROADMAP-RUN` (Roadmap Run) : les accords d'équipe n'ont de sens que rapportés à un
-plan et des jalons partagés.
+Prérequis : avoir terminé `03-PILOTAGE/08-PRODUIT-COUT-ROI` et maîtriser les repères de planification et de suivi de `03-PILOTAGE/01-ROADMAP-RUN`. Product Cost & ROI est le précédent immédiat dans l'ordre du bloc ; Roadmap Run est un prérequis amont réutilisé pour relier les accords d'équipe à un plan et à des jalons partagés.
 
 ## Ce que tu sais faire à la sortie
 
@@ -123,3 +123,13 @@ L’influence traverse des parties prenantes aux objectifs différents avant d�
 La sortie Staff de ce niveau ne s’arrête pas à « savoir bien communiquer ». Utilise [22-SIMULATION-CROSS-TEAM.md](../../06-ANNEXES-TRANSVERSES/22-SIMULATION-CROSS-TEAM.md) pour simuler un problème porté par plusieurs équipes avec intérêts légitimes mais contradictoires.
 
 La preuve porte sur l’alignement, le compromis, l’adoption et la mesure d’impact : pas seulement sur la qualité du texte technique.
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **décision qui traverse les équipes** : Rédige une RFC/ADR sur une décision Kintana qui affecte API, données et exploitation. Compare au moins deux options, demande une revue contradictoire et transforme les objections en critères d’acceptation. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : La décision a un propriétaire, un coût, un plan de migration et une condition de révision ; l’adoption réelle reste « non démontrée » tant qu’une équipe ne l’a pas adoptée.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.

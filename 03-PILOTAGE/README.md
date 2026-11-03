@@ -33,7 +33,7 @@ QUALITY / TEAM-QUEST.
 | [11-LEADERSHIP-MENTORAT](11-LEADERSHIP-MENTORAT/README.md)   | influence sans autorité                             | :           |
 | [12-PLATFORM-ENGINEERING](12-PLATFORM-ENGINEERING/README.md) | GitOps, IDP, golden paths, plateforme comme produit | :           |
 
-Tu coches le niveau 3 quand la retrospective de palier est signée. La
+Tu coches le niveau 3 quand la retrospective de palier est signée.
 Le [Mode Survie](../00-SOCLE/01-GETTING-STARTED/09-ROUTE-SURVIE.md) s'arrête au Boss de sortie
 de ce niveau : employable, pas Staff.
 
@@ -58,3 +58,9 @@ de ce niveau : employable, pas Staff.
 <!-- CONTENU-DOSSIER:fin -->
 
 > **Compagnons actifs :** [Code d'honneur CrazyDevs](../06-ANNEXES-TRANSVERSES/07-FUN-CODE-HONNEUR.md) · [Synchronisation TECH-ILA](../06-ANNEXES-TRANSVERSES/04-TECH-ILA/02-SYNCHRONISATION-PARCOURS.md)
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **décision qui traverse les équipes** : Rédige une RFC/ADR sur une décision Kintana qui affecte API, données et exploitation. Compare au moins deux options, demande une revue contradictoire et transforme les objections en critères d’acceptation. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : La décision a un propriétaire, un coût, un plan de migration et une condition de révision ; l’adoption réelle reste « non démontrée » tant qu’une équipe ne l’a pas adoptée.

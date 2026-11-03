@@ -20,7 +20,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 
 ## Les épreuves de ce module, dans l'ordre
 
-- [EXO LECTURE : 15-25 minutes (Realtime)](02A-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Realtime)](02A-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 04-EPREUVE/03-REALTIME](97-EXO-VERIFICATION.md)
 
 ## Ce qui valide le challenge (les quatre actes, aucun ne se saute)

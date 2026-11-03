@@ -40,7 +40,7 @@ Livrables **Staff** du même palier : sans eux la rétro ignore la moitié du ni
 - `SLO.md` et une injection de panne ([06-FIABILITE-SLO](06-FIABILITE-SLO/07-injection_panne.md)) ;
 - `06A-BUDGET-CLOUD.md` à trois paliers ([07-CLOUD-FOUNDATIONS](./07-CLOUD-FOUNDATIONS/README.md)) ;
 - `DECISION-ARBITRAGE.md` ([08-PRODUIT-COUT-ROI](./08-PRODUIT-COUT-ROI/README.md)) ;
-- revue S5 + `STANDARDS-AGENTS.md` ([11-LEADERSHIP-MENTORAT](./11-LEADERSHIP-MENTORAT/README.md)).
+- préparation S5 (revue, note direction, mentorat) ; `STANDARDS-AGENTS.md` relève de G8 uniquement si des agents autonomes sont utilisés ([11-LEADERSHIP-MENTORAT](./11-LEADERSHIP-MENTORAT/README.md)).
 
 Pour chacun des quatre : une ligne FAUX / INCOMPLET / TENU. Un palier « CONDUITE » qui ne
 juge que ROADMAP / QUALITY / TEAM-QUEST n'est pas ce palier.

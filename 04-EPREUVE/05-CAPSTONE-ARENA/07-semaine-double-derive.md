@@ -1,7 +1,6 @@
 ---
-perishability_id: PER-0069
 
-stability: perissable
+stability: intemporel
 acte: epreuve
 noyau: oui
 cognitive_level: L4
@@ -9,11 +8,12 @@ perturbation_modes: [changement_echelle, temps_limite]
 anti_recipe_key: changement_echelle+temps_limite
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0069
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/06-FIABILITE-SLO/07-injection_panne.md"
+source_scope: "Scénario synthétique de double dérive s’appuyant sur le drill SLO interne ; aucune panne réelle ni mesure fournisseur n’est alléguée."
 ---
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 

@@ -173,3 +173,33 @@ de l'annonce de date faite à un sponsor : c'est un acte humain, engageant, qui 
    daté et rattaché à un artefact vérifiable.
 3. Explique le mécanisme qui fait qu'une inconnue découverte tard coûte plus cher qu'une
    inconnue découverte tôt, et pas de façon linéaire.
+
+<!-- AF-LESSON-PROFILE: discovery -->
+
+## Repères de décision
+
+- **Pourquoi :** Un produit peut être parfaitement codé et inutile si la demande initiale n'est pas le vrai problème. La découverte réduit le risque de financer une fonctionnalité non utilisée.
+- **Quand l’utiliser / quand l’éviter :** Utilise cette démarche avant une nouvelle feature ou une refonte coûteuse. Pour un incident connu et bloquant, traite d'abord l'urgence puis reviens à l'analyse de fond.
+- **Limites :** Un entretien isolé ne prouve pas la demande du marché. Les intentions déclarées peuvent diverger des usages ; cherche des observations, données et contre-exemples.
+
+## Mécanisme : la version sans magie
+
+Sépare demande, utilisateur, tâche, friction et résultat. Formule une hypothèse falsifiable, mesure un signal de départ et définis ce qui te ferait abandonner l'idée.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce niveau existe : ROADMAP-RUN** se rattache à ce cas concret : Dans Kintana, le demandeur, l'agent et le superviseur n'ont pas les mêmes problèmes. Une feature demandée par le superviseur peut compliquer le parcours du demandeur.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Valider un problème avant la feature
+
+> **Arc Naruto / Konoha :** ne pars pas en mission parce qu'un chef a crié « go ». Vérifie qui souffre, à quel moment et comment tu sauras que ça va mieux.
+
+**Mission liée à « Pourquoi ce niveau existe : ROADMAP-RUN » :** Choisis un irritant du parcours Kintana. Écris un script d'entretien, interroge au moins deux profils si tu as accès à de vrais participants (sinon étiquette la simulation), observe une tâche, puis formule hypothèse, indicateur et non-objectifs.
+
+**Livrable :** une fiche problème, une carte acteurs/jobs, les observations anonymisées, une baseline ou un statut `NON MESURÉ` et un test d'invalidation.
+
+**Critères d’acceptation :** la demande initiale est séparée du besoin ; les profils et limites de l'échantillon sont précisés ; aucune adoption n'est inventée ; un critère d'abandon est défini.
+
+**Transfert obligatoire :** Un manager réclame un tableau de bord, mais les utilisateurs demandent une notification. Compare les problèmes avant de choisir la solution.

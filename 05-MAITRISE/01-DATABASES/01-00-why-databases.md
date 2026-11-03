@@ -9,6 +9,13 @@ perturbation_modes: [preuve_partielle, transmission]
 anti_recipe_key: preuve_partielle+transmission
 transfer_distance: medium
 assessment_role: instructional_checkpoint
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "05-MAITRISE/01-DATABASES/02-sql_basics.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 05-MAITRISE/01-DATABASES/02-sql_basics.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
@@ -113,3 +120,33 @@ Maintenant, ouvre `02-sql_basics.md`. Et commence à lire une requête comme que
 
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+
+<!-- AF-LESSON-PROFILE: database -->
+
+## Repères de décision
+
+- **Pourquoi :** La modélisation et les contraintes protègent l'intégrité des données même quand plusieurs clients ou processus agissent en même temps.
+- **Quand l’utiliser / quand l’éviter :** Utilise les transactions et contraintes pour les invariants métier. Choisis le modèle selon les accès réels ; ne choisis pas NoSQL juste parce que le schéma semble flexible.
+- **Limites :** La base ne choisit pas les bonnes règles métier à ta place. Les index coûtent en écriture et stockage ; l'isolation a un coût ; les garanties varient selon le moteur et sa configuration.
+
+## Mécanisme : la version sans magie
+
+Part des requêtes et invariants, conçois clés et contraintes, exécute les écritures dans une transaction, puis vérifie le comportement concurrent et les migrations.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce module mérite ton temps : databases** se rattache à ce cas concret : Kintana ne doit pas attribuer le dernier créneau à deux demandeurs ni laisser un agent lire le dossier d'un autre tenant.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Intégrité transactionnelle des demandes et créneaux
+
+> **Arc One Piece / Grand Line :** la base est le registre du navire. Si deux personnes modifient la même ligne sans règle, le journal de bord devient une fiction.
+
+**Mission liée à « Pourquoi ce module mérite ton temps : databases » :** Modélise une partie du domaine Kintana avec clés, contraintes et index justifiés. Écris une transaction qui réserve le dernier créneau, puis exécute deux requêtes concurrentes dans une base de test pour vérifier qu'une seule gagne.
+
+**Livrable :** DDL/migration, requêtes d'accès, transaction, test de concurrence et plan de restauration de fixture.
+
+**Critères d’acceptation :** les invariants critiques sont ancrés côté base ; le test concurrent est réellement exécuté sur le moteur annoncé ; les index sont justifiés par les requêtes ; la migration est réversible ou son risque est documenté.
+
+**Transfert obligatoire :** Ajoute un deuxième centre de service et un historique plus long. Vérifie index, isolation, rétention et accès par tenant.

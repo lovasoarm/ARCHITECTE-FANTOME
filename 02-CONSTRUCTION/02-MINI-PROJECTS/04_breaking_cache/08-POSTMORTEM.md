@@ -3,60 +3,50 @@ stability: intemporel
 acte: pratiquer
 ---
 
-> **CrazyDevs : briefing de mission :** ce concept doit survivre au moment où quelqu’un te demande « pourquoi ? » en plein chaos. Garde l’explication technique exacte, puis donne-lui une image qu’on peut raconter demain.
+# Postmortem : 04 BREAKING CACHE
 
-# Postmortem : à écrire par l'apprenant
-
-<!-- AF-DIAGRAM:incident -->
-
-```text
-Signal
-  │
-  ▼
-Triage ─► Mitigation ─► Recovery ─► Postmortem
-  ▲                                  │
-  └────────────── learning ─────────┘
-```
-
-La gestion d’incident transforme un signal de panne en restauration puis en apprentissage durable.
-
-**Aucun corrigé n'est fourni dans le mini-projet.** Ce document devient ta preuve de raisonnement après l'action.
+À remplir par l'apprenant après un incident réel de ton exercice ou une simulation explicitement indiquée comme telle. Ce document n'est pas un corrigé.
 
 ## Résumé
 
-- Que voulais-je obtenir ?
-- Que s'est-il réellement passé ?
+- Résultat attendu :
+- Résultat observé :
+- Contexte (simulation locale ou système réel) :
 
 ## Chronologie
 
-- T-... :
-- T-... :
-- T-... :
+| Temps | Signal / action | Observation vérifiable |
+| ----- | --------------- | ---------------------- |
+| T0    |                 |                        |
+| T1    |                 |                        |
+| T2    |                 |                        |
 
-## Décision la plus importante
+## Impact
 
-- Décision :
-- Hypothèses disponibles à ce moment :
-- Données que je n'avais pas :
+- Donnée périmée ou incorrecte servie ?
+- Tenant / boutique concernés :
+- Durée d'exposition connue ou estimée :
+- Appels loader / hits / misses observés :
 
-## Cause racine
+## Cause
 
 - Symptôme :
 - Cause immédiate :
-- Cause système :
-
-## Ce qui m'a trompé
-
-- biais possible :
-- information manquante :
-- signal ignoré :
+- Cause système (contrat, clé, TTL, invalidation, concurrence, mesure) :
+- Hypothèse initiale qui était fausse :
 
 ## Correction et prévention
 
-- action immédiate :
-- changement structurel :
-- test ou garde-fou ajouté :
+- Mitigation :
+- Correction durable :
+- Test ajouté :
+- ADR modifié :
+- Risque résiduel :
 
-## Ce que je changerais la prochaine fois
+## Comment j'ai encaissé le drift
 
-> **CrazyDevs :** un bon postmortem n'est pas le générique de fin où tout le monde dit “on a appris”. C'est le moment où tu montres précisément quelle pièce de ton modèle mental a cassé et ce que tu vas reconstruire.
+À compléter uniquement si une perturbation de `05-SPEC-DRIFT-TRIGGERS.md` a été activée.
+
+## Ce que je ne peux pas conclure
+
+Écris explicitement ce que tes tests locaux ne prouvent pas : charge réelle, multi-instance, cohérence distribuée, capacité de production, ou disponibilité d'une base distante.

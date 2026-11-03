@@ -4,97 +4,56 @@ acte: construire
 artefact: gabarit-apprenant
 ---
 
-> ### SCÈNE CRAZYDEVS : Breaking Bad
->
-> Le système est maintenant ton labo : le mécanisme semble tranquille jusqu'au moment où une petite incohérence fait toute la différence. Ton job n'est pas de réciter la règle : **trouve l'ouverture, mesure ce qui casse, puis ferme-la sans tricher**.
->
-> **Règle de scène :** l'analogie sert le mécanisme ; dès qu'elle simplifie trop, reviens au modèle technique exact.
+# SECURITY : préparation propre à 04 BREAKING CACHE
 
-# SECURITY : 04_breaking_cache
+Ce document est un gabarit à compléter par l'apprenant. Il ne certifie pas une sécurité déjà obtenue.
 
-<!-- AF-DIAGRAM:cache -->
+## 1. Actifs et frontières
 
-```text
-Request
-  │
-  ▼
-┌──────────┐
-│  Cache   │
-└─┬────┬───┘
-  │hit │miss
-  ▼    ▼
-Value  ┌──────────┐
-       │ Database │
-       └────┬─────┘
-            ▼
-         populate
-```
+- Donnée mise en cache : snapshot de résumé de stock non sensible.
+- Source de vérité : repository/source qui persiste le stock.
+- Périmètre d'isolation : tenant + boutique.
+- Processus : une instance Node.js locale, pas de cache partagé.
+- Données interdites dans ce cache pédagogique : secrets, tokens, mots de passe et données personnelles.
 
-Le cache court-circuite la source de vérité en cas de hit et la recharge en cas de miss.
+À compléter pour ton implémentation :
 
-Ce fichier est un **gabarit de préparation**, pas une preuve de sécurité déjà obtenue.
-La preuve finale est produite dans le dépôt apprenant et recroisée avec
-`04-SECURITY-GATE.md`, `08-POSTMORTEM.md` et les tests du projet.
+- Entrées et valeurs réellement acceptées :
+- Identifiants de tenant/boutique validés par :
+- Composants autorisés à construire la clé :
+- Endroits où les données peuvent être journalisées :
 
-## 1. Entrées et frontières
+## 2. Menaces pertinentes
 
-- Sources d'entrée à relever :
-- Données sensibles possibles :
-- Surface d'exposition :
-- Hypothèses de confiance :
+| Menace                                                                   | Conséquence possible                                                    | Contrôle / preuve à produire                                                                    |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Clé tenant incomplète ou collision de sérialisation (ex. séparateur `:`) | fuite du résumé d'une autre boutique                                    | tuple JSON ou sérialisation injective + test des couples ambigus                                |
+| Clé libre contrôlée par un appelant                                      | accès à une entrée hors de son périmètre                                | construire la clé dans le service à partir d'identifiants validés                               |
+| TTL invalide ou horloge non monotone                                     | valeur qui reste trop longtemps ou expire immédiatement                 | validation du TTL, horloge monotone par défaut et tests avec horloge injectée                   |
+| donnée périmée après mise à jour                                         | résumé de stock faux                                                    | invalider après commit réussi ; test de non-invalidation si commit échoue                       |
+| loader en erreur puis valeur partielle cachée                            | donnée incorrecte servie sur les lectures suivantes                     | test : erreur du loader → aucune entrée                                                         |
+| journal contenant la valeur cache                                        | exposition de données inutiles                                          | ne journaliser ni payload ni secret ; inspecter les logs produits                               |
+| croissance de clés sans borne                                            | consommation mémoire croissante ; entrée expirée jamais relue conservée | cardinalité bornée dans la fixture ; expliciter qu'une politique de capacité est hors périmètre |
 
-## 2. Secrets et dépendances
+## 3. Dépendances et secrets
 
-<!-- AF-DIAGRAM:secrets -->
+- Dépendances runtime : aucune prévue.
+- `package.json` créé par l'apprenant ? :
+- Dépendances ajoutées et justification :
+- Secrets ou variables d'environnement réellement nécessaires :
+- Commande exécutée et résultat daté (ou `NON EXÉCUTÉ`) :
 
-```text
-┌──────────────┐
-│ Secret store │
-└──────┬───────┘
-       │ inject
-       ▼
-┌──────────────┐      ✗ hardcode
-│ Runtime      │◄──────────────
-└──────┬───────┘
-       ▼
-   application
-```
+N'ajoute pas de scan `npm audit` artificiel si tu n'as aucune dépendance. Si tu en ajoutes, documente leur nécessité, leur version et le résultat du contrôle adapté.
 
-Un secret doit entrer dans le système au runtime et ne pas être figé dans le code ou l’image.
+## 4. Limites connues
 
-- Variables d'environnement réellement utilisées :
-- Secrets hors dépôt vérifiés :
-- Dépendances et versions relevées :
-- Commande de vérification :
-- Résultat daté :
-
-## 3. Contrôles de sécurité
-
-- Validation des entrées :
-- Authentification / autorisation si applicable :
-- Gestion des erreurs et des sorties :
-- Journalisation sans données sensibles :
-- Tests de cas adverses :
-
-## 4. Gate de livraison
-
-Avant de déclarer le mini-projet terminé, l'apprenant doit :
-
-- [ ] jouer la checklist OWASP demandée par `04-SECURITY-GATE.md` ;
-- [ ] conserver les commandes et résultats réellement exécutés ;
-- [ ] reporter les écarts dans `08-POSTMORTEM.md` ;
-- [ ] rejouer le gate après la dernière modification ;
-- [ ] définir un seuil de réouverture si le contexte change.
+Ce projet ne prouve pas la sécurité d'un système multi-instance ou distribué. Une lecture concurrente commencée avant l'invalidation peut éventuellement réinsérer une ancienne valeur ; l'expiration borne une partie du risque mais ne supprime pas toutes les courses. Décris ce risque et la stratégie qui serait étudiée avant une mise en production.
 
 ## 5. Décision
 
-Risque résiduel accepté :
-
-Décision et justification :
-
-Preuve datée :
-
-Seuil de réouverture :
-
-> Ce fichier ne doit jamais être interprété comme une certification tant que les
-> cases et preuves réelles ne sont pas produites dans le dépôt de l'apprenant.
+- Risques effectivement testés :
+- Risques non testés / hors périmètre :
+- Risque résiduel accepté :
+- Preuves (fichier, test, ligne, résultat réel) :
+- Décision et justification :
+- Seuil de réouverture :

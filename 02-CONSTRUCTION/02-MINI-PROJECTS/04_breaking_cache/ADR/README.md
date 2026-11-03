@@ -3,51 +3,25 @@ stability: stable
 acte: comprendre
 ---
 
-# ADR : 04_breaking_cache
+# ADR : 04 BREAKING CACHE
 
-<!-- AF-DIAGRAM:cache -->
+Ce dossier est un espace de dépôt : les ADR sont écrits par l'apprenant à partir de décisions réellement prises.
 
-```text
-Request
-  │
-  ▼
-┌──────────┐
-│  Cache   │
-└─┬────┬───┘
-  │hit │miss
-  ▼    ▼
-Value  ┌──────────┐
-       │ Database │
-       └────┬─────┘
-            ▼
-         populate
-```
+## Minimum de livraison
 
-Le cache court-circuite la source de vérité en cas de hit et la recharge en cas de miss.
+Au moins trois ADR, numérotés de façon continue et fondés sur le [template ADR commun](../../97-templates/03-ADR_TEMPLATE.md) :
 
-Temps de lecture ~2 min
+- `ADR-001` : politique TTL, horloge et frontière exacte d'expiration ;
+- `ADR-002` : construction des clés et isolation tenant/boutique ;
+- `ADR-003` : invalidation/fraîcheur et décision de conserver le cache selon les mesures.
 
-Dossier de depot. Les ADR de ce projet, c'est toi qui les ecris :
-ils sont un livrable note, pas une lecture.
-
-## Format attendu
-
-`ADR-NNN_<slug>.md`, numerotation continue a partir de `ADR-001`, sur le gabarit
-[03-ADR_TEMPLATE.md](../../97-templates/03-ADR_TEMPLATE.md). Minimum 3 ADR pour valider le mini-projet,
-cf. [../README.md](../README.md).
-
-## Critere de succes
-
-Chaque ADR porte une decision reellement prise pendant ce projet : contexte,
-options ecartees, decision, consequence, signal de revision. Un ADR ecrit
-apres coup pour remplir le quota se voit : il n'a pas de consequence.
+Les titres sont des sujets d'enquête, pas des réponses imposées. Chaque ADR contient le contexte, au moins deux options plausibles, les critères, la décision, les conséquences et le signal qui ferait changer d'avis.
 
 ## Contenu du dossier
 
 <!-- CONTENU-DOSSIER:debut -->
 
-Fourni par le cours (contexte impose, ne remplace pas tes ADR) :
-
-- [ADR-001 : décision d’architecture](ADR-001_decision.md)
+- [ADR-001 : épreuve de décision non résolue](ADR-001_decision.md)
+- ADR-002 et ADR-003 à créer à partir des décisions réellement rencontrées.
 
 <!-- CONTENU-DOSSIER:fin -->

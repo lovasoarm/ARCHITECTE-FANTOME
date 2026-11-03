@@ -361,3 +361,33 @@ Sans relire, choisis une solution avec une contrainte supplémentaire (budget, l
 **Vérification.** L'échec d'un abonné suit une politique documentée, les autres abonnés reçoivent l'événement, les abonnés supprimés ne sont plus invoqués et aucun listener n'est retenu après fermeture.
 
 **Transfert.** L'observer en mémoire est synchrone et local ; ne le confonds pas avec un broker distribué durable, qui exige stockage, ack, retry, idempotence et gestion des doublons.
+
+<!-- AF-LESSON-PROFILE: patterns -->
+
+## Repères de décision
+
+- **Pourquoi :** Un pattern donne un vocabulaire et une structure à un problème récurrent ; mal choisi, il ajoute indirection et coût de maintenance.
+- **Quand l’utiliser / quand l’éviter :** Utilise un pattern quand le problème se répète et qu'il clarifie les variations. Préfère la solution directe tant que tu n'as pas deux comportements réellement différents.
+- **Limites :** Un pattern ne garantit ni extensibilité ni qualité. Un mauvais niveau d'abstraction peut rendre le flux plus difficile à comprendre que le code initial.
+
+## Mécanisme : la version sans magie
+
+Identifie la variation, les responsabilités et les dépendances ; compare une solution simple à une solution structurée ; mesure l'effet sur test et changement.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Observer : un événement se passe, tout le monde qui écoute réagit** se rattache à ce cas concret : Kintana peut avoir plusieurs canaux de notification ou politiques de dispatch. Le pattern ne doit apparaître que si ces variantes existent vraiment.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Évaluer un pattern sur un besoin réel
+
+> **Arc Capsule Corp. / DBZ :** un design pattern est un outil, pas une transformation magique. S'il ajoute plus de pièces qu'il ne résout de problèmes, laisse-le dans le coffre.
+
+**Mission liée à « Observer : un événement se passe, tout le monde qui écoute réagit » :** Applique la notion à une variation Kintana : canal de notification, stratégie d'affectation ou fournisseur. Écris d'abord une version simple, puis une alternative avec le pattern ; compare lisibilité, testabilité et coût d'ajout d'une seconde variante.
+
+**Livrable :** deux implémentations ou un ADR argumenté, tests de comportement commun et note de suppression si le pattern n'apporte rien.
+
+**Critères d’acceptation :** la variation est démontrée ; l'interface n'expose que le contrat utile ; les tests vérifient les comportements et non les classes internes ; le coût de complexité est déclaré.
+
+**Transfert obligatoire :** Supprime la deuxième variante. Décide si le pattern doit rester ou être retiré, et explique pourquoi.

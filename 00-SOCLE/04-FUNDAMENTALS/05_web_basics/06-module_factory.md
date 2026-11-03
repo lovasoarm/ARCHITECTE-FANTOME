@@ -50,13 +50,17 @@ var init = function () {
 }; // ECRASE window.init de ninja.js
 ```
 
-Tout ce qui n'est pas encapsulé (enfermé dans une portée) finit dans `window`. C'est la zone partagée entre tous tes scripts. Résultat : collision garantie sur les noms, bugs silencieux, debugging cauchemardesque.
+Dans les exemples ci-dessus, `ninja.js` et `combat.js` sont chargés comme **scripts classiques** dans une page HTML (`<script src=...>` sans `type="module"`). Dans ce contexte précis, une déclaration globale `var` ou une déclaration de fonction crée une propriété sur `window`, l'objet global du navigateur.
+
+**Attention : ce n'est pas vrai pour toutes les déclarations.** Un `let` ou un `const` placé au niveau supérieur d'un script classique ne devient pas une propriété de `window`. Un fichier chargé comme ES Module possède également sa propre portée : ses déclarations ne deviennent pas des propriétés de `window`. Enfin, `window` est propre au navigateur ; ce nom n'existe pas dans un programme Node.js.
+
+Le vrai problème n'est donc pas « tout finit dans `window` » : c'est le partage involontaire de noms globaux dans un contexte donné. Deux scripts classiques qui déclarent le même nom global avec `var` ou une affectation globale peuvent se gêner. Résultat : collisions, bugs silencieux et debugging cauchemardesque.
 
 ---
 
 ## 2) L'IIFE : CRÉER UNE PORTÉE ISOLÉE
 
-L'IIFE (Immediately Invoked Function Expression : fonction qui s'exécute immédiatement) crée un bloc de scope sans polluer le global.
+L'IIFE (Immediately Invoked Function Expression : fonction qui s'exécute immédiatement) crée une **portée de fonction** isolée, puis exécute cette fonction immédiatement. Ce n'est pas une portée de bloc comme celle créée par `{ ... }` avec `let` ou `const`.
 
 ```js
 // La structure de base
@@ -76,7 +80,7 @@ Pourquoi les deux paires de parenthèses ? La première `()` crée l'expression 
 ```js
 // ninja.js
 var NinjaModule = (function () {
-  // une seule variable dans window : NinjaModule
+  // Dans un script classique, ce var global expose window.NinjaModule.
   var data = { name: "Naruto" }; // privé : invisible de l'extérieur
   var role = "genin"; // privé
 
@@ -99,7 +103,7 @@ var NinjaModule = (function () {
 
 // combat.js
 var CombatModule = (function () {
-  // une seule variable dans window : CombatModule
+  // Dans un script classique, ce var global expose window.CombatModule.
   var jutsus = []; // privé
 
   return {
@@ -114,14 +118,19 @@ var CombatModule = (function () {
 ```
 
 ```text
-AVANT           APRÈS
-window.data   <-- clash window.NinjaModule.getName()
-window.data   <-- clash window.CombatModule.add()
-window.init   <-- clash
-window.init   <-- clash
+AVANT  : deux scripts classiques partagent les mêmes noms
+window.data
+window.init
+(les déclarations suivantes peuvent écraser ces valeurs)
+
+APRÈS  : chaque script expose un objet de module
+window.NinjaModule.getName()
+window.NinjaModule.getDisplay()
+window.CombatModule.add()
+window.CombatModule.getCount()
 ```
 
-Un seul nom exposé par module. Tout le reste est encapsulé.
+Dans cet exemple chargé en scripts classiques, chaque fichier expose un seul nom global (`NinjaModule` ou `CombatModule`). Les variables déclarées à l'intérieur de l'IIFE restent dans sa portée de fonction. Si le fichier est chargé en ES Module, la déclaration globale `var` n'a pas ce comportement : le module garde sa propre portée.
 
 ---
 
@@ -192,6 +201,8 @@ export function add(jutsu) {
 import { add } from "./combat.js";
 ```
 
+Dans un ES Module, `jutsus` et `add` restent dans la portée du module. `main.js` peut importer `add`, mais ces déclarations ne sont pas ajoutées à `window`. Le navigateur traite un script comme module lorsque sa balise utilise `type="module"`.
+
 Avantages des ES Modules par rapport aux IIFE :
 
 - syntaxe plus lisible
@@ -243,8 +254,62 @@ Contrainte technique : aucune variable partagée entre deux clones. Chaque insta
 
 ## RÉSUMÉ
 
-Le scope global c'est une poubelle partagée : tout le monde y jette, tout le monde marche dedans. L'IIFE crée un scope isolé pour chaque module : une seule variable exposée dans `window`, tout le reste encapsulé. Une fonction factory pousse l'idée plus loin : elle fabrique des instances indépendantes avec un état privé vivant dans la closure. Les ES Modules natifs ont remplacé ce pattern dans les projets modernes, mais comprendre l'IIFE et les closures, c'est comprendre POURQUOI les modules existent. La structure continue dans `90-grimoire.md`, et le Factory Pattern en entier t'attend dans `02-CONSTRUCTION/10-DESIGN-PATTERNS`.
+Le scope global peut devenir un espace partagé où plusieurs scripts classiques se gênent. L'IIFE crée une portée de fonction isolée ; dans l'exemple avec `var` chargé comme script classique, seul le nom du module est exposé sur `window`. Une fonction factory pousse l'idée plus loin : elle fabrique des instances indépendantes avec un état privé vivant dans la closure. Les ES Modules natifs fournissent aujourd'hui une portée de module ; comprendre l'IIFE et les closures aide à comprendre pourquoi cette isolation est utile. La structure continue dans `90-grimoire.md`, et le Factory Pattern en entier t'attend dans `02-CONSTRUCTION/10-DESIGN-PATTERNS`.
+
+> **Statut pour la première passe : différé.** Termine d’abord la leçon et la pratique de base. Cette variation n’est pas une gate ; saute-la si elle utilise une notion non encore étudiée et reviens-y après les prérequis.
 
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+
+<!-- AF-DIAGRAM:browser -->
+
+## Repère visuel utile : Parcours web résilient et brouillon sûr
+
+```text
+formulaire -> brouillon local
+    |
+    v
+réseau disponible ?
+  | oui          | non
+  v              v
+API + clé       état en attente
+  |              |
+  v              +--> reprise au retour
+confirmation
+  |
+  v
+statut affiché
+```
+
+<!-- AF-LESSON-PROFILE: browser -->
+
+## Repères de décision
+
+- **Pourquoi :** Le navigateur est un environnement distinct du serveur : DOM, réseau, stockage local et cycle de vie utilisateur imposent des états et des erreurs spécifiques.
+- **Quand l’utiliser / quand l’éviter :** Utilise ces mécanismes pour rendre le parcours web compréhensible, résilient et accessible. Ne stocke rien de sensible dans le navigateur et ne suppose jamais que le réseau est disponible.
+- **Limites :** Le client ne fait pas autorité pour les droits, les montants ou l'état métier. Le stockage local peut être effacé, altéré ou partagé sur un appareil ; la synchronisation peut produire des conflits.
+
+## Mécanisme : la version sans magie
+
+Modélise les états visibles, annule les requêtes devenues inutiles, traite les réponses réseau comme non fiables et synchronise les brouillons avec un identifiant stable.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Scope isolé : arrêter de polluer le global** se rattache à ce cas concret : Le demandeur Kintana utilise parfois un téléphone modeste avec une connexion qui coupe. Le formulaire doit préserver son brouillon et empêcher un double envoi au retour du réseau.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : première passe : isoler une fonction de module
+
+**Mission liée à « Scope isolé » :** extrait une fonction pure qui valide ou transforme une donnée dans un fichier `validation.js`, puis importe-la dans le fichier qui l'utilise. Vérifie qu'elle ne dépend pas de variables globales cachées.
+
+**Livrable :** les deux fichiers et deux exemples d'appel avec entrées différentes.
+
+**Critères d’acceptation :** l'import est explicite ; la fonction renvoie un résultat ; deux appels indépendants ne se contaminent pas ; aucun accès réseau ou stockage n'est nécessaire.
+
+## Transfert produit différé : Kintana : formulaire résilient
+
+Ce transfert est **différé et non bloquant** jusqu'à la maîtrise de DOM, Fetch, Storage, formulaires accessibles, erreurs et async. Elle peut alors réunir les états réseau, le brouillon, la validation métier et l'idempotence côté serveur.
+
+**Statut : transfert différé, jamais une gate de cette leçon Modules/Scope.**

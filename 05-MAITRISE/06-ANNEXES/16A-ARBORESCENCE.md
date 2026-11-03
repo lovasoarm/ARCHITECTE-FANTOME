@@ -1,7 +1,7 @@
 ---
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
-raison: Vue d'ensemble stable du curriculum, alignée sur les six paliers du dépôt.
+raison: Vue d'ensemble stable du curriculum, alignée sur les six blocs physiques (`00` à `05`) et distinguée des paliers de capacité `A` à `H`.
 acte: comprendre
 cognitive_level: L4
 perturbation_modes: [constraints_injectees, changement_contexte]
@@ -17,7 +17,7 @@ assessment_role: diagnostic_mastery
 Temps de lecture ~5 min
 
 > Carte à haut niveau. Utilise-la comme boussole, pas comme lecture. Elle décrit
-> l'état réel du dépôt : six paliers, 54 modules pédagogiques directs. La carte narrative
+> l'état réel du dépôt : six blocs physiques (`00` à `05`), 54 modules pédagogiques directs et des paliers de capacité `A` à `H`. La carte narrative
 > du parcours est [00-SOCLE/02-PROLOGUE/03-the-map.md](../../00-SOCLE/02-PROLOGUE/03-the-map.md) ;
 > l'ordre de passage fait foi dans
 > [06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md).
@@ -29,7 +29,7 @@ ce parcours/
 ├── PREUVES-STAFF-ENGINEER.md         # Les six familles de preuves attendues
 ├── LICENSE                           # Ce que tu peux faire avec ce contenu
 │
-├── 00-SOCLE/                         # Palier 0 : Fondations (6 modules, 1 Boss)
+├── 00-SOCLE/                         # Bloc 00 : Fondations (6 modules)
 │   ├── 01-GETTING-STARTED/           # Installer Node, ouvrir un projet, lire une doc
 │   ├── 02-PROLOGUE/                  # La carte, le projet fil rouge, les règles du jeu
 │   ├── 03-REFERENTIEL/               # Les pierres : la posture d'ingénieur
@@ -37,15 +37,15 @@ ce parcours/
 │   ├── 05-PROBLEM-SOLVING/           # Modéliser avant de coder, décomposer un problème
 │   └── 06-MINDSET/                   # Systèmes, coûts, hypothèses, écrire pour penser
 │
-├── 01-CADRAGE/                       # Palier 1 : Développeur (5 modules, 2 Boss + 1 rétro)
+├── 01-CADRAGE/                       # Bloc 01 : Cadrage (5 modules + 1 rétro)
 │   ├── 01-PROBLEM-HUNT/              # Demande, besoin, contrainte : les séparer
 │   ├── 02-ASYNC/                     # Callbacks, promesses, async/await, event loop
 │   ├── 03-DEBUGGING/                 # Méthode scientifique de chasse aux bugs
 │   ├── 04-ERROR-HANDLING/            # Prévoir l'échec, lever fort, envelopper juste
 │   ├── 05-MVP-SPLIT/                 # Découper en tranches verticales livrables
-│   └── 02A-RETRO-BLOC-1-CADRAGE.md    # Rétrospective de palier
+│   └── 02A-RETRO-BLOC-1-CADRAGE.md    # Rétrospective de bloc
 │
-├── 02-CONSTRUCTION/                  # Paliers 2 et 2bis : Confirmé puis Concepteur
+├── 02-CONSTRUCTION/                  # Bloc 02 : Construction ; 02bis est sa sous-étape Architecture
 │   ├── 01-USER-WIZARD/               # Parcours utilisateur et cas limites
 │   ├── 02-MINI-PROJECTS/             # 19 mini-projets + gabarits sans corrigés livrés
 │   ├── 03-TESTING/                   # AAA, fixtures, doublures, tests de mutation
@@ -71,7 +71,7 @@ ce parcours/
 │   ├── 03A-c-RETRO-BLOC-2-BUILD-CONFIRME.md
 │   └── 04A-RETRO-BLOC-2BIS-ARCHI.md
 │
-├── 03-PILOTAGE/                      # Palier 3 : Senior (11 modules)
+├── 03-PILOTAGE/                      # Bloc 03 : Pilotage (11 modules)
 │   ├── 01-ROADMAP-RUN/               # Planifier par le risque
 │   ├── 02-WEB-INCLUSIVE/             # a11y + i18n : deux angles d'inclusion
 │   ├── 03-QUALITY-SHIELD/            # Stratégie de tests, quoi mesurer, quoi alerter
@@ -84,18 +84,18 @@ ce parcours/
 │   ├── 10-TEAM-CRAFT/                # Revue, PR, mentorat, RFC, ADR
 │   ├── 11-LEADERSHIP-MENTORAT/       # Direction technique, revue à trois niveaux
 │   ├── 12-PLATFORM-ENGINEERING/       # GitOps, IDP, golden paths, plateforme comme produit
-│   └── 02A-RETRO-BLOC-3-CONDUITE.md   # Rétrospective de palier
+│   └── 02A-RETRO-BLOC-3-CONDUITE.md   # Rétrospective de bloc
 │
-├── 04-EPREUVE/                       # Palier 4 : Épreuve (6 modules, 2 Boss)
+├── 04-EPREUVE/                       # Bloc 04 : Épreuve (6 modules ; épreuves de bloc déclarées séparément)
 │   ├── 01-BONUS-VAULT/               # Sécurité, coûts, données personnelles
 │   ├── 02-TOOL-CAVE/                 # Éditeur, shell, outillage de débogage
 │   ├── 03-REALTIME/                  # WebSocket, SSE, WebRTC
 │   ├── 04-BIG-APP-SNOOP/             # Entrer dans un gros code inconnu
 │   ├── 05-CAPSTONE-ARENA/            # Le projet complet depuis un brief ambigu
 │   ├── 03b-BOSS-1/ , 04b-BOSS-2/     # Les deux épreuves BOSS du palier
-│   └── 02A-RETRO-BLOC-4-EPREUVE.md    # Rétrospective de palier
+│   └── 02A-RETRO-BLOC-4-EPREUVE.md    # Rétrospective de bloc
 │
-├── 05-MAITRISE/                      # Palier 5 : Maîtrise (7 modules pédagogiques + annexes)
+├── 05-MAITRISE/                      # Bloc 05 : Maîtrise (7 modules pédagogiques + annexes)
 │   ├── 01-DATABASES/                 # SQL, index, transactions, ORM sains
 │   ├── 02-SCALABILITY/               # Vertical, horizontal, cache, file d'attente
 │   ├── 03-EDGE-CASES/                # Encodage, fuseaux, flottants, Unicode
@@ -103,7 +103,7 @@ ce parcours/
 │   ├── 06-ANNEXES/                   # Ce qui ne rentre dans aucun module (voir ci-dessous)
 │   ├── 07-TOOLS/                     # Git, terminal, IDE, CI
 │   ├── 08-MAITRISE-STAFF-ENGINEER/   # Dossier unique, tensions, défense de décision
-│   └── 02A-RETRO-BLOC-5-MAITRISE.md   # Rétrospective de palier
+│   └── 02A-RETRO-BLOC-5-MAITRISE.md   # Rétrospective de bloc
 │
 └── 06-ANNEXES-TRANSVERSES/           # Hors palier : appelées par les modules
     ├── 02-OU-CHERCHER-DE-L-AIDE.md   ├── 10-SIMULATION-ENTREPRISE.md
@@ -140,10 +140,40 @@ Les autres fichiers de `06-ANNEXES/` sont des annexes transverses d'une page ou 
 
 - **`00_*` avant `01_*`** : les préludes ne sont pas optionnels si tu es débutant absolu.
 - **Un module = un `00_why_*.md`** : lis-le en premier, il te dit pourquoi tu es ici.
-- **`00-PREREQUIS.md`** : il teste le module précédent. S'il te met en échec, tu remontes.
-- **`99A-PONT.md`** : ferme le module courant, respire, puis ouvre le suivant.
+- **`00-PREREQUIS.md`** : il teste les prérequis explicitement déclarés par le module. En cas d'échec, remédie uniquement à la dépendance indiquée.
+- **`99A-PONT.md`** : fournit une transition lorsqu'elle est déclarée ; certains ponts sont différés et ne modifient pas l'ordre de la Route 58.
 - **Les `README.md` de dossier font foi** sur l'ordre du contenu, pas le tri alphabétique.
 
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+
+<!-- AF-LESSON-PROFILE: reference -->
+
+## Repères de décision
+
+- **Pourquoi :** Un référentiel sert à rendre les compétences observables et à éviter de confondre familiarité, autonomie et maîtrise.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le pour établir un point de départ, prioriser une révision ou préparer une revue de portfolio. Ne l'utilise pas comme classement de valeur personnelle.
+- **Limites :** Une auto-évaluation est biaisée. Le niveau doit être confirmé par une tâche inconnue, un artefact reproductible et, aux paliers avancés, une revue externe.
+
+## Mécanisme : la version sans magie
+
+Associe une compétence à une tâche, un critère, une preuve, une date et un statut. Réévalue quand le contexte ou la technologie change.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **ARBORESCENCE : vue d'ensemble du curriculum** se rattache à ce cas concret : Pour Kintana, une compétence comme l'idempotence n'est acquise que si tu sais l'expliquer, l'implémenter et vérifier le rejeu et les conflits.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Référentiel de compétences par preuves
+
+> **Arc DBZ / Capsule Corp. :** Bulma ne dit pas « je suis forte » parce qu'elle a lu le manuel. Elle vérifie ce que l'outil permet réellement.
+
+**Mission liée à « ARBORESCENCE : vue d'ensemble du curriculum » :** Établis ton état initial sur une tranche Kintana : sélectionne trois compétences, réalise une tâche de chacune sans suivre un corrigé, garde les tests et note ce que tu n'as pas pu démontrer.
+
+**Livrable :** un registre de compétences avec preuves liées, statut honnête, date de révision et prochain test de transfert.
+
+**Critères d’acceptation :** chaque statut pointe vers un artefact ; une compétence non testée reste `NON ÉVALUÉE` ; aucune preuve déclarative ne vaut une exécution ; les lacunes ont une action de remédiation.
+
+**Transfert obligatoire :** Reprends une compétence dans un langage ou un composant différent et vérifie si le principe se transfère réellement.

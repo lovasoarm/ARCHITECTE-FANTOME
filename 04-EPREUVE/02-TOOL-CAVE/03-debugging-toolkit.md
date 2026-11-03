@@ -1,19 +1,28 @@
 ---
 perishability_id: PER-0067
 
-stability: perissable
+stability: "perissable"
 acte: comprendre
 cognitive_level: L4
 perturbation_modes: [constraints_injectees, decision_inversee]
 anti_recipe_key: constraints_injectees+decision_inversee
 transfer_distance: high
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0067
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-01-28
-review_status: a_verifier_date_absente
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: "https://git-scm.com/docs/git-bisect"
+source_type: "primary"
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « Méthode de debug : bissection, hypothèses, profilers, logs ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : mur de siège :** le bug n'est pas “où ça a explosé ?”, mais “où la première fissure est-elle apparue ?”. Ici, chaque log, test et reproduction est une empreinte dans le mur.
 
 # Méthode de debug : bissection, hypothèses, profilers, logs
@@ -35,7 +44,7 @@ tu as prise pour une conclusion.
 
 Déboguer sans méthode, c'est chercher une aiguille dans une botte de foin en retournant le
 foin au hasard. Déboguer avec méthode, c'est diviser la botte en deux, vérifier dans quelle
-moitié se trouve l'aiguille, et répéter : une recherche qui converge de manière garantie,
+moitié se trouve l'aiguille, et répéter : une recherche qui réduit méthodiquement l’espace des révisions,
 quelle que soit la taille du foin.
 
 ```text
@@ -47,21 +56,16 @@ Complexité moyenne  : imprévisible, dépend de la chance et de l'intuition
 Bissection (avec méthode)
 ------------------------------------
 Complexité pire cas : O(log n) : pour 1000 commits suspects, ~10 étapes suffisent
-Complexité garantie : converge toujours, indépendamment de la chance
+Complexité : environ O(log n) étapes dans un historique linéaire, si les bornes good/bad sont connues, si les commits peuvent être testés et si le critère de classement est fiable. Ce n’est pas une garantie pour tout dépôt ou tout défaut.
 ```
 
 ### Étape 1 : reproduire avant de chercher
 
-Un bug non reproductible n'est pas un bug à corriger, c'est une hypothèse à confirmer.
-Avant toute investigation dans le code, construis le scénario minimal qui déclenche le
-problème de manière fiable : même s'il est laid, même s'il ne ressemble pas à l'usage réel.
-Un bug reproduit à 100% des essais divise le temps de correction par cinq, parce que chaque
-hypothèse peut être testée immédiatement, sans attendre une réapparition aléatoire en prod.
+Un défaut intermittent reste un défaut possible : l'absence de reproduction immédiate ne prouve pas son absence. Avant de modifier le code, consigne le contexte, la fréquence observée, les versions, les entrées et les signaux disponibles. Construis ensuite un scénario minimal et répétable lorsque c'est possible. Une reproduction fiable facilite la comparaison des hypothèses et la vérification d'un correctif, mais aucun facteur universel ne permet d'annoncer à l'avance un gain de temps précis.
 
 ### Étape 2 : bissection systématique
 
-La bissection ne s'applique pas qu'à l'historique Git. C'est un principe général : diviser
-l'espace des causes possibles en deux, tester quel côté contient le problème, répéter.
+L'idée de diviser un espace de recherche peut inspirer une enquête, mais elle ne s'applique que si tu sais former deux sous-ensembles utiles et si un test fiable peut dire lequel contient le défaut. `git bisect` a un cadre plus précis : des révisions ordonnées dans un historique et un comportement que l'on peut classer comme bon ou mauvais.
 
 ```bash
 # Bissection sur l'historique Git : trouver le commit qui a introduit une régression
@@ -71,13 +75,16 @@ git bisect good v1.4.0          # cette version-là était saine
 # Git choisit un commit au milieu, tu le testes, tu réponds :
 git bisect good   # ou
 git bisect bad
-# Répète jusqu'à isoler le commit exact : log(n) étapes, jamais plus.
+# Répète jusqu'à localiser la première révision mauvaise ; le nombre d'étapes
+# est de l'ordre de log2(n) si les hypothèses de bissection tiennent.
 git bisect reset
 ```
 
+Cette procédure suppose un historique ordonné, une révision connue comme saine et une révision connue comme défectueuse. Chaque révision intermédiaire doit pouvoir être évaluée avec un critère suffisamment fiable. Si le défaut est intermittent, si plusieurs changements indépendants ont eu lieu, si une révision ne se construit pas ou si le comportement n'est pas monotone dans l'historique, marque les cas non testables (`git bisect skip` lorsque pertinent) et rapporte l'incertitude. La bissection aide à localiser une régression ; elle ne prouve pas à elle seule la cause racine ni la correction.
+
 La même logique s'applique sans Git : si le bug apparaît dans une fonction de 200 lignes,
 isole la moitié, vérifie si le symptôme persiste, répète sur la moitié suspecte. Chaque étape
-élimine la moitié de l'espace de recherche restant : seule approche garantissant une
+réduit approximativement de moitié l’intervalle de révisions candidates à chaque étape lorsque les hypothèses de bissection tiennent ; elle ne garantit pas une
 convergence rapide sur du code inconnu.
 
 ### Étape 3 : hypothèses falsifiables, pas des intuitions
@@ -134,12 +141,12 @@ Piège 3 : optimiser la fonction la plus visible plutôt que la plus coûteuse
 
 ## Compromis
 
-| Option                                          | Coût                                               | Bénéfice                                           | Quand choisir                                                                    |
-| ----------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Tâtonnement intuitif                            | Rapide sur les bugs triviaux                       | Ne scale pas, aucune garantie de convergence       | Bug évident, une ligne, contexte que tu connais déjà bien                        |
-| Bissection systématique                         | Discipline, quelques étapes incompressibles        | Convergence garantie même sur du code inconnu      | Bug non local, régression apparue entre deux versions                            |
-| Logs ciblés par hypothèse                       | Temps de réflexion avant d'écrire le log           | Signal exploitable immédiatement, pas de bruit     | Bug intermittent, race condition, comportement dépendant du contexte d'exécution |
-| Profiler en environnement de prod représentatif | Coût d'infrastructure, accès aux données réalistes | Seule mesure qui ne ment pas sur les vrais goulots | Avant toute optimisation de performance, jamais après                            |
+| Option                                          | Coût                                               | Bénéfice                                                                                            | Quand choisir                                                                    |
+| ----------------------------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Tâtonnement intuitif                            | Rapide sur les bugs triviaux                       | Ne scale pas, aucune garantie de convergence                                                        | Bug évident, une ligne, contexte que tu connais déjà bien                        |
+| Bissection systématique                         | Discipline, quelques étapes incompressibles        | Réduction systématique de l’intervalle si les bornes good/bad et les résultats de test sont fiables | Bug non local, régression apparue entre deux versions                            |
+| Logs ciblés par hypothèse                       | Temps de réflexion avant d'écrire le log           | Signal exploitable immédiatement, pas de bruit                                                      | Bug intermittent, race condition, comportement dépendant du contexte d'exécution |
+| Profiler en environnement de prod représentatif | Coût d'infrastructure, accès aux données réalistes | Seule mesure qui ne ment pas sur les vrais goulots                                                  | Avant toute optimisation de performance, jamais après                            |
 
 ## Pièges classiques
 
@@ -160,8 +167,7 @@ Où l'analogie casse : à bord l'eau se voit monter, un bug silencieux corrompt 
 
 ## Ce que tu dois savoir défendre
 
-- Explique pourquoi la bissection garantit une convergence en O(log n) alors que le
-  tâtonnement n'a aucune garantie.
+- Explique dans quelles conditions `git bisect` réduit le nombre de révisions en O(log n), et donne deux cas où cette méthode ne permet pas de conclure proprement (commits impossibles à tester, comportement intermittent ou changement non monotone).
 - Donne un exemple d'hypothèse non falsifiable que tu as toi-même formulée un jour, et
   reformule-la en hypothèse falsifiable.
 - Cite les trois pièges de mesure d'un profiler et pour chacun un exemple où il t'aurait
@@ -348,24 +354,59 @@ de retenter un passage tant qu'elle n'a pas identifié la prise qui a lâché. O
 casse : aux urgences et en cordée, provoquer une crise ou une chute pour l'observer a une
 limite éthique. En informatique, provoquer le bug à volonté en test est obligatoire.
 
-## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+<!-- AF-DIAGRAM:tooling -->
 
-<!-- AF-DIAGRAM:transfer -->
+## Repère visuel utile : Outil reproductible pour l'équipe Kintana
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+problème répétitif
+       |
+       v
+solution native ?
+   | oui       | non
+   v           v
+simple     outil évalué
+               |
+               v
+version + tests + docs
+               |
+               v
+usage reproductible
 ```
 
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+<!-- AF-LESSON-PROFILE: tooling -->
 
-Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+## Repères de décision
+
+- **Pourquoi :** La toolchain et les outils de diagnostic réduisent les tâches répétitives et rendent le comportement du système visible.
+- **Quand l’utiliser / quand l’éviter :** Choisis un outil quand il résout un problème fréquent et mesurable. Vérifie sa licence, sa maintenance, ses versions, ses permissions et son coût avant de l'ajouter.
+- **Limites :** Un outil n'est pas une politique de qualité. Un benchmark, logger ou générateur peut donner une fausse confiance si son protocole et ses limites ne sont pas écrits.
+
+## Mécanisme : la version sans magie
+
+Décris le problème, compare l'outil à une commande native ou à une alternative plus simple, épingle sa version et vérifie le résultat qu'il produit.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Méthode de debug : bissection, hypothèses, profilers, logs** se rattache à ce cas concret : L'équipe Kintana doit pouvoir diagnostiquer une panne et refaire un build sans dépendre d'une configuration cachée sur le poste d'une seule personne.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Outil reproductible pour l'équipe Kintana
+
+> **Arc Capsule Corp. / DBZ :** le bon outil accélère le diagnostic ; dix outils mal choisis ne font que déplacer le bazar.
+
+**Mission liée à « Méthode de debug : bissection, hypothèses, profilers, logs » :** Automatise une opération récurrente du cycle Kintana (analyse, benchmark, log, build ou debug). Ajoute un mode dry-run si l'action est destructive et une vérification qui empêche l'outil de masquer une erreur.
+
+**Livrable :** outil/script, README d'usage, tests sur succès/échec, version épinglée et comparaison au processus manuel.
+
+**Critères d’acceptation :** les arguments sont validés ; les erreurs ont un code de sortie ; aucune donnée sensible n'est imprimée ; la même commande donne une sortie compréhensible et reproductible.
+
+**Transfert obligatoire :** Exécute l'outil sur une autre machine ou avec une version différente. Documente les prérequis et le mode dégradé.
+
+## Références officielles utiles
+
+> **Référence principale vérifiée le 2 novembre 2026 :** la première ressource de ce panneau, également enregistrée dans `source_url`, a été consultée pour le mécanisme versionné traité ici. Les autres liens sont des compléments officiels utiles ; ils ne constituent pas chacun une attestation indépendante de l’exemple du curriculum. Aucune référence ne prouve que l’exemple a été exécuté. Vérifie la version cible et teste dans ton environnement avant un usage réel.
+
+- [Git : git bisect](https://git-scm.com/docs/git-bisect)
+- [Node.js : Debugging](https://nodejs.org/en/learn/getting-started/debugging)

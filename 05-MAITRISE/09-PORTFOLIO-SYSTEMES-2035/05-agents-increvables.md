@@ -3,6 +3,13 @@ stability: evolutif
 acte: maitrise
 noyau: non
 route: depth
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/03-agents-durables-mcp.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/03-agents-durables-mcp.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # 05 : Les Agents Increvables
@@ -10,7 +17,17 @@ route: depth
 > Orchestrateur d’agents avec MCP, mémoire contrôlée, reprise après crash et sandbox.
 
 **Place dans le parcours :** Avancé : automatisation gouvernée, jamais autonomie illimitée.  
-**Prérequis :** DB/transactions, API/tool calling, permissions, queue/task lifecycle, observabilité et Tribunal des IA.
+**Prérequis :** DB/transactions, API/tool calling, permissions, queue/task lifecycle, observabilité, [Leçon-pont 02 : Évaluation IA](LECONS-PONTS/02-evaluation-et-llm-judge.md) et [Tribunal des IA](02-tribunal-des-ia.md) terminé avec un verdict `PASS` traçable. La leçon-pont 02 seule ne remplace pas le projet d'évaluation.
+
+## Parcours de préparation obligatoire
+
+Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0--socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
+
+- [Async](../../01-CADRAGE/02-ASYNC/README.md), [AbortController](../../01-CADRAGE/02-ASYNC/03_async_await/05-c_abort_controller.md), [backpressure](../../01-CADRAGE/02-ASYNC/04A-backpressure.md).
+- [Bases de données](../01-DATABASES/README.md), [Lab 65 : transactions/idempotence](../../06-ANNEXES-TRANSVERSES/65-LAB-DONNEES-API-ET-TRANSACTIONS.md), [queues](../02-SCALABILITY/08-message_queues.md), [résilience distribuée](../02-SCALABILITY/10-c_tests_de_resilience.md).
+- [RBAC/ABAC](../../03-PILOTAGE/04-SECURITY/13-autorisation_rbac.md), [secrets](../../03-PILOTAGE/04-SECURITY/11-secrets_et_rotation.md), [Leçon-pont 03 : Agents durables/MCP](LECONS-PONTS/03-agents-durables-mcp.md) et [07 : Gateway LLM](LECONS-PONTS/07-gateway-llm-fiabilite.md).
+
+**Gate d'entrée :** le [Tribunal des IA](02-tribunal-des-ia.md) est validé `PASS` ; tu peux aussi dessiner une machine à états persistante, gérer un doublon avec idempotence, reprendre après crash, vérifier une permission côté serveur et expliquer ce qui est inconnu après un timeout. MCP seul ne valide pas ce gate. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-2--route-ia).
 
 ## Mission
 

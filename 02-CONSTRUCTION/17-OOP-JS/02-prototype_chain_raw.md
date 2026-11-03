@@ -387,10 +387,32 @@ Recherche d'une propriété = remonter les flèches. Retourne à `null` sans tro
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Prototype chain raw : la chaîne brute, sans sucre » à un troisième fournisseur dont l’API ne ressemble pas aux deux premiers. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: oop-prototype-chain -->
+
+## Repères de décision
+
+- **Pourquoi :** La chaîne de prototypes explique où JavaScript cherche une propriété ou une méthode et pourquoi plusieurs instances peuvent partager le même comportement.
+- **Quand l’utiliser / quand l’éviter :** Inspecte-la pour comprendre un objet hérité, diagnostiquer une propriété masquée ou lire du code ancien. Utilise `Object.getPrototypeOf`, `Object.hasOwn` et `in` selon la question ; évite de modifier les prototypes natifs ou ceux d’objets que tu ne contrôles pas.
+- **Limites :** Une propriété héritée peut être masquée par une propriété propre. `in` parcourt la chaîne alors que `Object.hasOwn` ne vérifie que l’objet lui-même. Une chaîne inattendue élargit aussi la surface de risque, notamment face à la pollution de prototype.
+
+## Mécanisme : la version sans magie
+
+Pour lire `objet.cle`, le moteur cherche d’abord sur `objet`, puis sur son `[[Prototype]]`, puis remonte jusqu’à `null`. `Object.create(parent)` crée un objet dont le prototype est `parent` ; il ne copie pas les propriétés du parent.
+
+## Ancrage produit / terrain : Kintana
+
+Des adaptateurs Kintana peuvent partager des méthodes communes par prototype sans recopier ces méthodes dans chaque instance. Leurs données propres : identifiant, statut et configuration : doivent rester distinctes.
+
+## Mission utile : Kintana : suivre une propriété héritée
+
+**Livrable :** un schéma de chaîne prototype, trois vérifications (`Object.hasOwn`, `in`, `Object.getPrototypeOf`) et un court cas où une propriété propre masque une propriété héritée.
+
+**Critères d’acceptation :** tu identifies l’objet qui porte réellement la propriété ; tu distingues partage par prototype et copie ; tu ne modifies aucun prototype global.
+
+**Transfert obligatoire :** remplace le prototype par `null` avec `Object.create(null)` et explique quelles méthodes habituelles ne sont alors plus héritées.

@@ -1,7 +1,6 @@
 ---
-perishability_id: PER-0068
 
-stability: perissable
+stability: intemporel
 acte: epreuve
 noyau: oui
 cognitive_level: L3
@@ -9,11 +8,12 @@ perturbation_modes: [temps_limite, solution_concurrente]
 anti_recipe_key: temps_limite+solution_concurrente
 transfer_distance: high
 assessment_role: instructional_checkpoint
-freshness_registry_id: PER-0068
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+canonical_resource: "PREUVES-STAFF-ENGINEER.md"
+source_scope: "Addendum pédagogique interne relié au référentiel des preuves Staff Engineer ; aucune validation ou grade externe n’est revendiqué."
 ---
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
@@ -142,9 +142,17 @@ elle répond à un besoin réel ; elle n'est pas obligatoire. Si une brique IA e
 
 ### S7 : portage réellement exécuté
 
-Le portage doit montrer la même capacité chez un second fournisseur et dans un
-second langage. Un diagramme ou un `terraform plan` seul ne suffit pas pour la
-mention « exécuté » : joindre une preuve d'exécution datée.
+Pour fermer S7, le portage doit montrer la même capacité chez un second fournisseur et dans un
+second langage. Un diagramme, un `terraform plan`, un fournisseur simulé ou une deuxième
+implémentation exécutée uniquement en local ne suffisent pas pour la mention « exécuté » :
+joindre les preuves datées du service réellement accessible chez le second fournisseur, des tests
+de contrat comparables et des mesures côté cible.
+
+**Accès au Capstone sans budget cloud :** le niveau `PORTAGE_CONÇU` et la démonstration
+`DEMO_LOCALE` permettent de réaliser l'épreuve pédagogique sans carte bancaire ni ressource
+facturable. Ils ne ferment pas S7 ni la preuve S6 d'une livraison/exploitation réelle. L'écart
+n'est pas une pénalité cachée : le dossier doit simplement conserver le statut exact de chaque
+preuve (`CONÇU`, `LOCAL`, `EXÉCUTÉ`, `PRODUCTION`, `NOT RUN`).
 
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 

@@ -1,14 +1,15 @@
 ---
-perishability_id: PER-0063
-
-stability: perissable
+stability: "intemporel"
 acte: transférer
-freshness_registry_id: PER-0063
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-01-28
-review_status: a_verifier_date_absente
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/07-CLOUD-FOUNDATIONS/README.md"
+source_scope: "Référence interne de synthèse Cloud Foundations ; le transfert mental est un exercice pédagogique."
+provenance_note: "Référence interne explicitement reliée au sujet ; elle ancre le parcours mais ne constitue pas une preuve externe. Aucun contenu n’est déclaré revérifié par cette mise à jour."
 ---
+
 > **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.
 
 # 06 : Porter son budget chez un second fournisseur
@@ -41,7 +42,7 @@ Porter, ce n'est pas retrouver le même total chez l'autre fournisseur. C'est d�
 
 ## 3. Le piège classique
 
-L'écart de total est presque toujours faible, entre 10 et 20 pour cent, et l'apprenant en conclut que le choix du fournisseur n'a pas d'importance. C'est l'inverse : le total se ressemble parce que le marché s'aligne, et tout l'écart réel est dans les lignes qui changent de nature. Un système qui pousse 18 To sortants par mois est bon marché chez l'un et ruineux chez l'autre, à total affiché identique au palier précédent.
+L'écart de total peut être faible ou important ; il n'existe pas de fourchette universelle valable pour tous les fournisseurs et toutes les charges. Un total proche ne prouve pas que les offres sont équivalentes : examine les unités, les paliers gratuits, les sauvegardes, les garanties, les transferts et les services propriétaires. Un système qui transfère 18 TB sortants par mois peut révéler des différences importantes, mais seul un relevé à périmètre comparable permet de les chiffrer.
 
 ## 4. Livrable
 
@@ -75,3 +76,15 @@ Le multi-cloud ne se démontre pas en comparant deux grilles, il se démontre en
 Le [grimoire](90-grimoire.md) fige le vocabulaire, puis le [challenge](95-challenge.md) produit ton `06A-BUDGET-CLOUD.md` complet, portage inclus.
 
 > Ce module fournit la moitie fournisseur du livrable note du palier 04-EPREUVE. L'autre moitie (second langage) vient des `99-PORTAGE-MENTAL.md`. Le livrable lui-meme et son exemplaire rempli : [06-ANNEXES-TRANSVERSES/17-PREUVES-MODELES/99-PORTAGE-MENTAL.md](../../06-ANNEXES-TRANSVERSES/17-PREUVES-MODELES/99-PORTAGE-MENTAL.md).
+
+<!-- AF-TRANSFER-FIELD-1.1 -->
+
+## Transfert terrain : Kintana
+
+**Pourquoi ce transfert compte :** une notion que tu sais réciter mais que tu ne sais pas replacer dans un système est encore fragile.
+
+**Quand la réutiliser :** quand une contrainte du produit change (rôle, réseau, volume, concurrence, panne ou coût) et que tu dois déterminer ce qui reste invariant.
+
+**Limite :** ne transpose pas une syntaxe ou une solution sans vérifier ses hypothèses ; le même mécanisme peut avoir des garanties différentes selon le runtime et le stockage.
+
+**Mission courte :** applique le principe de cette page à un incrément de [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md) : Rends le composant Kintana reproductible dans l’environnement prévu par le module : configuration explicite, health/readiness, arrêt propre, journal utile et procédure de retour arrière. N’ajoute pas d’outil qui n’est pas nécessaire au sujet. Produis un petit test ou scénario de panne et note l'invariant conservé, l'hypothèse qui change et la limite observée. Cette mission complète le transfert ; elle ne remplace pas le projet évalué du module.

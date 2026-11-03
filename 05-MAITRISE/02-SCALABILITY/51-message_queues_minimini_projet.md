@@ -8,6 +8,8 @@ transfer_distance: low
 assessment_role: diagnostic_mastery
 ---
 
+# Mise en pratique : Découpler pour ne pas tout bloquer en chaîne
+
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 ## TYPE
@@ -63,3 +65,13 @@ Tu as reproduit la mécanique en JS pur, sans broker, sans compte, sans conteneu
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
+
+## Livraison produit obligatoire : Kintana : Frontière à défendre
+
+> **Fil narratif : Arène Staff / DBZ :** Le combat change d’échelle : tu ne gagnes plus en lançant une attaque plus forte, mais en choisissant le bon terrain, en coordonnant l’équipe et en assumant les conséquences.
+
+Le micro-exercice existant reste une mise en jambe : il isole un mécanisme, mais ne suffit pas comme preuve de maîtrise. La livraison évaluée améliore le même produit [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
+
+**Mission liée à « 51-message_queues_minimini_projet » :** Place le concept dans l’architecture Kintana. Dessine le flux, écris un ADR comparant une solution simple et une alternative plus complexe, puis injecte une évolution de besoin.
+
+**Livrable :** incrément intégré, tests ou vérifications, note de décision et contre-exemple. **Gate :** Les responsabilités sont explicites ; le changement est localisé ; l’ADR expose au moins un coût réel et la condition qui ferait changer d’avis. Étiquette les résultats locaux `LAB` ; ne revendique `PRODUCTION` qu’après déploiement et observation réels.

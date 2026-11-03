@@ -1,65 +1,23 @@
 ---
 stability: stable
 acte: verification
+assessment_role: instructional_checkpoint
 ---
 
-# Vérification : 08_EXO_VERIFICATION.md
+**SCÈNE CRAZYDEVS : atelier de Konoha :** chaque équipe fabrique son outil sans obliger tout le village à partager une seule instance.
 
-> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+# EXO : choisir une Factory sans fabriquer un Singleton
 
-# EXO [IA MENTEUSE] : design_patterns (singleton qui fuit)
+Temps indicatif : 15 min.
 
-Temps de lecture ~2 min
+Une application doit créer différents moyens de notification : `EmailNotifier`, `SmsNotifier` et `ConsoleNotifier`. Le contrôleur ne doit pas connaître les classes concrètes.
 
-> Tag `[IA MENTEUSE]` : une IA a généré ce code. Il tourne. Il a l'air propre. Il ment.
-> Durée : 20 min chrono. Zéro exécution avant d'avoir écrit ta réponse.
+**Mission**
 
-## Contexte
+1. Écris une fonction `createNotifier(channel, config)` qui retourne l’implémentation correspondant à `channel`.
+2. Refuse un canal inconnu avec une erreur explicite.
+3. Ajoute un test par canal et un test pour le canal invalide.
+4. Explique pourquoi une Factory centralise la création mais ne garantit pas que l’objet créé soit unique.
+5. Compare cette solution à un Singleton : création encapsulée contre instance partagée.
 
-Tu demandes à une IA générique d'écrire des tests pour `LabManager` (voir `03-singleton_pattern.md`), le singleton qui gère le labo. Voici ce qu'elle génère :
-
-```js
-describe("LabManager", () => {
-  it("stocke un lot correctement", () => {
-    const lab = new LabManager("Walter White", "Superlab");
-    lab.addBatch(99.1, 50);
-    expect(lab.batches.length).toBe(1);
-  });
-
-  it("démarre avec un labo vide", () => {
-    const lab = new LabManager("Jesse Pinkman", "RV");
-    expect(lab.batches.length).toBe(0);
-  });
-
-  it("garde le bon cook associé", () => {
-    const lab = new LabManager("Gustavo", "Los Pollos");
-    expect(lab.cook).toBe("Gustavo");
-  });
-});
-```
-
-L'IA t'assure : "ces trois tests sont indépendants, chacun crée sa propre instance de `LabManager` avec des données différentes, donc ils passeront quel que soit l'ordre d'exécution."
-
-## Consigne
-
-Avant de lancer une seule ligne :
-
-1. Prédis lesquels des trois tests passent et lesquels échouent, dans l'ordre où ils sont écrits.
-2. Identifie la phrase de l'IA qui est fausse, en te basant sur le fonctionnement réel du `constructor` de `LabManager`.
-3. Corrige les tests pour qu'ils soient vraiment indépendants, sans toucher à la classe `LabManager` elle-même.
-
-Ensuite seulement, lance les tests et compare à ta prédiction.
-
-## Piège caché
-
-`LabManager` est un singleton : un seul `new LabManager(...)` compte vraiment, tous les suivants retournent la même instance sans rien écraser (voir la section implémentation du pattern). Le premier test crée le singleton avec Walter White et un lot. Le deuxième test croit créer un labo vide avec Jesse Pinkman, mais récupère en fait l'instance de Walter avec son lot déjà dedans. Le test "indépendant" dépend en réalité de l'ordre d'exécution des tests précédents.
-
-## Preuve à livrer
-
-- ta prédiction écrite AVANT exécution (`prediction.txt`)
-- le diff entre ta prédiction et le résultat réel
-- ta version corrigée des tests, utilisant `LabManager.reset()` au bon endroit, avec une phrase qui explique pourquoi c'est là et pas ailleurs
-
-## Pourquoi c'est vital
-
-Un singleton qui fuit son état entre tests est un des bugs les plus difficiles à tracer en CI, parce qu'il ne se voit que quand l'ordre des tests change, et un simple `npm test` en local peut sembler tout vert pendant des semaines. Une IA qui génère un test sans connaître le cycle de vie réel de l'objet testé produit un piège à retardement.
+**Critère** : le contrôleur dépend d’une interface commune (`send(message)`), et deux appels à la Factory peuvent produire deux objets distincts si le contrat le demande.

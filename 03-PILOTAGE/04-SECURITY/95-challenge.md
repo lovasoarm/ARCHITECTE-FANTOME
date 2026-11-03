@@ -23,7 +23,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [50-xss_injection_minimini_projet.md](50-xss_injection_minimini_projet.md)
 - [51-csrf_cors_minimini_projet.md](51-csrf_cors_minimini_projet.md)
 - [52-hashing_bcrypt_minimini_projet.md](52-hashing_bcrypt_minimini_projet.md)
-- [EXO LECTURE : 15-25 minutes (Securite)](10-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Securite)](10-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 03-PILOTAGE/04-SECURITY](12A-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 03-PILOTAGE/04-SECURITY](97-EXO-VERIFICATION.md)
 

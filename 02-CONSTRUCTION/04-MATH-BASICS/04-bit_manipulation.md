@@ -239,7 +239,7 @@ L'opérateur `>>>` est un décalage à droite avec remplissage par zéro. Ici, i
 ```js
 const compterBits = (n) => {
   if (!Number.isInteger(n) || n < 0 || n > 0xffffffff) {
-    throw new RangeError('n doit être un entier non signé sur 32 bits');
+    throw new RangeError("n doit être un entier non signé sur 32 bits");
   }
   let value = n >>> 0;
   let count = 0;
@@ -319,13 +319,12 @@ Les bits permettent d'encoder plusieurs états dans un seul entier. Le pattern f
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
 
-
 ## Vérification autonome : flags de permissions
 
 Le test suivant confirme les invariants essentiels d'un masque binaire : ajouter un droit ne retire pas les autres, retirer un droit n'affecte pas les autres, et le test d'un flag reste indépendant. Place-le dans `verify-flags.mjs` et lance `node verify-flags.mjs`.
 
 ```js
-import assert from 'node:assert/strict';
+import assert from "node:assert/strict";
 
 const READ = 1 << 0;
 const WRITE = 1 << 1;
@@ -341,20 +340,19 @@ assert.equal((permissions & WRITE) !== 0, false);
 assert.equal((permissions & READ) !== 0, true);
 assert.equal((permissions & ADMIN) !== 0, true);
 
-console.log('OK permission flags');
+console.log("OK permission flags");
 ```
 
 **Acceptation :** code de sortie 0 et `OK permission flags`. Expliquer la différence entre `|=` (ajout) et `&= ~` (retrait). Les opérateurs bitwise JavaScript convertissent les nombres en entiers signés 32 bits : ne pas utiliser ce modèle sans contrôle pour des masques qui dépassent cette représentation ; préférer `BigInt` si le besoin le justifie.
 
 **Lien et transfert :** les flags peuvent simplifier un protocole compact ou une permission interne, mais ils ne remplacent pas un modèle d'autorisation serveur vérifié et audité.
 
-
 ## Vérification autonome : domaine 32 bits et erreurs de bord
 
 Copie le code de `estPuissanceDe2` et `compterBits` dans `verify-bit-operations.mjs`, puis ajoute les assertions ci-dessous. Lance `node verify-bit-operations.mjs`.
 
 ```js
-import assert from 'node:assert/strict';
+import assert from "node:assert/strict";
 
 assert.equal(estPuissanceDe2(1), true);
 assert.equal(estPuissanceDe2(1024), true);
@@ -366,9 +364,61 @@ assert.equal(compterBits(7), 3);
 assert.equal(compterBits(0xffffffff), 32);
 assert.throws(() => compterBits(-1), RangeError);
 assert.throws(() => compterBits(1.5), RangeError);
-console.log('OK bit operations');
+console.log("OK bit operations");
 ```
 
 **Acceptation :** le processus retourne le code 0 et affiche `OK bit operations`. Une solution qui retourne 0 pour `0xffffffff`, ou qui accepte silencieusement `-1`, ne passe pas.
 
 **Limite de sécurité :** un masque de bits peut représenter des permissions internes, mais il ne doit jamais remplacer la vérification d'autorisation côté serveur, l'identité du sujet, le tenant et la politique d'accès.
+
+<!-- AF-DIAGRAM:math -->
+
+## Repère visuel utile : Décision quantitative pour la capacité Kintana
+
+```text
+question métier
+     |
+     v
+variables + unités + hypothèses
+     |
+     v
+formule / modèle
+     |
+  +--+--+
+  v     v
+base  sensibilité
+  |     |
+  +--+--+
+     v
+décision + limites
+```
+
+<!-- AF-LESSON-PROFILE: math -->
+
+## Repères de décision
+
+- **Pourquoi :** Les maths rendent explicites la capacité, l'incertitude, le coût et les limites d'un algorithme. Elles évitent de décider au feeling quand le système grandit.
+- **Quand l’utiliser / quand l’éviter :** Utilise la formule adaptée à la question (capacité, probabilité, hachage, logique ou combinatoire). Vérifie unités et hypothèses avant de coder ; ne sors pas une formule parce qu'elle a l'air savante.
+- **Limites :** Un calcul exact sur des hypothèses fausses donne une réponse fausse. Les données réelles ont bruit, biais et limites d'échantillonnage ; une simulation n'est pas une mesure de terrain.
+
+## Mécanisme : la version sans magie
+
+Définis les variables, unités et domaine de validité ; dérive ou explique la formule ; calcule un cas de base, un cas limite et une sensibilité.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Bit manipulation : manipuler les données à l'os** se rattache à ce cas concret : Kintana doit dimensionner les créneaux, estimer une charge de notification ou choisir un seuil de contrôle sans masquer l'incertitude.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Décision quantitative pour la capacité Kintana
+
+> **Arc DBZ / Capsule Corp. :** les chiffres ne sont pas de la déco. Une formule mal choisie peut envoyer tout le système dans le mur, même si le code compile.
+
+**Mission liée à « Bit manipulation : manipuler les données à l'os » :** Choisis une question chiffrée cohérente avec la notion : capacité de créneaux, probabilité de collision, taille d'un espace de recherche ou seuil d'alerte. Formalise les hypothèses et compare deux scénarios.
+
+**Livrable :** un calcul reproductible (tableur ou script), les unités, hypothèses, sensibilité et une décision argumentée.
+
+**Critères d’acceptation :** les dimensions sont cohérentes ; le résultat est vérifié par un cas simple ; les hypothèses et l'incertitude sont exposées ; aucune précision injustifiée n'est revendiquée.
+
+**Transfert obligatoire :** Change le volume ou le taux de base et observe si la décision reste la même. Explique le point où elle bascule.

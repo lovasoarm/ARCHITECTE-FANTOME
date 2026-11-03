@@ -356,3 +356,35 @@ La différence entre 401 et 403 compte : non authentifié vs non autorisé, c'es
 ## CHECKPOINT DE PROFONDEUR : variation B : défendre l'inverse
 
 Ferme la page et défends pendant quelques minutes une stratégie opposée à celle implicitement recommandée ici. Cherche son meilleur cas d'usage, puis montre le cas où elle casse. Reviens ensuite à la stratégie initiale et justifie le choix par des mécanismes, pas par le vocabulaire du cours.
+
+<!-- AF-LESSON-PROFILE: browser -->
+
+## Repères de décision
+
+- **Pourquoi :** Le navigateur est un environnement distinct du serveur : DOM, réseau, stockage local et cycle de vie utilisateur imposent des états et des erreurs spécifiques.
+- **Quand l’utiliser / quand l’éviter :** Utilise ces mécanismes pour rendre le parcours web compréhensible, résilient et accessible. Ne stocke rien de sensible dans le navigateur et ne suppose jamais que le réseau est disponible.
+- **Limites :** Le client ne fait pas autorité pour les droits, les montants ou l'état métier. Le stockage local peut être effacé, altéré ou partagé sur un appareil ; la synchronisation peut produire des conflits.
+
+## Mécanisme : la version sans magie
+
+Modélise les états visibles, annule les requêtes devenues inutiles, traite les réponses réseau comme non fiables et synchronise les brouillons avec un identifiant stable.
+
+## Ancrage produit / terrain : Kintana
+
+Dans le [cas d’étude Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), Le demandeur crée une demande via l’API, puis consulte son état. Le contrat doit rester compréhensible quand la réponse est un succès, une validation refusée, un conflit, une absence d’authentification ou une erreur serveur.
+
+**Niveau de preuve :** Kintana est un scénario fictif. Étiquette le résultat `CONCEPT`, `LAB` ou `SIMULATION` selon le travail réellement effectué ; une fixture synthétique n’est pas une observation de terrain.
+
+## Mission utile : Kintana : Étape 2/8 : définir le contrat HTTP
+
+> **Arc One Piece / Grand Line :** La demande est une cargaison : son étiquette, son contenu et son accusé de réception doivent être sans ambiguïté.
+
+Spécifie `POST /api/requests` et `GET /api/requests/{id}` pour le périmètre pédagogique. Définis méthodes, headers utiles, payload, statuts de réponse et sens des erreurs. Réutilise une clé d’idempotence pour que la répétition d’un envoi ne crée pas un second effet métier.
+
+**Livrable :** Un mini-contrat HTTP avec deux requêtes d’exemple, les réponses nominales et négatives, ainsi que la règle de retry/idempotence.
+
+**Critères d’acceptation :** Les méthodes et statuts correspondent au résultat réel ; les erreurs sont distinguables ; le client ne déduit jamais le succès d’un simple timeout ; la clé d’idempotence est transmise de façon stable.
+
+**Transfert obligatoire :** Le serveur a créé la demande mais la réponse `201` se perd : explique pourquoi le client ne doit pas générer une nouvelle clé au retry.
+
+Cette étape prolonge le même artefact Kintana ; elle ne demande pas de recommencer le projet et n’ajoute pas de gate au parcours.

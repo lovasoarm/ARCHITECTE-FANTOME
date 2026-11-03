@@ -1,7 +1,6 @@
 ---
-perishability_id: PER-0084
 
-stability: perissable
+stability: "intemporel"
 acte: maitrise
 noyau: oui
 cognitive_level: L9
@@ -9,11 +8,13 @@ perturbation_modes: [decision_inversee, changement_echelle]
 anti_recipe_key: decision_inversee+changement_echelle
 transfer_distance: high
 assessment_role: staff_mastery
-freshness_registry_id: PER-0084
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+canonical_resource: "PREUVES-STAFF-ENGINEER.md"
+source_scope: "Référentiel interne des preuves Staff Engineer utilisé pour cadrer le boss fight ; il ne constitue pas une certification externe."
+provenance_note: "Référence interne explicitement reliée au sujet ; elle ancre le parcours mais ne constitue pas une preuve externe. Aucun contenu n’est déclaré revérifié par cette mise à jour."
 ---
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
@@ -43,7 +44,7 @@ Réussi si, après contradiction :
 - les six familles + le portage + les trois tensions restent cohérents ;
 - aucune promesse ne dépasse le budget ou le SLO ;
 - une décision refusée est assumée **avec son chiffre** ;
-- `STANDARDS-AGENTS.md` et `05A-transfert_hors_ecosysteme.md` existent et sont cités.
+- `05A-transfert_hors_ecosysteme.md` existe et est cité. `STANDARDS-AGENTS.md` est joint si le fil rouge utilise des agents/automatisations autonomes ; sinon, `EVALUATION-IA.md` justifie le non-usage et son périmètre.
 
 Échec : S6 encore CREUX, contradicteur non joué, ou tension qui ne perd rien.
 
@@ -88,7 +89,7 @@ La manche terminale doit également être jouée : [THE EXPERT TRAP](05-PSYCHOLO
 
 > **SCÈNE CRAZYDEVS : Prison Break :** l’agent peut appeler une API, modifier une ressource et produire une décision plausible. La vitesse est excellente. Le danger aussi.
 
-Avant de valider le Boss, tu dois maintenant pouvoir expliquer les permissions minimales, les données accessibles, les évaluations de sortie, le coût plafond, le kill switch et le rollback d’un agent qui participe au fil rouge. Cette épreuve croise S3, S5 et S6. Aucun corrigé n’est fourni.
+Traite ce scénario comme une analyse de menace, même si ton fil rouge n’utilise aucun agent autonome. Explique les permissions minimales, les données accessibles, les évaluations de sortie, le coût plafond, le mécanisme d’arrêt et le rollback. Si un agent autonome est réellement utilisé, relie l’analyse à `STANDARDS-AGENTS.md` ; sinon, marque le scénario `SIMULATION` et documente le non-usage dans `EVALUATION-IA.md`. Cette perturbation croise S3, S5 et S6. Aucun corrigé n’est fourni.
 
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 

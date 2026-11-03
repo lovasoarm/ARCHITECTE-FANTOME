@@ -20,7 +20,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 
 ## Les épreuves de ce module, dans l'ordre
 
-- [EXO LECTURE : 15-25 minutes (Runtime & Env)](07-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Runtime & Env)](07-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 02-CONSTRUCTION/13-RUNTIME-ENV](97-EXO-VERIFICATION.md)
 
 ## Ce qui valide le challenge (les quatre actes, aucun ne se saute)

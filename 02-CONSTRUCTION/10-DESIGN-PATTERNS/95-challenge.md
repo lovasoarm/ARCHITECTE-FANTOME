@@ -27,7 +27,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [51-adapter_pattern_minimini_projet.md](02_structural/51-adapter_pattern_minimini_projet.md)
 - [50-observer_pattern_minimini_projet.md](03_behavioral/50-observer_pattern_minimini_projet.md)
 - [51-strategy_pattern_minimini_projet.md](03_behavioral/51-strategy_pattern_minimini_projet.md)
-- [EXO LECTURE : 15-25 minutes (Design Patterns)](02A-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Design Patterns)](02A-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 02-CONSTRUCTION/10-DESIGN-PATTERNS](98-EXO-VERIFICATION.md)
 - [EXO FRONTIÈRE : quel module aurait dû accueillir ce geste ?](03A-EXO_FRONTIERE.md)
 - [EXO [IA MENTEUSE] : design_patterns (singleton qui fuit)](97-EXO-VERIFICATION.md)

@@ -1,7 +1,7 @@
 ---
 perishability_id: PER-0075
 
-stability: perissable
+stability: "perissable"
 last_reviewed: 2026-07
 depends_on_vendor: false
 acte: comprendre
@@ -10,12 +10,21 @@ perturbation_modes: [regression, fausse_piste]
 anti_recipe_key: regression+fausse_piste
 transfer_distance: medium
 assessment_role: instructional_checkpoint
-freshness_registry_id: PER-0075
-freshness_audit_date: 2026-10-30
-freshness_status: date_declaree_non_revalidee_dans_cette_edition
-review_due: 2027-01-28
-review_status: date_declaree_non_revalidee_dans_cette_edition
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: "https://opentelemetry.io/docs/concepts/signals/logs/"
+source_type: "primary"
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « Logger structuré : savoir ce qui s'est passé, dans quel ordre, avec quel contexte ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
@@ -213,3 +222,38 @@ Sans relire, choisis une solution avec une contrainte supplémentaire (budget, l
 **Vérification.** Teste la sérialisation, la présence des champs obligatoires, l'absence de secrets avec fixtures canari et le comportement si le backend de logs est indisponible. Le log doit aider au diagnostic sans devenir une deuxième base de données métier.
 
 **Transfert.** Même schéma pour API, workers et scripts batch ; relie `requestId`/trace context à l'observabilité, en séparant corrélation et identité utilisateur.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Logger structuré : savoir ce qui s'est passé, dans quel ordre, avec quel contexte** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Concevoir des logs structurés réellement exploitables
+
+**Mission liée à « Logger structuré : savoir ce qui s'est passé, dans quel ordre, avec quel contexte » :** Définis pour un flux Kintana les événements utiles, champs stables, correlation_id, niveau, redaction des secrets et politique de cardinalité. Vérifie qu’une requête peut être suivie sans journaliser le payload privé.
+
+**Livrable :** Schéma d’événement, exemples anonymisés et requêtes de diagnostic.
+
+**Critères d’acceptation :** Les champs sont cohérents ; secrets et données personnelles sont exclus ; les identifiants corrèlent sans identifier inutilement ; la cardinalité reste bornée.
+
+**Transfert obligatoire :** Un incident ne peut pas être expliqué avec les champs retenus : ajoute un signal ciblé plutôt que de logger tout le payload.
+
+## Références officielles utiles
+
+> **Référence principale vérifiée le 2 novembre 2026 :** la première ressource de ce panneau, également enregistrée dans `source_url`, a été consultée pour le mécanisme versionné traité ici. Les autres liens sont des compléments officiels utiles ; ils ne constituent pas chacun une attestation indépendante de l’exemple du curriculum. Aucune référence ne prouve que l’exemple a été exécuté. Vérifie la version cible et teste dans ton environnement avant un usage réel.
+
+- [OpenTelemetry : Logs](https://opentelemetry.io/docs/concepts/signals/logs/)
+- [OWASP : Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)

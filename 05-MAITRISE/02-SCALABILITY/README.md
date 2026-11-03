@@ -3,17 +3,18 @@ stability: evolutif
 acte: parcours
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "05-MAITRISE/02-SCALABILITY/01-00-why-scalability.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 05-MAITRISE/02-SCALABILITY/01-00-why-scalability.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # MODULE 02 SCALABILITY
 
-> **État pédagogique : 30 octobre 2026 : preuves documentaires complétées.** Les ajouts ciblés couvrent les exemples, pratiques, vérifications et transferts requis pour ce module. Une revue technique indépendante et une validation terrain restent distinctes ; voir [48 : External Review Gate](../../06-ANNEXES-TRANSVERSES/48-EXTERNAL-REVIEW-GATE.md) et [49 : Terrain Maturity Gate](../../06-ANNEXES-TRANSVERSES/49-TERRAIN-MATURITY-GATE.md).
-
-> Palier `05-MAITRISE`. Duree estimee : **11 h 23** (16 fichiers de travail).
+> Palier `05-MAITRISE`. Duree estimee : **10 h 58** (16 fichiers de travail).
 
 ## Sommaire du module
 
@@ -33,11 +34,11 @@ terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 | [`09-b_hypotheses_panne_distribuee.md`](09-b_hypotheses_panne_distribuee.md)   | Hypothèses en panne distribuée : le pont que personne ne fait spontanément                | 45 min |
 | [`10-c_tests_de_resilience.md`](10-c_tests_de_resilience.md)                   | Tests de résilience : prouver qu'une panne d'un service dépendant ne coule pas les autres | 8 min  |
 | [`90-grimoire.md`](90-grimoire.md)                                             | Page verrouillée                                                                          | 30 min |
-| [`11-EXO_LECTURE.md`](11-EXO_LECTURE.md)                                       | EXO LECTURE : 15-25 minutes (Scalabilite)                                                 | 45 min |
+| [`11-EXO_LECTURE.md`](11-EXO_LECTURE.md)                                       | EXO LECTURE : ~20 minutes : un cycle (Scalabilite)                                        | 20 min |
 | [`97A-EXO-VERIFICATION.md`](97A-EXO-VERIFICATION.md)                           | EXO [JEUNE IA] : 05-MAITRISE/02-SCALABILITY                                               | 45 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                 | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust                                   | 45 min |
 
-Total : **11 h 23**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) et le boss (3 h) sont des évaluations séparées et ne sont pas ajoutés au Total sauf s’ils apparaissent comme lignes du tableau.
+Total : **10 h 58**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
 ## Comment travailler ce module
 
@@ -87,7 +88,7 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Hypothèses en panne distribuée : le pont que personne ne fait spontanément](09-b_hypotheses_panne_distribuee.md)
 - [Tests de résilience : prouver qu'une panne d'un service dépendant ne coule pas les autres](10-c_tests_de_resilience.md)
 - [Page verrouillée](90-grimoire.md)
-- [EXO LECTURE : 15-25 minutes (Scalabilite)](11-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Scalabilite)](11-EXO_LECTURE.md)
 - [EXO [jeune IA] : 05-maitrise/02-scalability](97A-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
 - [Challenge : `02-SCALABILITY`](95-challenge.md)
@@ -95,8 +96,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [`97-CHECKPOINT-PACK/`](97-CHECKPOINT-PACK/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
-
-## Standard de complétude et audit
 
 ## Navigation complète des ressources
 
@@ -124,3 +123,14 @@ Les liens ci-dessous donnent accès aux ressources documentaires du module, y co
 - [`97A-EXO-VERIFICATION.md`](97A-EXO-VERIFICATION.md)
 - [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)
 - [`SETUP.md`](SETUP.md)
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md) uniquement comme contexte partagé. Pour ce sous-module, applique la mission précise de sa ligne dans la section **Missions ciblées par sous-module** de cette carte ; le challenge local reste la consigne et le critère de validation. Cette référence ne crée ni prérequis ni gate supplémentaire.
+
+## Ressources pratiques associées
+
+- [Atelier de consolidation](ATELIER-CONSOLIDATION.md) : réutiliser les notions du module dans un cas intégré.
+- [Corrigé de référence de l'atelier](corriges/ATELIER-CONSOLIDATION-CORRIGE.md) : à consulter après une tentative autonome.

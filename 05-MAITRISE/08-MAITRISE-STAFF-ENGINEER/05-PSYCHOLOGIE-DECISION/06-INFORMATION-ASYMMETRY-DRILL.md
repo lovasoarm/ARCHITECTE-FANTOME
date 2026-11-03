@@ -27,10 +27,10 @@ Conserve les quatre états `je savais / je croyais / je supposais / je décidais
 
 Le correcteur interdit toute utilisation d'information révélée après la décision initiale pour juger la qualité de cette décision. C'est le **decision attribution error check**.
 
-<!-- AF-P0-2026-10-30: missing_example -->
-
 ### Exemple travaillé : cas métier
 
-Une décision locale réduit le coût d’une équipe mais crée une dépendance pour quatre autres ; tu dois arbitrer le système global et obtenir l’adoption. Pour « INFORMATION-ASYMMETRY-DRILL : décider avec information incomplète », construis un exemple où deux équipes ont des objectifs contradictoires. Distingue contrainte, préférence, coût immédiat, coût différé et critère de décision.
+**Exemple résolu (fictif).** À t0, le service semble disponible et le budget de latence est respecté ; la décision initiale est de ne pas rollback. À t+5, une région signale des timeouts, information alors inconnue du décideur. À t+15, les journaux montrent qu'une dépendance externe est en cause. On juge la décision t0 avec les signaux disponibles à t0, puis on juge séparément la qualité de la réaction aux nouvelles informations. Il serait injuste d'attribuer rétroactivement au décideur une information révélée plus tard.
+
+**À toi :** Une décision locale réduit le coût d’une équipe mais crée une dépendance pour quatre autres ; tu dois arbitrer le système global et obtenir l’adoption. Pour « INFORMATION-ASYMMETRY-DRILL : décider avec information incomplète », construis un exemple où deux équipes ont des objectifs contradictoires. Distingue contrainte, préférence, coût immédiat, coût différé et critère de décision.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

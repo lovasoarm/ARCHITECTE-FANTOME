@@ -23,7 +23,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [50-sorting_race_minimini_projet.md](01_sorting/50-sorting_race_minimini_projet.md)
 - [50-linear_binary_minimini_projet.md](02_searching/50-linear_binary_minimini_projet.md)
 - [SEARCH CHALLENGES : LES VARIANTES QUI PIÈGENT](02_searching/95-challenge.md)
-- [EXO LECTURE : 15-25 minutes (Algorithmes)](02A-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Algorithmes)](02A-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 02-CONSTRUCTION/07-ALGORITHMS](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/07-ALGORITHMS](97-EXO-VERIFICATION.md)
 

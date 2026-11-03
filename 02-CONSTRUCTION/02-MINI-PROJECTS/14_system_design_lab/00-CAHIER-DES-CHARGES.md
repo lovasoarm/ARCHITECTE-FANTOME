@@ -36,7 +36,7 @@ Avant de considérer le projet fini, tu dois traiter ces exigences OWASP context
 - Message poisoning (OWASP A08 - Data Integrity) : valider et signer/authentifier les messages de la queue pour qu'un worker ne traite pas un payload forgé.
 - Rate limiting (OWASP A04) : borner le débit d'entrée côté front pour éviter qu'un flood ne noie broker et worker.
 
-Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Le `97-CHECKPOINT-PACK` de ce projet contient un test de sécurité qui doit passer.
+Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Ajoute dans le dossier `tests/` de ce projet un test ciblé pour au moins une des menaces retenues. Documente dans le README la commande exacte qui exécute ce test. Aucun pack de correction séparé n’est fourni dans ce projet.
 
 ## AUTO-ÉVALUATION
 

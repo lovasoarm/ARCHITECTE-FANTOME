@@ -25,10 +25,10 @@ le jalon reste dû. Référentiel : [03-TECH-ILA](../../../06-ANNEXES-TRANSVERSE
 
 <!-- JALON-TECH-ILA:fin -->
 
-<!-- AF-P0-2026-10-30: missing_example -->
-
 ### Exemple travaillé : cas métier
 
-Une équipe consulte des mesures récentes ; le réseau tombe, le cache contient des données anciennes et les droits changent pendant la session. Construis un cas minimal qui illustre « Critères de vérification : `18-WEB-CONCEPTS` » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+**Exemple résolu (fictif).** Une page de liste charge 20 éléments, puis l'utilisateur change de filtre. Le critère observable est : l'URL ou l'état de filtre reflète la sélection, la liste affichée correspond au filtre et le bouton Retour restaure l'état précédent selon le contrat annoncé. Le scénario nominal passe ; un filtre sans résultat affiche un état vide compréhensible au lieu de conserver les anciens éléments. **Limite :** cette vérification ne démontre pas à elle seule le référencement, la performance sur réseau lent ni l'accessibilité au lecteur d'écran ; ces critères doivent être testés séparément.
+
+**À toi :** Une équipe consulte des mesures récentes ; le réseau tombe, le cache contient des données anciennes et les droits changent pendant la session. Construis un cas minimal qui illustre « Critères de vérification : `18-WEB-CONCEPTS` » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

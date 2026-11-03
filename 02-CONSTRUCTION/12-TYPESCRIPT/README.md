@@ -3,17 +3,18 @@ stability: evolutif
 acte: parcours
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "02-CONSTRUCTION/12-TYPESCRIPT/01A-00-why-typescript.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 02-CONSTRUCTION/12-TYPESCRIPT/01A-00-why-typescript.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # MODULE 12 TYPESCRIPT
 
-> **État pédagogique : 30 octobre 2026 : preuves documentaires complétées.** Les ajouts ciblés couvrent les exemples, pratiques, vérifications et transferts requis pour ce module. Une revue technique indépendante et une validation terrain restent distinctes ; voir [48 : External Review Gate](../../06-ANNEXES-TRANSVERSES/48-EXTERNAL-REVIEW-GATE.md) et [49 : Terrain Maturity Gate](../../06-ANNEXES-TRANSVERSES/49-TERRAIN-MATURITY-GATE.md).
-
-> Palier `02-CONSTRUCTION`. Duree estimee : **5 h 15** (9 fichiers de travail).
+> Palier `02-CONSTRUCTION`. Duree estimee : **4 h 45** (9 fichiers de travail).
 
 ## Sommaire du module
 
@@ -22,13 +23,13 @@ terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 | [`00-PREREQUIS.md`](00-PREREQUIS.md)                   | 00 : Prereq check : TypeScript                                                                | 15 min |
 | [`01A-00-why-typescript.md`](01A-00-why-typescript.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : TYPESCRIPT                                              | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                     | Page verrouillée                                                                              | 30 min |
-| [`02A-EXO_LECTURE.md`](02A-EXO_LECTURE.md)             | EXO LECTURE : 15-25 minutes (TypeScript)                                                      | 45 min |
+| [`02A-EXO_LECTURE.md`](02A-EXO_LECTURE.md)             | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (TypeScript)                                   | 50 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)     | EXO [JEUNE IA] : 02-CONSTRUCTION/12-TYPESCRIPT                                                | 45 min |
-| [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)     | EXO IA MENTEUSE : module 02-CONSTRUCTION/12-TYPESCRIPT                                        | 45 min |
+| [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)     | EXO IA MENTEUSE : module 02-CONSTRUCTION/12-TYPESCRIPT                                        | 10 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)         | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust                                       | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                           | PONT : de typer du code à connaître le sol sur lequel il tourne à l'environnement d'exécution | 45 min |
 
-Total : **5 h 15**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) et le boss (3 h) sont des évaluations séparées et ne sont pas ajoutés au Total sauf s’ils apparaissent comme lignes du tableau.
+Total : **4 h 45**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
 ## Comment travailler ce module
 
@@ -71,7 +72,7 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [`03_ts_advanced/`](03_ts_advanced/README.md)
 - [Page verrouillée](90-grimoire.md)
 - [`04_typescript_tooling/`](04_typescript_tooling/README.md)
-- [EXO LECTURE : 15-25 minutes (TypeScript)](02A-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (TypeScript)](02A-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/12-typescript](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/12-TYPESCRIPT](97-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
@@ -80,8 +81,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Grimoire : `12-TYPESCRIPT`](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
-
-## Standard de complétude et audit
 
 ## Navigation complète des ressources
 
@@ -128,3 +127,14 @@ Les liens ci-dessous donnent accès aux ressources documentaires du module, y co
 - [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)
 - [`99A-PONT.md`](99A-PONT.md)
 - [`SETUP.md`](SETUP.md)
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.
+
+## Ressources pratiques associées
+
+- [Atelier de consolidation](ATELIER-CONSOLIDATION.md) : réutiliser les notions du module dans un cas intégré.
+- [Corrigé de référence de l'atelier](corriges/ATELIER-CONSOLIDATION-CORRIGE.md) : à consulter après une tentative autonome.

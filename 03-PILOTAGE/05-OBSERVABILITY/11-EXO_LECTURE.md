@@ -1,22 +1,25 @@
 ---
-perishability_id: PER-0055
-
-stability: perissable
+stability: "intemporel"
 acte: pratiquer
 cognitive_level: L3
 perturbation_modes: [changement_contexte, temps_limite]
 anti_recipe_key: changement_contexte+temps_limite
 transfer_distance: high
 assessment_role: instructional_checkpoint
-freshness_registry_id: PER-0055
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/05-OBSERVABILITY/README.md"
+source_scope: "Index interne du module Observability associé à l’exercice de lecture logs, métriques et traces."
+provenance_note: "Référence interne explicitement reliée au sujet ; elle ancre le parcours mais ne constitue pas une preuve externe. Aucun contenu n’est déclaré revérifié par cette mise à jour."
 ---
+
 > **SCÈNE CRAZYDEVS : finale au stade :** 99,9 % de disponibilité sur un slide ne sauve personne à 03:17 quand le service hurle. La vraie compétence commence quand il faut transformer la métrique en décision.
 
-# EXO LECTURE : 15-25 minutes (Observabilite)
+# EXO LECTURE : ~20 minutes : un cycle (Observabilite)
+
+**Durée indicative : environ 20 minutes** : environ 2 minutes pour prendre connaissance de la consigne, puis 15 minutes pour le protocole et quelques minutes pour consigner le résultat. Le checkpoint de profondeur, s’il est présent, est un prolongement séparé et n’est pas compris dans cette durée.
 
 <!-- AF-DIAGRAM:observability -->
 
@@ -32,15 +35,13 @@ review_status: a_verifier_date_absente
 
 Logs, métriques et traces donnent trois angles complémentaires pour reconstruire le comportement d’un système.
 
-Temps de lecture ~2 min
+Lecture de la consigne : ~2 min
 
 > **LOCK : pas d'édition avant HYPOTHESES.md signé.** Tu ne modifies AUCUN fichier avant que ton `HYPOTHESES.md` soit signé (>= 3 hypothèses, chacune avec preuve attendue). Sinon, l'exo ne compte pas.
 >
 > **Budget lecture** : 470 lignes en 15 min chrono. Si tu dépasses, note pourquoi dans `MAP.md`. Objectif progressif : tu dois pouvoir tenir 500 lignes en 15 min à la fin du curriculum.
 >
 > **Protocole de cartographie** : suis `../../05-MAITRISE/06-ANNEXES/23_reading/02-cartographie_15min.md` si tu ne sais pas par où entrer.
-
-Temps de lecture ~2 min
 
 Competence : lire du code reel que tu n'as pas ecrit et le comprendre AVANT de
 le modifier. C'est 80% du metier. Applique le protocole
@@ -84,13 +85,13 @@ Si tu veux "juste renommer une variable pour comprendre" : **note-le dans `HYPOT
 
 ## Livrable obligatoire : MAP_15MIN.md
 
-Ce bloc appartient a "Systeme web complet" / "Ingenierie senior".
-A la fin de cet EXO_LECTURE, tu produis un `MAP_15MIN.md` a cote de ce fichier,
-en suivant `02-CONSTRUCTION/02-MINI-PROJECTS/97-templates/08-MAP_15MIN_TEMPLATE.md`.
+Ce bloc appartient au parcours « Système web complet » / « Ingénierie senior ».
 
-Critere binaire : 15 min chrono, cartographie + chemin critique + 3 points
-chauds + 3 hypotheses testables. Sans cet artefact, l'EXO_LECTURE n'est pas
-valide.
+Crée `MAP_15MIN.md` dans ton espace de travail apprenant, en suivant le [template MAP_15MIN](../../02-CONSTRUCTION/02-MINI-PROJECTS/97-templates/08-MAP_15MIN_TEMPLATE.md). Ne place pas ce livrable dans le dépôt source du curriculum.
+
+Le `MAP_15MIN.md` complète `LECTURE_<nom>.md` : le MAP conserve la cartographie, le chemin critique, les points chauds et les hypothèses testables ; la fiche LECTURE conserve la prédiction de comportement, la vérification et l’écart observé. **Le MAP est le livrable du même protocole de 15 minutes ; il ne constitue pas une séance supplémentaire.**
+
+**Critère binaire :** 15 minutes chronométrées (ou dépassement documenté), cartographie non vide, chemin critique, exactement 3 points chauds et exactement 3 hypothèses testables.
 
 ## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
 

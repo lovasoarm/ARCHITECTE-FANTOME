@@ -13,6 +13,8 @@ assessment_role: diagnostic_mastery
 
 Temps de lecture ~9 min
 
+> Durée indicative de réalisation : 1 h 30. Le temps de lecture ne comprend pas la réalisation.
+
 Tout ce que t'as appris dans ce module, on le balance dans un seul exercice.
 Une codebase en vrac, des smells partout, zéro test. Ton job : la rendre propre, testée, et livrable.
 C'est le mini-boss avant les vrais mini-projets. Pas de triche, pas de raccourci.

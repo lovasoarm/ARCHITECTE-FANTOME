@@ -274,24 +274,51 @@ On te donne deux tables `villages` (10 lignes) et `ninjas` (500 lignes) sans rel
 
 SQL c'est pas de la syntaxe à apprendre par cœur, c'est une façon de déléguer le travail lourd à un moteur fait pour ça. `WHERE` filtre les lignes selon la sémantique SQL, `JOIN` relie des tables, un index peut éviter de lire une partie des données (au prix de stockage et de maintenance), et `EXPLAIN` expose le plan choisi. Aucun index ne garantit à lui seul une complexité ni une amélioration : mesure le plan, le volume et le comportement réel avant de conclure. En particulier, `O(log n)` pour la recherche dans une structure ne décrit pas à lui seul le coût d'une requête SQL complète. Le danger numéro un reste humain : un `UPDATE` sans `WHERE` ne pardonne pas.
 
-## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+<!-- AF-DIAGRAM:database -->
 
-<!-- AF-DIAGRAM:transfer -->
+## Repère visuel utile : Intégrité transactionnelle des demandes et créneaux
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+transaction A          transaction B
+     |                       |
+     v                       v
+réserve dernier slot   réserve dernier slot
+     |                       |
+     +----------+------------+
+                v
+       contrainte / verrou
+          |         |
+          v         v
+       commit    conflit
+       (1 gagnant, jamais 2)
 ```
 
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+<!-- AF-LESSON-PROFILE: database -->
 
-Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+## Repères de décision
+
+- **Pourquoi :** La modélisation et les contraintes protègent l'intégrité des données même quand plusieurs clients ou processus agissent en même temps.
+- **Quand l’utiliser / quand l’éviter :** Utilise les transactions et contraintes pour les invariants métier. Choisis le modèle selon les accès réels ; ne choisis pas NoSQL juste parce que le schéma semble flexible.
+- **Limites :** La base ne choisit pas les bonnes règles métier à ta place. Les index coûtent en écriture et stockage ; l'isolation a un coût ; les garanties varient selon le moteur et sa configuration.
+
+## Mécanisme : la version sans magie
+
+Part des requêtes et invariants, conçois clés et contraintes, exécute les écritures dans une transaction, puis vérifie le comportement concurrent et les migrations.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Parler à une base relationnelle sans la supplier** se rattache à ce cas concret : Kintana ne doit pas attribuer le dernier créneau à deux demandeurs ni laisser un agent lire le dossier d'un autre tenant.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Intégrité transactionnelle des demandes et créneaux
+
+> **Arc One Piece / Grand Line :** la base est le registre du navire. Si deux personnes modifient la même ligne sans règle, le journal de bord devient une fiction.
+
+**Mission liée à « Parler à une base relationnelle sans la supplier » :** Modélise une partie du domaine Kintana avec clés, contraintes et index justifiés. Écris une transaction qui réserve le dernier créneau, puis exécute deux requêtes concurrentes dans une base de test pour vérifier qu'une seule gagne.
+
+**Livrable :** DDL/migration, requêtes d'accès, transaction, test de concurrence et plan de restauration de fixture.
+
+**Critères d’acceptation :** les invariants critiques sont ancrés côté base ; le test concurrent est réellement exécuté sur le moteur annoncé ; les index sont justifiés par les requêtes ; la migration est réversible ou son risque est documenté.
+
+**Transfert obligatoire :** Ajoute un deuxième centre de service et un historique plus long. Vérifie index, isolation, rétention et accès par tenant.

@@ -46,7 +46,7 @@ Si ces bases ne sont pas là : reviens ici après.
 
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
-Un tableau (array) est pratique, mais il a des coûts cachés selon l'opération : chercher un élément précis dans un tableau non trié coûte O(n) (il faut potentiellement tout parcourir). Une hash table (table de hachage) fait la même recherche en O(1) dans la majorité des cas. Une queue (file) garantit un ordre FIFO (first in, first out) sans réinventer la roue à chaque fois. Un heap (tas) garde toujours l'élément le plus prioritaire accessible instantanément, sans trier toute la liste à chaque ajout.
+Un tableau (array) est pratique, mais il a des coûts cachés selon l'opération : chercher un élément précis dans un tableau non trié coûte O(n) (il faut potentiellement tout parcourir). Une table de hachage effectue généralement une recherche en temps moyen proche de `O(1)` sous des hypothèses raisonnables de distribution et de facteur de charge ; son pire cas peut être `O(n)`. Une queue (file) garantit un ordre FIFO (first in, first out) sans réinventer la roue à chaque fois. Un heap (tas) garde toujours l'élément le plus prioritaire accessible instantanément, sans trier toute la liste à chaque ajout.
 
 Sans connaître ces structures, tu résous chaque problème avec le même outil par défaut : le tableau, avec des boucles `for` et `find`. Ça fonctionne pour les petits volumes. Mais dès que l'échelle change, ton choix de structure devient le facteur qui détermine si ton système tient la charge ou s'effondre.
 
@@ -56,9 +56,9 @@ Ce module te donne le vocabulaire et les outils pour répondre à la question : 
 
 ## 2) QUI SOUFFRE QUAND ÇA MANQUE
 
-Le dev qui ne connaît que le tableau réinvente systématiquement des solutions lentes. Il code un système de file d'attente avec un tableau et `.shift()` (qui coûte O(n) à chaque appel parce que tout le tableau doit se décaler), alors qu'une vraie queue ferait la même chose en O(1). Il fait une recherche répétée dans un tableau alors qu'une hash table donnerait un accès direct.
+Le dev qui ne connaît que le tableau réinvente systématiquement des solutions lentes. Il code un système de file d'attente avec un tableau et `.shift()` ; sur un tableau dense classique, cette opération peut demander de déplacer les éléments et coûter O(n). Une file implémentée avec une liste chaînée ou un buffer circulaire peut proposer une sortie en O(1), selon son implémentation. Il fait une recherche répétée dans un tableau alors qu'une hash table donnerait un accès direct.
 
-Dans `04_breaking_cache`, Walter White a besoin de gérer des priorités en temps réel sur son réseau de distribution : quelle livraison est la plus urgente, quelle route est compromise. Un dev qui ne connaît pas les heaps passe une heure à trier une liste entière à chaque insertion. Un dev qui connaît le min-heap accède au plus prioritaire en O(1) et l'insère en O(log n). La différence se sent à l'échelle.
+Dans le mini-projet [`04_breaking_cache`](../02-MINI-PROJECTS/04_breaking_cache/README.md), le résumé de stock est conservé temporairement dans une `Map` indexée par une clé tenant/boutique. La table de hachage permet de retrouver une entrée par clé en temps moyen proche de `O(1)` sous des hypothèses raisonnables ; le projet doit aussi traiter expiration et invalidation. Il ne construit ni heap ni graphe : ces structures sont étudiées dans les exercices dédiés de ce module.
 
 Sur un graphe (réseau de noeuds connectés : relations sociales, routes, dépendances), le dev qui ne connaît pas BFS/DFS (parcours en largeur/en profondeur) ne sait même pas par où commencer pour répondre à des questions pourtant basiques : "quel est le chemin le plus court entre ces deux points ?", "ces deux noeuds sont-ils connectés ?".
 
@@ -70,7 +70,7 @@ Sur un graphe (réseau de noeuds connectés : relations sociales, routes, dépen
 historique de navigation, undo/redo     --> stack (pile)  --> dernier entré, premier sorti
 file d'attente de tâches ou de tickets    --> queue      --> premier entré, premier sorti
 système de priorités (urgence, scoring)    --> heap      --> accès immédiat au plus prioritaire
-recherche rapide par clé (cache, index)    --> hash table   --> accès quasi instantané en O(1)
+recherche rapide par clé (cache, index)    --> table de hachage --> accès moyen attendu proche de O(1), pire cas O(n)
 relations, réseau social, routes        --> graphe     --> BFS/DFS pour explorer ou connecter
 arbre de décision, autocomplétion       --> BST (binary search tree) --> recherche en O(log n)
 ```
@@ -114,3 +114,33 @@ Maintenant, ouvre `02-array_basics.md`. Et regarde enfin ce que `.push()`, `.shi
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
+
+<!-- AF-LESSON-PROFILE: structures -->
+
+## Repères de décision
+
+- **Pourquoi :** La structure choisie détermine le coût des opérations dominantes et la façon dont l'état évolue.
+- **Quand l’utiliser / quand l’éviter :** Choisis à partir des opérations fréquentes, du volume et des contraintes d'ordre. N'utilise pas une structure sophistiquée si un tableau ou une Map répond au besoin mesuré.
+- **Limites :** La complexité moyenne ne garantit pas les performances réelles. Mémoire, distribution des clés, ordre, synchronisation et sérialisation peuvent changer le coût.
+
+## Mécanisme : la version sans magie
+
+Liste les opérations, leur fréquence et les garanties attendues ; compare complexité, mémoire et comportement aux cas limites.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce module mérite ton temps : data structures** se rattache à ce cas concret : Kintana doit retrouver une demande, dédupliquer les événements ou ordonner des notifications sans parcourir toute l'historique à chaque action.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Choisir la structure selon le trafic métier
+
+> **Arc One Piece / Grand Line :** choisir une structure de données, c'est choisir comment la cargaison circule. Une mauvaise structure transforme chaque recherche en traversée de l'océan.
+
+**Mission liée à « Pourquoi ce module mérite ton temps : data structures » :** Prends une opération de Kintana (lookup par ID, file de notification, regroupement par tenant ou historique ordonné). Compare deux structures avec un coût théorique et un test reproductible sur données synthétiques.
+
+**Livrable :** une implémentation courte, tests d'invariants, tableau coût/avantages et mesure locale si elle est pertinente.
+
+**Critères d’acceptation :** les opérations dominantes sont identifiées ; l'ordre et les doublons sont traités explicitement ; la complexité est expliquée ; le choix n'est pas justifié par la mode.
+
+**Transfert obligatoire :** Multiplie par dix le volume et change la distribution des clés. Réévalue le choix et indique si un index persistant devient nécessaire.

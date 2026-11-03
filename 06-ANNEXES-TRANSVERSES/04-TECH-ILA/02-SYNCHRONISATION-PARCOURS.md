@@ -2,6 +2,13 @@
 stability: evolutif
 acte: comprendre
 companion: ce parcours
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "06-ANNEXES-TRANSVERSES/04-TECH-ILA/01-00-why-tech-ila.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 06-ANNEXES-TRANSVERSES/04-TECH-ILA/01-00-why-tech-ila.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
@@ -54,14 +61,14 @@ apprendre 300 outils
 
 ## Synchronisation par phase
 
-| Phase AF       | Fil principal                       | TECH-ILA à ouvrir   | Preuve de synchronisation                              |
-| -------------- | ----------------------------------- | ------------------- | ------------------------------------------------------ |
-| Socle          | JS/TS, shell, Git, runtime          | Niveau 0 + Niveau 1 | une commande / un geste reproduit dans un mini-projet  |
-| Cadrage        | async, debugging, erreurs           | Niveau 1 → 2        | même bug raisonné dans JS puis dans l'outil            |
-| Construction   | TS, tests, API, architecture        | Niveau 2 → 3        | choisir l'outil après avoir écrit le mécanisme minimum |
-| Pilotage       | sécurité, observabilité, cloud, SLO | Niveau 3 → 4        | décision outillage + coût + preuve                     |
-| Épreuve        | système réel, lecture legacy, IA    | Niveau 4 + 6        | auditer une stack inconnue et justifier les outils     |
-| Maîtrise Staff | transfert, arbitrage, architecture  | Niveau 5 + 6        | refaire une décision dans un autre écosystème          |
+| Phase de la route principale | Travail principal | Usage de TECH-ILA | Limite à respecter |
+| --- | --- | --- | --- |
+| Getting Started → Prologue → première passe Fundamentals | environnement local, premier JavaScript, variables et fonctions | aucune lecture TECH-ILA obligatoire ; la documentation locale du Socle suffit | ne pas ouvrir le Niveau 1 comme prérequis de démarrage |
+| Après un jalon JS/runtime identifié | mécanisme déjà étudié et pratiqué | ouvrir uniquement la section qui correspond au mécanisme, après ses prérequis locaux | ne pas lire le Niveau 1 en entier ; plusieurs sections exigent TypeScript ou un projet Node |
+| Construction | TypeScript, tests, API, architecture | sections ciblées des Niveaux 1 à 3 lorsque les modules principaux les introduisent | le niveau affiché ne remplace jamais le prérequis de la section |
+| Pilotage | sécurité, observabilité, cloud, SLO | sections ciblées des Niveaux 3 à 4 | documenter coût, risque et preuve sans prétendre à une expérience de production |
+| Épreuve | système réel, lecture legacy, IA | fiches utiles des Niveaux 4 et 6 | distinguer lecture, simulation, laboratoire et terrain réel |
+| Maîtrise Staff | transfert, arbitrage, architecture | sections pertinentes des Niveaux 5 et 6 | le portfolio et les preuves externes ne se remplacent pas par la lecture du compagnon |
 
 ## Test anti-collection
 

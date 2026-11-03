@@ -25,10 +25,10 @@ le jalon reste dû. Référentiel : [03-TECH-ILA](../../../06-ANNEXES-TRANSVERSE
 
 <!-- JALON-TECH-ILA:fin -->
 
-<!-- AF-P0-2026-10-30: missing_example -->
-
 ### Exemple travaillé : cas métier
 
-Le débit est multiplié par vingt pendant cinq minutes ; un consommateur tombe et redémarre avec des messages en retard. Construis un cas minimal qui illustre « Critères de vérification : `02-SCALABILITY` » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+**Exemple résolu (fictif).** Un test de charge montre que le temps p95 reste stable à 100 requêtes/seconde, puis augmente fortement à 150. Le critère de passage n'est pas « le service semble rapide » : le profil de charge, la durée, le taux d'erreur, p50/p95 et les ressources doivent être enregistrés. Si le seuil d'erreur convenu est dépassé à 150, le test échoue même si la moyenne reste bonne. La conclusion est limitée à cette configuration et à cette durée.
+
+**À toi :** Le débit est multiplié par vingt pendant cinq minutes ; un consommateur tombe et redémarre avec des messages en retard. Construis un cas minimal qui illustre « Critères de vérification : `02-SCALABILITY` » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

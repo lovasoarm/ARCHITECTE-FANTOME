@@ -7,39 +7,25 @@ acte: comprendre
 
 # Grille d'évaluation chiffrée
 
-<!-- AF-DIAGRAM:transfer -->
+<!-- AF-DIAGRAM:architecture -->
+
+## Repère visuel utile : Défendre une frontière de domaine Kintana
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+client -> API / application
+               |
+               v
+        domaine Kintana
+        /      |      \
+       v       v       v
+ demandes  réservations  rôles
+       \       |       /
+        v      v      v
+        persistance + outbox
+                |
+                v
+          worker notification
 ```
-
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
-
-<!-- AF-DIAGRAM:capstone -->
-
-```text
-Architecture ─┐
-Security ─────┤
-Cost ─────────┤
-Reliability ──┼──► STAFF DECISION ─► Perturbation ─► Revision
-Product ──────┤
-AI ───────────┤
-Leadership ───┘
-```
-
-Le capstone réunit plusieurs contraintes dans une décision unique, puis force sa révision sous perturbation.
-
-Temps de lecture ~9 min
 
 ## Scène d'ouverture
 
@@ -61,10 +47,10 @@ capstone non validable, quel que soit le score obtenu sur le reste de la grille.
 
 ## Critères éliminatoires (à valider avant tout calcul de score)
 
-| Critère éliminatoire                                                                                                 | Condition de passage                                                                                                                                                                                                                                                                                                                                                                           |
-| -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Arborescence de livraison conforme                                                                                   | La structure de dossier correspond exactement à celle décrite dans `03-deliverables.md`, sans fichier manquant ni renommé                                                                                                                                                                                                                                                                      |
-| Revue de risques du Module `04-EPREUVE/01-BONUS-VAULT` présente, signée, et vérifiée par au moins un test automatisé | `REVUE-DE-RISQUES.md` existe, couvre sécurité, coûts et données personnelles, porte une signature datée, **et** `tests/` contient au moins un test qui prouve qu'une mitigation décrite dans la revue est effective : une requête HTTP non autorisée sur une ressource appartenant à un autre utilisateur doit retourner un code 403 ou 404, jamais un code 200 avec les données de la victime |
+| Critère éliminatoire                                                                              | Condition de passage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Arborescence de livraison conforme                                                                | La structure de dossier correspond exactement à celle décrite dans `03-deliverables.md`, sans fichier manquant ni renommé                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Revue de risques du Capstone présente, signée, datée et vérifiée par les tests automatisés requis | `REVUE-DE-RISQUES.md` existe, couvre sécurité, coûts et données personnelles, porte la signature de l’auteur et une date antérieure au premier commit de code du jalon 3 (preuve dans `05-TDD-JOURNAL.md`), et `tests/` contient **les deux contrôles** : (1) un test d’accès horizontal non autorisé à la ressource d’un autre utilisateur, qui retourne 403 ou 404 et jamais 200 avec les données de la victime ; (2) un test de concurrence/capacité qui vérifie le comportement attendu sous accès simultanés et démontre la mitigation du risque documenté |
 
 ```text
 Un des deux critères éliminatoires manquant ou incomplet --> score final plafonné à 0/340,
@@ -304,3 +290,33 @@ Le score technique ne peut pas compenser un défaut de maturité décisionnelle.
 - la défense de l’option inverse est produite puis comparée à la décision finale.
 
 Ces critères reprennent la logique `avant → perturbation → observation → reprise → nouvelle mesure` du palier de maturation. Ils sont des gates de certification, pas des points que d’autres performances peuvent compenser.
+
+<!-- AF-LESSON-PROFILE: architecture -->
+
+## Repères de décision
+
+- **Pourquoi :** Les frontières réduisent le coût de changement et clarifient les responsabilités. Elles doivent répondre aux contraintes de l'équipe, des données et de l'exploitation.
+- **Quand l’utiliser / quand l’éviter :** Découpe un système quand une frontière protège une règle ou un rythme de changement. Ne crée pas de microservice tant que l'autonomie, la charge ou la gouvernance ne justifient pas le coût distribué.
+- **Limites :** Chaque frontière ajoute contrats, réseau, déploiement, observabilité et coordination. Un diagramme propre ne prouve ni la faisabilité ni la performance.
+
+## Mécanisme : la version sans magie
+
+Part des cas d'usage, repère invariants et propriétaires de données, définis les contrats, compare les options et mesure les conséquences du changement.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Grille d'évaluation chiffrée** se rattache à ce cas concret : Kintana commence comme monolithe modulaire. Les demandes, réservations et notifications doivent avoir des frontières explicites sans fragmenter trop tôt le déploiement.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Défendre une frontière de domaine Kintana
+
+> **Arc Capsule Corp. / DBZ :** une architecture est le plan du vaisseau et les coûts qu'il impose. Si chaque pièce doit connaître toutes les autres, le vaisseau ne décolle jamais.
+
+**Mission liée à « Grille d'évaluation chiffrée » :** Dessine le flux réel d'une création de demande. Identifie les invariants, propriétaires de données et dépendances ; compare monolithe modulaire et service séparé dans un ADR. Simule une évolution et mesure le nombre de composants touchés.
+
+**Livrable :** diagramme de composants/flux, ADR avec deux options, contrat de frontière et test de changement.
+
+**Critères d’acceptation :** la frontière possède une responsabilité claire ; les données ont un propriétaire ; le coût d'exploitation est explicite ; le microservice n'est pas choisi par prestige ; une condition de révision est écrite.
+
+**Transfert obligatoire :** Le nombre d'équipes ou le volume double. Indique quel signal justifierait de séparer un composant et quel coût tu acceptes.

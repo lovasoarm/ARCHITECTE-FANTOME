@@ -176,10 +176,32 @@ Implémente les 4 niveaux. Chaque niveau ajoute ou surcharge quelque chose. Puis
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Inheritance extends/super : et pourquoi les hiérarchies profondes piègent » à un troisième fournisseur dont l’API ne ressemble pas aux deux premiers. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: oop-inheritance-extends-super -->
+
+## Repères de décision
+
+- **Pourquoi :** `extends` et `super` relient les prototypes d’une classe enfant et d’une classe parente, et permettent de réutiliser ou spécialiser un contrat.
+- **Quand l’utiliser / quand l’éviter :** Utilise l’héritage lorsqu’une instance enfant peut réellement tenir le contrat de son parent et que cette relation restera stable. Préfère la composition pour assembler des capacités indépendantes ou des dépendances remplaçables.
+- **Limites :** Une hiérarchie profonde couple les enfants aux choix des parents. `super()` doit être appelé avant l’usage de `this` dans un constructeur dérivé ; `super.methode()` résout une méthode dans le contexte de la classe parente, mais ne supprime pas le besoin de respecter le contrat.
+
+## Mécanisme : la version sans magie
+
+`extends` établit une relation entre les prototypes. `super()` initialise la partie parente d’une instance dérivée ; les méthodes héritées restent soumises aux règles de résolution de propriété et de `this` de JavaScript.
+
+## Ancrage produit / terrain : Kintana
+
+Une variante spécialisée de `Demande` ne doit hériter de `Demande` que si elle respecte toutes les garanties attendues par le code qui manipule une demande standard.
+
+## Mission utile : Kintana : tester une relation parent-enfant
+
+**Livrable :** un parent, un enfant, un contrat commun écrit et un test qui utilise l’enfant à la place du parent sans connaître son type concret.
+
+**Critères d’acceptation :** `super()` est placé correctement ; le contrat parent reste vrai ; aucune méthode enfant ne retire silencieusement une garantie parent ; les limites de la hiérarchie sont documentées.
+
+**Transfert obligatoire :** ajoute une deuxième capacité indépendante et compare une sous-classe supplémentaire à une composition par délégation.

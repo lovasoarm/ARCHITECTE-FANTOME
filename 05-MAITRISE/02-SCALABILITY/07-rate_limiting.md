@@ -209,10 +209,36 @@ Rate limiting protège ton service contre l'abus, qu'il soit malveillant ou just
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Teste une rafale, une arrivée régulière, plusieurs identités et une horloge qui avance. Vérifie que la politique ne peut pas être contournée par le parallélisme.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Protéger ton API sans punir les gens honnêtes** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Protéger une API avec des limites compréhensibles
+
+**Mission liée à « Protéger ton API sans punir les gens honnêtes » :** Définis pour Kintana une politique de rate limiting qui distingue débit soutenu, burst, identité/tenant et réponse de refus. Vérifie qu’un client honnête n’est pas pénalisé par un autre tenant.
+
+**Livrable :** Politique, exemples de calcul de quota et scénarios de contention.
+
+**Critères d’acceptation :** La clé de limitation est justifiée ; les rafales et fenêtres sont expliquées ; la réponse indique quand réessayer ; les limites sont testées sur plusieurs tenants.
+
+**Transfert obligatoire :** Une charge abusive partage la même clé qu’un client sain : propose une isolation plus pertinente.

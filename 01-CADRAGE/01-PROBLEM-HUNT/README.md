@@ -6,7 +6,7 @@ route: survie
 
 # Module 01-CADRAGE/01-PROBLEM-HUNT : Problem Hunt
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../00-SOCLE/06-MINDSET/README.md) | [Niveau suivant](../05-MVP-SPLIT/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../00-SOCLE/06-MINDSET/README.md) | [Module suivant : Async](../02-ASYNC/README.md)
 
 **Ce niveau réutilise :** [01-MINDSET](../../00-SOCLE/06-MINDSET/03-cost-of-decisions.md) : le coût réel d'une décision, réutilise pour chiffrer le coût d'un mauvais cadrage.
 
@@ -69,9 +69,7 @@ du code n'est pas une fin en soi.
 
 Dans l'ordre, sans sauter `01-01-why-this-level.md`. Les leçons 02 à 05 forment une chaîne :
 tu ne peux pas écrire de bons non-objectifs (04) si tu n'as pas identifié le vrai besoin (02)
-ni les bons utilisateurs (03). Le `95-challenge.md` te demande d'appliquer les quatre leçons sur
-un cas réel, pas un cas jouet. Le `96-boss-fight.md` te met dans une situation où quelqu'un te
-pousse à sauter cette étape : c'est le vrai test.
+ni les bons utilisateurs (03). Le `95-challenge.md` privilégie un cas réel lorsque tu peux accéder au terrain avec autorisation. À défaut, il propose une simulation explicitement fictive : elle entraîne le raisonnement de cadrage, mais ne prouve ni interview, ni observation, ni validation terrain. Le `96-boss-fight.md` met à l'épreuve la même voie choisie ; une preuve simulée reste étiquetée comme telle et ne devient jamais une preuve réelle.
 
 ## Ce qui ne se passe pas ici
 
@@ -105,3 +103,9 @@ c'est le Module `01-CADRAGE/05-MVP-SPLIT` (MVP Split), qui suppose que ce niveau
 - [Grimoire : Module 01-CADRAGE/01-PROBLEM-HUNT, Problem Hunt](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.

@@ -1,6 +1,6 @@
 # SETUP : 03 REFERENTIEL
 
-Ce `SETUP.md` est le point de passage obligatoire avant la pratique, l’exercice ou le livrable situé dans ce dossier.
+Ce `SETUP.md` ne concerne que les activités qui demandent explicitement une exécution locale. Il n'est pas nécessaire pour lire le Référentiel, écrire une note papier ou accéder à Fundamentals. La première passe du module ne demande aucune installation supplémentaire.
 
 ## 1. Héritage
 
@@ -8,7 +8,7 @@ Lis d’abord le [`SETUP.md`](../../SETUP.md) le plus proche dans l’arborescen
 
 ## 2. Pré-requis locaux
 
-- [ ] Le socle global est validé.
+- [ ] Le prérequis indiqué par l’activité concernée est acquis. Ne valide pas tout le Socle pour lire le module.
 - [ ] La technologie demandée par le dossier est disponible **dans la version indiquée ci-dessous**.
 - [ ] Les dépendances du projet, lorsqu’il existe un `package.json`/lockfile ou équivalent, sont présentes ou préparées pour l’offline.
 - [ ] Une première commande de preuve est connue avant de commencer la mission.
@@ -19,9 +19,7 @@ Lis d’abord le [`SETUP.md`](../../SETUP.md) le plus proche dans l’arborescen
 
 ## 4. Première preuve
 
-1. Vérifier les prérequis ci-dessus.
-2. Exécuter **une seule** commande de preuve simple avant de commencer la mission.
-3. Si elle échoue, corriger l’environnement avant de modifier le code de l’exercice.
+N'exécute une commande que si l'activité la demande explicitement. Pour une activité papier ou une lecture, aucune commande n'est requise. Si une commande échoue, conserve le message et demande de l'aide au lieu de rester bloqué.
 
 ## 5. Offline
 

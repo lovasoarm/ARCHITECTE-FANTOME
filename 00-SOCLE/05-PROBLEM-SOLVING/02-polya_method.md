@@ -59,3 +59,59 @@ Coder tout de suite = tu résous **le problème que tu as compris**, pas le vrai
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
+
+<!-- AF-DIAGRAM:accessibility -->
+
+## Repère visuel utile : Parcours de demande accessible
+
+```text
+action utilisateur
+       |
+       v
+structure sémantique + nom
+       |
+  +----+-----+
+  v          v
+clavier   lecteur d'écran
+  |          |
+  +----+-----+
+       v
+état / erreur annoncé
+       |
+       v
+parcours utilisable
+```
+
+<!-- AF-LESSON-PROFILE: accessibility -->
+
+## Repères de décision
+
+- **Pourquoi :** L'accessibilité permet à davantage de personnes d'utiliser le produit et rend souvent l'interface plus robuste pour tous, y compris sur mobile et au clavier.
+- **Quand l’utiliser / quand l’éviter :** Teste les parcours critiques avec clavier, lecteur d'écran, contraste et zoom. N'attends pas la fin du design pour corriger la structure sémantique.
+- **Limites :** Un score Lighthouse ou une vérification automatique ne couvre pas tous les usages. Il faut aussi tester manuellement avec plusieurs modes d'interaction et, quand possible, avec des personnes concernées.
+
+## Mécanisme : la version sans magie
+
+Utilise HTML sémantique, labels, focus visible, ordre logique, messages d'état annoncés et alternatives aux interactions pointer-only.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **01 : La méthode Polya (avant de toucher au clavier)** se rattache à ce cas concret : Le demandeur Kintana peut utiliser un petit écran, un clavier externe, le zoom ou un lecteur d'écran. Le formulaire doit rester compréhensible dans tous ces cas.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Parcours de demande accessible
+
+> **Statut Kintana : prolongement accessibilité différé, facultatif et sans gate supplémentaire.** Pour la première passe, fais l'exercice de raisonnement de cette leçon sur le cas fictif de Noa. L'audit d'un parcours web avec focus, annonces, zoom et lecteur d'écran se reprend après Web Basics, les formulaires/accessibility concernés et le module Testing. Aucun composant, audit automatisé ou lecteur d'écran n'est requis pour terminer cette leçon de Problem Solving.
+
+> **Arc One Piece / Grand Line :** un parcours n'est pas réussi si seule une partie de l'équipage peut monter à bord. L'accessibilité enlève les obstacles inutiles.
+
+**Mission liée à « 01 : La méthode Polya (avant de toucher au clavier) » :** Audite le flux de création d'une demande Kintana. Corrige les labels, focus, erreurs associées, annonces de statut et navigation clavier ; ajoute des tests automatisés plus une vérification manuelle documentée.
+
+**Livrable :** audit WCAG ciblé, patch de composants, matrice clavier/lecteur d'écran et résultats reproductibles.
+
+**Critères d’acceptation :** aucun contrôle sans nom accessible ; focus visible et séquentiel ; erreurs reliées aux champs ; les états ne reposent pas seulement sur la couleur ; limites des outils automatiques reconnues.
+
+## Transfert facultatif : après les prérequis indiqués ci-dessus
+
+Lorsque tu reprendras cette mission d’accessibilité, teste le même parcours à 200 % de zoom et avec un lecteur d’écran. Identifie les défauts que l’audit automatique ne détecte pas. Ce transfert ne conditionne pas la validation de Problem Solving.

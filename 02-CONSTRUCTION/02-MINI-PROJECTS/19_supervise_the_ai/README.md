@@ -13,15 +13,14 @@ Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `
 
 > **Route CORE 16 semaines :** ce projet conserve son contenu complet. Pour le sprint intensif, consulte [la carte CORE](../../../06-ANNEXES-TRANSVERSES/25-CORE-MINI-PROJECT-MAP.md) pour le slice recommandé. Le passage CORE ajoute une perturbation, un transfert et un rappel à froid ; voir [Engine d’ambiguïté](../../../06-ANNEXES-TRANSVERSES/20-ENGINE-AMBIGUITE.md).
 
--> ~10h (reparties sur 3 sessions), 19e mini-projet ajoute suite a la
-revue (point 5). Verrouille le passage **Kick-Ass -> Thor** : tu ne
-livres **aucune ligne de code applicatif**. Tu es l'architecte-superviseur.
+Environ 10 h, réparties sur trois sessions. Ce projet te fait passer de
+la réalisation de code à sa supervision : tu ne livres **aucune ligne de
+code applicatif**. Tu es responsable du contrat, des décisions et de la
+vérification indépendante des résultats produits.
 
 ## Pourquoi ce projet existe
 
-Les 18 mini-projets precedents t'ont fait ecrire du code. Celui-ci teste
-la **6e pierre** dans le cadre IA/agentique visé par le profil 2035+ : tu diriges une IA qui code un
-petit systeme distribue. Ton livrable est **la trace de la supervision**,
+Les 18 mini-projets précédents t’ont fait écrire du code. Celui-ci met en pratique la **sixième pierre : la pensée transférable** : tu appliques tes critères d’ingénierie à un système produit par une IA, puis tu vérifies ses résultats au lieu de lui déléguer ton jugement. Dans ce cadre IA/agentique, tu diriges une IA qui code un petit système distribué. Ton livrable est **la trace de la supervision**,
 pas le code produit.
 
 Si tu es tente d'ecrire une ligne de code applicatif, tu as rate la gate
@@ -95,25 +94,29 @@ La séquence de prompts et les reviews ne valent que si elles montrent une déci
 
 ---
 
-## État des tests et point de départ (référence AF)
+## État du dépôt à réception et validation attendue
 
-Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les catégories ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat de tests supposé.
+Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STANDARD.md). Les points ci-dessous décrivent **l'état réel de ce ZIP**, pas un résultat d'exécution supposé.
 
-### État des tests à la réception
+### État initial
 
-- **Tests de référence verts dès le départ :** aucun test d'application n'est fourni.
-- **Scénario volontairement incomplet :** `tests/scenario.sh` est explicitement un squelette `TODO` qui termine par `exit 1`. Son échec initial est attendu ; il ne prouve pas que le système de supervision est cassé.
-- **Tests à créer :** implémenter le scénario de reprise, interruption après le deuxième fichier, reprise sans doublon ni saut, rejeu déterministe, validation des événements et tests de sécurité du protocole.
-- **Validation finale :** compléter le script, rendre son exécution sûre et isolée, puis rejouer trois fois depuis un état propre. Documenter le résultat et les journaux.
+- **Code métier fourni :** aucun système d'agent, watcher ou notifier n'est livré dans `src/`. Le dossier contient un README ; le système supervisé reste le livrable de l'apprenant.
+- **Tests de référence verts :** aucun test d'application complet n'est fourni.
+- **Scénario volontairement incomplet :** `tests/scenario.sh` contient un `TODO` puis `exit 1`. La commande `bash tests/scenario.sh` échoue donc à réception par conception ; cet état ne prouve pas que le système de supervision est cassé et le script n'est pas un runner de production.
+- **Espaces de travail :** `prompts/README.md` et `reviews/README.md` décrivent les artefacts à produire ; les dossiers ne contiennent pas une solution métier préfabriquée.
 
-Le dossier `src/` contient un README, pas une implémentation. Le système supervisé est le livrable de l'apprenant.
+### Travail de validation à réaliser
 
-### Détails d’implémentation et de validation à la réception
+- **Prérequis :** Bash et les outils réellement choisis par l'apprenant. Toute dépendance réseau ou IA doit disposer d'un mode simulé ; les secrets restent hors des prompts et des journaux.
+- **Scénarios et tests à créer :** arrêt forcé après le deuxième fichier, reprise sans doublon ni omission, rejeu déterministe, ordre et intégrité des événements, permissions, prompt injection, sortie non fiable et échec du modèle.
+- **Validation finale :** isoler un dossier temporaire, implémenter le scénario et les services, puis rejouer trois fois depuis un état propre en conservant journaux et états. Rendre le script sûr et isolé avant de le considérer comme validateur.
+- **Preuve humaine :** chaque décision d'acceptation ou de rejet cite le changement, le risque, le test indépendant et le résultat observé. La gate d'au moins cinq reviews et d'un rejet total reste une preuve humaine à documenter, pas un test automatique.
 
-- **Code fourni :** aucun système d'agent, watcher ou notifier dans `src/`. `prompts/README.md` et `reviews/README.md` décrivent les artefacts à produire.
-- **Tests de référence verts :** aucun.
-- **Scénario volontairement incomplet :** `tests/scenario.sh` contient un `TODO` puis `exit 1`. `bash tests/scenario.sh` échoue donc explicitement par conception à la réception ; ce n'est pas un runner de production.
-- **Prérequis :** Bash et les outils réellement choisis par l'apprenant. Toute dépendance réseau/IA doit avoir un mode simulé ; les secrets doivent rester hors des prompts et des journaux.
-- **Tests à créer :** arrêt forcé après le deuxième fichier, reprise sans doublon ni omission, rejeu déterministe, ordre et intégrité des événements, permissions, prompt injection, sortie non fiable et échec du modèle.
-- **Validation finale :** isoler un dossier temporaire, implémenter scénario et services, rejouer trois fois depuis un état propre et conserver journaux/états. La gate d'au moins cinq reviews et un rejet total reste une preuve humaine à documenter, pas un test automatique.
-- **Preuve :** chaque décision d'acceptation/rejet cite changement, risque, test indépendant et résultat observé.
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.
+- [Référence technique différée](reference/README.md) : à consulter après la tentative, sans recopier dans le livrable.
+
+## Drill de dérive de spécification
+
+- [Déclencheurs de spec drift](05-SPEC-DRIFT-TRIGGERS.md) : repérer les changements qui imposent une revalidation.

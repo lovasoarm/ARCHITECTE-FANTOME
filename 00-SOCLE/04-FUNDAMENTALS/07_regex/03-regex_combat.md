@@ -14,7 +14,7 @@ assessment_role: diagnostic_mastery
 
 > **CrazyDevs : briefing de mission :** ce concept doit survivre au moment où quelqu’un te demande « pourquoi ? » en plein chaos. Garde l’explication technique exacte, puis donne-lui une image qu’on peut raconter demain.
 
-# Regex combat : valider des données réelles
+# Regex combat : valider des formats d’entrée
 
 Temps de lecture ~9 min
 
@@ -108,48 +108,59 @@ Limite connue : cette regex accepte `naruto@ko..noha.com` (double point dans le 
 
 ---
 
-## 4) VALIDER UNE URL
+## 4) RECONNAÎTRE UNE URL HTTP(S) SIMPLE
 
-Les URLs ont plusieurs formes légitimes. On cible le cas courant : HTTP/HTTPS avec domaine et chemin optionnel.
+Une URL a des formes nombreuses. Une regex courte peut filtrer une forme attendue, mais elle ne remplace pas un parseur d'URL et ne prouve pas qu'un domaine existe.
 
 ```js
-const urlRegex = /^https?:\/\/[^\s/$.?#].[^\s]*$/i;
+const urlRegex = /^https?:\/\/[^\s]+$/i;
 
-const validerUrl = (url) => {
-  if (typeof url !== "string") return false;
-  return urlRegex.test(url.trim());
+const ressembleAUneUrlHttp = (value) => {
+  if (typeof value !== "string") return false;
+  const candidate = value.trim();
+  if (!urlRegex.test(candidate)) return false;
+
+  try {
+    const url = new URL(candidate);
+    return (
+      (url.protocol === "http:" || url.protocol === "https:") &&
+      url.hostname !== ""
+    );
+  } catch {
+    return false;
+  }
 };
 ```
 
 Décortiqué :
 
 ```text
-^     : début
-https?   : "http" ou "https" (le s est optionnel)
-:\/\/   : "://" (les slashes sont échappés)
-[^\s/$.?#] : premier caractère du domaine : pas un espace ni ces symboles
-.     : n'importe quel caractère (au moins un dans le domaine)
-[^\s]*   : le reste de l'URL : n'importe quoi sauf un espace
-$     : fin
+^          : début de la chaîne
+https?     : "http" ou "https" (s optionnel)
+:\/\/      : séparateur "://"
+[^\s]+    : au moins un caractère non blanc jusqu'à la fin
+$          : fin de la chaîne
 ```
 
+La regex filtre le protocole et les espaces ; `new URL()` analyse ensuite la structure. Même cette vérification ne prouve pas que le site répond, qu'il est sûr ou que l'application est autorisée à l'appeler.
+
 ```js
-validerUrl("https://crazydevs.io"); // true
-validerUrl("http://api.konoha.dev/jutsu/list"); // true
-validerUrl("ftp://fichier.com"); // false : pas http/https
-validerUrl("crazydevs.io"); // false : pas de protocole
-validerUrl("https://"); // false : domaine vide
+ressembleAUneUrlHttp("https://crazydevs.io"); // true
+ressembleAUneUrlHttp("http://127.0.0.1:4173/api/users"); // true
+ressembleAUneUrlHttp("ftp://fichier.com"); // false : protocole non accepté
+ressembleAUneUrlHttp("crazydevs.io"); // false : protocole absent
+ressembleAUneUrlHttp("https://"); // false : URL incomplète
 ```
 
 ---
 
 ## 5) VALIDER UN NUMÉRO DE TÉLÉPHONE
 
-Le format varie par pays. Pour un numéro français (10 chiffres, peut commencer par 0) avec des séparateurs variés :
+Le format varie par pays. Ici, on traite une forme pédagogique des numéros français : dix chiffres en format national `0X...`, ou neuf chiffres après `+33`, avec des séparateurs facultatifs entre les groupes. Cette regex vérifie la forme, pas l'attribution réelle du numéro.
 
 ```js
-// accepte : 06 12 34 56 78 / 0612345678 / 06-12-34-56-78 / +33612345678
-const telRegex = /^(?:\+33|0)1-9{4}$/;
+// accepte : 06 12 34 56 78 / 0612345678 / 06-12-34-56-78 / +33612345678 / +33 6 12 34 56 78
+const telRegex = /^(?:\+33[\s.-]?|0)[1-9](?:[\s.-]?\d{2}){4}$/;
 
 const validerTel = (tel) => {
   if (typeof tel !== "string") return false;
@@ -160,23 +171,25 @@ const validerTel = (tel) => {
 Décortiqué :
 
 ```text
-^         : début
-(?:\+33|0)    : groupe non-capturant : "+33" ou "0"
-[1-9]       : premier chiffre après l'indicatif : 1 à 9 (pas 0)
-(?:[\s.-]?\d{2}) : groupe non-capturant répété 4 fois :
- [\s.-]?     : séparateur optionnel : espace, point, ou tiret
- \d{2}      : exactement 2 chiffres
-{4}        : ce groupe se répète 4 fois = 8 chiffres restants
-$         : fin
+^                    : début de la chaîne
+(?:\+33[\s.-]?|0) : préfixe "+33" avec séparateur facultatif, ou "0"
+[1-9]                : premier chiffre national : 1 à 9
+(?:[\s.-]?\d{2}){4} : quatre groupes de deux chiffres ; séparateur facultatif
+$                    : fin de la chaîne
 ```
+
+La répétition `{4}` s'applique au groupe complet : quatre groupes de deux chiffres, donc huit chiffres après le premier chiffre national.
 
 ```js
 validerTel("06 12 34 56 78"); // true
 validerTel("0612345678"); // true
 validerTel("06-12-34-56-78"); // true
 validerTel("+33612345678"); // true
+validerTel("+33 6 12 34 56 78"); // true
+validerTel("06.12.34.56.78"); // true
 validerTel("123"); // false
 validerTel("06 123 45 678"); // false : mauvais groupement
+validerTel("+330612345678"); // false : le zéro national ne suit pas +33
 ```
 
 ---
@@ -189,7 +202,7 @@ Une regex qui accepte trop c'est pire que pas de validation.
 // mauvais -> accepte presque tout
 const emailBof = /\w+@\w+\.\w+/;
 emailBof.test("a@b.c"); // true : trop court pour être réel
-emailBof.test("test@test.test"); // true mais "test" n'est pas une extension valide
+emailBof.test("test@test.test"); // true : .test est réservé aux usages de test, pas une adresse de production validée
 
 // autre piège : oublier les ancres ^ et $
 const emailSansFrontiere = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
@@ -292,6 +305,61 @@ Lookahead et lookbehind permettent de conditionner un match sur le contexte sans
 
 La regex parfaite n'existe pas : elle couvre un spectre de cas réels. Connaître ses limites est aussi important que de la connaître.
 
+> **Statut pour la première passe : différé.** Termine d’abord la leçon et la pratique de base. Cette variation n’est pas une gate ; saute-la si elle utilise une notion non encore étudiée et reviens-y après les prérequis.
+
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+<!-- AF-DIAGRAM:regex -->
+
+## Repère visuel utile : Import contrôlé des demandes Kintana
+
+```text
+ligne externe
+   |
+   v
+regex bornée -> captures nommées
+   |
+   v
+validation métier
+   |
+ +-----+-----+
+ v           v
+acceptée   quarantaine
+             |
+             v
+       raison traçable
+```
+
+<!-- AF-LESSON-PROFILE: regex -->
+
+## Repères de décision
+
+- **Pourquoi :** Un parseur fiable transforme une chaîne externe en champs vérifiés. Une regex aide pour un motif local, mais ne remplace pas une grammaire ni une validation métier.
+- **Quand l’utiliser / quand l’éviter :** Utilise une expression régulière pour reconnaître un motif borné ou extraire un format simple. Évite-la pour parser un langage imbriqué ou une structure complexe ; utilise un parseur dédié.
+- **Limites :** Les regex peuvent devenir illisibles, coûteuses ou vulnérables au ReDoS. Une correspondance syntaxique ne prouve pas que la valeur existe ou est autorisée.
+
+## Mécanisme : la version sans magie
+
+Définis le format accepté, ancre le motif, limite les répétitions, capture uniquement les champs utiles, puis valide les valeurs extraites au niveau métier.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Regex combat : valider des formats d’entrée** se rattache à ce cas concret : Kintana importe des coordonnées de contact ou des fichiers de demandes. Un motif trop permissif accepte du bruit ; un motif trop strict rejette des formats légitimes.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Import contrôlé des demandes Kintana
+
+> **Statut Kintana : prolongement d'import différé, facultatif et sans gate supplémentaire.** Les missions de Regex basics, Regex combat et Regex extractor décrivent une seule évolution du même importeur ; ne construis pas trois parseurs. Termine la pratique locale de chaque leçon. Reprends l'import Kintana après les notions d'API, de gestion de fichiers/CSV et le module [Testing](../../../02-CONSTRUCTION/03-TESTING/README.md). Tant que ces prérequis ne sont pas étudiés, n'essaie pas de remplacer un parseur CSV par une regex : cette décision fait justement partie de l'approfondissement.
+
+> **Arc Konoha / Naruto :** un formulaire n'est pas un parchemin fiable. Si le sceau ne correspond pas, tu bloques l'entrée avant qu'elle contamine le village.
+
+**Mission liée à « Regex combat : valider des formats d’entrée » :** Ajoute une extraction ciblée à l'import des demandes : identifie les champs supportés, refuse les lignes mal formées, conserve la ligne source et écris des tests pour les entrées longues et adversariales.
+
+**Livrable :** un parseur d'import, une fixture valide/invalide, des tests de limites et une note sur les formats volontairement non supportés.
+
+**Critères d’acceptation :** la regex est ancrée et commentée ; les champs sont validés après extraction ; les lignes refusées sont traçables sans donnée sensible ; aucun cas de backtracking coûteux connu n'est ignoré.
+
+**Transfert facultatif, à la reprise :** lorsque les prérequis d'import et de test seront étudiés, ajoute des champs optionnels et des séparateurs dans les valeurs. Décide alors si la regex reste adaptée ou si un parseur CSV devient nécessaire.

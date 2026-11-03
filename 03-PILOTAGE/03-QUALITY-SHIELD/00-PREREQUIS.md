@@ -12,8 +12,7 @@ Temps de lecture ~2 min
 
 Acte attendu : évaluer. Trois minutes, seul, sans ouvrir le module.
 
-Si une seule ligne ci-dessous te fait hésiter, tu ouvres d'abord ce qu'elle nomme. Ouvrir ce
-module sans ces acquis coûte la séance : tu apprendrais le prérequis à la place du module.
+Le parcours conseillé suit `02-WEB-INCLUSIVE`. Ce diagnostic prépare les exercices de qualité qui réutilisent l'accessibilité ; il ne ferme pas la lecture du module. Si tu n'as pas étudié l'accessibilité, lis le module précédent avant de valider les exercices qui vérifient ce point.
 
 ## Ce que tu dois déjà savoir faire
 

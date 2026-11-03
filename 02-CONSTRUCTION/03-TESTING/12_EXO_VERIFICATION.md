@@ -1,45 +1,34 @@
 ---
 stability: stable
 acte: verification
+assessment_role: instructional_checkpoint
 ---
 
-# Vérification : 12_EXO_VERIFICATION.md
+**SCÈNE CRAZYDEVS : atelier de Konoha :** observe les contraintes avant de choisir une technique.
 
-> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+# EXO : un test qui tue une mutation
 
-# EXO IA MENTEUSE : module 06_testing
+Temps indicatif : 20 min.
 
-Temps : ~10 min. Format court, seul ou en binôme.
-
-## Snippet IA plausible
-
-L'assistant te propose ce code, l'air confiant :
+Fonction de départ :
 
 ```js
-test("addition", () => {
-  expect(add(2, 2)).toBeGreaterThan(0);
-});
+function isAdult(age) {
+  return age >= 18;
+}
 ```
 
-Il ajoute : _"C'est propre, testé, prod-ready."_
+Test initial trop faible :
 
-## Ta question unique
+```js
+expect(isAdult(20)).toBe(true);
+```
 
-**Où est la faille ?**
+**Mission**
 
-Prends 5 minutes. Écris ta réponse **sans** relancer l'IA. Nomme :
+1. Explique pourquoi le test passe encore si `>=` est remplacé par `>` (mutation).
+2. Ajoute les cas `17`, `18` et `19`, avec les résultats attendus.
+3. Invente une mutation différente (par exemple seuil `21`) et vérifie si tes tests la détectent.
+4. Distingue couverture de lignes et capacité à détecter un comportement incorrect.
 
-1. Le comportement observable qui trompe (pourquoi ça a l'air correct).
-2. Le vrai problème (technique, sécurité, complexité, ou sémantique).
-3. La correction minimale que **toi** tu apporterais.
-
-## Piste de correction (à ne lire qu'après)
-
-> Le test est vert dès que add renvoie n'importe quel positif, y compris 1. Où est l'assertion qui prouve vraiment le comportement ?
-
-## Pourquoi cet exo
-
-En 2026, l'IA génère du code **plausible** plus vite qu'elle ne le vérifie.
-Le métier n'est plus d'écrire ; c'est de **repérer la faille** dans une
-suggestion qui a l'air correcte. Ce drill de 10 min, une fois par module,
-te transforme de consommateur en pilote.
+**Critère** : au moins une mutation plausible doit faire échouer la suite. N’affirme pas qu’un score de mutation garantit l’absence de bugs.

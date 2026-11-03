@@ -10,33 +10,29 @@ assessment_role: instructional_checkpoint
 
 > **SCÈNE CRAZYDEVS : Attack on Titan :** ta frontière de confiance est un mur. Le problème n'est pas seulement de savoir s'il tient ; il faut savoir **qui peut passer, par où, avec quelle preuve et que se passe-t-il quand le mur est percé**.
 
-# 00 : Prereq check : Accessibility
+# 00 : Prereq check : Web Inclusive
 
-Temps de lecture ~5 min
+Temps de travail indicatif ~15 min (répondre aux quatre questions et noter les bases à réviser).
 
-> Tu ne dois **pas** entrer dans ce module si tu ne peux pas répondre à ces questions
-> **sans regarder**. Ce n'est pas un test noté, c'est un filtre anti-illusion.
-> Ces questions portent sur `02-CONSTRUCTION/17-OOP-JS`, le module que tu viens de finir.
+> Avant de commencer ce module, réponds à ces questions **sans regarder**. Ce diagnostic n'est pas noté et ne ferme jamais l'accès : il sert à repérer les bases web déjà acquises et à choisir une révision utile.
+>
+> Les questions reprennent les notions de [« Accessibilité utile, perception de vitesse, et les dangers de l'optimisme »](../../02-CONSTRUCTION/01-USER-WIZARD/05-accessibility-and-speed.md), déjà rencontrées dans le parcours. Elles ne demandent pas de connaître à l'avance les lecteurs d'écran, les critères WCAG détaillés ou ARIA : ce module les approfondit.
 
 ## Questions
 
-1. Différence entre `prototype` et `__proto__` ?
-2. `class` en JS est du sucre syntaxique pour quoi, exactement ?
-3. Composition vs héritage : quand préférer l'un à l'autre ?
-4. Différence entre héritage classique et héritage prototypal ?
+1. Pourquoi un vrai élément `<button>` est-il préférable à une `<div>` avec un gestionnaire `onClick` pour une action ?
+2. À quoi sert le focus clavier visible, et que doit-il se passer lorsqu'une modale se ferme ?
+3. Comment relier une erreur de validation au champ concerné pour qu'elle ne soit pas seulement visible à l'écran ?
+4. Pourquoi une interface optimiste doit-elle prévoir un retour arrière explicite quand le serveur refuse l'action ? Donne un exemple où cette approche serait risquée.
 
 ## Verdict
 
-- **3+ réponses solides** → tu peux entrer.
-- **2 ou moins** → retour à `02-CONSTRUCTION/17-OOP-JS/`, ou à sa synthèse `90-grimoire.md`.
+- **3+ réponses solides** → commence le module ; note les points hésitants comme objectifs de révision.
+- **2 ou moins** → relis [Accessibilité utile, perception de vitesse, et les dangers de l'optimisme](../../02-CONSTRUCTION/01-USER-WIZARD/05-accessibility-and-speed.md), puis refais le diagnostic. Tu peux aussi revoir les bases HTML/DOM si les éléments, attributs ou événements te sont encore peu familiers.
 
-> Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
+> Le résultat est un repère de départ, pas une gate. Tu peux commencer le module même si tu as besoin de revoir les bases.
 
-> **Note pour ce module précis** : ce que fait un lecteur d'écran, le
-> contraste minimum WCAG AA, et les attributs ARIA sont le contenu que ce
-> module va t'enseigner (notamment `01-03-01-a11y-why-it-matters.md`) : normal
-> de ne pas encore les maîtriser. Ta compréhension est testée en fin de
-> module, dans `90-grimoire.md`.
+> **Ce que le module enseigne ensuite :** le comportement des lecteurs d'écran, les critères de contraste, l'usage raisonné d'ARIA, les audits manuels et automatisés, puis l'internationalisation. Ne pas déjà maîtriser ces notions est normal : elles font partie des objectifs du module.
 
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 

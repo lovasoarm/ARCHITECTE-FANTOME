@@ -1,13 +1,14 @@
 ---
-stability: perissable
+stability: intemporel
 acte: maitrise
 noyau: oui
 assessment_role: staff_mastery
-freshness_registry_id: PATH:05-MAITRISE/08-MAITRISE-STAFF-ENGINEER/12-STAFF-JUDGMENT-ARENA.md
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "internal"
+canonical_resource: "PREUVES-STAFF-ENGINEER.md"
+source_scope: "Arène d’évaluation interne du jugement Staff, reliée au référentiel de preuves ; elle ne confère aucun titre externe."
 ---
 
 # Staff judgment arena : arbitrer quand aucune option n'est parfaite
@@ -131,10 +132,36 @@ L'IA est partiellement fiable. Décider ce qui peut être délégué, ce qui doi
 
 **Condition de passage :** chaque manche laisse une trace dans `PREUVES/STAFF-JUDGMENT.md` selon la chaîne `contexte → options → décision → coût accepté → signal de révision → résultat → révision éventuelle`. Le résultat doit être relu par un pair et revisité à distance.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Staff judgment arena : arbitrer quand aucune option n'est parfaite » à une décision qui touche plusieurs équipes pendant plusieurs trimestres. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Staff judgment arena : arbitrer quand aucune option n'est parfaite** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Arbitrer un cas sans option parfaite
+
+**Mission liée à « Staff judgment arena : arbitrer quand aucune option n'est parfaite » :** Choisis un cas de l’arène Staff Kintana. Compare options, risques asymétriques, réversibilité, impact inter-équipes et données manquantes ; tranche puis annonce ce qui ferait changer la décision.
+
+**Livrable :** Dossier d’arbitrage et défense orale courte.
+
+**Critères d’acceptation :** Le choix est traçable ; les risques minoritaires sont conservés ; la consultation et l’approbation sont distinctes ; les critères de révision sont définis.
+
+**Transfert obligatoire :** Un nouveau fait change le classement des options : révise explicitement la décision.

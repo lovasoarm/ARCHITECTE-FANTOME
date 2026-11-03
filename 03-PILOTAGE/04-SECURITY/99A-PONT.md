@@ -41,3 +41,15 @@ Réponse attendue : MD5 est inadapté au stockage de mots de passe, le salage do
 ## TRANSITION
 
 Ouvre ensuite [`04-BIG-APP-SNOOP/README.md`](../../04-EPREUVE/04-BIG-APP-SNOOP/README.md). Si tu bloques, reviens au module précédent : ce pont existe précisément pour empêcher qu'un code « propre » soit confondu avec du code sûr.
+
+<!-- AF-TRANSFER-FIELD-1.1 -->
+
+## Transfert terrain : Kintana
+
+**Pourquoi ce transfert compte :** une notion que tu sais réciter mais que tu ne sais pas replacer dans un système est encore fragile.
+
+**Quand la réutiliser :** quand une contrainte du produit change (rôle, réseau, volume, concurrence, panne ou coût) et que tu dois déterminer ce qui reste invariant.
+
+**Limite :** ne transpose pas une syntaxe ou une solution sans vérifier ses hypothèses ; le même mécanisme peut avoir des garanties différentes selon le runtime et le stockage.
+
+**Mission courte :** applique le principe de cette page à un incrément de [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md) : Applique la notion à une route Kintana utilisée par demandeur, agent ou superviseur. Définis la menace, impose le contrôle côté serveur et écris des tests négatifs avec deux comptes distincts. Produis un petit test ou scénario de panne et note l'invariant conservé, l'hypothèse qui change et la limite observée. Cette mission complète le transfert ; elle ne remplace pas le projet évalué du module.

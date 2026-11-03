@@ -372,10 +372,36 @@ Le GC suit toujours le même chemin : partir des roots, marquer ce qui est attei
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Fais varier une référence encore accessible et une référence devenue inaccessible. Vérifie que tu distingues objet éligible au GC, objet effectivement collecté et moment de collecte non garanti.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **GC simulator : rendre visible ce que le runtime cache** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Simuler l’accessibilité et la collecte
+
+**Mission liée à « GC simulator : rendre visible ce que le runtime cache » :** Construis un graphe d’objets simplifié pour un scénario Kintana. Marque les racines, parcours les références atteignables et compare les objets qui resteraient inaccessibles après suppression d’une référence.
+
+**Livrable :** Graphe avant/après, règles de parcours et cas limite avec référence partagée.
+
+**Critères d’acceptation :** Le modèle distingue accessibilité et libération réelle ; les cycles atteignables ne sont pas déclarés collectables ; les simplifications sont explicites.
+
+**Transfert obligatoire :** Ajoute une racine qui retient un sous-graphe : explique quel résultat du simulateur change.

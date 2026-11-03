@@ -1,6 +1,6 @@
 ---
 stability: intemporel
-last_reviewed: 2026-07
+last_reviewed: 2026-10-31
 depends_on_vendor: false
 acte: restituer
 ---
@@ -69,8 +69,8 @@ pour donner une prise mentale, pas pour décrire fidèlement le mécanisme.
 Points où elles mentent :
 
 - **Clé USB pour référence objet** : suggère un fichier physique partagé.
-  En vrai, deux variables pointent la même adresse mémoire ; pas de copie,
-  pas de "prêt", pas de "retour".
+  En vrai, l'affectation copie une valeur de référence ; les deux bindings
+  désignent le même objet. Aucune adresse physique n'est fournie par ce modèle.
 - **Arbitre du tournoi pour l'event loop** : suggère une décision au cas
   par cas. En vrai, c'est un ordre déterministe : microtasks vidées, une
   macrotask, on recommence.

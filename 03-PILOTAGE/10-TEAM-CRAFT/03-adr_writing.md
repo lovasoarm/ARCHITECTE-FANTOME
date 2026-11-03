@@ -242,23 +242,19 @@ L'index `README.md` dans le dossier ADR :
 
 **EXO 1 : décoder une décision silencieuse**
 
-Tu rejoins le projet `04_breaking_cache` de Walter White.
-Tu trouves dans le code :
+Tu rejoins le mini-projet `04_breaking_cache` de Kintana. Tu trouves ce fragment volontairement incomplet :
 
 ```javascript
-// cache des routes de livraison
-const routeCache = new Map(); // et pas Redis, et pas localStorage, et pas une variable globale
+// Fragment de lecture : TTL, loader et invalidation ne sont pas encore montrés.
+const stockSummaryCache = new Map();
 
-function getCachedRoute(from, to) {
-  const key = `${from}-${to}`;
-  if (routeCache.has(key)) return routeCache.get(key);
-  const route = computeShortestPath(from, to);
-  routeCache.set(key, route);
-  return route;
+function getCachedSummary(tenantId, storeId) {
+  const key = `stock-summary:${tenantId}:${storeId}`;
+  return stockSummaryCache.get(key);
 }
 ```
 
-Écris l'ADR rétroactif qui documente ce choix. Imagine le contexte, propose deux alternatives, et liste les conséquences.
+Écris un ADR rétroactif **sans inventer les faits absents** : quelles décisions peut-on réellement déduire de ce fragment, et lesquelles restent inconnues ? Compare au moins deux options de stockage, puis traite séparément le TTL, l'isolation tenant/boutique, le chargement en cas de miss et l'invalidation après commit. Signale explicitement toute hypothèse à confirmer.
 
 ---
 
@@ -295,10 +291,36 @@ Un dossier `ADR/` avec un index est le minimum viable pour un projet qui dure.
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « ADR : documenter une décision avant qu'elle devienne un mystère » à une équipe qui conteste la décision avec des preuves contraires. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **ADR : documenter une décision avant qu'elle devienne un mystère** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Documenter une décision avec un ADR
+
+**Mission liée à « ADR : documenter une décision avant qu'elle devienne un mystère » :** Pour une évolution Kintana, formule le contexte, les contraintes et au moins deux options crédibles. Décide, documente les conséquences acceptées et fixe un signal qui rouvrira la décision.
+
+**Livrable :** ADR avec statut, contexte, options, décision, conséquences et date/condition de revisite.
+
+**Critères d’acceptation :** Les options sont réellement différentes ; le statu quo est considéré ; les coûts et non-objectifs sont visibles ; aucune adoption n’est inventée.
+
+**Transfert obligatoire :** Une contrainte change six mois plus tard : indique quelle partie de l’ADR doit être réévaluée.

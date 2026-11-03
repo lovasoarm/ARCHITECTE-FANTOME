@@ -31,7 +31,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [51-mapped_types_minimini_projet.md](03_ts_advanced/51-mapped_types_minimini_projet.md)
 - [52-ts_in_real_project_minimini_projet.md](03_ts_advanced/52-ts_in_real_project_minimini_projet.md)
 - [50-ts_compiler_config_minimini_projet.md](04_typescript_tooling/50-ts_compiler_config_minimini_projet.md)
-- [EXO LECTURE : 15-25 minutes (TypeScript)](02A-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (TypeScript)](02A-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 02-CONSTRUCTION/12-TYPESCRIPT](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/12-TYPESCRIPT](97-EXO-VERIFICATION.md)
 

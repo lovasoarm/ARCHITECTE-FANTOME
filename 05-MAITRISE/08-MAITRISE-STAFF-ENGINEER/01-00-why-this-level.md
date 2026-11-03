@@ -42,7 +42,7 @@ première fois, c'est le moment où il cesse de l'être.
 - [ ] `PREUVES/SLO.md` : SLO chiffré, budget d'erreur, RTO mesuré chrono en main.
 - [ ] `PREUVES/DECISION-ARBITRAGE.md` : valeur, coût, risque, point mort.
 - [ ] Revue S5 publiée (URL + SHA) + passe [CONTRADICTEUR](../../06-ANNEXES-TRANSVERSES/09-CONTRADICTEUR.md).
-- [ ] `STANDARDS-AGENTS.md` présent.
+- [ ] Si le fil rouge délègue des décisions ou actions à des agents/automatisations autonomes : `PREUVES/STANDARDS-AGENTS.md`. Sinon, `PREUVES/EVALUATION-IA.md` documente explicitement le non-usage, son périmètre et les limites de ce choix. Un assistant utilisé sous contrôle humain direct ne déclenche pas à lui seul cette pièce.
 - [ ] `PREUVES/LIVRAISON-EXPLOITATION.md` : release, migration, observabilité post-déploiement, test de rollback/recovery daté.
 - [ ] `PREUVES/EVALUATION-IA.md` : jeu de cas versionné exécuté, erreurs et limites expliquées, décision d’usage/refus justifiée.
 - [ ] Si le fil rouge intègre une brique IA : `PREUVES/IA-EN-PROD.md` avec coût plafond, permissions, fallback et conditions d’arrêt.
@@ -65,3 +65,51 @@ raconté. Le [boss fight](96-boss-fight.md) a croisé le contradicteur.
 Sans `05A-transfert_hors_ecosysteme.md` (cité par le dossier unique, y compris hors
 lien markdown), le palier n'est pas franchissable : c'est pour ça que ce fichier
 existe sur le disque.
+
+<!-- AF-DIAGRAM:leadership -->
+
+## Repère visuel utile : Rendre visible l’impact au-delà d’une équipe
+
+```text
+problème inter-équipes
+        |
+        v
+carte d’influence et dépendances
+        |
+        v
+levier d’action
+        |
+        v
+coordination sans autorité directe
+        |
+        v
+impact vérifié
+```
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce niveau existe** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Définir une preuve de portée Staff
+
+**Mission liée à « Pourquoi ce niveau existe » :** Choisis une initiative Kintana qui dépasse une équipe. Cartographie son impact, les équipes concernées, les décisions que tu peux influencer et les preuves observables de résultat.
+
+**Livrable :** Carte de portée et dossier de preuves avec limites explicites.
+
+**Critères d’acceptation :** L’influence n’est pas confondue avec l’autorité ; les résultats non observés sont étiquetés ; le périmètre dépasse une contribution individuelle.
+
+**Transfert obligatoire :** L’initiative réussit localement mais dégrade une autre équipe : révise la mesure de succès.

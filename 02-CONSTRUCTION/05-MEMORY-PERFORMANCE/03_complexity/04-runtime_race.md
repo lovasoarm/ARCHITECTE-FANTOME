@@ -79,7 +79,7 @@ function bubbleSort(arr) {
   return a;
 }
 
-// Array.sort natif:O(n log n) sous le capot (TimSort dans V8)
+// Array.sort natif : complexité et algorithme internes dépendent du moteur et de sa version
 function nativeSort(arr) {
   return [...arr].sort((a, b) => a.score - b.score);
 }
@@ -341,8 +341,6 @@ O(n²) et O(n log n) semblent proches sur de petites données. À 10 000 éléme
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
-
-<!-- AF-P0-2026-10-30: missing_verification -->
 
 ### Vérification observable : critères de réussite
 

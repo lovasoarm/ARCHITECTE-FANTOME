@@ -27,11 +27,11 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [05 : Debug hypothèse-dirigé](06-hypothesis_driven_debug.md)
 - [06 : Blind Debug](07-blind_debug.md)
 - [07 : Flaky bugs (les bugs non déterministes)](08-flaky_bugs.md)
-- BUGS IA vs BUGS HUMAINS : signatures distinctes
+- [Revue de patch : prouver le comportement, pas deviner l’auteur](18-HUMAIN-VS-VERIFICATION-DIFF.md)
 - [CONSIGNE : HYPOTHESES.md OBLIGATOIRE](10-CONSIGNE_HYPOTHESES_OBLIGATOIRE.md)
-- [Heisenbug Arena : DÉPLACÉ](11-heisenbug_arena.md)
-- Humain vs IA : deux patches, un bug, trouve l'auteur
-- [\_EXEMPLE_HYPOTHESES.md (cas reel)](12-HYPOTHESES_EXEMPLE.md)
+- [Redirection Heisenbug Arena : hors parcours actif](11-heisenbug_arena.md)
+- [Ancienne page regroupée : redirection de compatibilité](19-verification_vs_human_bugs.md)
+- [Exemple guidé : fuite mémoire (scénario simulé)](12-HYPOTHESES_EXEMPLE.md)
 - [HYPOTHESES.md : exemple rempli](13-HYPOTHESES_EXEMPLE_REPRO_DETERMINISTE.md)
 - [16-HYPOTHESES_TEMPLATE.md](16-HYPOTHESES_TEMPLATE.md)
 - [Scénarios de blind debug](17_scenarios/README.md)

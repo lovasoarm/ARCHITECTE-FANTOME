@@ -37,6 +37,12 @@ Temps de lecture ~2 min
 
 Tu construis ton propre event loop, comme Rock Lee qui apprend le taijutsu sans ninjutsu : pas de magie du moteur, juste les mains dans la mécanique brute.
 
+## PRÉREQUIS ET GATE D’ENTRÉE
+
+Ce cahier des charges suppose que le [gate des prérequis pédagogiques du projet](README.md) est satisfait : fondamentaux JavaScript (fonctions, tableaux et modules), parcours Async obligatoire (callbacks, Promises, `async`/`await`, Event Loop), leçon `AbortController` et bases de lecture de tests. Reprends les leçons liées dans le README avant de coder si tu ne peux pas expliquer l’ordre des microtasks, le rejet d’une Promise ou les limites de l’annulation coopérative.
+
+Node.js 22.x est le runtime du rail AF. Les tests utilisent `node:test` et des modules ES ; dans ton dépôt apprenant, rends le mode module explicite avec `package.json` (`"type": "module"`) ou une configuration équivalente vérifiée.
+
 ## OBJECTIF
 
 Réimplémenter un event loop miniature (files micro/macrotasks) et un `pMap` avec limite de concurrence et annulation par AbortController.
@@ -58,7 +64,7 @@ Avant de considérer le projet fini, tu dois traiter ces exigences OWASP context
 - Validation d'entrée (OWASP A03 - Injection) : `pMap` doit rejeter proprement un `items` non-itérable ou un `mapper` non-fonction plutôt que crasher avec une stack qui fuit l'implémentation interne.
 - Déni de service (OWASP A05 - Misconfiguration) : borner `concurrency` à une valeur max raisonnable pour éviter qu'un appelant lance 1 000 000 de promesses et fasse tomber le process.
 
-Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Le `97-CHECKPOINT-PACK` de ce projet contient un test de sécurité qui doit passer.
+Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Ajoute dans le dossier `tests/` de ce projet un test ciblé pour au moins une des menaces retenues. Documente dans le README la commande exacte qui exécute ce test. Aucun pack de correction séparé n’est fourni dans ce projet.
 
 ## AUTO-ÉVALUATION
 

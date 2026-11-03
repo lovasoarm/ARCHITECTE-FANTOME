@@ -64,6 +64,8 @@ async function worker() {
 }
 ```
 
+Ce premier extrait est un schéma de découplage, pas un worker prêt pour la production : il omet volontairement le contrat broker-specific d'ACK/NACK, détaillé plus bas. Il suppose aussi que `pop()` attend un message au lieu de boucler à vide. Ne suppose pas que `pop()` confirme ou supprime un message de la même façon dans tous les brokers. Autre frontière importante : si `saveFile()` réussit puis `queue.push()` échoue, le fichier peut rester sans tâche associée. En production, utilise un outbox/état durable ou une compensation et documente ce cas de double écriture.
+
 Le pourquoi : l'utilisateur reçoit une réponse en quelques centaines de millisecondes au lieu d'attendre 45 secondes. Le traitement lourd continue en arrière-plan, et l'utilisateur peut être notifié plus tard (websocket vu dans `04-EPREUVE/03-REALTIME`, email, ou juste un statut qui change quand il rafraîchit).
 
 ---
@@ -95,20 +97,23 @@ Workers (lourds, lents) --> 10 instances pour absorber la charge de traitement
 ## 3) AT-LEAST-ONCE VS EXACTLY-ONCE : LA GARANTIE QUI CHANGE TOUT
 
 ```text
-AT-MOST-ONCE
- --> le message peut être perdu, mais jamais traité deux fois
- --> rare en pratique, dangereux pour des tâches importantes
+AT-MOST-ONCE (sémantique de livraison)
+ --> le broker ne livre pas le même message plus d'une fois dans ce contrat,
+     mais il peut être perdu si l'échec survient au mauvais moment
+ --> à réserver aux cas où une perte est acceptable
 
-AT-LEAST-ONCE
- --> le message est garanti d'être traité, mais PEUT être traité plusieurs fois
- --> le cas le plus courant en pratique (la plupart des queues fonctionnent ainsi)
+AT-LEAST-ONCE (sémantique de livraison)
+ --> le broker peut redélivrer jusqu'à obtenir l'ACK, selon sa rétention,
+     ses règles de retry et sa configuration ; le même message peut arriver plusieurs fois
+ --> cela ne garantit PAS que le traitement métier réussira : il peut échouer,
+     atteindre une limite, expirer ou finir en DLQ
 
-EXACTLY-ONCE
- --> le message est traité une fois et une seule, ni plus ni moins
- --> très difficile à garantir réellement, coûteux, rarement nécessaire
+EXACTLY-ONCE / effet unique dans une frontière nommée
+ --> certains systèmes coordonnent traitement et commit dans un périmètre précis
+ --> ne garantit pas à lui seul un effet unique dans une base ou un service externe
 ```
 
-Le risque réel avec at-least-once (le cas par défaut) : si ton worker traite un message, mais crash juste APRÈS le traitement et AVANT de confirmer ("ack", acknowledgment) à la queue qu'il a fini, la queue va renvoyer le même message à un autre worker, qui va le retraiter.
+Le risque réel avec at-least-once (un mode fréquent, selon la configuration du broker) : si ton worker traite un message, mais crash juste APRÈS le traitement et AVANT de confirmer ("ack", acknowledgment) à la queue qu'il a fini, la queue va renvoyer le même message à un autre worker, qui va le retraiter.
 
 ```js
 // exemple qui casse avec at-least-once mal géré
@@ -121,7 +126,11 @@ async function distribuerRations(job) {
 // Un autre worker reprend le job depuis le début --> double prélèvement du stock
 ```
 
-La correction : rendre l'opération idempotente (vue aussi dans `02-CONSTRUCTION/19-API-CRAFT/04_auth_jwt` pour le refresh token), c'est-à-dire que la rejouer plusieurs fois donne le MÊME résultat que la jouer une fois.
+La correction : rendre l'effet métier idempotent ou dédupliquer atomiquement l'identifiant
+du message avec l'effet persistant. Rejouer la même clé dans le périmètre garanti doit
+produire le même effet métier qu'une seule exécution. Une opération externe non coordonnée
+(paiement, e-mail, API tierce) exige une clé acceptée par le fournisseur, un outbox/inbox
+ou une procédure de rapprochement ; un ACK de queue ne la rend pas « exactly-once ».
 
 ```text
 Consommateur at-least-once
@@ -184,20 +193,125 @@ Message échoue --> retry automatique --> échoue encore --> retry --> échoue e
 Le pourquoi : sans ça, un message qui échoue systématiquement (genre une donnée corrompue qui fait crasher le worker à chaque fois) tourne en boucle de retry infinie, consommant des ressources pour rien, et masquant le fait qu'il y a un vrai problème à régler.
 
 ```js
-async function processWithRetry(job, maxRetries = 3) {
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+// PSEUDO-CODE : queue.ack() et deadLetterQueue.putOnce()/has() représentent
+// des contrats à adapter au broker choisi, pas des méthodes universelles.
+// putOnce(job.id, payload) doit persister durablement une entrée unique par job.id.
+// has(job.id) lit le registre durable utilisé après un crash DLQ / avant ACK.
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function processWithRetry(
+  job,
+  {
+    queue,
+    deadLetterQueue,
+    processJob,
+    maxAttempts = 3,
+    shouldRetry = () => false,
+    baseDelayMs = 250,
+  } = {},
+) {
+  if (!job?.id) throw new TypeError("job.id est requis");
+  if (!queue || typeof queue.ack !== "function")
+    throw new TypeError("queue.ack requis");
+  if (
+    !deadLetterQueue ||
+    typeof deadLetterQueue.putOnce !== "function" ||
+    typeof deadLetterQueue.has !== "function"
+  ) {
+    throw new TypeError(
+      "deadLetterQueue.putOnce et deadLetterQueue.has requis",
+    );
+  }
+  if (typeof processJob !== "function" || typeof shouldRetry !== "function") {
+    throw new TypeError("processJob et shouldRetry doivent être des fonctions");
+  }
+  if (!Number.isInteger(maxAttempts) || maxAttempts < 1) {
+    throw new RangeError("maxAttempts doit être un entier >= 1");
+  }
+  if (!Number.isFinite(baseDelayMs) || baseDelayMs < 0) {
+    throw new RangeError("baseDelayMs doit être un nombre fini >= 0");
+  }
+
+  // Récupération après un crash survenu entre l'écriture durable en DLQ et l'ACK.
+  // `has` doit lire un registre durable dédupliqué par job.id.
+  const dejaEnDlq = await deadLetterQueue.has(job.id);
+  if (typeof dejaEnDlq !== "boolean") {
+    throw new TypeError("deadLetterQueue.has doit retourner un booléen");
+  }
+  if (dejaEnDlq) {
+    await queue.ack(job.id);
+    return { status: "dead-letter-already-recorded" };
+  }
+
+  let processingError = null;
+  let hasProcessingError = false; // ne pas utiliser la truthiness de la valeur throw comme indicateur
+  let attemptsUsed = 0;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    attemptsUsed = attempt;
     try {
       await processJob(job);
-      return; // succès, on s'arrête là
-    } catch (err) {
-      if (attempt === maxRetries) {
-        await deadLetterQueue.push(job); // on abandonne, mais on garde une trace
-        await alertTeam(`Job ${job.id} a échoué ${maxRetries} fois`, err);
+      processingError = null;
+      hasProcessingError = false;
+      break;
+    } catch (error) {
+      // JavaScript permet techniquement `throw null`, `throw 0`, etc. Normalise
+      // la valeur à la frontière pour que la DLQ conserve un diagnostic exploitable.
+      processingError =
+        error instanceof Error
+          ? error
+          : new Error(
+              `processJob a rejeté une valeur non-Error : ${String(error)}`,
+              { cause: error },
+            );
+      hasProcessingError = true;
+      if (attempt === maxAttempts) break;
+      const decision = shouldRetry(error);
+      if (typeof decision !== "boolean") {
+        throw new TypeError(
+          "shouldRetry doit retourner un booléen de façon synchrone",
+        );
       }
+      if (!decision) break;
+      const plafond = Math.min(30_000, baseDelayMs * 2 ** (attempt - 1));
+      await sleep(Math.random() * plafond); // full jitter : [0, plafond]
     }
   }
+
+  if (hasProcessingError) {
+    // Si l'écriture durable en DLQ échoue, on ne ACK pas : le broker peut redélivrer.
+    await deadLetterQueue.putOnce(job.id, {
+      job,
+      attempts: attemptsUsed,
+      errorCode: processingError.code ?? processingError.name,
+    });
+    // L'ACK arrive après la persistance DLQ ; si l'ACK échoue, putOnce doit dédupliquer.
+    await queue.ack(job.id);
+    return { status: "dead-letter" };
+  }
+
+  // Hors du bloc catch : une panne d'ACK ne doit pas être confondue avec
+  // un échec de processJob et déclencher un second traitement dans cette boucle.
+  await queue.ack(job.id);
+  return { status: "acknowledged" };
 }
+
+const resultat = await processWithRetry(job, {
+  queue,
+  deadLetterQueue,
+  processJob,
+  maxAttempts: 4,
+  shouldRetry: (error) => error.code === "ETIMEDOUT" || error.status === 503,
+});
 ```
+
+`shouldRetry` ne doit autoriser que les erreurs temporaires. `processJob` doit être idempotent
+ou dédupliquer le message atomiquement avant tout rejeu. En particulier, si le traitement réussit
+mais que l'ACK échoue, le broker peut redélivrer le message : l'effet métier ne doit pas être
+appliqué une deuxième fois. Si l'écriture dans la DLQ réussit mais que l'ACK échoue, `putOnce`
+doit elle aussi être dédupliquée par `job.id`. Dans un vrai broker, utilise ses mécanismes
+réels d'ACK, de visibilité, de redelivery et de dead-letter ; ce pseudo-code ne remplace pas
+leur documentation. L'alerte opérateur doit partir d'un événement durable ou d'une voie séparée,
+pas devenir un nouvel effet bloquant au milieu de l'ACK.
 
 Le vrai intérêt : la dead letter queue devient un endroit que l'équipe surveille (vu dans `03-PILOTAGE/05-OBSERVABILITY`), pour comprendre pourquoi certains messages échouent systématiquement, sans que ça bloque le traitement normal des autres messages.
 
@@ -353,10 +467,36 @@ Une message queue découple ce qui doit répondre vite de ce qui peut prendre so
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Écris une assertion sur l’invariant de « Découpler pour ne pas tout bloquer en chaîne », puis teste cas normal, concurrence/duplicat, interruption et reprise. Fournis la requête ou la trace et explique ce que le test ne démontre pas.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Découpler pour ne pas tout bloquer en chaîne** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Concevoir une file avec livraison et backpressure explicites
+
+**Mission liée à « Découpler pour ne pas tout bloquer en chaîne » :** Pour un événement Kintana, décris l’acceptation, l’acknowledgement, le retry, la déduplication et le traitement d’un message poison. Précise le comportement si le consommateur est plus lent que le producteur.
+
+**Livrable :** Diagramme producteur/file/consommateur et politique de reprise.
+
+**Critères d’acceptation :** La sémantique de livraison est nommée ; l’idempotence est au niveau métier ; la taille de file et le backpressure ont des limites.
+
+**Transfert obligatoire :** Le consommateur reste indisponible : fixe un seuil d’alerte, une stratégie de quarantaine et un plan de rattrapage.

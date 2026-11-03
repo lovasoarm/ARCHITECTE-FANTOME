@@ -194,3 +194,31 @@ Où l'analogie casse : en cordée la sanction est immédiate et physique, une r�
 
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Les règles qu'on écrit avant d'en avoir besoin** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Établir un accord de travail vérifiable
+
+**Mission liée à « Les règles qu'on écrit avant d'en avoir besoin » :** Définis avec Kintana un accord d’équipe sur les revues, les délais de réponse et les urgences. Pour chaque règle, précise le comportement observable, l’exception, le propriétaire et le mécanisme de révision.
+
+**Livrable :** Accord d’équipe d’une page, deux scénarios d’application et un protocole d’escalade.
+
+**Critères d’acceptation :** Une règle est testable et réciproque ; les urgences sont distinguées du flux normal ; aucune disponibilité permanente n’est présumée.
+
+**Transfert obligatoire :** Une équipe n’applique pas une règle : distingue défaut de compréhension, contrainte de capacité et désaccord légitime avant de modifier l’accord.

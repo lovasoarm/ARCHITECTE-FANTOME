@@ -61,3 +61,9 @@ Tu coches le niveau 2 quand la retrospective de palier est signee et datee, jama
 <!-- CONTENU-DOSSIER:fin -->
 
 > **Compagnons actifs :** [Code d'honneur CrazyDevs](../06-ANNEXES-TRANSVERSES/07-FUN-CODE-HONNEUR.md) · [Synchronisation TECH-ILA](../06-ANNEXES-TRANSVERSES/04-TECH-ILA/02-SYNCHRONISATION-PARCOURS.md)
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **contrat métier sous filet** : Construis une suite de tests autour d’un invariant Kintana lié à cette notion. Ajoute un test nominal, un cas limite, un cas d’accès refusé ou de panne selon le sujet, puis injecte volontairement une régression. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : Les assertions testent le comportement public ; la régression est détectée ; les tests restent déterministes et reproductibles.

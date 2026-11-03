@@ -158,11 +158,8 @@ Données : 10   → ~100 opérations
 Données : 1 000 → ~1 000 000 opérations
 Données : 1 000 000 → ~1 000 000 000 000 opérations
 
-Courbe :      /
-         /
-        /
-      /
-    /  (exponentielle : fuit vers le haut)
+Courbe : parabole croissante (quadratique)
+Le nombre d'opérations est proportionnel à n², pas à 2ⁿ.
 ```
 
 ---
@@ -206,9 +203,9 @@ Courbe :
 
 ---
 
-## 6) O(n log n) : LE MEILLEUR SORT POSSIBLE
+## 6) O(n log n) : UN ORDRE DE GRANDEUR COURANT POUR LE TRI PAR COMPARAISON
 
-Les meilleurs algorithmes de tri (merge sort, quick sort) ont cette complexité. C'est aussi ce que fait `Array.sort()` en JS.
+Merge sort garantit O(n log n) dans ses versions usuelles, et Quick Sort a une moyenne O(n log n) mais un pire cas O(n²) selon le choix du pivot. Les moteurs JavaScript utilisent des algorithmes efficaces pour `Array.sort()`, mais le standard n’impose pas une borne O(n log n) ni un algorithme précis. Pour un benchmark, relève le moteur et sa version.
 
 ```js
 // Trier les buteurs par nombre de buts
@@ -218,33 +215,46 @@ const scorers = [
   { name: "Benzema", goals: 20 },
 ];
 
-scorers.sort((a, b) => b.goals - a.goals); // O(n log n)
-// Optimal pour le tri général. Impossible de faire mieux sur un tableau non trié.
+scorers.sort((a, b) => b.goals - a.goals);
+// Le coût exact dépend du moteur et de sa version : ne déduis pas
+// une garantie normative O(n log n) du seul appel à Array.prototype.sort().
 ```
 
 ```text
-Comparaison sur 1 000 000 éléments :
+Ordres de grandeur illustratifs pour n = 1 000 000 :
 
-O(n²)   → 1 000 000 000 000 opérations
-O(n log n) → 20 000 000 opérations
-O(n)    → 1 000 000 opérations
-O(log n)  → 20 opérations
-O(1)    → 1 opération
+O(n²)      → environ 10¹² unités de travail
+O(n log₂ n) → environ 2 × 10⁷ unités de travail
+O(n)       → environ 10⁶ unités de travail
+O(log₂ n)  → environ 20 unités de travail
+O(1)       → un coût borné indépendant de n
+
+Ces valeurs illustrent la croissance asymptotique ; elles ne prédisent
+ni le nombre exact d'instructions machine ni le temps réel.
 ```
 
 ---
 
+> **À retenir :** une forme récursive ne détermine pas à elle seule sa complexité.
+> Écris la récurrence (nombre d'appels, taille de chaque sous-problème et travail
+> hors appels), puis résous-la. De même, « accès direct » ne signifie O(1) que
+> si le modèle de coût retenu garantit un travail borné indépendamment de n.
+
 ## 7) RÈGLES PRATIQUES POUR LIRE LE BIG O D'UN CODE
 
 ```text
-1 boucle sur n éléments       → O(n)
-2 boucles imbriquées sur n éléments → O(n²)
-3 boucles imbriquées sur n éléments → O(n³)
-Diviser par 2 à chaque étape     → O(log n)
-Boucle + diviser par 2        → O(n log n)
-Opération directe sans boucle    → O(1)
-Récursion qui divise par 2      → O(log n)
-Récursion qui génère 2 appels    → O(2ⁿ) ← explosion totale
+1 boucle qui traite n éléments une fois chacun       → O(n)
+2 boucles imbriquées parcourant chacune ~n éléments → O(n²)
+3 boucles imbriquées parcourant chacune ~n éléments → O(n³)
+Diviser l'espace de recherche par 2 à chaque étape, avec un travail
+  borné par étape                 → O(log n)
+Parcourir n éléments et effectuer à chacun une recherche logarithmique
+  indépendante                    → O(n log n)
+Opération dont le coût reste borné quand n grandit
+  (dans le modèle étudié)          → O(1)
+Récursion T(n) = T(n/2) + O(1)    → O(log n)
+Récursion T(n) = 2T(n/2) + O(1)  → O(n)
+Récursion T(n) = 2T(n-1) + O(1)  → O(2ⁿ)
 ```
 
 Exemple de lecture rapide :
@@ -395,10 +405,36 @@ Big O mesure comment un algorithme se comporte quand les données grossissent, p
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Big o : le coût de chaque décision » à un service long-vivant plutôt qu’un script ponctuel. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Big o : le coût de chaque décision** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Dériver la croissance avant de chronométrer
+
+**Mission liée à « Big o : le coût de chaque décision » :** Analyse un algorithme Kintana : compte les opérations dominantes, écris sa complexité asymptotique et justifie les hypothèses. Compare ensuite plusieurs tailles d’entrée à titre de vérification empirique, sans confondre temps mesuré et preuve de Big O.
+
+**Livrable :** Décomposition du code, dérivation, tableau de tailles et limites du benchmark.
+
+**Critères d’acceptation :** Les boucles et appels récursifs sont analysés selon leurs bornes ; la récurrence est explicitée ; la mesure ne remplace pas le raisonnement.
+
+**Transfert obligatoire :** Le temps observé ne suit pas la tendance attendue : distingue bruit, constantes, moteur et modèle de complexité.

@@ -7,20 +7,17 @@ acte: évaluer
 
 # Critères de vérification : `01-GETTING-STARTED`
 
-Ce pack ne juge pas ta lecture : il juge ce que tu peux ouvrir et défendre.
+Ce pack est une vérification complémentaire **facultative et différée**. Il ne juge pas ta lecture : il donne des critères pour examiner une preuve lorsque tu as déjà terminé le noyau de démarrage. Il ne conditionne pas l'accès au Prologue ou à Fundamentals et ne crée pas de gate de sortie.
 
 <!-- JALON-TECH-ILA:debut -->
 
-## Jalon TECH-ILA
+## Jalon TECH-ILA : référence facultative
 
-Ce module porte un jalon du référentiel TECH-ILA. Le critère est **binaire** : il est
-validé, ou il est **non valide**. Il n'y a pas de validation partielle, et une lecture ne
-vaut pas validation.
+Le référentiel TECH-ILA peut être utilisé pour examiner une preuve après la première passe, mais ce pack ne transforme pas Getting Started en examen oral. Les deux critères ci-dessous sont des repères de qualité **uniquement si une activité ultérieure demande explicitement cette preuve** ; ils ne sont pas requis pour continuer le parcours.
 
-- [ ] L'artefact demandé par ce module existe, il est daté, il tourne.
-- [ ] Tu sais le défendre à l'oral en trois minutes, sans relire tes notes.
+- [ ] L'artefact demandé par l'activité concernée existe, est daté et a été exécuté dans l'environnement annoncé.
+- [ ] Tu peux expliquer à ton rythme ce que tu as fait, ce que tu as observé et ce que la preuve ne démontre pas.
 
-Tant qu'une case reste vide, le jalon est **non valide** : le module suivant peut s'ouvrir,
-le jalon reste dû. Référentiel : [03-TECH-ILA](../../../06-ANNEXES-TRANSVERSES/04-TECH-ILA/README.md).
+Une case non démontrée reste `NON ÉVALUÉE` ou `BLOCKED` selon la situation ; elle ne bloque pas Getting Started. Référentiel de consultation : [TECH-ILA](../../../06-ANNEXES-TRANSVERSES/04-TECH-ILA/README.md).
 
 <!-- JALON-TECH-ILA:fin -->

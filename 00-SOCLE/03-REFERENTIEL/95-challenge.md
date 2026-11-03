@@ -2,48 +2,56 @@
 stability: intemporel
 acte: pratiquer
 route: complete
-cognitive_level: L3
+cognitive_level: L2
 perturbation_modes: [defaut_cache, changement_contexte]
 anti_recipe_key: defaut_cache+changement_contexte
 transfer_distance: medium
 assessment_role: instructional_checkpoint
 ---
 
-> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+# Challenge différé : `03-REFERENTIEL` : savoir se repérer et gérer une lacune
 
-# Challenge : `03-REFERENTIEL`
+**Moment : après ta première pratique indépendante dans Fundamentals. Facultatif :** ce challenge ne conditionne ni l'entrée dans Fundamentals ni la poursuite de la Route 58. Il ne demande aucun projet logiciel, API, test automatisé ou connaissance de langage autre que ce qui a déjà été enseigné. Réalise-le dans ton journal local ou sur papier ; Git n'est pas requis. Tu n'as pas besoin d'utiliser ton domaine candidat ni de choisir un fil rouge.
 
-Temps de lecture ~2 min
+## Épreuves à mobiliser
 
-Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **promeut** les
-épreuves déjà écrites dans ce module et fixe ce qui les valide.
+- [Répétition espacée](08-repetition_espacee.md) : consulte uniquement la partie utile à une notion déjà étudiée
+- [Dependency ledger](09-DEPENDENCY_LEDGER.md) : seulement si une dépendance est réellement identifiée
+- [Exemple de journal de progression](10-PLATEAU_JOURNAL_EXEMPLE.md)
+- [Carte des axes de compétence](06-where_you_stand.md) : à consulter sans s'attribuer un niveau sans preuve.
 
-## Les épreuves de ce module, dans l'ordre
+Les quiz et l'auto-positionnement restent des ressources différées selon les indications du README. Ils ne deviennent pas des tests d'entrée simplement parce qu'ils existent.
 
-- [Répétition espacée : calendrier explicite sur les six pierres](08-repetition_espacee.md)
+## Livrable
 
-## Ce qui valide le challenge (les quatre actes, aucun ne se saute)
+Une note courte contenant :
 
-- [ ] **Construire** : le livrable demandé existe dans ton dépôt de projet fil rouge, il tourne.
-- [ ] **Expliquer** : tu décris en cinq lignes ce que tu as construit, sans jargon.
-- [ ] **Justifier** : tu écris pourquoi cette solution et pas l'autre, avec le critère qui a tranché.
-- [ ] **Défendre** : un contradicteur attaque le point faible, tu réponds par écrit.
+1. **Une action ou une question précise :** ce que tu as réellement essayé dans Fundamentals, ou ce que tu ne comprends pas encore.
+2. **Une observation :** le résultat vu, ou `PAS ENCORE ESSAYÉ`.
+3. **La prochaine étape :** une action simple, relire une consigne ou demander de l'aide.
+4. **Une date de rappel facultative :** choisis un moment réaliste. Tu peux laisser les rappels futurs en `EN ATTENTE` ou ne pas en programmer.
+5. **Une limite :** précise ce que cette petite preuve ne démontre pas.
 
-Rien ne se coche sur une lecture. Reporte le résultat dans
-[PROGRESSION.md](../../PROGRESSION.md).
+Un exemple accessible est fourni dans `10-PLATEAU_JOURNAL_EXEMPLE.md`. Tu peux réaliser ce challenge sur papier.
 
-## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
+## Critères de réussite mesurables
 
-Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+- [ ] La note est datée et distingue les faits observés des impressions.
+- [ ] La note sépare ce que tu as observé de ce que tu supposes.
+- [ ] Si tu identifies un prérequis manquant, tu peux le noter ; sinon écris « aucun identifié ».
+- [ ] Le rappel est facultatif et réaliste ; son absence ne bloque rien.
+- [ ] Une limite de la preuve est indiquée. Aucun transfert vers un autre langage n'est attendu.
 
-## Barème autonome : Référentiel et progression (20 points)
+## Auto-vérification : sans seuil bloquant
 
-- **Auto-positionnement vérifiable (4 pts)** : les axes de compétence sont notés avec une preuve datée et un exemple observable, pas une impression.
-- **Diagnostic de blocage (4 pts)** : le journal distingue symptôme, hypothèse, test minimal, résultat et prochaine action.
-- **Dépendances (4 pts)** : le ledger relie chaque lacune à un prérequis et à une ressource canonique sans inventer de dépendance.
-- **Rappel espacé (4 pts)** : les rappels J+1/J+7/J+21/J+60 contiennent des questions sans notes et un résultat daté.
-- **Transfert et honnêteté (4 pts)** : l'apprenant donne un exemple de transfert, une limite et ce qui n'est pas encore maîtrisé.
+- La note distingue une action réellement faite d'une question non résolue.
+- La prochaine étape est petite, compréhensible et faisable.
+- Une limite de la preuve est indiquée.
 
-**Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : déclarer une compétence acquise sans artefact ou transformer une estimation personnelle en preuve.
+Il n'y a **aucun score minimal** et aucun rappel futur à terminer pour poursuivre Fundamentals. Cette auto-vérification n'est pas un examen d'entrée.
 
-**Auto-correction différée :** attribue les points uniquement à partir des artefacts listés et des tests/observations attachés. Si un artefact manque, le critère vaut zéro ; ne compense pas un défaut de sécurité ou d'intégrité par une bonne documentation.
+## CHECKPOINT DE PROFONDEUR : mesure avant conclusion
+
+Donne une hypothèse que tu serais tenté de croire immédiatement. Définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi. Ce checkpoint approfondit le raisonnement ; il ne remplace pas le livrable principal.
+
+> **Règle de progression :** même non réalisé, ce challenge ne bloque jamais Fundamentals, Problem Solving ou une autre étape canonique.

@@ -1,6 +1,6 @@
 ---
 stability: intemporel
-last_reviewed: 2026-07
+last_reviewed: 2026-10-31
 depends_on_vendor: false
 acte: comprendre
 cognitive_level: L3
@@ -169,36 +169,58 @@ Certaines erreurs sont temporaires : timeout réseau, 503 passager, rate limit.
 Renoncer au premier échec : souvent la mauvaise décision.
 
 ```js
-// retente jusqu'à maxAttempts fois avant d'abandonner
-async function withRetry(fn, maxAttempts = 3, delayMs = 1000) {
-  let lastError;
+// Retry borné : seules les erreurs explicitement jugées temporaires sont rejouées.
+// Le nombre d'appels inclut la première tentative. Utilise ce helper pour une lecture
+// rejouable ou une opération rendue idempotente par un contrat vérifié.
+async function withRetry(
+  fn,
+  { maxAttempts = 3, baseDelayMs = 500, shouldRetry = () => false } = {},
+) {
+  if (!Number.isInteger(maxAttempts) || maxAttempts < 1) {
+    throw new RangeError("maxAttempts doit être un entier >= 1");
+  }
+  if (
+    !Number.isFinite(baseDelayMs) ||
+    baseDelayMs < 0 ||
+    typeof shouldRetry !== "function"
+  ) {
+    throw new TypeError("baseDelayMs ou shouldRetry invalide");
+  }
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       return await fn();
-    } catch (err) {
-      lastError = err;
-      console.warn(
-        `Tentative ${attempt}/${maxAttempts} échouée : ${err.message}`,
-      );
-
-      if (attempt < maxAttempts) {
-        // attendre avant de retenter : laisse le temps au serveur de respirer
-        await new Promise((resolve) => setTimeout(resolve, delayMs * attempt));
-        // delayMs * attempt = backoff exponentiel progressif
+    } catch (error) {
+      if (attempt === maxAttempts) throw error;
+      const decision = shouldRetry(error);
+      if (typeof decision !== "boolean") {
+        throw new TypeError(
+          "shouldRetry doit retourner un booléen de façon synchrone",
+        );
       }
+      if (!decision) throw error;
+      const plafond = Math.min(30_000, baseDelayMs * 2 ** (attempt - 1));
+      const delai = Math.random() * plafond; // backoff exponentiel plafonné + jitter
+      console.warn(
+        `Tentative ${attempt}/${maxAttempts} échouée : ${error.message}`,
+      );
+      await new Promise((resolve) => setTimeout(resolve, delai));
     }
   }
-
-  // toutes les tentatives ont échoué : on propage l'erreur
   throw new Error(
-    `Échec après ${maxAttempts} tentatives : ${lastError.message}`,
+    "État inaccessible : la boucle doit toujours retourner ou lever",
   );
 }
 
-// utilisation
+// Lecture illustrative : le prédicat dépend des erreurs normalisées par le client HTTP.
+// Une erreur HTTP 404 n'est pas transitoire.
 async function getKnightWithRetry() {
-  return withRetry(() => fetchKnight("leon"), 3, 500);
+  return withRetry(() => fetchKnight("leon"), {
+    maxAttempts: 3,
+    baseDelayMs: 500,
+    shouldRetry: (error) =>
+      error.name === "NetworkError" || error.status === 503,
+  });
 }
 ```
 
@@ -210,24 +232,35 @@ Une Promise sans timeout peut attendre indéfiniment. L'utilisateur attend. L'UI
 
 ```js
 function withTimeout(promise, ms) {
-  const timeout = new Promise((_, reject) =>
-    setTimeout(() => reject(new Error(`Timeout après ${ms}ms`)), ms),
-  );
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => {
+      const error = new Error(`Timeout après ${ms}ms`);
+      error.name = "TimeoutError";
+      reject(error);
+    }, ms);
+  });
 
-  // Promise.race : le premier qui se résout gagne
-  // si le timeout gagne : l'erreur est propagée
-  // si la Promise originale gagne : le timeout est ignoré
-  return Promise.race([promise, timeout]);
+  // Promise.race : le premier qui se règle gagne.
+  // Le timer est nettoyé si l'une des branches se termine.
+  // Si le timeout gagne, l'opération originale continue : Promise.race ne l'annule pas.
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
 }
 
-// si fetchMission prend plus de 3s : erreur de timeout
+// si fetchMission prend plus de 3s : erreur de timeout côté appelant.
+// Ce wrapper ne stoppe pas fetchMission : préfère lui transmettre un AbortSignal
+// si son API sait réellement interrompre la requête côté client. Même un abort
+// côté client ne prouve pas que le serveur n'a pas déjà appliqué une écriture.
+// Cet exemple suppose que fetchMission est une lecture sans effet métier.
 async function getMissionSafe() {
   try {
     const mission = await withTimeout(fetchMission("leon"), 3000);
     return mission;
   } catch (err) {
-    if (err.message.includes("Timeout")) {
-      console.error("Leon ne répond plus. On envoie Rei.");
+    if (err.name === "TimeoutError") {
+      console.error(
+        "Leon dépasse la limite d'attente. On envoie Rei ; l'appel de Leon peut encore tourner.",
+      );
       return fetchMission("rei"); // fallback
     }
     throw err; // autre type d'erreur : on la propage
@@ -240,27 +273,33 @@ async function getMissionSafe() {
 ## 6) FALLBACK : UN PLAN B QUAND LE PLAN A CRÈVE
 
 ```js
+function estErreurLectureTransitoire(error) {
+  // Le client HTTP doit normaliser ses rejets réseau en NetworkError.
+  // fetch() natif peut rejeter avec TypeError ; cette fonction suppose un adaptateur.
+  // Une erreur inconnue n'est pas retryable par défaut.
+  return (
+    error?.name === "NetworkError" || [502, 503, 504].includes(error?.status)
+  );
+}
+
 async function getHorrorData(horrorId) {
   try {
-    // tente l'API principale
     return await fetchFromPrimaryAPI(horrorId);
   } catch (primaryErr) {
-    console.warn("API principale indispo, tentative backup...");
+    if (!estErreurLectureTransitoire(primaryErr)) throw primaryErr;
 
     try {
-      // fallback sur l'API de backup
       return await fetchFromBackupAPI(horrorId);
     } catch (backupErr) {
-      // les deux APIs sont mortes
-      // retourne des données dégradées plutôt que de crasher
-      console.error("Backup aussi indispo. Mode dégradé.");
-      return { id: horrorId, name: "Unknown Horror", threat: "unknown" };
+      if (!estErreurLectureTransitoire(backupErr)) throw backupErr;
+      // Ne fabrique pas un faux Horror : l'indisponibilité est un état distinct.
+      return { id: horrorId, data: null, status: "unavailable" };
     }
   }
 }
 ```
 
-Résultat dégradé > crash total. L'utilisateur voit quelque chose, même si c'est incomplet.
+Une réponse d’indisponibilité explicite vaut mieux qu’un faux objet métier. Le client peut alors afficher un état de chargement/indisponibilité au lieu de traiter une valeur inventée comme une donnée réelle.
 
 ---
 
@@ -381,3 +420,33 @@ La règle d'or : un crash silencieux est pire qu'une erreur visible.
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+
+<!-- AF-LESSON-PROFILE: async -->
+
+## Repères de décision
+
+- **Pourquoi :** L'asynchronisme permet au système de continuer pendant l'attente, mais introduit ordre, concurrence, annulation et erreurs différées.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le pour I/O, tâches longues, notifications ou flux continus. Évite les traitements concurrents sans limite ; impose timeout, annulation et backpressure quand le producteur peut dépasser le consommateur.
+- **Limites :** `Promise.race` ne tue pas l'opération perdante ; `Promise.all` rejette au premier échec observable ; `allSettled` collecte les résultats mais ne fournit pas de stratégie de reprise. La mémoire partagée exige une synchronisation explicite.
+
+## Mécanisme : la version sans magie
+
+Sépare tâche, attente et consommation. Fixe un délai, une politique d'annulation, une limite de concurrence et une règle de rejeu/idempotence selon les effets.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Async rescue : sauver ce qui peut l'être** se rattache à ce cas concret : Le service de notification Kintana traite plusieurs demandes. Un fournisseur lent ne doit pas bloquer toute la file ni provoquer des doublons au retry.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Worker de notifications asynchrones fiable
+
+> **Arc One Piece / Grand Line :** un message peut arriver tard, deux fois ou pas du tout. Le navigateur ne promet pas que tout le monde rame à la même vitesse.
+
+**Mission liée à « Async rescue : sauver ce qui peut l'être » :** Implémente un worker pour les notifications Kintana avec concurrence bornée, timeout, annulation quand elle est supportée, backoff avec jitter et clé de déduplication. Instrumente le nombre en attente et l'âge du plus vieux message.
+
+**Livrable :** un worker, une horloge contrôlée dans les tests, un test de timeout, un test de rejeu et un scénario de saturation.
+
+**Critères d’acceptation :** la concurrence ne dépasse jamais la limite ; le message échoué est classé ; un replay ne double pas l'effet ; l'annulation est distinguée d'un timeout ; le backlog est observable.
+
+**Transfert obligatoire :** Augmente le débit producteur jusqu'à dépasser le débit consommateur. Explique quand appliquer backpressure, rejeter ou stocker temporairement.

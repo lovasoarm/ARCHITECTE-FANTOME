@@ -3,17 +3,18 @@ stability: evolutif
 acte: piloter
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/12-PLATFORM-ENGINEERING/01-00-why-platform-engineering.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 03-PILOTAGE/12-PLATFORM-ENGINEERING/01-00-why-platform-engineering.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : Prison Break :** un seul passage secret peut suffire à une équipe. Pour trente équipes, il faut un système de portes, de badges, de chemins sûrs et une règle pour les changer sans tout casser.
 
 # 12 : PLATFORM ENGINEERING : LA ROUTE RAPIDE DOIT AUSSI ÊTRE LA ROUTE SÛRE
-
-> **État pédagogique : 30 octobre 2026 : structure documentaire revue.** Les contrôles de contenu ne remplacent pas une revue technique indépendante ni une validation terrain ; voir le [standard de complétude AF](../../06-ANNEXES-TRANSVERSES/69-STANDARD-COMPLETUDE-MODULE.md).
 
 Le cloud moderne n’est plus seulement « où je déploie mon service ». Le vrai problème Staff devient : comment donner à plusieurs équipes un chemin de livraison répétable, observable, sécurisé et réversible.
 
@@ -25,7 +26,7 @@ Le cloud moderne n’est plus seulement « où je déploie mon service ». Le vr
 - `03-internal-developer-platform.md`
 - `04-golden-paths-and-dx.md`
 - `05-platform-as-a-product.md` : discovery, roadmap, métriques, coûts et valeur.
-- `06-secrets-and-credentials.md` : cycle de vie, privilèges, rotation, audit et révocation (`review_status: a_verifier`).
+- `06-secrets-and-credentials.md` : cycle de vie, privilèges, rotation, audit et révocation. Vérifie les recommandations de sécurité auprès des sources officielles avant de les appliquer à un système réel.
 - `07-case-fil-rouge-platform.md` : cas complet qui relie IDP, GitOps, Golden Path, sécurité et fiabilité.
 - `95-challenge.md`
 - `96-boss-fight.md`
@@ -59,4 +60,8 @@ Le sommaire ci-dessus reste le parcours recommandé. Les index ci-dessous renden
 - [Portage mental](99-PORTAGE-MENTAL.md)
 - [Pont : vers la maîtrise Staff](99A-PONT.md)
 
-## Standard de complétude et audit
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.

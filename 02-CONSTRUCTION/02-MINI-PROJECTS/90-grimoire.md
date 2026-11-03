@@ -211,7 +211,7 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [ADR-003 : décision d’architecture](18_human_vs_ai_smell/ADR/ADR-003_decision.md)
 - [ADR-004 : décision d’architecture](18_human_vs_ai_smell/ADR/ADR-004_decision.md)
 - [POSTMORTEM : 18_human_vs_ai_smell](18_human_vs_ai_smell/08-POSTMORTEM.md)
-- [18_human_vs_ai_smell : reconnaître deux styles de bug](18_human_vs_ai_smell/README.md)
+- [18 : deux implémentations, un contrat, revue fondée sur les preuves](18_human_vs_ai_smell/README.md)
 - [RULES : 18_human_vs_ai_smell](18_human_vs_ai_smell/01-RULES.md)
 - [Security : 18_human_vs_ai_smell](18_human_vs_ai_smell/03-SECURITY.md)
 - [Security Gate : 18_human_vs_ai_smell](18_human_vs_ai_smell/04-SECURITY-GATE.md)

@@ -2,7 +2,7 @@
 perishability_id: PER-0016
 
 stability: perissable
-last_reviewed: 2026-07
+last_reviewed: 2026-10-31
 depends_on_vendor: false
 acte: comprendre
 cognitive_level: L3
@@ -10,11 +10,19 @@ perturbation_modes: [temps_limite, decision_organisationnelle]
 anti_recipe_key: temps_limite+decision_organisationnelle
 transfer_distance: medium
 assessment_role: instructional_checkpoint
-freshness_registry_id: PER-0016
-freshness_audit_date: 2026-10-30
-freshness_status: date_declaree_non_revalidee_dans_cette_edition
-review_due: 2027-04-28
-review_status: date_declaree_non_revalidee_dans_cette_edition
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
+source_type: primary
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « Shallow vs deep : copier la surface ou copier le fond ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
 
 **SCÈNE CRAZYDEVS : Prison Break :** le tunnel fuit lentement. Personne ne voit la panne au premier tour. Puis la cellule se remplit. Une fuite mémoire est souvent exactement aussi discrète.
@@ -35,21 +43,18 @@ La raison : copier un objet en JS ne signifie pas forcément copier ce qu'il con
 
 ## 1) VALEUR VS RÉFÉRENCE : LE FONDEMENT
 
-En JS, les données se divisent en deux catégories :
+En JavaScript, une affectation copie toujours une **valeur**. La distinction utile est le type de valeur copiée, pas une règle physique de placement dans la mémoire :
 
 ```text
-STACK (valeurs primitives)     HEAP (objets, tableaux, fonctions)
---------------------------     ----------------------------------
-| score  = 42     |     | { hp: 100,           |
-| level  = 7      |     |  name: "Naruto",       |
-| ninja ----> [ ref ] ---+--------> |  jutsus: ["Rasengan", ...]  |
---------------------------     | }               |
-                  ----------------------------------
+Binding score ──► valeur primitive 42
+Binding level ──► valeur primitive 7
 
-Copier score : nouvelle valeur indépendante. Changer l'une ne change pas l'autre.
-Copier ninja : même objet dans le heap. Modifier depuis deux endroits = même objet muté.
-C'est pour ça que deux variables peuvent "bouger ensemble" sans qu'on l'ait demandé.
+Binding ninja ──► valeur de référence R1 ──┐
+                                          ├──► { hp: 100, name: "Naruto" }
+Binding ally  ──► valeur de référence R1 ──┘
 ```
+
+Copier `score` copie sa valeur primitive. Affecter `ninja` à `ally` copie la valeur de référence : les deux bindings désignent le même objet. Le dessin est logique, pas une carte des adresses physiques du moteur.
 
 **Primitives** : copiées par valeur. Chaque variable a sa propre copie.
 
@@ -61,14 +66,34 @@ cloneChakra = 1; // modifie la copie
 console.log(chakra); // → 9000:l'original ne bouge pas
 ```
 
-**Objets (et tableaux, et fonctions)** : copiés par référence. Deux variables peuvent pointer vers le même objet.
+**Objets, tableaux et fonctions** : l'affectation copie leur valeur de référence. Deux variables peuvent donc désigner le même objet.
 
 ```js
 const naruto = { name: "Naruto", power: 9000 };
-const shadowClone = naruto; // copie de la RÉFÉRENCE, pas de l'objet
+const shadowClone = naruto; // copie la valeur de référence, pas l'objet
 
 shadowClone.power = 1; // modifie l'objet pointé
 console.log(naruto.power); // → 1:l'original est aussi touché
+```
+
+### Passage d'argument : toujours par valeur
+
+JavaScript passe les arguments **par valeur**. Quand l'argument est un objet, la valeur copiée est une référence vers le même objet : le paramètre local peut donc muter cet objet. En revanche, réaffecter le paramètre ne remplace pas la valeur du binding chez l'appelant.
+
+```js
+function mutate(user) {
+  user.name = "Kakashi"; // mutation visible à l'extérieur
+}
+
+function rebind(user) {
+  user = { name: "Itachi" }; // réaffectation du paramètre local seulement
+}
+
+const profile = { name: "Naruto" };
+mutate(profile);
+console.log(profile.name); // "Kakashi"
+rebind(profile);
+console.log(profile.name); // reste "Kakashi"
 ```
 
 ```text
@@ -152,7 +177,7 @@ console.log(squad[0].name); // → "Rock Lee":partagé
 
 ## 3) DEEP COPY : COPIER JUSQU'AU FOND
 
-Une deep copy duplique l'objet **et tous les objets imbriqués**. Aucune référence n'est partagée avec l'original.
+Une copie profonde crée des objets distincts pour les éléments clonables de la structure et conserve certaines relations internes (par exemple les cycles). Elle ne signifie pas que tout type JavaScript ou toute métadonnée sera reproduit à l'identique.
 
 ### structuredClone : la méthode moderne
 
@@ -182,7 +207,7 @@ ninja ──► { stats: ──► { power: 85 }, jutsus: ──► ["Chidori"..
 
 deepCopy ──► { stats: ──► { power: 0 }, jutsus: ──► ["Chidori", "Susanoo"] }
 
-Chaque niveau est un objet distinct. Aucune référence partagée.
+Les objets clonés de cet exemple ont une identité distincte de ceux de l’original. À l’intérieur de la copie, les relations entre références sont conservées ; les types non clonables restent exclus.
 ```
 
 `structuredClone` gère :
@@ -192,11 +217,13 @@ Chaque niveau est un objet distinct. Aucune référence partagée.
 - `Date`, `Map`, `Set`, `ArrayBuffer`
 - références circulaires
 
-`structuredClone` **ne gère pas** :
+`structuredClone` **ne prend pas en charge** :
 
-- fonctions
-- `undefined` (converti en propriété manquante)
-- prototypes personnalisés (l'objet copié sera un plain object)
+- les fonctions (une tentative de clonage déclenche `DataCloneError`)
+- les valeurs `symbol`
+- les nœuds DOM
+
+Les prototypes personnalisés et plusieurs métadonnées (descripteurs, getters/setters) ne sont pas reproduits comme tels : les objets ordinaires clonés ne conservent pas leur chaîne de prototypes personnalisée. `undefined` est pris en charge comme valeur ; ce n'est pas lui qui est supprimé.
 
 ### JSON.parse + JSON.stringify : l'ancienne méthode (avec ses pièges)
 
@@ -222,7 +249,7 @@ const bad = JSON.parse(JSON.stringify(problematic));
 // bad.score   → null
 ```
 
-**Règle :** utilise `structuredClone` si tu es en environnement moderne (Node 17+, Chrome 98+). Utilise JSON en dernier recours sur des données purement sérialisables.
+**Règle :** utilise `structuredClone()` uniquement pour des données compatibles avec l’algorithme de clonage structuré et lorsque cette API existe dans ton environnement cible. Vérifie les contraintes de la plateforme ; ne confonds pas disponibilité de l’API et compatibilité de tous les types.
 
 ---
 
@@ -275,12 +302,20 @@ function goal(state, team) {
   // mais attention : events et players sont toujours partagés (shallow)
 }
 
-// MEILLEURE mise à jour si events ou players changent aussi
-function goalDeep(state, team) {
-  const newState = structuredClone(state);
-  newState.score[team]++;
-  return newState;
+// Si une propriété imbriquée change, copie seulement le chemin modifié.
+function addGoalForPlayer(state, team, playerId) {
+  const player = state.players[playerId];
+  return {
+    ...state,
+    score: { ...state.score, [team]: state.score[team] + 1 },
+    players: {
+      ...state.players,
+      [playerId]: { ...player, goals: player.goals + 1 },
+    },
+  };
 }
+// Les branches non modifiées restent partagées volontairement (structural sharing).
+// Un deep clone global serait souvent plus coûteux et inutile.
 ```
 
 ---
@@ -365,16 +400,47 @@ _(Indice : `Array.isArray()` te sauvera la vie. Et pense aux cas limite : que fa
 
 ## RÉSUMÉ
 
-Spread et `Object.assign` font une shallow copy : les propriétés primitives sont copiées par valeur, les objets imbriqués sont partagés. `structuredClone` fait une deep copy : tout est dupliqué indépendamment, jusqu'au fond. `JSON.parse/stringify` fonctionne sur des données sérialisables mais perd les fonctions, les `Date`, et les `undefined`. Dans un système avec état, toujours retourner un nouvel objet plutôt que de muter l'existant : c'est ce qui permet la détection de changement et évite les bugs silencieux.
+Spread et `Object.assign` créent un nouvel objet de premier niveau : chaque propriété reçoit sa valeur ; si cette valeur désigne un autre objet, la référence vers cet objet reste partagée. `structuredClone` réalise un clonage profond pour les types pris en charge, mais ne préserve pas toutes les particularités des objets. `JSON.parse(JSON.stringify(...))` est une sérialisation limitée : les fonctions et propriétés `undefined` d'un objet sont omises, les `Date` deviennent des chaînes, `NaN` devient `null` et `BigInt` provoque une erreur. Dans un système qui détecte les changements par identité, utilise des mises à jour immuables ciblées ; ce n'est pas une obligation universelle pour tous les systèmes d'état.
 
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
-
-<!-- AF-P0-2026-10-30: missing_verification -->
 
 ### Vérification observable : critères de réussite
 
 Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « Shallow vs deep : copier la surface ou copier le fond », puis conserve le résultat et explique tout écart.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Shallow vs deep : copier la surface ou copier le fond** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Choisir la profondeur de copie nécessaire
+
+**Mission liée à « Shallow vs deep : copier la surface ou copier le fond » :** Pour un état Kintana imbriqué, modifie une propriété interne après copie superficielle puis après copie ciblée. Observe quelles références restent partagées et choisis la plus petite copie qui garantit l’isolation requise.
+
+**Livrable :** Diagramme des références et tests d’isolation avant/après.
+
+**Critères d’acceptation :** La copie profonde n’est pas choisie par défaut ; les branches non modifiées peuvent être partagées explicitement ; l’original reste conforme au contrat.
+
+**Transfert obligatoire :** La structure contient un objet volumineux : explique le coût mémoire d’une copie plus profonde.
+
+## Références techniques
+
+- [MDN : Structured clone algorithm](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm) : types clonables, prototypes et métadonnées.
+- [MDN : Object.freeze()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) : gel superficiel des propriétés propres.

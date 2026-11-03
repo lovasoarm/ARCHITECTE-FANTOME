@@ -1,23 +1,28 @@
 ---
 stability: stable
 acte: verification
+assessment_role: instructional_checkpoint
 ---
 
-# Vérification : 11_EXO_VERIFICATION.md
+**SCÈNE CRAZYDEVS : atelier de Konoha :** observe les contraintes avant de choisir une technique.
 
-**SCÈNE CRAZYDEVS : Naruto :** avant de lancer le jutsu, tu vérifies ton chakra, ton terrain et ce que tu crois savoir. Ici, le piège est de coder avant d’avoir compris.
+# EXO 11 : const : liaison fixe, objet modifiable
 
-# EXO : Le code propre qui ment
+Temps indicatif : 10 min.
 
-Tu reçois un petit morceau de code qui semble propre, nomme bien ses variables et passe les cas heureux.
+```js
+const ninja = { name: "Mika", chakra: 100 };
+ninja.chakra -= 20;
+console.log(ninja.chakra);
+```
 
-## Mission
+**Questions**
 
-Trouve une hypothèse cachée qui n’est pas garantie par le contrat.
+1. La dernière ligne est-elle autorisée ? Prédis la sortie.
+2. Pourquoi `const` n’empêche-t-il pas de modifier `chakra` ?
+3. Quelle opération serait interdite : réaffecter `ninja` ou modifier une propriété ?
+4. Que changerait `Object.freeze(ninja)` dans cet exemple ? Précise que ce gel est superficiel.
 
-1. donne le cas qui la casse ;
-2. explique pourquoi le code semblait crédible ;
-3. propose le plus petit correctif ;
-4. ajoute un test qui empêcherait le retour du bug.
+**Preuve** : écris la prédiction avant exécution, puis ajoute un test qui distingue réaffectation et mutation.
 
-Le but n’est pas de trouver une faute de syntaxe. Le but est de montrer qu’une solution élégante peut reposer sur une hypothèse fausse.
+**Critère** : explique la différence entre l’immuabilité de la liaison et celle de l’objet sans dire que `const` rend l’objet entièrement immuable.

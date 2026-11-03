@@ -1,6 +1,6 @@
 ---
 stability: intemporel
-last_reviewed: 2026-07
+last_reviewed: 2026-10-31
 depends_on_vendor: false
 acte: comprendre
 cognitive_level: L4
@@ -65,10 +65,31 @@ Le principe : une fonction qui prend une fonction et retourne une fonction augme
 // on crée un wrapper qui ajoute juste le logging
 function withLogging(fn) {
   return function (...args) {
-    // on log l'appel avant
+    // En production, masque les secrets et données personnelles avant de logger.
     console.log(`[LOG] calling ${fn.name} with`, args);
-    const result = fn(...args);
-    // on log le résultat après
+
+    let result;
+    try {
+      result = fn(...args);
+    } catch (error) {
+      console.error(`[LOG] ${fn.name} failed`, error);
+      throw error;
+    }
+
+    // Un wrapper doit journaliser la valeur résolue, pas l'objet Promise.
+    if (result && typeof result.then === "function") {
+      return result.then(
+        (value) => {
+          console.log(`[LOG] ${fn.name} resolved`, value);
+          return value;
+        },
+        (error) => {
+          console.error(`[LOG] ${fn.name} rejected`, error);
+          throw error;
+        },
+      );
+    }
+
     console.log(`[LOG] ${fn.name} returned`, result);
     return result;
   };
@@ -99,51 +120,152 @@ function withLogging(fn) {
 
 // Decorator 2 : cache simple
 function withCache(fn) {
+  if (typeof fn !== "function")
+    throw new TypeError("fn doit être une fonction");
   const cache = new Map();
+  let modeRetour = null; // contrat stable : "sync" ou "async" pour cette fonction décorée
   return function (...args) {
+    // Démonstration limitée aux arguments simples, sérialisables en JSON.
+    // Une application réelle doit définir une clé stable et une politique TTL/invalidation.
     const key = JSON.stringify(args);
-    // si la réponse est en cache : on coupe court
+    if (key === undefined) throw new TypeError("clé de cache non sérialisable");
     if (cache.has(key)) {
       console.log(`[CACHE HIT] ${fn.name}`);
-      return cache.get(key);
+      const valeurEnCache = cache.get(key);
+      return modeRetour === "async"
+        ? Promise.resolve(valeurEnCache)
+        : valeurEnCache;
     }
-    const result = fn(...args);
-    cache.set(key, result);
-    return result;
+
+    // Appelle fn sans convertir d'office un retour synchrone en Promise.
+    const valeur = fn(...args);
+    const modeCourant =
+      valeur && typeof valeur.then === "function" ? "async" : "sync";
+    if (modeRetour !== null && modeRetour !== modeCourant) {
+      throw new TypeError(
+        "fn doit conserver un contrat de retour sync ou async stable",
+      );
+    }
+    modeRetour = modeCourant;
+    if (modeCourant === "async") {
+      // Les appels asynchrones concurrents partagent la même Promise en cours.
+      const pending = Promise.resolve(valeur).then(
+        (resultat) => {
+          cache.set(key, resultat); // après résolution, le cache ne mémorise que le succès : la valeur est résolue
+          return resultat;
+        },
+        (error) => {
+          cache.delete(key); // un échec ne devient pas un cache permanent
+          throw error;
+        },
+      );
+      cache.set(key, pending);
+      return pending;
+    }
+
+    cache.set(key, valeur); // un retour synchrone reste synchrone
+    return valeur;
   };
 }
 
-// Decorator 3 : retry automatique sur erreur
-function withRetry(fn, maxRetries = 3) {
+// Decorator 3 : retry explicite et borné. Par défaut, aucune erreur n'est rejouée.
+function withRetry(
+  fn,
+  { maxAttempts = 3, baseDelayMs = 250, shouldRetry = () => false } = {},
+) {
+  if (typeof fn !== "function")
+    throw new TypeError("fn doit être une fonction");
+  if (!Number.isFinite(baseDelayMs) || baseDelayMs < 0) {
+    throw new RangeError("baseDelayMs doit être un nombre fini >= 0");
+  }
+  if (typeof shouldRetry !== "function")
+    throw new TypeError("shouldRetry doit être une fonction");
   return async function (...args) {
-    let lastError;
-    for (let i = 0; i < maxRetries; i++) {
+    if (!Number.isInteger(maxAttempts) || maxAttempts < 1) {
+      throw new RangeError("maxAttempts doit être un entier >= 1");
+    }
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
         return await fn(...args);
-      } catch (err) {
-        lastError = err;
-        // petit délai avant de retenter (comme Scofield qui reprend son plan)
-        await new Promise((resolve) => setTimeout(resolve, 1000 * (i + 1)));
+      } catch (error) {
+        if (attempt === maxAttempts) throw error;
+        const decision = shouldRetry(error);
+        if (typeof decision !== "boolean") {
+          throw new TypeError(
+            "shouldRetry doit retourner un booléen de façon synchrone",
+          );
+        }
+        if (!decision) throw error;
+        const plafond = Math.min(10_000, baseDelayMs * 2 ** (attempt - 1));
+        await new Promise((resolve) =>
+          setTimeout(resolve, Math.random() * plafond),
+        );
       }
     }
-    throw lastError;
   };
 }
 
-// fonction originale : fait UNE chose
+class HttpError extends Error {
+  constructor(status) {
+    super(`HTTP ${status}`);
+    this.name = "HttpError";
+    this.status = status;
+  }
+}
+
+class NetworkError extends Error {
+  constructor(cause) {
+    super("Échec réseau pendant la requête", { cause });
+    this.name = "NetworkError";
+  }
+}
+
+// Fonction originale : GET de lecture, donc rejouable selon le contrat de cette API.
 async function fetchPlayerStats(playerId) {
-  const res = await fetch(`/api/players/${playerId}`);
-  if (!res.ok) throw new Error(`Player ${playerId} not found`);
+  // Prépare et valide l'entrée hors du catch réseau : une erreur de programmation
+  // ou une entrée invalide ne doit pas être reclassée en panne réseau.
+  if (typeof playerId !== "string" || playerId.length === 0) {
+    throw new TypeError("playerId doit être une chaîne non vide");
+  }
+  const url = `/api/players/${encodeURIComponent(playerId)}`;
+
+  let res;
+  try {
+    res = await fetch(url);
+  } catch (cause) {
+    // Normalise l'échec réseau ; ne classe pas toute TypeError de l'application comme transitoire.
+    throw new NetworkError(cause);
+  }
+  if (!res.ok) throw new HttpError(res.status);
   return res.json();
 }
 
-// composition : on décore de l'intérieur vers l'extérieur
-// ordre de lecture : retry > cache > logging > fetchPlayerStats
-const getPlayerStats = withLogging(withCache(withRetry(fetchPlayerStats, 3)));
+const isTransientReadError = (error) =>
+  error instanceof NetworkError ||
+  (error instanceof HttpError &&
+    [429, 500, 502, 503, 504].includes(error.status));
 
-// on appelle exactement comme la fonction originale
-await getPlayerStats("messi");
+// Retry seulement sur erreurs réseau normalisées et statuts transitoires.
+// Un 404, une validation ou une erreur inconnue remonte sans nouvelle tentative.
+const getPlayerStats = withLogging(
+  withCache(
+    withRetry(fetchPlayerStats, {
+      maxAttempts: 3,
+      shouldRetry: isTransientReadError,
+    }),
+  ),
+);
+
+async function main() {
+  await getPlayerStats("messi");
+}
+
+main().catch((error) =>
+  console.error("Chargement des statistiques impossible", error),
+);
 ```
+
+Cette démonstration de cache est volontairement courte : la clé JSON ne convient qu'à des arguments simples et sérialisables ; les cycles et `BigInt` échouent, et des valeurs distinctes peuvent avoir une sérialisation identique selon le domaine. Le cache n'a ni TTL, ni taille maximale, ni invalidation. Avant un usage réel, définis ces politiques et choisis explicitement la clé. Le wrapper `withCache` conserve ici le type de retour synchrone ou asynchrone de `fn`, y compris après un cache hit ; la fonction décorée doit garder un contrat stable pour tous ses arguments. `withRetry` est, lui, réservé aux fonctions asynchrones et retourne une Promise. Le décorateur de logging conserve le contrat synchrone ou asynchrone de la fonction et journalise la valeur résolue ; il faut toutefois filtrer les arguments/résultats sensibles.
 
 Diagramme de l'exécution :
 
@@ -368,3 +490,33 @@ Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois inf
 **Vérification.** Contrat identique avant/après, même erreur métier propagée, pas de retry sur une opération non idempotente sans clé, métrique sans donnée sensible, nombre d'appels conforme aux tests.
 
 **Transfert.** Logging, métriques, cache et contrôle d'accès peuvent être décorés ; une politique de sécurité ne doit jamais être contournable par une composition mal ordonnée.
+
+<!-- AF-LESSON-PROFILE: patterns -->
+
+## Repères de décision
+
+- **Pourquoi :** Un pattern donne un vocabulaire et une structure à un problème récurrent ; mal choisi, il ajoute indirection et coût de maintenance.
+- **Quand l’utiliser / quand l’éviter :** Utilise un pattern quand le problème se répète et qu'il clarifie les variations. Préfère la solution directe tant que tu n'as pas deux comportements réellement différents.
+- **Limites :** Un pattern ne garantit ni extensibilité ni qualité. Un mauvais niveau d'abstraction peut rendre le flux plus difficile à comprendre que le code initial.
+
+## Mécanisme : la version sans magie
+
+Identifie la variation, les responsabilités et les dépendances ; compare une solution simple à une solution structurée ; mesure l'effet sur test et changement.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Decorator : ajouter du comportement sans toucher à la source** se rattache à ce cas concret : Kintana peut avoir plusieurs canaux de notification ou politiques de dispatch. Le pattern ne doit apparaître que si ces variantes existent vraiment.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Évaluer un pattern sur un besoin réel
+
+> **Arc Capsule Corp. / DBZ :** un design pattern est un outil, pas une transformation magique. S'il ajoute plus de pièces qu'il ne résout de problèmes, laisse-le dans le coffre.
+
+**Mission liée à « Decorator : ajouter du comportement sans toucher à la source » :** Applique la notion à une variation Kintana : canal de notification, stratégie d'affectation ou fournisseur. Écris d'abord une version simple, puis une alternative avec le pattern ; compare lisibilité, testabilité et coût d'ajout d'une seconde variante.
+
+**Livrable :** deux implémentations ou un ADR argumenté, tests de comportement commun et note de suppression si le pattern n'apporte rien.
+
+**Critères d’acceptation :** la variation est démontrée ; l'interface n'expose que le contrat utile ; les tests vérifient les comportements et non les classes internes ; le coût de complexité est déclaré.
+
+**Transfert obligatoire :** Supprime la deuxième variante. Décide si le pattern doit rester ou être retiré, et explique pourquoi.

@@ -28,8 +28,8 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [55-blind_debug_minimini_projet.md](55-blind_debug_minimini_projet.md)
 - [56-flaky_bugs_minimini_projet.md](56-flaky_bugs_minimini_projet.md)
 - [EXO : Reproduction déterministe d'un bug flaky](09-exo_repro_deterministe.md)
-- [EXO LECTURE : 15-25 minutes (Debugging)](14-EXO_LECTURE.md)
-- [EXO [JEUNE IA] : 01-CADRAGE/03-DEBUGGING](20-EXO-VERIFICATION-IA.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Debugging)](14-EXO_LECTURE.md)
+- [Exercice de vérification canonique : Debugging](97-EXO-VERIFICATION.md)
 - [EXO : debugging a l'aveugle (Pierre 5, 11.5)](15-EXO_DEBUG_AVEUGLE.md)
 - [EXO IA MENTEUSE : module 01-CADRAGE/03-DEBUGGING](17A-EXO_VERIFICATION.md)
 

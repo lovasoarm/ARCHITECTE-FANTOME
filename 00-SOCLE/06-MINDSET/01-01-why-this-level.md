@@ -11,6 +11,8 @@ Temps de lecture ~7 min
 
 ## La scène
 
+> **Cas pédagogique fictif :** Sofia, le cabinet, les incidents, les dates et les chiffres de cette scène sont inventés pour apprendre à identifier les invariants. Ils ne décrivent ni un incident réel ni une mesure observée.
+
 Sofia reprend le backend de gestion des créneaux d'un cabinet vétérinaire. Trois praticiens,
 des créneaux qui se chevauchent selon la spécialité (chirurgie vs consultation), des
 annulations tardives. On lui demande d'ajouter "la possibilité de bloquer un créneau pour
@@ -65,8 +67,7 @@ rend dangereux, il se cache jusqu'à la production réelle.
 
 ## Ce que tu sais faire à la sortie
 
-- Modéliser un système en frontières et états explicites, sur un cas réel, pas sur un schéma
-  abstrait.
+- Modéliser un système en frontières et états explicites, d’abord sur le cas fictif fourni, puis transférer la méthode à un cas réel lorsqu’il sera disponible.
 - Chiffrer le coût d'un choix technique avant de le prendre, avec des ordres de grandeur, pas
   des impressions.
 - Formuler une incertitude comme une hypothèse à tester, plutôt que la traiter comme une
@@ -83,9 +84,7 @@ fine des données, traitée au [08-DATA-SPELLS](../../02-CONSTRUCTION/08-DATA-SP
 
 ## Prérequis réels
 
-Aucun prérequis technique. Le seul prérequis réel est d'avoir déjà livré, une fois dans sa
-vie, quelque chose qui a cassé sans qu'on comprenne pourquoi sur le moment. Si ce n'est jamais
-arrivé, ce niveau demandera un effort d'imagination supplémentaire, pas moins de rigueur.
+Aucun prérequis technique ou professionnel. Tu n'as pas besoin d'avoir déjà livré un logiciel, vécu un incident ou travaillé en équipe. Le cas fictif Kintana et les exercices du module suffisent pour la première passe. Si tu n'as jamais rencontré de panne, formule des hypothèses sur le scénario fourni ; n'invente pas une expérience personnelle.
 
 ## Erreurs de débutant les plus coûteuses
 
@@ -128,7 +127,7 @@ annoncé comme tel.
 
 ## Le coût de l'apprentissage
 
-Compter environ 4 à 6 heures de lecture attentive pour les quatre leçons, plus 3 à 5 heures
+Compter environ 4 à 6 heures de lecture attentive pour les cinq leçons, plus 3 à 5 heures
 de challenge appliqué sur un cas concret. Le vrai coût n'est pas dans le temps de lecture : il
 est dans le changement d'habitude, qui prend plusieurs semaines de pratique avant de devenir
 un réflexe et non un effort conscient supplémentaire à chaque feature.
@@ -170,3 +169,37 @@ Où l'analogie casse : aux urgences le patient dit où il a mal, ton système ne
    la vitesse redevient un problème.
 3. Quel est le lien entre les quatre leçons de ce niveau : pourquoi ne peux-tu pas en sauter
    une.
+
+<!-- AF-LESSON-PROFILE: architecture -->
+
+## Repères de décision
+
+- **Pourquoi :** Les frontières réduisent le coût de changement et clarifient les responsabilités. Elles doivent répondre aux contraintes de l'équipe, des données et de l'exploitation.
+- **Quand l’utiliser / quand l’éviter :** Découpe un système quand une frontière protège une règle ou un rythme de changement. Ne crée pas de microservice tant que l'autonomie, la charge ou la gouvernance ne justifient pas le coût distribué.
+- **Limites :** Chaque frontière ajoute contrats, réseau, déploiement, observabilité et coordination. Un diagramme propre ne prouve ni la faisabilité ni la performance.
+
+## Mécanisme : la version sans magie
+
+Part des cas d'usage, repère invariants et propriétaires de données, définis les contrats, compare les options et mesure les conséquences du changement.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce niveau existe** se rattache à ce cas concret : Kintana commence comme monolithe modulaire. Les demandes, réservations et notifications doivent avoir des frontières explicites sans fragmenter trop tôt le déploiement.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : première note de conception (partie 1/3)
+
+> **Arc Capsule Corp. / DBZ :** une architecture est le plan du vaisseau et les coûts qu'il impose. Si chaque pièce doit connaître toutes les autres, le vaisseau ne décolle jamais.
+
+> **Statut :** exercice conceptuel facultatif de première passe. Utilise uniquement le cas fictif Kintana décrit dans le challenge. Aucun projet personnel, système réel, code, test automatisé ou expérience professionnelle n'est requis. Les trois missions Mindset enrichissent **une seule note** ; ne crée pas trois diagrammes ni trois ADR.
+
+**Mission liée à « Pourquoi ce niveau existe » :** ouvre une note intitulée `Kintana  : décision de conception`. À partir du scénario fictif, liste les acteurs, le besoin, trois étapes du flux et deux choses qui ne doivent pas arriver (invariants). Distingue les faits fournis dans le scénario des hypothèses que tu ajoutes.
+
+**Livrable :** le début d'une seule note, sous forme de liste ou de schéma simple. N'essaie pas encore de choisir des microservices ni de mesurer un impact réel.
+
+**Critères d’acceptation :** au moins un acteur, une entrée, une sortie et deux invariants sont identifiés ; les hypothèses sont marquées comme telles ; aucun élément simulé n'est présenté comme une observation de terrain.
+
+## Transfert facultatif
+
+Ajoute un second scénario hypothétique et indique si les mêmes invariants tiennent.

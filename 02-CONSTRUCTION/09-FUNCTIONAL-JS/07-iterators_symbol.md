@@ -253,10 +253,38 @@ Implémenter `[Symbol.iterator]` sur tes propres structures : ça rend ton code 
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « Iterators et symbol.iterator : créer des structures qui se parcourent », puis conserve le résultat et explique tout écart.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: functional -->
+
+## Repères de décision
+
+- **Pourquoi :** La programmation fonctionnelle aide à isoler des transformations déterministes et à réduire les effets de bord qui rendent les bugs difficiles à reproduire.
+- **Quand l’utiliser / quand l’éviter :** Utilise fonctions pures et immutabilité pour les règles partagées ou testées souvent. N'impose pas un style fonctionnel complexe quand une boucle lisible est plus claire.
+- **Limites :** Créer une copie profonde peut coûter cher ; une fonction pure peut toujours être lente ou incorrecte ; composition excessive et currying gratuit rendent le code illisible.
+
+## Mécanisme : la version sans magie
+
+Sépare calcul et effet, rends les dépendances explicites, transforme les données sans mutation partagée et compose des fonctions au contrat clair.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Iterators et symbol.iterator : créer des structures qui se parcourent** se rattache à ce cas concret : Les transitions de demande Kintana doivent être calculées de façon déterministe avant écriture en base ou notification.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Règle pure pour les transitions de demande
+
+> **Arc DBZ / Capsule Corp. :** une règle métier doit être testable sans brancher tout le vaisseau. Garde les effets derrière une frontière.
+
+**Mission liée à « Iterators et symbol.iterator : créer des structures qui se parcourent » :** Isole une transition Kintana en fonction pure : entrée (état, rôle, action), sortie (nouvel état ou erreur). Appelle l'adaptateur de persistance seulement après validation de la transition.
+
+**Livrable :** une fonction pure, tests table-driven, test de non-mutation et un adaptateur qui applique le résultat.
+
+**Critères d’acceptation :** le calcul n'accède ni à l'horloge ni au réseau ; les entrées invalides sont explicites ; l'état d'origine reste intact ; le code d'effet n'est pas mélangé à la règle.
+
+**Transfert obligatoire :** Ajoute une règle qui dépend de l'heure courante. Rends cette dépendance explicite et teste les limites de fuseau et de date.

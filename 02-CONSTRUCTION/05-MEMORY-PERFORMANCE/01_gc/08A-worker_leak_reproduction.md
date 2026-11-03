@@ -120,3 +120,51 @@ Prochaine étape : approfondis le module mémoire (voir le grimoire `02-CONSTRUC
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
+
+<!-- AF-DIAGRAM:performance -->
+
+## Repère visuel utile : Fermer proprement le cycle de vie d’un Worker
+
+```text
+créer le Worker
+      |
+      v
+définir propriétaire et canal
+      |
+      v
+fermeture de l’écran
+      |
+      v
+arrêt + libération des références
+      |
+      v
+vérifier qu’aucun message ne persiste
+```
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Worker leak : quand chaque thread saigne seul** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Borner le cycle de vie d’un Worker
+
+**Mission liée à « Worker leak : quand chaque thread saigne seul » :** Reproduis un Worker Kintana qui continue à recevoir ou conserver des messages après la fermeture de son écran. Définis un protocole d’arrêt, de drainage ou d’annulation et compare les ressources observées.
+
+**Livrable :** Scénario de reproduction, séquence de fermeture et observations avant/après.
+
+**Critères d’acceptation :** Le Worker a un propriétaire explicite ; les messages en attente ont une politique ; l’arrêt ne perd pas silencieusement un travail qui doit être conservé.
+
+**Transfert obligatoire :** La fermeture survient pendant un traitement : définis si l’opération est annulée, terminée ou reprise.

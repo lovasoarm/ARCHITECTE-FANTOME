@@ -100,35 +100,57 @@ def jsonl(records: list[dict[str, Any]]) -> str:
 def run_pipeline(input_path: Path, output_dir: Path) -> dict[str, Any]:
     accepted: list[dict[str, Any]] = []
     quarantined: list[dict[str, Any]] = []
-    seen: set[str] = set()
-    raw_count = duplicate_count = 0
+    seen: dict[str, dict[str, Any]] = {}
+    duplicate_conflicts: list[dict[str, Any]] = []
+    raw_count = duplicate_count = identical_duplicate_count = 0
 
     with input_path.open("r", encoding="utf-8-sig", newline="") as stream:
         reader = csv.DictReader(stream)
-        if reader.fieldnames is None or not set(REQUIRED).issubset(reader.fieldnames):
+        if (reader.fieldnames is None
+                or len(reader.fieldnames) != len(set(reader.fieldnames))
+                or not set(REQUIRED).issubset(reader.fieldnames)):
             raise DataContractError("input_header_does_not_match_contract")
         for line_number, row in enumerate(reader, start=2):
             raw_count += 1
             try:
+                if None in row or any(value is None for value in row.values()):
+                    raise DataContractError("row_width_does_not_match_header")
                 event = normalize_event(row)
             except DataContractError as exc:
                 quarantined.append({
                     "line_number": line_number,
                     "reason": str(exc),
-                    "raw": {key: value for key, value in row.items()},
+                    "raw": {("<extra_columns>" if key is None else str(key)): value for key, value in row.items()},
                 })
                 continue
-            if event["event_id"] in seen:
+            previous = seen.get(event["event_id"])
+            if previous is not None:
                 duplicate_count += 1
+                if previous == event:
+                    identical_duplicate_count += 1
+                else:
+                    duplicate_conflicts.append({
+                        "line_number": line_number,
+                        "event_id": event["event_id"],
+                        "reason": "conflicting_duplicate_event_id",
+                        "first_payload": previous,
+                        "incoming_payload": event,
+                    })
                 continue
-            seen.add(event["event_id"])
+            seen[event["event_id"]] = event
             accepted.append(event)
 
     accepted.sort(key=lambda item: (item["occurred_at"], item["event_id"]))
     clean_path = output_dir / "clean" / "events.jsonl"
     quarantine_path = output_dir / "quarantine" / "events.jsonl"
+    conflict_path = output_dir / "duplicate_conflicts" / "events.jsonl"
     atomic_write(clean_path, jsonl(accepted))
     atomic_write(quarantine_path, jsonl(quarantined))
+    atomic_write(conflict_path, jsonl(duplicate_conflicts))
+
+    # Each input row must end in exactly one bucket: accepted, duplicate, or quarantine.
+    if raw_count != len(accepted) + duplicate_count + len(quarantined):
+        raise RuntimeError("input_output_reconciliation_failed")
 
     manifest = {
         "contract_version": "1.0.0",
@@ -138,11 +160,14 @@ def run_pipeline(input_path: Path, output_dir: Path) -> dict[str, Any]:
             "read": raw_count,
             "accepted": len(accepted),
             "duplicates": duplicate_count,
+            "identical_duplicates": identical_duplicate_count,
+            "conflicting_duplicates": len(duplicate_conflicts),
             "quarantined": len(quarantined),
         },
         "outputs": {
             "clean/events.jsonl": sha256(clean_path),
             "quarantine/events.jsonl": sha256(quarantine_path),
+            "duplicate_conflicts/events.jsonl": sha256(conflict_path),
         },
     }
     manifest_path = output_dir / "manifest.json"

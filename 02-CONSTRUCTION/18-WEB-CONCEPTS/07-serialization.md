@@ -302,10 +302,60 @@ Pour les systèmes à fort volume : MessagePack (40% plus compact, même structu
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Sérialisation : transporter les données sans les perdre » à un navigateur mobile avec réseau lent et session renouvelée. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-DIAGRAM:browser -->
+
+## Repère visuel utile : Parcours web résilient et brouillon sûr
+
+```text
+formulaire -> brouillon local
+    |
+    v
+réseau disponible ?
+  | oui          | non
+  v              v
+API + clé       état en attente
+  |              |
+  v              +--> reprise au retour
+confirmation
+  |
+  v
+statut affiché
+```
+
+<!-- AF-LESSON-PROFILE: browser -->
+
+## Repères de décision
+
+- **Pourquoi :** Le navigateur est un environnement distinct du serveur : DOM, réseau, stockage local et cycle de vie utilisateur imposent des états et des erreurs spécifiques.
+- **Quand l’utiliser / quand l’éviter :** Utilise ces mécanismes pour rendre le parcours web compréhensible, résilient et accessible. Ne stocke rien de sensible dans le navigateur et ne suppose jamais que le réseau est disponible.
+- **Limites :** Le client ne fait pas autorité pour les droits, les montants ou l'état métier. Le stockage local peut être effacé, altéré ou partagé sur un appareil ; la synchronisation peut produire des conflits.
+
+## Mécanisme : la version sans magie
+
+Modélise les états visibles, annule les requêtes devenues inutiles, traite les réponses réseau comme non fiables et synchronise les brouillons avec un identifiant stable.
+
+## Ancrage produit / terrain : Kintana
+
+Dans le [cas d’étude Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), L’API Kintana doit transporter une demande sans confondre l’objet de l’interface avec le contrat de données accepté par le serveur. Les identifiants et champs sensibles ne sont pas inventés par le client.
+
+**Niveau de preuve :** Kintana est un scénario fictif. Étiquette le résultat `CONCEPT`, `LAB` ou `SIMULATION` selon le travail réellement effectué ; une fixture synthétique n’est pas une observation de terrain.
+
+## Mission utile : Kintana : Étape 7/8 : stabiliser les données transportées
+
+> **Arc One Piece / Grand Line :** Une cargaison doit avoir un format lisible, des champs connus et un contrôle à l’arrivée ; sinon chaque partie imagine un contenu différent.
+
+Définis le DTO JSON de création d’une demande en réutilisant le contrat HTTP de l’étape 2. Distingue champs obligatoires, optionnels, calculés côté serveur et interdits au client. Précise les règles de désérialisation et de validation.
+
+**Livrable :** Des fixtures JSON synthétiques valides et invalides, un tableau de validation, un exemple de réponse et un format d’erreur cohérent.
+
+**Critères d’acceptation :** Le client n’envoie pas d’état d’interface ni de privilège ; les champs manquants ou invalides sont traités explicitement ; les règles d’encodage et de compatibilité ne sont pas implicites.
+
+**Transfert obligatoire :** Une ancienne version du client omet un champ ajouté récemment : indique si le champ doit être optionnel, quelle valeur par défaut s’applique et comment éviter une corruption silencieuse.
+
+Cette étape prolonge le même artefact Kintana ; elle ne demande pas de recommencer le projet et n’ajoute pas de gate au parcours.

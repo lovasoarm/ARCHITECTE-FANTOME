@@ -30,11 +30,11 @@ Prends 5 minutes. Écris ta réponse **sans** relancer l'IA. Nomme :
 
 ## Piste de correction (à ne lire qu'après)
 
-> Set ne préserve pas l'ordre d'insertion pour tous les types ? Faux : il le préserve. Mais .sort() sur strings ET nombres mélange les tris (lexicographique par défaut). Où est le vrai piège ?
+> `Set` conserve l'ordre d'insertion. Le piège est ailleurs : sans comparateur, `sort()` compare les valeurs comme des chaînes. Par exemple, `[3, 20, 100].sort()` donne `[100, 20, 3]`, et non l'ordre numérique attendu. Pour un tableau de nombres, un comparateur comme `(a, b) => a - b` exprime le tri numérique ; pour des données mélangées, il faut d'abord définir une règle de comparaison explicite.
 
 ## Pourquoi cet exo
 
-En 2026, l'IA génère du code **plausible** plus vite qu'elle ne le vérifie.
-Le métier n'est plus d'écrire ; c'est de **repérer la faille** dans une
-suggestion qui a l'air correcte. Ce drill de 10 min, une fois par module,
-te transforme de consommateur en pilote.
+Une IA peut générer du code **plausible** plus vite qu'elle ne le vérifie.
+Le métier n'est pas seulement d'écrire : c'est aussi de **repérer la faille** dans une
+suggestion qui a l'air correcte. Ce drill facultatif de 10 min entraîne ce réflexe ;
+il ne certifie pas ta maîtrise et ne conditionne pas la progression.

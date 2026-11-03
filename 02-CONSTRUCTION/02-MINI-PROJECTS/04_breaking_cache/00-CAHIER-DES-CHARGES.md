@@ -4,241 +4,176 @@ acte: comprendre
 route_family: depth
 ---
 
-> ### SCÈNE CRAZYDEVS : Breaking Bad
+> ### SCÈNE CRAZYDEVS : Kintana en période de pointe
 >
-> Le système est maintenant ton labo : le mécanisme semble tranquille jusqu'au moment où une petite incohérence fait toute la différence. Ton job n'est pas de réciter la règle : **trouve l'ouverture, mesure ce qui casse, puis ferme-la sans tricher**.
+> Le tableau de stock est consulté des centaines de fois. Une mise à jour vient pourtant de passer, et un utilisateur voit encore l'ancien total. Ton travail : réduire les relectures inutiles sans transformer la fraîcheur des données en loterie.
 >
-> **Règle de scène :** l'analogie sert le mécanisme ; dès qu'elle simplifie trop, reviens au modèle technique exact.
+> **Règle de scène :** le cache est une copie temporaire ; la source de vérité reste l'autorité.
 
-# Cahier des charges : breaking cache
+# Cahier des charges : 04 BREAKING CACHE
 
-<!-- AF-DIAGRAM:cache -->
+Temps de lecture estimé : 10 à 14 minutes.
 
-```text
-Request
-  │
-  ▼
-┌──────────┐
-│  Cache   │
-└─┬────┬───┘
-  │hit │miss
-  ▼    ▼
-Value  ┌──────────┐
-       │ Database │
-       └────┬─────┘
-            ▼
-         populate
-```
+## 1. Mission et résultat attendu
 
-Le cache court-circuite la source de vérité en cas de hit et la recharge en cas de miss.
+Construis un cache TTL en mémoire, utilisé par un service de lecture d'un résumé de stock Kintana, dans un seul processus Node.js. Le but est d'apprendre le contrat hit/miss, l'expiration, l'invalidation, la cohérence cache/source et la mesure d'une optimisation.
 
-Temps de lecture ~13 min
+Le résultat doit permettre de répondre à ces questions :
 
-## PRÉREQUIS ET ÉTAT INITIAL DU ZIP
+- Quand une valeur est-elle absente, valide ou expirée ?
+- Comment distinguer un miss d'un hit qui contient `null` ?
+- Que se passe-t-il si la source échoue pendant un miss ?
+- Quand invalider après une modification du stock ?
+- Comment éviter qu'une boutique lise le résumé d'une autre boutique ?
+- Quelle preuve montre que le cache réduit réellement les appels au loader ?
 
-- Node.js `22.23.4` recommandé ; le sujet peut être réalisé avec les API natives.
-- Aucun `package.json`, source exécutable ou test n'est fourni dans l'archive. Les dossiers `src/` et `tests/` sont des consignes de construction.
-- Les commandes de démonstration plus bas sont des commandes d'état final, pas des commandes immédiatement exécutables depuis le ZIP.
+## 2. Ce qui est dans le périmètre
 
-Commandes disponibles dès réception :
+### Obligatoire
 
-```bash
-node --version
-npm --version
-```
+- stockage local `Map` ou structure équivalente justifiée ;
+- clé textuelle non vide ;
+- TTL entier, fini et strictement positif ;
+- horloge injectable et monotone (par défaut `performance.now()` dans Node.js) ;
+- expiration paresseuse avec frontière `now >= expiresAt` ;
+- API hit/miss non ambiguë ;
+- opérations `get`, `set`, `delete`, `clear` ;
+- lecture-aside (loader appelé uniquement sur miss) ;
+- absence de mise en cache si le loader échoue ;
+- invalidation après le succès de la transaction d'écriture ;
+- clé incluant tenant et boutique, avec sérialisation non ambiguë du couple d'identifiants ;
+- tests et mesure locale documentés.
 
-Après création des fichiers : `node src/index.js` et `node --test`. N'ajoute une dépendance npm que si un ADR la justifie ; `npm test` exige un script déclaré. Les benchmarks doivent être écrits par l'apprenant et ne sont pas fournis comme chiffres de référence.
+### Hors périmètre obligatoire
 
+Pas de Redis, Memcached, cache distribué, base de données réelle, service HTTP, authentification complète, stratégie multi-région, synchronisation inter-processus, LRU/éviction par capacité, verrou distribué, anti-stampede, graphes, Dijkstra, BFS/DFS, heap, tris ou knapsack. Tu peux les proposer comme évolution dans un ADR, mais ne les construis pas pour satisfaire ce cahier.
 
-## C'EST QUOI CE PROJET, CONCRÈTEMENT
+## 3. Contrat observable
 
-Walter White gère un réseau de distribution. Des villes, des routes entre elles avec des coûts de transport et des niveaux de risque, des distributeurs à réapprovisionner, des urgences à prioriser. Chaque décision se prend avec des chiffres, pas avec des intuitions. Le réseau est modélisé comme un graphe orienté pondéré (un ensemble de noeuds reliés par des arêtes avec un coût attaché). Walter veut savoir : quelle est la route la plus sûre pour livrer Albuquerque depuis le laboratoire ? Quel distributeur est le plus urgent à réapprovisionner ? Quel lot trier en priorité avant livraison ?
+| Élément    | Règle                              | Justification                                                                               |
+| ---------- | ---------------------------------- | ------------------------------------------------------------------------------------------- |
+| Clé        | chaîne non vide après validation   | éviter les collisions triviales et les clés implicites                                      |
+| TTL        | entier fini `> 0` en millisecondes | aucune durée nulle, négative ou non définie                                                 |
+| Horloge    | injectée, retourne un nombre fini  | tester l'expiration de façon déterministe                                                   |
+| Échéance   | `expiresAt = now + ttlMs`          | règle temporelle explicite                                                                  |
+| Expiration | expiré si `now >= expiresAt`       | la valeur ne survit pas à sa borne                                                          |
+| Hit        | `{ hit: true, value }`             | un `null` n'est pas confondu avec un miss                                                   |
+| Miss       | `{ hit: false }`                   | absent ou expiré                                                                            |
+| Nettoyage  | paresseux au `get`                 | aucun timer en arrière-plan requis ; une entrée expirée jamais relue peut rester en mémoire |
 
-Et tout ça doit tourner sous profilage. Walter ne tolère pas les inefficacités.
+Le contrat peut être enrichi si ton ADR justifie la compatibilité et les tests associés. Ne change pas silencieusement la signification de l'expiration.
 
-Ce que tu dois voir tourner à la fin :
+## 4. Parcours métier Kintana
 
-```bash
-$ node src/index.js
+La source de vérité contient le stock validé. Le cache ne contient qu'un snapshot de lecture construit depuis cette source.
 
-[RÉSEAU] 8 villes | 14 routes chargées
-[DIJKSTRA] Labo -> Albuquerque : route optimale = Labo -> Socorro -> Rio Rancho -> Albuquerque (coût: 47, risque: faible)
-[HEAP] Urgence n°1 : Santa Fe (stock: 2 unités restantes)
-[HEAP] Urgence n°2 : Las Cruces (stock: 8 unités restantes)
-[SORT] Tri de 1000 lots par pureté : Merge Sort => 4.2ms | Quick Sort => 3.8ms
-[DP] Optimisation de stock sous contrainte budget 50k$ : valeur max = 142k$ (knapsack)
-[PERF] Tous les benchmarks dans logs/benchmarks.json
+Clé recommandée : `JSON.stringify(['stock-summary', tenantId, storeId])`. Valide les identifiants comme chaînes non vides, puis sérialise le tuple côté service. Ne concatène pas naïvement des identifiants avec `:` : `('a:b','c')` et `('a','b:c')` pourraient produire la même chaîne. Le cache ne doit pas devenir un moyen de choisir arbitrairement les données d'un autre tenant.
 
-$ npm test
-PASS tests/graph.test.js (22 tests)
-PASS tests/dijkstra.test.js (16 tests)
-PASS tests/heap.test.js (14 tests)
-PASS tests/sorting.test.js (12 tests)
-PASS tests/dp.test.js (10 tests)
-```
+### Lecture-aside
 
-Ce projet est pur algorithme et structure de données. Pas de CLI complexe, pas de streaming, pas de refactoring de legacy. Juste des structures bien choisies et des algorithmes mesurés.
+1. Construire la clé du tenant et de la boutique concernés.
+2. Lire le cache.
+3. En cas de hit, retourner le snapshot.
+4. En cas de miss, charger depuis le repository/source de vérité.
+5. Si le chargement échoue, propager l'erreur et ne rien mettre en cache.
+6. Si le chargement réussit, écrire le snapshot avec le TTL choisi puis le retourner.
 
-## POURQUOI CE PROJET EXISTE
+### Mise à jour
 
-Ce projet force à travailler avec des structures de données non triviales dans un contexte où le choix de la structure change directement la performance :
+1. Persister le changement de stock dans la source de vérité.
+2. Attendre la réussite du commit.
+3. Invalider uniquement la clé du résumé affecté.
+4. Ne pas invalider sur une écriture échouée.
 
-- **comprendre qu'un graphe est la bonne structure pour un réseau de distribution** : une liste de routes dans un tableau serait inutilisable pour trouver le chemin optimal. Un graphe rend les connexions explicites et les algorithmes possibles.
-- **comprendre qu'un heap (tas) est la bonne structure pour gérer des priorités** : trier toute la liste des distributeurs à chaque fois qu'une urgence arrive coûte O(n log n). Un min-heap donne l'urgence la plus haute en O(1) et met à jour en O(log n).
-- **mesurer, pas supposer** : l'intuition sur les perfs est souvent fausse. Merge Sort vs Quick Sort sur 1000 lots : lequel est plus rapide ? Le benchmark tranche, pas l'opinion.
+Une fenêtre de concurrence reste possible : une lecture qui a commencé avant le commit peut terminer après l'invalidation et réinsérer un ancien snapshot. Décris ce risque. Versionnement de clé, génération, verrou ou outbox sont des pistes d'évolution, pas des fonctionnalités exigées ici.
 
-## LES 3 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
-
-### `02-CONSTRUCTION/06-DATA-STRUCTURES` : graphe et min-heap
-
-**Où ça se voit** : `src/graph/`, `src/heap/`.
-**Pourquoi c'est nécessaire ici** : le réseau de distribution est un graphe. Les urgences sont une priority queue (file de priorité) basée sur un min-heap. Ces deux structures ne peuvent pas être remplacées par des tableaux sans exploser la complexité.
-
-### `02-CONSTRUCTION/07-ALGORITHMS` : Dijkstra, BFS/DFS, tri comparatif, DP
-
-**Où ça se voit** : `src/algorithms/`.
-**Pourquoi c'est nécessaire ici** : trouver la route optimale = Dijkstra. Détecter une route compromise = BFS. Trier les lots = Merge Sort vs Quick Sort avec mesure. Optimiser le stock sous budget = knapsack (problème du sac à dos, algorithme de programmation dynamique).
-
-### `02-CONSTRUCTION/05-MEMORY-PERFORMANCE` : profilage réel sur chaque algo
-
-**Où ça se voit** : `src/profiler/benchmarks.js`, `logs/benchmarks.json`.
-**Pourquoi c'est nécessaire ici** : un algorithme sans mesure est une hypothèse. Chaque algo dans ce projet est wrappé dans un benchmark. Les résultats sont loggés. Walter ne valide aucune décision sans chiffres.
-
-### Résumé visuel
+## 5. Arborescence suggérée
 
 ```text
-02-CONSTRUCTION/06-DATA-STRUCTURES --> src/graph/ (graphe orienté pondéré), src/heap/ (min-heap)
-02-CONSTRUCTION/07-ALGORITHMS    --> src/algorithms/ (dijkstra, bfs, mergeSort, quickSort, knapsack)
-06_memory_perf   --> src/profiler/benchmarks.js, logs/benchmarks.json
+src/
+├── ttl-cache.js
+├── stock-summary-service.js
+├── demo.js
+└── benchmark.js
+
+tests/
+├── ttl-cache.test.js
+└── stock-summary-service.test.js
 ```
 
-## ESTIMATION DE TEMPS ET ZONES DE RÉSISTANCE
+Tu peux adapter le découpage si tes frontières sont plus simples ou plus testables ; explique les écarts dans un ADR.
 
-**Durée totale estimée** : 15 à 22 heures de travail réel.
+## 6. Tests d'acceptation à écrire
 
-| Étape                 | Durée estimée | Zone de résistance                                                      |
-| --------------------- | ------------- | ----------------------------------------------------------------------- |
-| graph.js              | 2h            | Moyenne : bien choisir la structure interne (liste d'adjacence)         |
-| minHeap.js            | 3-4h          | **Haute** : l'opération `heapifyDown` après extractMin est le vrai test |
-| mergeSort + quickSort | 2h            | Faible si le module `02-CONSTRUCTION/07-ALGORITHMS` est bien maîtrisé   |
-| knapsack.js           | 3h            | Moyenne : construire la table DP étape par étape sans se perdre         |
-| dijkstra.js           | 3-4h          | **Haute** : l'intégration avec le heap comme priority queue             |
-| bfs.js                | 1h            | Faible                                                                  |
-| profiler + index      | 1h30          | Faible                                                                  |
-| Tests                 | 2-3h          | Moyenne : tester des algos sur des graphes construits à la main         |
+| ID  | Comportement à prouver                                                |
+| --- | --------------------------------------------------------------------- |
+| C01 | clé absente → miss                                                    |
+| C02 | valeur présente avant échéance → hit                                  |
+| C03 | `null`/`undefined` stocké → hit distinct d'un miss                    |
+| C04 | `now < expiresAt` → entrée encore valide                              |
+| C05 | `now === expiresAt` → entrée expirée                                  |
+| C06 | `now > expiresAt` → entrée expirée                                    |
+| C07 | clé vide/invalide et TTL invalide rejetés                             |
+| C08 | `delete` indique correctement si une entrée existait                  |
+| C09 | `clear` supprime toutes les entrées                                   |
+| C10 | loader non appelé lors d'un hit                                       |
+| C11 | loader appelé lors d'un miss                                          |
+| C12 | chargement échoué → aucune valeur mise en cache                       |
+| C13 | chargement réussi → valeur mise en cache                              |
+| C14 | commit réussi → clé ciblée invalidée                                  |
+| C15 | commit échoué → pas d'invalidation                                    |
+| C16 | tenant ou boutique différents → clés isolées                          |
+| C17 | identifiants contenant `:` → aucune collision entre couples distincts |
 
-Le min-heap est le point de résistance le plus sous-estimé. L'insertion est simple. C'est `heapifyDown` (remettre l'arbre en ordre après avoir extrait la racine) qui résiste. Si tu bloques là, dessine l'arbre sur papier avant de coder.
+Ces identifiants sont des comportements, pas un nombre imposé de fonctions de test. Tu peux couvrir plusieurs cas dans un même test si les assertions restent lisibles.
 
-## CAS LIMITES À TESTER OBLIGATOIREMENT
+## 7. Benchmarks et preuves de performance
 
-1. **Graphe avec noeud isolé** : un noeud sans arête. `dijkstra.findPath(graph, 'Labo', 'NoeudIsolé')` doit retourner `null` ou `{ path: [], cost: Infinity }`, pas planter.
-2. **Heap avec un seul élément** : `extractMin()` puis `isEmpty()` doit retourner `true`.
-3. **Tableau vide dans les tris** : `mergeSort([])` et `quickSort([])` retournent `[]`, pas une erreur.
-4. **Budget insuffisant dans knapsack** : si le budget est inférieur au coût de n'importe quel item, retourner `{ selectedItems: [], totalValue: 0, totalCost: 0 }`.
-5. **Cycle dans le graphe** : Dijkstra ne doit pas boucler infiniment sur un graphe cyclique.
+Aucun timing, ratio ou benchmark n'est livré par le cours. Ne transforme pas un exemple en résultat mesuré.
 
-## LES RÈGLES QUE TU NE DOIS JAMAIS CASSER
+Compare deux chemins sur le même jeu de clés :
 
-1. **Chaque algorithme est benchmarké.** Pas un seul algo sans mesure de temps dans l'index.
-2. **Les tris ne mutent pas le tableau source.** `mergeSort(lots)` retourne un nouveau tableau.
-3. **Dijkstra utilise le min-heap.** Pas un `sort()` à chaque itération (ce serait O(n² log n) au lieu de O((V+E) log V)).
+- **sans cache :** chaque requête appelle le loader ;
+- **cache-aside :** le loader n'est appelé que lorsque la clé est absente ou expirée.
 
-## CE QUE TU NE FAIS PAS DANS CE PROJET
+Pour chaque charge choisie (par exemple 1k, 10k et 100k lectures), relève au minimum : nombre d'appels loader, hits, misses, temps total, médiane de cinq répétitions ou plus, version Node, système, CPU, données et TTL. Prépare les fixtures hors de la fenêtre chronométrée. Réalise un warm-up. Explique qu'un loader synthétique ne prouve pas un gain identique sur une base de données ou un réseau réel.
 
-- Pas d'interface graphique pour visualiser le graphe.
-- Pas de serveur, pas d'API.
-- Pas d'import de bibliothèque d'algorithmes (tout est écrit from scratch).
-- Pas de TypeScript.
+La preuve principale de l'exercice est la réduction mesurée des appels au loader et le respect de la cohérence. Un cache peut ne pas accélérer un simple accès `Map` local : n'impose pas une conclusion positive avant la mesure.
 
-## LES ADR
+## 8. Sécurité et confidentialité
 
-```text
-ADR/001-pourquoi-liste-adjacence-plutot-que-matrice.md
-ADR/002-pourquoi-min-heap-pour-dijkstra.md
-ADR/003-pourquoi-mesurer-merge-et-quick-plutot-que-choisir-lun.md
-```
+- ne pas mettre de secret, token, mot de passe ou donnée personnelle dans la clé ou la valeur ;
+- inclure tenant et boutique dans la clé ;
+- sérialiser le couple sans collision de séparateur (tuple JSON recommandé) ;
+- valider les identifiants avant de construire la clé ;
+- ne pas accepter une clé arbitraire comme autorisation ;
+- ne pas journaliser les valeurs stockées ;
+- tester l'isolation entre deux périmètres, y compris les identifiants qui contiennent `:` ;
+- garder le nombre de clés de la fixture borné : l'expiration paresseuse ne retire pas une entrée jamais relue ;
+- documenter la durée maximale d'obsolescence liée au TTL.
 
-Micro-exemple de forme (contexte distinct du projet) :
+Le [Security Gate local](04-SECURITY-GATE.md) vérifie ces risques propres au projet. Il ne demande pas de revendiquer une conformité générale OWASP.
 
-Le bloc ci-dessous sert à montrer la structure d’un ADR sans donner la réponse d’aucune décision de ce mini-projet.
+## 9. Livrables
 
-```markdown
-# ADR : Conserver une copie locale des paramètres de démarrage
+- implémentation dans `src/` ;
+- tests dans `tests/` ;
+- journal TDD renseigné au fil du travail ;
+- au moins trois ADR issus de décisions réellement prises ;
+- tableau de benchmark avec données réelles ou mention explicite « non exécuté » ;
+- fiche sécurité complétée et gate avec références précises ;
+- postmortem incluant au moins une limite et une piste d'évolution.
 
-## Contexte
+## 10. Définition de terminé
 
-Une application desktop relit régulièrement les mêmes paramètres de démarrage depuis un fichier de configuration stable pendant toute la session.
+Le projet est terminé lorsque les 17 comportements C01 à C17 sont couverts par des tests pertinents qui passent sur le runtime indiqué, que la commande réellement exécutée est consignée, que la cohérence lecture/écriture est expliquée, que l’isolation tenant/boutique et l’absence de collision de clés sont prouvées, et que les mesures ne contiennent aucun temps inventé. Si un comportement ne s’applique pas à ton implémentation, justifie-le explicitement au lieu de le déclarer implicitement satisfait.
 
-## Décision
+Si le code n'a pas été exécuté, indique-le. Une intention, un exemple de sortie ou un fichier présent ne constitue pas une preuve d'exécution.
 
-Charger une copie en mémoire au démarrage puis l’utiliser pendant la session.
+## 11. Références de préparation
 
-## Alternatives considérées
-
-- Relire le fichier à chaque accès : rejeté car inutilement coûteux dans ce contexte stable.
-- Introduire un cache distribué : rejeté car disproportionné pour une application locale.
-
-## Conséquences
-
-Les accès sont plus simples et plus rapides, mais une modification externe du fichier ne sera visible qu’à la prochaine session.
-```
-
-**Important : exemple de forme uniquement, hors contexte du projet. Aucune décision de ton ADR n’est donnée ici.**
-
-## QUAND EST-CE QUE LE PROJET EST VRAIMENT FINI
-
-```json
-[ ] le graphe du réseau se charge depuis data/network.json sans erreur
-[ ] Dijkstra trouve le bon chemin sur au moins 3 paires de noeuds testées
-[ ] le min-heap retourne les urgences dans le bon ordre (tests verts)
-[ ] Merge Sort et Quick Sort sont tous les deux benchmarkés et les résultats sont dans logs/
-[ ] knapsack retourne la bonne combinaison sur au moins 2 jeux de données testés
-[ ] les 5 cas limites listés ont chacun un test
-[ ] aucun tableau n'est muté dans les fonctions de tri
-[ ] les 3 ADR sont remplis avec contexte, décision, alternatives, conséquences
-[ ] 08-POSTMORTEM.md documente le bug le plus difficile à localiser
-[ ] 02-TDD-JOURNAL.md trace l'ordre dans lequel les tests ont été écrits
-```
-
-## SÉCURITÉ (gate obligatoire)
-
-Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
-
-- Cache poisoning (OWASP A08 - Data Integrity) : valider les clés de cache pour qu'un utilisateur ne puisse pas empoisonner une entrée partagée.
-- Fuite d'info (OWASP A01) : ne jamais servir une entrée de cache appartenant à un autre utilisateur/scope.
-
-Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `97-CHECKPOINT-PACK` de ce projet contient un test de sécurité qui doit passer.
-
----
-
-## Securite (gate obligatoire, Partie I)
-
-- **Exigence 1** : aucune donnee sensible (secret, token, cle) dans le code source ni dans les logs. Utiliser variables d'environnement + `.env.example` versionne (jamais `.env`).
-- **Exigence 2** : toute entree externe (STDIN, fichier, HTTP, CLI) est validee AVANT usage (type, longueur, format). En cas d'invalidite : erreur explicite, jamais un crash silencieux.
-
-Un test dans `node learner-verifier.js` (auto-verif ecrite par toi) doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
-
-## RÔLE DES DOSSIERS (ne skippe pas)
-
-- `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
-- `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
-- `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
-- `08-POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
-- `02-TDD-JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
-
-**Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
-
----
-
-## CONTRAT ANTI-RECETTE
-
-Tu choisis toi-même la découpe, les modules, l’ordre de construction et les tests. Aucun squelette d’architecture n’est fourni.
-
-Avant de coder, produis :
-
-- trois hypothèses vérifiables sur le système ;
-- une première découpe que tu défends et une alternative rejetée ;
-- un test falsifiant une hypothèse importante ;
-- les critères qui te feront changer d’architecture en cours de route.
-
-Ne cherche pas une architecture « correcte » dans le curriculum : le but est de reconstruire un modèle sous contrainte, puis de défendre pourquoi il tient.
+- [Map et tables de hachage](../../06-DATA-STRUCTURES/07_hash_table/README.md)
+- [async/await](../../../01-CADRAGE/02-ASYNC/03_async_await/README.md)
+- [Tests unitaires](../../03-TESTING/02-unit_sniper.md)
+- [Mesurer avant d'optimiser](../../05-MEMORY-PERFORMANCE/02A-measure_first.md)
+- [Politique de version Node.js](../../../06-ANNEXES-TRANSVERSES/03-NODE_VERSION.md)

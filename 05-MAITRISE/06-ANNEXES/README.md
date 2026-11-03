@@ -3,17 +3,18 @@ stability: evolutif
 acte: parcours
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "05-MAITRISE/06-ANNEXES/01-00-why-annexes.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 05-MAITRISE/06-ANNEXES/01-00-why-annexes.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # MODULE 06 ANNEXES
 
-> **État pédagogique : 30 octobre 2026 : preuves documentaires complétées.** Les ajouts ciblés couvrent les exemples, pratiques, vérifications et transferts requis pour ce module. Une revue technique indépendante et une validation terrain restent distinctes ; voir [48 : External Review Gate](../../06-ANNEXES-TRANSVERSES/48-EXTERNAL-REVIEW-GATE.md) et [49 : Terrain Maturity Gate](../../06-ANNEXES-TRANSVERSES/49-TERRAIN-MATURITY-GATE.md).
-
-> Palier `05-MAITRISE`. Duree estimee : **17 h 45** (26 fichiers de travail).
+> Palier `05-MAITRISE`. Duree estimee : **17 h 20** (26 fichiers de travail).
 
 ## Sommaire du module
 
@@ -42,10 +43,10 @@ terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 | [`18-PERISSABILITE.md`](18-PERISSABILITE.md)                                     | PÉRISSABILITÉ : vue consolidée                                                            | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                                     | PONTS INTER-MODULES : la carte                                                            | 45 min |
 | [`20-spaced_repetition.md`](20-spaced_repetition.md)                             | RÉPÉTITION ESPACÉE : LE PLANNING QUI GRAVE                                                | 45 min |
-| [`21-EXO_LECTURE.md`](21-EXO_LECTURE.md)                                         | EXO LECTURE : 15-25 minutes (05-MAITRISE/06-ANNEXES)                                      | 45 min |
+| [`21-EXO_LECTURE.md`](21-EXO_LECTURE.md)                                         | EXO LECTURE : ~20 minutes : questions et auto-évaluation (05-MAITRISE/06-ANNEXES)         | 20 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                               | EXO [JEUNE IA] : 05-MAITRISE/06-ANNEXES                                                   | 45 min |
 
-Total : **17 h 45**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) et le boss (3 h) sont des évaluations séparées et ne sont pas ajoutés au Total sauf s’ils apparaissent comme lignes du tableau.
+Total : **17 h 20**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
 ## Comment travailler ce module
 
@@ -113,7 +114,7 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [`28_templates/`](28_templates/README.md)
 - [`29_toolchain/`](29_toolchain/README.md)
 - [`30_transferability/`](30_transferability/README.md)
-- [EXO LECTURE : 15-25 minutes (05-MAITRISE/06-ANNEXES)](21-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : questions et auto-évaluation (05-MAITRISE/06-ANNEXES)](21-EXO_LECTURE.md)
 - [EXO [jeune IA] : 05-maitrise/06-annexes](97-EXO-VERIFICATION.md)
 - [Challenge : `06-ANNEXES`](95-challenge.md)
 - [Grimoire : `06-ANNEXES`](90-grimoire.md)
@@ -132,4 +133,13 @@ Le sommaire ci-dessus reste le parcours recommandé. Les index ci-dessous renden
 
 - [Pitch : "Pourquoi moi et pas une solution ?"](10-pitch_vs_reality.md)
 
-## Standard de complétude et audit
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **contrat api utile** : Expose une capacité Kintana avec contrat d’entrée/sortie, codes d’erreur stables, validation, autorisation et stratégie de retry/idempotence si l’opération écrit des données. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : Le contrat est testé côté serveur ; les erreurs sont prévisibles ; un client peut évoluer sans deviner le comportement.
+
+## Ressources pratiques associées
+
+- [Atelier de consolidation](ATELIER-CONSOLIDATION.md) : réutiliser les notions du module dans un cas intégré.
+- [Corrigé de référence de l'atelier](corriges/ATELIER-CONSOLIDATION-CORRIGE.md) : à consulter après une tentative autonome.

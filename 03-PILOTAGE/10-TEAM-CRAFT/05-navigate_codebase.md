@@ -246,20 +246,19 @@ Identifie les fichiers impliqués, leur rôle, et les points de défaillance pos
 
 **EXO 3 : git detective**
 
-Dans le projet `04_breaking_cache`, tu remarques ce code :
+Dans un dépôt legacy de type `10_legacy_dungeon`, imagine que tu rencontres ce fragment dans une branche de travail :
 
 ```javascript
-// workaround temporaire -- à retirer après la migration
-const graph = buildGraph(rawData, { legacyMode: true });
+// workaround temporaire  : à retirer après la migration du calcul de facturation
+const amount = calculateLegacyAmount(invoice, { compatibilityMode: true });
 ```
 
-Utilise les commandes `git log`, `git blame`, et `git show` pour :
+Le fragment est un **support de drill**, pas une affirmation sur le contenu exact de la fixture fournie. Utilise `git log`, `git blame` et `git show` dans la fixture ou un dépôt autorisé pour rechercher un cas réellement présent. Ne prétends pas que ce fragment existe dans le dépôt si tu ne le retrouves pas.
 
-1. Savoir quand ce workaround a été ajouté
-2. Trouver le commit qui l'explique
-3. Déterminer si la migration mentionnée a eu lieu
-
-(l'exercice simule une vraie investigation dans un vrai projet)
+1. Identifie le commit qui a introduit le contournement, si l'historique le permet.
+2. Retrouve le contexte ou la raison consignée dans le commit/PR.
+3. Détermine, avec une preuve, si la migration a eu lieu ; sinon indique que l'information reste inconnue.
+4. Propose le prochain contrôle sans supprimer le contournement à l'aveugle.
 
 ---
 
@@ -275,10 +274,36 @@ Les bonnes questions montrent qu'on a cherché : les mauvaises montrent qu'on n'
 
 Ferme la page et défends pendant quelques minutes une stratégie opposée à celle implicitement recommandée ici. Cherche son meilleur cas d'usage, puis montre le cas où elle casse. Reviens ensuite à la stratégie initiale et justifie le choix par des mécanismes, pas par le vocabulaire du cours.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Naviguer un codebase inconnu sans se perdre » à une équipe qui conteste la décision avec des preuves contraires. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Naviguer un codebase inconnu sans se perdre** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Cartographier un changement dans un codebase inconnu
+
+**Mission liée à « Naviguer un codebase inconnu sans se perdre » :** À partir d’une demande Kintana, retrouve les points d’entrée, le propriétaire de l’état, les dépendances, les tests et les frontières touchées. Ne modifie rien avant d’avoir expliqué le trajet.
+
+**Livrable :** Carte de navigation avec chemins, flux de données, tests pertinents et risques de changement.
+
+**Critères d’acceptation :** Chaque affirmation renvoie à un fichier ou une preuve ; les zones inconnues sont signalées ; les dépendances implicites sont listées.
+
+**Transfert obligatoire :** Le point d’entrée supposé est faux : explique comment tu le détectes sans élargir inutilement le changement.

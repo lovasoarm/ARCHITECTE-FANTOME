@@ -72,15 +72,17 @@ isAdmin({ role: undefined }); // false -- ok... mais undefined == null == false 
 ```text
 SCÉNARIO 3 : la pollution de prototype en prod
 
-// un input utilisateur malveillant qui arrive dans ton API
+// JSON.parse crée ici une propriété propre nommée "__proto__".
+// À lui seul, il ne modifie pas Object.prototype.
 const payload = JSON.parse('{"__proto__": {"isAdmin": true}}');
-Object.assign({}, payload); // pollue Object.prototype
+const copied = Object.assign({}, payload);
 
-const req = {};
-console.log(req.isAdmin); // true
-             // n'importe quel objet est admin maintenant
-             // l'app entière est compromise
+console.log(Object.prototype.isAdmin); // undefined
+console.log(copied.isAdmin);           // true : copied hérite du prototype assigné
+console.log(({}).isAdmin);             // undefined : les autres objets ne sont pas pollués
 ```
+
+`Object.assign` peut déclencher le setter historique `__proto__` sur **l’objet cible**. Cela ne signifie pas que `Object.prototype` est modifié dans cet exemple. Une pollution partagée peut apparaître avec certaines fusions récursives ou affectations de chemins qui descendent jusqu’à `Object.prototype` ; voir le mécanisme démontré dans `03-PILOTAGE/04-SECURITY/04-prototype_pollution.md`.
 
 Ces trois bugs sont réels. Ils arrivent en production dans des apps écrites par des devs qui "connaissent JavaScript".
 
@@ -115,7 +117,7 @@ peur des types dynamiques      maîtrise des conversions implicites
 
 **Coercions implicites :** dans toutes les comparaisons avec `==`, les concaténations mixtes, les conditions qui utilisent des valeurs non-booléennes. Le compilateur TypeScript en attrape une partie : pas toutes.
 
-**Prototype chain :** dans tout système qui utilise `Object.assign`, `JSON.parse` sur des données non fiables, ou des opérations sur des objets créés sans `Object.create(null)`. La pollution de prototype est une vraie vulnérabilité de sécurité (CVE répertoriés, apps en prod compromises).
+**Prototype chain :** surveille surtout les clés contrôlées par l’utilisateur qui entrent dans une fusion récursive, un setter de chemin ou une construction d’objet insuffisamment validée. `JSON.parse` conserve `"__proto__"` comme propriété propre ; `Object.assign` peut changer le prototype de son objet cible, sans pour autant polluer automatiquement `Object.prototype`. La vulnérabilité partagée dépend du chemin d’écriture et du code qui consomme ensuite les propriétés héritées.
 
 ---
 
@@ -127,7 +129,7 @@ Ils ne sont pas des erreurs de conception au sens strict. Ils sont les conséque
 JS devait être accessible aux non-programmeurs de 1995. Convertir automatiquement `"5" + 3` en `"53"` plutôt que de crasher semblait user-friendly. Résultat : des règles de coercition complexes qu'on ne peut plus changer.
 
 **2. IEEE 754 pour les nombres flottants**
-Même décision que Python, Ruby, C, Java. `0.1 + 0.2 !== 0.3` dans tous ces langages. JS n'a pas de type entier séparé : tout est flottant. Ce qui amplifie les surprises.
+Les nombres binaires à virgule flottante courants (par exemple `Number` en JavaScript et `float`/`double` dans plusieurs langages) ne représentent pas exactement toutes les fractions décimales. Ainsi, `0.1 + 0.2 !== 0.3` en JavaScript avec `Number`, et un comportement analogue apparaît avec les types binaires flottants d’autres langages. Cela ne décrit pas tous les types numériques : certains langages proposent aussi des entiers, des décimaux ou des bibliothèques à précision arbitraire. JavaScript `Number` utilise un format binaire flottant ; `BigInt` existe séparément pour les entiers.
 
 **3. Héritage prototypal et `Object.prototype` accessible**
 Le modèle objet de JS est prototypal, pas classique. `__proto__` expose la chaîne de prototype à tout code qui tourne dans le même environnement. C'était une décision de flexibilité. Ça devient une surface d'attaque.
@@ -169,13 +171,13 @@ Ce qu'on sacrifie :
 
 **Coercions implicites :** les règles de `==` sont figées. L'usage de `===` est la norme depuis ES5. Mais les coercions implicites dans les contextes non-booléens (conditions, concaténation) restent actives.
 
-**Prototype chain :** le modèle prototypal est permanent. ES6 a ajouté la syntaxe `class` mais elle compile vers du prototype en dessous. La pollution de prototype reste une vulnérabilité active en 2026.
+**Prototype chain :** le modèle prototypal est permanent. ES6 a ajouté la syntaxe `class` mais elle compile vers du prototype en dessous. La pollution de prototype reste une catégorie de vulnérabilité à connaître ; son exploitabilité dépend du chemin d’écriture et des usages aval de propriétés héritées.
 
 Ce qui a changé avec le temps :
 
 - la montée de TypeScript a réduit les erreurs de coercition à la compilation
 - `Object.hasOwn()` (ES2022) remplace `hasOwnProperty` avec une syntaxe plus sûre
-- les JSON parsers modernes ont des options pour bloquer `__proto__` dans les payloads
+- un parseur JSON standard ne suffit pas à neutraliser toutes les opérations ultérieures sur les clés : valide le schéma et protège les fusions ou setters qui consomment les données
 
 Ce qui ne bougera pas :
 
@@ -306,3 +308,33 @@ C'est la différence entre subir le langage et le maîtriser.
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+<!-- AF-LESSON-PROFILE: errors -->
+
+## Repères de décision
+
+- **Pourquoi :** Une politique d'erreur explicite empêche un échec temporaire de devenir une boucle infinie et évite de cacher un défaut métier derrière un message vague.
+- **Quand l’utiliser / quand l’éviter :** Classe l'erreur selon sa cause et sa récupérabilité. Retry uniquement les erreurs transitoires et les opérations idempotentes ; remonte les violations métier et sécurité sans boucle automatique.
+- **Limites :** Un `catch` trop large masque la cause. Un retry peut amplifier une panne et doubler un effet ; une erreur personnalisée ne rend pas un message sûr à exposer au client.
+
+## Mécanisme : la version sans magie
+
+Capture au niveau qui peut décider, enrichis avec le contexte utile, transforme en contrat stable et préserve la cause originale pour le diagnostic.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi edge cases mérite ton temps** se rattache à ce cas concret : La création de demande Kintana doit distinguer validation, refus d'accès, conflit d'idempotence, timeout fournisseur et panne de base.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Contrat d'erreur stable pour l'API Kintana
+
+> **Arc Walking Dead :** une erreur n'est pas toujours un zombie à abattre. Certaines se récupèrent ; d'autres doivent arrêter la mission immédiatement.
+
+**Mission liée à « Pourquoi edge cases mérite ton temps » :** Définis les erreurs du parcours de création de demande. Ajoute une conversion stable vers les réponses API, une politique retry par classe et des tests qui vérifient qu'un secret ou une pile interne ne fuit pas.
+
+**Livrable :** un catalogue d'erreurs, un mapper HTTP, des tests de contrat et une table de décision retry/no-retry.
+
+**Critères d’acceptation :** les erreurs métier, techniques et de sécurité sont séparées ; les causes sont conservées côté serveur ; aucun retry n'est fait sur opération non idempotente sans clé ; les réponses client restent stables.
+
+**Transfert obligatoire :** Ajoute une panne fournisseur qui récupère après deux tentatives et compare le comportement avec une validation refusée.

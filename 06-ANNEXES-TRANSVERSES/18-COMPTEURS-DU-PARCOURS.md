@@ -10,14 +10,14 @@ Temps de lecture ~4 min
 
 Ces repères décrivent le volume du parcours. Ils servent à comprendre l’échelle du corpus, pas à mesurer ta progression personnelle.
 
-| Élément                         |    Valeur |
-| ------------------------------- | --------: |
-| Paliers obligatoires            |     **6** |
-| Modules pédagogiques directs    |    **54** |
-| Mini-projets                    |    **19** |
-| `99-PORTAGE-MENTAL.md`          |    **38** |
-| Familles Staff                  | **S1–S6** |
-| Preuve transversale obligatoire |    **S7** |
+| Élément                                  |    Valeur |
+| ---------------------------------------- | --------: |
+| Blocs physiques principaux (`00` à `05`) |     **6** |
+| Modules pédagogiques directs             |    **54** |
+| Mini-projets                             |    **19** |
+| `99-PORTAGE-MENTAL.md`                   |    **38** |
+| Familles Staff                           | **S1–S6** |
+| Preuve transversale obligatoire          |    **S7** |
 
 **Sens de S6 depuis la révision du 28 octobre 2026 :** livraison & exploitation. L'évaluation IA est un contrôle transversal G8 ; elle est obligatoire comme exercice de vérification, mais l'IA n'a pas à être artificiellement intégrée au fil rouge.
 

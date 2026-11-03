@@ -29,6 +29,42 @@ qu'est réellement un emprunt, et ce qui doit rester vrai en toutes circonstance
 
 ## Ce qui se passe vraiment
 
+### Le minimum SQL pour suivre les exemples
+
+Tu n'as pas besoin de connaître SQL avant ce module. Voici les mots que les premiers exemples utilisent :
+
+- une **table** regroupe des lignes de même nature ; une ligne représente un enregistrement ; une colonne décrit une propriété ;
+- une **clé primaire** (`PRIMARY KEY`) identifie une ligne de manière unique ;
+- une **clé étrangère** (`REFERENCES`) relie une ligne à une autre table et demande à la base de vérifier que la cible existe ;
+- `SELECT ... FROM ... WHERE ...` lit des lignes ; les jointures seront introduites avec les relations dans la leçon suivante.
+
+Exemple PostgreSQL minimal :
+
+```sql
+CREATE TABLE adherent (
+  id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  nom text NOT NULL
+);
+
+CREATE TABLE materiel (
+  id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  libelle text NOT NULL
+);
+
+CREATE TABLE emprunt (
+  id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  adherent_id bigint NOT NULL REFERENCES adherent(id),
+  materiel_id bigint NOT NULL REFERENCES materiel(id),
+  emprunte_le date NOT NULL,
+  rendu_le date
+);
+
+SELECT id, nom FROM adherent WHERE nom = 'Amina';
+```
+
+Lis ce code comme une déclaration de structure, pas comme un bloc à mémoriser. `NOT NULL` interdit une valeur absente ; `IDENTITY` laisse PostgreSQL générer l'identifiant ; `REFERENCES` matérialise le lien. Tu apprendras ensuite à défendre les contraintes et à lire les relations. Les jointures, transactions et niveaux d'isolation sont expliqués avant leur utilisation avancée ; aucune expérience d'ORM n'est requise.
+
+
 ### Une entité, ce n'est pas une table : c'est une identité qui dure
 
 Une entité du domaine existe indépendamment de la façon dont tu la stockes. Le test pour

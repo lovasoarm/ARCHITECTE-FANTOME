@@ -288,6 +288,61 @@ Le backtracking catastrophique est un vrai risque en prod. Les quantificateurs i
 
 La regex n'est pas la fin du traitement : c'est le début. Elle extrait les parties. Le code JS transforme, valide, restructure. Les deux travaillent ensemble.
 
+> **Statut pour la première passe : différé.** Termine d’abord la leçon et la pratique de base. Cette variation n’est pas une gate ; saute-la si elle utilise une notion non encore étudiée et reviens-y après les prérequis.
+
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
+
+<!-- AF-DIAGRAM:regex -->
+
+## Repère visuel utile : Import contrôlé des demandes Kintana
+
+```text
+ligne externe
+   |
+   v
+regex bornée -> captures nommées
+   |
+   v
+validation métier
+   |
+ +-----+-----+
+ v           v
+acceptée   quarantaine
+             |
+             v
+       raison traçable
+```
+
+<!-- AF-LESSON-PROFILE: regex -->
+
+## Repères de décision
+
+- **Pourquoi :** Un parseur fiable transforme une chaîne externe en champs vérifiés. Une regex aide pour un motif local, mais ne remplace pas une grammaire ni une validation métier.
+- **Quand l’utiliser / quand l’éviter :** Utilise une expression régulière pour reconnaître un motif borné ou extraire un format simple. Évite-la pour parser un langage imbriqué ou une structure complexe ; utilise un parseur dédié.
+- **Limites :** Les regex peuvent devenir illisibles, coûteuses ou vulnérables au ReDoS. Une correspondance syntaxique ne prouve pas que la valeur existe ou est autorisée.
+
+## Mécanisme : la version sans magie
+
+Définis le format accepté, ancre le motif, limite les répétitions, capture uniquement les champs utiles, puis valide les valeurs extraites au niveau métier.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Regex extractor : capturer, remplacer, splitter** se rattache à ce cas concret : Kintana importe des coordonnées de contact ou des fichiers de demandes. Un motif trop permissif accepte du bruit ; un motif trop strict rejette des formats légitimes.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Import contrôlé des demandes Kintana
+
+> **Statut Kintana : prolongement d'import différé, facultatif et sans gate supplémentaire.** Les missions de Regex basics, Regex combat et Regex extractor décrivent une seule évolution du même importeur ; ne construis pas trois parseurs. Termine la pratique locale de chaque leçon. Reprends l'import Kintana après les notions d'API, de gestion de fichiers/CSV et le module [Testing](../../../02-CONSTRUCTION/03-TESTING/README.md). Tant que ces prérequis ne sont pas étudiés, n'essaie pas de remplacer un parseur CSV par une regex : cette décision fait justement partie de l'approfondissement.
+
+> **Arc Konoha / Naruto :** un formulaire n'est pas un parchemin fiable. Si le sceau ne correspond pas, tu bloques l'entrée avant qu'elle contamine le village.
+
+**Mission liée à « Regex extractor : capturer, remplacer, splitter » :** Ajoute une extraction ciblée à l'import des demandes : identifie les champs supportés, refuse les lignes mal formées, conserve la ligne source et écris des tests pour les entrées longues et adversariales.
+
+**Livrable :** un parseur d'import, une fixture valide/invalide, des tests de limites et une note sur les formats volontairement non supportés.
+
+**Critères d’acceptation :** la regex est ancrée et commentée ; les champs sont validés après extraction ; les lignes refusées sont traçables sans donnée sensible ; aucun cas de backtracking coûteux connu n'est ignoré.
+
+**Transfert facultatif, à la reprise :** lorsque les prérequis d'import et de test seront étudiés, ajoute des champs optionnels et des séparateurs dans les valeurs. Décide alors si la regex reste adaptée ou si un parseur CSV devient nécessaire.

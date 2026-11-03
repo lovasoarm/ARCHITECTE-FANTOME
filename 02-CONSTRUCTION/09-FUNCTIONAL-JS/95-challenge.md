@@ -16,6 +16,8 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~8 min
 
+> Durée indicative de réalisation : 1 h 30. Le temps de lecture ne comprend pas la réalisation.
+
 Challenge de synthèse du module 02-CONSTRUCTION/09-FUNCTIONAL-JS. Pas une leçon, pas un exercice guidé : un système complet à construire seul avec tout ce que tu as appris dans ce module.
 
 T'as appris les pièces séparément : fonctions pures, immutabilité, composition, curry, partial.

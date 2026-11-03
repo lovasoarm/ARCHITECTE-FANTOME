@@ -57,10 +57,10 @@ C’est beaucoup plus difficile à inventer. Donc beaucoup plus intéressant à 
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
 
-<!-- AF-P0-2026-10-30: missing_example -->
-
 ### Exemple travaillé : cas métier
 
-Tu rejoins une organisation qui possède plusieurs services, une documentation incomplète et un incident ouvert ; il faut comprendre avant de proposer. Construis un cas minimal qui illustre « GUIDE CARRIÈRE : PORTFOLIO ET POSITIONNEMENT » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
+**Exemple résolu (fictif).** Pour une candidature backend, le dossier public met en avant une API avec contrat, tests, persistance et procédure de lancement, plutôt qu'une longue liste de technologies. La page d'accueil indique clairement le rôle visé, deux preuves reproductibles, les décisions prises et les limites. Les compétences absentes ne sont pas maquillées ; elles deviennent un plan d'apprentissage daté. **Pourquoi :** un positionnement lisible relie un objectif professionnel à des preuves concrètes.
+
+**À toi :** Tu rejoins une organisation qui possède plusieurs services, une documentation incomplète et un incident ouvert ; il faut comprendre avant de proposer. Construis un cas minimal qui illustre « GUIDE CARRIÈRE : PORTFOLIO ET POSITIONNEMENT » avec des données concrètes. Décris l’état initial, une seule opération, l’état final attendu et la raison pour laquelle ce résultat est correct.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

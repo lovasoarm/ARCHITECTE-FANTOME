@@ -180,3 +180,33 @@ mal bornée ici se retrouve dans chaque endpoint qui la sert.
   qu'une erreur de code applicatif ?
 - Pourquoi la modélisation doit-elle précéder le choix technique (SQL, ORM, NoSQL), et pas
   l'inverse ?
+
+<!-- AF-LESSON-PROFILE: data -->
+
+## Repères de décision
+
+- **Pourquoi :** Les pipelines rendent le cycle de vie des données contrôlable : provenance, qualité, transformation, rejeu et exposition.
+- **Quand l’utiliser / quand l’éviter :** Utilise un pipeline dès que plusieurs sources ou transformations doivent être répétées et auditées. Pour quelques lignes ponctuelles, un script simple et vérifié peut suffire.
+- **Limites :** Un pipeline vert ne rend pas les données vraies. Les jeux synthétiques ne prouvent pas un débit réel ; la déduplication exige une clé et une règle de conflit explicites.
+
+## Mécanisme : la version sans magie
+
+Ingestion, validation, normalisation, déduplication, quarantaine, stockage et réconciliation. Chaque étape conserve compteurs et provenance.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce niveau existe** se rattache à ce cas concret : Kintana exporte des événements de demandes et de notifications. Les doublons, retards, conflits d'identifiant et données incomplètes doivent rester visibles.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Pipeline vérifiable des événements Kintana
+
+> **Arc One Piece / Grand Line :** une donnée est une cargaison. Tu dois connaître son origine, sa version, sa qualité et ce qui se passe quand elle arrive deux fois.
+
+**Mission liée à « Pourquoi ce niveau existe » :** Construis un pipeline de données Kintana qui ingère un lot synthétique, valide le schéma, déduplique les événements, met en quarantaine les lignes invalides, puis produit un manifeste de réconciliation et un rejeu idempotent.
+
+**Livrable :** pipeline exécutable, contrat de données, fixtures valides/invalides, manifeste, tests de rejeu et rapport de qualité.
+
+**Critères d’acceptation :** read = accepted + duplicates + quarantined ; un ID réutilisé avec un payload différent est un conflit ; le rejeu produit la même sortie ; les volumes restent étiquetés synthétiques.
+
+**Transfert obligatoire :** Ajoute des événements tardifs et change la version du schéma. Définis le backfill et la compatibilité sans perdre la provenance.

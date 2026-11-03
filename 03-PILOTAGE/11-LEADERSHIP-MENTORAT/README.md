@@ -3,18 +3,12 @@ stability: intemporel
 acte: pilotage
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 ---
 
 # 11 : LEADERSHIP ET MENTORAT : L'INFLUENCE SANS AUTORITÉ
 
-> **État pédagogique : 30 octobre 2026 : structure documentaire revue.** Les contrôles de contenu ne remplacent pas une revue technique indépendante ni une validation terrain ; voir le [standard de complétude AF](../../06-ANNEXES-TRANSVERSES/69-STANDARD-COMPLETUDE-MODULE.md).
-
 > Palier 3 : Pilotage. Durée estimée : 7 h 30.
-> **Variante solo garantie** : chaque exercice de ce module a une forme jouable seul, sur du
+> **Préparation individuelle possible** : chaque exercice de ce module a une forme de préparation jouable seul, sur du
 > code open source public ou sur ton propre historique. Aucune équipe n'est présupposée.
 
 ## Ce que tu sauras faire
@@ -39,7 +33,7 @@ terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 
 ## Livrables
 
-Une revue publiée (URL + SHA), une note d'une page pour direction, `STANDARDS-AGENTS.md` : famille S5.
+Une revue de code sur commit immuable et une note d’une page pour direction préparent S5. Le mentorat et l’influence doivent être corroborés par une interaction réelle. `STANDARDS-AGENTS.md` relève de G8 et n’est requis que si des agents autonomes sont utilisés.
 
 <!-- PIECES-MODULE:debut -->
 
@@ -81,4 +75,8 @@ Le sommaire ci-dessus reste le parcours recommandé. Les index ci-dessous renden
 
 - [Sept situations de leadership : décider, expliquer et obtenir un mouvement collectif](07-SCENARIOS-LEADERSHIP-ARBITRAGES.md)
 
-## Standard de complétude et audit
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **décision qui traverse les équipes** : Rédige une RFC/ADR sur une décision Kintana qui affecte API, données et exploitation. Compare au moins deux options, demande une revue contradictoire et transforme les objections en critères d’acceptation. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : La décision a un propriétaire, un coût, un plan de migration et une condition de révision ; l’adoption réelle reste « non démontrée » tant qu’une équipe ne l’a pas adoptée.

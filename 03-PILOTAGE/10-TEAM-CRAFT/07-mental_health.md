@@ -45,24 +45,50 @@ Ce n'est pas "je suis crevé ce soir". C'est "je suis crevé depuis 3 mois, dorm
 
 Naruto s'entraîne comme un dingue mais il **récupère**. Le manga saute la récup, la vraie vie non. Sans récup, pas de progression, juste de la casse.
 
-## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+<!-- AF-DIAGRAM:leadership -->
 
-<!-- AF-DIAGRAM:transfer -->
+## Repère visuel utile : Agir sur la charge sans diagnostiquer les personnes
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+signaux collectifs de surcharge
+          |
+          v
+causes dans le système de travail
+          |
+          v
+limites / rotation / soutien
+          |
+          v
+expérience volontaire et réversible
+          |
+          v
+revue de la charge sans donnée privée
 ```
 
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+<!-- AF-LESSON-PROFILE: leadership -->
 
-Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **06 : Santé mentale du dev : même les Hokages prennent des jours off** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Protéger une capacité de travail soutenable
+
+**Mission liée à « 06 : Santé mentale du dev : même les Hokages prennent des jours off » :** Dans un scénario fictif Kintana, une équipe accumule interruptions, astreintes et tâches en cours. Identifie les conditions de travail modifiables sans diagnostiquer les personnes ni demander de divulgation privée.
+
+**Livrable :** Carte des facteurs de charge, proposition de limites WIP/rotation et mécanisme de demande d’aide.
+
+**Critères d’acceptation :** La réponse porte sur le système de travail ; confidentialité et volontariat sont respectés ; l’urgence est distinguée de la disponibilité permanente.
+
+**Transfert obligatoire :** La charge ne baisse pas après l’expérience : indique quelles données collectives et quels soutiens demander, sans attribuer de faute individuelle.

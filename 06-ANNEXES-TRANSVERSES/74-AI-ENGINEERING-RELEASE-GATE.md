@@ -5,6 +5,13 @@ noyau: oui
 route: formation-complete
 niveau: D-G
 last_reviewed: 2026-10-30
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # 74 : AI Engineering Release Gate : de l'expérience au système contrôlé
@@ -96,3 +103,56 @@ Définis un seuil de blocage, un propriétaire et une action. Une métrique qui 
 - `APPROVED_FOR_SCOPE` : critères du cas d'usage atteints pour le périmètre exact testé ; ne signifie pas sûreté universelle.
 
 La décision appartient au propriétaire du système et aux responsables de risque pertinents, pas au modèle qui a généré le code.
+
+<!-- AF-DIAGRAM:ai -->
+
+## Repère visuel utile : FAQ IA en lecture seule et évaluable
+
+```text
+question utilisateur
+       |
+       v
+contrôle d'accès + retrieval
+       |
+       v
+sources autorisées ?
+   | oui        | non
+   v            v
+générer + citer   abstention
+   |
+   v
+validation / sécurité
+   |
+   v
+réponse lecture seule
+```
+
+<!-- AF-LESSON-PROFILE: ai -->
+
+## Repères de décision
+
+- **Pourquoi :** L'ingénierie IA consiste à intégrer une capacité probabiliste dans un système déterministe qui doit gérer droits, qualité, coût et échecs.
+- **Quand l’utiliser / quand l’éviter :** Utilise LLM/RAG/agents seulement quand la valeur est claire et une solution non-IA ne suffit pas. En lecture seule, l'IA peut assister ; elle ne doit pas effectuer une action métier sans autorisation et confirmation séparées.
+- **Limites :** Une réponse plausible peut être fausse. Un score d'évaluation ne garantit pas la sécurité ; un prompt n'est pas une frontière d'autorisation ; une simulation n'est pas une mesure utilisateur.
+
+## Mécanisme : la version sans magie
+
+Définis contrat, sources, droits, abstention et évaluation ; observe retrieval, génération et post-traitement séparément ; garde les outils dans un périmètre minimal.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](77-FIL-ROUGE-KINTANA/README.md), **74 : AI Engineering Release Gate : de l'expérience au système contrôlé** se rattache à ce cas concret : La FAQ IA Kintana répond à partir de documents approuvés, cite ses sources et s'abstient quand le contenu manque. Elle ne crée ni annule ni modifie une demande.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : FAQ IA en lecture seule et évaluable
+
+> **Arc Capsule Corp. / DBZ :** l'IA est un copilote puissant, pas le Hokage. Elle peut proposer ; c'est ton système qui doit vérifier, limiter et refuser si besoin.
+
+**Mission liée à « 74 : AI Engineering Release Gate : de l'expérience au système contrôlé » :** Ajoute ou évalue une tranche FAQ Kintana : corpus synthétique approuvé, retrieval, citations, questions sans réponse, contradiction de source et prompt injection. Vérifie que toute action d'écriture métier reste impossible.
+
+**Livrable :** jeu d'évaluation versionné, rapport retrieval/génération, tests sécurité, règle d'abstention et dossier de coûts/latence LAB.
+
+**Critères d’acceptation :** les sources sont traçables ; les réponses sans support s'abstiennent ; l'injection ne donne pas de droits ; aucune action métier n'est exposée ; les métriques ne sont pas présentées comme production.
+
+**Transfert obligatoire :** Le fournisseur IA tombe ou renvoie une sortie mal formée. Vérifie le mode dégradé, la reprise et le comportement sûr.

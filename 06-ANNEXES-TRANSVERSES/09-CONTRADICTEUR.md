@@ -1,20 +1,16 @@
 ---
-perishability_id: PER-0094
 
-stability: perissable
+stability: stable
 acte: annexe
 noyau: oui
-freshness_registry_id: PER-0094
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
 ---
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
 # Contradicteur : tenir une décision sous objection
 
 Temps de lecture ~9 min
+
+> **Exemples de scénario, non observations de production.** Les nombres, dates, mesures et coûts utilisés dans les vingt réponses sont des données fictives ou des hypothèses pédagogiques, sauf preuve explicite jointe par l'apprenant. Pour un dossier réel, remplace-les par tes propres relevés et mesures.
 
 Le contradicteur ne cherche pas la meilleure réponse rhétorique : il cherche le
 chiffre ou l'hypothèse qui ferait tomber une décision. La preuve S5 de
@@ -51,7 +47,7 @@ fil rouge, avec tes relevés. Elles montrent la densité exigée.
 Décision : monolithe modulaire jusqu'à 10 000 utilisateurs ; pas de réseau entre
 contextes. Hypothèse : une équipe, un dépôt, un cycle de déploiement. Preuve :
 ADR-002 et la carte de contextes, modules encore dans le même process. Chiffre :
-0,00 € d'egress interne ; p95 mesuré à 180 ms le 2026-08-14. Condition : ouvrir
+0,00 € d'egress interne dans le scénario ; p95 supposé à 180 ms. Condition : ouvrir
 un service séparé seulement si deux équipes déploient en conflit plus de 2 fois
 par mois, ou si le p95 dépasse 400 ms à cause d'un module non isolable.
 
@@ -74,18 +70,19 @@ Le SLO définit la cible, le SLI mesure le service et l’error budget relie fia
 
 Décision : rester à 99,5 % sur 30 jours. Hypothèse : 200 000 requêtes / 30 j au
 palier 10 000. Preuve : `SLO.md` + `06A-BUDGET-CLOUD.md`. Chiffre : budget 99,5 % =
-1 000 requêtes ratées ; 99,9 % = 200. Le saut exige une base multi-AZ à +58 €/mois
-(relevé 2026-08-14, URL dans le relevé tarifaire) pour gagner ~800 requêtes, soit
-0,0725 € par requête épargnée : trop cher à ce palier. Révision : 50 000
+1 000 requêtes ratées ; 99,9 % = 200. Le scénario suppose une base multi-AZ à +58 €/mois pour gagner environ 800 requêtes, soit
+0,0725 € par requête épargnée. Ce coût est une hypothèse : remplace-le par un relevé
+réel avant de l'utiliser dans une décision. Révision : 50 000
 utilisateurs ou un contrat client qui pénalise 99,5 %.
 
 ### 3. Qui paie l'egress si le trafic est multiplié par dix ?
 
 Décision : l'éditeur paie ; le tarif n'est pas refacturé à l'utilisateur. Hypothèse :
-1 Go sortant ≈ 0,08 € (ordre 2026-08-18, `07-RELEVE-REFERENCE-2026.md` : à remplacer
-par ton URL). Preuve : ligne Egress de `06A-BUDGET-CLOUD.md`. Chiffre : 12 Go/mois à
-10 000 users → ~0,96 € ; ×10 → ~9,60 €, encore mineur ; à 1 000 000 users la ligne
-devient dominante. Condition : CDN dès que l'egress dépasse 15 % de la facture.
+le modèle S1 utilise une **simulation** à 0,08 €/GB, sans prétendre décrire un fournisseur.
+Preuve : hypothèses et ligne Egress du modèle S1. Chiffre : 180 GB/mois au palier 10 000
+→ 14,40 € simulés ; ×10 → 1 800 GB et 144 € simulés ; au palier 1 000 000,
+18 000 GB → 1 440 € simulés. Condition : décider du CDN à partir du trafic, des coûts
+réellement relevés et d'un seuil mesuré, pas d'un pourcentage universel.
 
 ### 4. Ton CQRS apporte quoi qu'un index ne donne pas ?
 
@@ -126,8 +123,8 @@ le plafond 2 mois de suite, lever le plafond ou couper une feature.
 ### 8. Quel signal prouve que le cache améliore vraiment le p95 ?
 
 Décision : le cache se garde seulement s'il baisse le p95 lecture d'au moins 30 %.
-Hypothèse : 38 % de hits mesurés 30 j. Preuve : histogramme avant/après, même
-fenêtre. Chiffre : p95 180 ms → 110 ms le 2026-08-14 ; hit ratio 38 %. Si hit
+Hypothèse : taux de hits fixé à 38 % dans le scénario sur une fenêtre de 30 jours. Preuve : histogramme avant/après, même
+fenêtre. Chiffre : p95 180 ms → 110 ms dans le scénario ; hit ratio supposé à 38 %. Si hit
 < 20 % ou p95 inchangé, on retire le cache (coût mémoire rendu). Révision :
 mesure mensuelle, seuil 30 %.
 

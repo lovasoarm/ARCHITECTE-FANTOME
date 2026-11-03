@@ -171,10 +171,32 @@ Reprends l'exemple `Oiseau`/`Pingouin` de la section 5, mais sur le thème Narut
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Composition vs inheritance : la vraie décision senior » à un troisième fournisseur dont l’API ne ressemble pas aux deux premiers. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: oop-composition-vs-inheritance -->
+
+## Repères de décision
+
+- **Pourquoi :** La composition assemble des capacités par délégation ; l’héritage exprime une relation de sous-type. Les confondre crée des hiérarchies rigides ou des objets difficiles à substituer.
+- **Quand l’utiliser / quand l’éviter :** Choisis `extends` si l’enfant respecte le contrat du parent dans tous les usages concernés. Choisis la composition pour des capacités qui varient indépendamment, des services injectables ou des comportements remplaçables. Ne traite pas « préférer la composition » comme une règle sans contexte.
+- **Limites :** La composition ajoute parfois du câblage et des dépendances explicites ; les mixins peuvent recréer des conflits de noms ou un ordre d’application difficile à suivre. L’héritage reste valide quand la relation de sous-type est stable et testable.
+
+## Mécanisme : la version sans magie
+
+L’héritage délègue la recherche de méthodes dans une chaîne de prototypes. La composition place des objets collaborateurs ou capacités sur un objet, puis délègue les appels vers eux. Le bon choix dépend du contrat et de la variabilité, pas d’une préférence de style.
+
+## Ancrage produit / terrain : Kintana
+
+Un service de demande Kintana peut composer un dépôt, un horloge et un service de notification. Ces dépendances varient et se remplacent en test ; elles ne sont pas des sous-types de la demande.
+
+## Mission utile : Kintana : justifier un découpage
+
+**Livrable :** deux versions d’un même mini-modèle, l’une par héritage et l’autre par composition, avec un tableau de contrat, variabilité, dépendances et coût de changement.
+
+**Critères d’acceptation :** le choix est relié à une relation métier ou à une capacité ; le cas de substitution est vérifié ; les dépendances remplaçables sont testables ; la solution ne multiplie pas les abstractions sans bénéfice démontré.
+
+**Transfert obligatoire :** ajoute une variante qui ne possède qu’une partie des capacités et explique si le modèle choisi absorbe cette évolution sans casser les clients.

@@ -89,3 +89,31 @@ Sans mesure (ms ou Go), les trois textes sont nuls.
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Garbage Collection : expliqué à 3 publics** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Expliquer un même constat mémoire à trois publics
+
+**Mission liée à « Garbage Collection : expliqué à 3 publics » :** À partir d’un scénario mémoire Kintana documenté, explique le mécanisme à un pair, à un responsable produit et à un utilisateur concerné. Garde les faits identiques mais adapte le niveau de détail.
+
+**Livrable :** Trois explications courtes et un tableau des faits invariants.
+
+**Critères d’acceptation :** Aucune promesse de libération déterministe n’est faite ; les mesures restent attribuées à leur environnement ; les termes sont adaptés sans déformer le mécanisme.
+
+**Transfert obligatoire :** Un public demande une certitude impossible : formule précisément ce qui est connu et ce qui ne l’est pas.

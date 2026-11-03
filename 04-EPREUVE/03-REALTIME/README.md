@@ -3,30 +3,31 @@ stability: evolutif
 acte: parcours
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "04-EPREUVE/03-REALTIME/01A-00-why-realtime.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 04-EPREUVE/03-REALTIME/01A-00-why-realtime.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # MODULE 03 REALTIME
 
-> **État pédagogique : 30 octobre 2026 : structure documentaire revue.** Les contrôles de contenu ne remplacent pas une revue technique indépendante ni une validation terrain ; voir le [standard de complétude AF](../../06-ANNEXES-TRANSVERSES/69-STANDARD-COMPLETUDE-MODULE.md).
-
-> Palier `04-EPREUVE`. Duree estimee : **3 h 45** (6 fichiers de travail).
+> Palier `04-EPREUVE`. Duree estimee : **3 h 50** (6 fichiers de travail).
 
 ## Sommaire du module
 
-| Fichier                                            | Objet                                                   | Duree  |
-| -------------------------------------------------- | ------------------------------------------------------- | ------ |
-| [`00-PREREQUIS.md`](00-PREREQUIS.md)               | 00 : Prereq check : Realtime                            | 15 min |
-| [`01A-00-why-realtime.md`](01A-00-why-realtime.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : REAL-TIME         | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                 | Page verrouillée                                        | 30 min |
-| [`02A-EXO_LECTURE.md`](02A-EXO_LECTURE.md)         | EXO LECTURE : 15-25 minutes (Realtime)                  | 45 min |
-| [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md) | EXO [JEUNE IA] : 04-EPREUVE/03-REALTIME                 | 45 min |
-| [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)     | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust | 45 min |
+| Fichier                                            | Objet                                                     | Duree  |
+| -------------------------------------------------- | --------------------------------------------------------- | ------ |
+| [`00-PREREQUIS.md`](00-PREREQUIS.md)               | 00 : Prereq check : Realtime                              | 15 min |
+| [`01A-00-why-realtime.md`](01A-00-why-realtime.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : REAL-TIME           | 45 min |
+| [`90-grimoire.md`](90-grimoire.md)                 | Page verrouillée                                          | 30 min |
+| [`02A-EXO_LECTURE.md`](02A-EXO_LECTURE.md)         | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Realtime) | 50 min |
+| [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md) | EXO [JEUNE IA] : 04-EPREUVE/03-REALTIME                   | 45 min |
+| [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)     | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust   | 45 min |
 
-Total : **3 h 45**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) et le boss (3 h) sont des évaluations séparées et ne sont pas ajoutés au Total sauf s’ils apparaissent comme lignes du tableau.
+Total : **3 h 50**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
 ## Comment travailler ce module
 
@@ -68,15 +69,13 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [`02_sse/`](02_sse/README.md)
 - [`03_webrtc/`](03_webrtc/README.md)
 - [Page verrouillée](90-grimoire.md)
-- [EXO LECTURE : 15-25 minutes (Realtime)](02A-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Realtime)](02A-EXO_LECTURE.md)
 - [EXO [jeune IA] : 04-epreuve/03-realtime](97-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
 - [Challenge : `03-REALTIME`](95-challenge.md)
 - [Grimoire : `03-REALTIME`](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
-
-## Standard de complétude et audit
 
 ## Navigation complète des ressources
 
@@ -100,3 +99,9 @@ Les liens ci-dessous donnent accès aux ressources documentaires du module, y co
 - [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)
 - [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)
 - [`SETUP.md`](SETUP.md)
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.

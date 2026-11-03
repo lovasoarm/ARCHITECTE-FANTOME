@@ -21,7 +21,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 ## Les épreuves de ce module, dans l'ordre
 
 - [50-profiling_basics_minimini_projet.md](04_profiling/50-profiling_basics_minimini_projet.md)
-- [EXO LECTURE : 15-25 minutes (Memoire & Perf)](05A-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Memoire & Perf)](05A-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 02-CONSTRUCTION/05-MEMORY-PERFORMANCE](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/05-MEMORY-PERFORMANCE](97-EXO-VERIFICATION.md)
 

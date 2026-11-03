@@ -25,7 +25,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [Solo Interview Drill : 20 questions, rejouable trimestriellement](16_career/07-solo_interview_drill.md)
 - [EXERCICE DE TRANSFERT : mode d'emploi](30_transferability/08-EXERCICE_DE_TRANSFERT.md)
 - [ÉPREUVE FINALE : DEBUG CROSS-LANGUAGE + ADR COMPARATIF EN 4H](30_transferability/95-challenge.md)
-- [EXO LECTURE : 15-25 minutes (05-MAITRISE/06-ANNEXES)](21-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : questions et auto-évaluation (05-MAITRISE/06-ANNEXES)](21-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 05-MAITRISE/06-ANNEXES](97-EXO-VERIFICATION.md)
 
 ## Ce qui valide le challenge (les quatre actes, aucun ne se saute)

@@ -10,16 +10,28 @@ route: complete
 
 Temps de lecture ~2 min
 
-Acte attendu : évaluer. Trois minutes, seul, sans ouvrir le module.
+Acte attendu : évaluer. Réponds sans ouvrir le module.
 
-Si une seule ligne ci-dessous te fait hésiter, tu ouvres d'abord ce qu'elle nomme. Ouvrir ce
-module sans ces acquis coûte la séance : tu apprendrais le prérequis à la place du module.
+## Ce que tu dois déjà avoir
 
-## Ce que tu dois déjà savoir faire
+- Terminé et validé [`04-EPREUVE/05-CAPSTONE-ARENA`](../../04-EPREUVE/05-CAPSTONE-ARENA/README.md).
+  Day-to-Legend est une pratique de progression continue après le Capstone ; il ne sert
+  pas à débloquer celui-ci.
+- Terminé [`09-TEAM-QUEST`](../../03-PILOTAGE/09-TEAM-QUEST/README.md) et maîtrisé ses bases
+  de collaboration : working agreement, flux Git et communication sous désaccord.
 
-- Tu as terminé [`03-EDGE-CASES`](../../05-MAITRISE/03-EDGE-CASES/README.md), module précédent du fil.
+## Questions
+
+1. Qu'est-ce qu'un working agreement, et quel problème concret empêche-t-il de laisser implicite ?
+2. Quelle différence entre deux flux Git, et quel critère de contexte fait choisir l'un plutôt que l'autre ?
+3. Comment dire non à une demande intenable sans détruire la relation de travail ?
 
 ## Verdict
 
-- [ ] Toutes les lignes passent → ouvre [`README.md`](README.md).
-- [ ] Une ligne ne passe pas → reviens ici quand elle passe. Note la date, pas l'excuse.
+- [ ] Le Capstone est validé, Team Quest est terminé et au moins deux réponses sur trois sont solides → ouvre
+  [`README.md`](README.md).
+- [ ] Le Capstone n'est pas validé → reviens à la gate d'entrée du
+  [Capstone](../../04-EPREUVE/05-CAPSTONE-ARENA/00-PREREQUIS.md).
+- [ ] Les repères d'équipe manquent → reprends le grimoire de
+  [Team Quest](../../03-PILOTAGE/09-TEAM-QUEST/90-grimoire.md).
+

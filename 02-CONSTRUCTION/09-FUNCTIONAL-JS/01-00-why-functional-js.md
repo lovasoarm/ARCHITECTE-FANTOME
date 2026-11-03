@@ -31,7 +31,7 @@ La programmation fonctionnelle ne te demande pas de devenir mathématicien. Elle
 
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
-Le bug le plus difficile à tracer en JS n'est pas une erreur de syntaxe : c'est une mutation d'objet partagé. Deux fonctions reçoivent la même référence vers le même objet, l'une le modifie, et l'autre se retrouve avec une donnée différente de celle qu'elle attendait, sans qu'aucune erreur ne soit levée. Le bug se manifeste loin de sa cause réelle, ce qui rend le debugging infernal.
+Le bug le plus difficile à tracer en JS n'est pas une erreur de syntaxe : c'est une mutation d'objet partagé. Deux fonctions peuvent recevoir chacune une copie de la même valeur de référence, qui désigne un objet partagé. Si l'une le modifie, l'autre observe cette mutation lorsqu'elle relit l'objet. Ce n'est pas un passage d'argument par référence : les deux paramètres reçoivent une valeur, et réaffecter un paramètre local ne réaffecte pas le binding de l'appelant. Le bug se manifeste loin de sa cause réelle, ce qui rend le debugging infernal.
 
 La programmation fonctionnelle (FP : functional programming) attaque ce problème à la racine avec deux règles simples : une fonction pure retourne toujours le même résultat pour les mêmes arguments, sans jamais modifier quoi que ce soit en dehors d'elle-même ; et l'immutabilité (immutability) interdit de muter une donnée existante : on en crée une nouvelle à chaque changement.
 
@@ -102,3 +102,33 @@ En Python, `map`/`filter`/`functools.reduce` et les compréhensions offrent le m
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+
+<!-- AF-LESSON-PROFILE: functional -->
+
+## Repères de décision
+
+- **Pourquoi :** La programmation fonctionnelle aide à isoler des transformations déterministes et à réduire les effets de bord qui rendent les bugs difficiles à reproduire.
+- **Quand l’utiliser / quand l’éviter :** Utilise fonctions pures et immutabilité pour les règles partagées ou testées souvent. N'impose pas un style fonctionnel complexe quand une boucle lisible est plus claire.
+- **Limites :** Créer une copie profonde peut coûter cher ; une fonction pure peut toujours être lente ou incorrecte ; composition excessive et currying gratuit rendent le code illisible.
+
+## Mécanisme : la version sans magie
+
+Sépare calcul et effet, rends les dépendances explicites, transforme les données sans mutation partagée et compose des fonctions au contrat clair.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce module mérite ton temps : functional JS** se rattache à ce cas concret : Les transitions de demande Kintana doivent être calculées de façon déterministe avant écriture en base ou notification.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Règle pure pour les transitions de demande
+
+> **Arc DBZ / Capsule Corp. :** une règle métier doit être testable sans brancher tout le vaisseau. Garde les effets derrière une frontière.
+
+**Mission liée à « Pourquoi ce module mérite ton temps : functional JS » :** Isole une transition Kintana en fonction pure : entrée (état, rôle, action), sortie (nouvel état ou erreur). Appelle l'adaptateur de persistance seulement après validation de la transition.
+
+**Livrable :** une fonction pure, tests table-driven, test de non-mutation et un adaptateur qui applique le résultat.
+
+**Critères d’acceptation :** le calcul n'accède ni à l'horloge ni au réseau ; les entrées invalides sont explicites ; l'état d'origine reste intact ; le code d'effet n'est pas mélangé à la règle.
+
+**Transfert obligatoire :** Ajoute une règle qui dépend de l'heure courante. Rends cette dépendance explicite et teste les limites de fuseau et de date.

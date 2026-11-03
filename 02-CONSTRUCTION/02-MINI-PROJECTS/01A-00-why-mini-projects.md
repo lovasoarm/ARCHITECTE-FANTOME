@@ -164,7 +164,7 @@ Tu n'as pas besoin de finir tous les modules avant de commencer : chaque projet 
 | 01_rasengan_engine    | 01 + 05 + 11 + 12    | Après module `02-CONSTRUCTION/10-DESIGN-PATTERNS`     |
 | 02_garo_no_kronika    | 03 + 04 + 15 + 20    | Après module `04-EPREUVE/03-REALTIME`     |
 | 03_walking_dead_protocol | 06 + 13 + 15 + 32    | Après module `05-MAITRISE/07-TOOLS`     |
-| 04_breaking_cache     | 08 + 09 + 10      | Après module `02-CONSTRUCTION/07-ALGORITHMS`     |
+| 04_breaking_cache     | Map / hashing + async/await + tests + mesure | Après les notions de Map, de chargement asynchrone et de tests unitaires ; aucun prérequis graphe/heap/tri |
 | 05_prison_break_api    | 17 + 21 + 22 + 24    | Après module `05-MAITRISE/01-DATABASES`     |
 | 06_ultras_dashboard    | 14 + 25 + 26      | Après module `03-PILOTAGE/05-OBSERVABILITY`     |
 | 07_ballon_dor_cli     | 04 + 13 + 15 + 31    | Après module `05-MAITRISE/06-ANNEXES`     |
@@ -190,8 +190,8 @@ L'engagement sur le contexte change la vitesse de compréhension.
 `01_rasengan_engine` est le projet d'entrée. Il ne touche pas aux APIs, pas à la DB, pas au réseau.
 Du JS pur, fonctionnel, immutable. Si tu as fait les module `00-SOCLE/04-FUNDAMENTALS`, 05, 09 et 10 : tu peux y aller.
 
-`04_breaking_cache` est autoportant sur les algos et structures de données.
-Aucune dépendance réseau, aucun outil externe. Profilage inclus : tu mesures ce que tu écris.
+`04_breaking_cache` porte sur le cache TTL en mémoire, la lecture-aside et l’invalidation après écriture réussie. Il suppose les bases de Map, d’async/await, de tests et de mesure ; il ne dépend pas du module graphes/algorithmes.
+Aucune dépendance réseau ni outil externe. Le benchmark est à écrire et mesurer par l’apprenant : aucun résultat n’est fourni par le ZIP.
 
 ---
 

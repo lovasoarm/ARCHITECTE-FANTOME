@@ -1,17 +1,29 @@
 ---
 perishability_id: PER-0095
 
-stability: perissable
+stability: intemporel
 acte: comprendre
-freshness_registry_id: PER-0095
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-04-28
-review_status: a_verifier_date_absente
+source_verified_on: "2026-11-03"
+freshness_status: "verified_current"
+source_url: "https://github.com/nodejs/Release"
+source_type: "primary"
+review_interval: "3 mois"
+review_due: "2027-02-03"
+perishability_scope: "État des versions et échéances de support explicitement datées dans la carte de rappel ; le pin AF reste défini séparément par .nvmrc et NODE_VERSION.md."
+source_scope: "Calendrier officiel Node.js : état des branches 22/24/26/27 et dates affichées contrôlés à la date de revue. Les dates sont susceptibles d’être modifiées par le groupe Release."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_current » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "NODE_RELEASE_BRANCH_STATUS_CURRENT_SNAPSHOT_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 # Support de rappel
+
+> **Périmètre de suivi (3 mois) :** État des versions et échéances de support explicitement datées dans la carte de rappel ; le pin AF reste défini séparément par .nvmrc et NODE_VERSION.md.
+
 
 <!-- AF-DIAGRAM:recall -->
 
@@ -51,7 +63,7 @@ Chaque Noyau pointe vers un fichier précis du repo : le grimoire de synthèse q
 
 ## La carte en un coup d'œil
 
-Avant les 34 fiches en détail, la carte complète. Le socle compte pour deux fiches (Getting Started et Référentiel) : au total, 34 fiches réparties sur les 54 modules pédagogiques directs des six paliers. Tu la relis en 2 minutes quand tu veux savoir où mettre ton énergie de révision cette semaine.
+Avant les 34 fiches en détail, la carte complète. Le socle compte pour deux fiches (Getting Started et Référentiel) : au total, 34 fiches réparties sur les 54 modules pédagogiques directs des six blocs physiques (`00` à `05`). Ces blocs sont une organisation du dépôt, pas six niveaux de capacité. Tu la relis en 2 minutes quand tu veux savoir où mettre ton énergie de révision cette semaine.
 
 | Coordonnée                                 | Module          | Ce que tu dois en garder                         | Statut 10 ans                   |
 | ------------------------------------------ | --------------- | ------------------------------------------------ | ------------------------------- |
@@ -79,7 +91,7 @@ Avant les 34 fiches en détail, la carte complète. Le socle compte pour deux fi
 | `04-EPREUVE/03-REALTIME`                   | Realtime        | WebSocket / SSE / WebRTC, le bon choix           | Stable                          |
 | `02-CONSTRUCTION/19-API-CRAFT`             | API Craft       | Rejouable sans risque, limite de débit, versions | Stable                          |
 | `03-PILOTAGE/04-SECURITY`                  | Security        | Donnée user = hostile par défaut                 | Intemporel                      |
-| `04-EPREUVE/04-BIG-APP-SNOOP`              | IA-Native Dev   | 4 niveaux de validation                          | **Périssable : 2028**           |
+| `04-EPREUVE/04-BIG-APP-SNOOP`              | Big App Snoop   | Lire un dépôt inconnu, cartographier, modifier sans régression | Intemporel |
 | `05-MAITRISE/01-DATABASES`                 | Databases       | Requêtes de base, transactions tout-ou-rien      | Intemporel                      |
 | `05-MAITRISE/02-SCALABILITY`               | Scalability     | 8 croyances fausses sur le distribué             | Intemporel                      |
 | `03-PILOTAGE/05-OBSERVABILITY`             | Observability   | Logs + traces + indicateurs de santé             | Stable                          |
@@ -90,7 +102,7 @@ Avant les 34 fiches en détail, la carte complète. Le socle compte pour deux fi
 | `05-MAITRISE/06-ANNEXES`                   | Annexes         | Ne pas coder, quand c'est mieux ainsi            | Intemporel                      |
 | `05-MAITRISE/07-TOOLS`                     | Tools           | 3 scripts perso, pas 30                          | Très périssable                 |
 
-**Lecture rapide** : 22 fiches intemporelles (le socle qui ne bouge pas), 8 stables (bougent lentement), 3 explicitement datées (TypeScript, IA-Native Dev, IA Agents : à revalider à leur échéance), 1 très périssable (Tools, les outils changent tout le temps). Total : 34. Si tu dois choisir où réviser en premier avant un entretien : les intemporelles d'abord, elles ne périment jamais.
+**Lecture rapide** : 23 fiches intemporelles (le socle qui ne bouge pas), 8 stables (bougent lentement), 2 explicitement datées (TypeScript et IA Agents : à revalider à leur échéance), 1 très périssable (Tools, les outils changent tout le temps). Total : 34. Si tu dois choisir où réviser en premier avant un entretien : les intemporelles d'abord, elles ne périment jamais.
 
 ---
 
@@ -128,7 +140,7 @@ _Fichier : `05-MAITRISE/06-ANNEXES/99A-PONT.md`_
 
 _installer, écrire, ne pas se perdre_
 
-**Noyau** : Node 22.23.4 est la version épinglée pour reproduire cette édition AF ; `.nvmrc` est la source de vérité. Ce pin n’implique pas que cette branche soit la LTS la plus récente. Vérifie `node -v` et `git --version` avant la pratique.
+**Noyau** : Node 22.23.4 est la version épinglée pour reproduire cette édition AF ; `.nvmrc` est la source de vérité. Ce pin n’implique pas que cette branche soit la LTS la plus récente. Au 3 novembre 2026, le calendrier officiel indique Node 22.x et 24.x en Maintenance LTS, Node 26.x en Active LTS et Node 27.x en Alpha (première publication 27.0.0-alpha.0.0.0 affichée le 29 octobre 2026) ; les dates sont susceptibles d’évoluer. Vérifie `node -v` et `git --version` avant la pratique. Source : [calendrier du groupe Release Node.js](https://github.com/nodejs/Release#release-schedule).
 _Fichier : `../00-SOCLE/01-GETTING-STARTED/02-install.md`_
 
 **Piège** : installer Node "en dur" sur ta machine ET utiliser nvm (un gestionnaire de versions Node) en même temps crée deux versions qui se battent pour savoir laquelle répond quand tu tapes `node`. Choisis un seul gestionnaire de versions (nvm, volta, ou asdf) et reste dessus.
@@ -186,25 +198,28 @@ _Fichier : `../00-SOCLE/05-PROBLEM-SOLVING/02-polya_method.md`_
 
 _callbacks, promises, async/await, boucle d'événements (event loop)_
 
-**Noyau ** : un seul thread (fil d'exécution) en JavaScript. Une seule pile d'appel (call stack, la liste des fonctions en train de s'exécuter, empilées). Une file de microtasks (les Promises, `queueMicrotask`) et une file de macrotasks (`setTimeout`, les entrées/sorties). Les microtasks se vident entièrement avant qu'une seule macrotask ne passe.
+**Noyau** : pour un agent JavaScript, le code s'exécute sur un thread avec une pile d'appel. Dans le modèle navigateur, une tâche est exécutée, puis les microtasks en attente sont vidées avant le prochain tour de tâches (et le navigateur peut ensuite mettre à jour l'affichage). Les Web Workers sont des agents distincts. Node.js a ses propres phases de boucle d'événements : ne transpose pas le schéma navigateur pour prédire tout l'ordre d'exécution côté serveur.
 _Fichier : `01-CADRAGE/02-ASYNC/04_event_loop/90-grimoire.md`_
 
 ```json
-[ CALL STACK ] <-- traitée avant la file de microtasks dans le modèle pédagogique présenté ici
-    |
-    v (stack vide ?)
-[ MICROTASK QUEUE ]  <-- Promises, queueMicrotask : vidée ENTIÈREMENT avant la suite
-    |
-    v (microtasks vidées ?)
-[ MACROTASK QUEUE ]  <-- setTimeout, setInterval, I/O : UNE tâche à la fois
-    |
-    v
-  retour au call stack, le cycle recommence
+[ AGENT JAVASCRIPT ]
+        |
+        v
+  [ tâche / job courant ]
+        | fin du code courant
+        v
+  [ microtasks en attente ]
+        | vidées avant le prochain tour de tâches
+        v
+  [ hôte : rendu éventuel + prochaine tâche ]
+
+Schéma conceptuel du modèle navigateur ; Workers = agents distincts.
+Node.js utilise un ordonnancement en phases distinctes.
 ```
 
 **Noyau** : `async/await` n'est qu'une façon plus lisible d'écrire des promesses, qui elles-mêmes ne sont qu'une façon plus lisible d'écrire des callbacks. Connaître la couche du dessous rend le bug lisible au lieu de magique.
 
-**Piège** : `await` dans une boucle `for...of` lance les requêtes une par une (en série), même si elles ne dépendent pas les unes des autres. `Promise.all` sur un `map` les lance toutes en même temps (en parallèle) : plus rapide, mais ça coûte cher en prod si tu en lances trop d'un coup. Un `throw` (une erreur levée) dans une Promise que personne n'attend devient une erreur silencieuse (`unhandledRejection`) : mets toujours un `.catch` ou un `try/await`.
+**Piège** : `await` dans une boucle `for...of` attend chaque opération avant de passer à la suivante. `Promise.all(items.map(...))` démarre les opérations asynchrones produites par le `map`, puis attend leur résolution : elles peuvent progresser concurremment, sans que cela garantisse du parallélisme CPU. Sur un grand volume, limite la concurrence. Un rejet de Promise ignoré n’est pas nécessairement silencieux : le runtime peut le signaler ou terminer le processus selon sa configuration. Attache un `.catch` ou attends la Promise dans un `try/catch`.
 
 **Zappable** : `SharedArrayBuffer` et `Atomics` (des outils bas niveau pour partager de la mémoire entre threads) : sache juste que ça existe, évite tant que possible.
 
@@ -274,15 +289,16 @@ _Fichier : `02-CONSTRUCTION/05-MEMORY-PERFORMANCE/04_profiling/02-profiling_basi
 **Noyau** : une fonction reçoit toujours des valeurs ; pour un objet, cette valeur peut désigner le même objet que celui détenu par l'appelant. Les primitives sont des valeurs immuables du point de vue du langage. Une closure qui garde une valeur désignant un gros objet peut empêcher sa récupération tant que cette closure reste accessible : c'est une cause fréquente de rétention mémoire, à confirmer par mesure.
 
 ```text
-STACK             HEAP
-+----------------+       +------------------------+
-| a -> 42    |       |            |
-| obj -> 0x4F2A ----------->   | 0x4F2A : { x: 1, y: 2 } |
-| obj2 -> 0x4F2A --------/    |            |
-+----------------+       +------------------------+
+BINDINGS / VALEURS                  OBJET (modèle conceptuel)
++-------------------------+          +----------------------+
+| a   -> valeur 42        |          |                      |
+| obj -> référence R1 -----------→  | { x: 1, y: 2 }      |
+| obj2-> référence R1 -----------→  |                      |
++-------------------------+          +----------------------+
 
-obj et obj2 pointent vers LA MÊME adresse mémoire.
-Muter obj.x modifie ce que obj2 voit aussi.
+obj et obj2 désignent le même objet via la même valeur de référence.
+Muter obj.x est donc observable via obj2. R1 est un symbole pédagogique,
+pas une adresse physique ni une représentation imposée au moteur.
 ```
 
 **Zappable** : la notation Big-O (comment le temps d'exécution grandit avec la taille des données) : `O(1)` constant, `O(log n)` logarithmique, `O(n)` linéaire, `O(n log n)`, `O(n²)` quadratique, `O(2ⁿ)` exponentiel. Retiens l'ordre et le sens, pas les formules par cœur. Les "hidden classes" et "inline caches" de V8 (des optimisations internes du moteur JS) : fascinant à lire, rarement quelque chose que tu contrôles directement.
@@ -298,7 +314,7 @@ _les 8 qui couvrent une grande partie des besoins courants_
 **Noyau ** : `Map` dès que tu as des clés dynamiques (qui changent), `Set` pour garantir l'unicité des valeurs. Ces deux réflexes valent 10 optimisations plus compliquées.
 _Fichier : `02-CONSTRUCTION/06-DATA-STRUCTURES/07_hash_table/02-hash_table_basics.md`_
 
-**Piège** : un tableau (`Array`) a un accès en `O(1)` (instantané) mais une insertion en tête en `O(n)` (qui ralentit avec la taille). `splice` modifie le tableau original, `slice` en fait une copie : confondre les deux est un classique en relecture de code.
+**Piège** : l’accès par indice d’un tableau dense est généralement traité comme constant dans les implémentations courantes, tandis qu’une insertion en tête coûte `O(n)` car les éléments doivent être déplacés. Ce sont des modèles de complexité pratiques, pas une garantie universelle de l’implémentation JavaScript. `splice` modifie le tableau original, `slice` en fait une copie : confondre les deux est un classique en relecture de code.
 
 **Zappable** : un tas (heap) sert de file de priorité (pour de l'ordonnancement de tâches, ou trouver le top-K des plus grands éléments). Un graphe dès qu'on parle de relations entre éléments (BFS pour un parcours simple non pondéré, Dijkstra quand chaque lien a un coût différent). Les arbres AVL, B-tree en détail : à revoir juste avant un entretien technique poussé, pas au quotidien.
 
@@ -528,7 +544,7 @@ CLIENT (réponse)
 
 _OWASP (Open Web Application Security Project, la référence mondiale des failles web les plus courantes) dans le sang_
 
-**Noyau ** : toute donnée envoyée par un utilisateur est hostile jusqu'à preuve du contraire. Échappe les données à l'affichage (pour éviter qu'un bout de code s'exécute par erreur), utilise des requêtes préparées (prepared statements, qui séparent la requête SQL des données), et jamais `innerHTML` sur du contenu non contrôlé.
+**Noyau ** : toute donnée envoyée par un utilisateur est non fiable. Au rendu, utilise une API texte sûre ou l'échappement automatique adapté au contexte ; ne passe du HTML par DOMPurify que si le produit autorise explicitement du HTML riche. Pour SQL, lie les valeurs avec des paramètres préparés et choisis les identifiants dynamiques dans une allowlist serveur. Évite `innerHTML` sur du contenu non contrôlé.
 _Fichier : `03-PILOTAGE/04-SECURITY/90-grimoire.md`_
 
 **Noyau** : les 3 fautes qui reviennent le plus en prod, dans l'ordre où elles font le plus mal :
@@ -537,7 +553,7 @@ _Fichier : `03-PILOTAGE/04-SECURITY/90-grimoire.md`_
 [ Mot de passe en MD5/SHA (hash rapide, cassable en masse) ]
      |
      v (corrige avec)
-[ bcrypt / argon2 / scrypt : des hash volontairement lents ]
+[ Argon2id en priorité / scrypt en alternative / bcrypt pour compatibilité héritée ]
 
 [ Rôle utilisateur lu depuis le cookie ou le body de la requête ]
      |
@@ -551,38 +567,44 @@ _Fichier : `03-PILOTAGE/04-SECURITY/90-grimoire.md`_
      accessible par une faille XSS       inaccessible en JS, donc protégé
 ```
 
-**Piège** : la pollution de prototype : `Object.assign({}, req.body)` sans filtre permet à un attaquant d'injecter une clé `__proto__` et de modifier le comportement global de tes objets. Utilise `Object.create(null)` ou une `Map` pour l'éviter. L'IDOR (accéder à la ressource d'un autre utilisateur juste en changeant un identifiant dans l'URL) se corrige avec une double vérification systématique (`WHERE id = $1 AND user_id = $2`), pas une vérification ponctuelle qu'on peut oublier.
+**Piège** : ne confonds pas affectation du prototype d’un objet et pollution globale. `Object.assign({}, req.body)` peut déclencher le setter `__proto__` et changer le prototype de l’objet cible ; à lui seul, ce cas ne modifie pas automatiquement `Object.prototype`. Le risque de pollution partagée apparaît notamment lorsqu’une fusion récursive ou un setter de chemin traverse une propriété spéciale jusqu’à un prototype partagé. Valide le schéma, refuse les clés dangereuses à chaque niveau et utilise `Object.create(null)` ou `Map` pour des dictionnaires à clés arbitraires. L’IDOR (accéder à la ressource d'un autre utilisateur juste en changeant un identifiant dans l'URL) se corrige avec une autorisation côté serveur, par exemple en bornant la requête au propriétaire (`WHERE id = $1 AND user_id = $2`) lorsque ce modèle correspond au domaine.
 
-**Zappable** : le Top 10 OWASP (la liste des failles les plus fréquentes) change peu d'une année à l'autre, la relire chaque année vaut 10 formations. `npm install` exécute du code écrit par d'autres : un SBOM (la liste complète de tout ce qui compose ton appli) et un audit régulier des dépendances ne sont plus optionnels. Le CORS n'est pas un mécanisme de sécurité en soi, c'est une relaxation contrôlée d'une restriction de sécurité (le "same-origin").
+**Zappable** : consulte l’édition publiée la plus récente du Top 10 OWASP comme repère de sensibilisation, sans la confondre avec un audit de ton application. `npm install` peut exécuter des scripts de dépendances : un SBOM (inventaire des composants) et une revue régulière des dépendances aident à maîtriser cette chaîne d’approvisionnement. CORS est un mécanisme navigateur de partage cross-origin ; il ne remplace ni l’authentification ni l’autorisation côté serveur.
 
 ---
 
-## 04-EPREUVE/04-BIG-APP-SNOOP · IA-Native Dev
+## 04-EPREUVE/04-BIG-APP-SNOOP · Lire et faire évoluer un dépôt inconnu
 
-_collaborer avec l'IA, pas lui déléguer : périssable 2028, un an de plus que prévu au départ_
+_reconstituer le système avant de toucher au code ; livrer un changement minimal avec une preuve de non-régression_
 
-**Noyau ** : l'IA propose, c'est toi qui décides. La signature d'un dev qui a compris ce qu'il fait : il peut expliquer ce qu'il a accepté ET ce qu'il a refusé, et pourquoi.
+**Noyau** : ne commence pas par réécrire. Repère les points d'entrée, les flux de données, les contrats, les tests et les dépendances. Distingue ce que le code fait de ce que tu supposes qu'il fait.
 
-**Noyau** : 4 niveaux de validation, cumulatifs : jamais un seul qui suffit à lui tout seul :
+**Noyau** : la boucle de travail est courte et observable :
 
-```json
-[ Lecture critique du code généré ]
-    |
-    v
-[ Exécution réelle ] <-- un test qui passe est la seule vraie preuve,
-    |          "ça a l'air correct" n'en est pas une
-    v
-[ Vérification de la doc officielle ] <-- pour tout import inconnu
-    |
-    v
-[ Relecture par un pair humain ] <-- sur la sécurité et l'architecture uniquement
+```text
+Entrer dans le dépôt
+        |
+        v
+Cartographier les points d'entrée et les flux
+        |
+        v
+Formuler une hypothèse vérifiable
+        |
+        v
+Mesurer le rayon d'impact
+        |
+        v
+Patch minimal + test de non-régression
+        |
+        v
+Expliquer la décision et ses limites
 ```
 
-**Piège** : l'IA invente des API avec un aplomb total : elle génère ce qui ressemble à la bonne réponse, pas forcément ce qui l'est vraiment. Vérifie toujours la doc avant d'accepter un import que tu ne connais pas. Jamais de secret dans un consigne, jamais de code d'un client sans autorisation explicite.
+**Piège** : refactoriser trop tôt, interpréter un nom de fichier comme une preuve, ou corriger un symptôme sans retrouver le flux qui le produit. Un dépôt ancien peut contenir des contraintes invisibles ; vérifie-les avant de conclure.
 
-**Zappable** : un consigne utile est spécifique, contextualisé, et donne un critère de succès clair.
+**Zappable** : mémoriser les commandes d'un outil particulier. Les commandes peuvent changer ; le `SETUP.md` local et la documentation officielle font foi.
 
-**Pont** : ce module éclaire le testing (ne fais jamais confiance aveuglément aux tests générés par l'IA), les agents autonomes (module `05-MAITRISE/03-EDGE-CASES`, même échéance de péremption : 2028), et toute la surface sécurité.
+**Pont** : architecture (reconstituer les frontières), testing (prouver le comportement), observability (suivre le flux) et team craft (expliquer un changement sans dénigrer le travail précédent).
 
 ---
 
@@ -665,9 +687,9 @@ _les traîtres de JavaScript_
 **Noyau ** : une race condition (un bug qui dépend de l'ordre d'exécution de deux bouts de code en même temps) ne se corrige jamais en réessayant simplement, mais par de la coordination : un mutex (un verrou qui empêche deux bouts de code de toucher la même donnée en même temps), une transaction, ou un verrou optimiste (on vérifie juste avant d'enregistrer que rien n'a changé entre-temps).
 _Fichier : `../05-MAITRISE/03-EDGE-CASES/06-race_condition_hunter.md`_
 
-**Piège** : `null` vs `undefined` : fige une convention d'équipe dès le départ, sinon ce sont des débats sans fin. Une clé `__proto__` dans un JSON qu'on vient de parser peut réécrire toute la chaîne de prototypes (ça rejoint la pollution de prototype du module `03-PILOTAGE/04-SECURITY`).
+**Piège** : `null` vs `undefined` : fige une convention d’équipe dès le départ. Une clé `__proto__` issue de `JSON.parse` est d’abord une propriété propre ; le risque dépend des opérations ultérieures. Une fusion récursive ou un setter mal conçu peut atteindre un prototype partagé ; `JSON.parse` seul ne réécrit pas toute la chaîne de prototypes.
 
-**Zappable** : `NaN !== NaN` est vrai en JS, `Number.isNaN` est le seul test fiable pour le détecter. `0.1 + 0.2 !== 0.3` : pour manipuler de l'argent, utilise toujours une bibliothèque de calcul dédiée, jamais des nombres à virgule flottante bruts.
+**Zappable** : `NaN !== NaN` est vrai en JS ; `Number.isNaN` est le prédicat direct recommandé pour tester cette valeur. `0.1 + 0.2 !== 0.3` avec `Number` illustre la représentation binaire flottante. Pour l’argent, préfère les unités mineures entières quand c’est adapté, ou une arithmétique décimale avec une règle d’arrondi explicite.
 
 ---
 
@@ -695,7 +717,7 @@ _Fichier : `05-MAITRISE/03-EDGE-CASES/12-specifications-verifiables-agents.md`_
 
 **Zappable** : un agent n'est vraiment utile que sur une spécification vérifiable (un critère binaire, des tests, un contrat clair). Sinon, c'est juste du plausible facturé au token.
 
-**Pont** : même échéance de péremption que le module `04-EPREUVE/04-BIG-APP-SNOOP` (2028) : ce qui reste vrai des deux modules, c'est le principe de garder le contrôle, pas l'outil du moment.
+**Pont** : Big App Snoop entraîne l’enquête dans une codebase inconnue ; ce module ajoute des garde-fous de spécification, d’observabilité, de régression et de sortie pour les systèmes semi-autonomes.
 
 ---
 
@@ -764,8 +786,8 @@ CE QUE TU AS FAIT           CE QUE ÇA VEUT DIRE SUR LE MARCHÉ
                     coûtent une CVE (une faille recensée) en prod
 24-26  DB, Scalability, Observability -> tu tiens en production,
                     pas juste en dev
-23,29  IA-Native, Agents      -> tu utilises l'IA sans t'y noyer
-                    ni t'y faire piéger (ça se recrute déjà)
+23,29  Big App Snoop, systèmes assistés      -> tu sais enquêter dans un dépôt inconnu
+                    et encadrer les capacités automatiques sans leur déléguer le verdict
 27,30  Team Craft, Mini-Projets  -> tu as des artefacts (POSTMORTEM,
                     ADR) à montrer, pas juste "j'ai fait un cours"
 ```
@@ -800,7 +822,7 @@ DEVOPS / CLOUD  : ajoute Docker/Kubernetes/Terraform en profondeur
                pas ton point d'arrivée)
 
 AI ENGINEER   : ajoute Python + un framework de Machine Learning
-              (04-EPREUVE/04-BIG-APP-SNOOP te donne le réflexe de validation,
+              (04-EPREUVE/04-BIG-APP-SNOOP te donne le réflexe d’enquête dans une codebase inconnue,
                pas la stack ML elle-même)
 
 CYBERSÉCURITÉ  : ajoute Kali/Burp Suite/du pentest actif (des tests
@@ -855,8 +877,8 @@ La différence entre junior et senior n'est pas le nombre de langages connus. C'
 | Bases de données    -> module `05-MAITRISE/01-DATABASES`                    |
 | Sécurité de base    -> module `03-PILOTAGE/04-SECURITY`                    |
 | Communication technique -> module `03-PILOTAGE/10-TEAM-CRAFT`                   |
-| Apprendre en continu  -> module `04-EPREUVE/04-BIG-APP-SNOOP`, 29 (justement parce que  |
-|              ce sont eux qui bougent)          |
+| Apprendre en continu  -> module 29 et références techniques vivantes ; vérifier les versions |
+|              et les sources avant de reprendre une pratique       |
 +------------------------------------------------------------------+
 ```
 

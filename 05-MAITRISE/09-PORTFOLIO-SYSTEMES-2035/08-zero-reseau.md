@@ -3,6 +3,13 @@ stability: evolutif
 acte: maitrise
 noyau: non
 route: depth
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/05-local-first-crdt.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/05-local-first-crdt.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # 08 : Zéro Réseau
@@ -11,6 +18,16 @@ route: depth
 
 **Place dans le parcours :** Avancé client/systèmes : continuité sans connexion.  
 **Prérequis :** Stockage local, transactions, APIs, synchronisation asynchrone, tests de concurrence et gestion de conflits ; 02-CONSTRUCTION/21-CLIENT-SYSTEMS-FLUTTER est une option d’interface, pas une obligation.
+
+## Parcours de préparation obligatoire
+
+Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0--socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
+
+- [Storage browser](../../00-SOCLE/04-FUNDAMENTALS/05_web_basics/04-storage_treasure.md), [bases de données et modélisation](../01-DATABASES/README.md), [transactions](../../06-ANNEXES-TRANSVERSES/65-LAB-DONNEES-API-ET-TRANSACTIONS.md).
+- [Async](../../01-CADRAGE/02-ASYNC/README.md), [concurrence mémoire partagée](../../01-CADRAGE/02-ASYNC/05-shared_memory_concurrency.md), [queues](../02-SCALABILITY/08-message_queues.md), [distributed primitives](../02-SCALABILITY/03-distributed_primitives.md).
+- [Flutter/client systems](../../02-CONSTRUCTION/21-CLIENT-SYSTEMS-FLUTTER/README.md) est facultatif. Étudie ensuite [Leçon-pont 05 : local-first/CRDT](LECONS-PONTS/05-local-first-crdt.md).
+
+**Gate d'entrée :** une donnée est écrite localement, reste disponible après redémarrage, part dans une outbox durable et se synchronise sans effet dupliqué. Tu peux décrire trois conflits métier avant de choisir CRDT. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-3--routes-spécialisées).
 
 ## Mission
 

@@ -1,108 +1,109 @@
 ---
-perishability_id: PER-0096
-
-stability: perissable
+stability: stable
 acte: appliquer
-freshness_registry_id: PER-0096
-freshness_audit_date: 2026-10-30
-freshness_status: a_verifier_date_absente
-review_due: 2027-01-28
-review_status: a_verifier_date_absente
 ---
+
 > **CrazyDevs : QG de Konoha :** les écrans peuvent clignoter toute la nuit sans te dire ce qui compte. Le boss est de relier signal, seuil, risque, coût et action.
 
-# MODÈLE S1 : 06A-BUDGET-CLOUD.md : exemplaire de référence, anonymisé
+# MODÈLE S1 : 06A-BUDGET-CLOUD.md : exemple pédagogique entièrement simulé
 
-Temps de lecture ~6 min
+Temps de lecture ~7 min
 
-> **Ordres de grandeur relevés le 2026-08-14, périmés au 2027-08-14, à remplacer par TON
-> relevé.** Ce fichier illustre la **forme** d'un budget cloud ; il ne fait autorité sur aucun
-> montant. La vérité chiffrée de ton dossier vient de `RELEVE-TARIFAIRE.md`, produit par
-> l'exercice obligatoire
-> [03-PILOTAGE/07-CLOUD-FOUNDATIONS/05-releve_tarifaire_reel.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/05-releve_tarifaire_reel.md)
-> : trois fournisseurs nommés, quatre lignes, URL complète et date pour chaque prix. Un
-> montant recopié d'ici dans ton budget est un montant que tu ne peux pas défendre.
+> **SIMULATION : AUCUN TARIF RÉEL** Tous les montants, forfaits et volumes de ce document sont fictifs. Ils ont été définis pour que les calculs soient reproductibles ; ils ne décrivent ni AWS, ni un fournisseur A ou B, ni un marché daté. N'utilise pas ces valeurs dans une décision réelle.
 
-> Ceci est un modèle. Le gabarit vivant, à jour, est maintenu dans le module qui enseigne
-> le chiffrage cloud : `03-PILOTAGE/07-CLOUD-FOUNDATIONS/06A-BUDGET-CLOUD.md`. Consulte-le pour
-> le format imposé exact ; ce fichier-ci illustre à quoi ressemble une copie remplie.
+Le modèle montre la forme d'un budget à trois échelles. Pour ton projet, remplace chaque hypothèse par une mesure et chaque montant par un tarif réellement relevé, daté et sourcé dans [l'exercice Cloud](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/05-releve_tarifaire_reel.md).
 
 Projet fictif : **Lumen**, plateforme de réservation de créneaux pour ateliers associatifs.
 
 ## 1. Hypothèses de trafic retenues
 
-> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, prix unitaires issus des 12 lignes sourcées (URL complète, date, devise, unité) de [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md), relevées le 2026-08-18 et à revérifier avant 2027-08-18. Protocole : [../17A-PROTOCOLE-DONNEE-SOURCEE.md](../17A-PROTOCOLE-DONNEE-SOURCEE.md).
+| Palier    | Utilisateurs actifs/mois |          Requêtes/s en pointe | Volume stocké |
+| --------- | -----------------------: | ----------------------------: | ------------: |
+| 100       |                      100 |     2 (hypothèse de capacité) |        0,5 GB |
+| 10 000    |                   10 000 |    40 (hypothèse de capacité) |         20 GB |
+| 1 000 000 |                1 000 000 | 1 200 (hypothèse de capacité) |      2 000 GB |
 
-| Palier    | Utilisateurs actifs/mois | Requêtes/s en pointe | Volume stocké |
-| --------- | ------------------------ | -------------------- | ------------- |
-| 100       | 100                      | 2                    | 500 Mo        |
-| 10 000    | 10 000                   | 40                   | 20 Go         |
-| 1 000 000 | 1 000 000                | 1 200                | 2 To          |
+## Profil de charge canonique Lumen : hypothèses pédagogiques
 
-## 2. Facture mensuelle par catégorie, à 100 utilisateurs
+| Paramètre                 |                             Hypothèse | Interprétation                                                                                        |
+| ------------------------- | ------------------------------------: | ----------------------------------------------------------------------------------------------------- |
+| Consultations utilisateur |         12 / utilisateur actif / jour | Action représentative                                                                                 |
+| Période de calcul         |                       30 jours / mois | Convention de calcul                                                                                  |
+| Requête principale        |          1 requête API / consultation | Les appels annexes sont exclus du compte principal                                                    |
+| Réponse principale        |         40 kB décimaux / consultation | Réponse d'un endpoint représentatif                                                                   |
+| Trafic supplémentaire     |                                 +25 % | Autres réponses et métadonnées                                                                        |
+| Egress budgété            |               trafic principal × 1,25 | 1,8 GB calculé à 100 actifs, arrondi au GB supérieur à 2 GB ; 180 GB à 10 000 ; 18 000 GB à 1 000 000 |
+| Calcul consommé           | 365 / 7 000 / 240 000 vCPU-h par mois | Hypothèses de consommation simulées, indépendantes des pics                                           |
+| Stockage                  |                   0,5 / 20 / 2 000 GB | Hypothèses de capacité, non déduites du seul nombre d'utilisateurs                                    |
 
-> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, prix unitaires issus des 12 lignes sourcées (URL complète, date, devise, unité) de [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md), relevées le 2026-08-18 et à revérifier avant 2027-08-18. Protocole : [../17A-PROTOCOLE-DONNEE-SOURCEE.md](../17A-PROTOCOLE-DONNEE-SOURCEE.md).
+À 100 utilisateurs actifs, le calcul donne `100 × 12 × 30 × 40 kB × 1,25 = 1,8 GB/mois` ; le tableau budgète prudemment `2 GB`, après arrondi au GB supérieur. À 10 000 utilisateurs actifs : `10 000 × 12 × 30 = 3 600 000` consultations/mois. Le trafic principal vaut `3 600 000 × 40 kB = 144 000 000 kB = 144 GB` en unités décimales. Avec +25 %, le budget d'egress est `180 GB/mois`. Les 43 200 requêtes du SLO S3 concernent uniquement le point de contrôle hebdomadaire de disponibilité, pas tout le trafic API.
 
-| Catégorie       | Service                             | Unité | Coût mensuel | Chez          | Relevé le  | URL                                                                                                                        |
-| --------------- | ----------------------------------- | ----- | ------------ | ------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Calcul          | 1 instance conteneur, 0.5 vCPU      | mois  | 7 €          | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| Base de données | instance managée, plus petit palier | mois  | 15 €         | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| Stockage objet  | 500 Mo, requêtes faibles            | mois  | 1 €          | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| Egress          | 2 Go sortants                       | mois  | 0,18 €       | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| Observabilité   | plan gratuit                        | mois  | 0 €          | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| **Total**       |                                     | mois  | **23,18 €**  | fournisseur A | 2026-08-14 | somme des lignes ci-dessus                                                                                                 |
+## 2. Paramètres de coût fictifs
 
-## 3. Facture mensuelle par catégorie, à 10 000 utilisateurs
+| Poste           |                      Paramètre de simulation | Limite                                                     |
+| --------------- | -------------------------------------------: | ---------------------------------------------------------- |
+| Calcul          |                              0,02 € / vCPU-h | Coût par vCPU-heure, sans engagement ni taxe               |
+| Base managée    | 15 € / 210 € / 3 100 € par mois selon palier | Forfaits fictifs, pas de SKU réel                          |
+| Stockage objet  |                            0,023 € / GB-mois | Requêtes et récupération exclues                           |
+| Egress Internet |                                  0,08 € / GB | Seuils gratuits et transferts internes exclus              |
+| Observabilité   |     0 € / 25 € / 640 € par mois selon palier | Forfaits fictifs de logs, sans métriques additionnelles    |
+| CDN / edge      |             210 € / mois au palier 1 000 000 | Forfait fictif ; transfert traité séparément dans l'egress |
 
-> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, prix unitaires issus des 12 lignes sourcées (URL complète, date, devise, unité) de [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md), relevées le 2026-08-18 et à revérifier avant 2027-08-18. Protocole : [../17A-PROTOCOLE-DONNEE-SOURCEE.md](../17A-PROTOCOLE-DONNEE-SOURCEE.md).
+Les calculs suivent les formules affichées. Les forfaits sont des hypothèses d'entrée ; aucun prix unitaire réel n'est déduit.
 
-| Catégorie       | Service                                                     | Unité | Coût mensuel | Chez          | Relevé le  | URL                                                                                                                        |
-| --------------- | ----------------------------------------------------------- | ----- | ------------ | ------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Calcul          | 3 instances, autoscaling 0.5 à 2 vCPU                       | mois  | 140 €        | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| Base de données | instance managée, palier intermédiaire, réplique de lecture | mois  | 210 €        | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| Stockage objet  | 20 Go                                                       | mois  | 4 €          | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| Egress          | 180 Go sortants                                             | mois  | 16 €         | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| Observabilité   | plan payant, 10 Go de logs/mois                             | mois  | 25 €         | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| **Total**       |                                                             | mois  | **395 €**    | fournisseur A | 2026-08-14 | somme des lignes ci-dessus                                                                                                 |
+## 3. Facture mensuelle simulée, à 100 utilisateurs
 
-## 4. Facture mensuelle par catégorie, à 1 000 000 utilisateurs
+| Catégorie       | Quantité / règle       |                                       Calcul | Coût mensuel simulé |
+| --------------- | ---------------------- | -------------------------------------------: | ------------------: |
+| Calcul          | 365 vCPU-h             |                                 365 × 0,02 € |              7,30 € |
+| Base de données | forfait petit palier   |                              donnée d'entrée |             15,00 € |
+| Stockage objet  | 0,5 GB-mois            | 0,5 × 0,023 € = 0,0115 €, arrondi au centime |              0,01 € |
+| Egress          | 2 GB                   |                                   2 × 0,08 € |              0,16 € |
+| Observabilité   | forfait gratuit fictif |                              donnée d'entrée |              0,00 € |
+| **Total**       |                        |                        somme des cinq lignes |         **22,47 €** |
 
-> Relevé le 2026-08-14, chez fournisseur A (hyperscaler généraliste), unité indiquée par ligne, prix unitaires issus des 12 lignes sourcées (URL complète, date, devise, unité) de [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md), relevées le 2026-08-18 et à revérifier avant 2027-08-18. Protocole : [../17A-PROTOCOLE-DONNEE-SOURCEE.md](../17A-PROTOCOLE-DONNEE-SOURCEE.md).
+## 4. Facture mensuelle simulée, à 10 000 utilisateurs
 
-| Catégorie       | Service                                                                   | Unité | Coût mensuel | Chez          | Relevé le  | URL                                                                                                                        |
-| --------------- | ------------------------------------------------------------------------- | ----- | ------------ | ------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Calcul          | flotte autoscalée, pic à 40 vCPU cumulés                                  | mois  | 4 800 €      | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| Base de données | cluster managé, 2 répliques de lecture, sauvegarde continue               | mois  | 3 100 €      | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| Stockage objet  | 2 To                                                                      | mois  | 46 €         | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| Egress          | 18 To sortants (poste dominant à cette échelle)                           | mois  | 1 620 €      | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| Observabilité   | plan payant, 400 Go de logs/mois                                          | mois  | 640 €        | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| CDN             | mise en cache des assets statiques, non nécessaire aux paliers inférieurs | mois  | 210 €        | fournisseur A | 2026-08-14 | prix unitaires sourcés : [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md) |
-| **Total**       |                                                                           | mois  | **10 416 €** | fournisseur A | 2026-08-14 | somme des lignes ci-dessus                                                                                                 |
+| Catégorie       | Quantité / règle      |                Calcul | Coût mensuel simulé |
+| --------------- | --------------------- | --------------------: | ------------------: |
+| Calcul          | 7 000 vCPU-h          |        7 000 × 0,02 € |            140,00 € |
+| Base de données | forfait intermédiaire |       donnée d'entrée |            210,00 € |
+| Stockage objet  | 20 GB-mois            |          20 × 0,023 € |              0,46 € |
+| Egress          | 180 GB                |          180 × 0,08 € |             14,40 € |
+| Observabilité   | forfait 10 GB de logs |       donnée d'entrée |             25,00 € |
+| **Total**       |                       | somme des cinq lignes |        **389,86 €** |
 
-## 4bis. Portage chez le second fournisseur
+## 5. Facture mensuelle simulée, à 1 000 000 utilisateurs
 
-> Relevé le 2026-08-14, chez fournisseur B (fournisseur européen), unité indiquée par ligne, prix unitaires issus des 12 lignes sourcées (URL complète, date, devise, unité) de [07-RELEVE-REFERENCE-2026.md](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/07-RELEVE-REFERENCE-2026.md), relevées le 2026-08-18 et à revérifier avant 2027-08-18.
+| Catégorie       | Quantité / règle           |               Calcul | Coût mensuel simulé |
+| --------------- | -------------------------- | -------------------: | ------------------: |
+| Calcul          | 240 000 vCPU-h             |     240 000 × 0,02 € |          4 800,00 € |
+| Base de données | forfait grand palier       |      donnée d'entrée |          3 100,00 € |
+| Stockage objet  | 2 000 GB-mois              |      2 000 × 0,023 € |             46,00 € |
+| Egress          | 18 000 GB                  |      18 000 × 0,08 € |          1 440,00 € |
+| Observabilité   | forfait 400 GB de logs     |      donnée d'entrée |            640,00 € |
+| CDN / edge      | forfait activé à ce palier |      donnée d'entrée |            210,00 € |
+| **Total**       |                            | somme des six lignes |     **10 236,00 €** |
 
-| Catégorie       | Unité | Coût mensuel au palier 10 000 | Chez          | Relevé le  | Ce qui change de nature                                                                    |
-| --------------- | ----- | ----------------------------- | ------------- | ---------- | ------------------------------------------------------------------------------------------ |
-| Calcul          | mois  | 155 €                         | fournisseur B | 2026-08-14 | facturé au provisionné, pas à la seconde : l'autoscaling n'économise plus rien la nuit     |
-| Base de données | mois  | 175 €                         | fournisseur B | 2026-08-14 | sauvegarde continue vendue séparément, donc astreinte partiellement rendue à l'équipe      |
-| Egress          | mois  | 9 €                           | fournisseur B | 2026-08-14 | egress gratuit vers son propre CDN : le poste dominant du palier 1 000 000 change de forme |
-| **Total**       | mois  | **381 €**                     | fournisseur B | 2026-08-14 | écart de total inférieur à 4 pour cent, écart de mécanisme considérable                    |
+## 6. Portage chez un second fournisseur
 
-Réversibilité : sortie estimée à 9 jours ouvrés, dont 2 To d'egress de migration facturés une fois. Le total se ressemble, les mécanismes non : c'est la seule conclusion utile de ce portage.
+Aucun tarif fictif de « fournisseur B » n'est proposé : le tableau précédent n'est pas une grille fournisseur. Pour ton projet, reprends le même trafic, les mêmes services attendus et les mêmes unités, puis remplis le second tableau avec tes sources personnelles. Note les postes non équivalents au lieu de les chiffrer par supposition.
 
-## 5. Ce que ce budget révèle
+| Poste                | Fournisseur choisi | Service/SKU | Région | Unité/volume | Coût mensuel | Date | URL | Limites / différences |
+| -------------------- | ------------------ | ----------- | ------ | ------------ | -----------: | ---- | --- | --------------------- |
+| Calcul               |                    |             |        |              |              |      |     |                       |
+| Base managée         |                    |             |        |              |              |      |     |                       |
+| Stockage objet       |                    |             |        |              |              |      |     |                       |
+| Egress               |                    |             |        |              |              |      |     |                       |
+| Observabilité        |                    |             |        |              |              |      |     |                       |
+| **Total comparable** |                    |             |        |              |              |      |     |                       |
 
-L'egress passe de 0,18 € à 1 620 € entre le premier et le dernier palier : ce n'est pas une
-ligne accessoire, c'est le deuxième poste à un million d'utilisateurs. Un budget qui
-l'omettrait masquerait le vrai point de bascule économique du projet.
+Ne conclus pas à une économie totale si une catégorie, une sauvegarde ou un transfert manque. Une comparaison partielle doit rester qualifiée comme telle.
 
-## 6. Recroisement obligatoire
+## 7. Ce que ce budget révèle
 
-Ce budget est repris tel quel dans la section 3 du dossier unique
-(`05-MAITRISE/08-MAITRISE-STAFF-ENGINEER/02-dossier_unique.md`) et dans les tensions du
-capstone (`04-EPREUVE/05-CAPSTONE-ARENA/06-addendum-staff-engineer.md`). Le budget d'erreur
-du fichier `PREUVES/SLO.md` doit rester tenable avec ces montants : si doubler la
-disponibilité doublait la facture sans qu'aucun des deux documents ne le dise, l'un des
-deux mentirait par omission.
+Dans cette simulation, l'egress passe de 0,16 € à 1 440 € parce que le volume budgété passe de 2 GB à 18 000 GB avec un paramètre fictif constant de 0,08 €/GB. Cela illustre l'effet du volume ; cela ne démontre pas que l'egress est toujours le deuxième poste ni que ce prix existe chez un fournisseur réel.
+
+## 8. Recroisements
+
+Ce modèle montre comment relier hypothèses, budget, SLO et arbitrage. Les chiffres d'un autre exemple (S4 ou S5) peuvent appartenir à un scénario distinct : ne les présente pas comme dérivés de S1 sans refaire le calcul et conserver les entrées communes.

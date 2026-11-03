@@ -2,92 +2,87 @@
 stability: intemporel
 audience: apprenant
 acte: comprendre
+cognitive_level: L1
+perturbation_modes: [premiere_execution, incertitude]
+anti_recipe_key: premiere_execution+incertitude
+transfer_distance: low
+assessment_role: instructional_checkpoint
 ---
 
-> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+> **SCÈNE CRAZYDEVS :** après une séance, tu ne te souviens plus de la commande essayée. Une note courte te permet de reprendre sans inventer ce qui s’est passé.
 
-# 10-PLATEAU_JOURNAL_EXEMPLE.md : exemple rempli (anonymise)
+# 10 : Exemple très simple de journal de progression
 
-Temps de lecture ~2 min
+Temps de lecture : environ 2 minutes.
 
-Cet exemple existe pour desamorcer la peur de la page blanche.
-Copie/adapte, ne recopie pas mot pour mot. Ton journal, c'est le tien.
+Ce journal sert à noter ce que tu as essayé, ce que tu as observé et la prochaine petite action. Il n'a pas besoin d'être long ou technique.
 
-Rappel des seuils (voir `01-START_HERE.md`) :
+## Format d'une entrée
 
-- **2 jours sans progres** -> tu commences a surveiller ici.
-- **7 jours sans progres** -> tu declenches `05-MAITRISE/06-ANNEXES/16_career/04-plateau_playbook.md`.
+- **Date :** AAAA-MM-JJ
+- **Ce que je voulais faire :** une phrase.
+- **Ce que j'ai essayé :** la commande ou l'action, si j'en ai fait une.
+- **Ce que j'ai observé :** le résultat exact, ou « je n'ai pas encore essayé ».
+- **Ce que je comprends :** une phrase simple.
+- **Prochaine action :** une seule étape faisable, ou demander de l'aide.
 
----
+## Exemple : première exécution
 
-## Format d'une entree
+- **Date :** 2026-11-01
+- **Module :** Getting Started
+- **Ce que je voulais faire :** lancer mon premier fichier JavaScript.
+- **Ce que j'ai essayé :** ouvrir le terminal dans le dossier du fichier et taper `node index.js`.
+- **Ce que j'ai observé :** le terminal a affiché `Bonjour`.
+- **Ce que je comprends :** le fichier a été exécuté et le message demandé s'est affiché.
+- **Prochaine action :** changer le texte affiché, puis relancer le fichier. Si je ne sais pas comment faire, je relis la consigne ou je demande de l'aide.
 
-- **Date** : AAAA-MM-JJ
-- **Module en cours** : ex. `01-CADRAGE/02-ASYNC/04_event_loop`
-- **Ce qui bloque (une phrase)** : ce que je n'arrive pas a faire _aujourd'hui_.
-- **Derniere chose comprise** : ce que je _sais_ deja, pour ne pas repartir de zero.
-- **Prochaine micro-action (< 30 min)** : la plus petite marche possible.
-- **Signal plateau** : combien de jours consecutifs sur ce meme point ? (compte).
+Si la commande échoue, note le message exact au lieu d'inventer une explication. Une erreur ne signifie pas que tu es incapable d'apprendre.
 
----
+## Ce que tu retiens
 
-## Exemple 1 : J+2 (surveillance)
+1. Écris ce qui s'est réellement passé, pas ce que tu penses avoir dû observer.
+2. Une seule prochaine action suffit.
+3. Tu peux écrire « je ne sais pas encore » et demander de l'aide.
 
-- **Date** : 2026-03-08
-- **Module** : `01-CADRAGE/02-ASYNC/04_event_loop`
-- **Ce qui bloque** : je ne comprends pas pourquoi `setTimeout(fn, 0)`
-  s'execute apres une `Promise.resolve().then(fn)`.
-- **Derniere chose comprise** : la call stack se vide avant que la
-  microtask queue soit lue ; ca je le sais.
-- **Prochaine micro-action** : ecrire un `console.log` qui numerote
-  l'ordre reel des sorties, PAS relire encore le grimoire.
-- **Signal plateau** : jour 2 sur ce meme point. Je surveille.
-
-## Exemple 2 : J+5 (encore surveillance)
-
-- **Date** : 2026-03-11
-- **Module** : idem.
-- **Ce qui bloque** : j'ai fait le `console.log`, l'ordre est bien
-  microtask -> macrotask, mais je ne sais pas _expliquer_ pourquoi a
-  quelqu'un d'autre.
-- **Derniere chose comprise** : j'ai la sortie correcte, je manque le mot.
-- **Prochaine micro-action** : ecrire l'explication en 5 lignes dans
-  `../../01-CADRAGE/02-ASYNC/97-EXO-VERIFICATION.md` comme si je parlais a un debutant.
-- **Signal plateau** : jour 5. Encore 2 jours et je declenche le playbook.
-
-## Exemple 3 : J+7 (declenchement)
-
-<!-- AF-DIAGRAM:recall -->
+<!-- AF-DIAGRAM:reference -->
 
 ```text
-J+1 ──► J+3 ──► J+7 ──► J+14 ──► J+28
- │        │        │         │         │
-free    explain  diagnose   transfer  defend inverse
+objectif → action essayée → observation → prochaine petite étape
 ```
 
-Le rappel distribué réactive la compétence sous des formes différentes au fil du temps.
+<!-- AF-LESSON-PROFILE: reference -->
 
-- **Date** : 2026-03-13
-- **Module** : idem.
-- **Ce qui bloque** : je decris l'ordre, mais l'histoire n'a pas de sens
-  pour un lecteur non technique.
-- **Action** : j'ouvre `05-MAITRISE/06-ANNEXES/16_career/04-plateau_playbook.md` et
-  je suis la procedure (changer d'angle : lire, dessiner, expliquer a voix
-  haute, dormir dessus une nuit, revenir).
+## Repères de décision
 
----
+- **Pourquoi :** Une note courte permet de reprendre son apprentissage sans devoir tout recommencer ni prétendre avoir compris ce qui reste flou.
+- **Quand l'utiliser / quand l'éviter :** Utilise ce format après une séance ou lorsqu'une consigne te laisse une question. Ne transforme pas chaque petite action en rapport détaillé.
+- **Limites :** Une note décrit ce qui a été essayé dans un contexte donné. Elle ne prouve pas une maîtrise générale et ne remplace pas une aide technique lorsque tu es bloqué.
 
-## Ce que tu retiens de cet exemple
+## Mécanisme : la version sans magie
 
-1. Tu ecris **court**. Un plateau, ce n'est pas un roman.
-2. Tu comptes **les jours consecutifs**. Pas la douleur, les jours.
-3. Tu declenches le playbook a J+7. Pas a J+3 (trop tot), pas a J+21
-   (trop tard).
+Sépare l'intention, l'action, l'observation et la prochaine étape. Cette séparation évite de confondre une hypothèse avec un résultat.
 
-<!-- AF-P0-2026-10-30: missing_practice -->
+## Ancrage produit / terrain : Kintana
 
-### Pratique autonome : production attendue
+Kintana est un cas d'étude fictif réservé aux applications ultérieures. Aucune tâche technique Kintana n'est demandée dans cette première passe.
 
-À partir de « 10-PLATEAU_JOURNAL_EXEMPLE.md : exemple rempli (anonymise) », produis une variante indépendante du cas suivant : Une documentation d’API change : sépare les concepts durables (HTTP, contrats, invariants) des détails périssables (version, commande, option fournisseur). Travaille sans recopier la solution de la leçon ; conserve l’entrée, les hypothèses, la sortie attendue et un artefact vérifiable (code, requête, schéma, trace ou décision).
+## Pratique autonome : une entrée de quatre lignes
 
-**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+Après une séance, écris seulement :
+
+1. ce que tu voulais faire ;
+2. ce que tu as essayé, ou « rien pour le moment » ;
+3. ce que tu as réellement observé, ou la question qui reste ;
+4. la prochaine petite action, ou la personne à qui demander de l’aide.
+
+**Exemple de preuve :** `Je voulais lancer le fichier ; je n'ai pas trouvé le terminal ; je n'ai donc pas obtenu de résultat ; prochaine action : rouvrir Getting Started et demander de l'aide si le terminal reste introuvable.` Aucun code ni transfert n'est attendu.
+
+## Mission utile : une note locale
+
+**Livrable et critères d’acceptation :** une entrée locale de quatre lignes décrivant intention, essai, observation et prochaine action. « Pas encore essayé » est une réponse acceptable ; aucun code ni transfert n’est exigé.
+
+Après ta séance, écris une entrée de quatre lignes : ce que tu voulais faire, ce que tu as essayé, ce que tu as observé et ce que tu feras ensuite. Si tu n'as pas essayé d'action, note simplement ta question.
+
+### Transfert : plus tard
+
+Le même format pourra être utilisé dans une activité technique plus avancée, y compris dans une simulation Kintana, après les prérequis correspondants. Aucun transfert n'est attendu maintenant.

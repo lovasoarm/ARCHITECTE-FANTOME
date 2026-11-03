@@ -153,7 +153,7 @@ arr.sort()      → O(n log n)
 arr[i]        → O(1) : accès direct
 obj[key]       → O(1) : hash lookup
 set.has(x)      → O(1)
-map.get(x)      → O(1)
+map.get(x)      → O(1) moyen attendu dans les implémentations courantes (pas une garantie ECMAScript)
 ```
 
 ---
@@ -384,10 +384,36 @@ Analyser la complexité d'un algorithme complet se fait bloc par bloc : séquenc
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Mesure les temps sur plusieurs tailles, trace le rapport de croissance et confronte-le à la complexité théorique. Ne conclue pas à O(n) à partir d’une seule mesure.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Analyser un algorithme ligne par ligne** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Analyser le coût ligne par ligne
+
+**Mission liée à « Analyser un algorithme ligne par ligne » :** Décompose une fonction Kintana en coût des instructions, boucles, appels et structures de données. Additionne les coûts séquentiels, identifie les dominants et écris la complexité du meilleur/pire cas lorsque cela change.
+
+**Livrable :** Table d’analyse par bloc, récurrence éventuelle et conclusion argumentée.
+
+**Critères d’acceptation :** La taille d’entrée est définie ; les opérations internes ne sont pas toutes supposées O(1) sans justification ; les cas sont distingués.
+
+**Transfert obligatoire :** Une fonction appelée dans une boucle n’est pas constante : reprends l’analyse en incluant son coût.

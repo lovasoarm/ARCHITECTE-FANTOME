@@ -1,77 +1,72 @@
 ---
-stability: intemporel
+stability: stable
 acte: pratiquer
-cognitive_level: L3
-perturbation_modes: [decision_inversee, decision_organisationnelle]
-anti_recipe_key: decision_inversee+decision_organisationnelle
-transfer_distance: high
+cognitive_level: L1
+perturbation_modes: [consigne_simple, changement_valeur]
+anti_recipe_key: consigne_simple+changement_valeur
+transfer_distance: low
 assessment_role: instructional_checkpoint
 ---
 
-> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+> **Repère :** un binding relie un nom à une valeur ; une déclaration, une affectation et une lecture sont trois actions différentes.
 
-## TYPE
+# Micro-projet : identifier et mettre à jour un statut
 
-Micro-drill
+## Type
 
-## Niveau
+Micro-pratique guidée, sans framework ni dépendance.
 
-[OK] Fondamental
+## Prérequis
 
-## CONTEXTE
+- Avoir lu [`04-a_binding.md`](04-a_binding.md).
+- Savoir déclarer une variable avec `const` ou `let`.
 
-Le binding, c'est le lien entre un nom et un emplacement mémoire : pas la valeur elle-même. En React, comprendre ça évite de croire qu'on « modifie » une prop alors qu'on relie juste un nouveau nom à la même valeur.
+## Mission de première passe
 
-## APPLICATION
+Dans `status.js` :
 
-- Dans un fichier de test rapide (`scratch.js`), déclare un objet `personalInfo`, puis un second nom `me` relié au même objet.
-- Modifie une propriété via `me` et affiche `personalInfo` : observe.
-- Puis réassigne complètement `me` à un nouvel objet et réaffiche `personalInfo`.
-- Note en commentaire, en une phrase, la différence entre les deux opérations.
+1. Déclare `invoiceNumber` avec `const` et la valeur `INV-01`.
+2. Déclare `status` avec `let` et la valeur `draft`.
+3. Lis et affiche les deux variables.
+4. Réaffecte `status` à `sent`, puis affiche de nouveau sa valeur.
+5. Annote dans le fichier quelle ligne déclare, quelle ligne affecte et quelles lignes lisent les valeurs.
 
-## Critère de réussite
+```js
+const invoiceNumber = "INV-01";
+let status = "draft";
 
-- [ ] Dans un fichier de test rapide (`scratch.js`), déclare un objet `personalInfo`, puis un second nom `me` relié au même objet.
-- [ ] Modifie une propriété via `me` et affiche `personalInfo`.
-- [ ] Je peux expliquer le résultat obtenu sans relire le cours.
+console.log(invoiceNumber);
+console.log(status);
+
+status = "sent";
+console.log(status);
+```
+
+## Critères de réussite
+
+- [ ] L'identifiant affiché est `INV-01`.
+- [ ] Le statut affiché passe de `draft` à `sent`.
+- [ ] Je peux distinguer déclaration, affectation et lecture.
+- [ ] Aucun tableau, objet, condition, boucle ou fonction n'est nécessaire pour réaliser cette mission.
 
 ## Vérification
 
-Quand tu écris `me = {...}`, qu'est-ce qui change exactement : la valeur ou le lien ?
+Quelle instruction modifie la valeur associée au binding `status` ? Quelle instruction ne fait que la lire ?
 
 ## Preuve à conserver
 
-Après l'expérience, conserve :
+Le fichier, les trois sorties et les annotations des opérations.
 
-- le résultat observé ;
-- l'explication ;
-- la règle générale que tu en tires ;
-- une limite ou une exception connue.
+## Approfondissement différé : livraison produit Kintana : règle métier et état
 
-## Ce que tu viens de démontrer
+> **Statut : différé, facultatif pour la première passe.** Termine d’abord la pratique de base de cette page. Reviens à cette intégration après avoir étudié les notions préalables et lorsque le dépôt Kintana et son environnement sont réellement disponibles. Cette tâche ne constitue pas une gate de progression Fundamentals. Si l’environnement manque, reporte-la ; une simulation ne vaut pas une livraison intégrée.
 
-Dans ce scénario, tu as vérifié que : tu vois la différence entre lien et valeur.
+> **Contexte de pratique :** relie le principe de cette leçon à une règle métier de Kintana, sans supposer que le projet est déjà installé.
 
-Tu viens d'éliminer la source n°1 des bugs « mon state ne se met pas à jour » que tu croiseras dans le portfolio. Ce fichier est un brouillon : supprime-le une fois la note prise.
+Le micro-exercice de cette page constitue la pratique de première passe. La livraison Kintana ci-dessous est un approfondissement produit différé : elle réutilise le principe dans un contexte plus large, mais ne conditionne pas la validation de cette notion ni la progression dans Fundamentals. Elle améliore le même produit [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
 
-## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+**Mission liée à « 51-a_binding_minimini_projet » :** Dans Kintana, isole la valeur ou la transformation concernée dans une fonction métier ; vérifie l’état avant/après, les entrées invalides et l’absence de mutation involontaire.
 
-<!-- AF-DIAGRAM:transfer -->
+Dans `domain/requests/`, fais évoluer le statut d’une demande en affectant une nouvelle valeur au bon binding. Montre la différence entre conserver l’ancienne valeur dans une variable et lire la valeur courante après réaffectation.
 
-```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
-```
-
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
-
-Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+**Livrable :** incrément intégré, tests ou vérifications, note de décision et contre-exemple. **Gate de cette livraison différée (pas gate de progression Fundamentals) :** un cas nominal et deux cas invalides sont testés ; le même scénario peut être rejoué ; un autre développeur peut expliquer l’invariant. Étiquette les résultats locaux `LAB` ; ne revendique `PRODUCTION` qu’après déploiement et observation réels.

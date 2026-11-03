@@ -308,47 +308,26 @@ Si ça ressemble à "atteindre une somme/cible avec des unités" : Coin Change
 
 ## EXO 1 : Budget de transfert mercato
 
-<!-- AF-DIAGRAM:transfer -->
+<!-- AF-DIAGRAM:algorithms -->
+
+## Repère visuel utile : Optimiser une opération de dispatch
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+entrée + contraintes
+        |
+        v
+algorithme candidat
+   |         |
+   v         v
+preuve     analyse coût
+   |         |
+   +----+----+
+        v
+ tests + tailles croissantes
+        |
+        v
+ décision / compromis
 ```
-
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
-
-_~25 min_
-
-Tu as un budget de 100M€. Tu as une liste de joueurs avec leur coût et leur "impact" (note de 1 à 10). Maximise l'impact total sans dépasser le budget.
-
-```js
-const joueurs = [
-  { nom: "Mbappé", cout: 180, impact: 10 },
-  { nom: "Bellingham", cout: 103, impact: 9 },
-  { nom: "Rodri", cout: 60, impact: 8 },
-  { nom: "Salah", cout: 80, impact: 9 },
-  { nom: "Wirtz", cout: 70, impact: 8 },
-];
-// Budget = 100 : Rodri + Wirtz = 130M --> dépasse
-// Rodri seul = 60M, impact 8
-// Salah seul = 80M, impact 9
-// Wirtz seul = 70M, impact 8
-// Réponse attendue : Rodri + Wirtz = 16 ? Non, 130 > 100
-// Rodri = 60 < 100, impact 8
-// Wirtz = 70 < 100, impact 8
-// Réponse : Salah (80M, impact 9) car c'est le max sous 100M
-```
-
----
 
 ## EXO 2 : Edit distance (Levenshtein)
 
@@ -387,3 +366,33 @@ Trois patterns DP fondamentaux. Knapsack : décision binaire sur chaque item sou
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+<!-- AF-LESSON-PROFILE: algorithms -->
+
+## Repères de décision
+
+- **Pourquoi :** Un algorithme transforme une entrée en résultat ; sa complexité détermine si la solution reste viable quand le volume augmente.
+- **Quand l’utiliser / quand l’éviter :** Compare plusieurs approches quand le volume ou la latence est important. Préfère l'algorithme le plus simple qui respecte le besoin et l'enveloppe mesurée.
+- **Limites :** Big-O décrit une croissance asymptotique, pas le temps exact. Les constantes, la distribution des données, le matériel et les coûts I/O comptent aussi.
+
+## Mécanisme : la version sans magie
+
+Décris l'état, les étapes et les invariants ; analyse le meilleur, moyen et pire cas pertinents ; vérifie par tests de propriétés et benchmark.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Dp classics : knapsack, lcs, coin change** se rattache à ce cas concret : Le dispatch Kintana doit affecter des demandes à des agents selon capacité, priorité et zone sans créer de biais ou exploser en coût.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Optimiser une opération de dispatch
+
+> **Arc DBZ / Capsule Corp. :** une attaque brillante mais quadratique peut perdre le combat quand la foule arrive. Regarde le coût quand l'entrée grandit.
+
+**Mission liée à « Dp classics : knapsack, lcs, coin change » :** Implémente ou compare l'algorithme associé à la leçon sur une tâche de dispatch Kintana. Définis d'abord le résultat attendu et les cas limites, puis calcule le coût et mesure une fixture à plusieurs tailles.
+
+**Livrable :** l'algorithme, tests de propriétés, analyse de complexité et benchmark reproductible si le sujet le permet.
+
+**Critères d’acceptation :** le résultat est correct pour les cas limites ; le coût temporel et mémoire est expliqué ; le benchmark ne confond pas overhead de mesure et algorithme ; les hypothèses sont écrites.
+
+**Transfert obligatoire :** Change le nombre d'acteurs et la distribution des priorités. Identifie le scénario où l'algorithme choisi devient mauvais.

@@ -17,10 +17,10 @@ Après une décision sans IA parfaite, consigne :
 
 Une bonne décision n'a pas besoin d'être décrite comme moralement parfaite. Elle doit rendre visibles les coûts humains et organisationnels qu'elle déplace.
 
-<!-- AF-P0-2026-10-30: missing_example -->
+## Exemple travaillé : cas métier
 
-### Exemple travaillé : cas métier
+**Exemple résolu (fictif).** Pour limiter l'accès aux données sensibles, une équipe choisit une conservation plus courte. Cela réduit l'exposition, mais complique certaines enquêtes de support. La décision note ce qu'elle protège, le coût porté par le support, la procédure d'escalade et la date de réexamen. Elle ne décrit pas l'option comme parfaite : elle rend explicite le coût résiduel et le signal qui justifierait de rouvrir le choix.
 
-Une décision locale réduit le coût d’une équipe mais crée une dépendance pour quatre autres ; tu dois arbitrer le système global et obtenir l’adoption. Pour « MORAL-REMAINDER : quand aucune option n'est propre », construis un exemple où deux équipes ont des objectifs contradictoires. Distingue contrainte, préférence, coût immédiat, coût différé et critère de décision.
+**À toi :** Une décision locale réduit le coût d’une équipe mais crée une dépendance pour quatre autres ; tu dois arbitrer le système global et obtenir l’adoption. Pour « MORAL-REMAINDER : quand aucune option n'est propre », construis un exemple où deux équipes ont des objectifs contradictoires. Distingue contrainte, préférence, coût immédiat, coût différé et critère de décision.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

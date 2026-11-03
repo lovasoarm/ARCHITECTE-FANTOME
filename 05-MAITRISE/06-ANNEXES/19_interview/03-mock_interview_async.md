@@ -70,24 +70,50 @@ Si tu as foncé coder sans parler, tu échoueras en entretien même avec le bon 
 
 Regarde ton enregistrement. Note : où tu as paniqué, où tu as menti (dit "je pense que" en étant sûr, ou l'inverse), où tu as sauté la reproduction. Refais le drill dans 3 jours avec un autre bug de ton cru.
 
-## CHECKPOINT DE PROFONDEUR : variation D : transfert négatif
+<!-- AF-DIAGRAM:leadership -->
 
-<!-- AF-DIAGRAM:transfer -->
+## Repère visuel utile : Raisonner sur une trace asynchrone
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+trace d’événements
+       |
+       v
+prédire l’ordre d’exécution
+       |
+       v
+repérer attente et blocage
+       |
+       v
+expliquer l’ordonnancement
+       |
+       v
+tester un contre-exemple
 ```
 
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
+<!-- AF-LESSON-PROFILE: leadership -->
 
-Prends le mécanisme de cette page et transpose-le dans un contexte où il risque de devenir une mauvaise pratique. Explique **quelle hypothèse cesse d'être vraie**, quelle conséquence apparaît, et quelle stratégie tu utiliserais à la place.
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **MOCK INTERVIEW : DEBUG ASYNC EN DIRECT (solo)** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Diagnostiquer un scénario asynchrone à l’oral
+
+**Mission liée à « MOCK INTERVIEW : DEBUG ASYNC EN DIRECT (solo) » :** À partir d’une trace asynchrone Kintana, formule des hypothèses ordonnées, prédis l’ordre des événements, propose une reproduction minimale et justifie la correction.
+
+**Livrable :** Chronologie annotée, hypothèses falsifiables et réponse orale chronométrée.
+
+**Critères d’acceptation :** Chaque hypothèse a un test discriminant ; l’ordre prédit est distingué de l’ordre observé ; les effets de bord sont mentionnés.
+
+**Transfert obligatoire :** La trace change légèrement : explique quelle hypothèse tombe et laquelle reste valide.

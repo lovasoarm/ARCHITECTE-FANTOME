@@ -1,16 +1,22 @@
+---
+stability: intemporel
+acte: pratiquer
+assessment_role: instructional_checkpoint
+---
+
 # Atelier de consolidation : 08-PRODUIT-COUT-ROI
 
-> **Statut : complément de remédiation, pas certification.** Leçon source : [04-dette_technique_declaree.md](04-dette_technique_declaree.md). Vérifier les faits techniques dans cette leçon ; ne pas considérer ces consignes comme un corrigé de la notion.
+> **Statut : complément de remédiation, pas certification.** Le corrigé associé contient deux exemples travaillés ; ne l’ouvre qu’après ta tentative. Leçon source : [04-dette_technique_declaree.md](04-dette_technique_declaree.md). Vérifier les faits techniques dans cette leçon ; ne pas considérer ces consignes comme un corrigé de la notion.
 
 ## Explication approfondie : hypothèses, mécanisme, frontière
 
 Pour **dette technique declaree**, différencier quatre couches : (1) entrée et préconditions, (2) mécanisme et invariants, (3) observation vérifiable, (4) cas limite qui invalide l'hypothèse. Dans la leçon source, retrouver un exemple concret pour chaque couche et expliquer le lien causal, plutôt que mémoriser une recette. En cas de contradiction, documenter exactement la ligne/section concernée ; aucun résultat n'est supposé vrai sans expérience. Le contexte de ce module inclut « 02 grille cout risque valeur » : expliciter ce qui change lorsque la contrainte de ce contexte est activée.
 
-## Deux exemples commentés, à compléter par l'observation
+## Deux situations à traiter avant de consulter le corrigé
 
 **Exemple A : dette technique declaree :** décris un cas d’entrée valide, le mécanisme précis selon `04-dette_technique_declaree.md`, la sortie attendue et une vérification reproductible. Donne la valeur réelle avant de comparer au résultat.
 
-**Exemple B : contre-exemple 02 grille cout risque valeur :** modifie une seule hypothèse (entrée absente, ordre inversé, donnée périmée ou conflit de responsabilités). Prédis la défaillance puis mesure ou trace la différence. Une réponse « ça marche » sans trace ne valide pas cet exemple.
+**Exemple B : Dette subie et non gouvernée :** Imagine une règle métier copiée dans quatre services, puis modifiée dans seulement trois. Décris la divergence observable et rédige une fiche de dette avec propriétaire, impact, cible et déclencheur de consolidation. Distingue cette dette cachée d’un compromis volontaire documenté.
 
 ## Pratique graduée
 
@@ -18,7 +24,7 @@ Pour **dette technique declaree**, différencier quatre couches : (1) entrée et
 
 **Semi-guidé (niveau 2, 20 minutes).** Répéter avec une autre entrée, sans copier le résultat du niveau 1. Imposer une contrainte réaliste (latence, erreur de type, utilisation mémoire, sécurité ou personne absente selon la notion). Justifier un arbitrage avec une métrique ou un critère observable.
 
-**Indépendant (niveau 3, 30 minutes).** Écrire sans modèle un scénario nouveau concernant « 02 grille cout risque valeur » : définition de la preuve, réalisation, deux cas aux limites et décision justifiée. Une production qui ne démontre pas une relation causale ne suffit pas.
+**Indépendant (niveau 3, 30 minutes).** Sans reprendre les exemples précédents, construis un scénario inédit sur « dette technique declaree » : formule une hypothèse, indique une preuve observable, teste deux cas limites et justifie ta décision. Explique le lien causal ; une réponse sans preuve ou sans transfert ne valide pas cet exercice.
 
 ## Test de vérification et cas négatif
 

@@ -7,44 +7,85 @@ perturbation_modes: [fausse_piste, solution_concurrente]
 anti_recipe_key: fausse_piste+solution_concurrente
 transfer_distance: medium
 assessment_role: instructional_checkpoint
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/07-CLOUD-FOUNDATIONS/02-modeles_cout.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 03-PILOTAGE/07-CLOUD-FOUNDATIONS/02-modeles_cout.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
-> **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.
+> **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Une facture cloud ne devient compréhensible que lorsque tu peux relier chaque ligne à une ressource, une unité consommée et un usage réel.
 
 # Pourquoi ce module mérite ton temps : cloud foundations
 
-Temps de lecture ~8 min
+Temps de lecture indicatif : 8 min.
 
-T'as déjà vu une facture cloud tripler sans qu'aucune ligne de code ne change ?
-T'as déjà choisi un service managé sans savoir sur quelle unité il facture ?
-T'as déjà entendu « on migrera plus tard » comme réponse à une question de dépendance ?
+T'as déjà vu une facture cloud augmenter alors que le code n'avait presque pas changé ? Le cloud déplace une partie de l'exploitation vers des services facturés à l'usage. Pour décider correctement, il faut comprendre ce qui est consommé et comment le fournisseur le mesure.
 
-## 1) LE PROBLÈME
+## 1. Le problème
 
-Le cloud ne facture presque jamais ce que tu crois. Il facture des unités : requêtes, Go-mois, Go
-sortants, secondes-Go de calcul, connexions ouvertes. Tant que tu ne sais pas nommer l'unité, tu ne
-sais pas ce que coûte ta décision d'architecture : donc tu ne décides pas, tu subis.
+Le mot « cloud » ne désigne pas une facture unique. Selon le service, la consommation peut être facturée en durée de calcul, capacité stockée, nombre d'opérations, volume transféré, connexions, rétention ou combinaison de plusieurs unités.
 
-## 2) L'EGRESS, LE PIÈGE UNIVERSEL
+Tant que tu ne sais pas relier une ressource à son unité de facturation, tu ne peux pas expliquer le coût de ton architecture. Un prix unitaire isolé n'est pas encore une estimation : il faut aussi connaître le volume consommé et les conditions tarifaires applicables.
 
-Entrer des données ne coûte presque rien. Les sortir coûte. Une architecture qui traverse trois fois
-la frontière du fournisseur pour une seule requête utilisateur paie trois fois. C'est une décision
-d'architecture déguisée en ligne de facture.
+## 2. Le mécanisme : de l'usage au coût
 
-## 3) POURQUOI C'EST LA SEULE PREUVE DE TRANSFÉRABILITÉ DÉJÀ EXISTANTE
+<!-- AF-DIAGRAM:cloud-cost -->
 
-Porter un service d'un fournisseur à un autre force à séparer ce qui est _concept_ (une file, un
-stockage d'objets, un calcul) de ce qui est _marque_. C'est exactement l'exercice que la famille S7
-demande, appliqué à l'infrastructure plutôt qu'au langage.
+```text
+action utilisateur
+       |
+       v
+ressources mobilisées
+(calcul, base, stockage, réseau, journaux)
+       |
+       v
+unités consommées
+(temps, Go-mois, requêtes, transferts...)
+       |
+       v
+tarif + région + options + paliers
+       |
+       v
+coût estimé, daté et accompagné d'hypothèses
+```
 
-## 4) CE QUE ÇA CHANGE EN ENTRETIEN
+Le transfert de données est un poste à examiner, pas un piège universel. Son prix dépend du fournisseur, du service, de la région, du trajet et parfois du volume ou du palier. Les transferts entrants ne sont pas toujours gratuits ; les sorties Internet, les échanges entre régions ou zones, les passerelles et les connexions privées peuvent relever de règles différentes. Des opérations de stockage, de requête ou de réplication peuvent également être facturées.
 
-« Combien coûte votre système à un million d'utilisateurs ? » : la réponse attendue n'est pas un
-nombre juste, c'est un **calcul lisible**, avec ses hypothèses, ses unités et sa date de relevé.
+La seule méthode fiable consiste à lire la grille tarifaire officielle du service et de la région réellement envisagés, puis à vérifier la facture ou le calculateur correspondant. Les tarifs et conditions changent ; la présente introduction ne certifie aucun prix fournisseur.
 
-> **Durée de vie : 2-3 ans.** Les prix bougent, les unités facturées beaucoup moins.
+## 3. Quand examiner le coût réseau : et quand ne pas s'arrêter là
 
-## CHECKPOINT DE PROFONDEUR : variation A : prédire avant de réparer
+Examine les transferts quand ton système échange beaucoup de données, traverse plusieurs zones ou régions, utilise un service externe, ou sert des fichiers et médias volumineux. Vérifie aussi le coût du calcul, du stockage, des requêtes, des journaux et des composants permanents.
 
-Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
-Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+Ne conclus pas qu'une architecture est moins chère uniquement parce que son trafic entrant paraît gratuit. Le coût complet peut être dominé par les opérations, le calcul, la disponibilité, la réplication ou le support.
+
+<!-- AF-LESSON-PROFILE: cloud -->
+
+## 4. Repères de décision
+
+- **Pourquoi :** relier le coût à des unités observables évite de choisir une architecture sur une intuition ou sur un prix unitaire sorti de son contexte.
+- **Quand l'utiliser / quand l'éviter :** fais une estimation avant de choisir un service, de changer de région, d'ajouter un cache ou d'augmenter le trafic. Ne chiffre pas une architecture avec un prix ancien ou sans profil d'usage ; commence alors par lister les données manquantes.
+- **Limites :** les tarifs peuvent dépendre de paliers, remises, minimums, régions et options. Une estimation n'est pas une facture garantie. La charge réelle, les reprises, les journaux oubliés et les environnements non arrêtés peuvent modifier le résultat.
+
+## 5. Ancrage produit / terrain : Kintana
+
+Pour Kintana, une consultation peut solliciter l'API, la base de données, le stockage de pièces jointes et les journaux. Le profil de charge indique combien de consultations et combien de données sont traitées ; le tarif fournisseur, vérifié à une date précise, transforme ces volumes en estimation.
+
+Le cas Kintana est fictif. Un coût calculé à partir de son profil synthétique est une `SIMULATION`, pas une facture ni une mesure de production.
+
+## 6. Mission utile : estimer le coût d'une demande terminée
+
+Choisis le parcours de consultation ou d'enregistrement d'une demande Kintana. Décris les ressources mobilisées et estime le coût par demande terminée. Sépare les coûts variables et les coûts fixes ; indique les postes inconnus au lieu d'inventer un tarif.
+
+**Livrable :** une section de `06A-BUDGET-CLOUD.md` avec le profil d'usage, les unités, les hypothèses, les sources tarifaires et leur date, le total estimé et le coût par demande terminée.
+
+**Critères d'acceptation :** chaque nombre est rattaché à une unité ; les coûts fixes ne sont pas confondus avec les coûts variables ; les transferts sont décrits selon leur trajet ; les prix inconnus sont signalés ; le statut `SIMULATION` est conservé tant qu'aucune facture réelle ne les confirme.
+
+**Vérification :** augmente le volume d'une unité consommée dans ton modèle (par exemple les Go transférés) et explique quelle ligne devrait évoluer. Si un palier tarifaire ou un forfait rend le résultat non linéaire, indique-le au lieu de supposer une proportionnalité parfaite.
+
+## 7. Transfert
+
+Reprends le même profil avec un autre fournisseur ou une autre région. Conserve les unités d'usage, puis remplace les tarifs, les règles de transfert et les options de service. Explique ce qui reste comparable et ce qui doit être recalculé.

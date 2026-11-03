@@ -12,36 +12,21 @@ assessment_role: instructional_checkpoint
 
 # 01_Webrtc_concepts : le vocabulaire sans la peur
 
-<!-- AF-DIAGRAM:transfer -->
+<!-- AF-DIAGRAM:async -->
+
+## Repère visuel utile : Worker de notifications asynchrones fiable
 
 ```text
-Principe appris
-      │
-      ▼
-Nouveau contexte
-      │
-      ├── invariant ──► conserver
-      │
-      └── hypothèse cassée ─► adapter
-                                │
-                                ▼
-                             nouvelle décision
+producteur -> file bornée -> worker × N -> fournisseur
+                 |              |
+          file pleine ?      timeout ?
+            |                  |
+            v                  v
+       backpressure       retry borné / DLQ
+                               |
+                               v
+                        déduplication
 ```
-
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
-
-Temps de lecture ~9 min
-
-WebRTC est une famille d'API et de protocoles du Web qui permet à deux pairs de communiquer directement lorsque le réseau et la négociation le permettent.
-Le signaling passe généralement par un service de coordination distinct, et certains environnements nécessitent des relais TURN pour transporter les flux.
-Appels vidéo, partage d'écran et échanges de données peuvent ainsi être établis entre pairs, avec un chemin réseau qui dépend des conditions rencontrées.
-
-Pourquoi c'est complexe : deux machines sur internet ne se connaissent pas.
-Elles sont derrière des NATs (Network Address Translation : traduction d'adresses réseau), des firewalls.
-WebRTC fournit les mécanismes nécessaires pour établir ces communications, avec plusieurs protocoles et services complémentaires. La réussite dépend toutefois des conditions réseau, de la négociation et de la configuration.
-Ce module décompose chaque pièce du puzzle. Le code réel : connexion, DataChannel, gestion des états : c'est dans `03-webrtc_demo.md`.
-
----
 
 ## 1) L'IDÉE DE BASE : CE QUI SE PASSE VRAIMENT
 
@@ -287,3 +272,33 @@ a=rtpmap:98 VP9/90000
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+<!-- AF-LESSON-PROFILE: async -->
+
+## Repères de décision
+
+- **Pourquoi :** L'asynchronisme permet au système de continuer pendant l'attente, mais introduit ordre, concurrence, annulation et erreurs différées.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le pour I/O, tâches longues, notifications ou flux continus. Évite les traitements concurrents sans limite ; impose timeout, annulation et backpressure quand le producteur peut dépasser le consommateur.
+- **Limites :** `Promise.race` ne tue pas l'opération perdante ; `Promise.all` rejette au premier échec observable ; `allSettled` collecte les résultats mais ne fournit pas de stratégie de reprise. La mémoire partagée exige une synchronisation explicite.
+
+## Mécanisme : la version sans magie
+
+Sépare tâche, attente et consommation. Fixe un délai, une politique d'annulation, une limite de concurrence et une règle de rejeu/idempotence selon les effets.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **01_Webrtc_concepts : le vocabulaire sans la peur** se rattache à ce cas concret : Le service de notification Kintana traite plusieurs demandes. Un fournisseur lent ne doit pas bloquer toute la file ni provoquer des doublons au retry.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Worker de notifications asynchrones fiable
+
+> **Arc One Piece / Grand Line :** un message peut arriver tard, deux fois ou pas du tout. Le navigateur ne promet pas que tout le monde rame à la même vitesse.
+
+**Mission liée à « 01_Webrtc_concepts : le vocabulaire sans la peur » :** Implémente un worker pour les notifications Kintana avec concurrence bornée, timeout, annulation quand elle est supportée, backoff avec jitter et clé de déduplication. Instrumente le nombre en attente et l'âge du plus vieux message.
+
+**Livrable :** un worker, une horloge contrôlée dans les tests, un test de timeout, un test de rejeu et un scénario de saturation.
+
+**Critères d’acceptation :** la concurrence ne dépasse jamais la limite ; le message échoué est classé ; un replay ne double pas l'effet ; l'annulation est distinguée d'un timeout ; le backlog est observable.
+
+**Transfert obligatoire :** Augmente le débit producteur jusqu'à dépasser le débit consommateur. Explique quand appliquer backpressure, rejeter ou stocker temporairement.

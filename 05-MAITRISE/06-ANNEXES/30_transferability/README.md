@@ -6,6 +6,7 @@ acte: comprendre
 # Transferability : same idea, other language
 
 <!-- AF-DIAGRAM:transfer -->
+
 ```text
 Principe appris
       │
@@ -19,8 +20,8 @@ Nouveau contexte
                                 ▼
                              nouvelle décision
 ```
-Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
 
+Le transfert teste ce qui survit du principe et ce qui doit être révisé dans un contexte nouveau.
 
 Temps de lecture ~5 min
 
@@ -42,13 +43,13 @@ livré l'exercice équivalent hors JS.
 
 Note-toi honnêtement de 0 à 5 sur chaque axe :
 
-| Axe | 0 | 3 | 5 |
-|---|---|---|---|
-| **Parité fonctionnelle** | La sortie diffère | Certains cas limites ratés | Byte-à-byte identique |
-| **Idiomatique** | Traduction ligne à ligne du JS | Quelques adaptations | Utilise les vraies conventions du langage cible |
-| **Test** | Aucun test | Tests happy path | Tests cas limites + tests de propriété |
-| **Documentation** | Aucune | README minimal | Explique les choix propres au langage |
-| **Temps** | > 3× le temps JS | ~2× | ≤ 1,5× |
+| Axe                      | 0                              | 3                          | 5                                               |
+| ------------------------ | ------------------------------ | -------------------------- | ----------------------------------------------- |
+| **Parité fonctionnelle** | La sortie diffère              | Certains cas limites ratés | Byte-à-byte identique                           |
+| **Idiomatique**          | Traduction ligne à ligne du JS | Quelques adaptations       | Utilise les vraies conventions du langage cible |
+| **Test**                 | Aucun test                     | Tests happy path           | Tests cas limites + tests de propriété          |
+| **Documentation**        | Aucune                         | README minimal             | Explique les choix propres au langage           |
+| **Temps**                | > 3× le temps JS               | ~2×                        | ≤ 1,5×                                          |
 
 Score minimal pour valider : **15/25**.
 
@@ -80,3 +81,17 @@ JS déguisé, tu n'as pas transféré : tu as translittéré.
 - [`09_pool_bugs/`](09_pool_bugs/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.
+
+## Lecture comparative
+
+- [Comparaison de lectures de code](05-comparison_code_reading.md) : justifier un transfert entre implémentations.

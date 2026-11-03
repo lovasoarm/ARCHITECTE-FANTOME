@@ -22,7 +22,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 
 - [50-rate_limiting_minimini_projet.md](50-rate_limiting_minimini_projet.md)
 - [51-message_queues_minimini_projet.md](51-message_queues_minimini_projet.md)
-- [EXO LECTURE : 15-25 minutes (Scalabilite)](11-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Scalabilite)](11-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 05-MAITRISE/02-SCALABILITY](97A-EXO-VERIFICATION.md)
 
 ## Ce qui valide le challenge (les quatre actes, aucun ne se saute)
@@ -46,7 +46,6 @@ Rien ne se coche sur une lecture. Reporte le résultat dans
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
-
 
 ## Barrière de réussite non compensable
 

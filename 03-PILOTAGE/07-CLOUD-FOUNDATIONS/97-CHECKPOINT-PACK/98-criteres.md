@@ -2,6 +2,13 @@
 stability: evolutif
 acte: pilotage
 noyau: renfort
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/07-CLOUD-FOUNDATIONS/97-CHECKPOINT-PACK/02-drill_2.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 03-PILOTAGE/07-CLOUD-FOUNDATIONS/97-CHECKPOINT-PACK/02-drill_2.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : QG de Konoha :** six équipes, trois régions, une mission critique. Si tu ne sais pas relier signal, seuil, coût et action, ton tableau de bord ressemble à une tour de contrôle qui clignote sans dire quel avion tombe.
@@ -39,10 +46,10 @@ le jalon reste dû. Référentiel : [03-TECH-ILA](../../../06-ANNEXES-TRANSVERSE
 
 <!-- JALON-TECH-ILA:fin -->
 
-<!-- AF-P0-2026-10-30: missing_example -->
-
 ### Exemple travaillé : cas métier
 
-Des stations distantes envoient des mesures avec réseau intermittent ; le système doit absorber les reprises sans doubler les écritures. Compare une journée normale et un pic dix fois supérieur. Pour « CRITÈRES DE PASSAGE : MODULE 07 », note le composant, le coût ou le risque qui varie, et le signal observable qui révèle la limite.
+**Exemple résolu (fictif).** Une estimation indique un total mensuel, mais omet le trafic sortant et ne précise ni région ni date des tarifs. Elle échoue au critère de reproductibilité : un autre ingénieur ne peut pas recalculer le même montant. Après ajout de ces trois champs et des unités, le calcul devient auditable. **PASS** exige les unités, le périmètre, la source datée et les hypothèses ; un total isolé ne suffit pas.
+
+**À toi :** Des stations distantes envoient des mesures avec réseau intermittent ; le système doit absorber les reprises sans doubler les écritures. Compare une journée normale et un pic dix fois supérieur. Pour « CRITÈRES DE PASSAGE : MODULE 07 », note le composant, le coût ou le risque qui varie, et le signal observable qui révèle la limite.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.

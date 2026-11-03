@@ -3,6 +3,13 @@ stability: evolutif
 acte: apprendre-et-pratiquer
 noyau: renfort
 route: formation-complete
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # 59 : Atelier DevOps/SRE : du commit à la reprise après incident
@@ -161,3 +168,53 @@ Tout zéro en sûreté des données, secret exposé ou rollback destructif impos
 - [Cloud Foundations](../03-PILOTAGE/07-CLOUD-FOUNDATIONS/README.md)
 - [Mini-Heroku](../05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/06-mini-heroku.md)
 - [La Tour de Contrôle](../05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/01-tour-de-controle.md)
+
+<!-- AF-DIAGRAM:cloud -->
+
+## Repère visuel utile : Plan de déploiement et d'exploitation Kintana
+
+```text
+utilisateur -> DNS / edge -> API
+                         |
+                         v
+                   réseau privé
+                    /      \
+                   v        v
+                base      worker
+                 |          |
+                 v          v
+             backup      queue
+                 \          /
+                  v        v
+             logs / métriques / alertes
+```
+
+<!-- AF-LESSON-PROFILE: cloud -->
+
+## Repères de décision
+
+- **Pourquoi :** L'infrastructure détermine la disponibilité, la sécurité, le coût et les possibilités de reprise du système.
+- **Quand l’utiliser / quand l’éviter :** Choisis un service managé ou une infrastructure quand il réduit un risque ou un coût total. Ne déploie pas Kubernetes ou plusieurs services pour un système qui tourne proprement plus simplement.
+- **Limites :** Un déploiement local ne valide pas le réseau, les IAM, les quotas, les sauvegardes ni la facture du fournisseur. Les prix changent ; toute estimation doit dater et indiquer son hypothèse.
+
+## Mécanisme : la version sans magie
+
+Décris ressources, identité, réseau, secrets, stockage, health, scaling, backup et rollback ; automatise seulement ce que tu peux tester et exploiter.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](77-FIL-ROUGE-KINTANA/README.md), **59 : Atelier DevOps/SRE : du commit à la reprise après incident** se rattache à ce cas concret : Kintana doit supporter un réseau instable côté client et une exploitation prévisible côté service, sans exposer de secret ni exploser les coûts.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Plan de déploiement et d'exploitation Kintana
+
+> **Arc Capsule Corp. / DBZ :** le Cloud n'est pas une baguette magique : tu loues des machines, du réseau et des services, avec une facture et des limites.
+
+**Mission liée à « 59 : Atelier DevOps/SRE : du commit à la reprise après incident » :** Établis une architecture de déploiement minimale pour une tranche Kintana : ressources, IAM, réseau, secrets, stockage, health/readiness, sauvegarde et rollback. Exécute les éléments locaux disponibles ; étiquette le reste `NOT RUN`.
+
+**Livrable :** diagramme d'infrastructure, estimation de coût datée, manifeste/IaC ou plan exécutable, runbook et preuve de test local.
+
+**Critères d’acceptation :** aucune ressource fictive n'est marquée déployée ; permissions minimales ; coût et limites écrits ; procédure de rollback/restauration vérifiée seulement si elle a été exécutée.
+
+**Transfert obligatoire :** Le trafic est multiplié par cinq et le fournisseur devient indisponible. Identifie le premier goulot et les coûts qui augmentent.

@@ -33,6 +33,19 @@ consultée.
 
 ## Ce qui se passe vraiment
 
+### Lire une relation avec une première jointure
+
+Une jointure (`JOIN`) rapproche des lignes de deux tables grâce à une condition explicite. Tu n'as pas à connaître cette syntaxe avant d'ouvrir le niveau ; prends cet exemple comme première lecture :
+
+```sql
+SELECT emprunt.id, adherent.nom, materiel.libelle
+FROM emprunt
+JOIN adherent ON adherent.id = emprunt.adherent_id
+JOIN materiel ON materiel.id = emprunt.materiel_id;
+```
+
+Lis chaque partie dans cet ordre : `FROM` choisit la table de départ ; `JOIN` ajoute une table ; `ON` explique quelles colonnes relient les lignes ; `SELECT` choisit ce qui ressort. Un `INNER JOIN` (forme utilisée ici) ne garde que les lignes qui trouvent une correspondance des deux côtés. La forme montrée ici est un `INNER JOIN` : seules les lignes qui trouvent une correspondance de chaque côté sont conservées. Les jointures externes sont approfondies dans [SQL Basics](../../05-MAITRISE/01-DATABASES/02-sql_basics.md). Une jointure n'est pas une fusion arbitraire : sa condition doit refléter la relation du modèle.
+
 ### Normaliser : éliminer la donnée qui peut se contredire elle-même
 
 La normalisation n'est pas une religion esthétique, c'est une réponse à un problème précis :
@@ -206,3 +219,33 @@ LOWER(email) = ...` ignore un index sur `email` brut).
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+<!-- AF-LESSON-PROFILE: data -->
+
+## Repères de décision
+
+- **Pourquoi :** Les pipelines rendent le cycle de vie des données contrôlable : provenance, qualité, transformation, rejeu et exposition.
+- **Quand l’utiliser / quand l’éviter :** Utilise un pipeline dès que plusieurs sources ou transformations doivent être répétées et auditées. Pour quelques lignes ponctuelles, un script simple et vérifié peut suffire.
+- **Limites :** Un pipeline vert ne rend pas les données vraies. Les jeux synthétiques ne prouvent pas un débit réel ; la déduplication exige une clé et une règle de conflit explicites.
+
+## Mécanisme : la version sans magie
+
+Ingestion, validation, normalisation, déduplication, quarantaine, stockage et réconciliation. Chaque étape conserve compteurs et provenance.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Schéma, contraintes, index : normaliser puis dénormaliser sciemment** se rattache à ce cas concret : Kintana exporte des événements de demandes et de notifications. Les doublons, retards, conflits d'identifiant et données incomplètes doivent rester visibles.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Pipeline vérifiable des événements Kintana
+
+> **Arc One Piece / Grand Line :** une donnée est une cargaison. Tu dois connaître son origine, sa version, sa qualité et ce qui se passe quand elle arrive deux fois.
+
+**Mission liée à « Schéma, contraintes, index : normaliser puis dénormaliser sciemment » :** Construis un pipeline de données Kintana qui ingère un lot synthétique, valide le schéma, déduplique les événements, met en quarantaine les lignes invalides, puis produit un manifeste de réconciliation et un rejeu idempotent.
+
+**Livrable :** pipeline exécutable, contrat de données, fixtures valides/invalides, manifeste, tests de rejeu et rapport de qualité.
+
+**Critères d’acceptation :** read = accepted + duplicates + quarantined ; un ID réutilisé avec un payload différent est un conflit ; le rejeu produit la même sortie ; les volumes restent étiquetés synthétiques.
+
+**Transfert obligatoire :** Ajoute des événements tardifs et change la version du schéma. Définis le backfill et la compatibilité sans perdre la provenance.

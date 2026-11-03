@@ -1,37 +1,35 @@
+---
+stability: intemporel
+acte: pratiquer
+assessment_role: instructional_checkpoint
+---
+
 # Atelier de consolidation : 07-CLOUD-FOUNDATIONS
 
-> **Statut : complément de remédiation, pas certification.** Leçon source : [07-RELEVE-REFERENCE-2026.md](07-RELEVE-REFERENCE-2026.md). Vérifier les faits techniques dans cette leçon ; ne pas considérer ces consignes comme un corrigé de la notion.
+> **Statut : remédiation documentaire, pas certification.** Le corrigé associé contient les résultats attendus ; ne l'ouvre qu'après ta tentative. Leçon source : [02-modeles_cout.md](02-modeles_cout.md) et [07-RELEVE-REFERENCE-2026.md](07-RELEVE-REFERENCE-2026.md). Les chiffres de la seconde ressource sont une simulation fictive, pas des tarifs réels.
 
-## Explication approfondie : hypothèses, mécanisme, frontière
+## Objectif
 
-Pour **RELEVE REFERENCE 2026**, différencier quatre couches : (1) entrée et préconditions, (2) mécanisme et invariants, (3) observation vérifiable, (4) cas limite qui invalide l'hypothèse. Dans la leçon source, retrouver un exemple concret pour chaque couche et expliquer le lien causal, plutôt que mémoriser une recette. En cas de contradiction, documenter exactement la ligne/section concernée ; aucun résultat n'est supposé vrai sans expérience. Le contexte de ce module inclut « 07 RELEVE REFERENCE 2026 » : expliciter ce qui change lorsque la contrainte de ce contexte est activée.
+Apprendre à passer d'hypothèses de consommation à un budget mensuel, puis repérer quand une comparaison est invalide. Cet atelier se fait sur papier ou dans un fichier Markdown ; aucune commande ni infrastructure cloud n'est nécessaire.
 
-## Deux exemples commentés, à compléter par l'observation
+## Préparation
 
-**Exemple A : RELEVE REFERENCE 2026 :** décris un cas d’entrée valide, le mécanisme précis selon `07-RELEVE-REFERENCE-2026.md`, la sortie attendue et une vérification reproductible. Donne la valeur réelle avant de comparer au résultat.
-
-**Exemple B : contre-exemple 07 RELEVE REFERENCE 2026 :** modifie une seule hypothèse (entrée absente, ordre inversé, donnée périmée ou conflit de responsabilités). Prédis la défaillance puis mesure ou trace la différence. Une réponse « ça marche » sans trace ne valide pas cet exemple.
+Ouvre le modèle S1 et relève les paramètres de simulation : 0,02 €/vCPU-h, 0,023 €/GB-mois, 0,08 €/GB d'egress, les forfaits fictifs de base et d'observabilité. Garde l'étiquette `SIMULATION` visible sur chaque résultat.
 
 ## Pratique graduée
 
-**Guidé (niveau 1, 15 minutes).** Ouvrir `07-RELEVE-REFERENCE-2026.md`. Extraire une règle technique de « RELEVE REFERENCE 2026 », écrire une entrée contrôlée, noter une prédiction, exécuter une démonstration minimale et consigner _commande ou protocole, résultat réel et explication_. Cocher uniquement après reproduction.
+**Guidé : 15 min.** Recalcule le palier 10 000 utilisateurs : calcul (7 000 vCPU-h), base managée (forfait 210 €), stockage (20 GB), egress (180 GB), observabilité (forfait 25 €). Écris une formule par ligne et une somme finale.
 
-**Semi-guidé (niveau 2, 20 minutes).** Répéter avec une autre entrée, sans copier le résultat du niveau 1. Imposer une contrainte réaliste (latence, erreur de type, utilisation mémoire, sécurité ou personne absente selon la notion). Justifier un arbitrage avec une métrique ou un critère observable.
+**Semi-guidé : 20 min.** Multiplie uniquement le volume d'egress par dix. Avant de calculer, prédis le nouveau coût d'egress et l'écart avec la facture initiale. Laisse tous les autres postes inchangés.
 
-**Indépendant (niveau 3, 30 minutes).** Écrire sans modèle un scénario nouveau concernant « 07 RELEVE REFERENCE 2026 » : définition de la preuve, réalisation, deux cas aux limites et décision justifiée. Une production qui ne démontre pas une relation causale ne suffit pas.
+**Indépendant : 30 min.** Prends une ligne du relevé réel que tu as construit, puis compare-la au paramètre simulé correspondant. Si la région, le SKU, l'unité ou les conditions ne sont pas comparables, explique pourquoi au lieu de produire un pourcentage trompeur. Hors ligne, effectue la comparaison uniquement à l'intérieur du modèle simulé.
 
-## Test de vérification et cas négatif
+## Cas négatif
 
-1. Énoncer l'invariant « RELEVE REFERENCE 2026 » choisi dans la leçon et l'observation qui le vérifierait.
-2. **Cas faux imposé :** retirer volontairement une précondition / introduire une valeur hors domaine. Prévoir _l'échec précis_ (exception, assertion fausse, valeur incorrecte ou rejet documenté) avant l'exécution.
-3. Comparer résultat attendu / obtenu, puis expliquer le correctif minimal. **Si l'expérience ne produit pas d'erreur, ne pas affirmer un échec** : documenter pourquoi et choisir une perturbation discriminante.
+Retire la région et la configuration SKU d'une ligne tarifaire réelle. Décide si le montant reste défendable. Explique quelle information manque et ce qui doit être vérifié avant de comparer deux offres.
 
-**Erreur fréquente :** confondre la présence d'une commande exécutée et une preuve de maîtrise. **Remédiation :** réduire à un cas minimal, noter l'entrée exacte, prédire le résultat, refaire avec une entrée contradictoire, puis expliquer les deux résultats.
+## Remise et réussite
 
-## Transfert réel
+Produis `preuve.md` avec : hypothèses, formules, prédiction, calcul, résultat, comparaison, cas non comparable et limite. Réussite : cinq postes calculés sans erreur d'unité, somme exacte, effet du facteur ×10 correct et aucune donnée fictive présentée comme tarif réel.
 
-Dans un mini-projet, relier « RELEVE REFERENCE 2026 » à une décision réelle : critère d'acceptation, test d'échec, coût d'une alternative et rollback. Livrer un changement petit et réversible accompagné de la preuve avant/après, ou un ADR argumenté pour les compétences non codées.
-
-## Remise, feedback et déverrouillage
-
-Produire `preuve.md` (prédiction, procédure, observation, explication, échec, correctif, transfert). Réussite : les trois niveaux réalisés, un cas négatif falsifiable, deux sorties observées, et transfert explicable à froid. Feedback : si la sortie ne correspond pas, identifier d'abord la précondition violée puis refaire le test ; si l'explication reste circulaire, reprendre la section correspondante de la leçon source. **Corrigé distinct** : `corriges/ATELIER-CONSOLIDATION-CORRIGE.md` dans ce module, à consulter uniquement après remise.
+**Corrigé distinct :** `corriges/ATELIER-CONSOLIDATION-CORRIGE.md`, à consulter après la remise.

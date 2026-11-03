@@ -104,3 +104,51 @@ mentionne.
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
+
+<!-- AF-DIAGRAM:performance -->
+
+## Repère visuel utile : Vérifier confinement et récupération
+
+```text
+injecter une panne dépendante
+          |
+          v
+observer le périmètre touché
+          |
+          v
+mesurer le mode dégradé
+          |
+          v
+rétablir la dépendance
+          |
+          v
+vérifier récupération et absence de séquelle
+```
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Tests de résilience : prouver qu'une panne d'un service dépendant ne coule pas les autres** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Tester le confinement et la récupération d’une panne
+
+**Mission liée à « Tests de résilience : prouver qu'une panne d'un service dépendant ne coule pas les autres » :** Choisis une dépendance Kintana et simule son indisponibilité contrôlée. Vérifie le comportement dégradé, le rayon d’impact, le rétablissement et les opérations à rejouer.
+
+**Livrable :** Plan de test, chronologie, résultats observés et postmortem court.
+
+**Critères d’acceptation :** Le scénario est borné et réversible ; les données sont sauvegardées ; les résultats de simulation ne sont pas présentés comme preuve de production.
+
+**Transfert obligatoire :** La panne dure plus longtemps que prévu : explicite le mode dégradé et les critères d’arrêt de l’expérience.

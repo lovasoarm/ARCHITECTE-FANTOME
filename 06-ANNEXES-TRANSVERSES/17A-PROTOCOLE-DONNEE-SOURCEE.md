@@ -39,7 +39,7 @@ Le contrôle de livraison automatique du dépôt refuse tout tableau contenant u
 
 - [03-PILOTAGE/07-CLOUD-FOUNDATIONS/04-choisir_fournisseur.md](../03-PILOTAGE/07-CLOUD-FOUNDATIONS/04-choisir_fournisseur.md) : la grille comparative.
 - [03-PILOTAGE/07-CLOUD-FOUNDATIONS/06A-BUDGET-CLOUD.md](../03-PILOTAGE/07-CLOUD-FOUNDATIONS/06A-BUDGET-CLOUD.md) : le gabarit du livrable S1.
-- [02-S1-BUDGET-CLOUD.md](17-PREUVES-MODELES/02-S1-BUDGET-CLOUD.md) : l'exemplaire de référence.
+- [02-S1-BUDGET-CLOUD.md](17-PREUVES-MODELES/02-S1-BUDGET-CLOUD.md) : un exemple de calcul explicitement simulé, jamais une source de prix réels.
 - [03-PILOTAGE/07-CLOUD-FOUNDATIONS/99-PORTAGE-MENTAL.md](../03-PILOTAGE/07-CLOUD-FOUNDATIONS/99-PORTAGE-MENTAL.md) : le portage chez un second fournisseur.
 
 ## RÉSUMÉ

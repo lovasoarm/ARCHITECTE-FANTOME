@@ -216,10 +216,36 @@ Un load balancer distribue le trafic pour qu'aucun serveur seul ne porte tout le
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
-Transfère le choix de répartition à des workers de traitement de flux. Compare round-robin, pondération, affinité et état local.
+Transfère le choix de répartition à des workers de traitement de flux. Compare round-robin, pondération, affinité et état local. L’invariant est qu’une tâche acceptée n’est ni perdue ni exécutée deux fois du point de vue métier ; les dimensions qui changent sont la durée des tâches, l’état du worker et la stratégie de reprise.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Un seul serveur ne suffit jamais longtemps** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Répartir une charge sans perdre la cohérence
+
+**Mission liée à « Un seul serveur ne suffit jamais longtemps » :** Modélise trois instances Kintana avec un type de requête, un état partagé éventuel et une panne d’instance. Compare une stratégie de répartition et précise quand la session persistante devient une contrainte.
+
+**Livrable :** Schéma, stratégie choisie, test de retrait d’instance et limites.
+
+**Critères d’acceptation :** La santé des instances est vérifiée ; la capacité n’est pas supposée identique sans mesure ; l’état de session est traité explicitement.
+
+**Transfert obligatoire :** Une instance est retirée en cours de requête : précise l’effet client et la stratégie de reprise.

@@ -84,6 +84,22 @@ C'est pourtant là que les bugs vivent.
 
 ```js
 function calculeRationsJournalieres(nourriture, survivants, jours) {
+  if (
+    !Number.isFinite(nourriture) ||
+    !Number.isFinite(survivants) ||
+    !Number.isFinite(jours)
+  ) {
+    throw new TypeError("Les trois valeurs doivent être des nombres finis");
+  }
+  if (nourriture < 0) {
+    throw new RangeError("La nourriture ne peut pas être négative");
+  }
+  if (!Number.isInteger(survivants) || survivants <= 0) {
+    throw new RangeError("Le nombre de survivants doit être un entier positif");
+  }
+  if (!Number.isInteger(jours) || jours <= 0) {
+    throw new RangeError("Le nombre de jours doit être un entier positif");
+  }
   return nourriture / survivants / jours;
 }
 ```
@@ -99,9 +115,12 @@ Les tests que le sniper écrit avant de partir en mission :
 ```js
 expect(calculeRationsJournalieres(48, 12, 3)).toBe(4); // cas normal
 expect(calculeRationsJournalieres(0, 12, 3)).toBe(0); // plus de nourriture : 0
-expect(calculeRationsJournalieres(48, 0, 3)).toBe(Infinity); // 0 survivant : division par zéro → Infinity
-expect(calculeRationsJournalieres(48, 12, 0)).toBe(Infinity); // 0 jours : même problème
-expect(calculeRationsJournalieres(1, 3, 1)).toBeCloseTo(0.33); // flottant : pas toBe, mais toBeCloseTo
+expect(calculeRationsJournalieres(1, 3, 1)).toBeCloseTo(1 / 3); // résultat flottant
+expect(() => calculeRationsJournalieres(48, 0, 3)).toThrow(RangeError); // aucun bénéficiaire valide
+expect(() => calculeRationsJournalieres(48, 12, 0)).toThrow(RangeError); // durée invalide
+expect(() => calculeRationsJournalieres(-1, 12, 3)).toThrow(RangeError); // stock négatif
+expect(() => calculeRationsJournalieres(48, 1.5, 3)).toThrow(RangeError); // effectif entier attendu
+expect(() => calculeRationsJournalieres(NaN, 12, 3)).toThrow(TypeError); // donnée non finie
 ```
 
 Chaque edge case est un vendredi soir en prod évité.
@@ -123,8 +142,12 @@ describe("calculeRationsJournalieres", () => {
     expect(calculeRationsJournalieres(0, 12, 3)).toBe(0);
   });
 
-  it("retourne Infinity si personne à nourrir (division par zéro)", () => {
-    expect(calculeRationsJournalieres(48, 0, 3)).toBe(Infinity);
+  it("refuse un camp sans survivant", () => {
+    expect(() => calculeRationsJournalieres(48, 0, 3)).toThrow(RangeError);
+  });
+
+  it("refuse une durée nulle", () => {
+    expect(() => calculeRationsJournalieres(48, 12, 0)).toThrow(RangeError);
   });
 });
 ```
@@ -238,7 +261,7 @@ it("gère un survivant complet", () => {
 ## RÉSUMÉ
 
 Un unit test : une fonction, isolée, avec Arrange-Act-Assert.
-Tester le cas normal c'est 20% du travail. Tester les edge cases c'est les 80% restants.
+Le cas normal est un point de départ. Les cas limites, les invariants et les erreurs métier demandent eux aussi des tests explicites.
 Un bon test documente le comportement attendu : en le lisant tu comprends la fonction.
 L'isolation est obligatoire : chaque test gère son propre état, jamais celui d'un autre.
 
@@ -247,3 +270,53 @@ L'isolation est obligatoire : chaque test gère son propre état, jamais celui d
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
+
+<!-- AF-DIAGRAM:testing -->
+
+## Repère visuel utile : Protéger un invariant Kintana contre la régression
+
+```text
+risque / invariant
+       |
+       v
+choisir le niveau de test
+  |       |        |
+ unité  intégr.  contrat / E2E
+  |       |        |
+  +-------+--------+
+          v
+   test rouge -> correctif
+          |
+          v
+   test vert + mutation volontaire
+```
+
+<!-- AF-LESSON-PROFILE: testing -->
+
+## Repères de décision
+
+- **Pourquoi :** Les tests protègent un contrat observable pendant que le code évolue. Ils rendent les régressions moins coûteuses à diagnostiquer et à corriger.
+- **Quand l’utiliser / quand l’éviter :** Choisis le niveau de test selon le risque : unité pour une règle isolée, intégration pour plusieurs composants, contrat pour les échanges, E2E pour un parcours critique. N'utilise pas des mocks pour simuler ce que tu dois réellement vérifier.
+- **Limites :** Une suite verte ne prouve que les cas exécutés et les assertions observées. Les tests ne remplacent pas revue, sécurité, monitoring ou test de charge réaliste.
+
+## Mécanisme : la version sans magie
+
+Formule un invariant, prépare un état contrôlé, exécute l'action et affirme un résultat public. Ajoute le cas limite et vérifie que le test échoue si le bug revient.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Unit sniper : tester une fonction précisément** se rattache à ce cas concret : Kintana doit préserver l'unicité d'une demande, les transitions autorisées, l'isolation des rôles et l'absence de double notification.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Protéger un invariant Kintana contre la régression
+
+> **Arc DBZ / Capsule Corp. :** un test est un radar, pas une médaille. Il doit détecter le défaut qui ferait tomber le produit, pas juste colorer la console en vert.
+
+**Mission liée à « Unit sniper : tester une fonction précisément » :** Choisis l'invariant qui correspond à cette leçon. Écris d'abord un test rouge, puis le plus petit correctif. Ajoute un cas nominal, un cas limite et une défaillance réaliste au niveau de test approprié.
+
+**Livrable :** une suite de tests déterministe, une matrice risque/niveau de test et un exemple de régression injectée détectée.
+
+**Critères d’acceptation :** le test échoue avant le correctif ; il observe le contrat public ; les fixtures sont reproductibles ; le niveau de test est justifié ; un mock ne masque pas la frontière critique.
+
+**Transfert obligatoire :** Fais évoluer le contrat sans prévenir le consommateur. Identifie quel test détecte la rupture et lequel ne peut pas la voir.

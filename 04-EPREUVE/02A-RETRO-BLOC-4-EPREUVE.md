@@ -5,7 +5,7 @@ acte: évaluer
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
-# Rétrospective de bloc : Bloc EPREUVE (de 04-EPREUVE/04-BIG-APP-SNOOP a 04-EPREUVE/05-CAPSTONE-ARENA)
+# Rétrospective de bloc : Bloc EPREUVE (Capstone et modules complémentaires réalisés)
 
 [Sommaire](../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/08-ROADMAP-rythmes.md) | Style
 
@@ -13,14 +13,17 @@ Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opératio
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
 est désormais faux, et pourquoi ce n'était pas visible à l'époque.
 
-Durée : 60 à 90 minutes. À faire après le boss-fight du module `04-EPREUVE/05-CAPSTONE-ARENA`, avant d'ouvrir le bloc
-suivant. Ne saute pas cette étape : c'est la seule fois du parcours où tu juges ton propre
-travail passé avec des yeux différents.
+Durée : 60 à 90 minutes. À faire après le boss-fight du Capstone, avant l'épilogue.
+Cette rétrospective porte obligatoirement sur les artefacts du Capstone ; les modules
+complémentaires du bloc ne sont revus que s'ils ont réellement été suivis. Leur absence ne
+bloque ni le Capstone ni cette rétrospective.
 
 ## Contrôle d'antériorité du bloc
 
-Ouvre les livrables des niveaux de ce bloc. Pour chacun, réponds par oui ou par non : ce
-document a-t-il été écrit avant que la solution soit décidée ?
+Ouvre obligatoirement les livrables du Capstone et, si tu les as réalisés, ceux des
+modules complémentaires du bloc. Pour chaque document effectivement produit, réponds par
+oui ou par non : a-t-il été écrit avant que la solution soit décidée ? N'invente pas de
+livrable pour un module facultatif que tu n'as pas suivi.
 
 Compte les non. Un ou deux non, c'est normal et ça se corrige. Trois non ou plus sur un bloc,
 c'est un signal net : tu produis des documents de justification, pas des documents de
@@ -29,7 +32,7 @@ relire ta solution. C'est deux heures. Elles valent les vingt heures du bloc sui
 
 ## Ce que tu rouvres
 
-- ton rapport d'exploration du module `04-EPREUVE/04-BIG-APP-SNOOP` ([95-challenge.md](04-BIG-APP-SNOOP/95-challenge.md)),
+- si tu as réalisé Big App Snoop : ton rapport d'exploration ([95-challenge.md](04-BIG-APP-SNOOP/95-challenge.md)); sinon, cette pièce est omise sans pénalité,
 - ta note de cadrage du capstone ([05-CAPSTONE-ARENA/03-deliverables.md](./05-CAPSTONE-ARENA/03-deliverables.md)),
 - ton HYPOTHESES.md du capstone,
 - ta REVUE-DE-RISQUES.md du capstone.

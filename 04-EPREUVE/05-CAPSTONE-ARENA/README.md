@@ -4,7 +4,7 @@ acte: comprendre
 route: complete
 ---
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../04-BIG-APP-SNOOP/README.md) | [Niveau suivant](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Contrôle d'entrée](00-PREREQUIS.md) | [Après validation : Day-to-Legend](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md)
 
 # Module 04-EPREUVE/05-CAPSTONE-ARENA : Capstone Arena
 
@@ -42,31 +42,52 @@ Le capstone réunit plusieurs contraintes dans une décision unique, puis force 
 
 ## Ce que c'est
 
-Ce niveau ne t'apprend rien de nouveau techniquement. Il te met en situation de livrer un
-projet complet, seul, face à un brief client réaliste et volontairement ambigu : comme celui
-que tu recevras vraiment en mission ou en poste. Aucun niveau précédent ne t'a préparé un
-cahier des charges propre : ici non plus. Le capstone teste ta capacité à mobiliser tout ce
-que tous les modules qui precedent t'ont donné, dans le désordre et sous incertitude, sans qu'on te dise
-quelle compétence utiliser à quel moment.
+Ce niveau ne t'apprend pas une nouvelle spécialité technique. Il te met en situation de
+livrer un projet complet face à un brief client réaliste et volontairement ambigu : comme
+celui que tu peux recevoir en mission ou en poste. Le Capstone vérifie ta capacité à mobiliser
+les compétences amont pertinentes, à reconnaître celles qui te manquent et à décider sous
+incertitude, sans qu'on te dicte quelle compétence utiliser à chaque étape. **Cela ne signifie
+pas que tous les modules du dépôt ou du bloc Épreuve doivent avoir été terminés** : seuls les
+livrables et gates listés dans `00-PREREQUIS.md` conditionnent l'entrée.
 
-**Verdict de l'auto-test :** une seule réponse hésitante et tu n'entres pas encore. Relis
-[le grimoire du niveau précédent](../04-BIG-APP-SNOOP/90-grimoire.md) (20 minutes), puis refais son
-[challenge](../04-BIG-APP-SNOOP/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
-trou amont, c'est attribuer au module `04-EPREUVE/05-CAPSTONE-ARENA` une difficulté qui vient du module `04-EPREUVE/04-BIG-APP-SNOOP`.
+**Verdict du contrôle d'entrée :** le fichier [`00-PREREQUIS.md`](00-PREREQUIS.md)
+fait foi. Il vérifie les pièces effectivement exigées, un `PORTAGE.md` au niveau
+`PORTAGE_CONÇU` ou `PORTAGE_EXÉCUTÉ`, et les données nécessaires au scénario. La voie
+`PORTAGE_CONÇU` ne demande aucun compte ni paiement ; elle ne ferme pas S7. Big App Snoop
+peut fournir une preuve complémentaire, mais son challenge n'est pas une condition universelle d'entrée.
+
+**Accès matériel au Capstone :** la voie normale livre une démonstration distante accessible.
+Si aucun hébergement gratuit ou environnement partagé sans frais n'est réellement accessible,
+la voie `DEMO_LOCALE` de `03-deliverables.md` permet de réaliser et faire examiner le système sur
+la machine de l'apprenant, avec procédure reproductible et limites déclarées. Elle permet de
+valider le travail technique du Capstone dans son périmètre local ; elle ne vaut ni déploiement
+public, ni preuve de production, ni fermeture automatique de S6 ou S7.
 
 **Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
-Prérequis : tous tous les modules qui precedent terminés, avec leurs challenges et boss fights validés.
-Ce niveau n'enseigne pas de méthode nouvelle, il vérifie que les précédentes tiennent
-ensemble sous pression réelle.
+Prérequis d'entrée : satisfaire **toutes** les conditions documentées dans
+[`00-PREREQUIS.md`](00-PREREQUIS.md) : les quatre pièces amont, les trois éléments chiffrés
+de la tension n°1 et le dossier `PREUVES/PORTAGE.md` avec ses preuves comparables.
+Cette porte contrôle les livrables réellement produits ; elle ne demande pas de terminer
+tous les modules du bloc `04-EPREUVE`.
 
-Ce niveau réutilise : tous les modules qui precedent dans leur ensemble, mobilisés sans indication de
-quand utiliser quoi, exactement comme en mission réelle.
+Ne constituent **pas** des prérequis universels d'entrée : la lecture complète de Bonus Vault,
+Tool Cave ou Realtime, ni le challenge de Big App Snoop. Ces modules conservent leurs
+propres objectifs et leurs validations locales. Un de leurs artefacts peut contribuer à une
+preuve demandée, mais leur achèvement n'est pas une condition cachée supplémentaire.
 
-Auto-test d'entrée : (1) As-tu terminé et validé les onze niveaux précédents, challenges et
-boss fights compris ? (2) Sais-tu déjà que personne ne va clarifier le brief à ta place, et
-que c'est volontaire ? (3) As-tu vu, dans un contexte réel ou rapporté, un projet dérailler
-à cause d'un brief mal cadré au départ ?
+La revue `REVUE-DE-RISQUES.md` est un livrable interne du Capstone : elle doit être datée
+avant le premier commit de code du jalon 3, conformément à la grille. Elle n'est pas exigée
+pour ouvrir le module. Le gabarit de Bonus Vault est facultatif.
+
+Ce niveau ne crée pas une nouvelle méthode technique : il vérifie que les compétences et
+preuves amont pertinentes tiennent ensemble sous contrainte réelle.
+
+Auto-test d'entrée :
+
+1. Les quatre pièces amont listées dans `00-PREREQUIS.md` existent-elles réellement et sont-elles vérifiables ?
+2. `PORTAGE.md` distingue-t-il les deux modes : en `PORTAGE_CONÇU`, les tests comparables passent sur les deux implémentations locales ; en `PORTAGE_EXÉCUTÉ`, ils passent sur les cibles des deux fournisseurs ? L’écart de coût est-il calculé depuis des prix datés et sourcés ?
+3. Les trois éléments de coût de la tension n°1 sont-ils documentés avant le démarrage du capstone ?
 
 ## Ce que tu sais faire à la sortie
 
@@ -138,7 +159,6 @@ Après la validation du capstone, utilise les quatre renforcements du module Sta
 
 Ils ne remplacent ni les challenges, ni le boss, ni la revue externe. Ils rendent explicites quatre contrôles complémentaires : spécification, raisonnement organisationnel, ownership/migration et gouvernance de systèmes autonomes.
 
-
 <!-- PIECES-MODULE:debut -->
 
 ## Les pièces de ce module
@@ -175,3 +195,9 @@ Ils ne remplacent ni les challenges, ni le boss, ni la revue externe. Ils renden
 En plus de la double dérive technique/roadmap, le capstone peut recevoir une dérive d’organisation : une équipe refuse une partie de la proposition, une autre demande une priorité concurrente, ou un sponsor change le critère de succès. L’apprenant doit alors produire la meilleure décision **adoptable**, pas seulement la meilleure architecture sur le papier.
 
 Utiliser [22-SIMULATION-CROSS-TEAM.md](../../06-ANNEXES-TRANSVERSES/22-SIMULATION-CROSS-TEAM.md) et documenter : stakeholder impact, compromis, plan d’adoption, métrique de succès et condition d’arrêt.
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **décision qui traverse les équipes** : Rédige une RFC/ADR sur une décision Kintana qui affecte API, données et exploitation. Compare au moins deux options, demande une revue contradictoire et transforme les objections en critères d’acceptation. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : La décision a un propriétaire, un coût, un plan de migration et une condition de révision ; l’adoption réelle reste « non démontrée » tant qu’une équipe ne l’a pas adoptée.

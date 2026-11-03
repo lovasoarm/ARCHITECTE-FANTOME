@@ -204,10 +204,32 @@ Crée une fonction `rang()` bindée sur un objet `jounin`. Essaie de la rebinder
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Call, apply, bind : emprunter une fonction, figer this » à un troisième fournisseur dont l’API ne ressemble pas aux deux premiers. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: oop-call-apply-bind -->
+
+## Repères de décision
+
+- **Pourquoi :** `call`, `apply` et `bind` permettent de contrôler le récepteur d’une fonction classique et, pour `bind`, de préparer une fonction à appeler plus tard.
+- **Quand l’utiliser / quand l’éviter :** Utilise `call` pour appeler immédiatement avec des arguments séparés, `apply` pour appeler immédiatement avec une liste d’arguments et `bind` pour obtenir une nouvelle fonction avec un `this` fixé et éventuellement des arguments préremplis. Pour une dépendance métier, un paramètre explicite est parfois plus lisible.
+- **Limites :** Ces méthodes ne remplacent pas le `this` lexical d’une fonction flèche. `bind` ne modifie pas la fonction d’origine et peut rendre le flux plus difficile à suivre s’il est utilisé sans besoin clair.
+
+## Mécanisme : la version sans magie
+
+`fn.call(cible, a, b)` exécute `fn` tout de suite ; `fn.apply(cible, [a, b])` fait de même avec un tableau d’arguments ; `fn.bind(cible, a)` retourne une nouvelle fonction qui attend encore son appel.
+
+## Ancrage produit / terrain : Kintana
+
+Un service Kintana doit transmettre une méthode à un système de callbacks sans perdre son objet récepteur. Le choix entre `bind` et une fonction adaptatrice doit être visible et testé.
+
+## Mission utile : Kintana : choisir le bon outil pour un callback
+
+**Livrable :** trois micro-cas illustrant `call`, `apply` et `bind`, puis une décision argumentée pour le handler réellement transmis au dispatcher.
+
+**Critères d’acceptation :** tu distingues appel immédiat et fonction préparée ; tu prédis le nombre et la forme des arguments ; tu démontres qu’une flèche n’est pas rebondie par `bind` ; tu évites un binding inutile.
+
+**Transfert obligatoire :** remplace `bind` par une fermeture ou une fonction adaptatrice et compare la lisibilité, les dépendances et le test du résultat.

@@ -8,6 +8,8 @@ transfer_distance: low
 assessment_role: instructional_checkpoint
 ---
 
+# Mise en pratique : Table de hachage : recherche moyenne proche de O(1)
+
 > **SCÈNE CRAZYDEVS : coupe du monde :** un bon algorithme ne gagne pas parce qu'il connaît un mouvement célèbre ; il gagne parce qu'il réduit le nombre d'actions nécessaires quand le terrain explose.
 
 ## TYPE
@@ -20,7 +22,7 @@ Mini-projet
 
 ## CONTEXTE
 
-Chercher un projet par slug dans un tableau coûte O(n) dans le cas général. Une `Map` offre en moyenne un accès en O(1), sous les hypothèses habituelles de son implémentation (le module dédié à la complexité précise ce raisonnement).
+Chercher un projet par slug dans un tableau coûte O(n) dans le cas général. Une `Map` offre un accès moyen sublinéaire ; on utilise souvent O(1) moyen comme modèle pratique pour une table de hachage, mais ECMAScript ne garantit ni cette complexité stricte ni cette implémentation (le module dédié à la complexité précise ce raisonnement).
 
 ## OBJECTIF
 
@@ -60,3 +62,13 @@ Le code exprime maintenant « index par slug » au lieu de « parcours du tablea
 ## CHECKPOINT DE PROFONDEUR : variation B : défendre l'inverse
 
 Ferme la page et défends pendant quelques minutes une stratégie opposée à celle implicitement recommandée ici. Cherche son meilleur cas d'usage, puis montre le cas où elle casse. Reviens ensuite à la stratégie initiale et justifie le choix par des mécanismes, pas par le vocabulaire du cours.
+
+## Livraison produit obligatoire : Kintana : Mesurer avant d’optimiser
+
+> **Fil narratif : Capsule Corp. / DBZ :** Bulma ne gagne pas en ajoutant des boutons au vaisseau : elle comprend le mécanisme, teste ses limites et répare ce qui casse. Ton code doit faire pareil, sans compter sur une transformation magique.
+
+Le micro-exercice existant reste une mise en jambe : il isole un mécanisme, mais ne suffit pas comme preuve de maîtrise. La livraison évaluée améliore le même produit [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
+
+**Mission liée à « 50-hash_table_basics_minimini_projet » :** Choisis une opération Kintana liée à cette leçon et crée un benchmark reproductible sur un jeu synthétique d’au moins 10 000 entrées lorsque le sujet le permet. Compare une baseline et une variante.
+
+**Livrable :** incrément intégré, tests ou vérifications, note de décision et contre-exemple. **Gate :** Le protocole indique machine, volume, concurrence et répétitions ; tu présentes p50/p95 ou mémoire ; tu expliques le coût secondaire et refuses toute extrapolation non justifiée. Étiquette les résultats locaux `LAB` ; ne revendique `PRODUCTION` qu’après déploiement et observation réels.

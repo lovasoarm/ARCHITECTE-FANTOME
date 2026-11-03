@@ -13,7 +13,10 @@ Temps : ~10 min. Format court, seul ou en binôme.
 L'assistant te propose ce code, l'air confiant :
 
 ```js
-const rand = (n) => Math.floor(Math.random() * n) + 1; // '1..n uniforme'
+// Le service envoie ce code pour confirmer une demande de réinitialisation.
+function createRecoveryCode() {
+  return String(Math.floor(Math.random() * 1_000_000)).padStart(6, "0");
+}
 ```
 
 Il ajoute : _"C'est propre, testé, prod-ready."_
@@ -30,7 +33,19 @@ Prends 5 minutes. Écris ta réponse **sans** relancer l'IA. Nomme :
 
 ## Piste de correction (à ne lire qu'après)
 
-> Math.random() n'est pas cryptographiquement sûr, et le +1 introduit un biais si n est petit ? Non : pas de biais ici. Où est la vraie faille (uniformité vs sécurité) ?
+> Le code semble produire six chiffres, mais `Math.random()` n'est pas un générateur cryptographique et ne convient pas à un code de récupération. Dans Node.js, utilise `randomInt(0, 1_000_000)` de `node:crypto` : la borne supérieure est exclusive et la fonction évite le biais de modulo. Un code à six chiffres exige aussi expiration courte, usage unique, limitation des tentatives et stockage/protection adaptés ; le générateur aléatoire ne remplace pas ces contrôles.
+
+### Correction possible (à lire après ta réponse)
+
+```js
+import { randomInt } from "node:crypto";
+
+function createRecoveryCode() {
+  return String(randomInt(0, 1_000_000)).padStart(6, "0");
+}
+```
+
+Le générateur corrige la partie aléatoire. Le service doit encore appliquer une expiration, un usage unique, une limitation des essais et une protection du code stocké. Aucun de ces contrôles n'est garanti par `randomInt` seul.
 
 ## Pourquoi cet exo
 

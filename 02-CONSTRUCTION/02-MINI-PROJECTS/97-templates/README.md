@@ -3,6 +3,13 @@ stability: evolutif
 acte: parcours
 noyau: non
 review_interval: 6 mois
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "02-CONSTRUCTION/02-MINI-PROJECTS/97-templates/02-TDD-JOURNAL.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 02-CONSTRUCTION/02-MINI-PROJECTS/97-templates/02-TDD-JOURNAL.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # TEMPLATES
@@ -26,3 +33,7 @@ review_interval: 6 mois
 ## Ordre de lecture
 
 Ce dossier est une boîte à outils de gabarits, à ouvrir seulement quand le README du mini-projet courant y renvoie. Il ne fait pas partie du chemin de lecture principal.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.

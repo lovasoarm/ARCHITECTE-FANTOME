@@ -26,7 +26,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [QUEUE EN ACTION : LES VRAIS PROBLÈMES](04_queue/95-challenge.md)
 - [50-hash_table_basics_minimini_projet.md](07_hash_table/50-hash_table_basics_minimini_projet.md)
 - [GRAPH CHALLENGES : CYCLES, COMPOSANTS, TOPO SORT](08_graphs/95-challenge.md)
-- [EXO LECTURE : 15-25 minutes (Structures de donnees)](03A-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Structures de donnees)](03A-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 02-CONSTRUCTION/06-DATA-STRUCTURES](12_EXO_VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/06-DATA-STRUCTURES](97-EXO-VERIFICATION.md)
 

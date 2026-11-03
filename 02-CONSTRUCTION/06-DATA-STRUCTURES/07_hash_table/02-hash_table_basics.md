@@ -12,11 +12,11 @@ assessment_role: instructional_checkpoint
 
 > **SCÈNE CRAZYDEVS : coupe du monde :** un bon algorithme ne gagne pas parce qu'il connaît un mouvement célèbre ; il gagne parce qu'il réduit le nombre d'actions nécessaires quand le terrain explose.
 
-# Hash table : o(1) pour chercher, si le hash est bon
+# Table de hachage : recherche moyenne proche de O(1)
 
 Temps de lecture ~9 min
 
-Array : accès par index, pas par valeur. BST : cherche en O(log n). Hash table : cherche en O(1). Pas de miracle : une fonction mathématique convertit ta clé en index. Le problème : deux clés différentes peuvent produire le même index. C'est une collision. Gérer ça proprement, c'est ce qui sépare une hash table qui tient en prod d'une qui plante.
+Array : accès par index, pas par valeur. BST équilibré : recherche en O(log n). Table de hachage : recherche moyenne attendue proche de O(1), sous des hypothèses de distribution et de facteur de charge ; le pire cas peut atteindre O(n). Pas de miracle : une fonction calcule une valeur de hachage, puis la structure gère les collisions possibles. C'est ce qui sépare une table de hachage robuste d'une implémentation fragile.
 
 ---
 
@@ -217,7 +217,7 @@ Le resize coûte O(n) mais c'est amorti sur toutes les insertions : O(1) en moye
 
 ## 7) CE QU'EST `Map` EN JS
 
-`Map` en JavaScript natif est une hash table optimisée par le moteur. Elle accepte n'importe quel type de clé (pas juste des strings).
+`Map` est une collection clé-valeur native qui accepte des clés de tout type (pas seulement des chaînes). Le moteur choisit son implémentation interne ; ECMAScript n’impose pas une table de hachage.
 
 ```js
 const map = new Map();
@@ -310,16 +310,44 @@ Implémente `findFirstDuplicate(arr)` avec une HashTable. Retourne le premier é
 
 ## RÉSUMÉ
 
-La hash table convertit une clé en index via une hash function, et stocke la valeur à cet index. O(1) en lecture et écriture en moyenne. Les collisions sont inévitables : le chaining les gère avec une liste par bucket. Le load factor mesure le remplissage : au-delà de ~0.75, on redimensionne. En JS, `Map` est la hash table native optimisée pour la prod.
+Une table de hachage calcule une valeur de hachage à partir de la clé et utilise cette information pour choisir où stocker ou chercher la valeur. Lecture et écriture sont généralement proches de O(1) en moyenne sous des hypothèses favorables ; les collisions peuvent dégrader le coût jusqu’à O(n). Le chaînage est une stratégie possible : chaque bucket contient plusieurs entrées. Le facteur de charge aide certaines implémentations à décider quand redimensionner ; un seuil comme 0,75 dépend de la stratégie choisie. En JavaScript, `Map` fournit une collection clé-valeur native dont le standard exige un accès moyen sublinéaire, sans imposer une table de hachage ni une complexité O(1).
 
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
-
-<!-- AF-P0-2026-10-30: missing_transfer -->
 
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Hash table : o(1) pour chercher, si le hash est bon » à un système de réservation de créneaux plutôt qu’un flux de capteurs. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: structures -->
+
+## Repères de décision
+
+- **Pourquoi :** La structure choisie détermine le coût des opérations dominantes et la façon dont l'état évolue.
+- **Quand l’utiliser / quand l’éviter :** Choisis à partir des opérations fréquentes, du volume et des contraintes d'ordre. N'utilise pas une structure sophistiquée si un tableau ou une Map répond au besoin mesuré.
+- **Limites :** La complexité moyenne ne garantit pas les performances réelles. Mémoire, distribution des clés, ordre, synchronisation et sérialisation peuvent changer le coût.
+
+## Mécanisme : la version sans magie
+
+Liste les opérations, leur fréquence et les garanties attendues ; compare complexité, mémoire et comportement aux cas limites.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Hash table : o(1) pour chercher, si le hash est bon** se rattache à ce cas concret : Kintana doit retrouver une demande, dédupliquer les événements ou ordonner des notifications sans parcourir toute l'historique à chaque action.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Choisir la structure selon le trafic métier
+
+> **Arc One Piece / Grand Line :** choisir une structure de données, c'est choisir comment la cargaison circule. Une mauvaise structure transforme chaque recherche en traversée de l'océan.
+
+**Mission liée à « Hash table : o(1) pour chercher, si le hash est bon » :** Prends une opération de Kintana (lookup par ID, file de notification, regroupement par tenant ou historique ordonné). Compare deux structures avec un coût théorique et un test reproductible sur données synthétiques.
+
+**Livrable :** une implémentation courte, tests d'invariants, tableau coût/avantages et mesure locale si elle est pertinente.
+
+**Critères d’acceptation :** les opérations dominantes sont identifiées ; l'ordre et les doublons sont traités explicitement ; la complexité est expliquée ; le choix n'est pas justifié par la mode.
+
+**Transfert obligatoire :** Multiplie par dix le volume et change la distribution des clés. Réévalue le choix et indique si un index persistant devient nécessaire.

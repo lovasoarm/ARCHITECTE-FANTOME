@@ -3,17 +3,18 @@ stability: evolutif
 acte: parcours
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "02-CONSTRUCTION/18-WEB-CONCEPTS/01-00-why-web-concepts.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 02-CONSTRUCTION/18-WEB-CONCEPTS/01-00-why-web-concepts.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # MODULE 18 WEB CONCEPTS
 
-> **État pédagogique : 30 octobre 2026 : preuves documentaires complétées.** Les ajouts ciblés couvrent les exemples, pratiques, vérifications et transferts requis pour ce module. Une revue technique indépendante et une validation terrain restent distinctes ; voir [48 : External Review Gate](../../06-ANNEXES-TRANSVERSES/48-EXTERNAL-REVIEW-GATE.md) et [49 : Terrain Maturity Gate](../../06-ANNEXES-TRANSVERSES/49-TERRAIN-MATURITY-GATE.md).
-
-> Palier `02-CONSTRUCTION`. Duree estimee : **14 h 15** (20 fichiers de travail).
+> Palier `02-CONSTRUCTION`. Duree estimee : **14 h 20** (20 fichiers de travail).
 
 ## Sommaire du module
 
@@ -35,12 +36,12 @@ terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 | [`08-seo_and_rendering.md`](08-seo_and_rendering.md)                                             | SEO ET RENDERING : OÙ TON HTML NAÎT VRAIMENT                       | 45 min |
 | [`55-seo_and_rendering_minimini_projet.md`](55-seo_and_rendering_minimini_projet.md)             | 07 seo and rendering minimini projet                               | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                                                               | Page verrouillée                                                   | 30 min |
-| [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                                                         | EXO LECTURE : 15-25 minutes (Web Concepts)                         | 45 min |
+| [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                                                         | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Web Concepts)      | 50 min |
 | [`97A-EXO-VERIFICATION.md`](97A-EXO-VERIFICATION.md)                                             | EXO [JEUNE IA] : 02-CONSTRUCTION/18-WEB-CONCEPTS                   | 45 min |
 | [`10-web_concepts_drill_exec.md`](10-web_concepts_drill_exec.md)                                 | Web concepts : Drill exécutable                                    | 45 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                                   | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust            | 45 min |
 
-Total : **14 h 15**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) et le boss (3 h) sont des évaluations séparées et ne sont pas ajoutés au Total sauf s’ils apparaissent comme lignes du tableau.
+Total : **14 h 20**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
 ## Comment travailler ce module
 
@@ -92,7 +93,7 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [SEO et rendering : où ton HTML naît vraiment](08-seo_and_rendering.md)
 - [55-seo_and_rendering_minimini_projet.md](55-seo_and_rendering_minimini_projet.md)
 - [Page verrouillée](90-grimoire.md)
-- [EXO LECTURE : 15-25 minutes (Web Concepts)](09-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Web Concepts)](09-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/18-web-concepts](97A-EXO-VERIFICATION.md)
 - [Web concepts : Drill exécutable](10-web_concepts_drill_exec.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
@@ -101,8 +102,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [`97-CHECKPOINT-PACK/`](97-CHECKPOINT-PACK/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
-
-## Standard de complétude et audit
 
 ## Navigation complète des ressources
 
@@ -133,3 +132,14 @@ Les liens ci-dessous donnent accès aux ressources documentaires du module, y co
 - [`97A-EXO-VERIFICATION.md`](97A-EXO-VERIFICATION.md)
 - [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)
 - [`SETUP.md`](SETUP.md)
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Le module utilise le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). Pour ce bloc, la mission centrale est **pipeline de demandes** : Fais circuler des événements synthétiques Kintana à travers ingestion, validation, transformation et stockage. Traite doublons, identifiants conflictuels et lignes invalides sans les masquer. Le module est validé par une preuve reproductible, un cas limite et une explication du compromis : Le manifeste réconcilie lu/accepté/rejeté ; un rejeu donne un résultat déterministe ; la provenance et la fraîcheur sont documentées.
+
+## Ressources pratiques associées
+
+- [Atelier de consolidation](ATELIER-CONSOLIDATION.md) : réutiliser les notions du module dans un cas intégré.
+- [Corrigé de référence de l'atelier](corriges/ATELIER-CONSOLIDATION-CORRIGE.md) : à consulter après une tentative autonome.

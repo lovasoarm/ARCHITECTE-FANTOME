@@ -92,10 +92,36 @@ Reproduis, mesure avec `process.memoryUsage().heapUsed`, corrige, remesure. Note
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Compare une fonction qui libère son abonnement avec une fonction qui conserve une closure vers un gros objet. Vérifie la rétention par un graphe de références, pas par une seule lecture de heap usage.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **03 : Fuite par closure : autopsie pas-à-pas** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Localiser une rétention causée par une closure
+
+**Mission liée à « 03 : Fuite par closure : autopsie pas-à-pas » :** Reproduis un gestionnaire Kintana qui conserve une closure après la fin de l’écran. Identifie la chaîne de références, supprime ou borne la rétention et compare les instantanés.
+
+**Livrable :** Reproduction minimale, chemin de rétention annoté et comparaison avant/après.
+
+**Critères d’acceptation :** La correction coupe la référence responsable sans supprimer une donnée encore utilisée ; la preuve ne repose pas seulement sur une baisse ponctuelle de mémoire.
+
+**Transfert obligatoire :** Le callback doit rester actif plus longtemps : propose un cycle de vie explicite au lieu de le supprimer prématurément.

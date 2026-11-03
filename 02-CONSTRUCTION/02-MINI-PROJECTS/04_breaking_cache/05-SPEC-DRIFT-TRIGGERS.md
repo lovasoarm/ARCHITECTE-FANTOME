@@ -8,74 +8,28 @@ transfer_distance: medium
 assessment_role: project_mastery
 ---
 
-> ### SCÈNE CRAZYDEVS : Breaking Bad
->
-> Le système est maintenant ton labo : le mécanisme semble tranquille jusqu'au moment où une petite incohérence fait toute la différence. Ton job n'est pas de réciter la règle : **trouve l'ouverture, mesure ce qui casse, puis ferme-la sans tricher**.
->
-> **Règle de scène :** l'analogie sert le mécanisme ; dès qu'elle simplifie trop, reviens au modèle technique exact.
+# SPEC DRIFT TRIGGERS : 04 BREAKING CACHE
 
-# SPEC DRIFT TRIGGERS : 04_breaking_cache
+Active ces perturbations si `SPEC_DRIFT_MODE=on`. Le but n'est pas d'ajouter du code au hasard : il faut identifier ce qui change, mesurer l'impact et réviser le contrat sans casser les invariants.
 
-<!-- AF-DIAGRAM:cache -->
+## J+1 : La fraîcheur devient plus stricte
 
-```text
-Request
-  │
-  ▼
-┌──────────┐
-│  Cache   │
-└─┬────┬───┘
-  │hit │miss
-  ▼    ▼
-Value  ┌──────────┐
-       │ Database │
-       └────┬─────┘
-            ▼
-         populate
-```
+Le responsable produit demande que le résumé de stock ne reste pas visible plus de 5 secondes après une mise à jour réussie. Tu dois distinguer : durée de vie TTL, invalidation après commit et fenêtre de lecture concurrente. Un TTL de 5 secondes, seul, ne garantit pas une invalidation immédiate après écriture.
 
-Le cache court-circuite la source de vérité en cas de hit et la recharge en cas de miss.
+À produire : reformulation du contrat, test de frontière, conséquence sur le coût des appels loader et ADR révisé.
 
-Temps de lecture ~2 min
+## J+3 : Le système devient multi-tenant
 
-Trois déclencheurs à activer si `SPEC_DRIFT_MODE=on`. Chacun simule un changement
-de spec en cours de projet : pas au démarrage. Objectif : entraîner à renégocier
-sans bricoler.
+Deux boutiques de tenants différents ont les mêmes identifiants locaux. Une clé `stock-summary:<storeId>` devient dangereuse. Des identifiants peuvent aussi contenir `:` : une concaténation naïve peut faire collisionner deux couples distincts. Tu dois démontrer l'isolation de périmètre, choisir une sérialisation non ambiguë et décider où construire la clé.
 
-## J+1 : nouveau champ obligatoire
+À produire : deux clés réellement distinctes, tests croisés et note de sécurité. Ne prétends pas qu'un préfixe protège à lui seul si l'identité tenant n'est pas fiable.
 
-<!-- AF-DIAGRAM:recall -->
+## J+5 : La source de vérité devient lente ou échoue
 
-```text
-J+1 ──► J+3 ──► J+7 ──► J+14 ──► J+28
- │        │        │         │         │
-free    explain  diagnose   transfer  defend inverse
-```
+Le loader prend plus de temps ou retourne une erreur. Décide ce qui est servi (erreur, dernière valeur connue, aucune valeur), pendant combien de temps et avec quel risque métier. Le comportement stale-if-error n'est pas implicitement autorisé par le cahier initial.
 
-Le rappel distribué réactive la compétence sous des formes différentes au fil du temps.
-
-Le donneur d'ordre ajoute un champ obligatoire à ton contrat d'entrée (ex. `traceId`
-sur chaque événement). Tu dois : (1) refuser proprement les anciens payloads OU
-(2) rétro-remplir. Documente le choix dans `08-POSTMORTEM.md`.
-
-## J+3 : changement de format d'entrée
-
-Le format d'entrée passe de JSON à NDJSON (ou CSV -> Parquet, ou GET -> POST body).
-Tu ne peux pas tout réécrire. Tu dois isoler l'adaptateur d'entrée derrière une
-frontière et faire cohabiter les deux formats pendant une fenêtre de migration.
-
-## J+5 : exigence de perf ajoutée en cours de route
-
-Le donneur d'ordre exige désormais un P95 < 100 ms (ou un throughput × 10, ou
-un cold-start < 500 ms). Ta stack actuelle ne le tient pas. Tu dois : mesurer
-avant de toucher, choisir un axe (cache / algo / batch / dédup) et documenter
-l'ADR correspondant.
+À produire : alternatives, critère de décision, test et ADR. Ne renvoie pas une valeur périmée sans politique explicite.
 
 ## Livrable obligatoire
 
-Section `## Comment j'ai encaissé le drift` dans `08-POSTMORTEM.md`, avec au moins
-une ligne par déclencheur activé et le coût réel payé.
-
-## CHECKPOINT DE PROFONDEUR : variation B : défendre l'inverse
-
-Ferme la page et défends pendant quelques minutes une stratégie opposée à celle implicitement recommandée ici. Cherche son meilleur cas d'usage, puis montre le cas où elle casse. Reviens ensuite à la stratégie initiale et justifie le choix par des mécanismes, pas par le vocabulaire du cours.
+Dans `08-POSTMORTEM.md`, ajoute `## Comment j'ai encaissé le drift` et une ligne par perturbation réellement activée : date, hypothèse modifiée, preuve, choix, coût et risque résiduel.

@@ -343,10 +343,60 @@ Distinguer local state, shared state, server state et URL state : ce ne sont pas
 
 Donne une hypothèse que tu serais tenté de croire immédiatement. Ensuite, définis une mesure minimale capable de la confirmer ou de l'infirmer. Interdis-toi toute conclusion avant cette mesure et explique pourquoi.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « State et dataflow : qui possède l'état, qui le lit, qui le modifie » à un navigateur mobile avec réseau lent et session renouvelée. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-DIAGRAM:browser -->
+
+## Repère visuel utile : Parcours web résilient et brouillon sûr
+
+```text
+formulaire -> brouillon local
+    |
+    v
+réseau disponible ?
+  | oui          | non
+  v              v
+API + clé       état en attente
+  |              |
+  v              +--> reprise au retour
+confirmation
+  |
+  v
+statut affiché
+```
+
+<!-- AF-LESSON-PROFILE: browser -->
+
+## Repères de décision
+
+- **Pourquoi :** Le navigateur est un environnement distinct du serveur : DOM, réseau, stockage local et cycle de vie utilisateur imposent des états et des erreurs spécifiques.
+- **Quand l’utiliser / quand l’éviter :** Utilise ces mécanismes pour rendre le parcours web compréhensible, résilient et accessible. Ne stocke rien de sensible dans le navigateur et ne suppose jamais que le réseau est disponible.
+- **Limites :** Le client ne fait pas autorité pour les droits, les montants ou l'état métier. Le stockage local peut être effacé, altéré ou partagé sur un appareil ; la synchronisation peut produire des conflits.
+
+## Mécanisme : la version sans magie
+
+Modélise les états visibles, annule les requêtes devenues inutiles, traite les réponses réseau comme non fiables et synchronise les brouillons avec un identifiant stable.
+
+## Ancrage produit / terrain : Kintana
+
+Dans le [cas d’étude Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), Le brouillon du demandeur, l’envoi réseau et la demande enregistrée sont trois états différents. Il faut savoir qui possède chaque donnée et quelle transition est autorisée quand une action réussit, échoue ou reste incertaine.
+
+**Niveau de preuve :** Kintana est un scénario fictif. Étiquette le résultat `CONCEPT`, `LAB` ou `SIMULATION` selon le travail réellement effectué ; une fixture synthétique n’est pas une observation de terrain.
+
+## Mission utile : Kintana : Étape 4/8 : modéliser l’état et son propriétaire
+
+> **Arc One Piece / Grand Line :** Trois personnes qui portent trois versions de la même demande créent le chaos : choisis une source de vérité et rends chaque transition visible.
+
+À partir du contrat HTTP de l’étape 2, construis la machine d’états du brouillon et de la demande : `draft`, `submitting`, `pending_confirmation`, `submitted`, `error` et `offline` si ces états sont pertinents. Sépare état local, état de requête et état métier serveur.
+
+**Livrable :** Un diagramme de transitions, un tableau propriétaire/lecteur/modificateur pour chaque donnée, et les événements qui provoquent les changements.
+
+**Critères d’acceptation :** Une donnée a un propriétaire clairement identifié ; une réponse tardive ne réécrit pas un état plus récent ; un timeout n’est pas assimilé à un rejet ni à une confirmation.
+
+**Transfert obligatoire :** Le demandeur ferme l’écran puis reçoit une ancienne réponse réseau : explique comment éviter qu’elle écrase un état plus récent.
+
+Cette étape prolonge le même artefact Kintana ; elle ne demande pas de recommencer le projet et n’ajoute pas de gate au parcours.

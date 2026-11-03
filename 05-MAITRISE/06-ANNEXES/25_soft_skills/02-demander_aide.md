@@ -93,10 +93,56 @@ Reconnaître ça n'est pas faible. C'est du respect pour ton temps et celui des 
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?
 
-<!-- AF-P0-2026-10-30: missing_practice -->
-
 ### Pratique autonome : production attendue
 
 À partir de « Demander de l'aide efficacement », produis une variante indépendante du cas suivant : Tu rejoins une organisation qui possède plusieurs services, une documentation incomplète et un incident ouvert ; il faut comprendre avant de proposer. Travaille sans recopier la solution de la leçon ; conserve l’entrée, les hypothèses, la sortie attendue et un artefact vérifiable (code, requête, schéma, trace ou décision).
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-DIAGRAM:leadership -->
+
+## Repère visuel utile : Rendre une demande d’aide actionnable
+
+```text
+contexte bref
+     |
+     v
+attendu vs observé
+     |
+     v
+essais et résultats
+     |
+     v
+blocage précis
+     |
+     v
+aide demandée + prochaine étape
+```
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Demander de l'aide efficacement** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Demander une aide ciblée dans une situation de travail
+
+**Mission liée à « Demander de l'aide efficacement » :** Construis une demande d’aide Kintana selon le contexte, les essais, le blocage et le type de soutien recherché ; élimine les informations sensibles inutiles.
+
+**Livrable :** Message d’aide réutilisable et reproduction minimale.
+
+**Critères d’acceptation :** Le destinataire comprend ce qui est demandé ; les contraintes de temps sont explicites ; les données privées sont protégées.
+
+**Transfert obligatoire :** Le destinataire n’a pas la compétence recherchée : formule le relais nécessaire.

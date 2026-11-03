@@ -9,6 +9,8 @@ assessment_role: instructional_checkpoint
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
+> **Carte de consultation différée :** ce tableau n'est pas un programme à apprendre maintenant. Ouvre la ligne d'un sujet seulement lorsque la Route 58 ou une leçon t'amène à ce sujet. Un mot inconnu signifie « pas encore étudié », pas « échec » ni « prérequis manquant pour commencer ».
+
 # DÉPENDANCES D’APPRENTISSAGE
 
 Ce fichier sert à répondre à une seule question : **« qu’est-ce que je dois vraiment savoir avant d’attaquer ce sujet ? »**
@@ -28,11 +30,11 @@ Ce fichier sert à répondre à une seule question : **« qu’est-ce que je doi
 
 Ce tableau n’est pas une liste à réciter. C’est une rampe de secours.
 
-## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
+## CHECKPOINT DE PROFONDEUR : après l’étude des sujets concernés
+
+### Variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
-
-<!-- AF-P0-2026-10-30: missing_transfer -->
 
 ### Transfert : changer de contexte
 

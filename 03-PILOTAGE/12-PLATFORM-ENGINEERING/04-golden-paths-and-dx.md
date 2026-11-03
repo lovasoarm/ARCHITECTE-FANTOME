@@ -1,8 +1,14 @@
 ---
 stability: evolutif
 acte: appliquer
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/12-PLATFORM-ENGINEERING/01-00-why-platform-engineering.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 03-PILOTAGE/12-PLATFORM-ENGINEERING/01-00-why-platform-engineering.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
-
 
 > **SCÈNE CRAZYDEVS : Dragon Ball Z :** un golden path n’est pas une autoroute où tout le monde est forcé de rouler. C’est le chemin où le combat est le moins coûteux quand la mission est standard.
 
@@ -103,3 +109,33 @@ Prérequis : IDP, GitOps et CI/CD. Suite : Platform as a Product et fiabilité.
 ## Mesures minimales conservées
 
 En plus des métriques proposées plus haut, suit explicitement le temps du premier déploiement, le nombre d'étapes manuelles, les erreurs fréquentes, le temps de récupération et le taux de contournement. Une plateforme contournée n'est pas nécessairement « mal comprise » : observe la friction avant de conclure.
+
+<!-- AF-LESSON-PROFILE: runtime -->
+
+## Repères de décision
+
+- **Pourquoi :** Le runtime détermine les APIs disponibles, le cycle de vie, la configuration et les ressources. Confondre Node, navigateur et processus peut créer des bugs impossibles à reproduire.
+- **Quand l’utiliser / quand l’éviter :** Choisis l'environnement selon les capacités requises. Déclare configuration, arrêt et signaux de santé ; ne suppose pas que toutes les APIs ou variables existent partout.
+- **Limites :** Le même code ne se comporte pas toujours pareil selon version, OS, runtime et permissions. Une variable d'environnement ne remplace pas un gestionnaire de secrets.
+
+## Mécanisme : la version sans magie
+
+Déclare les prérequis, lit la configuration à un point contrôlé, valide au démarrage, expose un état de santé et ferme proprement les ressources.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Golden Paths et Developer Experience : réduire la friction sans enfermer les équipes** se rattache à ce cas concret : Le service Kintana doit démarrer avec une configuration explicite et s'arrêter sans perdre les traitements déjà acceptés.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Service Kintana reproductible et arrêtable
+
+> **Arc Walking Dead :** le code ne vit pas dans le vide. Runtime, processus, fichiers et variables d'environnement sont le camp autour de lui.
+
+**Mission liée à « Golden Paths et Developer Experience : réduire la friction sans enfermer les équipes » :** Ajoute un contrôle de configuration et un arrêt propre au composant Kintana concerné. Sépare les variables obligatoires/optionnelles, valide leur format et vérifie le comportement sous SIGTERM si le runtime le permet.
+
+**Livrable :** module de configuration, validation au démarrage, health/readiness si service, smoke test et note des différences runtime.
+
+**Critères d’acceptation :** les erreurs de configuration échouent tôt ; aucun secret n'est journalisé ; l'arrêt ferme les ressources ; les APIs Node et navigateur ne sont pas confondues.
+
+**Transfert obligatoire :** Exécute dans un conteneur ou un environnement qui ne possède pas les mêmes variables et permissions. Documente le diagnostic exact.

@@ -43,7 +43,7 @@ sont écrites plutôt que masquées : le SLO à 99,5% qui interdit l'option d'ex
 (S3 contre S4), le multi-zone non financé (S1 contre S3), et la bascule de modèle IA suspendue
 pour une régression de sécurité (S6 contre S4). Si tes six pièces à toi ne se contredisent nulle
 part, l'une d'elles n'a pas été chiffrée sérieusement : c'est exactement ce que la section 8 du
-[dossier unique](../../05-MAITRISE/08-MAITRISE-STAFF-ENGINEER/02-dossier_unique.md) va te demander. La tension autour du coût ou de la disponibilité d'une brique IA est pertinente seulement si ton système en possède une ; dans les autres cas, choisis une contradiction réelle entre S1–S6. La tension autour du coût ou de la disponibilité d'une brique IA est pertinente seulement si ton système en possède une ; dans les autres cas, choisis une contradiction réelle entre S1–S6.
+[dossier unique](../../05-MAITRISE/08-MAITRISE-STAFF-ENGINEER/02-dossier_unique.md) va te demander. La tension autour du coût ou de la disponibilité d'une brique IA est pertinente seulement si ton système en possède une ; dans les autres cas, choisis une contradiction réelle entre S1–S6.
 
 <!-- CONTENU-DOSSIER:debut -->
 
@@ -56,3 +56,7 @@ part, l'une d'elles n'a pas été chiffrée sérieusement : c'est exactement ce 
 - [MODÈLE S7 : PORTAGE.md : exemplaire de référence, anonymisé](99-PORTAGE-MENTAL.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.

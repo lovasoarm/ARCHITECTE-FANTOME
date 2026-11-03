@@ -17,18 +17,16 @@ Temps de lecture ~2 min
 
 Acte attendu : évaluer. Trois minutes, seul, sans ouvrir le module.
 
-Si une seule ligne ci-dessous te fait hésiter, tu ouvres d'abord ce qu'elle nomme. Ouvrir ce
-module sans ces acquis coûte la séance : tu apprendrais le prérequis à la place du module.
+Ce diagnostic vérifie les notions d'interface réutilisées pour modéliser les données ; il ne demande aucune connaissance préalable de SQL, de transaction ou d'ORM. Ces notions sont introduites progressivement dans le module avant leur réutilisation.
 
-## Ce que tu dois déjà savoir faire
+## Repères utiles
 
-Module `02-CONSTRUCTION/01-USER-WIZARD`, ou une expérience équivalente d'écriture d'API avec base de données relationnelle. Tu dois
-savoir écrire une jointure SQL et une transaction basique avant d'attaquer la leçon 3.
+Le module `02-CONSTRUCTION/01-USER-WIZARD` (ou une expérience équivalente) aide à comprendre les états d'une interface et les effets d'une création répétée. Si tu ne l'as pas terminé, consulte son grimoire au besoin. Tu peux commencer Data Spells sans savoir écrire une jointure SQL ni une transaction : la syntaxe relationnelle de base est expliquée dans les leçons de ce module.
 
 ## Verdict
 
-- [ ] Toutes les lignes passent → ouvre [`README.md`](README.md).
-- [ ] Une ligne ne passe pas → reviens ici quand elle passe. Note la date, pas l'excuse.
+- **Les trois réponses sont solides** → ouvre [`README.md`](README.md).
+- **Une réponse hésite** → tu peux quand même commencer par `01-01-why-this-level.md` et `02-model-the-domain.md`. Revois le grimoire de User Wizard si les états d’interface ou l’idempotence sont flous ; apprends la syntaxe SQL dans les exemples avant de passer aux migrations et aux transactions. Le diagnostic ne bloque pas l’accès.
 
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 

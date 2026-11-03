@@ -8,6 +8,13 @@ anti_recipe_key: changement_echelle+transmission
 transfer_distance: low
 assessment_role: project_mastery
 review_interval: 6 mois
+freshness_status: null
+source_verified_on: null
+source_type: "none"
+canonical_resource: null
+source_url: null
+source_scope: "Évolutions du cahier des charges et décisions propres au projet ; aucune donnée de version fournisseur n’est certifiée par ce journal."
+provenance_note: "Journal interne du changement de spécification pendant le mini-projet. Les exemples sont des scénarios pédagogiques ; les décisions réelles d’implémentation doivent citer leur propre source primaire dans le projet si elles dépendent d’une API, d’une version ou d’un fournisseur."
 ---
 
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.

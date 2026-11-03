@@ -131,3 +131,51 @@ contrôlée avant qu'elle n'arrive en vrai, pour mesurer si une primitive tient 
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
 
 Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+
+<!-- AF-DIAGRAM:performance -->
+
+## Repère visuel utile : Raisonner sur timeout, partition et réponse tardive
+
+```text
+requête envoyée
+      |
+      v
+timeout ou partition réseau
+      |
+      v
+réponse tardive / inconnue
+      |
+      v
+retry et risque de doublon
+      |
+      v
+idempotence + réconciliation
+```
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Hypothèses en panne distribuée : le pont que personne ne fait spontanément** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Raisonner sur une panne partielle
+
+**Mission liée à « Hypothèses en panne distribuée : le pont que personne ne fait spontanément » :** Construis un scénario Kintana où un timeout, une partition ou une réponse tardive rend l’état incertain. Distingue ce que chaque service sait et ce qu’il ne peut pas conclure.
+
+**Livrable :** Chronologie de panne, état connu/inconnu et décision de reprise.
+
+**Critères d’acceptation :** Un timeout n’est pas interprété comme preuve d’échec ; les actions répétées sont idempotentes ou protégées ; les incertitudes sont conservées.
+
+**Transfert obligatoire :** Le service revient avec des messages anciens : définis comment éviter de réécrire un état plus récent.

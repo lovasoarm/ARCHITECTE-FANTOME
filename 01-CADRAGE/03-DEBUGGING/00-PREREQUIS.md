@@ -14,8 +14,8 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~5 min
 
-> Tu ne dois **pas** entrer dans ce module si tu ne peux pas répondre à ces questions
-> **sans regarder**. Ce n'est pas un test noté, c'est un filtre anti-illusion.
+> Avant de commencer ce module, essaie de répondre à ces questions **sans regarder**.
+> Ce diagnostic n’est pas noté : il sert à repérer les bases déjà acquises et les notions à revoir, pas à te fermer l’accès.
 > Ces questions portent sur `01-CADRAGE/02-ASYNC`, le module que tu viens de finir.
 
 ## Questions
@@ -27,11 +27,11 @@ Temps de lecture ~5 min
 
 ## Verdict
 
-- **3+ réponses solides** → tu peux entrer.
+- **3+ réponses solides** → commence le module et garde les points hésitants comme objectifs de révision.
 - **2 ou moins** → retour à `01-CADRAGE/02-ASYNC/`, ou à ses grimoires internes
   (`01_callbacks/`, `02_promises/`, `03_async_await/`, `04_event_loop/`).
 
-> Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
+> Le but n’est pas de te bloquer : ce diagnostic t’aide à choisir une révision utile.
 
 > **Note pour ce module précis** : lire une stack trace, savoir pourquoi
 > reproduire avant de corriger, formuler une hypothèse falsifiable, et

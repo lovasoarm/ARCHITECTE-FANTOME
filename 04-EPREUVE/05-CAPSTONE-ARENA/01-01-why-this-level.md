@@ -195,3 +195,33 @@ donnera un énoncé propre avec des critères de correction affichés d'avance.
   cette distinction change ta méthode de clarification.
 - Pourquoi tester d'abord l'hypothèse la plus risquée plutôt que la plus facile change le
   résultat final d'un projet en brief ambigu.
+
+<!-- AF-LESSON-PROFILE: architecture -->
+
+## Repères de décision
+
+- **Pourquoi :** Les frontières réduisent le coût de changement et clarifient les responsabilités. Elles doivent répondre aux contraintes de l'équipe, des données et de l'exploitation.
+- **Quand l’utiliser / quand l’éviter :** Découpe un système quand une frontière protège une règle ou un rythme de changement. Ne crée pas de microservice tant que l'autonomie, la charge ou la gouvernance ne justifient pas le coût distribué.
+- **Limites :** Chaque frontière ajoute contrats, réseau, déploiement, observabilité et coordination. Un diagramme propre ne prouve ni la faisabilité ni la performance.
+
+## Mécanisme : la version sans magie
+
+Part des cas d'usage, repère invariants et propriétaires de données, définis les contrats, compare les options et mesure les conséquences du changement.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi ce niveau existe** se rattache à ce cas concret : Kintana commence comme monolithe modulaire. Les demandes, réservations et notifications doivent avoir des frontières explicites sans fragmenter trop tôt le déploiement.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Défendre une architecture exploitable de bout en bout
+
+> **Arc Capsule Corp. / DBZ :** un plan n'est réussi que si le vaisseau peut être construit, piloté, réparé et faire face à une avarie.
+
+**Mission liée au capstone :** Choisis un parcours métier complet de Kintana. Relie la frontière de domaine à ses contrats d'API, à la propriété des données, aux dépendances externes, aux modes de panne et au chemin de livraison. Compare au moins deux options d'architecture, puis explique comment la solution sera déployée, observée et restaurée. Le but n'est pas de produire un diagramme séduisant, mais une proposition exploitable et révisable.
+
+**Livrable :** carte de contexte et diagramme de flux, ADR comparatif, contrats et invariants, registre de risques, plan de déploiement progressif, stratégie de rollback et signaux d'observabilité.
+
+**Critères d’acceptation :** chaque donnée a un propriétaire ; les frontières et responsabilités sont explicites ; les pannes et effets partiels sont traités ; sécurité et données sensibles sont prises en compte ; les coûts d'exploitation et de migration sont visibles ; le déploiement et le retour arrière ont des conditions vérifiables ; aucune mise en production réelle n'est présumée.
+
+**Transfert obligatoire :** Une dépendance tombe au milieu d'une migration et un volume double. Décris l'état sûr à préserver, les opérations à suspendre, les preuves nécessaires pour reprendre et le signal qui ferait réviser l'architecture.

@@ -43,3 +43,15 @@ L'ordre exact peut changer selon la mission : les projets de reprise de legacy e
 ## Convention de compte rendu
 
 Dans chaque mini-projet, la section « État des tests » doit indiquer les fichiers présents, ce qui peut être exécuté maintenant, ce qui est volontairement rouge, ce que l'apprenant doit créer et la commande finale exacte. Si le projet ne fournit aucun code ou test exécutable, l'écrire sans ambiguïté.
+
+## Ne pas confondre exemple et preuve
+
+Les sorties de terminal, captures, nombres d'utilisateurs, volumes, taux, latences, benchmarks, seuils et tableaux inclus dans un README ou un cahier des charges sont des **exemples de forme** ou des **simulations** tant qu'ils ne sont pas accompagnés d'une commande reproductible, de la version de l'environnement, des données d'entrée et du résultat brut réellement obtenu.
+
+- Étiquettes autorisées : `EXEMPLE`, `SIMULATION`, `LAB`, `PILOT`, `PRODUCTION`.
+- `EXEMPLE` et `SIMULATION` illustrent une sortie ou un scénario ; ils ne prouvent ni performance ni usage réel.
+- `LAB` prouve uniquement ce qui a été exécuté dans l'environnement documenté.
+- `PILOT` exige des utilisateurs/acteurs réels identifiés par rôle, une période, un périmètre et des mesures non sensibles.
+- `PRODUCTION` exige une exploitation effective, des signaux observés et un responsable ; un Dockerfile ou un déploiement local ne suffit pas.
+
+**Format minimal d'une mesure revendiquée :** objectif, commande/protocole, versions, matériel/environnement, taille et nature des données, répétitions, résultat brut, limites et décision prise. Ne transforme jamais un chiffre pédagogique en résultat de ton projet.

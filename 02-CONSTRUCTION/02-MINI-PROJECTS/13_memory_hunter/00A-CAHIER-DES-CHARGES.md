@@ -35,7 +35,7 @@ Avant de considérer le projet fini, tu dois traiter ces exigences OWASP context
 - Déni de service par épuisement mémoire (OWASP A05) : les fuites elles-mêmes sont un vecteur DoS ; documenter comment un attaquant pourrait les déclencher volontairement (ex : spam d'un endpoint qui ajoute un listener).
 - Limites de ressources (OWASP A04 - Insecure Design) : imposer une taille max au cache Map (LRU) pour empêcher une croissance non bornée pilotée par l'utilisateur.
 
-Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Le `97-CHECKPOINT-PACK` de ce projet contient un test de sécurité qui doit passer.
+Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Ajoute dans le dossier `tests/` de ce projet un test ciblé pour au moins une des menaces retenues. Documente dans le README la commande exacte qui exécute ce test. Aucun pack de correction séparé n’est fourni dans ce projet.
 
 ## AUTO-ÉVALUATION
 

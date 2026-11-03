@@ -29,7 +29,6 @@ npm --version
 
 Après création du manifeste et des sources : ajouter `better-sqlite3`, enregistrer le lockfile, puis construire `src/server.js` et les tests. `node src/server.js` et `npm test` ne sont valides qu'après cette construction et la déclaration du script de test.
 
-
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
 Fox River State Penitentiary. Michael Scofield a tatoué le plan sur son corps. Maintenant il faut l'infrastructure derrière. Chaque prisonnier a un profil. Chaque section de la prison (B-Company, Death Row, l'infirmerie) a des access logs. Le plan d'évasion est une série de phases séquentielles avec des accès réservés. T-Bag essaie de hacker le système depuis l'intérieur. L'API doit tenir sous pression, ne jamais exposer ce qui ne doit pas l'être, et résister.
@@ -77,7 +76,7 @@ Ce projet force à penser sécurité et robustesse ensemble, pas séparément :
 **Où ça se voit** : toute l'arborescence `src/routes/` et `src/middleware/`.
 **Pourquoi c'est nécessaire ici** : structurer une API Express proprement (pas un seul fichier de 500 lignes) avec des routes séparées, des middlewares réutilisables, et une gestion d'erreur centralisée.
 
-### `03-PILOTAGE/04-SECURITY` : JWT, bcrypt, XSS, injection, rate limiting
+### `03-PILOTAGE/04-SECURITY` : JWT, Argon2id, XSS, injection, rate limiting
 
 <!-- AF-DIAGRAM:jwt -->
 
@@ -89,8 +88,8 @@ Login ─► Issue token ─► Request + token ─► Verify ─► Allow / Rej
 
 Le token traverse un cycle de création, transport, validation et expiration.
 
-**Où ça se voit** : `src/auth/`, `src/middleware/rateLimiter.js`, `src/middleware/sanitizer.js`.
-**Pourquoi c'est nécessaire ici** : bcrypt sur les mots de passe, JWT signé pour l'auth, rate limiting par IP pour bloquer T-Bag qui force, sanitization des inputs pour l'injection.
+**Où ça se voit** : `src/auth/`, `src/middleware/rateLimiter.js`, `src/middleware/requestValidator.js`.
+**Pourquoi c'est nécessaire ici** : Argon2id pour les nouveaux mots de passe, JWT signé pour l'auth, rate limiting par IP pour freiner le brute-force, validation des entrées, paramètres SQL liés et rendu XSS sûr côté client. Aucun middleware de sanitisation universel ne protège contre toutes ces attaques.
 
 ### `05-MAITRISE/01-DATABASES` : SQLite, modélisation, indexes, Redis cache
 
@@ -106,7 +105,7 @@ Le token traverse un cycle de création, transport, validation et expiration.
 
 ```text
 02-CONSTRUCTION/19-API-CRAFT  --> src/routes/, src/middleware/errorHandler.js, src/server.js
-03-PILOTAGE/04-SECURITY   --> src/auth/ (JWT + bcrypt), src/middleware/rateLimiter.js + sanitizer.js
+03-PILOTAGE/04-SECURITY   --> src/auth/ (JWT + Argon2id), src/middleware/rateLimiter.js + requestValidator.js
 05-MAITRISE/01-DATABASES  --> src/db/ (SQLite), src/cache/ (Redis simulé)
 02-CONSTRUCTION/18-WEB-CONCEPTS --> status codes, headers, format d'erreur uniforme
 ```
@@ -115,30 +114,30 @@ Le token traverse un cycle de création, transport, validation et expiration.
 
 **Durée totale estimée** : 18 à 25 heures de travail réel.
 
-| Étape                        | Durée estimée | Zone de résistance                                           |
-| ---------------------------- | ------------- | ------------------------------------------------------------ |
-| db + migrations              | 2h            | Moyenne : écrire un schema propre dès le début               |
-| passwordService + jwtService | 2h            | Faible si le module `03-PILOTAGE/04-SECURITY` est maîtrisé   |
-| cacheService                 | 1h            | Faible                                                       |
-| prisonerService              | 2h            | Moyenne : logique cache-first                                |
-| middlewares                  | 3-4h          | **Haute** : rateLimiter et sanitizer sont subtils            |
-| routes complètes             | 3h            | Moyenne                                                      |
-| server.js                    | 30min         | Faible                                                       |
-| Tests de sécurité            | 3-4h          | **Haute** : tester une injection SQL, un XSS, un brute force |
+| Étape                        | Durée estimée | Zone de résistance                                                                        |
+| ---------------------------- | ------------- | ----------------------------------------------------------------------------------------- |
+| db + migrations              | 2h            | Moyenne : écrire un schema propre dès le début                                            |
+| passwordService + jwtService | 2h            | Faible si le module `03-PILOTAGE/04-SECURITY` est maîtrisé                                |
+| cacheService                 | 1h            | Faible                                                                                    |
+| prisonerService              | 2h            | Moyenne : logique cache-first                                                             |
+| middlewares                  | 3-4h          | **Haute** : rateLimiter, validation des entrées et protections contextuelles sont subtils |
+| routes complètes             | 3h            | Moyenne                                                                                   |
+| server.js                    | 30min         | Faible                                                                                    |
+| Tests de sécurité            | 3-4h          | **Haute** : tester une injection SQL, un XSS, un brute force                              |
 
 Le rateLimiter est sous-estimé systématiquement. Gérer le compteur par IP avec un TTL glissant (pas juste une fenêtre fixe) est plus complexe qu'il n'y paraît.
 
 ## CAS LIMITES À TESTER OBLIGATOIREMENT
 
 1. **Token expiré** : une requête avec un token expiré doit recevoir 401, pas 500.
-2. **Injection SQL dans un paramètre** : `GET /api/prisoners/1' OR '1'='1` doit retourner 400 ou une réponse vide, pas une fuite de données.
+2. **Injection SQL dans un paramètre** : `GET /api/prisoners/1' OR '1'='1` ne doit jamais élargir les résultats ni modifier la requête. Valide le format d’ID côté serveur et lie sa valeur dans la requête SQL ; une réponse 400 ou 404 est acceptable selon le contrat API.
 3. **Body malformé (JSON invalide)** : `POST /api/evasion/badge` avec un body `"notjson"` doit retourner 400, pas planter le serveur.
 4. **Accès à un endpoint protégé sans token** : 401, pas 403, pas 200, pas 500.
 5. **Rate limit doit se réinitialiser après la fenêtre de temps** : après 1 minute, les tentatives doivent être à nouveau acceptées.
 
 ## LES RÈGLES QUE TU NE DOIS JAMAIS CASSER
 
-1. **Zéro requête SQL construite par concaténation de chaînes.** Toujours des requêtes paramétrées : `db.query('SELECT * FROM prisoners WHERE id = ?', [id])`.
+1. **Aucune valeur utilisateur concaténée au SQL.** Lie toutes les valeurs avec des paramètres : `db.query('SELECT * FROM prisoners WHERE id = ?', [id])`. Si un tri ou un nom de colonne doit varier, choisis-le dans une allowlist constante côté serveur : un placeholder ne paramètre pas un identifiant SQL.
 2. **Zéro information sur la raison d'un refus d'authentification dans la réponse.** "identifiants invalides", toujours, même si l'ID n'existe pas.
 3. **Chaque route protégée a `authGuard` en middleware.** Pas d'endpoint qui oublie son garde.
 
@@ -231,3 +230,29 @@ Avant de coder, produis :
 - les critères qui te feront changer d’architecture en cours de route.
 
 Ne cherche pas une architecture « correcte » dans le curriculum : le but est de reconstruire un modèle sous contrainte, puis de défendre pourquoi il tient.
+
+<!-- AF-PROJECT-REAL-WORLD-GATE-1.1 -->
+
+## Mission produit évaluée : API sécurisée multi-tenant Kintana
+
+Fox River reste une scène pour comprendre les contrôles d'accès et les erreurs de sécurité. Le produit évalué est une **API multi-tenant de demandes et de rendez-vous**, plus proche d'un service professionnel.
+
+### Mission évaluée : API Kintana sécurisée
+
+Construis au minimum ces capacités :
+
+- `POST /v1/requests` avec clé d'idempotence ;
+- `GET /v1/requests/:id` avec contrôle propriétaire/tenant ;
+- `POST /v1/requests/:id/assign` réservé au superviseur ;
+- `PATCH /v1/requests/:id/status` avec transition autorisée ;
+- `GET /v1/audit` avec accès restreint et pagination.
+
+Impose validation serveur, requêtes paramétrées, mots de passe hachés si authentification locale, expiration/révocation documentée des sessions, limitation de débit et erreurs sans fuite. Sépare authentification (qui es-tu ?) et autorisation (as-tu le droit sur cette ressource ?).
+
+**Produit de référence :** [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md).
+
+**Livrables :** API exécutable, schéma et migrations, contrat OpenAPI, tests d'intégration et tests négatifs entre deux utilisateurs et deux tenants, journal d'audit et ADR.
+
+**Gate :** aucun accès croisé ; aucune injection ; aucune donnée sensible dans les logs ; doublons idempotents ; erreurs stables. Une validation dans le navigateur ne remplace jamais le contrôle serveur.
+
+**Règle de livraison :** la kata d’origine reste utile pour isoler le concept et son univers narratif. La validation finale du projet repose sur la mission métier ci-dessus, ses tests, ses limites et les preuves produites par l’apprenant. Les résultats de simulation ne sont jamais présentés comme des résultats de production.

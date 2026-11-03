@@ -274,10 +274,32 @@ Ton tech lead veut une réponse claire avec justification. Écris un programme q
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Class syntax sugar : la preuve que class ne réinvente rien » à un troisième fournisseur dont l’API ne ressemble pas aux deux premiers. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: oop-class-syntax -->
+
+## Repères de décision
+
+- **Pourquoi :** La syntaxe `class` rend explicites le constructeur, les méthodes d’instance, l’héritage et les membres statiques, tout en s’appuyant sur les prototypes.
+- **Quand l’utiliser / quand l’éviter :** Utilise une classe lorsque plusieurs instances partagent un contrat et que l’identité ou l’état le justifie. Garde des fonctions ou des objets simples si une classe ne fait qu’ajouter du cérémonial.
+- **Limites :** Dire que `class` est seulement du sucre est incomplet : les classes imposent notamment le mode strict, interdisent l’appel sans `new` et définissent des méthodes non énumérables. Comprendre les prototypes reste nécessaire pour expliquer leur comportement.
+
+## Mécanisme : la version sans magie
+
+Une déclaration `class` crée un constructeur et place les méthodes d’instance sur son objet `prototype`. `extends` relie les prototypes de la classe enfant et de son prototype. La syntaxe conserve toutefois des règles d’exécution propres aux classes.
+
+## Ancrage produit / terrain : Kintana
+
+Le modèle `Demande` de Kintana peut être exprimé en classe pour grouper validation et transitions. Le choix doit simplifier le contrat, pas faire ressembler le code à Java.
+
+## Mission utile : Kintana : comparer fonction et classe
+
+**Livrable :** deux versions minimales du même modèle, l’une en fonction constructrice et l’autre en `class`, avec tests identiques et tableau des différences observables.
+
+**Critères d’acceptation :** les deux versions respectent le même contrat ; tu identifies les règles supplémentaires de `class` ; tu ne présentes pas la syntaxe comme une simple réécriture sans conséquence.
+
+**Transfert obligatoire :** retire `class` et explique quelle partie du comportement dépend toujours de la chaîne prototype et quelle partie vient des règles spécifiques à la syntaxe de classe.

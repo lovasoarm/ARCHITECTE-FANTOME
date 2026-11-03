@@ -47,10 +47,58 @@ raison : c'est d'avoir su à quel moment tu avais eu tort, et de l'avoir écrit.
 
 Écris d'abord ton conseil actuel en une phrase. Puis invente une information nouvelle qui le rend mauvais. Révise ton conseil et explique précisément **quelle hypothèse a changé**, ce que tu conserves et ce que tu abandonnes.
 
-<!-- AF-P0-2026-10-30: missing_example -->
-
 ### Exemple travaillé : cas métier
 
-Une décision locale réduit le coût d’une équipe mais crée une dépendance pour quatre autres ; tu dois arbitrer le système global et obtenir l’adoption. Pour « La revisite datée : ce qui sépare un dossier d'une photo », construis un exemple où deux équipes ont des objectifs contradictoires. Distingue contrainte, préférence, coût immédiat, coût différé et critère de décision.
+**Exemple résolu (fictif).** Une décision prise le 1er juin choisit une base relationnelle pour un volume estimé de 10 000 opérations par jour. La revisite du 1er septembre montre 12 000 opérations par jour, un p95 stable et aucun besoin de partitionnement. L'équipe maintient la décision et note le prochain déclencheur : hausse durable du p95 ou franchissement du budget. **Résultat :** ne pas changer est aussi une décision lorsqu'elle s'appuie sur des mesures datées.
+
+**À toi :** Une décision locale réduit le coût d’une équipe mais crée une dépendance pour quatre autres ; tu dois arbitrer le système global et obtenir l’adoption. Pour « La revisite datée : ce qui sépare un dossier d'une photo », construis un exemple où deux équipes ont des objectifs contradictoires. Distingue contrainte, préférence, coût immédiat, coût différé et critère de décision.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-DIAGRAM:leadership -->
+
+## Repère visuel utile : Revisiter une décision dans le temps
+
+```text
+décision datée
+      |
+      v
+hypothèses initiales
+      |
+      v
+nouvelles observations
+      |
+      v
+conserver / adapter / inverser
+      |
+      v
+prochaine date de revue
+```
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **La revisite datée : ce qui sépare un dossier d'une photo** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Revisiter une décision à partir de faits nouveaux
+
+**Mission liée à « La revisite datée : ce qui sépare un dossier d'une photo » :** Reprends un ADR Kintana daté. Compare ses hypothèses aux observations disponibles, décide de conserver, modifier ou retirer la décision et explique pourquoi.
+
+**Livrable :** Entrée de revisite datée avec hypothèses, observations, décision et prochaine échéance.
+
+**Critères d’acceptation :** Le contexte initial est conservé ; les faits nouveaux sont sourcés ; la révision ne réécrit pas l’historique.
+
+**Transfert obligatoire :** Aucun signal nouveau n’apparaît : justifie le maintien et fixe une prochaine date ou condition.

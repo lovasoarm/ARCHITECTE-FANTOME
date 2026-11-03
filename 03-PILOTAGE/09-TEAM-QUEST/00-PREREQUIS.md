@@ -13,21 +13,34 @@ assessment_role: instructional_checkpoint
 
 # Auto-test d'entrée : `09-TEAM-QUEST`
 
-Temps de lecture ~2 min
+Temps de lecture ~3 min
 
-Acte attendu : évaluer. Trois minutes, seul, sans ouvrir le module.
-
-Si une seule ligne ci-dessous te fait hésiter, tu ouvres d'abord ce qu'elle nomme. Ouvrir ce
-module sans ces acquis coûte la séance : tu apprendrais le prérequis à la place du module.
+Acte attendu : évaluer. Réponds sans ouvrir le module.
 
 ## Ce que tu dois déjà savoir faire
 
-- Tu as terminé [`08-PRODUIT-COUT-ROI`](../../03-PILOTAGE/08-PRODUIT-COUT-ROI/README.md), module précédent du fil.
+- Avoir terminé [`08-PRODUIT-COUT-ROI`](../../03-PILOTAGE/08-PRODUIT-COUT-ROI/README.md),
+  le module précédent dans l'ordre du bloc Pilotage.
+- Avoir étudié [`01-ROADMAP-RUN`](../../03-PILOTAGE/01-ROADMAP-RUN/README.md) et savoir
+  expliquer comment un plan, ses jalons et ses risques sont suivis. C'est un prérequis
+  amont réutilisé ici, pas le module précédent immédiat.
+
+## Questions
+
+1. Dans une décision produit, pourquoi comparer valeur, coût, risque et coût d'opportunité
+   plutôt que retenir uniquement le coût le plus bas ?
+2. Pourquoi faut-il conserver « ne rien faire » comme option de référence dans une grille
+   coût / risque / valeur ?
+3. Pourquoi un coût déjà dépensé ne suffit-il pas à justifier la poursuite d'une option ?
+4. Quel signal de dérive dans une roadmap te ferait réexaminer un jalon avec l'équipe ?
 
 ## Verdict
 
-- [ ] Toutes les lignes passent → ouvre [`README.md`](README.md).
-- [ ] Une ligne ne passe pas → reviens ici quand elle passe. Note la date, pas l'excuse.
+- **3 réponses solides sur 4**, et les deux modules amont terminés → ouvre [`README.md`](README.md).
+- Si une réponse sur la grille échoue, reprends le grimoire de
+  [Product Cost & ROI](../../03-PILOTAGE/08-PRODUIT-COUT-ROI/90-grimoire.md).
+- Si le suivi des jalons ou des risques est flou, reprends
+  [Roadmap Run](../../03-PILOTAGE/01-ROADMAP-RUN/90-grimoire.md).
 
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 

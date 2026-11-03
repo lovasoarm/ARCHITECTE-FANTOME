@@ -304,10 +304,59 @@ Le profiling remplace l'instinct. L'instinct t'envoie toujours au mauvais endroi
 
 Ferme la page et écris de mémoire : problème → mécanisme → invariant → décision → limite. Tu n'as pas le droit d'utiliser le vocabulaire de la section comme structure imposée. Compare ensuite ta reconstruction avec la source et note ce qui manquait.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « Profiling basics : mesurer avant de toucher », puis conserve le résultat et explique tout écart.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-DIAGRAM:performance -->
+
+## Repère visuel utile : Lire un profil CPU
+
+```text
+charge représentative
+       |
+       v
+profil collecté
+       |
+       v
+temps total vs temps propre
+       |
+       v
+fonction dominante
+       |
+       v
+une hypothèse d’optimisation
+       |
+       v
+mesure de confirmation
+```
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Profiling basics : mesurer avant de toucher** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Trouver le coût dominant avec un profil
+
+**Mission liée à « Profiling basics : mesurer avant de toucher » :** Exécute un parcours Kintana reproductible, capture un profil et distingue temps total, temps propre et attente. Choisis une seule piste d’optimisation étayée par le profil.
+
+**Livrable :** Profil annoté, hypothèse principale et expérience de confirmation.
+
+**Critères d’acceptation :** Le parcours est stable ; le profil est interprété avec ses limites ; la correction cible une zone dominante et conserve le comportement.
+
+**Transfert obligatoire :** Le point le plus visible n’est pas causal : formule une expérience qui peut réfuter ton hypothèse.

@@ -1,26 +1,15 @@
 ---
-perishability_id: PER-0092
-
-statut: revu
-last_reviewed: 2026-08
-proprietaire: mainteneur TECH-ILA
-revue: trimestrielle
 companion: ce parcours
-stability: perissable
+stability: stable
 acte: comprendre
-freshness_registry_id: PER-0092
-freshness_audit_date: 2026-10-30
-freshness_status: date_declaree_non_revalidee_dans_cette_edition
-review_due: 2027-04-28
-review_status: date_declaree_non_revalidee_dans_cette_edition
 ---
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 [← Sommaire TECH-ILA](../README.md)
 
-> **Tu viens de** : 06-niveau-6-IA.md
+> **Tu viens de** : [06-niveau-6-IA.md](06-niveau-6-IA.md)
 > **Tu dois déjà savoir** : les six niveaux de TECH-ILA, au moins en survol
-> **Ensuite** : 08-IA-exercices-marche-audit.md
+> **Ensuite** : [08-IA-exercices-marche-audit.md](08-IA-exercices-marche-audit.md)
 
 # Cartes du parcours ↔ technologies
 
@@ -121,7 +110,7 @@ SQL/index · [Module 07](#mod-07), [09-10](#mod-09-10), [24](#mod-24) : TypeScri
 13 [Refactoring](#mod-13) · 14 [TypeScript](#mod-14) · 15 [Runtime env](#mod-15) ·
 16 [Architecture patterns](#mod-16) · 17 [Web concepts](#mod-17) · 18 [OOP JS](#mod-18) ·
 19 [Web inclusive](#mod-19) · 20 [Realtime](#mod-20) · 21 [API craft](#mod-21) ·
-22 [Security](#mod-22) · 23 [IA native dev](#mod-23) · 24 [Databases](#mod-24) ·
+22 [Security](#mod-22) · 23 [Big App Snoop : lecture de code inconnu](#mod-23) · 24 [Databases](#mod-24) ·
 25 [Scalability](#mod-25) · 26 [Observability](#mod-26) · 27 [Team craft](#mod-27) ·
 28 [Edge cases](#mod-28) · 29 [IA agents & autonomy](#mod-29) · 30-31
 [Mini-projects & annexes](#mod-30-31) · 32 [Tools](#mod-32).
@@ -256,8 +245,8 @@ WebRTC (contextuelle, rarement le bon premier outil).
 <a id="mod-21"></a>**21 · `02-CONSTRUCTION/19-API-CRAFT/`.** Une API est un contrat public : ses erreurs en
 font partie, sa version aussi. RFC 9457 (`application/problem+json`) est le seul terrain
 neutre entre écosystèmes.
-Technos : Express (middleware d'erreur), NestJS (DTO, pipes), OpenAPI, FastAPI/Spring,
-GraphQL (contextuelle, justifiée par des clients hétérogènes).
+Technos : Express (middleware d’erreur, handlers async selon version), NestJS (DTO, pipes, guards), OpenAPI, FastAPI/Spring,
+Redis (cache), stockage objet, files de messages et SSE/WebSocket selon le besoin.
 
 <a id="mod-22"></a>**22 · `03-PILOTAGE/04-SECURITY/`.** Ton code n'est pas ta surface d'attaque : tes
 dépendances le sont. Un `postinstall` s'exécute sur ton poste, avec tes droits, avant toute

@@ -62,9 +62,8 @@ tests/
 La chaîne `Validator -> StrictValidator -> LLMOutputValidator` doit être une vraie chaîne de prototypes utilisée intentionnellement, pas juste des classes qui font semblant d'hériter. `LLMOutputValidator` doit pouvoir appeler `super()` pour réutiliser la logique de `StrictValidator`, qui elle-même réutilise celle de `Validator`.
 Utilise au moins un mixin pour composer un comportement transversal (par exemple, la capacité de logger chaque validation) sans le dupliquer dans les 3 classes.
 
-**Du module `04-EPREUVE/04-BIG-APP-SNOOP` (IA native dev) :**
-Le streaming de la réponse de l'Oracle doit être géré token par token, pas attendre la réponse complète avant de traiter quoi que ce soit. `PromptBuilder` doit construire des consigne qui réduisent activement le risque d'hallucination (contexte précis, format de sortie imposé), pas juste balancer la question brute.
-`OutputValidator` doit utiliser un schéma de validation strict (type Zod ou équivalent) : si la sortie de l'Oracle matche pas le schéma attendu, elle est rejetée avant même d'arriver au reste du système.
+**Du module `04-EPREUVE/04-BIG-APP-SNOOP` (lecture et évolution d'une codebase inconnue) :**
+Avant de modifier le pipeline, cartographie ses points d'entrée, ses frontières, ses dépendances et ses tests. Reconstitue le flux réel à partir du code et des traces disponibles ; formule une hypothèse vérifiable sur la zone de panne. Fais ensuite un patch minimal, ajoute un test de non-régression et explique le rayon d'impact. Ce module ne prescrit pas de streaming LLM ni de bibliothèque de validation : ces choix doivent être justifiés par les exigences propres au projet.
 
 **Du module `05-MAITRISE/03-EDGE-CASES` (edge cases) :**
 `knownTraps.js` doit injecter au minimum 4 pièges réels dans les tests : un cas où l'Oracle retourne un JSON tronqué en plein milieu, un cas où une métrique calculée par l'Oracle contient `NaN`, un cas de timeout après 3 secondes, un cas où l'Oracle prétend qu'une comparaison flottante (`0.1 + 0.2 === 0.3`) est vraie alors qu'elle l'est pas.
@@ -114,10 +113,38 @@ Si tu termines cette synthèse proprement : t'as plus un curriculum dans la têt
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Synthèse e : l'oracle qui surveille sa propre folie » à une codebase inconnue et un incident dont les symptômes sont incomplets. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: architecture -->
+
+## Repères de décision
+
+- **Pourquoi :** Les frontières réduisent le coût de changement et clarifient les responsabilités. Elles doivent répondre aux contraintes de l'équipe, des données et de l'exploitation.
+- **Quand l’utiliser / quand l’éviter :** Découpe un système quand une frontière protège une règle ou un rythme de changement. Ne crée pas de microservice tant que l'autonomie, la charge ou la gouvernance ne justifient pas le coût distribué.
+- **Limites :** Chaque frontière ajoute contrats, réseau, déploiement, observabilité et coordination. Un diagramme propre ne prouve ni la faisabilité ni la performance.
+
+## Mécanisme : la version sans magie
+
+Part des cas d'usage, repère invariants et propriétaires de données, définis les contrats, compare les options et mesure les conséquences du changement.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Synthèse e : l'oracle qui surveille sa propre folie** se rattache à ce cas concret : Kintana commence comme monolithe modulaire. Les demandes, réservations et notifications doivent avoir des frontières explicites sans fragmenter trop tôt le déploiement.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Défendre une frontière de domaine Kintana
+
+> **Arc Capsule Corp. / DBZ :** une architecture est le plan du vaisseau et les coûts qu'il impose. Si chaque pièce doit connaître toutes les autres, le vaisseau ne décolle jamais.
+
+**Mission liée à « Synthèse e : l'oracle qui surveille sa propre folie » :** Dessine le flux réel d'une création de demande. Identifie les invariants, propriétaires de données et dépendances ; compare monolithe modulaire et service séparé dans un ADR. Simule une évolution et mesure le nombre de composants touchés.
+
+**Livrable :** diagramme de composants/flux, ADR avec deux options, contrat de frontière et test de changement.
+
+**Critères d’acceptation :** la frontière possède une responsabilité claire ; les données ont un propriétaire ; le coût d'exploitation est explicite ; le microservice n'est pas choisi par prestige ; une condition de révision est écrite.
+
+**Transfert obligatoire :** Le nombre d'équipes ou le volume double. Indique quel signal justifierait de séparer un composant et quel coût tu acceptes.

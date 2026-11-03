@@ -11,7 +11,8 @@ route: complete
 Temps de lecture ~2 min
 
 Acte attendu : restituer. Un grimoire ne s'apprend pas en le lisant : il se récite, puis se
-vérifie. Deux analogies au maximum par terme, suivies de leur limite.
+vérifie. Deux analogies au maximum par terme, suivies de leur limite. Les ressources différées
+restent différées : ne mémorise pas un terme avant que sa leçon ne l'ait enseigné.
 
 ## Ce que tu dois pouvoir restituer
 
@@ -20,10 +21,10 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 
 - [Prérequis du prélude "référentiel"](00-PREREQUIS.md)
 - [Pourquoi ce référentiel ?](01-00-why-referentiel.md)
-- [Micro-quiz : les 15 mots](02-micro_quiz_15_mots.md)
+- [Micro-quiz : les 15 mots](02-micro_quiz_15_mots.md) : à reprendre après les leçons correspondantes, pas à l'entrée
 - [Référentiel de compétences transversales](03-competences.md)
 - [JE NE SAIS PAS ENCORE (mais je sais où regarder)](04-JE_NE_SAIS_PAS_ENCORE.md)
 - [SORTIR D'UN PLATEAU](05-SORTIR_D_UN_PLATEAU.md)
-- [RÉFÉRENTIEL DE COMPÉTENCES : OÙ T'EN ES VRAIMENT](06-where_you_stand.md)
+- [RÉFÉRENTIEL DE COMPÉTENCES : OÙ T'EN ES VRAIMENT](06-where_you_stand.md) : auto-évaluation seulement avec des preuves
 - [INTEMPOREL vs PERISSABLE (tableau de re-audit)](07-intemporel_vs_perissable.md)
 - [Répétition espacée : calendrier explicite sur les six pierres](08-repetition_espacee.md)

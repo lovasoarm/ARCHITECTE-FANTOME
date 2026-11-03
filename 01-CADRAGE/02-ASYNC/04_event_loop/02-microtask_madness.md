@@ -1,6 +1,6 @@
 ---
 stability: intemporel
-last_reviewed: 2026-07
+last_reviewed: 2026-10-31
 depends_on_vendor: false
 cognitive_level: L3
 perturbation_modes: [fausse_piste, solution_concurrente]
@@ -16,78 +16,79 @@ assessment_role: instructional_checkpoint
 <!-- AF-DIAGRAM:event_loop -->
 
 ```text
-┌──────────────┐
-│ Call Stack   │
-└──────┬───────┘
-       │ libère
-       ▼
-┌──────────────┐
-│ Microtasks   │
-└──────┬───────┘
-       │ vide
-       ▼
-┌──────────────┐
-│ Tasks/Timers │
-└──────┬───────┘
-       │
-       └──────────────► Call Stack
+┌────────────────────┐
+│ Job / tâche courant│
+└──────────┬─────────┘
+           │ fin du code courant
+           ▼
+┌────────────────────┐
+│ Microtasks en attente│ ◄── Promise.then / queueMicrotask
+└──────────┬─────────┘
+           │ toutes vidées
+           ▼
+┌────────────────────┐
+│ Hôte : rendu éventuel│
+│ puis prochaine tâche│
+└──────────┬─────────┘
+           └──────────────► nouveau tour
 ```
 
-L’Event Loop reprend le travail lorsque la pile est libérée, en drainant d’abord les microtasks avant les tâches suivantes.
+Modèle simplifié du navigateur : une tâche est exécutée, puis les microtasks en attente sont vidées avant le prochain choix de tâche. Le détail du rendu et des sources de tâches appartient à l'hôte.
 
 <!-- AF-DIAGRAM:microtasks -->
 
 ```text
-        ┌──────────────┐
-        │ Call Stack   │
-        └──────┬───────┘
-               ▼
-        ┌──────────────┐
-        │ Microtasks   │◄──── Promise.then / queueMicrotask
-        └──────┬───────┘
-               ▼
-        ┌──────────────┐
-        │ Task Queue   │◄──── timers / IO
-        └──────────────┘
+      [ PILE D'APPEL ]
+             │ fin du job courant
+             ▼
+      [ MICROTÂCHES ] ◄── réactions Promise / queueMicrotask
+             │ file vidée
+             ▼
+      [ PROCHAIN JOB HÔTE ] ◄── tâche choisie parmi les sources du navigateur
 ```
 
-Les microtasks sont traitées avant de passer à la prochaine task.
+Les microtasks sont traitées au point de contrôle prévu avant la prochaine tâche ordinaire ; ce schéma n'est pas une description universelle de Node.js.
 
 Temps de lecture ~9 min
 
-JS ne fait qu'une chose à la fois.
-Mais il fait des choix sur l'ordre dans lequel il fait ces choses.
-Ces choix ont des règles précises : et si tu les connais pas, ton code se comporte bizarrement sans que tu comprennes pourquoi.
+Dans un agent JavaScript donné, un job s'exécute à la fois.
+Mais l'hôte décide comment les différents travaux sont planifiés et dans quel ordre ils deviennent exécutables.
+Ces règles expliquent pourquoi le code asynchrone peut se comporter bizarrement quand on mélange les modèles du navigateur et de Node.js.
 
 Ce fichier t'apprend à prédire l'ordre d'exécution avant de lancer le code.
 C'est ça, comprendre le moteur.
 
 ---
 
-## 1) LE MOTEUR JS : UN SEUL THREAD, DEUX FILES D'ATTENTE
+## 1) LE MODÈLE DE BASE : UNE EXÉCUTION PAR AGENT, PLUSIEURS SOURCES DE TRAVAIL
 
-JS est single-threaded : une seule chose à la fois, pas de parallélisme natif.
-Mais le moteur gère deux files d'attente avec des priorités différentes.
+Un agent JavaScript exécute un job à la fois sur son thread d'exécution. Un environnement peut toutefois utiliser plusieurs agents : par exemple, des Web Workers ont leurs propres contextes d'exécution et leurs propres boucles d'événements.
 
-```
-CALL STACK      MICROTASK QUEUE    MACROTASK QUEUE
-(exécution)     (haute priorité)    (basse priorité)
------------     ----------------    ---------------
-code sync      Promise.then()     setTimeout()
-           queueMicrotask()    setInterval()
-           MutationObserver    setImmediate()
-           await (résolution)   I/O callbacks
-```
-
-La règle d'or :
+Pour comprendre un script navigateur simple, utilise ce modèle :
 
 ```
-call stack vide --> vider toute la microtask queue --> prendre UNE macrotask --> recommencer
+PILE D'APPEL       FILE DE MICROTÂCHES      FILES DE TÂCHES DE L'HÔTE
+(exécution)        (Promises, queueMicrotask) (timers, événements, etc.)
+-----------        ------------------------- -------------------------
+code synchrone     réactions Promise        callbacks planifiés par l'hôte
+                   queueMicrotask()
+                   MutationObserver
 ```
 
-C'est ça l'event loop.
+Dans le modèle navigateur, quand une tâche se termine, les microtasks en attente sont vidées avant le prochain tour de tâches. Le navigateur peut ensuite effectuer un rendu avant de poursuivre.
 
+```text
+fin du job courant
+       ↓
+vider les microtasks en attente
+       ↓
+rendu éventuel / prochaine tâche de l'hôte
+       ↺
 ```
+
+**Vocabulaire :** « macrotask » est un raccourci pédagogique souvent utilisé pour parler d'une tâche ordinaire ; ce n'est pas le nom d'une file unique imposée à tous les runtimes. `setImmediate()` et `process.nextTick()` appartiennent à Node.js, pas au modèle navigateur. Les détails de l'ordonnancement Node.js sont différents : ne mélange pas les deux modèles.
+
+````
 CALL STACK       WEB APIs / Node APIs    TASK QUEUES
 ----------       --------------------    -----------
 | fn() | ---------> | fetch (réseau)  |     Microtask : [ resolvePromise() ]
@@ -123,10 +124,11 @@ terminee.then(() => ordreB.push("reaction Promise après résolution"));
 setTimeout(() => console.log("B :", ordreB), 10);
 // B attendu : ["callback timer qui résout", "reaction Promise après résolution"].
 // Le callback timer doit d'abord s'exécuter pour résoudre la promesse.
-```
+````
 
 Ne retiens donc pas « Promise toujours avant timer ». Demande-toi : **quand la réaction est-elle devenue éligible, et quel contexte d'exécution l'a mise en file ?** La comparaison entre navigateurs et Node peut en plus dépendre de la phase et du contexte d'où le code est lancé.
-```
+
+````
 
 ---
 
@@ -148,7 +150,7 @@ function mission(ninja) {
 }
 
 mission("Naruto");
-```
+````
 
 Visualisation de la pile :
 
@@ -422,3 +424,11 @@ La microtask queue est **drainée entièrement** entre deux macrotasks. Une micr
 
 Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
 Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+
+### Frontière du modèle et références
+
+Le diagramme principal de cette leçon est le modèle simplifié du navigateur. Les task sources, le rendu, les Workers et le runtime Node.js ont des règles propres ; le diagramme n'est pas un simulateur universel.
+
+- [MDN : Guide approfondi des microtasks](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth)
+- [MDN : Modèle d'exécution JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Execution_model)
+- [Node.js : Event Loop, timers et `process.nextTick`](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick)

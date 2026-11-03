@@ -23,7 +23,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [Exercice 10 : requêtes paramétrées et injection SQL](10-EXO-VERIFICATION.md)
 
 - [50-data_modeling_minimini_projet.md](50-data_modeling_minimini_projet.md)
-- [EXO LECTURE : 15-25 minutes (Databases)](07-EXO_LECTURE.md)
+- [EXO LECTURE : ~20 minutes : un cycle (Databases)](07-EXO_LECTURE.md)
 - [Exercice 09 : analyser le risque de suppression multi-tenant](09-EXO-VERIFICATION.md) : identifier la portée, les risques et les contrôles métier.
 - [Exercice 97 : laboratoire PostgreSQL transactionnel](97-EXO-VERIFICATION.md) : exécuter, vérifier et annuler une purge contrôlée.
 

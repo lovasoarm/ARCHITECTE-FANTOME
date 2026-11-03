@@ -2,14 +2,22 @@
 perishability_id: PER-0044
 
 stability: perissable
-last_reviewed: 2026-08
+last_reviewed: 2026-11-03
 depends_on_vendor: true
 cognitive_level: L4
-freshness_registry_id: PER-0044
-freshness_audit_date: 2026-10-30
-freshness_status: date_declaree_non_revalidee_dans_cette_edition
-review_due: 2027-01-28
-review_status: date_declaree_non_revalidee_dans_cette_edition
+source_verified_on: "2026-11-03"
+freshness_status: "verified_current"
+source_url: https://owasp.org/Top10/2025/
+source_type: primary
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "OWASP Top 10:2025 : noms et ordre des dix catégories contrôlés sur la publication officielle. Cela ne certifie ni l’exhaustivité de la checklist locale ni la sécurité d’une application."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_current » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OWASP_TOP10_2025_CATEGORIES_AND_ORDER_CONFIRMED_2026-11-03"
+claim_reviewed_on: "2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
 ---
 > **SCÈNE CRAZYDEVS : armure Garo :** une protection qui existe mais n’est jamais vérifiée est juste un costume brillant. Chaque garde-fou doit être testable et attaquable.
 
@@ -20,6 +28,8 @@ Temps de lecture ~15 min
 L’OWASP Top 10:2025 est la taxonomie de référence de ce module. Elle distingue dix grandes familles de risques : contrôle d’accès, configuration, chaîne d’approvisionnement, cryptographie, injection, conception, authentification, intégrité logiciel/données, journalisation/alerting et gestion des conditions exceptionnelles.
 
 Source primaire : https://owasp.org/Top10/2025/
+
+**Portée du contrôle documentaire du 3 novembre 2026 :** les dix noms de catégories et leur ordre ont été comparés à la page officielle. Cela ne valide pas toutes les recommandations de cette checklist ni la sécurité d’une application.
 
 > **Règle pédagogique :** une catégorie n’est pas une preuve de sécurité. Pour chaque risque, identifie le mécanisme, le garde-fou, le test et le signal d’échec.
 

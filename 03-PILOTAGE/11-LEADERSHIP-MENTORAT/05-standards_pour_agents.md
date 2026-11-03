@@ -7,6 +7,13 @@ perturbation_modes: [fausse_piste, regression]
 anti_recipe_key: fausse_piste+regression
 transfer_distance: low
 assessment_role: staff_mastery
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "03-PILOTAGE/11-LEADERSHIP-MENTORAT/01-00-why-leadership-mentorat.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 03-PILOTAGE/11-LEADERSHIP-MENTORAT/01-00-why-leadership-mentorat.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 > **SCÈNE CRAZYDEVS : conseil de Konoha :** cinq ingénieurs, cinq idées, une personne qui ne parle plus depuis dix minutes. Ton rôle n'est pas seulement de gagner l'argument : c'est de récupérer l'information que le silence est en train de faire disparaître.

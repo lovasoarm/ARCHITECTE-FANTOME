@@ -33,13 +33,11 @@ Rédige une note courte :
 
 Puis réponds à trois objections agressives : « tu dramatises », « fais juste un effort », « tu as promis ».
 
-### Critère
+## Critère
 
 Le ton doit rester factuel, non punitif, et ne pas cacher une information défavorable pour protéger ton statut.
 
-<!-- AF-P0-2026-10-30: missing_practice -->
-
-### Pratique autonome : production attendue
+## Pratique autonome : production attendue
 
 À partir de « BAD-NEWS-UPWARD : porter la mauvaise nouvelle sans mentir », produis une variante indépendante du cas suivant : Une décision locale réduit le coût d’une équipe mais crée une dépendance pour quatre autres ; tu dois arbitrer le système global et obtenir l’adoption. Travaille sans recopier la solution de la leçon ; conserve l’entrée, les hypothèses, la sortie attendue et un artefact vérifiable (code, requête, schéma, trace ou décision).
 

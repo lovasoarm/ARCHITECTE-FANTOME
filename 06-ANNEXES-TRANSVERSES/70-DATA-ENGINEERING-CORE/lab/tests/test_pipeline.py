@@ -1,3 +1,4 @@
+import csv
 import json
 import tempfile
 import unittest
@@ -13,13 +14,17 @@ class PipelineTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             result = run_pipeline(ROOT / "data" / "events.csv", Path(temporary))
             self.assertEqual(result["counts"], {
-                "read": 8, "accepted": 3, "duplicates": 1, "quarantined": 4
+                "read": 8, "accepted": 3, "duplicates": 1,
+                "identical_duplicates": 0, "conflicting_duplicates": 1, "quarantined": 4
             })
             clean = (Path(temporary) / "clean" / "events.jsonl").read_text()
             rejected = (Path(temporary) / "quarantine" / "events.jsonl").read_text()
             self.assertEqual(len(clean.strip().splitlines()), 3)
             self.assertEqual(len(rejected.strip().splitlines()), 4)
             self.assertIn("invalid_timestamp", rejected)
+            conflicts = (Path(temporary) / "duplicate_conflicts" / "events.jsonl").read_text()
+            self.assertIn("conflicting_duplicate_event_id", conflicts)
+            self.assertIn("\"value\": \"22\"", conflicts)
 
     def test_idempotent_replay_produces_identical_bytes(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -67,6 +72,58 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(len(result["source_sha256"]), 64)
             self.assertEqual(len(result["outputs"]["clean/events.jsonl"]), 64)
             self.assertTrue((output / "manifest.json").is_file())
+
+    def test_identical_duplicate_is_counted_separately_from_conflict(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = root / "events.csv"
+            source.write_text(
+                "event_id,station_id,occurred_at,metric,value\n"
+                "E1,S1,2026-10-30T08:00:00Z,temperature_c,20\n"
+                "E1,S1,2026-10-30T08:00:00Z,temperature_c,20.0\n",
+                encoding="utf-8",
+            )
+            result = run_pipeline(source, root / "out")
+            self.assertEqual(result["counts"]["accepted"], 1)
+            self.assertEqual(result["counts"]["duplicates"], 1)
+            self.assertEqual(result["counts"]["identical_duplicates"], 1)
+            self.assertEqual(result["counts"]["conflicting_duplicates"], 0)
+
+    def test_malformed_row_width_is_quarantined(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = root / "events.csv"
+            source.write_text(
+                "event_id,station_id,occurred_at,metric,value\n"
+                "E1,S1,2026-10-30T08:00:00Z,temperature_c,20,unexpected\n",
+                encoding="utf-8",
+            )
+            result = run_pipeline(source, root / "out")
+            self.assertEqual(result["counts"]["accepted"], 0)
+            self.assertEqual(result["counts"]["quarantined"], 1)
+            quarantine = (root / "out" / "quarantine" / "events.jsonl").read_text()
+            self.assertIn("row_width_does_not_match_header", quarantine)
+
+    def test_input_output_reconciliation_on_3000_rows(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = root / "events.csv"
+            with source.open("w", encoding="utf-8", newline="") as stream:
+                writer = csv.writer(stream)
+                writer.writerow(["event_id", "station_id", "occurred_at", "metric", "value"])
+                for index in range(3000):
+                    writer.writerow([f"E{index:05d}", "S1", "2026-10-30T08:00:00Z", "temperature_c", 20 + (index % 10)])
+                for index in range(100):
+                    writer.writerow([f"E{index:05d}", "S1", "2026-10-30T08:00:00Z", "temperature_c", 20 + (index % 10)])
+                for index in range(10):
+                    writer.writerow([f"BAD{index}", "S1", "invalid-time", "temperature_c", 20])
+            result = run_pipeline(source, root / "out")
+            counts = result["counts"]
+            self.assertEqual(counts["read"], 3110)
+            self.assertEqual(counts["accepted"], 3000)
+            self.assertEqual(counts["identical_duplicates"], 100)
+            self.assertEqual(counts["quarantined"], 10)
+            self.assertEqual(counts["read"], counts["accepted"] + counts["duplicates"] + counts["quarantined"])
 
 
 if __name__ == "__main__":

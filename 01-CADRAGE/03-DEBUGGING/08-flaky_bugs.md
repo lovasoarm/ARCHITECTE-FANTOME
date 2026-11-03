@@ -9,65 +9,54 @@ assessment_role: instructional_checkpoint
 
 > **SCÈNE CRAZYDEVS : traqueur de jutsu :** Naruto voit l'explosion finale et accuse le dernier fichier touché. Mauvais réflexe. Ton enquête doit remonter le flux, figer les hypothèses et retrouver la première trace qui ne colle plus.
 
-# 07 : Flaky bugs (les bugs non déterministes)
+# 07 : Flaky bugs (les tests non déterministes)
 
 Temps de lecture ~5 min
 
-> **INTEMPOREL** : race conditions, timing, ordre d'exécution : ces bugs
-> existent dans tous les langages avec du concurrent. Le protocole est le même.
+Un test est _flaky_ lorsqu'il peut réussir ou échouer sans changement intentionnel du code ou des données. C'est un symptôme à investiguer, pas une raison de relancer indéfiniment jusqu'à obtenir PASS. Les causes possibles incluent les courses, l'horloge, le réseau, l'isolation, les données partagées ou un test lui-même incorrect.
 
-## Le piège
-
-Un test passe 99 fois sur 100. Le junior dit "flaky, on relance". Le senior
-dit "**il y a un bug**, la CI ne fait que le révéler".
-
-**Règle d'or Thor** : un test flaky n'existe pas. Il y a un bug de
-synchronisation caché derrière.
-
-## Mission
-
-Voici un compteur incrémenté depuis N callbacks asynchrones :
+## Mission : repérer une mise à jour perdue
 
 ```js
-let count = 0;
-async function bump() {
-  const v = count; // 1. lecture
-  await Promise.resolve(); // 2. yield
-  count = v + 1; // 3. écriture
+async function reproduireMiseAJourPerdue() {
+  let count = 0;
+
+  async function bump() {
+    const v = count; // lecture
+    await Promise.resolve(); // point de suspension
+    count = v + 1; // écriture depuis la valeur lue
+  }
+
+  await Promise.all(Array.from({ length: 1000 }, bump));
+  console.log(count); // 1, pas 1000 : ce scénario est déterministe sur un agent JS
 }
-await Promise.all(Array.from({ length: 1000 }, bump));
-console.log(count); // attendu 1000 : obtenu ?
+
+reproduireMiseAJourPerdue();
 ```
+
+Ce laboratoire ne dépend pas d'un tirage aléatoire : les 1 000 fonctions lisent `0` avant que les continuations après `await` écrivent `1`. C'est une **mise à jour perdue déterministe**, pas un exemple de test flaky ni une preuve de concurrence entre instructions synchrones.
 
 Tâches :
 
-1. **Reproduis** le bug avec un seed fixe (utilise un pRNG déterministe :
-   [mulberry32](https://stackoverflow.com/a/47593316)) pour ordonnancer les
-   yields dans un ordre reproductible.
-2. **Logs différentiels** : instrumente les trois étapes (lecture, yield,
-   écriture) avec un `traceId` par appel. Compare deux exécutions et repère
-   les entrelacements fautifs.
-3. **Replay déterministe** : écris un mini-scheduler qui rejoue la même
-   séquence d'entrelacements deux fois de suite. Le bug doit apparaître au
-   même endroit.
-4. **Corrige** : propose deux solutions (une mutex `p-limit`-style et une
-   variable atomique via `Atomics` sur un `SharedArrayBuffer`) et discute
-   leurs coûts.
+1. Explique l'ordre des lectures et des écritures, sans inventer de hasard.
+2. Corrige avec une mise à jour séquentielle ou une file/mutex adapté au contexte.
+3. Explique pourquoi `Atomics` ne protège pas un simple nombre JavaScript ordinaire : il s'applique aux vues typées sur mémoire partagée (`SharedArrayBuffer`) échangée entre Workers.
+4. Pour un compteur partagé entre processus ou instances serveur, propose une mise à jour atomique ou une transaction côté stockage partagé.
+5. Distingue une preuve de correction structurelle d'un test empirique répété.
+
+## Contrôler le hasard dans un test
+
+`Math.random()` ne possède pas d'API standard de seed. Pour rendre une branche déterministe, injecte une source aléatoire : `computeTotal([10, 20], () => 0)` force ici la branche rare et expose le bug pédagogique (`NaN`) ; `computeTotal([10, 20], () => 0.5)` suit la branche normale et retourne `30`. La branche rare est volontairement fautive : le test doit d'abord la révéler, puis tu corriges la règle métier (ici, un bonus absent doit être représenté par `0`, pas `undefined`). Voir [`11A-flaky.js`](./11A-flaky.js).
 
 ## Livrable
 
-- `WRITE_UP.md` : hypothèse → expérience → conclusion → correctif.
-- Le correctif doit passer 10 000 exécutions consécutives.
-
-## (attention) Ce que l'analogie "flaky" cache
-
-"Flaky" suggère un défaut du **test**. En réalité, c'est un défaut du **code**
-ou du **modèle mental**. Renommer le problème est déjà la moitié de la solution.
+- `WRITE_UP.md` : hypothèse → ordre observé → invariant → correctif → limite.
+- Un test qui échoue avec le comportement fautif et passe après correction.
+- Une justification du choix de synchronisation selon le périmètre : fonction, processus, base partagée ou plusieurs services.
 
 ## Transférable
 
-Même protocole en Python (`asyncio`), Go (goroutines + `race` detector),
-Rust (`loom` pour tester tous les entrelacements).
+Le même raisonnement se retrouve dans Python (`asyncio`), Go (goroutines et race detector) et Rust (outils de test d'entrelacements). Les règles de mémoire et d'ordonnancement diffèrent selon le langage : ne transpose pas mécaniquement le modèle JavaScript.
 
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 

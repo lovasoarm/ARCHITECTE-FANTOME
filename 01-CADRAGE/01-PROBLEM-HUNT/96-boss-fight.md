@@ -32,11 +32,16 @@ Si ton horodatage est postérieur à ta première lecture de la grille, ce boss-
 quelle que soit la qualité de ta réponse. Tu ne triches pas contre un correcteur : tu
 triches contre le seul entraînement à la pression que ce niveau te propose.
 
+## Choisir la même voie que dans le challenge
+
+Reprends la voie (`TERRAIN` ou `SIMULATION`) que tu as déclarée dans `95-challenge.md` : ne change pas de provenance pour améliorer artificiellement ta preuve.
+
+- **Si ta voie est SIMULATION :** tu joues la scène fictive du réseau vétérinaire. Les signaux du scénario restent des `HYPOTHÈSES DE SIMULATION`. Tu peux défendre une décision dans le cadre de l'exercice, mais ce Boss ne valide aucune interview, observation ni métrique de terrain.
+- **Si ta voie est TERRAIN :** utilise le même problème réel et les faits dont tu as l'autorisation de parler. Distingue les observations, les propos rapportés, les hypothèses et les inconnues ; retire toute donnée confidentielle.
+
 ## La situation
 
-Tu es sur le projet du réseau de cabinets vétérinaires (voir `95-challenge.md`). Ton document de
-cadrage est terminé et validé par la direction. Une semaine plus tard, en réunion de lancement
-technique, le directeur général : qui n'était pas présent lors du cadrage initial : dit ceci :
+Tu es sur le cas documenté dans `95-challenge.md`. Dans la voie Simulation, il s'agit du réseau vétérinaire fictif ; dans la voie Terrain, transpose la situation à ton propre contexte et présente-la comme une variation de discussion, pas comme une parole réellement prononcée. Ton document de cadrage est terminé dans le cadre de l'exercice. Une semaine plus tard, en réunion de lancement technique, le directeur général : qui n'était pas présent lors du cadrage initial : dit ceci :
 
 > "En fait j'ai réfléchi, ce qu'il nous faut vraiment c'est une appli complète de gestion de
 > rendez-vous en ligne pour les propriétaires d'animaux, avec paiement intégré. Les urgences,
@@ -60,9 +65,9 @@ réunion, puis un paragraphe d'analyse à part expliquant ta stratégie. Ta rép
 - Distinguer clairement, dans ton argumentation, le job to be done déjà identifié (urgences)
   du nouveau besoin proposé (image de marque, rendez-vous en ligne), sans prétendre qu'ils
   sont incompatibles à terme.
-- Utiliser au moins un signal faible ou une donnée concrète de ton document de cadrage pour
-  ancrer ta réponse dans du réel plutôt que dans un principe abstrait ("il faut suivre le
-  cadrage").
+- Utiliser au moins un signal faible ou une donnée concrète de ton document de cadrage et
+  rappeler sa provenance. En voie Terrain, le signal doit être sourcé et autorisé ; en voie
+  Simulation, il reste une hypothèse fictive et ne doit pas être présenté comme un fait réel.
 - Proposer une voie qui ne soit ni un refus net ni une capitulation totale sur le mois annoncé.
 
 ---
@@ -75,7 +80,7 @@ _Ne fais défiler au-delà de cette ligne qu'une fois ta réponse écrite et hor
 | --------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | Respect du besoin de l'interlocuteur          | La réponse reconnaît l'enjeu business réel du directeur               | La réponse le traite comme une distraction sans valeur           |
 | Usage du cadrage comme outil, pas comme dogme | Le cadrage sert à éclairer la décision, pas à la bloquer par principe | La réponse se limite à "on a déjà décidé, on ne change pas"      |
-| Ancrage dans le réel                          | Au moins un signal faible ou une donnée concrète est cité             | La réponse reste abstraite, sans preuve terrain                  |
+| Ancrage et provenance                         | Un signal est cité avec sa provenance ; la simulation reste étiquetée | Une hypothèse est présentée comme un fait observé                |
 | Proposition constructive                      | Une troisième voie est proposée, avec un chemin concret               | La réponse est un simple oui ou un simple non                    |
 | Tenue de la relation                          | Le ton reste collaboratif, pas défensif ni condescendant              | Le ton laisse penser que le directeur a tort d'avoir une opinion |
 
@@ -85,7 +90,7 @@ _Ne fais défiler au-delà de cette ligne qu'une fois ta réponse écrite et hor
 | --------------------------------------------- | ------- |
 | Respect du besoin de l'interlocuteur          | 15      |
 | Usage du cadrage comme outil, pas comme dogme | 25      |
-| Ancrage dans le réel                          | 20      |
+| Ancrage et provenance                         | 20      |
 | Proposition constructive                      | 20      |
 | Tenue de la relation                          | 20      |
 | **Total**                                     | **100** |

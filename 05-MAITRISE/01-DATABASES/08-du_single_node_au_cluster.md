@@ -113,12 +113,12 @@ Combinaison réelle : on **partitionne** pour scaler l'écriture, puis on **rép
 
 ## 5) SPLIT-BRAIN : LES DEUX MOITIÉS QUI SE CROIENT TOUTES SEULES CHEF
 
-Deux répliques se perdent de vue. Chacune se croit leader. Chacune accepte des écritures. Quand le réseau revient, il y a deux versions incompatibles de la vérité.
+Deux répliques se perdent de vue. Dans le scénario défaillant ci-dessous, le follower est promu à tort sans quorum ni fencing ; les deux côtés acceptent alors des écritures. Quand le réseau revient, il y a deux versions incompatibles de la vérité.
 
 ```text
-AVANT :         Leader --replique--> Follower
-PARTITION :     Leader  X  ??? Follower devient auto-leader
-APRES :         Leader (v1)      Leader (v2)    <-- CONFLIT
+AVANT :                    Leader (v1) --replique--> Follower
+PARTITION SANS GARDE-FOU : Leader (v1)  X  Follower promu à tort (v2)
+APRES :                    Leader (v1)      Leader (v2)    <-- CONFLIT
 ```
 
 Parades classiques :
@@ -163,3 +163,33 @@ Passer du single-node au cluster impose de choisir sous partition (CAP), de déc
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 
 Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+
+<!-- AF-LESSON-PROFILE: database -->
+
+## Repères de décision
+
+- **Pourquoi :** La modélisation et les contraintes protègent l'intégrité des données même quand plusieurs clients ou processus agissent en même temps.
+- **Quand l’utiliser / quand l’éviter :** Utilise les transactions et contraintes pour les invariants métier. Choisis le modèle selon les accès réels ; ne choisis pas NoSQL juste parce que le schéma semble flexible.
+- **Limites :** La base ne choisit pas les bonnes règles métier à ta place. Les index coûtent en écriture et stockage ; l'isolation a un coût ; les garanties varient selon le moteur et sa configuration.
+
+## Mécanisme : la version sans magie
+
+Part des requêtes et invariants, conçois clés et contraintes, exécute les écritures dans une transaction, puis vérifie le comportement concurrent et les migrations.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Du single-node au cluster : le pont vers le distribué** se rattache à ce cas concret : Kintana ne doit pas attribuer le dernier créneau à deux demandeurs ni laisser un agent lire le dossier d'un autre tenant.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Intégrité transactionnelle des demandes et créneaux
+
+> **Arc One Piece / Grand Line :** la base est le registre du navire. Si deux personnes modifient la même ligne sans règle, le journal de bord devient une fiction.
+
+**Mission liée à « Du single-node au cluster : le pont vers le distribué » :** Modélise une partie du domaine Kintana avec clés, contraintes et index justifiés. Écris une transaction qui réserve le dernier créneau, puis exécute deux requêtes concurrentes dans une base de test pour vérifier qu'une seule gagne.
+
+**Livrable :** DDL/migration, requêtes d'accès, transaction, test de concurrence et plan de restauration de fixture.
+
+**Critères d’acceptation :** les invariants critiques sont ancrés côté base ; le test concurrent est réellement exécuté sur le moteur annoncé ; les index sont justifiés par les requêtes ; la migration est réversible ou son risque est documenté.
+
+**Transfert obligatoire :** Ajoute un deuxième centre de service et un historique plus long. Vérifie index, isolation, rétention et accès par tenant.

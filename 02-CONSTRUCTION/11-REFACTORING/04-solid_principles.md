@@ -1,7 +1,12 @@
 ---
 stability: stable
 acte: naviguer
-canonical_resource: ../14-ARCHITECTURE-PATTERNS/03-solid_principles.md
+canonical_resource: "02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md"
+source_type: "internal"
+source_url: null
+source_verified_on: null
+freshness_status: "not_verified"
+source_scope: "Alias interne conservé pour compatibilité de navigation ; le document canonique SOLID est la leçon Architecture Patterns."
 ---
 
 # SOLID : renvoi vers la leçon canonique
@@ -12,9 +17,7 @@ Les cinq principes SOLID sont expliqués dans la ressource canonique : [SOLID da
 
 Dans le parcours Refactoring, utilise d'abord cette leçon, puis réalise le [mini-projet SOLID](51-solid_principles_minimini_projet.md) en partant des tests de caractérisation. La cible du refactoring est le couplage réellement observé, pas l'application mécanique d'un acronyme.
 
-<!-- AF-P0-2026-10-30: missing_practice -->
-
-### Pratique autonome : production attendue
+## Pratique autonome : production attendue
 
 Refactorise une règle qui change pour plusieurs raisons. Sépare les axes de changement sans créer une abstraction qui n’a qu’un consommateur.
 

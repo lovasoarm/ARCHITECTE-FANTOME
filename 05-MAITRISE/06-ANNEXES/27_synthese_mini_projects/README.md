@@ -11,8 +11,8 @@ Ce dossier contient les synthèses de bloc (A → G) qui recoupent plusieurs
 mini-projets, ainsi que trois exercices de méta-niveau
 (`chaos_day`, `portfolio`, `spec_drift`).
 
-Chaque synthèse répond à la même question : *« qu'est-ce que ces 3 à 5
-projets t'ont vraiment appris qu'un seul n'aurait pas pu t'apprendre ? »*
+Chaque synthèse répond à la même question : _« qu'est-ce que ces 3 à 5
+projets t'ont vraiment appris qu'un seul n'aurait pas pu t'apprendre ? »_
 
 ## Ordre de lecture
 
@@ -20,15 +20,15 @@ Ne pas lire ces fichiers avant d'avoir fini les mini-projets qu'ils
 couvrent. Sinon tu lis une synthèse d'un chemin que tu n'as pas parcouru,
 ce qui donne l'illusion de savoir sans le vécu.
 
-| Fichier | Couvre les projets | Prérequis | Temps | Output attendu |
-|---|---|---|---:|---|
-| `synthese_A.md` | 01 → 03 | modules `00-SOCLE/04-FUNDAMENTALS` a `02-CONSTRUCTION/04-MATH-BASICS` | ~30 min | Une phrase par pierre travaillée |
-| `synthese_B.md` | 04 → 05 | module 08-11 | ~30 min | Diagramme cache/state |
-| `synthese_C.md` | 06 → 08 | module 12-17 | ~30 min | Choix technique argumenté |
-| `synthese_D.md` | 09 → 10 | module `01-CADRAGE/03-DEBUGGING`, 13 | ~30 min | Debug playbook perso |
-| `synthese_E.md` | 11 → 13 | module `01-CADRAGE/02-ASYNC`, 08, 21 | ~40 min | 3 patterns concurrence retenus |
-| `synthese_F_bloc_25.md` | 14 + module `05-MAITRISE/02-SCALABILITY` | module `05-MAITRISE/02-SCALABILITY`, 26 | ~40 min | Trade-off scalability documenté |
-| `synthese_G_bloc_30.md` | 15 → 17 | tout le bloc 30 | ~60 min | Retro globale + prochain projet |
+| Fichier                 | Couvre les projets                       | Prérequis                                                             |   Temps | Output attendu                   |
+| ----------------------- | ---------------------------------------- | --------------------------------------------------------------------- | ------: | -------------------------------- |
+| `synthese_A.md`         | 01 → 03                                  | modules `00-SOCLE/04-FUNDAMENTALS` a `02-CONSTRUCTION/04-MATH-BASICS` | ~30 min | Une phrase par pierre travaillée |
+| `synthese_B.md`         | 04 → 05                                  | module 08-11                                                          | ~30 min | Diagramme cache/state            |
+| `synthese_C.md`         | 06 → 08                                  | module 12-17                                                          | ~30 min | Choix technique argumenté        |
+| `synthese_D.md`         | 09 → 10                                  | module `01-CADRAGE/03-DEBUGGING`, 13                                  | ~30 min | Debug playbook perso             |
+| `synthese_E.md`         | 11 → 13                                  | module `01-CADRAGE/02-ASYNC`, 08, 21                                  | ~40 min | 3 patterns concurrence retenus   |
+| `synthese_F_bloc_25.md` | 14 + module `05-MAITRISE/02-SCALABILITY` | module `05-MAITRISE/02-SCALABILITY`, 26                               | ~40 min | Trade-off scalability documenté  |
+| `synthese_G_bloc_30.md` | 15 → 17                                  | tout le bloc 30                                                       | ~60 min | Retro globale + prochain projet  |
 
 ## Exercices méta
 
@@ -55,3 +55,9 @@ Ces trois exercices sont indépendants des synthèses A → G : ils s'appliquent
 - [Bloc 26-30 : observabilité, équipe, edge cases, agents IA, mini-projets](11-synthese_G_bloc_30.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.

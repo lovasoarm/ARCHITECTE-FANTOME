@@ -35,10 +35,10 @@ Le CORE de 16 semaines / 192 h est une route facultative d’orientation/accél�
 
 ## Niveau actuel
 
-**À remplir après chaque Boss :**
+**À remplir après chaque preuve ou gate :**
 
-- Niveau :
-- Boss dernier validé :
+- Bloc / module actuel :
+- Dernière preuve ou gate validée :
 - Projet fil rouge :
 - Dernière preuve produite :
 - Blocage actuel :
@@ -61,9 +61,9 @@ Le [Pont preuve terrain](06-ANNEXES-TRANSVERSES/43-PONT-PREUVE-TERRAIN.md) expli
 
 Utilise [NOYAU DUR STAFF / PRINCIPAL 2035+](06-ANNEXES-TRANSVERSES/40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md) pour distinguer les capacités qui doivent devenir durables des spécialisations DEPTH/VAULT. Cette carte définit les capacités durables de la formation complète ; elle ne se réduit pas à un budget d’heures du CORE.
 
-## Parcours canonique par paliers
+## Parcours canonique par blocs et sous-étape
 
-Les étapes ci-dessous sont des paliers de progression, pas un calendrier. Les gates de la [formation complète](FORMATION-COMPLETE-INGENIERIE.md) priment sur la lecture séquentielle et sur toute durée indicative.
+Les sections ci-dessous décrivent les six blocs physiques (`00` à `05`) et la sous-étape `02bis` à l'intérieur de Construction ; elles ne sont pas les paliers de capacité `A` à `H`. Ce n'est pas un calendrier. Les gates de la [formation complète](FORMATION-COMPLETE-INGENIERIE.md) et les prérequis de la Route 58 priment sur toute durée indicative.
 
 ### 00 : SOCLE
 
@@ -71,7 +71,7 @@ Les étapes ci-dessous sont des paliers de progression, pas un calendrier. Les g
 
 **Ce que tu dois produire :** environnement de travail, premières fonctions testées, notes de raisonnement et premier Boss.
 
-**Boss :** prouver que tu peux lire, modifier et expliquer du code sans dépendre d’un tutoriel pas à pas.
+**Preuves de sortie :** accomplir les critères déclarés par les modules du Socle et la Route 58. Le boss de Mindset est local à ce module ; il n'existe pas de boss unique obligatoire pour les six modules du bloc.
 
 **Prochaine étape :** 01 : CADRAGE.
 
@@ -81,7 +81,7 @@ Les étapes ci-dessous sont des paliers de progression, pas un calendrier. Les g
 
 **Ce que tu dois produire :** problème fil rouge cadré, MVP, hypothèses de debug et stratégie d’erreur.
 
-**Boss :** défendre ce que tu construis et surtout ce que tu refuses de construire.
+**Preuves de sortie :** cadrage, hypothèses et MVP démontrés par les challenges locaux ; les boss de Problem Hunt et MVP Split ne s'appliquent qu'aux modules qui les déclarent.
 
 **Prochaine étape :** 02 : CONSTRUCTION.
 
@@ -91,7 +91,7 @@ Les étapes ci-dessous sont des paliers de progression, pas un calendrier. Les g
 
 **Ce que tu dois produire :** mini-projets, tests, refactorings, preuves de performance, premiers contrats et un client Flutter relié au système, sans transformer Flutter en fin en soi.
 
-**Boss :** livrer un système qui tient quand les contraintes changent.
+**Preuves de sortie :** mini-projets validés par leurs gates propres et épreuves intercalées de Construction uniquement lorsque leurs critères de préparation nomment les compétences concernées.
 
 **Prochaine étape :** 2bis : ARCHITECTURE.
 
@@ -101,7 +101,7 @@ Les étapes ci-dessous sont des paliers de progression, pas un calendrier. Les g
 
 **Ce que tu dois produire :** ADR, diagrammes, contrats, contexte métier et prototype d’architecture.
 
-**Boss :** défendre une vraie décision face à plusieurs solutions plausibles.
+**Preuves de sortie :** ADR, modèle métier, contrats et preuves du laboratoire d'architecture ; la sous-étape 02bis ne crée pas un bloc physique supplémentaire.
 
 **Prochaine étape :** 03 : PILOTAGE.
 
@@ -111,7 +111,7 @@ Les étapes ci-dessous sont des paliers de progression, pas un calendrier. Les g
 
 **Ce que tu dois produire :** budget, SLO, revue sécurité, signaux d’observabilité et standards de collaboration.
 
-**Boss :** réagir à une situation sous contrainte, pas réciter une définition.
+**Preuves de sortie :** exercices de sécurité, fiabilité, observabilité et exploitation, plus les contrôles locaux déclarés par les modules. Aucun boss unique n'est inventé au niveau du bloc.
 
 **Prochaine étape :** 04 : ÉPREUVE.
 
@@ -121,7 +121,7 @@ Les étapes ci-dessous sont des paliers de progression, pas un calendrier. Les g
 
 **Ce que tu dois produire :** investigation de codebase, modification contrôlée et capstone complet.
 
-**Boss :** relier technique, risque, coût et décision sans casser ce qui existe déjà.
+**Preuves de sortie :** capstone, preuves de maîtrise et dossier Staff selon les gates annoncés ; les épreuves de bloc et boss locaux sont requis seulement là où ils sont explicitement définis.
 
 **Prochaine étape :** 05 : MAÎTRISE.
 
@@ -137,9 +137,9 @@ Les étapes ci-dessous sont des paliers de progression, pas un calendrier. Les g
 
 ## Mode Survie : vue accélérée facultative, pas la formation complète
 
-Le **Mode Survie** est une sélection accélérée des preuves déjà présentes dans le parcours canonique. Il ne crée ni niveaux, ni prérequis, ni système de validation parallèle : tu conserves le même `Niveau`, le même `Boss` et les mêmes preuves que dans `PROGRESSION.md`. Il sert uniquement à prioriser les compétences immédiatement utiles à l’employabilité.
+Le **Mode Survie** est une sélection accélérée des preuves déjà présentes dans le parcours canonique. Il ne crée ni niveaux, ni prérequis, ni système de validation parallèle : tu conserves les mêmes blocs, dépendances et preuves que dans `PROGRESSION.md`. Il sert uniquement à prioriser les compétences immédiatement utiles à l’employabilité.
 
-Quand ton rythme change, reprends simplement le parcours canonique au dernier Boss validé. Aucun transfert de progression entre deux curricula n’est nécessaire.
+Quand ton rythme change, reprends simplement le parcours au dernier module et à la dernière preuve validés. Aucun transfert de progression entre deux curricula n’est nécessaire.
 
 ## Épreuve intégratrice D8
 

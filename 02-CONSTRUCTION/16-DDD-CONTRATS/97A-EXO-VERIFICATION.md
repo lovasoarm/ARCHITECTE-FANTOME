@@ -12,7 +12,7 @@ noyau: renfort
 
 ---
 
-# EXO IA séduisante : l'agent qui découpe trop
+## EXO IA séduisante : l'agent qui découpe trop
 
 Temps de lecture ~2 min
 
@@ -23,7 +23,7 @@ Durée : 45 min.
 « Découpe ce domaine en contextes bornés et propose l'architecture. »
 domaine fourni : un outil de réservation de salles (utilisateurs, salles, réservations, factures).
 
-# EXO : Vérifier une IA séduisante
+### Réponse proposée par l’agent
 
 ```txt
 Contextes proposés : Utilisateur, Authentification, Profil, Salle, Équipement,

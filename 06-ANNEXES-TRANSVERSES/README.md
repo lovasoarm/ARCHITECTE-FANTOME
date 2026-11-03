@@ -1,9 +1,20 @@
 ---
 stability: evolutif
 acte: navigation
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 06-ANNEXES-TRANSVERSES/01-COMMENT-UTILISER-LE-PARCOURS.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
-# Annexes transverses : index d'apprentissage
+# Annexes transverses : index d’apprentissage
+
+- [80 : Matrice canonique des progressions](80-MATRICE-PROGRESSIONS.md) : relation entre blocs, paliers, verbes, étapes, projets et gates.
+- [81 : Matrice de traçabilité Staff](81-MATRICE-TRACEABILITE-STAFF.md) : relation entre les huit piliers, les preuves S1–S7 et les gates G1–G9.
+- [82 : Cartographie DEPTH et applicabilité](82-CARTOGRAPHIE-DEPTH-ET-APPLICABILITE.md) : MLOps, démarche juridique et frontières de spécialisation.
 
 Les annexes approfondissent le parcours ; elles ne forment pas une route parallèle. Ouvre une annexe quand la route canonique ou une leçon l'appelle, puis retourne au projet ou module d'origine.
 
@@ -41,3 +52,25 @@ Les annexes approfondissent le parcours ; elles ne forment pas une route parall�
 ## Règle
 
 Une fiche de référence ou une correction type ne remplace pas l'exécution par l'apprenant. Les données chiffrées des exemples sont des fixtures pédagogiques ; les résultats du projet doivent être mesurés séparément.
+
+## Ressources pratiques associées
+
+- [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.
+
+## Autres ressources de gouvernance et de terrain
+
+- [Univers autorisés](05-UNIVERS_AUTORISES.md) : cadre des contextes et fixtures pédagogiques.
+- [Journal hebdomadaire](06-DEV_JOURNAL_HEBDO.md) : suivre les observations et décisions d’apprentissage.
+- [Informations qui vieillissent](11-PEREMPTION-2027.md) : règle de revalidation des faits évolutifs.
+- [Communauté](12-COMMUNAUTE.md) : modalités de participation et de contribution.
+- [Pérennité](13-ANNEXE-perennite.md) : distinguer les mécanismes durables des références techniques qui évoluent.
+- [Compteurs du parcours](18-COMPTEURS-DU-PARCOURS.md) : repères de volume et limites de leur interprétation.
+- [Revue aveugle](24-REVIEW-AVEUGLE.md) : protocole de revue indépendante.
+- [Référentiel externe Staff 2026](28-REFERENTIEL-EXTERNE-STAFF-2026.md) : ressources professionnelles datées, à revalider avant usage.
+- [Preuve de transfert](31-PREUVE-TRANSFERT.md) : montrer qu’une compétence tient dans un nouveau contexte.
+- [Échelle cognitive adaptative](32-ECHELLE-COGNITIVE-ADAPTATIVE.md) : adapter la profondeur de pratique.
+- [Anti-recette engine](33-ANTI-RECETTE-ENGINE.md) : éviter les solutions copiées sans compréhension.
+- [Rigueur des sources](36-RIGUEUR-SOURCES.md) : distinguer source, affirmation et preuve.
+- [Principal readiness gate](38-PRINCIPAL-READINESS-GATE.md) : évaluer les preuves de portée et de jugement.
+- [Cognitive L-D crosswalk](39-COGNITIVE-L-D-CROSSWALK.md) : repères de progression cognitive.
+- [Terrain starter pack](51-TERRAIN-STARTER-PACK.md) : préparer les premières observations de terrain.

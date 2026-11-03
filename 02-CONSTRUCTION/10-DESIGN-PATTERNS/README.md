@@ -3,17 +3,18 @@ stability: evolutif
 acte: parcours
 noyau: oui
 route: complete
-paper_audit_status: STRUCTURE_COMPLETE_EXPERT_REVIEW_PENDING
-expert_review: pending
-paper_audit_date: 2026-10-30
-terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
+freshness_status: "not_verified"
+source_verified_on: null
+source_type: "internal"
+canonical_resource: "02-CONSTRUCTION/10-DESIGN-PATTERNS/01A-00-why-design-patterns.md"
+source_url: null
+source_scope: "Notion et parcours internes reliés à 02-CONSTRUCTION/10-DESIGN-PATTERNS/01A-00-why-design-patterns.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # MODULE 10 DESIGN PATTERNS
 
-> **État pédagogique : 30 octobre 2026 : structure documentaire revue.** Les contrôles de contenu ne remplacent pas une revue technique indépendante ni une validation terrain ; voir le [standard de complétude AF](../../06-ANNEXES-TRANSVERSES/69-STANDARD-COMPLETUDE-MODULE.md).
-
-> Palier `02-CONSTRUCTION`. Duree estimee : **6 h 00** (9 fichiers de travail).
+> Palier `02-CONSTRUCTION`. Duree estimee : **5 h 25** (9 fichiers de travail).
 
 ## Sommaire du module
 
@@ -22,14 +23,14 @@ terrain_validation: NON_CERTIFIEE_DANS_CET_ENVIRONNEMENT
 | [`00-PREREQUIS.md`](00-PREREQUIS.md)                             | 00 : Prereq check : Design Patterns                                             | 15 min |
 | [`01A-00-why-design-patterns.md`](01A-00-why-design-patterns.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : DESIGN PATTERNS                           | 45 min |
 | [`90-grimoire.md`](90-grimoire.md)                               | Page verrouillée                                                                | 30 min |
-| [`02A-EXO_LECTURE.md`](02A-EXO_LECTURE.md)                       | EXO LECTURE : 15-25 minutes (Design Patterns)                                   | 45 min |
+| [`02A-EXO_LECTURE.md`](02A-EXO_LECTURE.md)                       | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Design Patterns)                | 50 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)               | EXO [JEUNE IA] : 02-CONSTRUCTION/10-DESIGN-PATTERNS                             | 45 min |
-| [`03A-EXO_FRONTIERE.md`](03A-EXO_FRONTIERE.md)                   | EXO FRONTIÈRE : quel module aurait dû accueillir ce geste ?                     | 45 min |
-| [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)               | EXO [IA MENTEUSE] : design_patterns (singleton qui fuit)                        | 45 min |
+| [`03A-EXO_FRONTIERE.md`](03A-EXO_FRONTIERE.md)                   | EXO FRONTIÈRE : quel module aurait dû accueillir ce geste ?                     | 30 min |
+| [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)               | EXO [IA MENTEUSE] : design_patterns (singleton qui fuit)                        | 20 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                   | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust                         | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                     | PONT : de reconnaître des patterns à réécrire pour les révéler à le refactoring | 45 min |
 
-Total : **6 h**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) et le boss (3 h) sont des évaluations séparées et ne sont pas ajoutés au Total sauf s’ils apparaissent comme lignes du tableau.
+Total : **5 h 25**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
 ## Comment travailler ce module
 
@@ -71,7 +72,7 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [`02_structural/`](02_structural/README.md)
 - [`03_behavioral/`](03_behavioral/README.md)
 - [Page verrouillée](90-grimoire.md)
-- [EXO LECTURE : 15-25 minutes (Design Patterns)](02A-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Design Patterns)](02A-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/10-design-patterns](98-EXO-VERIFICATION.md)
 - [EXO FRONTIÈRE : quel module aurait dû accueillir ce geste ?](03A-EXO_FRONTIERE.md)
 - [EXO [IA MENTEUSE] : design_patterns (singleton qui fuit)](97-EXO-VERIFICATION.md)
@@ -90,4 +91,8 @@ Le sommaire ci-dessus reste le parcours recommandé. Les index ci-dessous renden
 
 - [Vérification : 08_EXO_VERIFICATION.md](08_EXO_VERIFICATION.md)
 
-## Standard de complétude et audit
+<!-- AF-KINTANA-MODULE -->
+
+## Mise en pratique produit : Kintana
+
+Kintana est un cas d’étude pédagogique commun, pas un projet personnel imposé. Pour ce module, applique **la notion réellement enseignée ici** à la mission correspondante dans la [carte des missions Kintana par domaine](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md). N’utilise pas automatiquement la FAQ IA : elle est réservée aux activités IA/RAG. Le challenge local de ce module reste la source de la consigne et de ses critères ; cette mise en pratique ne crée ni prérequis, ni gate supplémentaire.

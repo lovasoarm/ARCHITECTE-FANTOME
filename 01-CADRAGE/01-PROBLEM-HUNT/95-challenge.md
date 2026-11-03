@@ -14,26 +14,32 @@ assessment_role: diagnostic_mastery
 
 Temps de lecture ~3 min
 
-## Contexte
+## Contexte : choisir une voie de preuve sans confondre les sources
 
-Un réseau de trois cabinets vétérinaires partage le même standard téléphonique. La direction
-te contacte avec cette phrase : "il nous faudrait un outil pour mieux gérer les urgences."
-C'est tout ce que tu reçois au départ. Le standard actuel fonctionne avec un carnet papier par
-cabinet et un groupe WhatsApp entre secrétaires pour se prévenir des urgences qui débordent
-d'un cabinet à l'autre.
+Le scénario de réseau de trois cabinets vétérinaires ci-dessous est une **simulation pédagogique**. Le carnet papier, le groupe WhatsApp et les difficultés de coordination sont des éléments fictifs fournis pour l'exercice ; ils ne sont pas des observations de terrain.
+
+Tu choisis une des deux voies avant de commencer :
+
+### Voie A : Terrain (à privilégier lorsque tu as un accès réel)
+
+Choisis un problème professionnel, associatif ou personnel que tu peux observer avec l'accord des personnes concernées. Interroge au moins deux rôles impliqués dans le même processus, ou explique précisément pourquoi le second rôle n'est pas accessible. Demande des exemples de comportements passés, pas des opinions sur une application future. Note les faits, leur source et ce qui reste inconnu. N'enregistre pas de données personnelles ou confidentielles sans nécessité et autorisation.
+
+### Voie B : Simulation (si aucun terrain n'est accessible)
+
+Utilise le scénario vétérinaire fictif décrit dans ce challenge. Tu peux inventer des signaux plausibles pour tester ton raisonnement, mais chacun doit être étiqueté **HYPOTHÈSE DE SIMULATION**. N'écris jamais « observé », « interviewé » ou « mesuré » pour un fait que tu as inventé. Cette voie entraîne le cadrage ; elle ne prouve pas une interview, une observation ni une validation terrain.
 
 ## Ce que tu dois produire
 
 Un document de cadrage, en markdown, structuré exactement comme suit :
 
-1. **Demande initiale vs besoin réel** : reformule la phrase de départ en identifiant au moins
-   trois interprétations possibles différentes de "mieux gérer les urgences", et explique
-   laquelle tu retiendrais en priorité et pourquoi : en t'appuyant sur des signaux faibles
-   plausibles que tu inventes de façon crédible (contournement observé, tableau fantôme,
-   plainte récurrente).
+1. **Demande initiale vs besoin réel** :
+   - Voie A : Terrain : distingue les faits directement observés, les propos rapportés, les hypothèses et les inconnues. Identifie au moins trois interprétations possibles de la demande réelle et indique quelle preuve permettrait de les départager.
+   - Voie B : Simulation : identifie au moins trois interprétations différentes de « mieux gérer les urgences » et propose des signaux faibles plausibles, chacun étiqueté **HYPOTHÈSE DE SIMULATION**. Explique quelle interprétation tu retiendrais provisoirement et quelle observation réelle pourrait l'invalider.
 2. **Jobs to be done** : au moins deux jobs distincts pour au moins deux rôles différents
    (secrétaire, vétérinaire de garde, propriétaire d'animal), formulés avec la structure
-   "Quand..., je veux..., pour pouvoir...".
+   "Quand..., je veux..., pour pouvoir...". En voie Terrain, si le second rôle n'est pas
+   accessible, présente son job comme une hypothèse à vérifier et indique explicitement
+   qu'il n'a pas été confirmé par un entretien.
 3. **Non-objectifs** : au moins trois non-objectifs écrits, chacun avec sa raison d'être
    explicite (risque, coût, complexité évitée), et une explication de la différence entre
    chaque non-objectif et une simple fonctionnalité reportée.
@@ -43,43 +49,37 @@ Un document de cadrage, en markdown, structuré exactement comme suit :
 
 ## Contraintes
 
-- Aucun des exemples utilisés (cabinet vétérinaire, urgences, WhatsApp) ne doit être remplacé
-  par un exemple générique de type , blog ou e-commerce.
-- Le document ne doit contenir aucune fonctionnalité déjà décrite en détail : c'est un
-  document de cadrage, pas une spécification technique.
-- Longueur cible : 80 à 150 lignes de markdown dense, pas de remplissage.
+- Si tu utilises la simulation, conserve le contexte des cabinets vétérinaires, des urgences et du groupe WhatsApp ; ne le présente jamais comme un cas réel.
+- Si tu utilises le terrain, tu peux choisir un autre domaine, mais distingue les faits des hypothèses et respecte la confidentialité des personnes.
+- Le document ne doit contenir aucune fonctionnalité déjà décrite en détail : c'est un document de cadrage, pas une spécification technique.
+- Longueur cible : 80 à 150 lignes de markdown dense, hors notes de provenance.
 
 ## Critères de réussite mesurables
 
-- Les trois interprétations de la demande initiale sont réellement différentes entre elles
-  (pas trois reformulations de la même idée).
-- Chaque job to be done est vérifiable : il indique une situation concrète, pas une envie
-  générale ("je veux une bonne appli").
-- Chaque non-objectif passe le test de la leçon 04 : si on le supprime, une décision de
-  conception change réellement.
-- La métrique de succès ne peut pas monter sans que le symptôme initial diminue : vérifie-le
-  explicitement en une phrase dans ton document.
-- Le seuil d'échec est un chiffre, pas une phrase vague comme "si ça ne marche pas bien".
+- Les trois interprétations de la demande initiale sont réellement différentes entre elles.
+- Chaque job to be done indique une situation concrète et un rôle ; il n'est pas une envie générale.
+- Chaque non-objectif justifie une décision de conception, un risque, un coût ou une complexité évitée.
+- La métrique est reliée au symptôme et accompagnée d'un dénominateur, d'une période et d'une limite d'interprétation.
+- Le seuil d'échec est chiffré et son origine est expliquée ; une valeur inventée en simulation reste une hypothèse, pas un objectif validé.
+- La provenance est explicite : `TERRAIN` pour un fait observé/rapporté avec source autorisée, `HYPOTHÈSE` pour une interprétation, `SIMULATION` pour un fait inventé.
+- Aucun résultat d'interview, de mesure ou de validation réelle n'est revendiqué dans la voie Simulation.
 
 ## Durée cible
 
-3 heures, en deux passes séparées par une nuit.
-Passe 1 (2 h) : les trois interprétations et les jobs to be done.
-Passe 2 (1 h) : les non-objectifs et la métrique, écrits à froid.
-Si tu dépasses 4 h : tu es en train de spécifier au lieu de cadrer. Coupe. C'est exactement le
-symptôme que la leçon 04 t'apprend à repérer, appliqué sur toi-même.
+Pour la voie Simulation, vise environ 3 heures de rédaction en deux passes, avec une pause entre les deux. Pour la voie Terrain, ce temps couvre uniquement la rédaction : l'accès aux personnes, les entretiens et l'observation peuvent demander davantage de temps.
+
+Passe 1 : demande, faits disponibles, interprétations et jobs to be done.
+Passe 2 : non-objectifs, métrique, seuil d'échec et vérification des hypothèses.
+
+Ne transforme pas la limite de temps en prétexte pour inventer des données terrain. Si une preuve manque, inscris-la comme inconnue et propose comment la collecter.
 
 ## Livrable
 
-Un fichier markdown unique, nommé `cadrage-veterinaire.md`, respectant la structure ci-dessus.
+Un fichier Markdown unique, nommé `cadrage-probleme.md`, respectant la structure ci-dessus.
 
-## Horodatage
+## Provenance et date
 
-En tête de ton livrable, note deux dates à la minute : le moment où tu as écrit la première
-ligne, le moment où tu as écrit la dernière. Note aussi si tu avais déjà commencé à imaginer
-la solution avant la première date. Cette dernière mention n'est pas une confession : c'est la
-seule façon de savoir, plus tard, si ce document a orienté ta décision ou s'il l'a maquillée
-après coup.
+En tête du livrable, indique la voie choisie (`TERRAIN` ou `SIMULATION`), la date de rédaction et les sources utilisées. Pour la voie Terrain, indique le nombre d'entretiens/observations, les rôles rencontrés et les limites d'accès, sans révéler d'identité ni de donnée confidentielle. Pour la voie Simulation, écris explicitement : « Aucun entretien ni fait terrain n'a été réalisé pour cet exercice ; les signaux présentés sont fictifs. » Indique aussi si tu avais imaginé une solution avant de cadrer : cette information aide à repérer un biais d'ancrage.
 
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 

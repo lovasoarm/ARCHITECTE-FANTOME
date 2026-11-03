@@ -1,27 +1,22 @@
 ---
 stability: stable
+acte: pratiquer
 ---
 
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
-# EXO : Vérifier une IA séduisante
-
-stability: intemporel
-acte: pratiquer
-
----
-
-# EXO [IA séduisante] : 02-construction/02-mini-projects
+# Exercice de cadrage : Mini-projet
 
 Temps de lecture ~2 min
 
-> Tag `[IA séduisante]` : solution totalement coupée (solution / Claude / ChatGPT
-> désactivés). Durée : 45 min chrono.
+> Tag `[IA séduisante]` : contrainte pédagogique de travail sans assistance de solution ni autocomplétion générative. Cette contrainte repose sur l’auto-déclaration de l’apprenant ; elle n’est pas vérifiable techniquement par ce document.
+> Durée indicative : 45 min.
+> **Statut V6.5 : entraînement non certifiant :** le brief et sa relecture par toi-même permettent de pratiquer le cadrage, mais ne fournissent pas de correction indépendante. Cette page ne ferme aucune gate. Pour obtenir un retour fiable, suis le [protocole de retour fiable](../../06-ANNEXES-TRANSVERSES/85-STATUT-EXERCICES-AUTO-EVALUATION-V6.5.md#procedure-de-retour-fiable) ; sans reviewer compétent, conserve le statut `PRATIQUE  : AUTOÉVALUÉ` et note les incertitudes.
 
 ## Contexte
 
 Tu joues le rôle du **dev senior** qui accompagne une solution junior sur son
-premier mini-projet. l'IA est bornée : elle sait générer du code, elle ne
+premier mini-projet. L'IA est bornée : elle sait générer du code, elle ne
 sait pas juger un scope.
 
 ## Mission
@@ -51,22 +46,21 @@ frappe.
 Livrable : `BRIEF.md` dans le dossier du mini-projet choisi. Non versionné
 si tu le juges brouillon.
 
-## Preuve tracable (proof-of-work)
+## Journal personnel (auto-déclaré, non indépendant)
 
-L'auto-evaluation ci-dessus repose sur ton honnetete. Pour transformer ca en preuve horodatee : demarre un chrono visible (`date` avant + `date` apres), colle les deux timestamps + un SHA256 de ta solution (`shasum -a 256 learner-verifier.js`) dans un fichier `FASTING.md` a cote de la solution. C'est ta ligne de progression : relis-la dans 3 mois pour voir la courbe.
+Le journal peut conserver les dates déclarées et le SHA-256 du fichier pour suivre tes propres versions. Ces éléments locaux ne prouvent ni la date réelle de création, ni l’absence d’assistance, ni l’indépendance du test.
 
-## VERROU LOCK (obligatoire, principe generalise)
+## Préparation obligatoire : verrou LOCK
 
 > Principe LOCK : interdiction de toucher au clavier tant que tu n'as pas
-> ecrit ton plan d'attaque. Le meme verrou que dans le mini-projet 18 et
-> dans `01-CADRAGE/03-DEBUGGING/HYPOTHESES_*`. Il n'est pas negociable ici non plus.
+> écrit ton plan d'attaque. Le même verrou que dans le mini-projet 18 et
+> dans `01-CADRAGE/03-DEBUGGING/HYPOTHESES_*`. Il n'est pas négociable ici non plus.
 
-Avant tout code :
+Avant de rédiger le brief :
 
-1. Ecris ton `HYPOTHESES.md` (une phrase par hypothese, chaque hypothese
-   testable en isolation).
-2. Ecris le critere binaire de reussite (une commande, une sortie attendue).
-3. Ensuite seulement, tu ouvres l'editeur.
+1. Écris ton `HYPOTHESES.md` (une phrase par hypothèse, chacune testable
+   isolément).
+2. Écris un critère binaire de réussite : une condition observable permettant de décider si le brief respecte le périmètre demandé.
+3. Ensuite seulement, rédige le `BRIEF.md` ; aucun code n’est demandé dans cet exercice.
 
-Un exo `[IA séduisante]` sans ces deux artefacts ecrits **avant** le premier
-caractere de code est considere invalide par le `97-CHECKPOINT-PACK`.
+Sans `HYPOTHESES.md` et un critère d’acceptation écrit avant la rédaction de `BRIEF.md`, l’activité ne permet pas d’évaluer correctement le résultat. Le contrôle reste une auto-évaluation : aucun validateur indépendant n’est fourni dans ce module.

@@ -20,7 +20,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 
 ## Les épreuves de ce module, dans l'ordre
 
-- [EXO LECTURE : 15-25 minutes (Math Basics)](09-EXO_LECTURE.md)
+- [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Math Basics)](09-EXO_LECTURE.md)
 - [EXO [JEUNE IA] : 02-CONSTRUCTION/04-MATH-BASICS](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/04-MATH-BASICS](97-EXO-VERIFICATION.md)
 

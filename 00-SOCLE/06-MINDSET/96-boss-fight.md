@@ -1,7 +1,7 @@
 ---
 stability: intemporel
 acte: pratiquer
-cognitive_level: L9
+cognitive_level: L5
 perturbation_modes: [fausse_piste, defaut_cache]
 anti_recipe_key: fausse_piste+defaut_cache
 transfer_distance: medium
@@ -10,176 +10,67 @@ assessment_role: staff_mastery
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
-# Boss fight : Un lead conteste ton choix en réunion
+# Boss fight : défendre une décision face à une objection
 
-## Contrainte de temps
+## Statut et prérequis
 
-```text
-CONTRAINTE DE TEMPS
-Reflexion + reponse ecrite : 25 min chrono
-Au-dela : tu notes ou tu en etais a 25 min, et tu evalues CETTE
-version-la. La version finie compte pour ta progression, pas pour
-ta note.
-```
+**Approfondissement du challenge Mindset.** Ce boss-fight réutilise exclusivement le cas fictif Kintana décrit dans [le challenge principal](95-challenge.md). Il ne demande ni projet personnel, ni code, ni base de données, ni enregistrement audio/vidéo.
 
-## Règle d'antériorité (obligatoire)
+Tu peux le réaliser après le challenge principal. Une réponse écrite dans ton journal local suffit. Si un terme n'est pas encore clair, reviens à la leçon correspondante ; ne cherche pas à simuler une expérience professionnelle que tu n'as pas.
 
-Écris ta réponse complète dans ton `JOURNAL.md`, horodatée à la minute, AVANT de faire
-défiler jusqu'à la grille d'évaluation. La grille est volontairement placée en fin de
-fichier.
+## Mise en situation
 
-Si ton horodatage est postérieur à ta première lecture de la grille, ce boss-fight vaut 0,
-quelle que soit la qualité de ta réponse. Tu ne triches pas contre un correcteur : tu
-triches contre le seul entraînement à la pression que ce niveau te propose.
+Kintana doit gérer la dernière place disponible dans un centre. Deux demandes peuvent arriver presque en même temps. Une réponse réseau peut être retardée et le premier demandeur peut renvoyer sa demande sans savoir si elle a été prise en compte.
 
-## Mise en situation (avant la vraie scène)
+Dans le challenge principal, tu as proposé une règle de traitement parmi plusieurs options : vérification centrale avant confirmation, traitement manuel des cas ambigus ou liste d'attente/confirmation différée.
 
-Konoha, salle de mission. Kakashi étale la carte : "Naruto, ton plan attaque tout de suite,
-sans éclaireur. La dernière fois qu'on a fait ça, on a perdu deux hommes dans une embuscade."
-Naruto répond que la mission presse et que sonder le terrain fera perdre l'effet de surprise.
-Kakashi ne cède pas sur le principe, mais admet que le temps manque vraiment cette fois.
-Ce n'est pas un désaccord d'ego : c'est une expérience passée qui pèse contre une urgence réelle.
-Retiens cette tension : c'est exactement celle que tu vas devoir gérer ci-dessous, sans ninjas
-mais avec un ADR.
+Une personne de l'équipe conteste ton choix :
 
-## La scène
+> « La liste d'attente va frustrer les utilisateurs. Pourquoi ne pas afficher immédiatement “réservation confirmée”, puis demander à un agent de régler les conflits ensuite ? C'est plus rapide et plus simple à comprendre. »
 
-Tu présentes ton ADR (celui du challenge, ou un choix réel sur ton projet fil rouge) en
-réunion d'équipe. Tu as choisi de stocker l'historique des statuts d'une tournée de
-livraison (créée, en préparation, en route, livrée, incident) sous forme d'une seule colonne
-`statut_actuel` mise à jour à chaque changement, plutôt que sous forme d'une table
-d'événements append-only qui garderait chaque transition.
+Cette objection soulève un vrai compromis : rapidité perçue et simplicité d'un côté, risque de promettre une place qui n'existe plus de l'autre.
 
-Un lead technique, présent pour la première fois à une réunion sur ce projet, t'interrompt :
+## Ta réponse
 
-> "Je ne comprends pas pourquoi vous ne gardez pas l'historique complet dès le départ. Ça
-> coûte trois fois rien à l'écriture, et le jour où le service client demande 'pourquoi cette
-> livraison a mis quatre heures de plus que prévu', vous n'aurez rien à leur montrer. On a eu
-> exactement ce problème sur un projet précédent, et on l'a payé cher six mois après."
+Rédige une réponse de 150 à 250 mots dans ton journal ou dans `PREUVES/00-SOCLE/06-MINDSET/`.
 
-Il n'est pas hostile, mais il est catégorique, et il a une expérience concrète derrière son
-objection. La salle attend ta réponse. Tu ne peux pas répondre "on verra plus tard" : c'est
-une réunion de décision, pas de brainstorming.
+Elle doit :
 
-## Ce qu'on attend de toi
+1. reconnaître le point valable de l'objection ;
+2. expliquer le risque de confirmer une place avant d'avoir vérifié qu'elle est disponible ;
+3. distinguer les faits fournis par le scénario des hypothèses et des jugements ;
+4. défendre ta proposition initiale ou la modifier en nommant la raison ;
+5. donner un signal observable qui te ferait réexaminer la décision ;
+6. nommer au moins une conséquence négative acceptée par ton choix.
 
-Rédige, comme si tu répondais en réunion puis par écrit dans l'ADR mis à jour, une réponse
-qui :
-
-- ne rejette pas l'objection sans l'avoir réellement pesée (le lead a raison sur un point
-  précis : lequel ?) ;
-- ne cède pas non plus immédiatement par confort social : si ta décision reste défendable
-  compte tenu du contexte réel du projet, dis-le et explique pourquoi son expérience
-  précédente ne s'applique pas forcément telle quelle ici ;
-- s'appuie sur des faits vérifiables du projet (volume attendu, contraintes de délai,
-  compétences de l'équipe) plutôt que sur une préférence esthétique pour l'une ou l'autre
-  architecture ;
-- propose, si pertinent, un compromis à coût mesuré plutôt qu'un choix binaire : par exemple
-  une dette volontaire documentée avec un seuil de migration explicite (leçon 03).
-
-Livre un court texte (une demi-page) qui pourrait être ajouté tel quel à la section
-"Conséquences" ou "Options considérées" de ton ADR pour montrer que l'objection a été prise
-en compte, pas juste survolée.
-
-## Partie orale (obligatoire)
-
-Une fois le texte écrit rendu, enregistre-toi en audio ou vidéo pendant 3 minutes maximum,
-répondant à voix haute à l'objection du lead comme si tu étais réellement en situation :
-sans lire ton texte mot à mot, sans notes au-delà d'un post-it de mots-clés. Réécoute
-l'enregistrement une seule fois et note toi-même, avant toute relecture externe, un point
-où ta réponse orale était plus faible que ta réponse écrite.
+Aucune mesure réelle n'est fournie. Tout chiffre ajouté doit être explicitement étiqueté `HYPOTHÈSE`, jamais présenté comme un résultat observé.
 
 ## Second tour : la réplique
 
-Ton texte est rendu. Le lead ne s'arrête pas là. Trois répliques probables, selon ce que tu as
-répondu :
+La personne ajoute :
 
-1. Si tu as reconnu son point mais maintenu ta décision : _"D'accord, mais qui va se souvenir
-   dans six mois qu'il y avait un seuil de migration ? Ce genre de note se perd toujours."_
-2. Si tu as cédé et proposé de tout migrer vers une table d'événements tout de suite : _"Tu es
-   sûr ? Il y a cinq minutes tu m'expliquais pourquoi ce n'était pas la priorité. Qu'est-ce qui
-   a changé, à part que j'ai insisté ?"_
-3. Si tu as donné un seuil chiffré : _"Ce chiffre, tu l'as sorti d'où, là, tout de suite ? Ou il
-   était déjà dans ton analyse avant que je pose la question ?"_
+> « Tu compliques le parcours. Les utilisateurs veulent simplement savoir s'ils ont une place. »
 
-**Critère de notation ajouté : tenue de position ou changement d'avis justifié.** Réponds à ce
-second tour par écrit (5 lignes maximum). Est-ce que tu tiens ta position avec un nouvel
-argument, ou changes-tu d'avis avec une raison précise et nouvelle ? Un changement d'avis motivé
-uniquement par la pression du second tour, sans fait nouveau, est traité comme un échec de ce
-critère.
+Réponds en cinq lignes maximum. Tu peux maintenir ou changer ta position, mais le changement doit reposer sur un argument ou une information nouvelle, pas seulement sur la pression de l'interlocuteur.
 
-## Ce que tu dois savoir défendre
+## Critères d'évaluation
 
-1. Explique pourquoi "cette solution a causé un problème sur un autre projet" n'est ni une
-   preuve qu'elle en causera un ici, ni une raison de l'ignorer.
-2. Donne un seuil chiffré concret (volume de tournées, fréquence de demandes du service
-   client) qui, s'il était dépassé, justifierait de migrer vers une table d'événements.
-3. Explique la différence entre céder à une objection parce qu'elle est fondée et céder à une
-   objection parce qu'elle est exprimée avec assurance.
+| Critère | Points |
+|---|---:|
+| Reconnaître le bénéfice réel de la proposition adverse | 15 |
+| Expliquer le risque métier sans jargon inutile | 20 |
+| Séparer faits, hypothèses et jugements | 20 |
+| Comparer les conséquences pour les demandeurs et l'équipe | 15 |
+| Définir un signal concret de révision | 15 |
+| Défendre ou réviser la décision avec une raison explicite | 15 |
+| **Total** | **100** |
 
----
+- **70–100** : raisonnement validé pour cet exercice.
+- **50–69** : résultat partiel ; retravaille le critère le plus faible.
+- **0–49** : reprends la leçon ciblée, puis refais l'exercice avec une autre objection.
 
-_Ne fais défiler au-delà de cette ligne qu'une fois ta réponse écrite et horodatée._
+Une bonne réponse n'est pas celle qui garde absolument la première décision. C'est celle qui rend visible le compromis et change de position uniquement lorsque les raisons changent.
 
-## Grille d'évaluation
+## CHECKPOINT DE PROFONDEUR facultatif : contrainte supplémentaire
 
-| Critère                                                                     | Ce qui est évalué                                                                                                                                                        | Échec typique                                                                                                           |
-| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
-| Reconnaissance du point valide                                              | Le texte identifie précisément ce que le lead a raison de signaler (perte d'information si un jour un historique fin est nécessaire)                                     | Réponse défensive qui ignore l'objection ou la caricature                                                               |
-| Distinction contexte / généralité                                           | Le texte explique pourquoi l'expérience du lead sur un autre projet ne se transpose pas automatiquement (volume différent, besoin métier différent, délai différent)     | Le texte traite l'analogie comme automatiquement valide ou automatiquement invalide sans l'examiner                     |
-| Fondation sur des faits, pas des préférences                                | Le texte cite au moins un élément vérifiable du projet réel (volume de tournées/jour, fréquence des demandes du service client, délai de livraison de la fonctionnalité) | Le texte reste au niveau des principes généraux ("la simplicité c'est important") sans jamais toucher au projet concret |
-| Réversibilité explicite                                                     | Le texte propose un seuil ou un signal observable qui déclencherait la migration vers une table d'événements, si le choix actuel est maintenu                            | Le choix est présenté comme définitif et fermé, sans condition de révision                                              |
-| Absence de céder par confort social                                         | Si la décision initiale reste justifiée compte tenu du contexte, le texte le dit clairement sans se rétracter juste parce que le lead est catégorique                    | Le texte change de position uniquement à cause du ton assuré de l'interlocuteur, sans nouvel argument                   |
-| Longueur et densité                                                         | Le texte tient dans environ 200 mots, sans détour                                                                                                                        | Réponse diluée qui noie l'argument dans des formules de politesse                                                       |
-| Justesse à l'oral sous contrainte de temps, sans texte préparé lu mot à mot | La réponse orale tient la même logique que le texte écrit, sans relecture mot à mot, dans le temps imparti                                                               | La réponse orale est un résumé appauvri du texte, ou dépasse largement les 3 minutes                                    |
-| Grimoire : « Dette volontaire » ([90-grimoire.md](90-grimoire.md))          | Le seuil de migration proposé correspond à une dette volontaire réellement écrite (raccourci + signal de remboursement daté), pas une vague promesse                     | Aucun signal de remboursement explicite n'est fourni                                                                    |
-| Grimoire : « Hypothèse testable » ([90-grimoire.md](90-grimoire.md))        | Le seuil chiffré proposé est formulé comme une hypothèse testable, avec un seuil vérifiable                                                                              | Le seuil reste flou ou non mesurable                                                                                    |
-| Grimoire : « Asymétrie des erreurs » ([90-grimoire.md](90-grimoire.md))     | Le texte compare le coût de construire à tort et de ne pas construire à tort avant de trancher                                                                           | Le texte ignore que les deux sens d'erreur n'ont pas le même coût                                                       |
-| Tenue de position ou changement d'avis justifié                             | Au second tour, la réponse tient bon avec un nouvel argument ou change d'avis pour une raison nouvelle et nommée                                                         | La position change uniquement parce que le lead insiste une deuxième fois                                               |
-
-## Seuil de validation chiffré
-
-| Critère                                         | Points  |
-| ----------------------------------------------- | ------- |
-| Reconnaissance du point valide                  | 20      |
-| Distinction contexte / généralité               | 15      |
-| Fondation sur des faits, pas des préférences    | 15      |
-| Réversibilité explicite                         | 15      |
-| Absence de céder par confort social             | 25      |
-| Longueur et densité                             | 10      |
-| Justesse à l'oral sous contrainte               | 20      |
-| Grimoire : Dette volontaire                     | 10      |
-| Grimoire : Hypothèse testable                   | 10      |
-| Grimoire : Asymétrie des erreurs                | 10      |
-| Tenue de position ou changement d'avis justifié | 15      |
-| **Total**                                       | **165** |
-
-```text
-< 50 % du total   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
-50-69 % du total  --> valide avec reserve, identifie le critere le plus faible avant de le compter comme acquis
-70-89 % du total  --> valide, le reflexe est en place
-90-100 % du total --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
-```
-
-Seuil de passage : 116/165 (environ 70 %). En dessous, le niveau n'est pas considéré comme acquis, même si le
-texte rendu est bien écrit.
-
-**Éliminatoire :** Si "Absence de céder par confort social" est noté en dessous de 10/25, le total est plafonné à 91/165 quel que soit le reste : céder à une objection uniquement parce qu'elle est exprimée avec assurance annule la valeur de tout raisonnement par ailleurs correct.
-
-<!-- GATE-SECURITE:debut -->
-
-## Gate sécurité : la porte qui ne s'ouvre pas sans elle
-
-Un livrable d'architecture ne se rend pas sans ces deux vérifications. Elles ne sont pas
-des bonus : un livrable qui les rate est refusé, même si tout le reste est juste.
-
-- [ ] **Aucun secret en clair** : aucune clé d'API, aucun mot de passe, aucune donnée sensible
-      dans le dépôt, les captures, les logs ou les exemples. Tu montres où ils sont lus à la place.
-- [ ] **Rayon d'impact écrit** : tu nommes qui peut lire quoi, et ce que coûte une fuite —
-      la surface d'attaque et l'impact en cas de fuite, en une phrase chacun.
-
-<!-- GATE-SECURITE:fin -->
-
-## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
-
-Sans relire, choisis une solution avec une contrainte supplémentaire (budget, latence, sécurité, disponibilité ou dette). Donne deux alternatives, un critère mesurable, une externalité négative et une observation qui invaliderait ta décision.
+Facultatif : ajoute une contrainte au scénario Kintana (temps d’attente, disponibilité ou charge de l’équipe). Compare deux options, indique un critère observable, une conséquence négative et une observation qui invaliderait ta proposition. Aucune technologie ni mesure réelle n’est attendue.

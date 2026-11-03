@@ -51,7 +51,7 @@ Avant de considérer le projet fini, tu dois traiter ces exigences OWASP context
 - Intégrité des incréments (OWASP A08) : chaque incrément porte un id unique vérifié côté coordinateur pour empêcher un rejeu malveillant de gonfler le total.
 - Autorisation inter-process (OWASP A01 - Broken Access Control) : un worker ne doit pouvoir écrire que ses propres incréments, pas réécrire le total global directement.
 
-Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Le `97-CHECKPOINT-PACK` de ce projet contient un test de sécurité qui doit passer.
+Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Ajoute dans le dossier `tests/` de ce projet un test ciblé pour au moins une des menaces retenues. Documente dans le README la commande exacte qui exécute ce test. Aucun pack de correction séparé n’est fourni dans ce projet.
 
 ## AUTO-ÉVALUATION
 

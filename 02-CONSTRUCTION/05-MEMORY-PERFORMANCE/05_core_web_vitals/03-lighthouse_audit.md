@@ -359,10 +359,56 @@ Lighthouse fluctue : toujours lancer plusieurs fois et travailler sur des média
 
 Imagine qu'on te donne seulement le symptôme, pas la cause. Liste les trois informations que tu demanderais en premier, dans l'ordre, puis l'hypothèse que chacune permet de tester. Refuse explicitement au moins une action qui serait prématurée.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « Lighthouse : lire un rapport sans se noyer dans les chiffres » à un service long-vivant plutôt qu’un script ponctuel. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-DIAGRAM:performance -->
+
+## Repère visuel utile : Interpréter un audit Lighthouse
+
+```text
+parcours utilisateur
+       |
+       v
+mesure labo + données terrain
+       |
+       v
+causes communes
+       |
+       v
+priorité impact / effort
+       |
+       v
+validation après correction
+```
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Lighthouse : lire un rapport sans se noyer dans les chiffres** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Prioriser un audit Lighthouse
+
+**Mission liée à « Lighthouse : lire un rapport sans se noyer dans les chiffres » :** Réalise un audit contrôlé d’une page Kintana. Regroupe les recommandations par cause commune, estime le coût de correction et choisis une seule action à impact plausible.
+
+**Livrable :** Rapport annoté, top trois causes et plan de vérification.
+
+**Critères d’acceptation :** L’appareil, le réseau, la version et les répétitions sont consignés ; les scores ne remplacent pas les métriques réelles ; aucun correctif n’est revendiqué sans mesure après.
+
+**Transfert obligatoire :** Le score monte mais l’expérience n’évolue pas : explique la limite du score et change la mesure.

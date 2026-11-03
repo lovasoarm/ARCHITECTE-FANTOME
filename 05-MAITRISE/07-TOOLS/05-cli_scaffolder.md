@@ -1,7 +1,7 @@
 ---
 perishability_id: PER-0078
 
-stability: perissable
+stability: "perissable"
 last_reviewed: 2026-07
 depends_on_vendor: false
 acte: comprendre
@@ -10,12 +10,21 @@ perturbation_modes: [changement_contexte, defaut_cache]
 anti_recipe_key: changement_contexte+defaut_cache
 transfer_distance: medium
 assessment_role: diagnostic_mastery
-freshness_registry_id: PER-0078
-freshness_audit_date: 2026-10-30
-freshness_status: date_declaree_non_revalidee_dans_cette_edition
-review_due: 2027-01-28
-review_status: date_declaree_non_revalidee_dans_cette_edition
+source_verified_on: "2026-11-03"
+freshness_status: "verified_reference"
+source_url: "https://nodejs.org/docs/v22.23.4/api/fs.html"
+source_type: "primary"
+review_interval: "3 mois"
+review_due: "2027-02-03"
+source_scope: "Documentation officielle ou source primaire consultée en rapport avec « CLI scaffolder : générer une structure de projet en une commande, pas neuf fois à la main ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
+provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+canonical_resource: null
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
+claim_reviewed_on: "2026-11-03"
 ---
+
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
 
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
@@ -228,3 +237,59 @@ Construis le plus petit contre-exemple crédible qui ferait échouer le conseil 
 **Vérification.** Le second run ne détruit pas le premier résultat ; un chemin `../../` est rejeté ; dry-run ne modifie aucun octet ; chaque fichier généré a un test snapshot ou une comparaison de contenu. Documente le contrat de mise à jour d'un template existant.
 
 **Transfert.** Les mêmes protections s'appliquent aux scripts de migration et de déploiement : preview, périmètre borné, idempotence et rollback explicite.
+
+<!-- AF-DIAGRAM:performance -->
+
+## Repère visuel utile : Évaluer un générateur de projet
+
+```text
+entrées + destination
+       |
+       v
+validation avant écriture
+       |
+       v
+plan des fichiers
+       |
+       v
+écritures idempotentes
+       |
+       v
+rapport + second lancement sans dégâts
+```
+
+<!-- AF-LESSON-PROFILE: performance -->
+
+## Repères de décision
+
+- **Pourquoi :** La performance influence l'expérience utilisateur et le coût d'exploitation. Il faut repérer le goulot réel avant de changer l'algorithme, le cache ou la mémoire.
+- **Quand l’utiliser / quand l’éviter :** Mesure avant toute optimisation. Utilise profiling et benchmark sur une charge représentative ; évite un micro-benchmark qui n'observe pas le chemin de production.
+- **Limites :** Un benchmark local ne prédit pas exactement la production. Les caches chauds, le GC, le matériel, la concurrence et la distribution des données peuvent changer le résultat.
+
+## Mécanisme : la version sans magie
+
+Établis une baseline, profile, identifie le coût dominant, change une seule variable, relance plusieurs fois et compare quantiles et mémoire.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **CLI scaffolder : générer une structure de projet en une commande, pas neuf fois à la main** se rattache à ce cas concret : Sur Kintana, la liste des demandes ou l'agrégation des créneaux peut devenir lente à mesure que le nombre de demandes augmente.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Mesurer la fiabilité d’un générateur de projet
+
+**Mission liée à « CLI scaffolder : générer une structure de projet en une commande, pas neuf fois à la main » :** Évalue un scaffold Kintana : temps gagné, reproductibilité, comportement si les fichiers existent, mode dry-run et lisibilité des sorties. Compare la génération initiale à une seconde exécution.
+
+**Livrable :** Scénarios d’entrée/sortie, critères d’idempotence et analyse du coût de maintenance.
+
+**Critères d’acceptation :** Une seconde exécution ne détruit pas les fichiers ; les conflits sont signalés ; l’outil n’écrase pas silencieusement ; le gain est observé sur un cas comparable.
+
+**Transfert obligatoire :** Un projet contient déjà des modifications : définis comment l’outil s’arrête sans perte de données.
+
+## Références officielles utiles
+
+> **Référence principale vérifiée le 2 novembre 2026 :** la première ressource de ce panneau, également enregistrée dans `source_url`, a été consultée pour le mécanisme versionné traité ici. Les autres liens sont des compléments officiels utiles ; ils ne constituent pas chacun une attestation indépendante de l’exemple du curriculum. Aucune référence ne prouve que l’exemple a été exécuté. Vérifie la version cible et teste dans ton environnement avant un usage réel.
+
+- [Node.js : File system](https://nodejs.org/docs/v22.23.4/api/fs.html)
+- [Node.js : Path](https://nodejs.org/docs/v22.23.4/api/path.html)
+- [Node.js : Process](https://nodejs.org/docs/v22.23.4/api/process.html)

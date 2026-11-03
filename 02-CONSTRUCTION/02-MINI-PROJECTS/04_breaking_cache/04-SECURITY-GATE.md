@@ -4,56 +4,35 @@ gate: bloquante
 acte: comprendre
 ---
 
-> ### SCÈNE CRAZYDEVS : Breaking Bad
->
-> Le système est maintenant ton labo : le mécanisme semble tranquille jusqu'au moment où une petite incohérence fait toute la différence. Ton job n'est pas de réciter la règle : **trouve l'ouverture, mesure ce qui casse, puis ferme-la sans tricher**.
->
-> **Règle de scène :** l'analogie sert le mécanisme ; dès qu'elle simplifie trop, reviens au modèle technique exact.
+# Security Gate : 04 BREAKING CACHE
 
-# Security Gate : 04_breaking_cache
-
-<!-- AF-DIAGRAM:cache -->
-
-```text
-Request
-  │
-  ▼
-┌──────────┐
-│  Cache   │
-└─┬────┬───┘
-  │hit │miss
-  ▼    ▼
-Value  ┌──────────┐
-       │ Database │
-       └────┬─────┘
-            ▼
-         populate
-```
-
-Le cache court-circuite la source de vérité en cas de hit et la recharge en cas de miss.
-
-Temps de lecture ~2 min
-
-> **Gate bloquante**. Ce mini-projet ne peut être marqué **publié** tant que
-> la checklist OWASP Top 10 ci-dessous n'est pas remplie **et signée**.
-
-> **Rejouer avant POSTMORTEM** à chaque livraison.
+> **Gate bloquante locale au mini-projet.** Elle vérifie les risques spécifiques au cache de résumé de stock. Elle ne constitue pas un audit général OWASP, une revue de sécurité indépendante ou une certification de production.
 
 ## Procédure
 
-1. Copie [`../97-templates/05-SECURITY-GATE.md`](../97-templates/05-SECURITY-GATE.md) dans ce dossier sous le nom `SECURITY_GATE_FILLED.md`.
-2. Renseigne **chaque** item A01→A10 avec une **preuve** (fichier:ligne, test, config, log). `N/A` n'est autorisé qu'avec une phrase de motivation.
-3. Signe (`nom : date`) en fin de fichier.
-4. Ajoute le lien vers `SECURITY_GATE_FILLED.md` dans le `README.md` du projet, section **Publication**.
+Pour chaque ligne, fournis une preuve réelle (fichier, test, assertion ou résultat). Si un élément est hors périmètre, explique pourquoi ; n'écris pas simplement `N/A`.
 
-## Règle de blocage
+| ID  | Contrôle requis                                                                                                | Preuve attendue                                                          | Résultat     |
+| --- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------ |
+| G1  | La clé contient tenant et boutique, après validation des identifiants.                                         | test montrant que deux tenants/boutiques ne partagent pas la même entrée | À renseigner |
+| G2  | Un appelant ne choisit pas librement le périmètre d'une autre boutique via une clé arbitraire.                 | lecture du service et test ciblé                                         | À renseigner |
+| G3  | TTL invalide et clé invalide sont rejetés.                                                                     | tests des entrées négatives / frontières                                 | À renseigner |
+| G4  | Un loader en erreur ne crée pas une entrée cache.                                                              | test d'échec du loader puis lecture suivante                             | À renseigner |
+| G5  | Une écriture échouée ne provoque pas une invalidation prématurée ; une écriture réussie invalide la bonne clé. | deux tests d'écriture (succès/échec)                                     | À renseigner |
+| G6  | Les logs ne contiennent ni secret ni payload de résumé de stock.                                               | inspection des sorties réellement produites                              | À renseigner |
+| G7  | Le TTL et la fenêtre de concurrence résiduelle sont documentés.                                                | ADR + `03-SECURITY.md`                                                   | À renseigner |
+| G8  | La sérialisation de clé ne confond pas deux couples d'identifiants (y compris avec `:`).                       | test des couples `('a:b','c')` et `('a','b:c')`                          | À renseigner |
+| G9  | La cardinalité du cache d'exercice est bornée et le risque des entrées expirées jamais relues est reconnu.     | fixture bornée + limite documentée                                       | À renseigner |
 
-- Un item sans preuve **ni** motivation → gate **échouée**, projet **non publiable**.
-- Une preuve pointant vers un fichier inexistant → gate **échouée**.
-- Pas de signature → gate **échouée**.
+## Décision
 
-## Rappel
+- [ ] Tous les contrôles applicables ont une preuve.
+- [ ] Les exceptions sont justifiées et les limites assumées.
+- [ ] Les commandes et résultats correspondent réellement au dépôt apprenant.
+- [ ] Le gate a été rejoué après la dernière modification.
 
-La checklist OWASP existe pour être **appliquée**, pas récitée. Un mini-projet
-sans `SECURITY_GATE_FILLED.md` signé ne compte pas dans ton portfolio, quelle
-que soit la qualité du code.
+**Statut :** `À FAIRE` / `PASSÉ` / `ÉCHOUÉ` (choisir un seul statut et l'expliquer).
+
+**Nom / date :**
+
+Un gate rempli sans preuves ou copié du modèle ne valide rien. Ne remplace pas ces contrôles ciblés par une checklist OWASP Top 10 hors sujet.

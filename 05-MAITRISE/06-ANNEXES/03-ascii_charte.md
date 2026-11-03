@@ -111,13 +111,13 @@ Le modèle JavaScript ne garantit pas une représentation universelle « primiti
 ```text
 STACK             HEAP
 +----------------+       +------------------------+
-| a -> 42    |       |            |
-| obj -> 0x4F2A ----------->   | 0x4F2A : { x: 1, y: 2 } |
-| obj2 -> 0x4F2A --------/    |            |
-+----------------+       +------------------------+
+| a -> valeur 42      |      | { x: 1, y: 2 }       |
+| obj -> valeur-ref R1 +----->| même objet désigné  |
+| obj2 -> valeur-ref R1+----->| par obj et obj2     |
++--------------------+      +---------------------+
 
-obj et obj2 pointent vers LA MÊME adresse mémoire.
-Muter obj.x modifie ce que obj2 voit aussi.
+R1 est une étiquette symbolique, pas une adresse mémoire réelle.
+obj et obj2 désignent le même objet ; muter obj.x change ce que obj2 voit aussi.
 ```
 
 C'est la racine de 90% des bugs "je touche un truc et un autre truc casse ailleurs".
@@ -261,10 +261,38 @@ Si ton module a besoin d'un 9e schéma canonique qui sert dans plusieurs modules
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
 
-<!-- AF-P0-2026-10-30: missing_verification -->
-
 ### Vérification observable : critères de réussite
 
 Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « Charte ascii : la norme unique », puis conserve le résultat et explique tout écart.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: reference -->
+
+## Repères de décision
+
+- **Pourquoi :** Un référentiel sert à rendre les compétences observables et à éviter de confondre familiarité, autonomie et maîtrise.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le pour établir un point de départ, prioriser une révision ou préparer une revue de portfolio. Ne l'utilise pas comme classement de valeur personnelle.
+- **Limites :** Une auto-évaluation est biaisée. Le niveau doit être confirmé par une tâche inconnue, un artefact reproductible et, aux paliers avancés, une revue externe.
+
+## Mécanisme : la version sans magie
+
+Associe une compétence à une tâche, un critère, une preuve, une date et un statut. Réévalue quand le contexte ou la technologie change.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Charte ascii : la norme unique** se rattache à ce cas concret : Pour Kintana, une compétence comme l'idempotence n'est acquise que si tu sais l'expliquer, l'implémenter et vérifier le rejeu et les conflits.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Référentiel de compétences par preuves
+
+> **Arc DBZ / Capsule Corp. :** Bulma ne dit pas « je suis forte » parce qu'elle a lu le manuel. Elle vérifie ce que l'outil permet réellement.
+
+**Mission liée à « Charte ascii : la norme unique » :** Établis ton état initial sur une tranche Kintana : sélectionne trois compétences, réalise une tâche de chacune sans suivre un corrigé, garde les tests et note ce que tu n'as pas pu démontrer.
+
+**Livrable :** un registre de compétences avec preuves liées, statut honnête, date de révision et prochain test de transfert.
+
+**Critères d’acceptation :** chaque statut pointe vers un artefact ; une compétence non testée reste `NON ÉVALUÉE` ; aucune preuve déclarative ne vaut une exécution ; les lacunes ont une action de remédiation.
+
+**Transfert obligatoire :** Reprends une compétence dans un langage ou un composant différent et vérifie si le principe se transfère réellement.

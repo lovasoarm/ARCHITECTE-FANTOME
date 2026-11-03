@@ -1,10 +1,10 @@
 ---
-perennite: evolutif
+perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Cadre de posture d'ingénieur, indépendant des technos.
 acte: comprendre
-cognitive_level: L4
+cognitive_level: L1
 perturbation_modes: [defaut_cache, changement_echelle]
 anti_recipe_key: defaut_cache+changement_echelle
 transfer_distance: medium
@@ -91,6 +91,47 @@ Ce n'est pas un cours. Il ne t'apprend pas JavaScript. Il t'apprend à
 parler du projet sans ambiguïté. C'est un outil d'ingénierie
 documentaire, pas un tutoriel.
 
-## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
+## CHECKPOINT DE PROFONDEUR : facultatif après Fundamentals
+
+Le cas avancé ci-dessous n’est pas demandé à l’entrée et ne conditionne pas la suite.
+
+### Variation F : coût et fiabilité
 
 Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Identifie un bénéfice, une dette opérationnelle et un mode de défaillance. Propose une garde-fou minimal et précise ce qu'il ne garantit pas.
+
+<!-- AF-DIAGRAM:reference -->
+
+## Repère visuel utile : Référentiel de compétences par preuves
+
+```text
+compétence -> tâche observable -> artefact
+     ^                         |
+     |                         v
+révision datée <- verdict <- critère explicite
+     |
+     +-> remédiation ou nouvelle preuve
+```
+
+<!-- AF-LESSON-PROFILE: reference -->
+
+## Repères de décision
+
+- **Pourquoi :** Un référentiel sert à rendre les compétences observables et à éviter de confondre familiarité, autonomie et maîtrise.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le pour établir un point de départ, prioriser une révision ou préparer une revue de portfolio. Ne l'utilise pas comme classement de valeur personnelle.
+- **Limites :** Une auto-évaluation est biaisée. Le niveau doit être confirmé par une tâche inconnue, un artefact reproductible et, aux paliers avancés, une revue externe.
+
+## Mécanisme : la version sans magie
+
+Associe une compétence à une tâche, un critère, une preuve, une date et un statut. Réévalue quand le contexte ou la technologie change.
+
+## Ancrage produit / terrain : Kintana
+
+Kintana est un cas fictif qui sera utilisé plus tard pour relier plusieurs compétences. Aucune activité technique Kintana n'est demandée maintenant. Tu n'as pas à comprendre son architecture ni à réaliser une mission technique dans ce module.
+
+## Mission utile : comprendre à quoi sert une preuve
+
+Pense à une action déjà réalisée dans Getting Started : lancer un fichier et voir `Bonjour` dans le terminal. Écris simplement : « J'ai lancé le fichier ; le terminal a affiché Bonjour. » C'est une preuve de cette action précise, pas une preuve de maîtrise générale.
+
+### Transfert : à découvrir plus tard
+
+Les transferts entre contextes seront travaillés après l'apprentissage des compétences correspondantes. Aucune comparaison de langages ou d'API n'est demandée maintenant.

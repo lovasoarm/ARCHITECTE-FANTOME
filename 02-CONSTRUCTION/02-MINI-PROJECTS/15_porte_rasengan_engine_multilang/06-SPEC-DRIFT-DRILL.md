@@ -8,6 +8,13 @@ anti_recipe_key: preuve_partielle+changement_echelle
 transfer_distance: low
 assessment_role: project_mastery
 review_interval: 6 mois
+freshness_status: null
+source_verified_on: null
+source_type: "none"
+canonical_resource: null
+source_url: null
+source_scope: "Évolutions du cahier des charges et décisions propres au projet ; aucune donnée de version fournisseur n’est certifiée par ce journal."
+provenance_note: "Journal interne du changement de spécification pendant le mini-projet. Les exemples sont des scénarios pédagogiques ; les décisions réelles d’implémentation doivent citer leur propre source primaire dans le projet si elles dépendent d’une API, d’une version ou d’un fournisseur."
 ---
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.

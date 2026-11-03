@@ -75,3 +75,33 @@ Définir un SLI sur une opération métier, choisir un SLO, calculer le budget s
 Prérequis : métriques, logs, disponibilité et exploitation. Suite : cloud, architecture, leadership et ownership de production.
 
 **Preuve attendue :** tableau de bord, définition d'indicateur, calcul documenté, runbook et postmortem dont les actions ont des preuves de fermeture.
+
+<!-- AF-LESSON-PROFILE: reliability -->
+
+## Repères de décision
+
+- **Pourquoi :** SLO et budgets d'erreur aident à arbitrer entre vitesse de livraison et fiabilité avec des signaux partagés.
+- **Quand l’utiliser / quand l’éviter :** Définis un SLO pour un parcours important quand tu disposes d'une mesure fiable et d'une population claire. Ne définis pas de cible arbitraire sans baseline et engagement métier.
+- **Limites :** Un SLO n'empêche pas les incidents. Un bon pourcentage peut cacher des utilisateurs exclus ; la fenêtre, le dénominateur et les exclusions comptent.
+
+## Mécanisme : la version sans magie
+
+Définis l'indicateur orienté utilisateur, le seuil et la fenêtre ; calcule le budget d'erreur ; relie son épuisement à une décision opérationnelle.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Cas opérationnel SLO : convertir une attente utilisateur en arbitrage de fiabilité** se rattache à ce cas concret : Kintana doit rendre visible la disponibilité du parcours de création, et pas uniquement le fait que le processus API répond à `/health`.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : SLO d'un parcours utilisateur Kintana
+
+> **Arc Walking Dead :** la disponibilité ne se décrète pas dans le README. Elle se mesure quand le camp reçoit du trafic et quand une dépendance tombe.
+
+**Mission liée à « Cas opérationnel SLO : convertir une attente utilisateur en arbitrage de fiabilité » :** Propose un SLI orienté utilisateur pour la création ou la réservation, construis une baseline sur données de test/pilot si disponibles, définis le dénominateur et simule la consommation du budget d'erreur.
+
+**Livrable :** fiche SLI/SLO, requête de calcul, règle d'alerte, scénario incident et décision si le budget se dégrade.
+
+**Critères d’acceptation :** l'indicateur mesure le résultat utilisateur ; la population et la fenêtre sont écrites ; la baseline est identifiée comme réelle ou synthétique ; une action est liée au budget.
+
+**Transfert obligatoire :** Le taux moyen est bon mais une région ou un type d'appareil est en échec. Montre comment segmenter sans cacher le problème.

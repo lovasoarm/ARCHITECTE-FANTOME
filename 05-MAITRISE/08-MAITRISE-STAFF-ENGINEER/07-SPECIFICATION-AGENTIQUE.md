@@ -3,9 +3,20 @@ stability: evolutif
 acte: maitrise
 noyau: oui
 perishability_id: PER-0113
+review_interval: "3 mois"
+perishability_scope: "Pratiques et terminologie évolutives autour des spécifications destinées à des systèmes ou agents assistés ; aucune API fournisseur n’est certifiée dans cette leçon."
+source_verified_on: null
+freshness_status: "not_verified"
+source_url: null
+source_type: "none"
+canonical_resource: null
+source_scope: "Contenu autonome tel que délimité dans le document ; réévaluer si une affirmation externe versionnée est ajoutée."
+provenance_note: "Document déclaré autonome/fictif ; cette classification ne vaut pas validation d’une affirmation externe qui serait ajoutée ultérieurement."
 ---
 
 # 07 : Ingénierie des spécifications : écrire pour un constructeur autonome
+
+> **Périmètre de suivi (3 mois) :** Pratiques et terminologie évolutives autour des spécifications destinées à des systèmes ou agents assistés ; aucune API fournisseur n’est certifiée dans cette leçon.
 
 Ce module ajoute une capacité à la chaîne existante ; il ne remplace ni `DDD ET CONTRATS`, ni
 le capstone, ni la gouvernance IA. L'objectif est de passer de « décrire une intention » à
@@ -111,10 +122,36 @@ Une spécification sans mécanisme de réfutation est une opinion structurée.
 **Temps CORE ajouté : 45 min de consolidation**, en remplaçant une relecture passive du grimoire,
 pas en créant un nouveau palier.
 
-<!-- AF-P0-2026-10-30: missing_transfer -->
-
 ### Transfert : changer de contexte
 
 Applique le mécanisme de « 07 : Ingénierie des spécifications : écrire pour un constructeur autonome » à une décision qui touche plusieurs équipes pendant plusieurs trimestres. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-LESSON-PROFILE: leadership -->
+
+## Repères de décision
+
+- **Pourquoi :** Le leadership technique fait avancer des problèmes qui dépassent une PR ou une équipe. Il exige écoute, arbitrage, adoption et responsabilité après la décision.
+- **Quand l’utiliser / quand l’éviter :** Utilise RFC, ADR, revue et mentorat quand une décision affecte plusieurs personnes ou systèmes. Ne confonds pas autorité, volume de parole et influence réelle.
+- **Limites :** Un document, une réunion ou un exercice ne prouvent pas une adoption. L'influence doit être vérifiée par le changement de comportement, les responsabilités et les résultats observés.
+
+## Mécanisme : la version sans magie
+
+Cadre le problème commun, collecte les contraintes, compare options, expose externalités, facilite la décision, attribue les actions et revient mesurer l'adoption.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **07 : Ingénierie des spécifications : écrire pour un constructeur autonome** se rattache à ce cas concret : Une évolution Kintana peut toucher API, client mobile, données, sécurité et exploitation. La décision doit rendre les coûts visibles à chaque équipe concernée.
+
+**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+
+## Mission utile : Kintana : Écrire une spécification exécutable par un agent sans ambiguïté
+
+**Mission liée à « 07 : Ingénierie des spécifications : écrire pour un constructeur autonome » :** Rédige une tâche pour un agent travaillant sur Kintana : périmètre, contexte autorisé, fichiers à ne pas toucher, invariants, critères observables, procédure de vérification et conditions d’arrêt.
+
+**Livrable :** Spécification, jeux d’acceptation et consignes d’escalade.
+
+**Critères d’acceptation :** Les critères sont testables ; les permissions sont bornées ; l’agent doit demander clarification en cas de conflit ; les résultats sont vérifiables indépendamment.
+
+**Transfert obligatoire :** Une exigence manque ou se contredit : indique le point où l’agent doit s’arrêter et demander une décision.

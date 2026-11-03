@@ -1,11 +1,11 @@
 ---
 stability: intemporel
 acte: comprendre
-cognitive_level: L4
+cognitive_level: L2
 perturbation_modes: [defaut_cache, decision_organisationnelle]
 anti_recipe_key: defaut_cache+decision_organisationnelle
-transfer_distance: medium
-assessment_role: diagnostic_mastery
+transfer_distance: low
+assessment_role: instructional_checkpoint
 ---
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
@@ -13,6 +13,8 @@ assessment_role: diagnostic_mastery
 # Pourquoi la plupart des devs stagnent
 
 Temps de lecture ~8 min
+
+> Tu peux commencer sans expérience professionnelle et sans projet personnel. Les exemples qui suivent sont des situations à imaginer : tu n'as pas besoin d'avoir déjà livré un logiciel.
 
 ## La scène
 
@@ -93,11 +95,12 @@ qui est structurellement important à comprendre. Un curriculum construit délib
 garantir la rencontre avec les situations qui forcent l'apparition du modèle mental, au lieu
 d'attendre qu'un incident de production s'en charge.
 
-Chiffre concret : dans une étude interne typique de post-mortems chez des équipes produit,
-plus de la moitié des incidents "surprise" en production sont retraçables à une hypothèse
-implicite jamais formulée à l'écrit (état partagé non identifié, ordre d'événements supposé
-garanti, capacité supposée illimitée). Ce n'est pas un manque de compétence de codage. C'est
-un manque de modèle mental écrit et confronté avant la mise en production.
+Exemple concret, sans prétendre à une statistique : une équipe suppose que deux demandes
+ne modifieront jamais la même réservation en même temps. Le code fonctionne pendant la
+démonstration, puis deux utilisateurs réservent la dernière place presque simultanément.
+Le défaut ne vient pas forcément de la syntaxe ; il vient d'une hypothèse de concurrence qui
+n'a pas été formulée ni vérifiée. Écrire l'hypothèse permet de chercher le scénario qui peut
+la réfuter avant qu'un incident ne le fasse à ta place.
 
 ### Le signal qui ne trompe pas
 
@@ -106,11 +109,7 @@ Un dev qui exécute sans modèle mental a un symptôme reconnaissable : il ne pe
 mental répond en quelques secondes, parce qu'il sait déjà où sont les frontières, les états
 partagés, les hypothèses fragiles. Ce curriculum vise à construire ce deuxième réflexe.
 
-Un test simple pour toi-même, avant même de commencer ce curriculum : prends le dernier
-système que tu as livré. Demande-toi "que se passe-t-il si deux utilisateurs font X en même
-temps ?" et "que se passe-t-il si le service Y tombe pendant que je traite une requête ?".
-Si tu dois rouvrir le code pour répondre, le modèle mental n'existait pas au moment de la
-conception, il a été improvisé après coup, ou jamais construit du tout.
+Un test simple, même sans avoir jamais livré de logiciel : imagine une application de réservation. Deux personnes veulent la dernière place exactement au même moment. Demande-toi : "quelle réservation doit être acceptée ?" et "quelle règle permet de le décider ?". Tu viens de formuler une question d'ingénierie sans écrire une ligne de code.
 
 ### Ce que "modèle mental" veut dire concrètement ici
 
@@ -139,14 +138,13 @@ code", c'est la durée de vie du système et le nombre de personnes qui en dépe
         --> modèle mental obligatoire avant la première ligne
 ```
 
-### Un chiffre qui résume l'enjeu
+### Un signal de travail, pas un chiffre inventé
 
-Dans un sondage interne mené sur 40 développeurs ayant 3 à 8 ans d'expérience, 29 ont déclaré
-ne jamais avoir écrit noir sur blanc une hypothèse de conception avant de coder, sur un
-projet de plus de trois mois de durée de vie prévue. Parmi ces 29, 21 ont rapporté au moins
-un incident de production directement lié à une hypothèse implicite jamais vérifiée. Ce
-n'est pas une preuve statistique rigoureuse, c'est un signal cohérent avec l'expérience de
-terrain que ce curriculum cherche à corriger dès le premier niveau.
+Tu n'as pas besoin d'un sondage pour comprendre le risque : imagine une réservation, une
+limite de stock ou un paiement. Si personne n'a écrit ce qui doit se passer lorsque deux
+demandes arrivent ensemble, chaque développeur peut avoir une interprétation différente.
+Le travail d'ingénierie consiste à rendre cette hypothèse visible, à définir le comportement
+attendu et à prévoir comment le vérifier. Le curriculum ne revendique aucun résultat de sondage ni taux d'incident.
 
 ## Compromis
 
@@ -179,15 +177,44 @@ ou quatrième problème "jamais vu".
 Analogie : empiler des features sans jugement, c'est aligner des services en cuisine sans jamais goûter, et enchaîner les sorties en montagne sans jamais lire une carte.
 Où l'analogie casse : tu peux survivre des années en cuisine sans goûter ; un système, lui, envoie la note d'un coup.
 
-## Ce que tu dois savoir défendre
+## Ce que tu dois savoir expliquer
 
-1. Pourquoi quelqu'un avec cinq ans d'expérience peut avoir moins de modèle mental qu'un
-   junior qui vient de finir ce prologue.
-2. Quel est le symptôme observable qui distingue "exécuter sans modèle" de "raisonner avec
-   un modèle" : donne un exemple concret, pas une définition.
-3. Pourquoi ce curriculum accepte d'être plus lent au démarrage plutôt que de maximiser la
-   vitesse de livraison de tickets dès le premier niveau.
+1. Quelle hypothèse Amine n'a-t-il pas formulée avant de coder ?
+2. Pourquoi une démonstration réussie ne prouve-t-elle pas que le scénario à deux utilisateurs est sûr ?
+3. Quelle question simple peut-on poser avant de commencer à coder ?
 
-## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
+Tu peux répondre avec le scénario de la réservation. Aucune expérience professionnelle ni vocabulaire d'architecture n'est nécessaire.
 
-Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+## Défi avancé facultatif : variation G : boîte noire
+
+Quand tu auras étudié les notions de système, décris un problème sans nommer sa technologie : mécanisme, invariants et observations attendues. Ce défi n'est pas un prérequis du Prologue.
+
+<!-- AF-LESSON-PROFILE: learning -->
+
+## Repères de décision
+
+- **Pourquoi :** Un parcours long ne produit pas de maîtrise par simple lecture. Il faut transformer chaque notion en rappel, application, correction et preuve conservée.
+- **Quand l’utiliser / quand l’éviter :** Utilise cette méthode pour planifier, réviser ou sortir d'un plateau. Évite de transformer le suivi en usine à cases cochées : le signal est la capacité à résoudre un problème nouveau.
+- **Limites :** Le journal et le calendrier ne prouvent pas la compétence. Seule une tâche refaite sans copier, puis transférée à un autre contexte, apporte une preuve utile.
+
+## Mécanisme : la version sans magie
+
+Prédis, rappelle sans support, pratique, compare à un critère, corrige, puis reviens après un délai et transfère vers un cas différent.
+
+## Ancrage produit / terrain : Kintana
+
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pourquoi la plupart des devs stagnent** commence par un exemple de réservation. Tu n'as pas besoin de connaître ce produit : il sert seulement à imaginer une règle métier et une situation qui pourrait la contredire.
+
+**À observer :** l'hypothèse formulée, le scénario qui pourrait la contredire et la vérification qui serait utile. À ce stade, tu fais un exercice de réflexion ; ne présente pas un exemple imaginé comme un test réellement exécuté.
+
+## Mission utile : Kintana : formuler une hypothèse avant de coder
+
+> **Arc Naruto :** avant d'attaquer, regarde ce que tu supposes. Une hypothèse invisible devient facilement un bug.
+
+**Mission liée à « Pourquoi la plupart des devs stagnent » :** imagine que Kintana réserve des créneaux. Écris une règle simple : « un créneau ne peut être attribué qu'à une seule réservation ». Imagine ensuite que deux personnes demandent ce créneau au même instant. Décris ce qui pourrait mal se passer et quelle vérification permettrait de contrôler la règle.
+
+**Livrable :** un tableau de trois lignes : `hypothèse / scénario qui la met en difficulté / vérification possible`.
+
+**Critères d’acceptation :** l'hypothèse est exprimée clairement ; le scénario décrit un risque concret ; la vérification est une idée de contrôle, pas un test prétendument exécuté. Aucun code, commit ou outil n'est requis dans le Prologue.
+
+**Transfert obligatoire :** applique le même raisonnement à un stock de trois articles : quelle hypothèse formules-tu si deux clients achètent le dernier article en même temps ?

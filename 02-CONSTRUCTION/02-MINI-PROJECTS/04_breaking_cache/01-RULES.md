@@ -8,71 +8,45 @@ transfer_distance: medium
 assessment_role: project_mastery
 ---
 
-> ### SCÈNE CRAZYDEVS : Breaking Bad
->
-> Le système est maintenant ton labo : le mécanisme semble tranquille jusqu'au moment où une petite incohérence fait toute la différence. Ton job n'est pas de réciter la règle : **trouve l'ouverture, mesure ce qui casse, puis ferme-la sans tricher**.
->
-> **Règle de scène :** l'analogie sert le mécanisme ; dès qu'elle simplifie trop, reviens au modèle technique exact.
+# RULES : 04 BREAKING CACHE
 
-# RULES : 04_breaking_cache
+Ces règles définissent le contrat de livraison du mini-projet. Une règle non démontrée rend le projet **INCOMPLET** ; elle n'autorise pas à inventer une preuve.
 
-<!-- AF-DIAGRAM:cache -->
+## ADR minimum
 
-```text
-Request
-  │
-  ▼
-┌──────────┐
-│  Cache   │
-└─┬────┬───┘
-  │hit │miss
-  ▼    ▼
-Value  ┌──────────┐
-       │ Database │
-       └────┬─────┘
-            ▼
-         populate
-```
+Au moins **3 ADR** rédigés dans `ADR/`, à partir de décisions réellement prises :
 
-Le cache court-circuite la source de vérité en cas de hit et la recharge en cas de miss.
+1. TTL, horloge injectée et frontière d'expiration ;
+2. composition des clés et isolation tenant/boutique ;
+3. politique d'invalidation, fraîcheur et décision fondée sur les mesures.
 
-Temps de lecture ~2 min
+D'autres ADR sont possibles. Une page recopiée sans alternative ni conséquence n'est pas une décision. Template : [03-ADR_TEMPLATE.md](../97-templates/03-ADR_TEMPLATE.md).
 
-Règles minimales de release. Un projet qui échoue une de ces règles est marqué
-INCOMPLET par un critere binaire ecrit dans ton `02-TDD-JOURNAL.md`.
+## Contrat fonctionnel
 
-## ADR_MINIMUM
+- `get` distingue miss et hit, y compris pour `null` ou `undefined` ;
+- `set` rejette clé invalide et TTL non entier, non fini ou inférieur/égal à zéro ;
+- l'expiration suit `now >= expiresAt` et l'horloge est injectable ;
+- `delete` et `clear` ont un comportement testé ;
+- un loader n'est appelé qu'en cas de miss et son échec ne crée pas d'entrée ;
+- l'invalidation arrive après commit réussi ;
+- la clé isole le tenant et la boutique, sans collision de séparateur (tuple JSON recommandé) ;
+- les clés/fixtures restent bornées, car l'expiration paresseuse ne nettoie pas les entrées jamais relues.
 
-Nombre minimum d'ADR à livrer dans `ADR/` : **3**
+## Tests et commandes
 
-Un ADR unique ("choix d'architecture") ne suffit pas. Décisions latérales attendues :
-données, frontières de module, stratégie de tests, choix async, sécurité, observabilité.
-Template canonique : `../97-templates/03-ADR_TEMPLATE.md`.
+Le ZIP ne fournit pas de code ni de `package.json`. Pour les fichiers `.js` proposés, le choix de départ est CommonJS (`require` / `module.exports`) ; ESM reste possible avec `.mjs` ou un `package.json` déclarant `"type": "module"`. Après création des modules et des tests, la commande de référence est `node --test`. Utilise `node src/demo.js` et `node src/benchmark.js` uniquement après les avoir écrits. Ne consigne pas `npm test` sauf si tu as explicitement créé le script correspondant.
 
-## SPEC_DRIFT_MODE
-
-default: off
-activation: `SPEC_DRIFT_MODE=on`
-triggers: voir `05-SPEC-DRIFT-TRIGGERS.md` (obligatoire, 3 déclencheurs J+1/J+3/J+5)
-
-Si activé, `08-POSTMORTEM.md` doit contenir la section `## Comment j'ai encaissé le drift`.
+Le journal TDD doit montrer RED → GREEN → REFACTOR pour les cas importants, les résultats réels et les risques résiduels.
 
 ## Security Gate
 
-Bloc obligatoire (drill `node learner-verifier.js` (auto-verif ecrite par toi)) :
+Le gate est limité aux menaces concrètes du projet dans [04-SECURITY-GATE.md](04-SECURITY-GATE.md). Il ne requiert ni checklist OWASP Top 10 complète, ni audit de dépendances (aucune dépendance externe n'est imposée), ni scan de conteneur ou d'infrastructure.
 
-- **Entrées validées** : chaque entrée externe passe par un schéma explicite (Zod, manuel documenté).
-- **Secrets hors code** : jamais commités ; lus depuis env, documentés dans `SECURITY.md`.
-- **Dépendances scannées** : `npm audit` (ou équivalent), snapshot copié dans `SECURITY.md`.
-- **Surface d'exposition** : listée dans `SECURITY.md` (ports, endpoints, fichiers lus/écrits).
+## Mesure
 
-Absence de `SECURITY.md` = release refusée.
+Aucun temps de référence n'est fourni. Le tableau doit contenir les mesures réellement obtenues, les répétitions, le runtime et l'environnement. Si le benchmark n'a pas été exécuté, écris `NON EXÉCUTÉ` et explique pourquoi.
 
-## TDD JOURNAL
+## Publication
 
-Section obligatoire : `## Ce qui aurait été impossible à tester si j'avais gardé la version précédente`.
-Force l'introspection sur le lien code testable / refactoring.
-
-## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
-
-Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
+Aucun code exécutable n'est livré par le curriculum. La release de ton projet nécessite les preuves créées dans ton propre dépôt, pas la seule présence des dossiers `src/` et `tests/`.

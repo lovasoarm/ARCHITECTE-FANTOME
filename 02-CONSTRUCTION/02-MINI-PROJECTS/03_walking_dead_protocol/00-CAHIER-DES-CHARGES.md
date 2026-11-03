@@ -37,9 +37,10 @@ CAMP_STATE_FILE="$tmp/camp.json" node legacy/campV1.js consume --resource food -
 
 Le dernier appel met en évidence le défaut volontaire. Après création de la v2, d'un `package.json`, des tests et des scripts npm, tu pourras installer Playwright localement puis utiliser `npm test` et `npm run test:e2e`. Ne lance pas ces commandes avant d'avoir créé leurs prérequis.
 
+
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
-Le groupe de Rick Grimes a besoin d'un système de gestion de camp : inventaire de ressources, rotations de garde, rations alimentaires, niveaux de sécurité par périmètre. Le code est fourni dans [`legacy/campV1.js`](legacy/campV1.js) : une entrée monolithique, un état mutable et plusieurs responsabilités mélangées. Aucun test de caractérisation n’est fourni. Un défaut reproductible : la consommation négative : constitue le premier comportement à capturer.
+Le groupe de Rick Grimes a besoin d'un système de gestion de camp : inventaire de ressources, rotations de garde, rations alimentaires, niveaux de sécurité par périmètre. Le code est fourni dans [`legacy/campV1.js`](legacy/campV1.js) : une entrée monolithique, un état mutable et plusieurs responsabilités mélangées. Aucun test de caractérisation n’est fourni. Un défaut reproductible  : la consommation négative  : constitue le premier comportement à capturer.
 
 Ton boulot : ne jamais ajouter de feature avant d'avoir des tests. Refactorer sans rien casser. Transformer ce camp en forteresse de code propre.
 
@@ -153,7 +154,7 @@ La zone de résistance inattendue est la phase 1 : écrire des tests sur du code
 - Pas de TypeScript.
 - Pas de base de données SQL (JSON sur le filesystem uniquement).
 - Pas de communication réseau (le Worker Thread communique via `postMessage`, pas via HTTP ou WebSocket).
-- Pas de benchmark de performance (c'est le projet `04_breaking_cache` qui couvre ça).
+- Pas de benchmark de performance dans ce projet. `04_breaking_cache` propose uniquement une mesure locale du nombre d'appels au loader et du coût du cache-aside ; il ne remplace pas un benchmark général d'algorithmes ou de performance.
 
 ## LES ADR
 
