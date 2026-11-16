@@ -26,7 +26,9 @@ La récursion naïve recalcule les mêmes sous-problèmes des milliers de fois. 
 
 ```js
 function fibNaif(n) {
-  if (n <= 1) return n;
+  if (!Number.isSafeInteger(n) || n < 0)
+    throw new RangeError("n doit être un entier sûr positif ou nul");
+  if (n <= 1) return BigInt(n);
   return fibNaif(n - 1) + fibNaif(n - 2);
 }
 ```
@@ -53,7 +55,7 @@ fib(5)
 
 `fib(2)` est calculé 3 fois. `fib(1)` est calculé 5 fois.
 
-Pour `fib(40)` : 2^40 ≈ 1 milliard d'appels. Pour `fib(50)` : intenable.
+Pour cette version, le nombre d'appels récursifs suit `T(n) = 2 × F(n + 1) - 1` avec `F` la suite de Fibonacci : `fib(40)` déclenche environ 331 millions d'appels. La croissance est exponentielle ; éviter les grands `n` avec cette version naïve.
 
 ---
 
@@ -63,7 +65,9 @@ Mémoïzer = stocker le résultat la première fois qu'on le calcule. Si on reto
 
 ```js
 function fibMemo(n, memo = new Map()) {
-  if (n <= 1) return n;
+  if (!Number.isSafeInteger(n) || n < 0)
+    throw new RangeError("n doit être un entier sûr positif ou nul");
+  if (n <= 1) return BigInt(n);
   if (memo.has(n)) return memo.get(n); // déjà calculé : retourne le cache
 
   const result = fibMemo(n - 1, memo) + fibMemo(n - 2, memo);
@@ -71,10 +75,9 @@ function fibMemo(n, memo = new Map()) {
   return result;
 }
 
-// maintenant fib(40) = instantané
-// chaque fib(k) est calculé exactement UNE fois
-console.log(fibMemo(40)); // 102334155
-console.log(fibMemo(100)); // 354224848179261915075
+// BigInt conserve les valeurs exactes au-delà de Number.MAX_SAFE_INTEGER.
+console.log(fibMemo(40)); // 102334155n
+console.log(fibMemo(100)); // 354224848179261915075n
 ```
 
 L'arbre de récursion avec mémo :
@@ -94,7 +97,7 @@ fib(5)
 └── fib(3) = 2 (cache)   <-- idem
 ```
 
-**Complexité :** O(n) temps, O(n) espace.
+**Complexité pédagogique :** O(n) sous-problèmes mémorisés et O(n) entrées en mémoire. Les opérations `BigInt` deviennent plus coûteuses à mesure que le nombre de chiffres augmente ; la profondeur récursive reste aussi limitée par la pile d'appels.
 
 ---
 
@@ -104,11 +107,13 @@ Au lieu de partir du haut et de mémoïzer, partir du bas et remplir un tableau.
 
 ```js
 function fibTab(n) {
-  if (n <= 1) return n;
+  if (!Number.isSafeInteger(n) || n < 0)
+    throw new RangeError("n doit être un entier sûr positif ou nul");
+  if (n <= 1) return BigInt(n);
 
   const dp = new Array(n + 1);
-  dp[0] = 0;
-  dp[1] = 1;
+  dp[0] = 0n;
+  dp[1] = 1n;
 
   // on remplit de bas en haut
   for (let i = 2; i <= n; i++) {
@@ -118,17 +123,19 @@ function fibTab(n) {
   return dp[n];
 }
 
-console.log(fibTab(10)); // 55
-console.log(fibTab(40)); // 102334155
+console.log(fibTab(10)); // 55n
+console.log(fibTab(40)); // 102334155n
 ```
 
 **Optimisation espace :** pour Fibonacci, tu n'as besoin que des deux dernières valeurs.
 
 ```js
 function fibOptimal(n) {
-  if (n <= 1) return n;
-  let prev = 0,
-    curr = 1;
+  if (!Number.isSafeInteger(n) || n < 0)
+    throw new RangeError("n doit être un entier sûr positif ou nul");
+  if (n <= 1) return BigInt(n);
+  let prev = 0n;
+  let curr = 1n;
 
   for (let i = 2; i <= n; i++) {
     const next = prev + curr;
@@ -139,7 +146,8 @@ function fibOptimal(n) {
   return curr;
 }
 
-// O(n) temps, O(1) espace
+// O(n) additions ; deux valeurs BigInt sont conservées.
+// Le nombre de bits de ces valeurs augmente avec n : O(1) variables ne signifie pas O(1) bits.
 ```
 
 ---
@@ -297,7 +305,7 @@ uniquePaths(1, 1); // 1
 
 _~20 min_
 
-Implémente `fibMemo`, `fibTab`, et `fibOptimal`. Mesure le temps pour n = 100, 1000, 10000. Compare la mémoire utilisée (compte les entrées dans le Map/Array). Identifie à partir de quel n l'optimisation d'espace devient significative.
+Implémente `fibMemo`, `fibTab`, et `fibOptimal` avec `BigInt` pour conserver les valeurs exactes. Mesure `fibMemo` pour n = 100 puis 1 000 (la récursion peut atteindre la limite de pile) ; mesure les versions itératives pour n = 100, 1 000 et 10 000. Compare le nombre d'entrées conservées dans le `Map`/tableau et distingue le nombre de variables de la taille réelle des grands entiers.
 
 ---
 

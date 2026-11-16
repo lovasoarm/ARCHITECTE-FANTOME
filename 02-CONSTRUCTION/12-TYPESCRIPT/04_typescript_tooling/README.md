@@ -26,7 +26,6 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 - [50-ts_compiler_config_minimini_projet.md](50-ts_compiler_config_minimini_projet.md)
 - [TS migration guide : migrer du JS pur vers typescript : sans tout réécrire en une nuit](04-ts_migration_guide.md)
 - [Page verrouillée](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 <!-- AF-KINTANA-MODULE -->

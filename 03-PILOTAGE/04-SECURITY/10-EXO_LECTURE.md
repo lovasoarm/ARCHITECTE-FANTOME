@@ -18,6 +18,12 @@ Lecture de la consigne : ~2 min
 
 > **LOCK : pas d'édition avant HYPOTHESES.md signé.** Tu ne modifies AUCUN fichier avant que ton `HYPOTHESES.md` soit signé (>= 3 hypothèses, chacune avec preuve attendue). Sinon, l'exo ne compte pas.
 >
+> **Signature pédagogique (convention commune) :** chaque fichier d’hypothèses doit se terminer par les deux mentions suivantes :
+>
+> - `Auteur (nom ou identifiant) : ...`
+> - `Date (AAAA-MM-JJ) : ...`
+>   Pour un exercice en plusieurs cycles, signe chaque fiche de cycle ; pour un fichier unique, signe-le une fois après l’avoir complété. Cette mention identifie l’auteur et la date ; ce n’est ni une signature électronique ou juridique, ni une revue indépendante.
+>
 > **Budget lecture** : 400 lignes en 15 min chrono. Si tu dépasses, note pourquoi dans `MAP.md`. Objectif progressif : tu dois pouvoir tenir 500 lignes en 15 min à la fin du curriculum.
 >
 > **Protocole de cartographie** : suis `../../05-MAITRISE/06-ANNEXES/23_reading/02-cartographie_15min.md` si tu ne sais pas par où entrer.
@@ -56,7 +62,12 @@ mais juste.
 2. Prédire correctement la sortie sur au moins 2 entrées distinctes (sans exécuter).
 3. Nommer une hypothèse implicite du code (ex : "suppose que l'input est trié", "suppose qu'il y a un seul thread").
 
-Tant que ces 3 points ne sont pas faits, `git status` doit rester `working tree clean` sur ce fichier. La lecture précède l'écriture. Un dev qui modifie avant d'avoir lu est un dev qui casse.
+Tant que ces 3 points ne sont pas faits, ne modifie pas l'extrait.
+
+- **Dans un dépôt Git où ce fichier est déjà suivi, depuis la racine du dépôt :** `git status --short -- "<chemin-relatif-du-fichier>"` ne doit signaler aucune modification de cet extrait.
+- **Dans une archive ZIP sans dossier `.git` (cas normal de cette édition) :** le contrôle Git ne s'applique pas. Ne lance pas `git init` pour cet exercice et ne considère pas « not a git repository » comme un échec. Garde le fichier fourni intact ; écris tes notes (`MAP.md`, fiche d'hypothèses, etc.) dans ton dossier de travail, séparément de l'extrait.
+
+La lecture précède l'écriture. Un dev qui modifie avant d'avoir lu est un dev qui casse.
 
 Si tu veux "juste renommer une variable pour comprendre" : **note-le dans `HYPOTHESES.md`, ne le fais pas dans le fichier**.
 

@@ -51,9 +51,8 @@ Ordre recommandé : prérequis → pourquoi → bases i18n → mini-projet dicti
 - [Number formats : 1,234.56 vs 1.234,56](04-number_formats.md)
 - [Pluralisation : "1 résultat" vs "2 résultats" vs "many"](05-pluralization.md)
 - [I18n dans un vrai projet : organisation, performance, dx](06-i18n_in_project.md)
-- [Page verrouillée](90-grimoire.md)
 - [i18n : Drill exécutable](07-i18n_drill_exec.md)
-
+- [Page verrouillée](90-grimoire.md)
 <!-- CONTENU-DOSSIER:fin -->
 
 <!-- AF-KINTANA-MODULE -->

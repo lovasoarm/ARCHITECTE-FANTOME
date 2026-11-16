@@ -1,0 +1,2 @@
+backup_id,snapshot_at_utc,scope,record_count,fixture_file,sha256,integrity_prechecked,restore_tested,rpo_target_minutes,rto_target_minutes
+bk-0850,2026-11-10T08:50:00Z,fixture representative seulement (pas un snapshot de production),5,RESTORE-FIXTURE.csv,12477a2119b59a55733742bdbd1deb18932cefc92a5af5afb1790d4028be837d,YES,NO,15,60

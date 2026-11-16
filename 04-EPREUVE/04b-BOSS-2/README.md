@@ -14,7 +14,7 @@ type: boss
 ## Modules couverts
 
 - [`04-BIG-APP-SNOOP`](../04-BIG-APP-SNOOP/README.md)
-- [`04-BIG-APP-SNOOP`](../04-BIG-APP-SNOOP/README.md)
+- [`03-QUALITY-SHIELD`](../../03-PILOTAGE/03-QUALITY-SHIELD/README.md)
 
 Si un de ces modules n'est pas fini, le boss est premature : tu perdras la seance a apprendre au lieu
 de prouver.

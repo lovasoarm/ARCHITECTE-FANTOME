@@ -61,6 +61,14 @@ program.parse();
 import { Command } from "commander";
 import { castVote, getRanking, resetVotes } from "./votes.js";
 
+function parseStrictInteger(value) {
+  if (!/^-?\d+$/.test(value))
+    throw new Error("Un entier sans suffixe est attendu");
+  const parsed = Number(value);
+  if (!Number.isSafeInteger(parsed)) throw new Error("Entier hors plage sûre");
+  return parsed;
+}
+
 const program = new Command();
 
 program
@@ -73,12 +81,20 @@ program
   .command("vote")
   .description("Enregistrer un vote de journaliste")
   .requiredOption("-p, --player <nom>", "Nom du joueur")
-  .requiredOption("-n, --points <nombre>", "Points attribués (1-15)", parseInt)
+  .requiredOption(
+    "-n, --points <nombre>",
+    "Points attribués (1-15)",
+    parseStrictInteger,
+  )
   .option("-j, --journalist <nom>", "Nom du journaliste", "Anonyme")
   .option("--dry-run", "Simuler sans sauvegarder")
   .action(async (options) => {
     // options = { player: 'Messi', points: 12, journalist: 'Dupont', dryRun: false }
-    if (options.points < 1 || options.points > 15) {
+    if (
+      !Number.isSafeInteger(options.points) ||
+      options.points < 1 ||
+      options.points > 15
+    ) {
       console.error("Les points doivent être entre 1 et 15");
       process.exit(1);
     }
@@ -99,9 +115,21 @@ program
 program
   .command("rank")
   .description("Afficher le classement actuel")
-  .option("-n, --top <nombre>", "Nombre de joueurs à afficher", parseInt, 10)
+  .option(
+    "-n, --top <nombre>",
+    "Nombre de joueurs à afficher (1-100)",
+    parseStrictInteger,
+    10,
+  )
   .option("--json", "Sortie en JSON")
   .action(async (options) => {
+    if (
+      !Number.isSafeInteger(options.top) ||
+      options.top < 1 ||
+      options.top > 100
+    ) {
+      throw new Error("--top doit être un entier compris entre 1 et 100");
+    }
     const ranking = await getRanking();
     const top = ranking.slice(0, options.top);
 
@@ -121,10 +149,8 @@ program
   .option("--force", "Réinitialiser sans confirmation")
   .action(async (options) => {
     if (!options.force) {
-      const { confirm } = await consigne(
-        "Effacer tous les votes ? (oui/non) : ",
-      );
-      if (confirm.toLowerCase() !== "oui") {
+      const confirm = await consigne("Effacer tous les votes ? (oui/non) : ");
+      if (confirm.trim().toLowerCase() !== "oui") {
         console.log("Annulé.");
         return;
       }
@@ -133,7 +159,7 @@ program
     console.log("Tous les votes ont été réinitialisés.");
   });
 
-program.parse();
+await program.parseAsync();
 ```
 
 ---
@@ -220,7 +246,8 @@ program.addCommand(voteCommand)
 program.addCommand(rankCommand)
 program.addCommand(resetCommand)
 
-program.parse()
+// Les actions peuvent être async : parseAsync attend leur résolution/rejet.
+await program.parseAsync()
 ```
 
 ---

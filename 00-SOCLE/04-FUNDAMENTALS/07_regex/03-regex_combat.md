@@ -29,13 +29,13 @@ Ton regex doit tenir. Dans ce fichier, on construit des validateurs réels : pas
 Avant d'attaquer la validation, il faut comprendre les groupes de capture : c'est eux qui te donnent accès aux parties matchées.
 
 ```js
-const texte = "Naruto a 17 ans et Sasuke a 17 ans aussi"
+const texte = "Naruto a 17 ans et Sasuke a 17 ans aussi";
 
 // sans groupes : juste vérifier si ça matche
-/\d+/.test(texte)  // true
+/\d+/.test(texte); // true
 
 // avec groupes : capturer la valeur
-const match = texte.match(/(\w+) a (\d+) ans/)
+const match = texte.match(/(\w+) a (\d+) ans/);
 // match[0] : "Naruto a 17 ans" : le match complet
 // match[1] : "Naruto"      : groupe 1
 // match[2] : "17"        : groupe 2
@@ -246,11 +246,11 @@ Un formulaire d'inscription pour l'académie de Konoha. Valide les trois champs 
 
 Écris `validerProfil({ username, email, telephone })` qui retourne :
 
-```js
-{
- valide: boolean,
- erreurs: { username?: string, email?: string, telephone?: string }
-}
+```ts
+type ValidationResult = {
+  valide: boolean;
+  erreurs: { username?: string; email?: string; telephone?: string };
+};
 ```
 
 Pas de librairie externe. Que des regex.
@@ -280,7 +280,7 @@ Résultat attendu : un objet structuré. Utilise `.matchAll()` pour les événem
 Des configurations arrivent dans ce format texte :
 
 ```text
-host: api.konoha.dev
+host: https://api.konoha.dev
 port: 8080
 timeout: 30000
 debug: true
@@ -288,14 +288,129 @@ debug: true
 
 Valide chaque ligne :
 
-- clé : que des lettres et underscores
-- valeur : nombre, booléen, ou URL valide
+- clé : lettres ASCII (`A-Z`, `a-z`) et underscores uniquement
+- valeur : nombre décimal simple, booléen `true`/`false`, ou URL absolue `http://` / `https://` valide
 
 Retourne les lignes invalides avec leur numéro et la raison.
 
 (Indice : `split("\n")` puis regex sur chaque ligne)
 
 ---
+
+## CORRIGÉS DE RÉFÉRENCE : À CONSULTER APRÈS UNE TENTATIVE
+
+### Corrigé Exo 1 : validateur de profil ninja
+
+```javascript
+const usernameRegex = /^[\p{L}\p{N}_]{3,20}$/u;
+
+function validerProfil({ username, email, telephone } = {}) {
+  const erreurs = {};
+
+  if (typeof username !== "string" || !usernameRegex.test(username)) {
+    erreurs.username = "3 à 20 lettres, chiffres ou underscores sont requis.";
+  }
+  if (typeof email !== "string" || !validerEmail(email)) {
+    erreurs.email = "Adresse email au format attendu invalide.";
+  }
+  if (typeof telephone !== "string" || !validerTel(telephone)) {
+    erreurs.telephone = "Numéro au format français attendu invalide.";
+  }
+
+  return { valide: Object.keys(erreurs).length === 0, erreurs };
+}
+```
+
+`validerEmail` et `validerTel` sont les fonctions définies plus haut dans cette leçon. Le username utilise des catégories Unicode : les lettres accentuées sont donc acceptées ; les espaces, ponctuations et emojis ne le sont pas.
+
+### Corrigé Exo 2 : extracteur de données de match
+
+```javascript
+function extraireMatch(texte) {
+  if (typeof texte !== "string")
+    throw new TypeError("Le match doit être une chaîne.");
+
+  const header = texte.match(
+    /^\s*(?<equipeDomicile>[^|]+?)\s+(?<scoreDomicile>\d+)-(?<scoreExterieur>\d+)\s+(?<equipeExterieure>[^|]+?)\s*(?=\|)/,
+  );
+  if (!header) throw new Error("En-tête de match invalide.");
+
+  const eventPattern =
+    /\|\s*(?<minute>\d+(?:\+\d+)?)'\s*:\s*But de\s+(?<buteur>[^|(]+?)\s*(?<detail>\([^)]*\))?(?=\s*\||$)/g;
+  const evenements = [...texte.matchAll(eventPattern)].map((match) => ({
+    minute: match.groups.minute,
+    buteur: match.groups.buteur.trim(),
+    detail: match.groups.detail?.trim() ?? null,
+  }));
+
+  return {
+    equipeDomicile: header.groups.equipeDomicile.trim(),
+    scoreDomicile: Number(header.groups.scoreDomicile),
+    equipeExterieure: header.groups.equipeExterieure.trim(),
+    scoreExterieur: Number(header.groups.scoreExterieur),
+    evenements,
+  };
+}
+```
+
+Pour la ligne donnée, le score est `PSG 3–1 OM` et les événements sont Mbappé à `45+2` (détail `pen.`) puis Hakimi à `67`. Les minutes restent des chaînes pour préserver l'écriture du temps additionnel.
+
+### Corrigé Exo 3 : validateur de configuration YAML-like
+
+La fixture de l'énoncé utilise désormais une URL absolue pour `host`. Ce n'est pas un parseur YAML : il valide seulement quatre types de valeurs sur des lignes simples `clé: valeur`, sans indentation, commentaires, listes ni objets imbriqués.
+
+```javascript
+function validerConfigLignes(text) {
+  if (typeof text !== "string")
+    throw new TypeError("La configuration doit être une chaîne.");
+  const invalides = [];
+
+  text.split(/\r?\n/).forEach((line, index) => {
+    if (line.trim() === "") return;
+    const pair = line.match(/^\s*(?<key>[^:]+?)\s*:\s*(?<value>.*?)\s*$/);
+    if (!pair) {
+      invalides.push({
+        ligne: index + 1,
+        raison: "Format clé: valeur attendu.",
+      });
+      return;
+    }
+
+    const { key, value } = pair.groups;
+    if (!/^[A-Za-z_]+$/.test(key)) {
+      invalides.push({
+        ligne: index + 1,
+        raison:
+          "La clé doit contenir uniquement des lettres ASCII et underscores.",
+      });
+      return;
+    }
+
+    const isNumber = /^-?(?:0|[1-9]\d*)(?:\.\d+)?$/.test(value);
+    const isBoolean = value === "true" || value === "false";
+    let isHttpUrl = false;
+    try {
+      const parsed = new URL(value);
+      isHttpUrl =
+        (parsed.protocol === "http:" || parsed.protocol === "https:") &&
+        parsed.hostname !== "";
+    } catch {
+      isHttpUrl = false;
+    }
+
+    if (!isNumber && !isBoolean && !isHttpUrl) {
+      invalides.push({
+        ligne: index + 1,
+        raison: "Valeur attendue : nombre, booléen ou URL HTTP(S) absolue.",
+      });
+    }
+  });
+
+  return invalides;
+}
+```
+
+La fonction retourne uniquement les lignes refusées, avec leur numéro réel (les lignes vides ne sont pas renumérotées). Une vraie configuration de production doit être lue avec un parseur adapté au format déclaré ; cette expression ne couvre pas YAML.
 
 ## RÉSUMÉ
 

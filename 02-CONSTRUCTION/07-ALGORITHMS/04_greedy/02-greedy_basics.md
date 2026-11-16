@@ -90,8 +90,8 @@ const activities = [
 ];
 
 console.log(activitySelection(activities).map((a) => a.name));
-// ["Entraînement Naruto", "Combat Sasuke", "Briefing Kakashi", "Examen Chunin"]
-// => 4 activités, c'est le maximum possible
+// ["Entraînement Naruto", "Briefing Kakashi", "Examen Chunin"]
+// => 3 activités : Sasuke chevauche Naruto et ne peut pas être retenu.
 ```
 
 **Trace :**
@@ -110,7 +110,7 @@ Prise : start=8 >= 7, end=11 (lastEnd=11)
 Résultat : 3 activités... mais l'exemple en haut donne 4 ?
 ```
 
-Attends : `"Combat Sasuke"` (start=3, end=5) est sélectionné avant `"Briefing Kakashi"` (start=5, end=7). Après Sasuke (lastEnd=5), Kakashi (start=5 >= 5) est sélectionné. Après Kakashi (lastEnd=7), Examen (start=8 >= 7) est sélectionné. Total : 4. La trace confirme.
+La trace est cohérente avec le code : Naruto finit à 4 ; Sasuke commence à 3 et chevauche donc Naruto, il est ignoré. Kakashi commence à 5 et peut être retenu, puis l'Examen commence à 8. Total : 3 activités. La sortie commentée précédente était erronée.
 
 ---
 

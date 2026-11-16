@@ -7,6 +7,9 @@ acte: mémoriser
 
 # Grimoire : CMS Architecture
 
+> Rappel : ce grimoire simplifie via analogies. Lire d’abord [`91-18_GRIMOIRE_CODE_HONNEUR.md`](../../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
+
+
 | Terme      | Définition                            | Signal                 | Analogie CrazyDevs                   |
 | ---------- | ------------------------------------- | ---------------------- | ------------------------------------ |
 | CMS couplé | contenu + présentation fortement liés | front dépendant du CMS | prison avec une seule sortie         |

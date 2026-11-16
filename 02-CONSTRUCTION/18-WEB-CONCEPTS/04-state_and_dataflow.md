@@ -243,9 +243,30 @@ function Dropdown() {
   });
 }
 
-// Shared state : dans le store, plusieurs parties de l'app le lisent
-// Exemple : l'user connecté (utilisé dans le header, les permissions, les requêtes)
-store.state.currentUser = { id: 1, name: "Rick", role: "admin" };
+// Shared state : l'état ne se modifie que par une action du store.
+// Le store remplace l'état puis notifie tous ses abonnés.
+const store = {
+  state: { currentUser: null },
+  listeners: new Set(),
+  subscribe(listener) {
+    this.listeners.add(listener);
+    return () => this.listeners.delete(listener);
+  },
+  dispatch(action) {
+    if (action.type === "USER_AUTHENTICATED") {
+      this.state = { ...this.state, currentUser: action.user };
+    } else {
+      throw new Error(`Action inconnue : ${action.type}`);
+    }
+    for (const listener of this.listeners) listener(this.state);
+  },
+};
+
+// Exemple : l'user connecté (header, permissions, requêtes)
+store.dispatch({
+  type: "USER_AUTHENTICATED",
+  user: { id: 1, name: "Rick", role: "admin" },
+}); // passe par dispatch : les abonnés sont notifiés
 
 // Server state : données en cache qui se synchronisent avec l'API
 // React Query ou SWR gèrent ça en React. En vanilla : gérer manuellement

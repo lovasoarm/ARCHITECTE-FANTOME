@@ -18,7 +18,7 @@ Temps de lecture ~10 min
 
 Avant d'écrire une boucle, pose-toi une question : combien de cas y a-t-il vraiment ?
 
-Si t'as 10 éléments et que t'envisages de tester toutes les combinaisons possibles, tu vas générer 3 628 800 possibilités. Si t'en as 20, c'est 2 431 290 400 millions. Ton algorithme est mort avant de commencer.
+Le nombre de possibilités dépend de ce que tu comptes. Avec 10 éléments distincts, **les permutations de tous les éléments** donnent 10! = 3 628 800 ordres. En revanche, les sous-ensembles possibles (toutes tailles confondues) sont au nombre de 2^10 = 1 024 ; et choisir k éléments parmi n sans tenir compte de l'ordre se calcule avec C(n, k). Ne mélange pas ces trois problèmes : ils n'ont ni la même formule ni le même résultat.
 
 La combinatoire, c'est l'art de compter les possibilités sans les énumérer.
 C'est ce qui sépare un algo qui tourne de celui qui timeout en prod.
@@ -85,6 +85,46 @@ permutations(["A", "B", "C"]);
 
 Une combinaison, c'est une sélection non ordonnée. ABC = BAC = CBA.
 
+### Arrangement : sélectionner k éléments quand l'ordre compte
+
+Un **arrangement de k éléments parmi n** est une sélection ordonnée, sans répétition. Choisir A puis B est différent de choisir B puis A. La formule est :
+
+\[
+A(n,k)=rac{n!}{(n-k)!}, \quad 0 \leq k \leq n
+\]
+
+La différence avec une permutation complète est le nombre d'éléments utilisés : une permutation ordonne les `n` éléments ; un arrangement n'en ordonne que `k`. Quand `k = n`, on retrouve `n!`.
+
+Exemple : composer une setlist de 8 titres distincts parmi 12. La première position offre 12 choix, la deuxième 11, puis 10, etc. :
+
+\[
+A(12,8)=12 imes11 imes10 imes9 imes8 imes7 imes6 imes5=19\,958\,400
+\]
+
+Une combinaison `C(12,8)` ne convient pas ici : elle ne distingue pas deux setlists qui contiennent les mêmes titres dans un ordre différent.
+
+Pour produire un seul ordre aléatoire sans répétition, on peut mélanger une copie avec Fisher–Yates puis garder les `k` premiers éléments :
+
+```js
+function randomArrangement(items, k) {
+  if (!Array.isArray(items)) throw new TypeError("items doit être un tableau");
+  if (!Number.isSafeInteger(k) || k < 0 || k > items.length) {
+    throw new RangeError("k doit être un entier entre 0 et items.length");
+  }
+
+  const copy = [...items]; // ne modifie pas le tableau de départ
+  for (let i = 0; i < k; i++) {
+    const j = i + Math.floor(Math.random() * (copy.length - i));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy.slice(0, k);
+}
+
+randomArrangement(["A", "B", "C", "D"], 3); // 3 titres distincts, ordre aléatoire
+```
+
+`Math.random()` convient à une démonstration de mélange non sensible. Pour générer un identifiant, un secret ou un tirage de sécurité, utilise un générateur cryptographiquement sûr adapté à l'environnement.
+
 ```text
 Choisir k parmi n = C(n, k) = n! / (k! × (n-k)!)
 
@@ -94,19 +134,30 @@ C(52, 5) = 2 598 960 <- nombre de mains de poker possibles
 ```
 
 ```js
-// C(n, k) sans calculer les factorielles (évite les overflow)
+// C(n, k) sans calculer les factorielles.
+// Le calcul interne utilise BigInt pour éviter les erreurs d'arrondi intermédiaires.
+// La fonction renvoie un Number sûr ; pour un résultat plus grand, il faut garder BigInt.
 function combinations(n, k) {
+  if (!Number.isSafeInteger(n) || !Number.isSafeInteger(k) || n < 0 || k < 0) {
+    throw new RangeError(
+      "n et k doivent être des entiers sûrs et non négatifs",
+    );
+  }
   if (k > n) return 0;
   if (k === 0 || k === n) return 1;
 
-  // optimisation : C(n,k) = C(n, n-k) --> prendre le k le plus petit
+  // C(n,k) = C(n,n-k) : réduire le nombre d'itérations.
   k = Math.min(k, n - k);
-
-  let result = 1;
-  for (let i = 0; i < k; i++) {
-    result = (result * (n - i)) / (i + 1);
+  let result = 1n;
+  for (let i = 1; i <= k; i++) {
+    result = (result * BigInt(n - k + i)) / BigInt(i);
   }
-  return Math.round(result);
+  if (result > BigInt(Number.MAX_SAFE_INTEGER)) {
+    throw new RangeError(
+      "résultat trop grand pour être représenté exactement par Number",
+    );
+  }
+  return Number(result);
 }
 
 combinations(5, 2); // 10
@@ -117,6 +168,10 @@ combinations(52, 5); // 2598960
 
 ```js
 function chooseCombinations(arr, k) {
+  if (!Array.isArray(arr)) throw new TypeError("arr doit être un tableau");
+  if (!Number.isSafeInteger(k) || k < 0 || k > arr.length) {
+    throw new RangeError("k doit être un entier entre 0 et arr.length");
+  }
   const results = [];
 
   function backtrack(start, current) {
@@ -170,8 +225,8 @@ searchSpace(
   "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$",
   12,
 );
-// 3.22 × 10^22
-// à 1 milliard tentatives/seconde : 10^13 secondes = impossible
+// 6 831 675 453 247 426 400 256 possibilités ≈ 6.83 × 10^21
+// à 1 milliard tentatives/seconde : environ 216 500 ans (ordre de grandeur)
 ```
 
 **Application directe : valider la sécurité d'un token**
@@ -225,9 +280,16 @@ subsets([1, 2, 3]);
 // [[], [1], [1,2], [1,2,3], [1,3], [2], [2,3], [3]]
 // 2^3 = 8 subsets
 
-// approche bit manipulation (plus élégante pour les petits sets)
+// approche bit manipulation (petits ensembles seulement : la sortie contient 2^n sous-ensembles)
+// Une borne explicite évite le débordement de `1 << n` et une matérialisation démesurée.
 function subsetsWithBits(arr) {
+  if (!Array.isArray(arr)) throw new TypeError("arr doit être un tableau");
   const n = arr.length;
+  // Cette méthode construit 2^n tableaux en mémoire ; 20 est une limite pédagogique explicite.
+  if (n > 20)
+    throw new RangeError(
+      "trop de sous-ensembles à matérialiser (limite : 20 éléments)",
+    );
   const results = [];
 
   for (let mask = 0; mask < 1 << n; mask++) {
@@ -346,18 +408,19 @@ Teste avec :
 Bryson Tiller a 12 tracks. Il joue un concert de 8 tracks.
 L'ordre compte (c'est un setlist, pas une playlist de soirée).
 
-1. Combien de setlists différentes peut-il faire ? (calcul seulement, pas d'énumération)
-2. Implémente `generateSetlist(tracks, size)` qui retourne UN setlist aléatoire valide (pas toutes les permutations)
+1. Le nombre de setlists ordonnées de 8 tracks choisies parmi 12 est un arrangement : A(12, 8) = 12! / (12 − 8)! = 19 958 400.
+2. Implémente `generateSetlist(tracks, size)` qui retourne UN setlist aléatoire valide, sans répétition.
 
-(Hint : pour (2), Fisher-Yates puis slice)
+Avant de coder, écris la formule générale A(n, k) = n! / (n − k)! et explique pourquoi C(n, k) ne convient pas quand l'ordre compte. Pour (2), Fisher–Yates puis `slice(0, size)` est une stratégie possible. Valide `size` entre 0 et `tracks.length`.
 
 ---
 
 ## RÉSUMÉ
 
-Permutations : l'ordre compte, n éléments → n! possibilités. Ça explose vite.
-Combinaisons : l'ordre ne compte pas, choisir k parmi n → C(n,k). Beaucoup moins.
-Subsets : tous les sous-ensembles → 2^n. La bit manipulation les génère élégamment.
+Permutations : l'ordre compte et tous les n éléments sont utilisés → n! possibilités.
+Arrangements : l'ordre compte, choisir et ordonner k éléments parmi n → A(n,k) = n!/(n-k)!.
+Combinaisons : l'ordre ne compte pas, choisir k parmi n → C(n,k).
+Subsets : tous les sous-ensembles → 2^n. `subsetsWithBits` est réservé aux petits ensembles (20 éléments maximum dans cet exemple), car il matérialise tous les résultats en mémoire.
 Le principe de multiplication permet de compter l'espace de recherche sans l'énumérer.
 Le pruning, c'est couper les branches impossibles avant de les explorer : c'est là que le backtracking devient efficace.
 Avant de coder une boucle de bruteforce, compte d'abord : si c'est > 10^8, t'as besoin d'un autre algo.

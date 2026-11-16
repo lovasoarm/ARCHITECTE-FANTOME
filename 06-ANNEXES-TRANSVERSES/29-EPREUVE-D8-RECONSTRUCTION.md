@@ -117,3 +117,17 @@ Une réponse n'est recevable que si elle contient :
 ## Règle anti-recette
 
 Aucun corrigé, pattern, stack ou architecture de référence n'est fourni. Toute solution techniquement différente est recevable si elle tient face aux contraintes, laisse des preuves et accepte la falsification.
+
+<!-- AF-D8-AUTONOMOUS-OBJECTION -->
+
+## Variante autonome : contradiction fournie et passation
+
+L'épreuve D8 peut être réalisée sans contradicteur humain. Pour cette variante `SIMULATION` :
+
+1. écris une décision initiale et les hypothèses qui la soutiennent ;
+2. révèle une contrainte nouvelle fournie par le scénario (budget divisé par deux, panne d'une dépendance ou exigence de confidentialité) ;
+3. lis une objection adverse fournie dans le [Leadership Simulation Gate 73](73-TECHNICAL-LEADERSHIP-PRACTICUM.md#leadership-simulation-gate--kintana--décision-technique-transverse) ;
+4. classe l'objection, cherche la preuve qui la confirme ou la réfute, puis défends ou révise la décision ;
+5. rédige une passation à un ingénieur fictif, avec invariants, risques, responsabilités, rollback et questions ouvertes.
+
+Le contradicteur et le successeur sont fictifs : cette variante prouve la capacité à reconstruire et transmettre un raisonnement dans une simulation, pas une influence ou une adoption par une équipe réelle. La revue humaine indépendante reste une preuve externe ultérieure, jamais une condition pour commencer ou terminer l'exercice autonome.

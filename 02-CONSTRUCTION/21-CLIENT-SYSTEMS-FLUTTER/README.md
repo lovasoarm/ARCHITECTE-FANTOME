@@ -40,6 +40,7 @@ Flutter est ici un **terrain d’application**. Les mécanismes durables restent
 
 - `00-PREREQUIS.md` : vérifier HTTP, async, API et états.
 - `01-00-why-client-systems.md` : pourquoi un client est un système distribué miniature.
+- `01A-DART-FOUNDATIONS.md` : passerelle Dart ciblée avant de lire et écrire les exemples Flutter.
 - `02-flutter-mental-model.md` : widgets, arbre, état, cycle de rendu et frontière UI/domain.
 - `03-offline-sync.md` : cache local, synchronisation et conflits.
 - `04-auth-network-security.md` : auth, tokens, retries et surfaces d’attaque côté client.
@@ -55,7 +56,7 @@ Flutter est ici un **terrain d’application**. Les mécanismes durables restent
 
 ## Comment utiliser le module
 
-Lire les leçons 02 à 06, réaliser le cas fil rouge 07, puis construire l’extension 50. Les scénarios de perte réseau, redémarrage, expiration de session et conflit doivent être testés séparément. Le challenge vérifie la défense des choix ; le boss fight vérifie le diagnostic et la reprise. Ne déclarer le module maîtrisé que lorsque les tests d’idempotence, de conflit et de sécurité passent et que les décisions sont justifiées.
+Lire d’abord la leçon d’introduction 01, puis la passerelle Dart 01A avant les leçons Flutter 02 à 06. Réaliser ensuite le cas fil rouge 07, puis construire l’extension 50. Les scénarios de perte réseau, redémarrage, expiration de session et conflit doivent être testés séparément. Le challenge vérifie la défense des choix ; le boss fight vérifie le diagnostic et la reprise. Ne déclarer le module maîtrisé que lorsque les tests d’idempotence, de conflit et de sécurité passent et que les décisions sont justifiées.
 
 ## Règle anti-copie
 
@@ -73,6 +74,7 @@ Le sommaire ci-dessus reste le parcours recommandé. Les index ci-dessous renden
 
 - [Prérequis : Client Systems / Flutter](00-PREREQUIS.md)
 - [Pourquoi Client Systems existe](01-00-why-client-systems.md)
+- [Dart : passerelle de démarrage](01A-DART-FOUNDATIONS.md)
 - [Modèle mental Flutter : arbre, état et reconstruction](02-flutter-mental-model.md)
 - [Offline-first et synchronisation : considérer le réseau comme intermittent](03-offline-sync.md)
 - [Authentification, tokens et réseau : protéger le client sans lui confier les secrets métier](04-auth-network-security.md)

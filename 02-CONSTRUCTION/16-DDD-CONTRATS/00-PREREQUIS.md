@@ -32,7 +32,7 @@ Réponds sans ouvrir un autre fichier. Une seule réponse fausse = tu retournes 
 
 1. Cite deux différences concrètes entre une architecture en couches et une architecture hexagonale.
    → sinon `../14-ARCHITECTURE-PATTERNS/`.
-2. Donne le code HTTP correct d'une réponse à une requête bien formée mais métier-invalide.
+2. Un client envoie `PATCH /orders/O-17` avec un JSON valide demandant `status: "CANCELLED"`, alors que la commande est déjà `DELIVERED` et que cette transition est interdite par la règle métier. Quel statut HTTP renvoies-tu et pourquoi ? (Cas attendu : `409 Conflict`, car la modification entre en conflit avec l'état actuel de la ressource. Ne généralise pas cette réponse à toutes les erreurs de validation sémantique.)
    → sinon `../../01-CADRAGE/04-ERROR-HANDLING/03-custom_errors.md` (erreur métier typée puis traduite en statut).
 3. Explique en une phrase pourquoi un test de contrat n'est pas un test d'intégration.
    → sinon `../03-TESTING/08-contract_testing_pact.md`.

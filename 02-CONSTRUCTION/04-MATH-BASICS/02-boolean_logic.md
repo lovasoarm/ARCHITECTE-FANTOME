@@ -124,7 +124,7 @@ const ville = joueur?.profil?.adresse?.ville;
 // si n'importe quel maillon est null/undefined => undefined, pas d'erreur
 
 // combiné avec ??
-const ville = joueur?.profil?.adresse?.ville ?? "Inconnue";
+const villeParDefaut = joueur?.profil?.adresse?.ville ?? "Inconnue";
 ```
 
 ---
@@ -296,6 +296,58 @@ estValide("heisenberg"); // true
 Trapsoul Radio a un système de feature flags. Chaque feature est active si son flag est `true` ET que la région du shinobi est supportée. Sauf si le shinobi est premium (bypass des restrictions région). Mais les features dépréciées sont toujours désactivées.
 
 Écrire `featureActive(feature, user)` en utilisant De Morgan là où c'est applicable.
+
+---
+
+## CORRIGÉS DE RÉFÉRENCE : EXERCICES 2 ET 3
+
+Le corrigé de l'EXO 1 (`peutOuvrirPorte`) se trouve dans la section **Vérification de la règle d'accès : cas métier**, plus bas dans ce document.
+
+### Corrigé EXO 2 : détecteur de valeurs suspectes
+
+```js
+export function estValide(valeur) {
+  if (!valeur) return false;
+  if (Array.isArray(valeur)) return valeur.length > 0;
+  if (typeof valeur === "object") return Object.keys(valeur).length > 0;
+  return true;
+}
+```
+
+Cette règle suit exactement le contrat de l'exercice : les valeurs falsy sont rejetées ; les tableaux et objets vides sont rejetés ; les autres valeurs truthy sont acceptées. Elle n'est pas un validateur métier générique : un objet non vide peut toujours contenir des données incorrectes pour un domaine donné.
+
+### Corrigé EXO 3 : feature flags
+
+Le contrat choisi pour le corrigé est `feature = { enabled, regions, deprecated }` et `user = { region, premium }`. Le statut premium contourne uniquement la restriction régionale, jamais le flag désactivé ni la dépréciation.
+
+```js
+export function featureActive(feature, user) {
+  if (!feature || !user) return false;
+  if (feature.deprecated === true || feature.enabled !== true) return false;
+  if (user.premium === true) return true;
+  return (
+    Array.isArray(feature.regions) && feature.regions.includes(user.region)
+  );
+}
+```
+
+La même règle écrite en négatif avec De Morgan est :
+
+```js
+export function featureActiveAvecDeMorgan(feature, user) {
+  const indisponible =
+    !feature ||
+    !user ||
+    feature.deprecated === true ||
+    feature.enabled !== true ||
+    (user.premium !== true &&
+      (!Array.isArray(feature.regions) ||
+        !feature.regions.includes(user.region)));
+  return !indisponible;
+}
+```
+
+Le premium ne doit pas réactiver une feature dépréciée ou désactivée. Les deux fonctions doivent retourner les mêmes résultats pour le contrat ci-dessus.
 
 ---
 

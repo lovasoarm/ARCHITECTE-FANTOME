@@ -31,7 +31,11 @@ d'entraînement en 15 min. Le but : t'entraîner à lire du code inconnu.
 - **M2** : supprimer un `await` sur une fonction async.
 - **M3** : passer un `Arc<Mutex<T>>` par valeur au lieu d'une référence (Rust).
 - **M4** : capturer une variable de boucle dans une closure (JS/Python) au lieu de la copier.
-- **M5** : changer un `==` en `is` (Python, catastrophe sur les entiers > 256).
+- **M5** : changer un `==` en `is` (Python) pour provoquer une comparaison d’identité à la place d’une comparaison de valeur. Ne fonde pas le résultat sur un seuil numérique fixe : l’internement des objets est un détail d’implémentation.
+
+### Précision pour M5 : identité et égalité
+
+`==` compare les valeurs selon le contrat d'égalité du type ; `is` vérifie si les deux références désignent le même objet. Deux entiers égaux ne sont pas nécessairement le même objet. L'interprète peut réutiliser certains objets, mais aucun seuil universel (256 ou autre) ne constitue un contrat Python. Pour une mutation reproductible, construis deux objets distincts puis vérifie séparément leur valeur (`==`) et leur identité (`is`). N'écris jamais le résultat attendu à partir d'un seuil de taille d'entier.
 
 ## Livrable
 

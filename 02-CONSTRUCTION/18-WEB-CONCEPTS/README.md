@@ -14,6 +14,8 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 # MODULE 18 WEB CONCEPTS
 
+> **Repère de navigation :** `97-CHECKPOINT-PACK/` contient la grille et les preuves de checkpoint ; `97A-EXO-VERIFICATION.md` est un exercice indépendant d’application/vérification. Le premier est un dossier de critères, le second une activité : ce ne sont pas deux leçons successives.
+
 > Palier `02-CONSTRUCTION`. Duree estimee : **14 h 20** (20 fichiers de travail).
 
 ## Sommaire du module
@@ -35,9 +37,9 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | [`54-serialization_minimini_projet.md`](54-serialization_minimini_projet.md)                     | 06 serialization minimini projet                                   | 45 min |
 | [`08-seo_and_rendering.md`](08-seo_and_rendering.md)                                             | SEO ET RENDERING : OÙ TON HTML NAÎT VRAIMENT                       | 45 min |
 | [`55-seo_and_rendering_minimini_projet.md`](55-seo_and_rendering_minimini_projet.md)             | 07 seo and rendering minimini projet                               | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                                                               | Page verrouillée                                                   | 30 min |
 | [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                                                         | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Web Concepts)      | 50 min |
 | [`97A-EXO-VERIFICATION.md`](97A-EXO-VERIFICATION.md)                                             | EXO [JEUNE IA] : 02-CONSTRUCTION/18-WEB-CONCEPTS                   | 45 min |
+| [`90-grimoire.md`](90-grimoire.md)                                                               | Page verrouillée                                                   | 30 min |
 | [`10-web_concepts_drill_exec.md`](10-web_concepts_drill_exec.md)                                 | Web concepts : Drill exécutable                                    | 45 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                                   | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust            | 45 min |
 
@@ -92,7 +94,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [54-serialization_minimini_projet.md](54-serialization_minimini_projet.md)
 - [SEO et rendering : où ton HTML naît vraiment](08-seo_and_rendering.md)
 - [55-seo_and_rendering_minimini_projet.md](55-seo_and_rendering_minimini_projet.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Web Concepts)](09-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/18-web-concepts](97A-EXO-VERIFICATION.md)
 - [Web concepts : Drill exécutable](10-web_concepts_drill_exec.md)
@@ -100,7 +101,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Challenge : `18-WEB-CONCEPTS`](95-challenge.md)
 - [Grimoire : `18-WEB-CONCEPTS`](90-grimoire.md)
 - [`97-CHECKPOINT-PACK/`](97-CHECKPOINT-PACK/README.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources

@@ -12,6 +12,8 @@ source_scope: "Notion et parcours internes reliés à 00-SOCLE/04-FUNDAMENTALS/0
 provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
+> **Repère de navigation :** `02-ORDRE_DE_LECTURE.md` est la carte des deux passages ; `03` à `10` sont les leçons et `50` à `56` leurs pratiques. Les nombres sont des identifiants de fichiers, pas des étapes à additionner. Suis l’ordre donné dans cette page.
+
 # VARIABLES
 
 > Sommaire de `00-SOCLE/04-FUNDAMENTALS/01_variables`.

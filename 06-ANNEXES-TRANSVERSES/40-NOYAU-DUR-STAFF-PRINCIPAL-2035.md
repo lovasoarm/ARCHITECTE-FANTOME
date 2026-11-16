@@ -122,7 +122,7 @@ Le noyau ne se valide pas en accumulant une grande quantité de prototypes. Apr�
 - une implémentation pédagogique de stockage persistant puis, séparément, de consensus ;
 - un assistant de revue sur code, RFC et ADR qui réutilise des preuves existantes.
 
-Ces projets sont Depth, pas CORE. Le parcours doit rester **unithread : un projet actif à la fois**. Les versions locales sont le défaut ; les coûts cloud, les GPU, Kubernetes et les APIs payantes ne sont pas des conditions d'entrée. Pour la liste complète des critères, vois le README du portefeuille et le [contrat commun](../05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/00-CONTRAT-COMMUN.md).
+Ces projets sont Depth, pas CORE. Le parcours doit rester **unithread : un projet actif à la fois**. Les versions locales sont le défaut ; les coûts cloud, les GPU, Kubernetes et les APIs payantes ne sont pas des conditions d'entrée. Pour la liste complète des critères, vois le README du portefeuille et le [contrat commun](../05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/00A-CONTRAT-COMMUN.md).
 
 La diplomation et le statut professionnel sont séparés par le [contrat de diplôme AF](56-DIPLOME-AF-ET-REVUE-EXTERNE.md). Une distinction AF de portfolio peut attester une revue stricte ; elle ne confère pas le rang employeur Distinguished Engineer.
 

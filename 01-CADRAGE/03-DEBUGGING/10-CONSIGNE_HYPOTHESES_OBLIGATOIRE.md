@@ -44,7 +44,14 @@ Temps de lecture ~2 min
 - preuve reproductible :
 - correctif applique :
 - test de non-regression ajoute :
+
+## Auteur et date (signature pédagogique)
+
+- Auteur (nom ou identifiant) : `<à renseigner>`
+- Date (AAAA-MM-JJ) : `<à renseigner>`
 ```
+
+Cette mention identifie l’auteur et la date ; ce n’est ni une signature électronique ou juridique, ni une revue indépendante.
 
 ## Regle non negociable
 

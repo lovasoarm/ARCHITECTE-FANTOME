@@ -60,7 +60,7 @@ Prérequis : Node 22+, Chrome ou Edge (pour DevTools Memory), `--expose-gc`, avo
 ## 1) LE PROTOCOLE (à suivre à la lettre)
 
 ```text
-1. Lance ton process avec : node --expose-gc --inspect=0.0.0.0:9229 script.js
+1. Lance ton process avec : node --expose-gc --inspect=127.0.0.1:9229 script.js
 2. Ouvre chrome://inspect → "inspect" sur le target Node
 3. Onglet Memory → "Take heap snapshot"  (snapshot A, état de repos)
 4. Provoque l'action suspectée de fuite (10 fois, pour amplifier le signal)

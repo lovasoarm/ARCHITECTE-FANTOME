@@ -1,0 +1,6 @@
+reservation_id,tenant_id,customer_ref,amount_minor,currency,status,payment_reference,created_at_utc,idempotency_key
+r-1001,t-01,c-001,12500,MGA,PENDING_PAYMENT,,2026-11-10T08:10:00Z,k-1001
+r-1002,t-01,c-002,22000,MGA,CONFIRMED,pay-sim-2002,2026-11-10T08:12:00Z,k-1002
+r-1003,t-02,c-003,15500,MGA,CONFIRMED,pay-sim-2003,2026-11-10T08:14:00Z,k-1003
+r-1004,t-02,c-004,9000,MGA,PENDING_PAYMENT,,2026-11-10T08:16:00Z,k-1004
+r-1005,t-01,c-005,18000,MGA,CONFIRMED,pay-sim-2005,2026-11-10T08:18:00Z,k-1005

@@ -26,9 +26,9 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | [`03-benchmark_kit.md`](03-benchmark_kit.md)       | BENCHMARK KIT : SAVOIR SI TON CODE EST RAPIDE, PAS JUSTE "PAS LENT EN APPARENCE"          | 45 min |
 | [`04-debug_toolkit.md`](04-debug_toolkit.md)       | DEBUG TOOLKIT : SAVOIR OÙ ÇA CASSE SANS SEMER DES CONSOLE.LOG PARTOUT                     | 45 min |
 | [`05-cli_scaffolder.md`](05-cli_scaffolder.md)     | CLI SCAFFOLDER : GÉNÉRER UNE STRUCTURE DE PROJET EN UNE COMMANDE, PAS NEUF FOIS À LA MAIN | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                 | Page verrouillée                                                                          | 30 min |
 | [`06-EXO_LECTURE.md`](06-EXO_LECTURE.md)           | EXO LECTURE : ~20 minutes : questions et auto-évaluation (05-MAITRISE/07-TOOLS)           | 20 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md) | EXO [JEUNE IA] : 05-MAITRISE/07-TOOLS                                                     | 45 min |
+| [`90-grimoire.md`](90-grimoire.md)                 | Page verrouillée                                                                          | 30 min |
 
 Total : **5 h 35**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
@@ -72,12 +72,10 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Benchmark kit : savoir si ton code est rapide, pas juste "pas lent en apparence"](03-benchmark_kit.md)
 - [Debug toolkit : savoir où ça casse sans semer des console.log partout](04-debug_toolkit.md)
 - [CLI scaffolder : générer une structure de projet en une commande, pas neuf fois à la main](05-cli_scaffolder.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~20 minutes : questions et auto-évaluation (05-MAITRISE/07-TOOLS)](06-EXO_LECTURE.md)
 - [EXO [jeune IA] : 05-maitrise/07-tools](97-EXO-VERIFICATION.md)
 - [Challenge : `07-TOOLS`](95-challenge.md)
 - [Grimoire : `07-TOOLS`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources

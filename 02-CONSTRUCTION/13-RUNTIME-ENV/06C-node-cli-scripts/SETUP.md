@@ -15,7 +15,9 @@ Lis d’abord le [`SETUP.md`](../SETUP.md) le plus proche dans l’arborescence.
 
 ## 3. Technologie / environnement
 
-**Environnement standard AF** : Node.js 22.23.4 + éditeur de texte suffisent tant qu’aucune dépendance locale supplémentaire n’est explicitement signalée par le contenu du dossier.
+**Environnement standard AF** : Node.js 22.23.4 + éditeur de texte.
+
+Leçon ETL CSV : le code qui gère les champs entre guillemets et les retours à la ligne utilise la bibliothèque `csv-parse`. Dans le projet d'exercice, l'installer explicitement avec `npm install csv-parse`, puis conserver `package.json` et `package-lock.json`. Prépare le paquet dans le cache npm pour un travail hors ligne ; ne prétends pas que cette dépendance fait partie de Node.js natif.
 
 ## 4. Première preuve
 

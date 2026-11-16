@@ -24,7 +24,7 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 - [51-csrf_cors_minimini_projet.md](51-csrf_cors_minimini_projet.md)
 - [52-hashing_bcrypt_minimini_projet.md](52-hashing_bcrypt_minimini_projet.md)
 - [EXO LECTURE : ~20 minutes : un cycle (Securite)](10-EXO_LECTURE.md)
-- [EXO [JEUNE IA] : 03-PILOTAGE/04-SECURITY](12A-EXO-VERIFICATION.md)
+- [EXO [JEUNE IA] : 03-PILOTAGE/04-SECURITY](EXO-VERIFICATION-IA.md)
 - [EXO IA MENTEUSE : module 03-PILOTAGE/04-SECURITY](97-EXO-VERIFICATION.md)
 
 ## Ce qui valide le challenge (les quatre actes, aucun ne se saute)

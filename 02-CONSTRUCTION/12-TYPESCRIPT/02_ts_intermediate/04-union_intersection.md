@@ -151,13 +151,13 @@ type Success<T> = {
   data: T;
 };
 
-type Error = {
+type ApiError = {
   status: "error";
   message: string;
   code: number;
 };
 
-type AsyncState<T> = Loading | Success<T> | Error;
+type AsyncState<T> = Loading | Success<T> | ApiError;
 
 function handlePlayerState(state: AsyncState<Player>): string {
   switch (state.status) {

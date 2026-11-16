@@ -18,7 +18,13 @@ assessment_role: diagnostic_mastery
 
 Lecture de la consigne : ~2 min
 
-> **LOCK : pas d'édition avant HYPOTHESES.md signé.** Tu ne modifies AUCUN fichier avant que ton `HYPOTHESES.md` soit signé (>= 3 hypothèses, chacune avec preuve attendue). Sinon, l'exo ne compte pas.
+> **LOCK : pas d'édition avant signature des hypothèses.** Dans le livrable unique `LECTURE_<nom>.md`, complète une section `HYPOTHÈSES` avec au moins trois hypothèses, chacune associée à une preuve attendue, puis indique l'auteur et la date. Ne modifie pas le code avant cette étape ; sinon, le cycle ne compte pas.
+>
+> **Signature pédagogique (convention commune) :** la section `HYPOTHÈSES` du livrable unique doit se terminer par les deux mentions suivantes :
+>
+> - `Auteur (nom ou identifiant) : ...`
+> - `Date (AAAA-MM-JJ) : ...`
+>   Cet exercice comporte un seul cycle : signe la section `HYPOTHÈSES` dans `LECTURE_<nom>.md`. Cette mention identifie l’auteur et la date ; ce n’est ni une signature électronique ou juridique, ni une revue indépendante.
 >
 > **Budget lecture** : 200 lignes en 15 min chrono. Si tu dépasses, note pourquoi dans `MAP.md`. Objectif progressif : tu dois pouvoir tenir 500 lignes en 15 min à la fin du curriculum.
 >
@@ -52,9 +58,14 @@ Si ton hypothèse était fausse, tant mieux : tu viens d'apprendre où ton modè
 2. Prédire correctement la sortie sur au moins 2 entrées distinctes (sans exécuter).
 3. Nommer une hypothèse implicite du code (ex : "suppose que l'input est trié", "suppose qu'il y a un seul thread").
 
-Tant que ces 3 points ne sont pas faits, `git status` doit rester `working tree clean` sur ce fichier. La lecture précède l'écriture. Un dev qui modifie avant d'avoir lu est un dev qui casse.
+Tant que ces 3 points ne sont pas faits, ne modifie pas l'extrait.
 
-Si tu veux "juste renommer une variable pour comprendre" : **note-le dans `HYPOTHESES.md`, ne le fais pas dans le fichier**.
+- **Dans un dépôt Git où ce fichier est déjà suivi, depuis la racine du dépôt :** `git status --short -- "<chemin-relatif-du-fichier>"` ne doit signaler aucune modification de cet extrait.
+- **Dans une archive ZIP sans dossier `.git` (cas normal de cette édition) :** le contrôle Git ne s'applique pas. Ne lance pas `git init` pour cet exercice et ne considère pas « not a git repository » comme un échec. Garde le fichier fourni intact ; écris tes notes (`MAP.md`, fiche d'hypothèses, etc.) dans ton dossier de travail, séparément de l'extrait.
+
+La lecture précède l'écriture. Un dev qui modifie avant d'avoir lu est un dev qui casse.
+
+Si tu veux "juste renommer une variable pour comprendre" : **note-le dans la section `HYPOTHÈSES` de `LECTURE_<nom>.md`, ne le fais pas dans le fichier source pendant le cycle**.
 
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 

@@ -6,7 +6,7 @@ route: complete
 
 # Module 00-SOCLE/06-MINDSET : Mindset
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Module précédent](../05-PROBLEM-SOLVING/README.md) | [Module suivant](../../01-CADRAGE/01-PROBLEM-HUNT/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Module précédent](../05-PROBLEM-SOLVING/README.md) | [Module suivant](../../01-CADRAGE/01-PROBLEM-HUNT/README.md)
 
 **Prérequis immédiat :** le module [05-PROBLEM-SOLVING](../05-PROBLEM-SOLVING/README.md) doit être terminé. Mindset réutilise aussi les [7 règles du Prologue](../02-PROLOGUE/README.md), acquises plus tôt ; elles ne remplacent pas Problem Solving.
 
@@ -18,7 +18,7 @@ route: complete
 
 **Verdict de l'auto-test :** si une réponse hésite, reprends la leçon correspondante : [Polya](../05-PROBLEM-SOLVING/02-polya_method.md), [exigences floues](../05-PROBLEM-SOLVING/06-read_fuzzy_requirements.md) ou [choix d'approche](../05-PROBLEM-SOLVING/05-choose_an_approach.md). Si deux réponses ou plus manquent, refais aussi le [challenge de Problem Solving](../05-PROBLEM-SOLVING/95-challenge.md) avant d'entrer ici. Les règles du Prologue restent un rappel transversal ; elles ne remplacent pas ce prérequis immédiat.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que c'est
 

@@ -28,13 +28,13 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | [`05-hashing_basics.md`](05-hashing_basics.md)                   | HASHING BASICS : L'EMPREINTE QUI NE MENT PAS                 | 45 min |
 | [`06-probability_random.md`](06-probability_random.md)           | PROBABILITY & RANDOM : LE RNG QUI NE MENT PAS                | 45 min |
 | [`07-combinatorics_lite.md`](07-combinatorics_lite.md)           | COMBINATORICS LITE : COMPTER AVANT DE BRUTEFORCER            | 45 min |
-| [`99A-PONT.md`](99A-PONT.md)                                     | 07 bits and memory bridge                                    | 45 min |
 | [`08-geometry_for_dev.md`](08-geometry_for_dev.md)               | GÉOMÉTRIE POUR DÉVELOPPEUR                                   | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                               | Page verrouillée                                             | 30 min |
 | [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                         | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Math Basics) | 50 min |
-| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)               | EXO [JEUNE IA] : 02-CONSTRUCTION/04-MATH-BASICS              | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)               | EXO IA MENTEUSE : module 02-CONSTRUCTION/04-MATH-BASICS      | 10 min |
-| [`10-PONT-MEMORY-PERFORMANCE.md`](10-PONT-MEMORY-PERFORMANCE.md) | PONT BITS ET MÉMOIRE                                         | 45 min |
+| [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)               | EXO [JEUNE IA] : 02-CONSTRUCTION/04-MATH-BASICS              | 45 min |
+| [`90-grimoire.md`](90-grimoire.md)                               | Grimoire : rappel à lire après les pratiques                 | 30 min |
+| [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                   | Transfert du concept vers Python, Go ou Rust                 | 45 min |
+| [`10-PONT-MEMORY-PERFORMANCE.md`](10-PONT-MEMORY-PERFORMANCE.md) | Pont canonique vers Memory & Performance                     | 45 min |
 
 Total : **10 h 00**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
@@ -45,7 +45,7 @@ Total : **10 h 00**. Le Total reprend exactement la somme du tableau. Le challen
 3. Après chaque concept, réalise l'exercice ou le mini-projet explicitement associé. Une leçon peut intégrer sa pratique dans une section `EXERCICES` ; ne suppose pas qu'un fichier séparé existe.
 4. Avant toute exécution, lis [`SETUP.md`](SETUP.md) et vérifie la version, le dossier courant, les données de départ et la commande attendue. Lorsqu'un outil externe manque, utilise uniquement le mode papier/simulation décrit par l'activité et marque le résultat comme simulé.
 5. Fais le challenge `95-challenge.md`, puis le boss `96-boss-fight.md` **seulement s'il existe dans ce module**. À défaut de boss séparé, le challenge et les checkpoints/critères liés constituent la vérification annoncée : aucun boss non fourni n'est supposé.
-6. Le grimoire se lit après la pratique. Consigne la preuve, le résultat des vérifications, les limites non testées et la date dans ton journal de progression.
+6. Après les exercices et le challenge `95-challenge.md` (1 h 30, hors total du tableau), lis le grimoire ; termine par le portage mental, puis le pont canonique `10-PONT-MEMORY-PERFORMANCE.md` avant d’ouvrir Memory & Performance. Consigne la preuve, le résultat des vérifications, les limites non testées et la date dans ton journal de progression.
 
 ## Ce que ce module produit dans ton depot fil rouge
 
@@ -80,16 +80,14 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Hashing basics : l'empreinte qui ne ment pas](05-hashing_basics.md)
 - [Probability & random : le rng qui ne ment pas](06-probability_random.md)
 - [Combinatorics lite : compter avant de bruteforcer](07-combinatorics_lite.md)
-- [99A-PONT.md](99A-PONT.md)
 - [Géométrie pour développeur](08-geometry_for_dev.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Math Basics)](09-EXO_LECTURE.md)
-- [EXO [jeune IA] : 02-construction/04-math-basics](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/04-MATH-BASICS](97-EXO-VERIFICATION.md)
-- [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
-- [PONT bits et mémoire](10-PONT-MEMORY-PERFORMANCE.md)
-- [Challenge : `04-MATH-BASICS`](95-challenge.md)
-- [Grimoire : `04-MATH-BASICS`](90-grimoire.md)
+- [EXO [jeune IA] : 02-construction/04-math-basics](98-EXO-VERIFICATION.md)
+- [Challenge : `04-MATH-BASICS` : après les leçons et vérifications](95-challenge.md)
+- [Grimoire : `04-MATH-BASICS` : après le challenge](90-grimoire.md)
+- [Portage mental : transfert vers Python, Go ou Rust](99-PORTAGE-MENTAL.md)
+- [Pont canonique bits et mémoire vers Memory & Performance](10-PONT-MEMORY-PERFORMANCE.md)
 
 <!-- CONTENU-DOSSIER:fin -->
 
@@ -97,9 +95,10 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 
 Le sommaire ci-dessus reste le parcours recommandé. Les index ci-dessous rendent accessibles les ressources d'appui et les sous-parcours qui ne sont pas des étapes linéaires supplémentaires.
 
-### Ressources d'appui et vérification
+### Ressources d'appui et compatibilité
 
 - [Vérification : 11_EXO_VERIFICATION.md](11_EXO_VERIFICATION.md)
+- [`99A-PONT.md`](99A-PONT.md) : ancien nom conservé pour les liens historiques. Il redirige vers `10-PONT-MEMORY-PERFORMANCE.md` ; ne le compte pas comme une deuxième étape.
 
 <!-- AF-KINTANA-MODULE -->
 

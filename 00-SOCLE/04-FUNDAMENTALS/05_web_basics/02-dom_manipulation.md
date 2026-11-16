@@ -133,10 +133,6 @@ element.disabled = true; // propriété pratique pour un attribut booléen
 
 `disabled` est un attribut booléen : sa présence active l'état désactivé, quelle que soit la chaîne qui lui est associée. Ainsi, `disabled="false"` signifie encore « désactivé » ; pour réactiver le contrôle, retire l'attribut (`removeAttribute("disabled")`) ou utilise `element.disabled = false`.
 
-```javascript
-
-```
-
 **Modifier les classes :**
 
 ```javascript
@@ -403,6 +399,136 @@ Crée un formulaire avec ces contraintes :
 Gestion propre du flux.
 
 ---
+
+## CORRIGÉS DE RÉFÉRENCE : À CONSULTER APRÈS UNE TENTATIVE
+
+Les extraits ci-dessous sont des solutions de référence. Ils supposent que les éléments HTML indiqués existent. Les vérifications d'existence évitent de transformer une erreur de sélecteur en exception peu lisible.
+
+### Corrigé Exo 1 : Liste Scalable
+
+```javascript
+function createItemsDirect(list, count = 1000) {
+  if (!(list instanceof HTMLUListElement)) {
+    throw new TypeError("La cible doit être une liste <ul>.");
+  }
+  for (let i = 0; i < count; i += 1) {
+    const item = document.createElement("li");
+    item.textContent = `Item ${i + 1}`;
+    list.appendChild(item);
+  }
+}
+
+function createItemsWithFragment(list, count = 1000) {
+  if (!(list instanceof HTMLUListElement)) {
+    throw new TypeError("La cible doit être une liste <ul>.");
+  }
+  const fragment = document.createDocumentFragment();
+  for (let i = 0; i < count; i += 1) {
+    const item = document.createElement("li");
+    item.textContent = `Item ${i + 1}`;
+    fragment.append(item);
+  }
+  list.append(fragment);
+}
+```
+
+Les deux fonctions créent le même nombre d'éléments et préservent le texte comme texte. Ce code montre une différence d'organisation ; il ne prouve pas qu'une version est plus rapide. Pour comparer, il faudrait un protocole de mesure identique, plusieurs répétitions et un navigateur précisé.
+
+### Corrigé Exo 2 : Event Delegation
+
+HTML minimal :
+
+```html
+<ul id="missions">
+  <li>
+    <span>Mission 1</span> <button type="button" data-remove>Supprimer</button>
+  </li>
+  <li>
+    <span>Mission 2</span> <button type="button" data-remove>Supprimer</button>
+  </li>
+</ul>
+```
+
+JavaScript :
+
+```javascript
+const missions = document.querySelector("#missions");
+if (!(missions instanceof HTMLUListElement)) {
+  throw new Error("Liste #missions introuvable.");
+}
+
+missions.addEventListener("click", (event) => {
+  if (!(event.target instanceof Element)) return;
+  const button = event.target.closest("button[data-remove]");
+  if (!button || !missions.contains(button)) return;
+  const item = button.closest("li");
+  if (item && missions.contains(item)) item.remove();
+});
+```
+
+Un seul écouteur est attaché à la liste. `closest()` gère aussi le cas où le clic touche un élément enfant du bouton ; `contains()` empêche de traiter un élément extérieur.
+
+### Corrigé Exo 3 : Toggle Architecturé
+
+```html
+<button id="theme-toggle" type="button" aria-pressed="false">
+  Basculer le thème
+</button>
+```
+
+```javascript
+const themeToggle = document.querySelector("#theme-toggle");
+if (!(themeToggle instanceof HTMLButtonElement)) {
+  throw new Error("Bouton #theme-toggle introuvable.");
+}
+
+themeToggle.addEventListener("click", () => {
+  const enabled = document.body.classList.toggle("dark");
+  themeToggle.setAttribute("aria-pressed", String(enabled));
+});
+```
+
+Le bouton reflète l'état courant dans `aria-pressed`. Le style du thème reste dans une feuille CSS ; le JavaScript ne modifie aucune propriété `style`.
+
+### Corrigé Exo 4 : Form Control
+
+```html
+<form id="profile-form">
+  <label for="profile-name">Nom</label>
+  <input id="profile-name" name="name" autocomplete="name" />
+  <p id="profile-error" role="alert" aria-live="polite"></p>
+  <button type="submit">Envoyer</button>
+</form>
+```
+
+```javascript
+const form = document.querySelector("#profile-form");
+const input = document.querySelector("#profile-name");
+const error = document.querySelector("#profile-error");
+
+if (
+  !(form instanceof HTMLFormElement) ||
+  !(input instanceof HTMLInputElement) ||
+  !(error instanceof HTMLElement)
+) {
+  throw new Error("Formulaire incomplet : vérifie les identifiants HTML.");
+}
+
+form.addEventListener("submit", (event) => {
+  if (input.value.trim() === "") {
+    event.preventDefault();
+    error.textContent = "Saisis un nom avant l'envoi.";
+    input.setAttribute("aria-invalid", "true");
+    input.focus();
+    return;
+  }
+
+  error.textContent = "";
+  input.removeAttribute("aria-invalid");
+});
+```
+
+Le contrôle côté navigateur améliore l'expérience, mais ne remplace jamais la validation côté serveur lorsque les données sont envoyées à une API.
 
 ## RÉSUMÉ
 

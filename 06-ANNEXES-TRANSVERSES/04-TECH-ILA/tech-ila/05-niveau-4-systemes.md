@@ -23,9 +23,9 @@ claim_reviewed_on: "2026-11-03"
 
 [← Sommaire TECH-ILA](../README.md)
 
-> **Tu viens de** : [05-niveau-3-backend.md](05-niveau-3-backend.md)
-> **Tu dois déjà savoir** : Docker de base (`03-niveau-1-socle.md`), un backend NestJS ou Express qui tourne, les bases de la file d'attente et du pool de connexions.
-> **Ensuite** : [07-niveau-5-transfert.md](07-niveau-5-transfert.md)
+> **Tu viens de** : [04-niveau-3-backend.md](04-niveau-3-backend.md)
+> **Tu dois déjà savoir** : Docker de base (`02-niveau-1-socle.md`), un backend NestJS ou Express qui tourne, les bases de la file d'attente et du pool de connexions.
+> **Ensuite** : [06-niveau-5-transfert.md](06-niveau-5-transfert.md)
 
 # Niveau 4 : Systèmes professionnels (section 7)
 
@@ -646,7 +646,7 @@ la base tient sur une machine            les données ne tiennent plus sur une m
 un index bien posé règle le problème     aucun index ne règle un scan de tout l'historique
 ```
 
-Tant que tu es à gauche, la réponse est un index, une requête réécrite, un cache, une réplique de lecture (voir [`05-MAITRISE/01-DATABASES/`](../../../05-MAITRISE/01-DATABASES/01-00-why-databases.md)). Sortir l'artillerie avant ce seuil, c'est la sur-ingénierie décrite au [niveau 3 à propos des files massives](05-niveau-3-backend.md) : trois outils de plus à opérer pour un problème que la base réglait.
+Tant que tu es à gauche, la réponse est un index, une requête réécrite, un cache, une réplique de lecture (voir [`05-MAITRISE/01-DATABASES/`](../../../05-MAITRISE/01-DATABASES/01-00-why-databases.md)). Sortir l'artillerie avant ce seuil, c'est la sur-ingénierie décrite au [niveau 3 à propos des files massives](04-niveau-3-backend.md) : trois outils de plus à opérer pour un problème que la base réglait.
 
 **Les trois briques, et ce qu'elles font vraiment.**
 
@@ -719,7 +719,7 @@ Tant que tu es à gauche, la réponse est un index, une requête réécrite, un 
 
 ---
 
-[← Niveau 3 : Backend](05-niveau-3-backend.md) · [Sommaire](../README.md) · [Niveau 5 : Transfert →](07-niveau-5-transfert.md)
+[← Niveau 3 : Backend](04-niveau-3-backend.md) · [Sommaire](../README.md) · [Niveau 5 : Transfert →](06-niveau-5-transfert.md)
 
 ## Platform Engineering : ne pas faire de chaque dev un admin de cluster
 

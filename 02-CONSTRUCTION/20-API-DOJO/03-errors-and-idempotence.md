@@ -110,20 +110,43 @@ async function handleConfirm(req: Request) {
   const key = req.headers.get("Idempotency-Key");
   if (!key) return respond(400, { code: "MISSING_IDEMPOTENCY_KEY" });
 
-  const existing = await idempotencyStore.get(key);
-  if (existing) {
-    // Requête déjà traitée : renvoyer EXACTEMENT la même réponse, sans rejouer l'effet.
-    return respond(existing.statusCode, existing.body);
+  // Ne pas faire un GET suivi d'un verrou : cette séquence laisserait une course
+  // entre deux requêtes. acquire() retourne atomiquement l'état existant ou réserve la clé.
+  // acquire() effectue un INSERT ... ON CONFLICT (ou SET NX EX) atomique
+  // et crée PENDING avec un TTL supérieur à la durée maximale prévue du traitement.
+  // Pour un travail plus long, renouveler le lease avec ownerToken. La clé est scopée
+  // par tenant/utilisateur, route et Idempotency-Key ; le store renvoie COMPLETED,
+  // PENDING ou ACQUIRED. Les méthodes du store sont un contrat pédagogique à implémenter.
+  const claim = await idempotencyStore.acquire(key, { ttlSeconds: 120 });
+  if (claim.state === "COMPLETED") {
+    return respond(claim.result.statusCode, claim.result.body);
+  }
+  if (claim.state === "PENDING") {
+    return respond(409, { code: "REQUEST_IN_PROGRESS", retryAfterSeconds: 2 });
+  }
+  if (claim.state !== "ACQUIRED" || !claim.ownerToken) {
+    throw new Error("Contrat idempotencyStore.acquire() invalide");
   }
 
-  // Verrou court pour éviter que deux requêtes avec la même clé s'exécutent en parallèle
-  // (deux onglets, un double-tap rapide avant que la première réponse ne revienne).
-  const lock = await idempotencyStore.tryLock(key);
-  if (!lock) return respond(409, { code: "REQUEST_IN_PROGRESS" });
+  try {
+    // Pour un effet dans la même base, enregistrer l'effet métier et COMPLETED
+    // dans UNE transaction. Si la transaction échoue, les deux sont annulés.
+    const result = await db.transaction(async (tx) => {
+      const effect = await confirmDeliveryOnce(tx, req.params.deliveryId);
+      await tx.idempotencyStore.complete(key, claim.ownerToken, effect, { ttlSeconds: 86_400 });
+      return effect;
+    });
+    return respond(result.statusCode ?? 200, result.body ?? result);
+  } catch (error) {
+    // Cette libération est sûre uniquement parce que db.transaction garantit
+    // le rollback de l'effet ET du statut COMPLETED en cas d'échec.
+    await idempotencyStore.releaseIfOwner(key, claim.ownerToken);
+    throw error;
+  }
 
-  const result = await confirmDeliveryOnce(req.params.deliveryId);
-  await idempotencyStore.save(key, result); // mémorisé pour les tentatives suivantes
-  return respond(200, result);
+  // Si l'effet touche un service externe, il n'est pas atomique avec la DB :
+  // écrire un événement dans une outbox lors de la transaction locale, puis utiliser
+  // une clé de déduplication chez le consommateur. Réconcilier les états incertains.
 }
 ```
 

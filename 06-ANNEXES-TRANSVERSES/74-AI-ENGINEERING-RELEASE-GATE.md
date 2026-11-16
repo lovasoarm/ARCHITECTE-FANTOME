@@ -141,18 +141,24 @@ Définis contrat, sources, droits, abstention et évaluation ; observe retrieval
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](77-FIL-ROUGE-KINTANA/README.md), **74 : AI Engineering Release Gate : de l'expérience au système contrôlé** se rattache à ce cas concret : La FAQ IA Kintana répond à partir de documents approuvés, cite ses sources et s'abstient quand le contenu manque. Elle ne crée ni annule ni modifie une demande.
+Dans [Kintana](77-FIL-ROUGE-KINTANA/README.md), **74 : AI Engineering Release Gate : de l'expérience au système contrôlé** se rattache au service IA Kintana déjà construit et évalué : décider s’il peut être livré, sous quelles limites, avec quels seuils, responsables, mécanismes d’arrêt et conditions de rollback.
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : FAQ IA en lecture seule et évaluable
+## Mission utile : Kintana : décider de la mise en release du service IA
 
 > **Arc Capsule Corp. / DBZ :** l'IA est un copilote puissant, pas le Hokage. Elle peut proposer ; c'est ton système qui doit vérifier, limiter et refuser si besoin.
 
-**Mission liée à « 74 : AI Engineering Release Gate : de l'expérience au système contrôlé » :** Ajoute ou évalue une tranche FAQ Kintana : corpus synthétique approuvé, retrieval, citations, questions sans réponse, contradiction de source et prompt injection. Vérifie que toute action d'écriture métier reste impossible.
+**Mission liée à « 74 : AI Engineering Release Gate : de l'expérience au système contrôlé » :** À partir des résultats et artefacts fournis du Lab 60, rédige une décision `GO`, `NO-GO` ou `GO WITH LIMITS`. Liste les preuves et régressions critiques, le risque résiduel, les limites de charge/coût/latence, le plan de monitoring, le kill switch, le rollback, les responsables et la date de réexamen. Ne réimplémente pas le service et ne réévalue pas les mêmes questions FAQ.
 
-**Livrable :** jeu d'évaluation versionné, rapport retrieval/génération, tests sécurité, règle d'abstention et dossier de coûts/latence LAB.
+**Livrable :** dossier de décision de release versionné : décision et portée, preuves examinées, seuils de blocage, risques acceptés, responsables, plan de monitoring, kill switch, rollback et date de réexamen.
 
-**Critères d’acceptation :** les sources sont traçables ; les réponses sans support s'abstiennent ; l'injection ne donne pas de droits ; aucune action métier n'est exposée ; les métriques ne sont pas présentées comme production.
+**Critères d’acceptation :** chaque seuil renvoie à une mesure ou est explicitement marqué comme hypothèse ; toute régression critique entraîne `NO-GO` ou une limite vérifiable ; les limites de charge, coût et latence sont chiffrées à partir des artefacts fournis ; aucune simulation n'est présentée comme preuve de production.
 
-**Transfert obligatoire :** Le fournisseur IA tombe ou renvoie une sortie mal formée. Vérifie le mode dégradé, la reprise et le comportement sûr.
+**Transfert obligatoire :** après un `GO WITH LIMITS`, un indicateur dépasse son seuil pendant deux fenêtres consécutives. Définis qui peut arrêter le service, quelle action est automatique, comment le rollback est vérifié et quelles preuves autorisent une nouvelle ouverture.
+
+<!-- AF-AI-RELEASE-GATE-SCOPE -->
+
+## Périmètre propre au Gate 74 : décision de release
+
+Ce gate ne redemande pas de construire une deuxième FAQ. À partir d'un service IA déjà évalué (par exemple le livrable du Lab 60), décide `GO`, `NO-GO` ou `GO WITH LIMITS` en examinant : version et provenance du modèle, résultats du jeu d'évaluation gelé, régressions critiques, ACL et prompt injection, budget/latence, fallback, monitoring, kill switch et rollback. La preuve est un dossier de décision de release, pas la répétition du travail d'implémentation du Lab 60.

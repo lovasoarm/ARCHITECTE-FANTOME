@@ -29,7 +29,7 @@ Avant de changer une ligne, tu mesures. Après avoir changé, tu remesures. C'es
 ## 1) L'OUTIL DE BASE : `performance.now()`
 
 `Date.now()` donne les millisecondes depuis 1970. C'est pour les timestamps.
-`performance.now()` donne les microsecondes depuis le lancement de la page. C'est pour mesurer.
+`performance.now()` donne un temps monotone en **millisecondes** depuis le `timeOrigin` du contexte (avec une précision potentiellement sub-milliseconde). C'est pour mesurer des durées ; ce n'est pas un timestamp Unix.
 
 ```js
 // mauvais : précision en ms, pas assez fin

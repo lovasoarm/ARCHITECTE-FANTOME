@@ -24,27 +24,33 @@ Le piège : cette optimisation peut sauter à tout moment, sans erreur, sans log
 
 ---
 
-## 1) DEUX MOTEURS DANS V8 : IGNITION ET TURBOFAN
+## 1) LES ÉTAPES D'EXÉCUTION DE V8 : IGNITION, SPARKPLUG, MAGLEV ET TURBOFAN
 
-V8 ne compile pas ton code une seule fois. Il le fait en deux passes, avec deux moteurs différents.
+V8 n'utilise pas seulement deux moteurs. Son pipeline a évolué et dépend de la version du moteur, de l'architecture et du contexte d'exécution. Le schéma ci-dessous résume les principaux niveaux modernes ; il ne signifie pas que chaque fonction traverse obligatoirement toutes les étapes.
 
 ```text
 ton code source
    |
    v
- Ignition (interpréteur : exécute ligne par ligne, rapide à démarrer)
-   |
-   v  (si une fonction tourne souvent : "hot function")
+ Ignition       : interprète le bytecode (démarrage rapide)
    |
    v
- TurboFan (compilateur optimisant : transforme en code machine ultra rapide)
+ Sparkplug      : compilation de base, peu coûteuse
+   |
+   v
+ Maglev         : compilation optimisante intermédiaire
+   |
+   v
+ TurboFan       : compilation optimisante de niveau supérieur
 ```
 
-**Ignition** démarre vite. Il transforme ton code en bytecode (instructions intermédiaires, plus rapides à lire qu'une string de code source) et l'exécute direct. Pas d'optimisation, juste de la rapidité de démarrage.
+**Ignition** transforme le code en bytecode (instructions intermédiaires) et l'exécute. **Sparkplug** peut compiler rapidement les fonctions suffisamment actives sans faire tout le travail d'un optimiseur avancé. **Maglev** ajoute une étape d'optimisation intermédiaire. **TurboFan** peut produire du code machine plus fortement optimisé à partir des informations observées.
 
-**TurboFan** entre en jeu quand Ignition repère qu'une fonction est appelée des milliers de fois (un "hot path" : chemin d'exécution chaud). Il prend cette fonction, fait des paris sur la forme de ses données, et génère du code machine optimisé spécifiquement pour ces paris.
+Le moteur décide des promotions selon ses heuristiques et son état d'exécution : il n'existe pas de seuil universel du type « exactement 1 000 appels ». Toutes les fonctions ne deviennent pas chaudes et toutes ne passent pas par chaque niveau. Le backend/IR **Turboshaft** est une infrastructure de compilation utilisée par V8 ; ce n'est pas un niveau d'exécution supplémentaire à placer après TurboFan.
 
-Le mot clé : **paris**. TurboFan optimise pour le cas qu'il a observé, pas pour tous les cas possibles. Et un pari qui se révèle faux, ça se paie cash. On y revient en section 3.
+Pour suivre l'évolution de ces détails internes, consulte les références officielles : [Sparkplug](https://v8.dev/blog/sparkplug), [Maglev](https://v8.dev/blog/maglev), [Elements kinds in V8](https://v8.dev/blog/elements-kinds), [Fast properties in V8](https://v8.dev/blog/fast-properties) et [Turboshaft](https://v8.dev/blog/leaving-the-sea-of-nodes). Ces articles décrivent des versions et choix internes précis ; ils ne remplacent pas un profilage sur la version de runtime réellement utilisée.
+
+Le mot clé : **hypothèses**. Un optimiseur peut spécialiser du code à partir des types et formes observés. Si une hypothèse ne tient plus, V8 peut déoptimiser et reprendre l'exécution à un niveau moins spécialisé. Le détail précis dépend de la version de V8.
 
 ---
 
@@ -97,18 +103,18 @@ function getChakra(ninja) {
 // V8 mémorise "ninja.chakra est toujours à l'offset 8" et saute la recherche
 // → c'est un monomorphic inline cache (une seule forme observée, rapide)
 
-// si getChakra() reçoit parfois un ninja {nom, chakra}, parfois {chakra, nom, element} :
-// V8 doit gérer plusieurs formes
-// → polymorphic (2-4 formes : encore correct) ou megamorphic (5+ formes : optimisation abandonnée)
+// si getChakra() reçoit plusieurs formes d'objets, le site d'accès peut devenir polymorphe.
+// Avec beaucoup de formes observées, il peut devenir mégamorphe ; le seuil et la stratégie
+// dépendent du site d'accès, de V8 et de sa version.
 ```
 
-Une fonction appelée avec des objets de formes différentes perd tout l'avantage de l'inline cache. Elle redevient lente, même si elle tourne des milliers de fois.
+Un inline cache polymorphe conserve des chemins rapides pour plusieurs formes connues. Un site mégamorphe peut utiliser une stratégie moins spécialisée, mais cela ne signifie pas automatiquement que toute la fonction perd ses optimisations ou devient lente. Profile la version et les données réelles avant de conclure ; n'utilise pas une règle fixe du type « 5 formes = deopt ».
 
 ---
 
 ## 4) DEOPTIMIZATION : QUAND LE PARI DE TURBOFAN ÉCHOUE
 
-TurboFan optimise sur la base d'hypothèses ("cette variable est toujours un number", "ce tableau ne contient que des objets de telle forme"). Si une de ces hypothèses devient fausse en cours de route, V8 doit jeter le code optimisé et revenir à Ignition. C'est une déoptimisation (deopt).
+Un niveau optimisant (par exemple TurboFan) travaille à partir d'hypothèses observées ("cette variable reçoit des nombres", "ces objets ont la même forme"). Si une hypothèse cesse d'être valable, V8 peut invalider le code spécialisé et reprendre l'exécution à un niveau moins spécialisé. C'est une déoptimisation (_deopt_). Le niveau exact de reprise et le chemin de réoptimisation dépendent de la version et du contexte.
 
 ```js
 function additionner(a, b) {
@@ -122,31 +128,32 @@ for (let i = 0; i < 50000; i++) additionner(i, i + 1);
 // phase 2 : un appel surprise
 additionner("5", "3"); // string concat, pas addition numérique
 // le pari "a et b sont des numbers" vient de mourir
-// V8 déoptimise additionner(), repasse par Ignition, perd l'optimisation
+// V8 peut déoptimiser cette spécialisation et reprendre à un niveau moins spécialisé
 ```
 
-Une deopt isolée ne tue pas ton app. Le vrai problème, c'est une fonction hot path qui alterne sans cesse entre plusieurs types : elle optimise, déoptimise, réoptimise, en boucle. Ce phénomène a un nom : bailout loop (boucle d'échec). Le coût CPU de cette danse peut dépasser le coût d'une fonction jamais optimisée du tout.
+Une deopt isolée ne tue pas ton app. Une alternance répétée entre spécialisation et déoptimisation peut toutefois coûter cher sur un hot path. Décris ce phénomène comme des **déoptimisations répétées** ou du _deopt churn_ ; « bailout loop » n'est pas un nom de mécanisme stable à enseigner comme une garantie de V8. Mesure le coût sur le runtime et les données ciblés avant d'affirmer qu'il dépasse celui d'un code non optimisé.
 
 ---
 
 ## 5) CE QUI DÉCLENCHE UNE DEOPT EN PRATIQUE
 
 ```text
-type qui change sur un paramètre    --> deopt potentielle
-forme d'objet qui varie (hidden class) --> inline cache dégradé
-tableau qui mélange types        --> array devient "dictionary mode"
-try/catch mal placé (cas datés)     --> empêchait l'optimisation sur vieux V8
-arguments en nombre variable      --> empêche certaines optimisations
-delete sur une propriété d'objet    --> casse la hidden class
+type qui change sur un paramètre       --> spécialisation potentiellement invalidée
+formes d'objets variées               --> site d'accès potentiellement polymorphe/mégamorphe
+ajout d'un type différent dans un array --> changement de kind d'éléments possible
+tableau très creux ou index atypiques --> représentation dictionnaire possible
+propriété supprimée / ajoutée tardive --> transitions de forme possibles
 ```
 
-Le cas du tableau mérite un mot. V8 optimise différemment un tableau de numbers purs (`[1, 2, 3]`, stocké de façon compacte) et un tableau mixte (`[1, 'deux', {trois: 3}]`, stocké en mode dictionnaire, beaucoup plus lent à parcourir). Mélanger les types dans un tableau qui tourne dans une boucle chaude, c'est annuler une partie de l'optimisation par construction.
+**Ne confonds pas changement de type et mode dictionnaire.** Avec V8, un tableau `[1, 2, 3]` utilise généralement une représentation spécialisée pour les petits entiers. Ajouter une chaîne peut le faire évoluer vers un kind plus général, comme `PACKED_ELEMENTS` ; cela ne signifie pas qu'il passe automatiquement en `DICTIONARY_ELEMENTS`. Les tableaux creux (avec beaucoup d'indices manquants) ou certains usages atypiques peuvent, eux, utiliser une représentation dictionnaire. Les kinds exacts sont des détails internes qui varient selon le moteur et sa version.
+
+Les anciennes recommandations catégoriques sur `try/catch` ou `arguments` ne doivent pas devenir des règles intemporelles : les optimisations évoluent. Profile le code réel avant de modifier une structure uniquement pour plaire au JIT.
 
 ---
 
 ## 6) CE QUE ÇA CHANGE CONCRÈTEMENT
 
-Tu n'as pas besoin de penser au JIT en permanence. La majorité du code applicatif ne tourne jamais assez souvent pour que TurboFan s'en mêle vraiment. Là où ça compte : les boucles chaudes (parsing de gros volumes, calculs répétés des milliers de fois, hot paths identifiés par profiling). Sur ce code précis, la forme de tes objets et la stabilité de tes types deviennent un vrai levier de performance, pas un détail théorique.
+Tu n'as pas besoin de penser au JIT en permanence. Une grande partie du code applicatif ne devient jamais suffisamment chaude pour bénéficier d'une compilation optimisante avancée. Le JIT compte surtout sur les hot paths identifiés par profilage (parsing de gros volumes, calculs répétés, transformations de données). Dans ces zones seulement, la stabilité des formes et des types peut devenir un levier de performance ; vérifie-le par mesure plutôt que par intuition.
 
 ---
 
@@ -194,7 +201,7 @@ console.log(calculerMoyenne(scores));
 
 ## RÉSUMÉ
 
-V8 exécute ton code en deux temps : Ignition démarre vite sans optimiser, TurboFan optimise les fonctions qui tournent souvent en pariant sur la forme de leurs données. Les hidden classes déterminent si V8 peut traiter tes objets de façon uniforme : initialise toujours les propriétés dans le même ordre. Les inline caches mémorisent la dernière forme observée à un point d'appel : un seul type stable, c'est rapide, plusieurs types qui changent sans cesse, c'est l'optimisation perdue. Une deopt n'est pas une erreur, c'est V8 qui retire un pari devenu faux : une deopt isolée ne change rien, une bailout loop sur un hot path coûte cher.
+V8 combine un interpréteur et plusieurs niveaux de compilation dont Sparkplug, Maglev et TurboFan dans les versions modernes ; le passage entre ces niveaux dépend d'heuristiques et de la version. Les hidden classes (formes internes d'objets) et les inline caches aident à spécialiser les accès, sans qu'un nombre fixe de formes garantisse une perte d'optimisation. Une déopt n'est pas une erreur : elle retire une spécialisation dont les hypothèses ne tiennent plus. Les tableaux qui changent de type peuvent changer de kind d'éléments ; ils ne passent pas automatiquement en mode dictionnaire. Profile avant de conclure.
 
 ---
 

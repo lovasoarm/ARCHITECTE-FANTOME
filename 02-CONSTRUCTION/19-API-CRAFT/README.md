@@ -14,6 +14,8 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 # MODULE 19 API CRAFT
 
+> **Repère de navigation :** `97-CHECKPOINT-PACK/` contient la grille et les preuves de checkpoint ; `97A-EXO-VERIFICATION.md` est un exercice indépendant d’application/vérification. Le premier est un dossier de critères, le second une activité : ce ne sont pas deux leçons successives.
+
 > Palier `02-CONSTRUCTION`. Duree estimee : **9 h 20** (14 fichiers de travail).
 
 ## Sommaire du module
@@ -30,9 +32,9 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | [`06-graphql_basics.md`](06-graphql_basics.md)                                         | GRAPHQL SANS LA MAGIE                                   | 45 min |
 | [`07-api_versioning.md`](07-api_versioning.md)                                         | VERSIONNER UNE API                                      | 45 min |
 | [`08-openapi_swagger.md`](08-openapi_swagger.md)                                       | OPENAPI ET SWAGGER                                      | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                                                     | Page verrouillée                                        | 30 min |
 | [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                                               | EXO LECTURE : ~20 minutes : un cycle (API Craft)        | 20 min |
 | [`97A-EXO-VERIFICATION.md`](97A-EXO-VERIFICATION.md)                                   | EXO [JEUNE IA] : 02-CONSTRUCTION/19-API-CRAFT           | 45 min |
+| [`90-grimoire.md`](90-grimoire.md)                                                     | Page verrouillée                                        | 30 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                         | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust | 45 min |
 
 Total : **9 h 20**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
@@ -80,14 +82,12 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Graphql sans la magie](06-graphql_basics.md)
 - [Versionner une API](07-api_versioning.md)
 - [Openapi et swagger](08-openapi_swagger.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~20 minutes : un cycle (API Craft)](09-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/19-api-craft](97A-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
 - [Challenge : `19-API-CRAFT`](95-challenge.md)
 - [Grimoire : `19-API-CRAFT`](90-grimoire.md)
 - [`97-CHECKPOINT-PACK/`](97-CHECKPOINT-PACK/README.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 <!-- AF-KINTANA-MODULE -->

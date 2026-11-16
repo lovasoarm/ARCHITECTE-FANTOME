@@ -42,9 +42,9 @@ Un événement découple le producteur des consommateurs tout en faisant circule
 | [`05-clean_architecture.md`](05-clean_architecture.md)                     | CLEAN ARCHITECTURE : LE DOMAINE AU CENTRE                         | 45 min |
 | [`06-event_driven.md`](06-event_driven.md)                                 | EVENT-DRIVEN ARCHITECTURE : RÉAGIR, PAS ANTICIPER                 | 45 min |
 | [`07-microservices_intro.md`](07-microservices_intro.md)                   | MICROSERVICES : DÉCOUPER OU SOUFFRIR : MAIS PAS N'IMPORTE COMMENT | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                                         | Page verrouillée                                                  | 30 min |
 | [`08-EXO_LECTURE.md`](08-EXO_LECTURE.md)                                   | EXO LECTURE : ~20 minutes : un cycle (Architecture Patterns)      | 20 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                         | EXO [JEUNE IA] : 02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS         | 45 min |
+| [`90-grimoire.md`](90-grimoire.md)                                         | Page verrouillée                                                  | 30 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                             | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust           | 45 min |
 
 Total : **7 h 50**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
@@ -91,13 +91,11 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Clean architecture : le domaine au centre](05-clean_architecture.md)
 - [Event-driven architecture : réagir, pas anticiper](06-event_driven.md)
 - [Microservices : découper ou souffrir : mais pas n'importe comment](07-microservices_intro.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~20 minutes : un cycle (Architecture Patterns)](08-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/14-architecture-patterns](97-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
 - [Challenge : `14-ARCHITECTURE-PATTERNS`](95-challenge.md)
 - [Grimoire : `14-ARCHITECTURE-PATTERNS`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources

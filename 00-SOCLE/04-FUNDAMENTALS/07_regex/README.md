@@ -12,9 +12,15 @@ source_scope: "Notion et parcours internes reliés à 00-SOCLE/04-FUNDAMENTALS/0
 provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
+> **Repère de navigation :** `02` à `04` identifient les leçons, `50` à `52` les pratiques, et `90` le grimoire. Ce ne sont pas des numéros de séance. Suis l’ordre de cette page.
+
 # REGEX
 
 > Sommaire de `00-SOCLE/04-FUNDAMENTALS/07_regex`.
+
+## Quand commencer ce dossier
+
+C'est l'étape 12 de Fundamentals. Termine d'abord Modules : Regex arrive en dernier dans la route de base et ne remplace pas l'apprentissage des variables, fonctions, types ou modules.
 
 ## Contenu du dossier
 
@@ -27,7 +33,6 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 - [Regex extractor : capturer, remplacer, splitter](04-regex_extractor.md)
 - [52-regex_extractor_minimini_projet.md](52-regex_extractor_minimini_projet.md)
 - [Page verrouillée](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 <!-- AF-KINTANA-MODULE -->

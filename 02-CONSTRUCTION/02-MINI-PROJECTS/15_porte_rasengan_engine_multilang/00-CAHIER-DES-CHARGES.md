@@ -8,6 +8,10 @@ route_family: transfer
 
 # Cahier des charges : portage rasengan engine
 
+<!-- AF-ADR-CONTRACT -->
+
+**Contrat ADR de ce projet : 2 décision(s) réellement indépendante(s).** Détails et périmètre exact dans [`01-RULES.md`](01-RULES.md). La quantité ne justifie jamais de fractionner artificiellement une même décision. Les ADR fournis sont des contextes de départ, pas une revue humaine ni une preuve d'adoption.
+
 Temps de lecture ~2 min
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
@@ -16,7 +20,7 @@ Tu portes ton moteur JS en Python ou Go. C'est Goku qui apprend le kaioken aprè
 
 ## OBJECTIF
 
-Porter 100% du `01_rasengan_engine` (features + tests) dans un autre langage, puis écrire l'ADR de comparaison.
+Porter le contrat fonctionnel et les fonctionnalités retenues de `01_rasengan_engine` dans un seul langage cible : Python OU Go : puis écrire l’ADR de comparaison. Le périmètre exact des fonctionnalités et les exclusions doivent être listés avant le portage.
 
 ## CONTRAINTES NON NÉGOCIABLES
 
@@ -26,7 +30,7 @@ Porter 100% du `01_rasengan_engine` (features + tests) dans un autre langage, pu
 
 ## LIVRABLE
 
-Code dans le langage cible, tests verts, `ADR-COMPARAISON.md`, `08-POSTMORTEM.md`, dépôt public.
+Code dans le langage cible, tests verts, `ADR-COMPARAISON.md`, `08-POSTMORTEM.md`, dépôt Git local versionné ; publication publique facultative.
 
 ## SÉCURITÉ (gate obligatoire)
 
@@ -35,7 +39,7 @@ Avant de considérer le projet fini, tu dois traiter ces exigences OWASP context
 - Parité de validation (OWASP A03) : les mêmes validations d'entrée que la version JS doivent exister dans le portage ; un edge case bloqué en JS ne doit pas passer en Python/Go.
 - Gestion d'erreurs (OWASP A09 - Logging) : ne pas logger d'infos sensibles ou de stack complète en prod dans le langage cible non plus.
 
-Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Ajoute dans le dossier `tests/` de ce projet un test ciblé pour au moins une des menaces retenues. Documente dans le README la commande exacte qui exécute ce test. Aucun pack de correction séparé n’est fourni dans ce projet.
+Pour chaque exigence : écris dans le document final `SECURITY.md` du dépôt apprenant (copié depuis le modèle `03-SECURITY.md`) la menace, ta contre-mesure, et le test qui la prouve. Ajoute dans le dossier `tests/` de ce projet un test ciblé pour au moins une des menaces retenues. Documente dans le README la commande exacte qui exécute ce test. Aucun pack de correction séparé n’est fourni dans ce projet.
 
 ## AUTO-ÉVALUATION
 
@@ -58,7 +62,7 @@ Un test dans `node learner-verifier.js` (auto-verif ecrite par toi) doit prouver
 
 - `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
 - `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
-- `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
+- `ADR/` : **2 décisions réellement distinctes** : (1) choix du langage cible ; (2) comparaison des modèles, conventions ou conséquences de portage. Chaque décision suit le template canonique ; une simple duplication du même choix dans deux fichiers ne compte pas.
 - `08-POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
 - `02-TDD-JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
 

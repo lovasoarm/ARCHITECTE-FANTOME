@@ -92,19 +92,20 @@ class Bouton {
 const bouton = new Bouton("Activer le Rasengan");
 
 document.querySelector("#btn").addEventListener("click", bouton.onClick);
-// au clic réel : "undefined cliqué" ou crash, selon le contexte
+// avec une fonction classique, `this` vaut l'élément DOM currentTarget,
+// pas l'instance `bouton` : son `this.nom` vaut donc généralement undefined.
 ```
 
-`addEventListener` appelle `bouton.onClick` comme une fonction libre, pas comme une méthode de `bouton`. La règle 2 s'applique : `this` n'est plus `bouton`. C'est l'un des bugs les plus fréquents en intégration front, et il survient uniquement en prod, jamais visible en lisant le code statiquement.
+Avec une fonction classique, `addEventListener` appelle le gestionnaire en liant `this` à l'élément DOM qui reçoit l'événement (`event.currentTarget`). Ce `this` n'est donc pas l'instance `bouton`. Le problème n'est pas que `this` soit nécessairement `undefined` : il désigne le bouton HTML, qui ne possède pas la propriété métier `nom`. Une arrow function conserve au contraire le `this` lexical de son contexte de création.
 
 ```text
 écriture du code : bouton.onClick semble "lié" à bouton
     |
     v
-exécution réelle au clic : onClick appelée seule, this perdu
+exécution réelle au clic : this vaut le bouton DOM (currentTarget), pas l’instance métier
     |
     v
-this.nom --> undefined.nom --> crash ou résultat faux
+this.nom --> propriété absente sur le bouton DOM --> undefined
 ```
 
 ## 5) LES TROIS FAÇONS DE RÉPARER

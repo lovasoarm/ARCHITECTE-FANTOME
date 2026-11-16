@@ -75,14 +75,17 @@ app.use((req, res, next) => {
 
 // Middleware de vérification sur les routes qui modifient l'état
 const verifyCsrf = (req, res, next) => {
-  const tokenFromRequest = req.body._csrf || req.headers["x-csrf-token"];
-  const tokenFromSession = req.session.csrfToken;
+  const tokenFromRequest = req.body?._csrf || req.headers["x-csrf-token"];
+  const tokenFromSession = req.session?.csrfToken;
 
-  // comparaison en temps constant pour éviter les timing attacks (attaques par mesure du temps de réponse)
-  const valid = crypto.timingSafeEqual(
-    Buffer.from(tokenFromRequest || "", "utf8"),
-    Buffer.from(tokenFromSession || "", "utf8"),
-  );
+  const requestBuffer = Buffer.from(tokenFromRequest || "", "utf8");
+  const sessionBuffer = Buffer.from(tokenFromSession || "", "utf8");
+  // timingSafeEqual lève une exception si les longueurs diffèrent.
+  // Le contrôle de longueur est nécessaire avant la comparaison constante.
+  const valid =
+    requestBuffer.length > 0 &&
+    requestBuffer.length === sessionBuffer.length &&
+    crypto.timingSafeEqual(requestBuffer, sessionBuffer);
 
   if (!valid) return res.status(403).json({ error: "CSRF token invalide" });
   next();

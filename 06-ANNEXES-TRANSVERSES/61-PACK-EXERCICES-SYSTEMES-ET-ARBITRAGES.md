@@ -16,41 +16,41 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 Ces exercices sont faits après les leçons associées. Ils testent le choix de modèle, la reconnaissance d'invariants et la conséquence d'une hypothèse brisée. Les solutions ci-dessous donnent les principes de correction, pas une architecture unique.
 
-## Exercice A : Une requête est-elle exécutée une seule fois ?
+## Exercice A : Événements reçus dans le désordre
 
 ### Situation
 
-Un client envoie une demande de paiement. Le serveur enregistre la demande et appelle un fournisseur. Le fournisseur réalise le paiement, mais la réponse réseau se perd. Le client réessaie. Le serveur ne sait pas si le premier appel a réussi.
+Un service d'abonnement reçoit les événements `subscription.paused` et `subscription.resumed` d'un fournisseur externe. Le fournisseur peut renvoyer le même événement plusieurs fois et livrer un ancien événement après un événement plus récent. Chaque événement possède un `eventId` et un `occurredAt`, mais l'horloge du fournisseur peut dériver.
 
 ### Travail
 
-1. Dessine les états et transitions du client, du serveur et du fournisseur.
-2. Explique pourquoi un timeout ne signifie pas que l'effet externe n'a pas eu lieu.
-3. Propose une clé d'idempotence, une durée de conservation et une contrainte d'unicité.
-4. Distingue la transaction locale et l'effet externe ; décris une stratégie de reprise/réconciliation.
-5. Injecte un duplicat après succès, puis un crash entre l'effet externe et la sauvegarde locale.
+1. Définis l'identité d'un événement et la clé de déduplication.
+2. Distingue l'ordre de réception, l'ordre métier et la version de l'état.
+3. Propose une règle de transition qui refuse ou met en quarantaine un événement obsolète.
+4. Définis la stratégie de rejeu, de DLQ et de réconciliation avec le fournisseur.
+5. Injecte un doublon puis un événement ancien reçu après un événement récent.
 
 ### Correction de référence
 
-Le timeout crée une incertitude, pas une preuve d'échec. Si le fournisseur accepte une clé d'idempotence, les tentatives ayant la même clé doivent se rapporter au même effet dans la portée et la durée garanties par ce fournisseur. Une contrainte locale unique évite de créer deux opérations métier pour la même demande, mais ne rend pas automatiquement atomique un système externe. Il faut une machine à états persistée, une reprise explicite et une procédure de rapprochement lorsque l'état du fournisseur est inconnu. Ne promettre « exactly once » que pour une frontière où le protocole et le stockage fournissent réellement cette garantie.
+Le transport peut être au moins une fois et ne garantit pas l'ordre métier. La déduplication doit utiliser l'identifiant stable fourni par l'émetteur, avec une contrainte d'unicité dans la portée correcte. Le timestamp seul ne suffit pas toujours à établir un ordre fiable ; une séquence/version métier est préférable si le fournisseur la garantit. Chaque transition doit vérifier la version attendue et refuser ou mettre en quarantaine une transition obsolète. Le rejeu doit être idempotent et observable ; une DLQ sans procédure de résolution ne constitue pas une réparation.
 
-**Échec éliminatoire :** l'implémentation considère un timeout comme un rollback de l'effet externe ou autorise un retry sans identité stable de l'opération.
+**Échec éliminatoire :** un ancien événement peut écraser silencieusement un état plus récent, ou le même `eventId` applique deux fois un effet métier.
 
-## Exercice B : Cache ou source de vérité ?
+## Exercice B : Éviter une tempête de cache
 
 ### Situation
 
-Un service lit un profil depuis une base. Pour réduire la latence, un cache conserve l'ancienne valeur pendant 10 minutes. L'utilisateur modifie le profil puis retire l'accès d'un autre utilisateur. Une réponse servie depuis le cache peut exposer une ancienne autorisation.
+Après une invalidation planifiée, une fiche de catalogue très consultée redevient froide. À 09:00, des milliers de requêtes arrivent simultanément. Chaque miss déclenche une lecture coûteuse de la même source ; la base sature, les temps de réponse augmentent et les nouvelles requêtes multiplient la charge. Il n'y a ni donnée personnelle ni règle d'autorisation dans ce cas.
 
 ### Travail
 
-Compare : invalidation à l'écriture, TTL seulement, cache par identité/tenant, versionnement, vérification de l'ACL avant de servir. Donne pour chaque approche la garantie réelle, le coût et le mode de panne.
+Compare : verrou/single-flight par clé, stale-while-revalidate, TTL avec jitter, préchauffage contrôlé et limitation de concurrence. Pour chaque stratégie, précise le comportement lors du crash du détenteur du verrou, le risque de servir une valeur trop ancienne et l'effet sur la base.
 
 ### Correction de référence
 
-Le TTL borne parfois l'ancienneté sans prouver que l'ancienne donnée est sûre. Une clé de cache doit contenir toutes les dimensions qui changent la réponse, dont les droits pertinents ; malgré cela, une révocation urgente peut exiger une vérification d'autorisation au moment de la lecture ou une invalidation forte. Ne traite jamais un cache comme source de vérité pour les permissions critiques sans une garantie explicitée et testée.
+Le cache ne doit pas transformer un pic de misses en pic équivalent sur la source. Un single-flight limite les chargements concurrents d'une même clé mais exige expiration du verrou et gestion des erreurs. Le stale-while-revalidate peut préserver la latence si l'ancienneté permise est acceptable ; il ne convient pas à une donnée dont la fraîcheur est impérative. Le TTL avec jitter répartit les expirations, sans remplacer une limite de concurrence. Le choix dépend de la fraîcheur métier, du coût de calcul et du rayon d'impact.
 
-**Transfert :** applique le même raisonnement aux résultats RAG, embeddings, snippets, résumés de documents et réponses générées.
+**Transfert :** applique ce raisonnement à un cache de configuration dont une valeur obsolète peut modifier le comportement d'un service.
 
 ## Exercice C : Le percentile a-t-il masqué une panne ?
 
@@ -67,21 +67,21 @@ Service A : 99 % des requêtes répondent en 100 ms, 1 % en 8 s. Service B : 95 
 
 ### Correction de référence
 
-Les distributions ont des queues très différentes : A contient une minorité qui attend très longtemps alors que B a une dégradation plus fréquente mais moins extrême. La moyenne peut masquer la forme de la distribution. Les p95/p99, ventilés par endpoint et par dépendance, et la durée/âge des files d'attente aident à diagnostiquer. Le percentile choisi et le budget doivent être alignés sur l'expérience promise et la taille réelle de l'échantillon.
+Les distributions ont des queues très différentes : A contient une minorité qui attend très longtemps alors que B a une dégradation plus fréquente mais moins extrême. La moyenne peut masquer la forme de la distribution. Les p95/p99 seuls ne suffisent pas toujours : selon la convention de quantile (rang le plus proche ou interpolation), p99 peut encore être proche de 100 ms pour A, alors que sa queue extrême atteint 8 s. Compare aussi p99.9 lorsque l’échantillon le permet, la proportion de requêtes dépassant un seuil métier (par exemple > 1 s), les histogrammes et les comptes absolus par fenêtre. Documente la convention de calcul, la taille de l’échantillon et l’incertitude : un p99.9 calculé sur trop peu d’observations n’est pas une preuve robuste. Ventile par endpoint et dépendance, puis rapproche durée et âge des files d’attente. Le percentile et le budget doivent correspondre à l’expérience promise.
 
-## Exercice D : Choisir un protocole de migration
+## Exercice D : Faire évoluer un contrat d'événement
 
 ### Situation
 
-Deux versions d'un service tournent en même temps pendant un déploiement. La version ancienne lit le champ `status`; la nouvelle version lit `state`. La base contient des lignes historiques parfois invalides.
+Un service publie des messages `ShipmentCreated` au format v1. Des consommateurs historiques peuvent rester arrêtés plusieurs jours puis rejouer leurs messages. Le format v2 ajoute un champ obligatoire pour un nouveau calcul, renomme un champ existant et change la représentation d'une date. Producteur et consommateurs ne peuvent pas être déployés simultanément.
 
 ### Travail
 
-Propose une migration en étapes. Définis le contrat, le backfill, la détection d'anomalies, le mode dual-read/write si nécessaire, la bascule et le moment où l'ancien champ peut être supprimé. Ajoute au moins un scénario de rollback.
+Définis une stratégie de compatibilité producteur/consommateur : enveloppe avec version de schéma, règle de lecture tolérante, période de double publication ou adaptateur, validation, métriques d'adoption, DLQ et date de retrait de v1. Montre comment un ancien consommateur réagit à v2 et comment un nouveau consommateur traite un message v1.
 
 ### Correction de référence
 
-La migration n'est sûre que lorsque les combinaisons de version/schema présentes durant le rollout sont compatibles. Le backfill doit être idempotent, progressif et auditable ; les données invalides doivent être quantifiées et traitées selon une règle explicite, pas converties silencieusement. Le contrat ne vient qu'après la preuve qu'aucun consommateur et aucun rollback prévu ne dépend de l'ancien champ.
+La compatibilité doit être vérifiée dans les deux sens réellement nécessaires pendant le déploiement. Un nouveau champ peut être optionnel pour les anciens lecteurs seulement si ceux-ci ignorent proprement les champs inconnus ; un champ renommé ou une date redéfinie exige une conversion ou un nouveau contrat explicite. La version du schéma doit être vérifiable, les messages invalides isolés sans perte et l'adoption de v2 mesurée avant retrait de v1. La durée de conservation et le rejeu des anciennes files font partie du plan de migration. Ce scénario porte sur le contrat de message et les consommateurs déployés indépendamment, pas sur un backfill de colonnes de base de données.
 
 ## Exercice E : Ajouter un modèle améliore-t-il le système ?
 

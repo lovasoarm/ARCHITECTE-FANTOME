@@ -1,7 +1,7 @@
 ---
 perennite: evolutif
 stability: evolutif
-duree_de_vie_estimee: 3-5 ans
+duree_de_vie_estimee: "5+ ans"
 raison: "REST, GraphQL, tRPC : formats bougent, contrats restent."
 acte: comprendre
 cognitive_level: L3
@@ -26,8 +26,6 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 > **CE MODULE RÉUTILISE** : HTTP (02-CONSTRUCTION/18-WEB-CONCEPTS), erreurs (01-CADRAGE/04-ERROR-HANDLING). Sécurité (03-PILOTAGE/04-SECURITY, approfondi plus loin dans le fil) : ce module touche à l'auth et aux headers de base, la profondeur (XSS, CSRF, injection) est vue plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # Pourquoi ce module mérite ton temps : API craft
-
-Temps de lecture ~6 min
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 

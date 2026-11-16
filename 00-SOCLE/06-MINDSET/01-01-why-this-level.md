@@ -21,7 +21,7 @@ silence l'invariant qui garantissait qu'un créneau bloqué libère toujours son
 facturation. Personne ne l'a vu venir parce que personne n'avait de modèle explicite de ce
 qui, dans ce système, ne devait jamais changer.
 
-Trois semaines plus tard, même cabinet : un stagiaire ajoute un bouton "dupliquer la semaine"
+Environ dix semaines plus tard, même cabinet : un stagiaire ajoute un bouton "dupliquer la semaine"
 pour gagner du temps à l'accueil. Personne n'a écrit ce que "dupliquer" doit faire des
 rendez-vous déjà annulés dans la semaine copiée. Le stagiaire décide seul, sur l'instant, de
 les dupliquer aussi. Résultat : 14 rendez-vous fantômes recréés le 2026-01-12, découverts

@@ -31,9 +31,9 @@ Suis ces trois leçons et leur pratique dans l'ordre :
 
 À ce stade, tu dois savoir nommer une valeur et choisir entre un nom réaffectable et un nom non réaffectable. Ne cherche pas encore à expliquer les closures, les tableaux ou la mémoire du moteur.
 
-## Passage B : références et mémoire, après fonctions avancées et Scope
+## Passage B : références et mémoire, après Types, fonctions avancées et Scope
 
-Reviens ici après avoir terminé Contrôle de flux, Data Basics, Function essentials, les fonctions avancées et Scope :
+Reviens ici après avoir terminé Contrôle de flux, Data Basics, Function essentials, Types, les fonctions avancées et Scope :
 
 4. [Stack vs Heap](06-c_stack_heap.md) → [pratique de base](53-c_stack_heap_minimini_projet.md)
 5. [Le chaos des références](07-reference_chaos.md) → [pratique de base](54-reference_chaos_minimini_projet.md)
@@ -69,7 +69,7 @@ Passage B : références -> mémoire -> mutation -> const et objets
 
 ## Mécanisme : la version sans magie
 
-Le Passage A apprend les noms et les valeurs. Contrôle de flux, Data Basics et Function essentials ajoutent ensuite les mécanismes nécessaires. Les fonctions avancées enseignent notamment les callbacks et `map`. Scope enseigne les closures. Le Passage B peut ensuite réutiliser les tableaux, les objets, le spread et les fonctions sans introduire ces notions à l'improviste.
+Le Passage A apprend les noms et les valeurs. Contrôle de flux, Data Basics et Function essentials ajoutent ensuite les mécanismes nécessaires. Types clarifie les valeurs et conversions ; les fonctions avancées enseignent notamment les callbacks et `map`. Scope enseigne les closures. Le Passage B peut ensuite réutiliser les tableaux, les objets, le spread et les fonctions sans introduire ces notions à l'improviste.
 
 ## Ancrage produit / terrain : Kintana
 
@@ -79,10 +79,10 @@ Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), 
 
 ## Mission utile : respecter les prérequis
 
-**Mission liée à « Ordre de lecture : 01_variables » :** réalise le Passage A avant de poursuivre, puis reviens au Passage B après les étapes Fonctions avancées et Scope de Fundamentals. Consigne les preuves dans ton journal.
+**Mission liée à « Ordre de lecture : 01_variables » :** réalise le Passage A avant de poursuivre, puis reviens au Passage B après Types, les fonctions avancées et Scope de Fundamentals. Consigne les preuves dans ton journal.
 
 **Livrable :** une liste datée des sept leçons, avec une preuve ou une question précise pour chacune.
 
-**Critères d'acceptation :** le Passage A est réalisé avant Contrôle de flux ; le Passage B seulement après Data Basics, Function essentials, fonctions avancées et Scope ; aucune maîtrise n'est déclarée sans pratique.
+**Critères d'acceptation :** le Passage A est réalisé avant Contrôle de flux ; le Passage B seulement après Data Basics, Function essentials, Types, fonctions avancées et Scope ; aucune maîtrise n'est déclarée sans pratique.
 
 **Transfert obligatoire :** explique pourquoi une leçon qui utilise un tableau doit être placée après l'introduction des tableaux.

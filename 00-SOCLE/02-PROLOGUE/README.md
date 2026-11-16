@@ -6,7 +6,7 @@ route: complete
 
 # Module 00-SOCLE/02-PROLOGUE : Prologue
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Module précédent : Getting Started](../01-GETTING-STARTED/README.md) | [Module suivant : Référentiel](../03-REFERENTIEL/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Module précédent : Getting Started](../01-GETTING-STARTED/README.md) | [Module suivant : Référentiel](../03-REFERENTIEL/README.md)
 
 **Dépendance de parcours :** terminer `01-GETTING-STARTED` pour disposer de l'environnement et connaître la navigation. **Prérequis conceptuel :** aucun ; aucune connaissance de programmation n'est exigée.
 

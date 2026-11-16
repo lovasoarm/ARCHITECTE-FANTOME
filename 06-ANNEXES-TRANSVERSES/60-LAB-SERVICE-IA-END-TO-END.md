@@ -26,7 +26,7 @@ Prérequis : fonctions/API, tests, bases de données, authentification/autorisat
 
 Séparer les composants empêche d'attribuer tout échec au « modèle » :
 
-`requête → authentification → filtrage ACL → retrieval → construction du contexte → génération → validation/citations → réponse`.
+`requête → authentification → filtrage des droits documentaires → retrieval → construction du contexte → génération → validation/citations → réponse`.
 
 Le chemin de contrôle doit pouvoir refuser l'accès avant que le contenu soit fourni au modèle. Une instruction dans le prompt ne remplace jamais une autorisation serveur.
 
@@ -80,14 +80,14 @@ Le jeu de développement aide à améliorer le système ; la validation sert à 
 | -------------------- | ---------------------------------------------------- | --------------------------------------------------------- |
 | Schéma de réponse    | Parsing strict et validation de type                 | La réponse est vraie                                      |
 | Citation autorisée   | Chaque ID vient d'un document récupéré et accessible | La citation soutient l'affirmation                        |
-| Droits documentaires | Cas inter-tenant / ACL refusée                       | Absence totale de canaux auxiliaires sans autre analyse   |
+| Droits documentaires | Cas inter-tenant / autorisation documentaire refusée | Absence totale de canaux auxiliaires sans autre analyse   |
 | Abstention           | Cas sans source / seuil de preuve insuffisant        | Bonne calibration sur tous les cas                        |
 | Budget               | Nombre d'appels/tokens et limite de délai            | Coût de production complet si le prix ou trafic diffèrent |
 | Qualité sémantique   | Rubrique humaine et/ou LLM-juge calibré              | Vérité universelle ou autorisation de sécurité            |
 
 Un LLM-juge peut assister l'évaluation sémantique, mais il faut mesurer ses désaccords sur un échantillon annoté et conserver les faux pass/faux fail. Il ne décide jamais de droits ou d'action irréversible.
 
-## Étape 3 : Sécurité : l'ACL doit survivre à toutes les couches
+## Étape 3 : Sécurité : le contrôle d’accès documentaire doit survivre à toutes les couches
 
 ### Scénario de référence
 
@@ -97,7 +97,7 @@ Le résultat attendu est un refus ou une réponse sans contenu secret. Pour le d
 
 ### Exercices
 
-1. Ajouter un document autorisé, un interdit, un révoqué et un document hostile ; noter leurs propriétaires, versions et ACL.
+1. Ajouter un document autorisé, un interdit, un révoqué et un document hostile ; noter leurs propriétaires, versions et règles de contrôle d’accès.
 2. Tester l'accès par ID direct, recherche lexicale, recherche vectorielle, cache chaud, citation et résumé.
 3. Révoquer un accès après l'indexation. Définir la garantie de révocation ; vérifier que le serveur filtre avant exposition. Si l'index n'est pas immédiatement réindexé, les droits doivent tout de même l'emporter.
 4. Mettre une injection dans un document et un résultat d'outil. Confirmer que les opérations restent gouvernées par le code de contrôle et les permissions, pas par les instructions du document.
@@ -135,7 +135,7 @@ Pour chaque changement de code, prompt, modèle, découpage ou index, compare le
 
 ## Projet de synthèse
 
-Construire une version minimale de `RAG Blindé` : ingestion avec provenance et ACL ; baseline lexicale ; évaluation annotée ; génération fondée sur les passages ; citations vérifiées ; abstention ; contrôle de droits serveur ; budget/timeout ; rapport comparatif et test de régression. La version initiale peut être locale et utiliser un générateur simulé ; le raisonnement doit rester valable quand un fournisseur réel est branché.
+Construire une version minimale de `RAG Blindé` : ingestion avec provenance et filtrage des droits documentaires ; baseline lexicale ; évaluation annotée ; génération fondée sur les passages ; citations vérifiées ; abstention ; contrôle de droits serveur ; budget/timeout ; rapport comparatif et test de régression. La version initiale peut être locale et utiliser un générateur simulé ; le raisonnement doit rester valable quand un fournisseur réel est branché.
 
 ### Livrables
 
@@ -211,8 +211,14 @@ Dans [Kintana](77-FIL-ROUGE-KINTANA/README.md), **60 : Laboratoire IA de bout en
 
 **Mission liée à « 60 : Laboratoire IA de bout en bout : retrieval, preuve, droits et opérations » :** Ajoute ou évalue une tranche FAQ Kintana : corpus synthétique approuvé, retrieval, citations, questions sans réponse, contradiction de source et prompt injection. Vérifie que toute action d'écriture métier reste impossible.
 
-**Livrable :** jeu d'évaluation versionné, rapport retrieval/génération, tests sécurité, règle d'abstention et dossier de coûts/latence LAB.
+**Livrable :** contrat d'API, pipeline d'ingestion versionné, modèle de données et droits par tenant, implémentation du retrieval/génération sur fixtures, tests de sécurité négatifs, traces par étape, mesures LAB et procédure de fallback.
 
-**Critères d’acceptation :** les sources sont traçables ; les réponses sans support s'abstiennent ; l'injection ne donne pas de droits ; aucune action métier n'est exposée ; les métriques ne sont pas présentées comme production.
+**Critères d’acceptation :** le même document ne fuit jamais entre tenants ; les réponses sont liées à des sources présentes ; l'absence de preuve déclenche une abstention ; les erreurs fournisseur et sorties mal formées ne provoquent aucune action métier ; les traces permettent de localiser la panne ; les mesures restent étiquetées LAB.
 
-**Transfert obligatoire :** Le fournisseur IA tombe ou renvoie une sortie mal formée. Vérifie le mode dégradé, la reprise et le comportement sûr.
+**Transfert obligatoire :** un document est retiré du corpus alors qu'il est présent dans l'index et le cache. Montre comment rendre sa révocation effective et prouve qu'aucune réponse servie après invalidation ne cite ce document.
+
+<!-- AF-AI-SERVICE-E2E-SCOPE -->
+
+## Périmètre propre au Lab 60
+
+Le Lab 60 est le terrain de construction end-to-end du service : ingestion, retrieval, génération, citation, contrôle d’accès documentaire, abstention et mesure de la chaîne complète sur un corpus synthétique versionné. Il ne remplace ni les expériences ML du pack 45, ni la décision de mise en release du Gate 74.

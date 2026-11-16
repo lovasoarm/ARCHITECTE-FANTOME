@@ -36,7 +36,7 @@ implicite qu'un humain fatigué en 2019 a "casée" ici. Cherche cette logique av
 ## Le code IA plausible mais faux
 
 ```js
-// généré, "propre", ne compile pas dans ton runtime
+// généré, "propre", s’exécute mais peut produire un résultat métier faux
 async function processOrder(order) {
   const total = order.items.reduce(
     (acc, item) => acc + item.price * item.qty + (item.tax ?? 0),
@@ -46,8 +46,7 @@ async function processOrder(order) {
 }
 ```
 
-Piège : lisible, moderne, **mais** peut avoir inventé `item.tax` alors que le schema réel a `item.vat`.
-l'IA optimise la vraisemblance, pas la vérité de ton schema.
+Piège : le code compile et s’exécute. Si le schéma fournit `vat` mais pas `tax`, `item.tax` vaut `undefined` ; le `?? 0` masque l’écart et le total est sous-évalué sans exception. C’est une **erreur sémantique silencieuse**, pas une erreur de compilation. L’IA optimise la vraisemblance, pas la vérité du schéma.
 
 ## Stratégie de lecture
 

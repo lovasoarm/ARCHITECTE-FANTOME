@@ -52,12 +52,13 @@ Outil : une queue (FIFO).
 function bfs(graph, start) {
   const visited = new Set();
   const queue = [start];
+  let queueHead = 0;
   const result = [];
 
   visited.add(start);
 
-  while (queue.length > 0) {
-    const current = queue.shift(); // prend le premier (FIFO)
+  while (queueHead < queue.length) {
+    const current = queue[queueHead++]; // FIFO sans réindexer tout le tableau
     result.push(current);
 
     // enfile tous les voisins non encore visités
@@ -87,12 +88,13 @@ function bfsShortestPath(graph, start, end) {
 
   const visited = new Set();
   const queue = [start];
+  let queueHead = 0;
   const parent = new Map(); // { noeud : noeud parent }
 
   visited.add(start);
 
-  while (queue.length > 0) {
-    const current = queue.shift();
+  while (queueHead < queue.length) {
+    const current = queue[queueHead++];
 
     for (const { node } of graph.getNeighbors(current)) {
       if (!visited.has(node)) {
@@ -114,11 +116,12 @@ function reconstructPath(parent, start, end) {
   let current = end;
 
   while (current !== start) {
-    path.unshift(current);
+    path.push(current);
     current = parent.get(current);
   }
 
-  path.unshift(start);
+  path.push(start);
+  path.reverse();
   return path;
 }
 ```

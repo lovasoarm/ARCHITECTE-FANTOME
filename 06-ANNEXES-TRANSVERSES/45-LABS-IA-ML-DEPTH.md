@@ -369,18 +369,24 @@ Définis contrat, sources, droits, abstention et évaluation ; observe retrieval
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](77-FIL-ROUGE-KINTANA/README.md), **45 : LABS IA / ML : DEPTH, DE L'INTUITION AU SYSTÈME** se rattache à ce cas concret : La FAQ IA Kintana répond à partir de documents approuvés, cite ses sources et s'abstient quand le contenu manque. Elle ne crée ni annule ni modifie une demande.
+Dans [Kintana](77-FIL-ROUGE-KINTANA/README.md), **45 : LABS IA / ML : DEPTH, DE L'INTUITION AU SYSTÈME** se rattache au cas Kintana par l’analyse des données de réservation et de demande : définir une cible, comparer une baseline à une variante, étudier les erreurs par sous-groupe et expliciter les limites de généralisation. Ce lab ne construit pas la FAQ RAG.
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : FAQ IA en lecture seule et évaluable
+## Mission utile : Kintana : vérifier une hypothèse ML sur les données de demande
 
 > **Arc Capsule Corp. / DBZ :** l'IA est un copilote puissant, pas le Hokage. Elle peut proposer ; c'est ton système qui doit vérifier, limiter et refuser si besoin.
 
-**Mission liée à « 45 : LABS IA / ML : DEPTH, DE L'INTUITION AU SYSTÈME » :** Ajoute ou évalue une tranche FAQ Kintana : corpus synthétique approuvé, retrieval, citations, questions sans réponse, contradiction de source et prompt injection. Vérifie que toute action d'écriture métier reste impossible.
+**Mission liée à « 45 : LABS IA / ML : DEPTH, DE L'INTUITION AU SYSTÈME » :** À partir d’un jeu synthétique versionné de demandes Kintana, formule une hypothèse prédictive précise, définis une baseline, sépare entraînement/validation/test, compare une variante, analyse les faux positifs/faux négatifs et vérifie les fuites de données. Ne construis pas ici le service RAG : il est travaillé au Lab 60.
 
-**Livrable :** jeu d'évaluation versionné, rapport retrieval/génération, tests sécurité, règle d'abstention et dossier de coûts/latence LAB.
+**Livrable :** dataset synthétique versionné, fiche d'hypothèse, protocole de split, baseline et variante, tableau de métriques par sous-groupe, analyse d'erreurs et limites de généralisation.
 
-**Critères d’acceptation :** les sources sont traçables ; les réponses sans support s'abstiennent ; l'injection ne donne pas de droits ; aucune action métier n'est exposée ; les métriques ne sont pas présentées comme production.
+**Critères d’acceptation :** aucune fuite entre splits ; métriques recalculables ; baseline présente ; faux positifs/faux négatifs interprétés ; limites et hypothèses explicitement écrites. Aucune décision de mise en production n'est demandée dans ce pack.
 
-**Transfert obligatoire :** Le fournisseur IA tombe ou renvoie une sortie mal formée. Vérifie le mode dégradé, la reprise et le comportement sûr.
+**Transfert obligatoire :** une dérive de distribution apparaît entre le jeu d'entraînement et les données d'un nouveau mois. Détermine quelles observations déclenchent une nouvelle expérience et lesquelles ne justifient pas encore un réentraînement.
+
+<!-- AF-ML-DEPTH-MISSION-DIFFERENTIATION -->
+
+## Validation DEPTH : expérience ML, pas release RAG
+
+La validation de ce pack porte sur les expériences ML annoncées dans les labs (jeu de données versionné, split, baseline, représentation, généralisation, métriques et analyse d'erreurs). Produis un rapport qui compare au moins une baseline simple à une variante étudiée, documente les hypothèses, les fuites possibles, les erreurs et la limite de validité. N'en fais pas une deuxième mission de FAQ RAG : la sécurité et la release d'un service IA sont évaluées séparément par le Gate 74.

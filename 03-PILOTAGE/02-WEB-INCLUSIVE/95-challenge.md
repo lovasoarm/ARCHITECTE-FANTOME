@@ -22,8 +22,8 @@ Acte attendu : pratiquer. Ce fichier ne contient pas de nouvel énoncé : il **p
 
 Le challenge couvre **les deux volets obligatoires** du module : accessibilité (a11y), puis internationalisation (i18n). Le dossier `08_i18n/` n'est pas une annexe facultative. Termine ses deux mini-projets et son drill après les six mini-projets a11y ; le total de travail est donné dans le [README parent](README.md) et le [README i18n](08_i18n/README.md).
 
-- [51-a11y-why-it-matters-minimini-projet.md](51-a11y-why-it-matters-minimini-projet.md)
-- [50-aria_basics_minimini_projet.md](50-aria_basics_minimini_projet.md)
+- [50-a11y-why-it-matters-minimini-projet.md](50-a11y-why-it-matters-minimini-projet.md)
+- [51-aria_basics_minimini_projet.md](51-aria_basics_minimini_projet.md)
 - [52A-keyboard_navigation_minimini_projet.md](52A-keyboard_navigation_minimini_projet.md)
 - [52-contrast_and_colors_minimini_projet.md](52-contrast_and_colors_minimini_projet.md)
 - [53-screen_readers_minimini_projet.md](53-screen_readers_minimini_projet.md)

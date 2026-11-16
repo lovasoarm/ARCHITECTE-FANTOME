@@ -44,21 +44,30 @@ alors que `heapUsed` semble normal. Un `--inspect` sur le main ne voit rien.
 ## 2) PROTOCOLE MULTI-HEAP
 
 ```text
-1. Lance le main avec : node --expose-gc --inspect main.js
-2. Trouve les workers : ps -o pid,command | grep worker
-3. Attache l'inspecteur à CHAQUE worker (chacun ouvre un port différent)
-4. Snapshot dans chaque inspecteur SÉPARÉMENT
-5. Somme les heapUsed. Compare à rss. Le manque = mémoire native ou workers non attachés.
+1. Lance le main avec `node --expose-gc --inspect=127.0.0.1:9229 main.js` (inspecteur lié à loopback ; ne l'expose jamais sur Internet).
+2. Les `worker_threads` sont des threads du même processus, pas des processus OS séparés : `ps | grep worker` ne permet pas de les identifier fiablement. Conserve les objets `Worker` et leurs `threadId` côté main.
+3. Observe `heapUsed`/`heapTotal` par worker via un message de télémétrie ; le `rss` est une mesure du processus entier. Ne somme pas les RSS remontés par plusieurs workers.
+4. Pour un heap snapshot, cible l'isolate du worker avec les outils Node/DevTools adaptés à la version utilisée ; un snapshot du main seul ne suffit pas.
+5. Note la version Node, le nombre de workers, la charge et les limites de mémoire ; distingue heap JS, mémoire externe et RSS global.
 ```
 
 Alternative programmatique :
 
 ```js
-// dans le worker :
-import { parentPort } from "node:worker_threads";
+// worker.js : heap attribuable à cet isolate ; le RSS reste global au processus.
+import { parentPort, threadId } from "node:worker_threads";
 setInterval(() => {
-  parentPort.postMessage({ heap: process.memoryUsage() });
+  const { heapUsed, heapTotal, external, arrayBuffers } = process.memoryUsage();
+  parentPort.postMessage({
+    threadId,
+    heapUsed,
+    heapTotal,
+    external,
+    arrayBuffers,
+  });
 }, 5000);
+
+// main.js : appeler process.memoryUsage().rss une seule fois pour le processus entier.
 ```
 
 Le main agrège et log. Tu vois la courbe par worker.
@@ -68,36 +77,91 @@ Le main agrège et log. Tu vois la courbe par worker.
 ## 3) FIX PATTERN : POOL BORNÉ + TERMINATE
 
 ```js
+import { Worker } from "node:worker_threads";
+
 class WorkerPool {
   constructor(size, script) {
-    this.workers = Array.from({ length: size }, () => new Worker(script));
-    this.free = [...this.workers];
+    if (!Number.isInteger(size) || size < 1)
+      throw new RangeError("size doit être >= 1");
+    this.size = size;
+    this.script = script;
     this.queue = [];
+    this.slots = [];
+    this.closed = false;
+    for (let i = 0; i < size; i += 1) this.#addWorker();
   }
+
+  #addWorker() {
+    const slot = { worker: new Worker(this.script), task: null, dead: false };
+    this.slots.push(slot);
+    slot.worker.on("message", (result) => {
+      if (!slot.task || slot.dead) return;
+      const task = slot.task;
+      slot.task = null;
+      task.resolve(result);
+      this.#drain();
+    });
+    slot.worker.on("error", (error) => this.#retire(slot, error));
+    slot.worker.on("exit", (code) => {
+      if (!this.closed)
+        this.#retire(slot, new Error(`Worker terminé (code ${code})`));
+    });
+    this.#drain();
+  }
+
   run(payload) {
-    return new Promise((resolve) => {
-      const task = { payload, resolve };
-      this.free.length
-        ? this._dispatch(this.free.pop(), task)
-        : this.queue.push(task);
+    if (this.closed) return Promise.reject(new Error("Pool fermé"));
+    return new Promise((resolve, reject) => {
+      this.queue.push({ payload, resolve, reject });
+      this.#drain();
     });
   }
-  _dispatch(w, task) {
-    w.once("message", (r) => {
-      task.resolve(r);
-      this.queue.length
-        ? this._dispatch(w, this.queue.shift())
-        : this.free.push(w);
-    });
-    w.postMessage(task.payload);
+
+  #drain() {
+    if (this.closed) return;
+    for (const slot of this.slots) {
+      if (slot.dead || slot.task || this.queue.length === 0) continue;
+      const task = this.queue.shift();
+      slot.task = task;
+      try {
+        slot.worker.postMessage(task.payload);
+      } catch (error) {
+        slot.task = null;
+        task.reject(error);
+      }
+    }
   }
+
+  #retire(slot, error) {
+    if (slot.dead || this.closed) return;
+    slot.dead = true;
+    if (slot.task) {
+      slot.task.reject(error); // pas de retry automatique : un job peut avoir des effets de bord
+      slot.task = null;
+    }
+    this.#addWorker(); // les tâches encore en file restent en attente
+  }
+
   async destroy() {
-    await Promise.all(this.workers.map((w) => w.terminate()));
+    this.closed = true;
+    const reason = new Error("Pool fermé avant exécution");
+    for (const task of this.queue.splice(0)) task.reject(reason);
+    for (const slot of this.slots) {
+      if (slot.task) {
+        slot.task.reject(reason);
+        slot.task = null;
+      }
+    }
+    await Promise.all(
+      this.slots
+        .filter((slot) => !slot.dead)
+        .map((slot) => slot.worker.terminate()),
+    );
   }
 }
 ```
 
-Règle : jamais `new Worker` dans une boucle chaude. Pool + `terminate()` en shutdown.
+Règle : jamais `new Worker` dans une boucle chaude. Un pool doit traiter `error` et `exit`, rejeter explicitement le job actif d'un worker mort, garder les jobs en attente, remplacer un worker si le pool reste ouvert et attendre `terminate()` au shutdown. Ne rejoue pas automatiquement un job qui peut avoir produit un effet de bord : un retry exige une garantie d'idempotence ou une clé de déduplication.
 
 ---
 

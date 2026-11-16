@@ -16,21 +16,18 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~2 min
 
-Durée : 1 h 30. Solo. Tout est rendu dans ton dépôt fil rouge.
+Durée : 1 h 30. Solo. Tout est rendu dans ton dépôt fil rouge. Les trois unités principales sont les deux ADR et le paquet `contrats/v2/` ; les cas et la trace CI vivent à l’intérieur de ce paquet.
 
 ## Contexte imposé
 
 Un second consommateur arrive sur ton API : une intégration partenaire que tu ne contrôles pas.
 Elle a besoin d'un champ que tu n'exposes pas, et elle ne supporte pas les enums inconnus.
 
-## Livrables (trois fichiers, pas un de plus)
+## Livrables (trois unités principales, pas un quatrième livrable)
 
-1. `ADR/contextes-bornes.md` : carte en ASCII, 3 à 5 contextes, un mot ambigu justifiant chaque
-   frontière, la traduction au passage.
-2. `contrats/v2.md` : le nouveau contrat, la liste des changements classés cassants / non cassants,
-   l'en-tête `Sunset` de la v1 avec une date réelle, et le jeu de cas exécutable (au moins 8 cas dont
-   3 d'erreur).
-3. `ADR/refus-architecture.md` : le refus chiffré de l'exercice 04, adapté à ton propre projet.
+1. `ADR/contextes-bornes.md` : carte ASCII, 3 à 5 contextes, mot ambigu justifiant chaque frontière et traduction au passage.
+2. Le **paquet unique** `contrats/v2/` : `contrat.md` contient le contrat, les changements cassants/non cassants et le `Sunset` de v1 ; `cas/` contient au moins huit cas exécutables dont trois d'erreur ; `traces/ci.txt` contient la commande, la date, l'environnement et la sortie CI correspondant exactement à ces cas. Ces fichiers sont les pièces internes d'un seul paquet contractuel, pas des livrables supplémentaires.
+3. `ADR/refus-architecture.md` : refus chiffré de l'exercice 04, adapté à ton projet.
 
 ## Contrainte anti-copie
 

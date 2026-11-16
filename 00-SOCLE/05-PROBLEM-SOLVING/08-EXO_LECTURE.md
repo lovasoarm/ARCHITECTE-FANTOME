@@ -14,7 +14,12 @@ assessment_role: instructional_checkpoint
 
 **Durée indicative : 45 minutes**, soit trois cycles distincts de 15 minutes. Chaque cycle utilise un extrait différent ; les trois cycles constituent un seul exercice.
 
-> **LOCK : pas d'édition avant les hypothèses.** Pour chaque cycle, écris et date d'abord le fichier correspondant (`HYPOTHESES_01.md`, `HYPOTHESES_02.md` ou `HYPOTHESES_03.md`). Il doit contenir au moins trois hypothèses et, pour chacune, l'observation ou la preuve qui pourrait la confirmer ou l'infirmer. Ne modifie pas l'extrait avant d'avoir enregistré cette fiche.
+> **LOCK : pas d'édition avant les hypothèses.** Pour chaque cycle, écris, date et signe d'abord le fichier correspondant (`HYPOTHESES_01.md`, `HYPOTHESES_02.md` ou `HYPOTHESES_03.md`). Il doit contenir au moins trois hypothèses et, pour chacune, l'observation ou la preuve qui pourrait la confirmer ou l'infirmer. Ne modifie pas l'extrait avant d'avoir enregistré cette fiche.
+>
+> **Signature pédagogique (convention commune) :** chaque fichier d’hypothèses doit se terminer par les deux mentions suivantes :
+> - `Auteur (nom ou identifiant) : ...`
+> - `Date (AAAA-MM-JJ) : ...`
+> Pour un exercice en plusieurs cycles, signe chaque fiche de cycle ; pour un fichier unique, signe-le une fois après l’avoir complété. Cette mention identifie l’auteur et la date ; ce n’est ni une signature électronique ou juridique, ni une revue indépendante.
 >
 > **Budget de lecture** : vise au plus 120 lignes pertinentes pendant le cycle de 15 minutes. Si l'extrait est plus long ou difficile à cartographier, note le blocage dans `MAP.md` et réduis le périmètre. Ce nombre est un repère de time-box, pas un objectif de vitesse : la justesse de ta compréhension compte davantage que le volume lu.
 >

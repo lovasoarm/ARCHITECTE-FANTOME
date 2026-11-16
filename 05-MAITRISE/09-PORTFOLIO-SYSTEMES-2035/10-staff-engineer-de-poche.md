@@ -6,9 +6,9 @@ route: depth
 freshness_status: "not_verified"
 source_verified_on: null
 source_type: "internal"
-canonical_resource: "05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/09-langage-systeme-go-rust.md"
+canonical_resource: "05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/10-graphrag-code-graph.md"
 source_url: null
-source_scope: "Notion et parcours internes reliés à 05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/09-langage-systeme-go-rust.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+source_scope: "Parcours interne relié au pont 10 GraphRAG/code graph : indexation de code, liens symboliques, provenance, citations et revue d’architecture ; ne couvre pas les affirmations externes hors de ce périmètre."
 provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
@@ -21,13 +21,13 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 ## Parcours de préparation obligatoire
 
-Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0--socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
+Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0-socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
 
 - Réussis d'abord [02 : Tribunal des IA](02-tribunal-des-ia.md) puis [03 : RAG Blindé](03-rag-blinde.md), chacun avec un verdict `PASS` et un dossier de preuves consultable. Lire leurs README ou leçons-ponts ne valide pas ces dépendances.
 - Étudie [lecture de codebase](../../03-PILOTAGE/10-TEAM-CRAFT/05-navigate_codebase.md), [boundaries/couplage](../../02-CONSTRUCTION/15-ARCHI-LAB/02-boundaries-and-coupling.md), [graphe](../../02-CONSTRUCTION/06-DATA-STRUCTURES/08_graphs/02-graph_basics.md).
 - Maîtrise les [ADR](../../03-PILOTAGE/10-TEAM-CRAFT/03-adr_writing.md), la revue de conception et [GraphRAG/code graph : pont 10](LECONS-PONTS/10-graphrag-code-graph.md).
 
-**Gate d'entrée :** les projets [02 : Tribunal des IA](02-tribunal-des-ia.md) et [03 : RAG Blindé](03-rag-blinde.md) sont tous deux `PASS` ; tu disposes en outre d'un dépôt que tu as le droit d'indexer, d'un corpus documentaire réel, de tests d'évaluation et de décisions techniques traçables. Si tu n'as pas encore accumulé de vrais ADR/issues/reviews, utilise un dépôt pédagogique mais étiquette le résultat `LAB`, jamais preuve d'influence Staff. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-3--routes-spécialisées).
+**Gate d'entrée :** les projets [02 : Tribunal des IA](02-tribunal-des-ia.md) et [03 : RAG Blindé](03-rag-blinde.md) sont tous deux `PASS` ; tu disposes en outre d'un dépôt que tu as le droit d'indexer, d'un corpus documentaire réel, de tests d'évaluation et de décisions techniques traçables. Si tu n'as pas encore accumulé de vrais ADR/issues/reviews, utilise un dépôt pédagogique mais étiquette le résultat `LAB`, jamais preuve d'influence Staff. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-3-routes-specialisees).
 
 ## Mission
 

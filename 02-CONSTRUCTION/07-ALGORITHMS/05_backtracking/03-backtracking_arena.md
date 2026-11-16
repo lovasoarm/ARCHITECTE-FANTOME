@@ -28,52 +28,64 @@ Une grille 9×9. Certaines cellules sont remplies. Remplir les vides avec des ch
 **Pruning critique :** avant de placer un chiffre, vérifier ligne + colonne + bloc 3×3. Un chiffre invalide = branche coupée immédiatement.
 
 ```js
+// Vérifie si un chiffre peut être placé sans conflit dans la ligne, la colonne et le bloc.
+function canPlaceSudoku(board, row, col, digit) {
+  for (let i = 0; i < 9; i++) {
+    if (i !== col && board[row][i] === digit) return false;
+    if (i !== row && board[i][col] === digit) return false;
+  }
+
+  const startRow = 3 * Math.floor(row / 3);
+  const startCol = 3 * Math.floor(col / 3);
+  for (let r = startRow; r < startRow + 3; r++) {
+    for (let c = startCol; c < startCol + 3; c++) {
+      if ((r !== row || c !== col) && board[r][c] === digit) return false;
+    }
+  }
+  return true;
+}
+
+function isValidSudokuBoard(board) {
+  if (!Array.isArray(board) || board.length !== 9) return false;
+  if (!board.every((row) => Array.isArray(row) && row.length === 9))
+    return false;
+
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      const value = board[row][col];
+      if (value !== "." && !/^[1-9]$/.test(value)) return false;
+      if (value !== "." && !canPlaceSudoku(board, row, col, value))
+        return false;
+    }
+  }
+  return true;
+}
+
 function solveSudoku(board) {
-  // board : tableau 9x9, "." pour les vides
+  // board : tableau 9x9, "." pour les vides. La grille est modifiée in-place.
+  // false signifie grille invalide ou puzzle sans solution ; true signifie solution trouvée.
+  if (!isValidSudokuBoard(board)) return false;
 
-  function isValid(board, row, col, char) {
-    for (let i = 0; i < 9; i++) {
-      // vérifier la ligne
-      if (board[row][i] === char) return false;
+  function solve() {
+    for (let row = 0; row < 9; row++) {
+      for (let col = 0; col < 9; col++) {
+        if (board[row][col] !== ".") continue;
 
-      // vérifier la colonne
-      if (board[i][col] === char) return false;
+        for (let num = 1; num <= 9; num++) {
+          const digit = String(num);
+          if (!canPlaceSudoku(board, row, col, digit)) continue;
 
-      // vérifier le bloc 3×3
-      const blockRow = 3 * Math.floor(row / 3) + Math.floor(i / 3);
-      const blockCol = 3 * Math.floor(col / 3) + (i % 3);
-      if (board[blockRow][blockCol] === char) return false;
+          board[row][col] = digit;
+          if (solve()) return true;
+          board[row][col] = ".";
+        }
+        return false;
+      }
     }
     return true;
   }
 
-  function solve(board) {
-    for (let row = 0; row < 9; row++) {
-      for (let col = 0; col < 9; col++) {
-        if (board[row][col] !== ".") continue; // cellule déjà remplie
-
-        // essayer chaque chiffre 1-9
-        for (let num = 1; num <= 9; num++) {
-          const char = String(num);
-
-          if (!isValid(board, row, col, char)) continue; // pruning
-
-          board[row][col] = char;
-
-          if (solve(board)) return true; // solution trouvée plus bas dans l'arbre
-
-          board[row][col] = "."; // défaire : ce chiffre ne mène nulle part
-        }
-
-        // aucun chiffre ne marche ici : revenir en arrière
-        return false;
-      }
-    }
-    return true; // toutes les cellules remplies : victoire
-  }
-
-  solve(board);
-  return board;
+  return solve();
 }
 
 const board = [
@@ -88,37 +100,56 @@ const board = [
   [".", ".", ".", ".", "8", ".", ".", "7", "9"],
 ];
 
-solveSudoku(board);
-// board est modifié in-place : solution unique pour ce puzzle
+const solved = solveSudoku(board); // true si une solution a été trouvée
+// board est modifié in-place ; ce solveur trouve une solution, il ne prouve pas qu'elle est unique.
 ```
 
 **Optimisation avancée :** au lieu de parcourir les cellules dans l'ordre, trouver d'abord la cellule avec le moins de valeurs possibles (minimum remaining values). Ça réduit drastiquement l'arbre.
 
 ```js
+// Cette fonction réutilise canPlaceSudoku() défini dans le bloc précédent.
 function findBestEmpty(board) {
-  let bestRow = -1,
-    bestCol = -1,
-    bestCount = 10;
+  let best = null;
 
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
       if (board[row][col] !== ".") continue;
 
-      let count = 0;
+      const candidates = [];
       for (let num = 1; num <= 9; num++) {
-        if (isValid(board, row, col, String(num))) count++;
+        const digit = String(num);
+        if (canPlaceSudoku(board, row, col, digit)) candidates.push(digit);
       }
 
-      // cellule avec moins d'options = contrainte la plus forte = à traiter en premier
-      if (count < bestCount) {
-        bestCount = count;
-        bestRow = row;
-        bestCol = col;
+      // Une case vide sans candidat rend la grille insoluble depuis cet état.
+      if (candidates.length === 0) return { row, col, candidates };
+      if (best === null || candidates.length < best.candidates.length) {
+        best = { row, col, candidates };
       }
+      if (candidates.length === 1) return best;
     }
   }
 
-  return [bestRow, bestCol];
+  return best; // null signifie qu'il ne reste aucune case vide.
+}
+
+function solveSudokuMRV(board) {
+  if (!isValidSudokuBoard(board)) return false;
+
+  function solve() {
+    const choice = findBestEmpty(board);
+    if (choice === null) return true; // aucune cellule vide : la grille est résolue
+
+    const { row, col, candidates } = choice;
+    for (const digit of candidates) {
+      board[row][col] = digit;
+      if (solve()) return true;
+      board[row][col] = "."; // retour arrière si cette branche échoue
+    }
+    return false;
+  }
+
+  return solve();
 }
 ```
 
@@ -129,50 +160,53 @@ function findBestEmpty(board) {
 Grille de lettres. Un mot cible. Le mot peut-il être formé en suivant des cellules adjacentes (haut, bas, gauche, droite) sans repasser par la même cellule ?
 
 ```js
+function validateWordGrid(board) {
+  if (!Array.isArray(board) || board.length === 0)
+    throw new TypeError("board doit être une grille non vide");
+  if (!Array.isArray(board[0]) || board[0].length === 0)
+    throw new TypeError("la grille doit avoir au moins une colonne");
+  const width = board[0].length;
+  if (!board.every((row) => Array.isArray(row) && row.length === width)) {
+    throw new TypeError("la grille doit être rectangulaire");
+  }
+  if (!board.every((row) => row.every((cell) => typeof cell === "string"))) {
+    throw new TypeError("chaque cellule doit contenir une chaîne");
+  }
+  return width;
+}
+
 function wordSearch(board, word) {
+  if (typeof word !== "string")
+    throw new TypeError("word doit être une chaîne");
+  if (word.length === 0) return true; // convention : le mot vide est trouvé sans parcourir la grille
   const m = board.length;
-  const n = board[0].length;
+  const n = validateWordGrid(board);
   const directions = [
     [-1, 0],
     [1, 0],
     [0, -1],
     [0, 1],
   ];
+  const visited = Array.from({ length: m }, () => new Array(n).fill(false));
 
-  function backtrack(row, col, idx, visited) {
-    // mot entier trouvé
+  function backtrack(row, col, idx) {
     if (idx === word.length) return true;
-
-    // hors grille ou déjà visitée
     if (row < 0 || row >= m || col < 0 || col >= n) return false;
-    if (visited[row][col]) return false;
+    if (visited[row][col] || board[row][col] !== word[idx]) return false;
 
-    // lettre ne correspond pas : pruning immédiat
-    if (board[row][col] !== word[idx]) return false;
-
-    // marquer comme visitée pour ce chemin
     visited[row][col] = true;
-
-    // explorer les 4 directions
     for (const [dr, dc] of directions) {
-      if (backtrack(row + dr, col + dc, idx + 1, visited)) {
-        return true; // court-circuit : on arrête dès qu'on trouve
-      }
+      if (backtrack(row + dr, col + dc, idx + 1)) return true;
     }
-
-    // défaire : cette cellule n'est plus utilisée sur ce chemin
-    visited[row][col] = false;
+    visited[row][col] = false; // annulation obligatoire avant d'essayer un autre chemin
     return false;
   }
 
-  // essayer chaque cellule comme point de départ
   for (let row = 0; row < m; row++) {
     for (let col = 0; col < n; col++) {
-      const visited = Array.from({ length: m }, () => new Array(n).fill(false));
-      if (backtrack(row, col, 0, visited)) return true;
+      if (backtrack(row, col, 0)) return true;
     }
   }
-
   return false;
 }
 
@@ -191,27 +225,26 @@ Au lieu d'un tableau `visited` séparé, modifier la grille directement. Plus é
 
 ```js
 function wordSearchInPlace(board, word) {
+  if (typeof word !== "string")
+    throw new TypeError("word doit être une chaîne");
+  if (word.length === 0) return true;
   const m = board.length;
-  const n = board[0].length;
+  const n = validateWordGrid(board); // fonction définie dans le bloc précédent
+  const visited = Symbol("visited"); // aucun caractère de l'alphabet ne peut entrer en collision avec ce marqueur
 
   function backtrack(row, col, idx) {
     if (idx === word.length) return true;
     if (row < 0 || row >= m || col < 0 || col >= n) return false;
     if (board[row][col] !== word[idx]) return false;
 
-    // marquer comme visitée en modifiant la lettre
-    const temp = board[row][col];
-    board[row][col] = "#"; // caractère qui ne sera jamais cherché
-
+    const previous = board[row][col];
+    board[row][col] = visited;
     const found =
       backtrack(row - 1, col, idx + 1) ||
       backtrack(row + 1, col, idx + 1) ||
       backtrack(row, col - 1, idx + 1) ||
       backtrack(row, col + 1, idx + 1);
-
-    // restaurer
-    board[row][col] = temp;
-
+    board[row][col] = previous; // restaurer même lorsque le mot est trouvé
     return found;
   }
 
@@ -230,11 +263,18 @@ function wordSearchInPlace(board, word) {
 // Compter les lettres disponibles vs les lettres requises
 // Si le mot demande 3 fois "A" et la grille n'en a que 2 : retourner false immédiatement
 function preCheck(board, word) {
-  const freq = {};
-  for (const row of board) for (const c of row) freq[c] = (freq[c] || 0) + 1;
-  for (const c of word) {
-    if (!freq[c] || freq[c] === 0) return false;
-    freq[c]--;
+  if (typeof word !== "string")
+    throw new TypeError("word doit être une chaîne");
+  if (word.length === 0) return true;
+  validateWordGrid(board); // contrôle la forme rectangulaire et les cellules
+  const freq = new Map();
+  for (const row of board) {
+    for (const char of row) freq.set(char, (freq.get(char) ?? 0) + 1);
+  }
+  for (const char of word) {
+    const remaining = freq.get(char) ?? 0;
+    if (remaining === 0) return false;
+    freq.set(char, remaining - 1);
   }
   return true;
 }

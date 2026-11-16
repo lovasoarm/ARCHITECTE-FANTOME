@@ -203,7 +203,7 @@ prérequis avant ce module :
 00-SOCLE/04-FUNDAMENTALS       --> fonctions, closures : la base pour construire des outils réutilisables
 02-CONSTRUCTION/05-MEMORY-PERFORMANCE/04_profiling --> comprendre performance.now() AVANT de l'emballer dans un outil
 01-CADRAGE/04-ERROR-HANDLING      --> comprendre try/catch et les erreurs custom, utile pour le debug toolkit
-02-CONSTRUCTION/13-RUNTIME-ENV/06_node_cli_scripts --> comprendre fs et process.argv, utile pour le scaffolder
+02-CONSTRUCTION/13-RUNTIME-ENV/06C-node-cli-scripts --> comprendre fs et process.argv, utile pour le scaffolder
 ```
 
 Ce qui devient plus simple après ce module :

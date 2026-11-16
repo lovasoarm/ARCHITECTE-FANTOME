@@ -12,9 +12,13 @@ source_scope: "Notion et parcours internes reliés à 00-SOCLE/04-FUNDAMENTALS/0
 provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
+> **Repère de navigation :** la première leçon de ce sous-dossier s’appelle `02-primitives.md`. Le préfixe est un identifiant de fichier, pas une étape manquante. Suis l’ordre de lecture indiqué ici.
+
 # TYPES
 
-> **Prérequis de route :** commence ce sous-module après Function essentials et Contrôle de flux. Les leçons de coercition utilisent `if`; les transformateurs utilisent des fonctions. L’exemple `{}` / `[]` de Primitives est seulement une identification de type : les manipulations sont enseignées dans Data Basics.
+> **Prérequis de route :** commence ce sous-module après le Passage A de Variables, Contrôle de flux, Data Basics et Function essentials (étapes 1 à 4 du README parent). Les leçons de coercition utilisent `if`; les transformateurs utilisent des fonctions. L’exemple `{}` / `[]` de Primitives est seulement une identification de type : les manipulations sont enseignées dans Data Basics.
+
+Ce sous-module est l’**étape 5 obligatoire** de la route canonique Fundamentals, même si son `noyau: non` indique seulement sa position dans l’arborescence. Termine-le avant de reprendre les fonctions avancées.
 
 > Sommaire de `00-SOCLE/04-FUNDAMENTALS/04_types`.
 
@@ -29,7 +33,6 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 - [Type transformers](04-type_transformers.md)
 - [52 : Transformateurs : micro-pratique JavaScript natif](52-type_transformers_minimini_projet.md)
 - [Page verrouillée](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 <!-- AF-KINTANA-MODULE -->

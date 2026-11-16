@@ -6,7 +6,7 @@ acte: comprendre
 
 > **SCÈNE CRAZYDEVS : salle des machines :** un modèle peut proposer une réponse, appeler un outil ou déclencher une action. Le système reste responsable de vérifier ce qui entre, ce qui sort et ce qui a le droit de se produire.
 
-[← Sommaire TECH-ILA](../README.md) · [← Cartes du parcours](08-cartes-parcours-technologies.md) · [Exercices IA, marché et audit →](08-IA-exercices-marche-audit.md)
+[← Sommaire TECH-ILA](../README.md) · [← Cartes du parcours](08-cartes-parcours-technologies.md) · [Exercices IA, marché et audit →](09-IA-exercices-marche-audit.md)
 
 # Niveau 6 : Ingénierie des systèmes intégrant de l'IA
 
@@ -163,4 +163,4 @@ Pour les tendances d'usage, le [Stack Overflow Developer Survey 2026 : données 
 
 **Preuve de compréhension :** propose une architecture qui utilise un modèle pour résumer des demandes client, mais interdit toute lecture inter-tenant et toute modification de compte sans contrôle serveur et confirmation. Présente trois cas où le système doit s'abstenir.
 
-[← Sommaire TECH-ILA](../README.md) · [Exercices IA, marché et audit →](08-IA-exercices-marche-audit.md)
+[← Sommaire TECH-ILA](../README.md) · [Exercices IA, marché et audit →](09-IA-exercices-marche-audit.md)

@@ -39,12 +39,18 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 Un agent alterne planification, appel d’outil, observation du résultat et décision de poursuivre ou s’arrêter.
 
-Temps de lecture ~9 min. Livrable : `STANDARDS-AGENTS.md`.
+Temps de lecture ~9 min. Livrable pédagogique : `STANDARDS-AGENTS-EXERCICE.md`.
+
+Ce module enseigne la gouvernance d’un agent sans imposer son intégration au fil rouge.
+`STANDARDS-AGENTS.md` est une preuve du système réel uniquement si celui-ci utilise des
+agents ou automatisations autonomes qui prennent ou exécutent des décisions/actions.
+Si le fil rouge n’en utilise pas, ne crée pas de fichier de gouvernance fictif : consigne
+le non-usage et son périmètre dans `EVALUATION-IA.md`.
 
 ## 1) POURQUOI CE FICHIER EXISTE
 
-Un agent n'a pas de jugement sur ce qui est irréversible. Il faut donc écrire la frontière à sa place,
-une fois, par écrit, plutôt que de la redire à chaque tâche.
+Un agent n'a pas de jugement sur ce qui est irréversible. Il faut donc définir la frontière
+de délégation avant toute utilisation réelle, plutôt que de la redire à chaque tâche.
 
 ## 2) LES CINQ SECTIONS OBLIGATOIRES
 
@@ -70,8 +76,18 @@ vérifie pas ; « le lint passe et la couverture ne baisse pas » se vérifie.
 
 ## Exercice (25 min)
 
-Écris `STANDARDS-AGENTS.md` pour ton fil rouge, les cinq sections remplies, puis **teste-le** : donne
-une tâche à un agent avec ce fichier en contexte, et note les deux endroits où le fichier était flou.
+Écris `STANDARDS-AGENTS-EXERCICE.md` avec les cinq sections remplies, puis choisis une voie :
+
+- **Agent autonome réellement utilisé dans ton fil rouge :** applique le standard réel
+  `STANDARDS-AGENTS.md` dans le périmètre autorisé, donne une tâche bornée à cet agent et
+  conserve la commande, son résultat brut et les deux ambiguïtés observées. Ne lance pas
+  d’action irréversible pour les besoins de l’exercice.
+- **Aucun agent autonome dans ton fil rouge :** n’en installe pas et n’en introduis pas.
+  Utilise le scénario de migration SQL ci-dessous comme simulation sur table ; vérifie que
+  les cinq sections permettent de décider quoi autoriser, refuser ou faire valider. Marque
+  le compte rendu `SIMULATION` et la commande hypothétique `NOT RUN`. Ne présente jamais
+  la simulation comme une exécution réelle. Documente le choix de non-usage du fil rouge
+  dans `EVALUATION-IA.md`.
 
 ## CHECKPOINT DE PROFONDEUR : variation F : coût et fiabilité
 
@@ -79,4 +95,4 @@ Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Id
 
 ## Transfert vérifiable
 
-Applique ce standard à un agent qui propose une migration SQL. Avant acceptation, exige plan, périmètre, rollback, idempotence, preuve sur base jetable et revue humaine des opérations destructives. **Vérification :** un agent qui fournit seulement une explication ou un test sur mock ne franchit pas le gate ; consigne les artefacts manquants et le refus motivé.
+Applique ce standard au scénario d’un agent qui propose une migration SQL. Si un agent autonome est réellement utilisé et que l’environnement est autorisé, vérifie le plan, le périmètre, le rollback, l’idempotence, la preuve sur base jetable et la revue humaine des opérations destructives. Sinon, traite exactement le même cas sur table et marque-le `SIMULATION`. **Vérification :** dans les deux voies, une simple explication ou un test sur mock ne suffit pas à franchir le gate ; consigne les artefacts manquants et le refus motivé. Une simulation ne prouve pas qu’un agent a été exécuté.

@@ -23,9 +23,9 @@ claim_reviewed_on: "2026-11-03"
 
 [← Sommaire TECH-ILA](../README.md)
 
-> **Tu viens de** : [02-orientation.md](02-orientation.md) : la grille d'admission et le test du zéro outil.
+> **Tu viens de** : [01-orientation.md](01-orientation.md) : la grille d'admission et le test du zéro outil.
 > **Tu dois déjà savoir** : utiliser un terminal basique, avoir écrit du JavaScript/TypeScript avec ce parcours jusqu'au module `02-CONSTRUCTION/12-TYPESCRIPT`, avoir un projet Node minimal qui tourne en local.
-> **Ensuite** : [04-niveau-2-frontend.md](04-niveau-2-frontend.md) : React, Next.js, formulaires et accessibilité.
+> **Ensuite** : [03-niveau-2-frontend.md](03-niveau-2-frontend.md) : React, Next.js, formulaires et accessibilité.
 
 # Niveau 1 : Socle professionnel (section 4)
 
@@ -84,7 +84,7 @@ Tout ce qui suit est vrai que tu fasses du web, du mobile, de la data ou de l'em
 Tu as déjà manipulé un shell et écrit des scripts qui parlent au système ; il ne reste qu'à transposer ces gestes sur une machine sans interface graphique.
 
 - [00-SOCLE/01-GETTING-STARTED/04-shell_survival.md](../../../00-SOCLE/01-GETTING-STARTED/04-shell_survival.md) : navigation, pipes, redirections.
-- [02-CONSTRUCTION/13-RUNTIME-ENV/06_node_cli_scripts](../../../02-CONSTRUCTION/13-RUNTIME-ENV/06_node_cli_scripts/) : tu as déjà lu `process.argv` et le système de fichiers depuis du code ; un script shell et un script Node résolvent le même problème avec deux vocabulaires.
+- [02-CONSTRUCTION/13-RUNTIME-ENV/06C-node-cli-scripts](../../../02-CONSTRUCTION/13-RUNTIME-ENV/06C-node-cli-scripts/) : tu as déjà lu `process.argv` et le système de fichiers depuis du code ; un script shell et un script Node résolvent le même problème avec deux vocabulaires.
 - [02-CONSTRUCTION/13-RUNTIME-ENV/03-streams_buffers.md](../../../02-CONSTRUCTION/13-RUNTIME-ENV/03-streams_buffers.md) : un pipe Unix est un stream, et la backpressure que tu connais en Node y est le même mécanisme.
 - [02-CONSTRUCTION/13-RUNTIME-ENV/05-process_env_argv.md](../../../02-CONSTRUCTION/13-RUNTIME-ENV/05-process_env_argv.md) : `export`, `env`, `printenv` : la configuration par l'environnement, déjà pratiquée.
 
@@ -309,7 +309,7 @@ Conteneur Docker, image `node:XX-slim` ou distroless (image minimale sans shell 
 | Deno (PROFESSIONNELLE)                                                | TS natif, sécurité par permissions                          | event loop, modèle async ([01-CADRAGE/02-ASYNC/04_event_loop](../../../01-CADRAGE/02-ASYNC/04_event_loop/))       |
 | Bun (PÉRISSABLE)                                                      | démarrage rapide, runtime tout-en-un, jeune sur les détails | JS, async, npm                                                                                                    |
 | Go (CONTEXTUELLE)                                                     | vraie concurrence, goroutines, binaire unique               | pas d'event loop mono-thread : modèle différent                                                                   |
-| Python/FastAPI (tag du langage : cf. 8.1 en 07-niveau-5-transfert.md) | async aussi, écosystème data                                | modèle async/await très proche ([01-CADRAGE/02-ASYNC/04_event_loop](../../../01-CADRAGE/02-ASYNC/04_event_loop/)) |
+| Python/FastAPI (tag du langage : cf. 8.1 en 06-niveau-5-transfert.md) | async aussi, écosystème data                                | modèle async/await très proche ([01-CADRAGE/02-ASYNC/04_event_loop](../../../01-CADRAGE/02-ASYNC/04_event_loop/)) |
 
 #### Ce qui restera valable dans 5 à 10 ans
 
@@ -644,7 +644,7 @@ Le modèle relationnel, l'algèbre relationnelle, ACID, les index, la lecture d'
 | SQLite                                                                            | PROFESSIONNELLE | tu gagnes zéro serveur à opérer, un fichier unique, tu paies l'absence de concurrence en écriture à haut débit                                                                 |
 | MySQL                                                                             | PROFESSIONNELLE | tu gagnes un écosystème d'hébergement au moins aussi large, tu paies des comportements par défaut historiquement moins stricts sur l'intégrité des données                     |
 | DuckDB                                                                            | CONTEXTUELLE    | tu gagnes des requêtes analytiques très rapides sur de gros volumes en local, tu paies un moteur pensé pour l'analyse et non pour des écritures transactionnelles fréquentes   |
-| Document store (cf. le cas MongoDB de 05-niveau-3-backend.md)                     | CONTEXTUELLE    | tu gagnes un schéma flexible au démarrage, tu paies une migration ultérieure vers un modèle relationnel bien plus coûteuse que prévu si le schéma s'avère finalement structuré |
+| Document store (cf. le cas MongoDB de 04-niveau-3-backend.md)                     | CONTEXTUELLE    | tu gagnes un schéma flexible au démarrage, tu paies une migration ultérieure vers un modèle relationnel bien plus coûteuse que prévu si le schéma s'avère finalement structuré |
 | Rester sur PostgreSQL et l'étendre (JSON, recherche plein texte, vecteurs, files) | PROFESSIONNELLE | tu gagnes un système à opérer au lieu de quatre, tu paies une base qui fait tout moyennement plutôt qu'une chose parfaitement                                                  |
 
 > **Exercice : Lire un plan d'exécution**
@@ -929,7 +929,7 @@ Encadré de dépannage à suivre dans l'ordre, avant de demander de l'aide à qu
 
 ---
 
-[02-orientation.md](02-orientation.md) · [Sommaire](../README.md) · [04-niveau-2-frontend.md →](04-niveau-2-frontend.md)
+[01-orientation.md](01-orientation.md) · [Sommaire](../README.md) · [03-niveau-2-frontend.md →](03-niveau-2-frontend.md)
 
 <!-- AF-LESSON-PROFILE: reference -->
 

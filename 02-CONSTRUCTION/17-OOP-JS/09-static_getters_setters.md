@@ -77,29 +77,39 @@ Sans `get`, il faudrait écrire `n.pourcentageChakra()`, une méthode classique.
 
 ```js
 class Ninja3 {
+  #chakraActuel = 0;
+  #chakraMax;
+
   constructor(chakraMax) {
-    this._chakraActuel = 0;
-    this._chakraMax = chakraMax;
+    if (!Number.isSafeInteger(chakraMax) || chakraMax <= 0) {
+      throw new TypeError(
+        "chakraMax doit être un entier sûr strictement positif",
+      );
+    }
+    this.#chakraMax = chakraMax;
   }
 
   set chakraActuel(valeur) {
-    if (valeur < 0) {
-      this._chakraActuel = 0;
-    } else if (valeur > this._chakraMax) {
-      this._chakraActuel = this._chakraMax;
-    } else {
-      this._chakraActuel = valeur;
+    if (!Number.isSafeInteger(valeur)) {
+      throw new TypeError("chakraActuel doit être un entier sûr");
     }
+    this.#chakraActuel = Math.min(this.#chakraMax, Math.max(0, valeur));
   }
 
   get chakraActuel() {
-    return this._chakraActuel;
+    return this.#chakraActuel;
   }
 }
 
 const n2 = new Ninja3(100);
-n2.chakraActuel = 150; // appelle le set, pas une affectation brute
-n2.chakraActuel; // 100, plafonné par la logique du set
+n2.chakraActuel = 150; // appelle le set : valeur plafonnée à 100
+console.log(n2.chakraActuel); // 100
+// n2._chakraActuel = NaN ne contourne pas l'invariant : ce champ n'existe pas.
+try {
+  n2.chakraActuel = NaN;
+} catch (error) {
+  console.log(error.message);
+}
 ```
 
 `n2.chakraActuel = 150` a l'air d'une simple affectation. En réalité, ça déclenche la méthode `set`, qui applique une règle de validation avant de toucher au vrai champ interne `_chakraActuel`. C'est l'usage le plus sain de `set` : transformer une affectation en porte de contrôle, sans changer la syntaxe utilisée par celui qui appelle.
@@ -117,6 +127,10 @@ class Armee {
     return this.soldats.reduce((total, s) => total + s.puissance, 0);
   }
 }
+
+const unTableauDeMilleSoldats = Array.from({ length: 1_000 }, (_, index) => ({
+  puissance: (index % 10) + 1,
+}));
 
 const armee = new Armee(unTableauDeMilleSoldats);
 

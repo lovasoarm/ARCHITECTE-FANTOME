@@ -111,12 +111,13 @@ Promise.resolve(100)
 Erreur classique : oublier le `return`.
 
 ```js
-.then(n => {
- fetchBonus(n)        // oublié le return => la chaîne passe à `undefined`
-})
-.then(resultat => {
- console.log(resultat)    // undefined. fetchBonus a tourné mais personne l'a attendu.
-})
+Promise.resolve(100)
+  .then((n) => {
+    fetchBonus(n); // oublié le return : la chaîne passe à undefined
+  })
+  .then((resultat) => {
+    console.log(resultat); // undefined : fetchBonus a démarré, mais personne ne l'a attendu
+  });
 ```
 
 ---
@@ -150,10 +151,14 @@ Ce que `.catch()` fait quand son handler retourne une valeur : il transforme le 
 **Attention : ne rien retourner ne propage pas l'erreur.** Un handler qui termine sans `return` renvoie implicitement `undefined` : la chaîne reprend donc avec `undefined`. Pour propager le rejet après l'avoir journalisé, fais un `throw` explicite :
 
 ```js
-.catch((err) => {
-  console.error("logged :", err.message);
-  throw err; // le prochain handler de rejet reçoit encore l'erreur
-});
+Promise.reject(new Error("Échec simulé"))
+  .catch((err) => {
+    console.error("logged :", err.message);
+    throw err; // le prochain handler de rejet reçoit encore l'erreur
+  })
+  .catch((err) => {
+    console.error("propagation conservée :", err.message);
+  });
 ```
 
 Pour récupérer volontairement l'erreur, retourne un fallback explicite et assure-toi que ce fallback respecte le contrat attendu par l'étape suivante.

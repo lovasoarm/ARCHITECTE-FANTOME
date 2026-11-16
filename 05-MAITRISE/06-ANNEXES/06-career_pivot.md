@@ -67,52 +67,50 @@ Sans relire, choisis une solution avec une contrainte supplémentaire (budget, l
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
 
-<!-- AF-DIAGRAM:portfolio -->
+<!-- AF-DIAGRAM:career_pivot -->
 
-## Repère visuel utile : Dossier de preuve examinable
+## Repère visuel : pivot professionnel en 30 jours
 
 ```text
-problème -> rôle -> artefact
-                   |
-                   v
-             commande reproductible
-                   |
-                   v
-             résultat + limites
-                   |
-                   v
-             revue / objection
-                   |
-                   v
-             preuve renforcée ou claim retiré
+rôle cible unique
+       |
+       v
+compétences transférables + écarts
+       |
+       v
+plan 4 semaines
+       |
+       v
+mini-projet pont + preuve
+       |
+       v
+bilan : continuer / ajuster / arrêter
 ```
 
-<!-- AF-LESSON-PROFILE: portfolio -->
+<!-- AF-LESSON-PROFILE: transfer -->
 
 ## Repères de décision
 
-- **Pourquoi :** Un portfolio crédible relie compétence, artefact, décision et résultat sans transformer une simulation en expérience réelle.
-- **Quand l’utiliser / quand l’éviter :** Utilise-le pour montrer ton travail à un reviewer, entretien ou équipe. Mets en avant une preuve profonde plutôt qu'une collection de technologies.
-- **Limites :** Un portfolio personnel ne démontre pas à lui seul influence organisationnelle ou impact production. Respecte confidentialité, licences et données non publiques.
+- **Pourquoi :** Un pivot professionnel réussi réduit l'écart entre le rôle visé et les compétences réellement démontrables.
+- **Quand l’utiliser / quand l’éviter :** Utilise ce plan pour choisir une transition réaliste et prioriser quatre semaines de travail. Ne traite pas 30 jours comme une promesse d'embauche ou de maîtrise d'un nouveau métier.
+- **Limites :** Le plan dépend du temps disponible, du niveau de départ, du marché local et des exigences du rôle. Les retours d'offres ou d'entretiens sont des signaux, pas une garantie.
 
 ## Mécanisme : la version sans magie
 
-Présente le problème, ton rôle, les contraintes, les choix, le code/tests, la mesure, les limites et ce qui a changé après feedback.
+Choisis une cible professionnelle, compare ses exigences à tes preuves actuelles, sélectionne un seul écart prioritaire, découpe-le en étapes hebdomadaires et réévalue le plan à partir du résultat réel.
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Career pivot : plan 30 jours** se rattache à ce cas concret : Les tranches Kintana peuvent servir de cas d'étude LAB ; les contributions externes ou travaux en entreprise doivent être séparés et attestés selon les faits.
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Career pivot : plan 30 jours** se rattache à ce cas concret : sélectionne un rôle cible qui utilise une partie des compétences acquises sur Kintana, identifie ce qui se transfère et construis un mini-projet pont de portée limitée.
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Dossier de preuve examinable
+## Mission utile : Kintana : planifier un pivot réaliste
 
-> **Arc Arène Staff :** ton portfolio n'est pas une vitrine de captures. C'est un dossier que quelqu'un peut examiner, contredire et reproduire.
+**Mission liée à « Career pivot : plan 30 jours » :** choisis un seul rôle cible (par exemple backend Python, platform ou mobile). Relève cinq exigences à partir de descriptions de poste accessibles, distingue celles déjà prouvées de celles qui manquent, puis construis un plan de quatre semaines tenant dans ton temps disponible. Prévois un mini-projet pont qui démontre un écart prioritaire et une revue de la pertinence de la cible à la fin.
 
-**Mission liée à « Career pivot : plan 30 jours » :** Transforme une tranche Kintana en dossier de portfolio. Donne accès au commit, aux commandes reproductibles, aux tests, à l'ADR et aux limites. Fais une revue par un pair si possible ; sinon note `EXTERNAL_REVIEW: NOT RUN`.
+**Livrable :** `CAREER-PIVOT-30-JOURS.md` : rôle cible, sources des exigences et date, tableau transférable/manquant, créneaux réalistes, jalons hebdomadaires, mini-projet pont, risques et critères d'arrêt/révision.
 
-**Livrable :** une étude de cas courte, liens d'artefacts, résultat de tests, décisions et registre des limites.
+**Critères d’acceptation :** une seule cible ; charge compatible avec le temps disponible ; chaque exigence a une preuve ou une action ; les objectifs ne promettent ni maîtrise ni embauche en 30 jours ; les résultats réellement obtenus sont séparés du plan.
 
-**Critères d’acceptation :** ton rôle est précis ; les faits sont datés ; les résultats LAB/PILOT/PRODUCTION sont séparés ; les chiffres sont reproductibles ; aucune contribution d'équipe n'est revendiquée comme individuelle.
-
-**Transfert obligatoire :** Un reviewer conteste une mesure ou un choix. Ajoute la preuve qui manque ou retire la revendication au lieu de défendre un chiffre fragile.
+**Transfert obligatoire :** une offre d'emploi exige une compétence non prévue. Révise le plan en indiquant ce que tu retires ou reportes au lieu d'ajouter une charge illimitée.

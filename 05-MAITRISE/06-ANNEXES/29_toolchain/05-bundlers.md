@@ -233,28 +233,26 @@ Applique le mécanisme de « Bundlers : webpack, vite, esbuild, rollup : choisir
 
 ## Repères de décision
 
-- **Pourquoi :** La toolchain et les outils de diagnostic réduisent les tâches répétitives et rendent le comportement du système visible.
-- **Quand l’utiliser / quand l’éviter :** Choisis un outil quand il résout un problème fréquent et mesurable. Vérifie sa licence, sa maintenance, ses versions, ses permissions et son coût avant de l'ajouter.
-- **Limites :** Un outil n'est pas une politique de qualité. Un benchmark, logger ou générateur peut donner une fausse confiance si son protocole et ses limites ne sont pas écrits.
+- **Pourquoi :** Le bundler transforme un graphe de modules en artefacts déployables ; ses choix influencent le chargement, le découpage et le diagnostic.
+- **Quand l’utiliser / quand l’éviter :** Utilise le bundler adapté au format, au runtime et au besoin de build. Évite de choisir uniquement selon un benchmark hors contexte.
+- **Limites :** Une taille de bundle ne mesure pas à elle seule le temps d'exécution, l'expérience utilisateur ou la performance terrain.
 
 ## Mécanisme : la version sans magie
 
-Décris le problème, compare l'outil à une commande native ou à une alternative plus simple, épingle sa version et vérifie le résultat qu'il produit.
+Prends une petite application avec plusieurs imports. Cartographie les dépendances statiques et dynamiques, identifie les points d'entrée et les modules partagés, puis configure un découpage de code justifié. Génère le build et compare les artefacts avant/après avec le même protocole (fichiers, taille brute et compressée si mesurée).
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Bundlers : webpack, vite, esbuild, rollup : choisir sans subir** se rattache à ce cas concret : L'équipe Kintana doit pouvoir diagnostiquer une panne et refaire un build sans dépendre d'une configuration cachée sur le poste d'une seule personne.
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Bundlers : graphe de modules et artefacts de build** s'applique au dépôt de l'équipe : la preuve doit correspondre à l'outil et au problème traités, pas à une automatisation générique.
 
-**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+**À observer :** comportement attendu, cas d'échec, trace utile et niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Ne transforme pas un exemple en résultat exécuté.
 
-## Mission utile : Kintana : Outil reproductible pour l'équipe Kintana
+## Mission utile : Kintana : Bundlers : graphe de modules et artefacts de build
 
-> **Arc Capsule Corp. / DBZ :** le bon outil accélère le diagnostic ; dix outils mal choisis ne font que déplacer le bazar.
+**Mission liée à « Bundlers : graphe de modules et artefacts de build » :** Prends une petite application avec plusieurs imports. Cartographie les dépendances statiques et dynamiques, identifie les points d'entrée et les modules partagés, puis configure un découpage de code justifié. Génère le build et compare les artefacts avant/après avec le même protocole (fichiers, taille brute et compressée si mesurée).
 
-**Mission liée à « Bundlers : webpack, vite, esbuild, rollup : choisir sans subir » :** Automatise une opération récurrente du cycle Kintana (analyse, benchmark, log, build ou debug). Ajoute un mode dry-run si l'action est destructive et une vérification qui empêche l'outil de masquer une erreur.
+**Livrable :** `BUNDLE-ANALYSIS.md`, le graphe des modules, les paramètres de build et les deux manifestes/rapports de sortie.
 
-**Livrable :** outil/script, README d'usage, tests sur succès/échec, version épinglée et comparaison au processus manuel.
+**Critères d’acceptation :** Le graphe correspond aux imports réels ; les chunks sont expliqués ; le build fonctionne dans l'environnement déclaré ; les comparaisons utilisent le même protocole et ne transforment pas la taille du bundle en promesse de vitesse d'exécution.
 
-**Critères d’acceptation :** les arguments sont validés ; les erreurs ont un code de sortie ; aucune donnée sensible n'est imprimée ; la même commande donne une sortie compréhensible et reproductible.
-
-**Transfert obligatoire :** Exécute l'outil sur une autre machine ou avec une version différente. Documente les prérequis et le mode dégradé.
+**Transfert obligatoire :** Ajoute un import dynamique utilisé seulement sur une route rarement visitée. Explique son effet attendu sur les chunks et ce que le rapport ne permet toujours pas de conclure.

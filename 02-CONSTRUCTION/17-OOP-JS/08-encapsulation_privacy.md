@@ -96,7 +96,7 @@ kakashi.getChakra(); // 500
 kakashi.#chakra; // SyntaxError, même en lecture : inaccessible depuis l'extérieur
 ```
 
-`#chakra` n'est pas une convention : c'est imposé par le moteur JS. Tenter d'y accéder depuis l'extérieur de la classe est une erreur de syntaxe, détectée avant même l'exécution. Contrairement à la closure, le champ privé fonctionne avec l'héritage et reste posé sur le prototype mécanisme de `class`, donc une seule définition de méthode partagée par toutes les instances.
+`#chakra` n'est pas une convention : c'est imposé par le moteur JS. Tenter d'y accéder depuis l'extérieur de la classe est une erreur de syntaxe, détectée avant même l'exécution. Le champ privé est une donnée propre à chaque instance, conservée dans les emplacements privés du moteur ; il n'est pas posé sur le prototype et n'apparaît pas dans les clés énumérables. Ce sont les méthodes de classe, définies sur `Guerrier.prototype`, qui sont partagées entre les instances. Une sous-classe ne peut pas accéder directement au champ privé déclaré par son parent.
 
 **Détail qui surprend tout le monde une fois :** un champ `#` n'existe même pas en tant que clé sur l'objet pour `in` ou `Object.hasOwn`. Ce n'est pas juste "protégé", c'est invisible structurellement.
 

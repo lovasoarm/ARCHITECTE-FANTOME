@@ -1,8 +1,6 @@
 ---
 stability: stable
 type: canonical-progression-map
-release: 1.1.33
-introduced_release: 1.1.5
 ---
 
 # 80 : Matrice canonique des progressions AF

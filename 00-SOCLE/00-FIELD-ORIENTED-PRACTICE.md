@@ -54,25 +54,27 @@ REVIEW
 SORTIE TERRAIN
 ```
 
-## Profondeur selon le niveau
+## Profondeur de pratique (axe P, distinct de l’échelle cognitive L)
+
+Les niveaux `P0–P5` décrivent la profondeur du contexte de pratique. Les métadonnées `cognitive_level: L0…L9` restent réservées aux opérations cognitives du référentiel 32 ; ne convertis jamais automatiquement un P en L.
 
 ```text
-L0 - FONDAMENTAL
+P0 - FONDAMENTAL
 objectif + observation + explication
 
-L1 - EXERCICE RENFORCE
+P1 - EXERCICE RENFORCE
 contrainte + mesure + cas limite
 
-L2 - MINI-PROJET
+P2 - MINI-PROJET
 contrainte + mesure + perturbation + postmortem + transfert
 
-L3 - BOSS / CAPSTONE
+P3 - BOSS / CAPSTONE
 incertitude + arbitrage + perturbation + décision + défense + review
 
-L4 - VALIDATION EXTERNE
+P4 - VALIDATION EXTERNE
 reviewer indépendant / open source / mission / utilisateurs
 
-L5 - TERRAIN REEL
+P5 - TERRAIN REEL
 système vivant + conséquences réelles + maintenance + historique
 ```
 

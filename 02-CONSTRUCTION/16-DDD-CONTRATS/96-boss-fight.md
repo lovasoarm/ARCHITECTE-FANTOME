@@ -27,7 +27,7 @@ de texte libre à un enum de cinq valeurs, et deux statuts historiques disparais
 1. **Cartographie (30 min)** : qui consomme quoi, avec quel volume. Produit : un tableau à trois
    colonnes (client, appels/jour, champs utilisés). Le volume est mesuré, pas estimé.
 2. **Contrat v2 (45 min)** : publie la v2, garde la v1 servie, ajoute la traduction bidirectionnelle
-   des deux statuts disparus. Aucun client ne tombe pendant la manche.
+   des deux statuts disparus. Le rejeu représentatif ne doit pas produire d’échec observé dans l’échantillon défini ; cette observation ne garantit pas l’absence d’erreurs futures.
 3. **Preuve (45 min)** : jeu de cas exécutable des deux versions, rejoué en CI. Une v1 non testée
    pendant le double service est une v1 déjà cassée.
 4. **Extinction datée (30 min)** : en-tête `Sunset`, entrée de changelog, message d'annonce au
@@ -38,7 +38,7 @@ de texte libre à un enum de cinq valeurs, et deux statuts historiques disparais
 
 ## Conditions de passage (toutes obligatoires)
 
-- [ ] Zéro requête client en erreur pendant la bascule, prouvé par les logs.
+- [ ] **Rejeu représentatif sans erreur observée** : exécuter au moins 10 000 requêtes par client (front, partenaire, reporting), avec le même mix de routes et de statuts que le trafic observé, pendant une fenêtre de bascule et sous une charge au moins égale au pic mesuré. Conserver les volumes, la durée, les taux, les latences p50/p95/p99 et les erreurs par client. Le critère demande zéro erreur **dans cet échantillon**, pas une garantie de zéro erreur en production. Si 10 000 requêtes par client ne sont pas réalisables, le Boss est « non démontré » et la limite doit être documentée, jamais remplacée par un petit échantillon présenté comme concluant.
 - [ ] La v1 et la v2 passent le même jeu de cas métier, avec traduction.
 - [ ] Une date d'extinction existe, avec le nom du responsable et le canal d'annonce.
 - [ ] Gate sécurité : la v2 n'expose aucun champ nouveau non prévu au contrat (diff de schéma joint).

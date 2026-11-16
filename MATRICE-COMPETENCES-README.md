@@ -23,3 +23,18 @@ Les ressources complémentaires sont stockées dans [`MATRICE-COMPETENCES-RESSOU
 Aucune ressource n'est supprimée par la normalisation : la cellule historique multi-valeurs de `NET-01` a été répartie en quatre lignes ordonnées dans le fichier relationnel.
 
 La matrice principale conserve son schéma et le sens historique de son champ `canonical_resource`. Les outils qui ne lisent que ce champ continuent donc à obtenir le chemin principal ; les consommateurs qui ont besoin des ressources complémentaires lisent le CSV relationnel.
+
+<!-- AF-METIERS-MATRIX -->
+
+## Parcours métiers : sans créer de nouvelles compétences
+
+La matrice [`MATRICE-METIERS-COMPETENCES.csv`](MATRICE-METIERS-COMPETENCES.csv) relie six profils à **des identifiants déjà présents** dans `MATRICE-COMPETENCES.csv` : Software/Backend Engineer, Full-Stack/Product Engineer, AI Application Engineer, Quality Engineer/SDET, Platform/SRE Engineer et Mobile Engineer. Elle ne crée aucun identifiant de compétence et ne remplace pas la matrice principale.
+
+Les statuts décrivent le niveau attendu pour le profil, pas un acquis automatique chez l'apprenant :
+
+- `CORE_VALIDÉ` : compétence du socle à démontrer et valider ;
+- `DEPTH_REQUIS` : approfondissement à réaliser dans la ressource existante ;
+- `EXPERIENCE_EXTERNE` : preuve réelle ultérieure, impossible à certifier par simulation seule ;
+- `HORS_PERIMETRE` : non requis par ce profil.
+
+Pour choisir un profil, filtre par `profile_id`, puis lis les compétences et preuves attendues. Un apprenant conserve son socle déjà validé et complète uniquement les approfondissements utiles à son profil ; il ne recommence pas toute la formation. La matrice carrière n'est ni une sixième matrice de compétences parallèle ni une certification professionnelle.

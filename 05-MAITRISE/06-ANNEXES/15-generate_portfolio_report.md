@@ -55,52 +55,53 @@ Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris 
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
 
-<!-- AF-DIAGRAM:portfolio -->
+<!-- AF-DIAGRAM:report_generation -->
 
-## Repère visuel utile : Dossier de preuve examinable
+## Repère visuel : compilation d'un rapport PDF
 
 ```text
-problème -> rôle -> artefact
-                   |
-                   v
-             commande reproductible
-                   |
-                   v
-             résultat + limites
-                   |
-                   v
-             revue / objection
-                   |
-                   v
-             preuve renforcée ou claim retiré
+ADR + POSTMORTEMS + DEPENDENCY LEDGER
+                  |
+                  v
+        sélection / normalisation
+                  |
+                  v
+        document Markdown maître
+                  |
+                  v
+       export PDF + métadonnées
+                  |
+                  v
+contrôle pagination / liens / confidentialité
+                  |
+                  v
+          rapport partageable
 ```
 
 <!-- AF-LESSON-PROFILE: portfolio -->
 
 ## Repères de décision
 
-- **Pourquoi :** Un portfolio crédible relie compétence, artefact, décision et résultat sans transformer une simulation en expérience réelle.
-- **Quand l’utiliser / quand l’éviter :** Utilise-le pour montrer ton travail à un reviewer, entretien ou équipe. Mets en avant une preuve profonde plutôt qu'une collection de technologies.
-- **Limites :** Un portfolio personnel ne démontre pas à lui seul influence organisationnelle ou impact production. Respecte confidentialité, licences et données non publiques.
+- **Pourquoi :** Un rapport exporté rend plusieurs preuves consultables dans un seul document, à condition de préserver leurs sources, leur date et leur niveau de preuve.
+- **Quand l’utiliser / quand l’éviter :** Génère-le lorsque plusieurs artefacts sont déjà stabilisés. N'automatise pas un dossier incomplet ou confidentiel uniquement pour obtenir un PDF.
+- **Limites :** Un export n'améliore pas la qualité des preuves ; la sélection, la pagination, les liens, les licences et la confidentialité restent à vérifier.
 
 ## Mécanisme : la version sans magie
 
-Présente le problème, ton rôle, les contraintes, les choix, le code/tests, la mesure, les limites et ce qui a changé après feedback.
+Sélectionne les artefacts autorisés, extrait les passages utiles, normalise les titres et liens, génère le Markdown puis le PDF, et vérifie visuellement les pages et les sources avant partage.
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **generate_portfolio_report.md** se rattache à ce cas concret : Les tranches Kintana peuvent servir de cas d'étude LAB ; les contributions externes ou travaux en entreprise doivent être séparés et attestés selon les faits.
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **generate_portfolio_report.md** se rattache à ce cas concret : à partir des ADR, postmortems et du registre des dépendances de Kintana, prépare une version compacte et partageable qui conserve la provenance et les limites des preuves.
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Dossier de preuve examinable
+## Mission utile : Kintana : compiler et contrôler un rapport PDF
 
-> **Arc Arène Staff :** ton portfolio n'est pas une vitrine de captures. C'est un dossier que quelqu'un peut examiner, contredire et reproduire.
+**Mission liée à « generate_portfolio_report.md » :** sélectionne un petit ensemble d'artefacts existants et autorisés (README, un ADR, un postmortem et une ligne du registre de dépendances). Assemble-les dans un document Markdown maître, ajoute une table des matières et conserve pour chaque section le chemin/source, le commit ou la date et le niveau de preuve. Exporte le document en PDF avec l'outil disponible dans ton environnement ; la méthode manuelle reste valable si aucun exporteur n'est installé.
 
-**Mission liée à « generate_portfolio_report.md » :** Transforme une tranche Kintana en dossier de portfolio. Donne accès au commit, aux commandes reproductibles, aux tests, à l'ADR et aux limites. Fais une revue par un pair si possible ; sinon note `EXTERNAL_REVIEW: NOT RUN`.
+**Livrable :** `portfolio.pdf` de 12 pages maximum, son fichier source Markdown, la liste des documents inclus/exclus et une checklist de contrôle avant partage. Le PDF n'est déclaré généré que si le fichier existe réellement.
 
-**Livrable :** une étude de cas courte, liens d'artefacts, résultat de tests, décisions et registre des limites.
+**Critères d’acceptation :** chaque extrait remonte à une source ; aucune donnée secrète ou personnelle inutile n'est publiée ; les liens/titres sont lisibles ; aucune page n'est tronquée ; le niveau LAB/PILOT/PRODUCTION est conservé ; les éléments non vérifiés sont étiquetés.
 
-**Critères d’acceptation :** ton rôle est précis ; les faits sont datés ; les résultats LAB/PILOT/PRODUCTION sont séparés ; les chiffres sont reproductibles ; aucune contribution d'équipe n'est revendiquée comme individuelle.
-
-**Transfert obligatoire :** Un reviewer conteste une mesure ou un choix. Ajoute la preuve qui manque ou retire la revendication au lieu de défendre un chiffre fragile.
+**Transfert obligatoire :** retire une source et remplace-la par une preuve plus récente. Mets à jour le rapport sans perdre la provenance et vérifie le nombre de pages et les liens après export.

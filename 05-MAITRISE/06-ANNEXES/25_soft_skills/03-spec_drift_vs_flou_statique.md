@@ -34,8 +34,7 @@ Temps de lecture ~4 min
   1. `05-SPEC-DRIFT-TRIGGERS.md` (voir mini-projet 18) : liste des signaux
      qui declenchent une revalidation systematique de la spec.
   2. Log par commit du "quel etait le critere au moment ou j'ai commite".
-  3. Refus des changements silencieux : toute mutation de spec passe par
-     un ADR ou elle n'a pas eu lieu.
+  3. Refus des changements silencieux : tout changement est historisé (critère avant/après, date, auteur et raison). Il déclenche un ADR uniquement s’il modifie une frontière, un contrat structurant, un attribut de qualité, un risque ou un arbitrage architectural significatif.
 
 ## Pourquoi ca compte
 
@@ -117,3 +116,7 @@ Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), 
 **Critères d’acceptation :** Les changements acceptés sont distingués des écarts accidentels ; chaque divergence a un propriétaire et une prochaine action.
 
 **Transfert obligatoire :** Une demande nouvelle arrive en cours de réalisation : mets à jour le contrat sans réécrire rétroactivement l’historique.
+
+<!-- AF-ADR-SPEC-DRIFT-SCOPE -->
+
+Une correction éditoriale, un changement de libellé ou un ajustement mineur de critère fonctionnel doit rester traçable dans l’historique de spécification, mais ne crée pas automatiquement un ADR. L’ADR est réservé à une décision architecturale significative qui modifie une frontière, un contrat structurant, un attribut de qualité, un risque ou un arbitrage durable.

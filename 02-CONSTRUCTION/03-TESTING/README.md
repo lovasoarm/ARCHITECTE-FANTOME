@@ -44,10 +44,10 @@ Pour approfondir le pouvoir réel de la suite, enchaîne avec [63 : Laboratoire 
 | [`55-e2e_playwright_beast_minimini_projet.md`](55-e2e_playwright_beast_minimini_projet.md)               | 08 e2e playwright beast minimini projet                                         | 45 min |
 | [`10-test_strategy_not_framework.md`](10-test_strategy_not_framework.md)                                 | 09 : Stratégie de tests (pas framework)                                         | 45 min |
 | [`56-test_strategy_not_framework_minimini_projet.md`](56-test_strategy_not_framework_minimini_projet.md) | 09 test strategy not framework minimini projet                                  | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                                                                       | Page verrouillée                                                                | 30 min |
 | [`11-EXO_LECTURE.md`](11-EXO_LECTURE.md)                                                                 | EXO LECTURE : ~20 minutes : un cycle (Testing)                                  | 20 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                                       | EXO [JEUNE IA] : 02-CONSTRUCTION/03-TESTING                                     | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                                       | EXO IA MENTEUSE : module 02-CONSTRUCTION/03-TESTING                             | 10 min |
+| [`90-grimoire.md`](90-grimoire.md)                                                                       | Page verrouillée                                                                | 30 min |
 | [`99A-PONT.md`](99A-PONT.md)                                                                             | PONT : de prouver du code à raisonner sur les nombres à les bases mathématiques | 45 min |
 
 Total : **15 h 30**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
@@ -103,7 +103,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [55-e2e_playwright_beast_minimini_projet.md](55-e2e_playwright_beast_minimini_projet.md)
 - [09 : Stratégie de tests (pas framework)](10-test_strategy_not_framework.md)
 - [56-test_strategy_not_framework_minimini_projet.md](56-test_strategy_not_framework_minimini_projet.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~20 minutes : un cycle (Testing)](11-EXO_LECTURE.md)
 - [Exercice : tuer une mutation (20 min)](12_EXO_VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/03-TESTING](97-EXO-VERIFICATION.md)
@@ -111,7 +110,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [PONT : de prouver du code à raisonner sur les nombres à les bases mathématiques](99A-PONT.md)
 - [Challenge : `03-TESTING`](95-challenge.md)
 - [Grimoire : `03-TESTING`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 <!-- AF-KINTANA-MODULE -->

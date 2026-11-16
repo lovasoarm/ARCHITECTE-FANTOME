@@ -97,28 +97,38 @@ TS en prod n'est pas TS dans un tuto. Les contraintes changent tout.
 ## 2) OPTIONS STRICT : CE QU'ELLES FONT VRAIMENT
 
 ```ts
-// noImplicitAny en action
-function process(data) { ... }
-// ERREUR avec noImplicitAny : Parameter 'data' implicitly has an 'any' type.
-// TS refuse que tu ignores un type par omission
+// noImplicitAny en action : ce bloc est du TypeScript valide,
+// mais le compilateur signale data comme any implicite.
+function process(data) {
+  return data;
+}
+// Diagnostic attendu avec noImplicitAny: true : TS7006 sur data.
 
-// strictNullChecks en action
-function getPlayer(id: number): Player {
- // si la DB ne trouve rien, on retourne null
- return null // ERREUR : null n'est pas assignable à Player
+interface Player {
+  id: number;
+  name: string;
 }
 
-function getPlayer(id: number): Player | null { ... } // correct
+// strictNullChecks en action : exemple volontairement rejeté.
+function getPlayerIncorrect(id: number): Player {
+  return null;
+  // Diagnostic attendu : null n'est pas assignable à Player.
+}
 
-// strictPropertyInitialization en action
+// Forme correcte : l'absence de joueur fait partie du contrat.
+function getPlayer(id: number): Player | null {
+  return id > 0 ? { id, name: "Player" } : null;
+}
+
+// strictPropertyInitialization en action : exemple volontairement rejeté.
+class PlayerServiceIncorrect {
+  private cache: Map<number, Player>;
+  // Diagnostic attendu : la propriété n'est pas initialisée.
+}
+
+// Forme correcte.
 class PlayerService {
- private cache: Map<number, Player>
- // ERREUR : cache n'est pas initialisé dans le constructeur
-
- constructor() {
-  // si on ne fait pas this.cache = new Map() ici, TS se plaint
-  this.cache = new Map() // correct
- }
+  private cache = new Map<number, Player>();
 }
 ```
 
@@ -149,13 +159,21 @@ PHASE 4 : strict complet
 ```
 
 ```ts
-// technique : any temporaire avec function processLegacyData(data: any): ProcessedData {
- // typer correctement:ticket #234
- return data as ProcessedData;
+interface ProcessedData {
+  id: number;
+  label: string;
 }
 
-// au moins tu sais où regarder quand tu reviens dessus
-// `grep "typer" src/` te donne la liste complète
+// `any` peut servir de sas temporaire pendant une migration,
+// mais il désactive les contrôles sur la valeur reçue.
+// Exemple volontairement transitoire : ce ticket doit être fermé avant la fin de la migration.
+function processLegacyData(data: any): ProcessedData {
+  // Dette technique assumée pendant la migration : valider la donnée à la frontière, puis supprimer `any`.
+  return data as ProcessedData;
+}
+
+const migrated = processLegacyData({ id: 1, label: "ok" });
+// Le compilateur accepte l'appel, mais le cast ne valide pas la forme runtime.
 ```
 
 ---
@@ -175,24 +193,46 @@ Intérieur du module (typer avec pragmatisme) :
 ```
 
 ```ts
-// boundary : réponse API:typer et valider
-async function fetchPlayer(id: number): Promise<Player> {
-  const res = await fetch(`/api/players/${id}`);
-  const raw: unknown = await res.json();
+interface PlayerDto {
+  id: number;
+  name: string;
+}
 
-  if (!isPlayer(raw)) {
-    throw new TypeError(`Invalid player data: ${JSON.stringify(raw)}`);
+function isPlayerDto(value: unknown): value is PlayerDto {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) {
+    return false;
   }
 
-  return raw; // TS sait que c'est Player
+  const candidate = value as Record<string, unknown>;
+  return Number.isInteger(candidate.id) && typeof candidate.name === "string";
+}
+
+// boundary : réponse API, typer et valider
+async function fetchPlayer(id: number): Promise<PlayerDto> {
+  const res = await fetch(`/api/players/${id}`);
+  if (!res.ok) {
+    throw new Error(`HTTP ${res.status}`);
+  }
+
+  const raw: unknown = await res.json();
+  if (!isPlayerDto(raw)) {
+    throw new TypeError("Invalid player data");
+  }
+
+  return raw; // Le type guard a validé la forme attendue.
+}
+
+interface ScoringPlayer {
+  goals: number;
+  assists: number;
 }
 
 // intérieur : laisser inférer
-function computePoints(player: Player) {
+function computePoints(player: ScoringPlayer) {
   const base = player.goals * 3; // TS infère number
   const bonus = player.assists; // TS infère number
   const total = base + bonus; // TS infère number
-  return total; // TS infère number:pas besoin de typer le retour
+  return total; // TS infère number : pas besoin de typer le retour
 }
 ```
 
@@ -206,18 +246,24 @@ function computePoints(player: Player) {
 // as = "crois-moi TS, je sais ce que je fais"
 // c'est un contrat oral:si tu mens, les bugs arrivent à runtime
 
-// acceptable : quand tu viens de valider manuellement
+// Le type guard isPlayerDto a été défini dans la section précédente.
+const data = JSON.stringify({ id: 1, name: "Player" });
 const raw: unknown = JSON.parse(data);
-if (isPlayer(raw)) {
-  const player = raw; // TS sait déjà:pas besoin de as
+if (isPlayerDto(raw)) {
+  const player = raw; // TS sait déjà que c'est un PlayerDto : pas besoin de `as`.
 }
 
-// acceptable : quand tu construis une valeur progressivement
-const partial = {} as Player; // dangereux:aucune garantie que les champs seront remplis
-// préférer : const partial: Partial<Player> = {}
+// acceptable comme étape de construction, mais dangereux tant que l'objet est incomplet
+interface PlayerPatchTarget {
+  id: number;
+  name: string;
+}
+const partial = {} as PlayerPatchTarget; // l'assertion ne remplit aucun champ.
+// Préférer : const partial: Partial<PlayerPatchTarget> = {};
 
 // inacceptable : pour faire taire TS sans comprendre pourquoi il se plaint
-const score = getScore() as number; // si TS pense que c'est string | number, il a peut-être raison
+declare function getScore(): string | number;
+const score = getScore() as number; // si TS pense que c'est string | number, il a peut-être raison.
 ```
 
 ### Quand utiliser `any`
@@ -228,8 +274,13 @@ const score = getScore() as number; // si TS pense que c'est string | number, il
 
 // avec unknown plutôt que any quand possible
 function processExternal(data: unknown): string {
-  // unknown force la validation avant utilisation
-  // any laisse tout passer
+  // unknown force la validation avant utilisation.
+  // Ici, le contrat métier exige une chaîne ; tout autre type est refusé.
+  if (typeof data !== "string") {
+    throw new TypeError("Expected a string");
+  }
+
+  return data;
 }
 
 // avec any explicitement commenté
@@ -243,25 +294,30 @@ function legacyBridge(data: any): void {
 
 ```ts
 // interface : préférable pour les objets et les classes
-interface Player {
+interface PlayerSummary {
   name: string;
   goals: number;
+}
+interface TeamSummary {
+  name: string;
 }
 
 // type : nécessaire pour les unions, intersections, primitifs, tuples
 type EventType = "goal" | "card" | "substitution";
 type Coordinate = [number, number];
-type PlayerOrTeam = Player | Team;
+type PlayerOrTeam = PlayerSummary | TeamSummary;
 
-// les deux peuvent être étendus:différemment
-interface AdminPlayer extends Player {
+// Deux façons alternatives d'exprimer le même ajout : ne déclare pas les deux sous le même nom.
+interface AdminPlayerViaExtends extends PlayerSummary {
   permissions: string[];
 }
-
-type AdminPlayer = Player & { permissions: string[] };
+type AdminPlayerViaIntersection = PlayerSummary & { permissions: string[] };
 
 // déclaration merging : seulement avec interface
-// utile pour étendre des types de libs externes
+// utile pour étendre les types globaux d'une bibliothèque
+interface Analytics {
+  track(eventName: string): void;
+}
 interface Window {
   analytics: Analytics; // ajoute analytics à la Window globale
 }
@@ -409,6 +465,208 @@ Le projet `oracle_glitch` utilise Anthropic SDK (qui a des types) + une lib de p
 
 ---
 
+### Corrigé de référence : EXO 1 : config Trapsoul Radio
+
+Exemple de base pour un service Node.js ESM compilé par TypeScript. Il suppose que `package.json` contient `"type": "module"` et que la version TypeScript utilisée prend en charge `NodeNext`.
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noEmitOnError": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+}
+```
+
+`paths` aide TypeScript à résoudre `@/…` pendant la compilation, mais ne réécrit pas les imports dans le JavaScript émis. Pour un service Node exécuté sans bundler, il faut aussi configurer un résolveur reconnu par le runtime/build. Les imports `package.json#imports` natifs de Node utilisent des clés commençant par `#`, pas `@/`. L'alias ne doit donc pas être présenté comme fonctionnel à l'exécution par le seul `tsconfig`.
+
+### Corrigé de référence : EXO 2 : boundaries de Prison Break API
+
+Les données externes commencent en `unknown`. Un guard ne valide que les champs qu'il connaît ; une validation supplémentaire peut être nécessaire pour les règles métier.
+
+```ts
+import type {
+  RequestHandler,
+  ParamsDictionary,
+} from "express-serve-static-core";
+import type { ParsedQs } from "qs";
+
+interface CreatePrisonerInput {
+  name: string;
+  age: number;
+  block: "A" | "B" | "C";
+}
+
+type UpdatePrisonerInput = Partial<CreatePrisonerInput> & { id: string };
+
+interface PrisonerResponse extends CreatePrisonerInput {
+  id: string;
+  createdAt: string;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function isCreatePrisonerInput(value: unknown): value is CreatePrisonerInput {
+  return (
+    isRecord(value) &&
+    typeof value.name === "string" &&
+    value.name.trim().length > 0 &&
+    typeof value.age === "number" &&
+    Number.isInteger(value.age) &&
+    value.age >= 18 &&
+    (value.block === "A" || value.block === "B" || value.block === "C")
+  );
+}
+
+function isUpdatePrisonerInput(value: unknown): value is UpdatePrisonerInput {
+  if (!isRecord(value) || typeof value.id !== "string" || value.id.length === 0)
+    return false;
+  const allowed = new Set(["id", "name", "age", "block"]);
+  if (Object.keys(value).some((key) => !allowed.has(key))) return false;
+  const patch = { ...value };
+  delete patch.id;
+  if (Object.keys(patch).length === 0) return false;
+  if (
+    "name" in patch &&
+    (typeof patch.name !== "string" || patch.name.trim().length === 0)
+  )
+    return false;
+  if (
+    "age" in patch &&
+    (typeof patch.age !== "number" ||
+      !Number.isInteger(patch.age) ||
+      patch.age < 18)
+  )
+    return false;
+  if (
+    "block" in patch &&
+    patch.block !== "A" &&
+    patch.block !== "B" &&
+    patch.block !== "C"
+  )
+    return false;
+  return true;
+}
+
+function isPrisonerResponse(value: unknown): value is PrisonerResponse {
+  return (
+    isRecord(value) &&
+    typeof value.id === "string" &&
+    typeof value.createdAt === "string" &&
+    !Number.isNaN(Date.parse(value.createdAt)) &&
+    isCreatePrisonerInput({
+      name: value.name,
+      age: value.age,
+      block: value.block,
+    })
+  );
+}
+
+type BodyLocals<T> = { validatedBody: T };
+
+function validateBody<T>(
+  guard: (value: unknown) => value is T,
+): RequestHandler<ParamsDictionary, unknown, unknown, ParsedQs, BodyLocals<T>> {
+  return (req, res, next) => {
+    const body: unknown = req.body;
+    if (!guard(body)) {
+      res.status(400).json({ error: "Corps de requête invalide" });
+      return;
+    }
+    res.locals.validatedBody = body;
+    next();
+  };
+}
+
+// Route : validateBody(isCreatePrisonerInput), puis le handler lit
+// req/res.locals.validatedBody comme CreatePrisonerInput.
+```
+
+Les types de réponse ne valident pas automatiquement les objets envoyés au client : si la réponse est construite à partir de données persistées ou externes, applique aussi une validation/normalisation adaptée. Les règles d'âge et de bloc ci-dessus sont des hypothèses de l'exemple, pas une politique universelle.
+
+### Corrigé de référence : EXO 3 : migration progressive
+
+**Phase 1 : rendre le JavaScript visible à TypeScript.** Ajouter `allowJs: true`, limiter `include` au périmètre utile et laisser `checkJs: false` le temps d'inventorier les dépendances. Les fichiers `.js` sont alors inclus au programme mais leurs erreurs ne sont pas vérifiées comme celles du TypeScript. Ajouter des JSDoc aux fonctions publiques et définir le contrat `Item`.
+
+**Phase 2 : sécuriser les frontières.** Activer `checkJs: true` progressivement (ou `// @ts-check` fichier par fichier), remplacer les entrées `any` par `unknown`, ajouter les guards runtime et tester les valeurs mal formées. Convertir d'abord les fonctions qui constituent la frontière du module, pas les 200 lignes d'un coup.
+
+**Phase 3 : convertir et nettoyer.** Renommer le fichier en `.ts` quand ses imports/consommateurs sont prêts, traiter les erreurs révélées, retirer `allowJs` uniquement lorsque les fichiers JavaScript restants ne sont plus nécessaires et faire passer `tsc --strict --noEmit`.
+
+```ts
+interface Item {
+  id: string;
+  name: string;
+  quantity: number;
+  category: "food" | "medical" | "equipment";
+}
+
+function isItem(value: unknown): value is Item {
+  return (
+    isRecord(value) &&
+    typeof value.id === "string" &&
+    value.id.length > 0 &&
+    typeof value.name === "string" &&
+    value.name.length > 0 &&
+    typeof value.quantity === "number" &&
+    Number.isInteger(value.quantity) &&
+    value.quantity >= 0 &&
+    (value.category === "food" ||
+      value.category === "medical" ||
+      value.category === "equipment")
+  );
+}
+
+class InventoryNotFoundError extends Error {
+  constructor(readonly itemId: string) {
+    super(`Article introuvable : ${itemId}`);
+    this.name = "InventoryNotFoundError";
+  }
+}
+```
+
+Dans cet extrait autonome, `isRecord` est le même helper du corrigé précédent ; si l'extrait est copié seul, il faut le recopier ou l'importer depuis un module partagé.
+
+### Corrigé de référence : EXO 4 : déclaration de la lib de parsing
+
+```ts
+// src/types/custom-parser.d.ts
+declare module "custom-parser" {
+  export interface Token {
+    type: "identifier" | "number" | "string" | "punctuation";
+    value: string;
+  }
+
+  export interface ParseResult {
+    tokens: Token[];
+    errors: string[];
+  }
+
+  export function parse(raw: string): ParseResult;
+}
+```
+
+La déclaration décrit le contrat supposé du module ; elle ne prouve pas que la bibliothèque renvoie réellement ces formes. Ajoute un test d'intégration contre la version installée de la lib et corrige le `.d.ts` si la réalité diffère. Ne déclare pas un résultat plus précis que ce que l'implémentation garantit.
+
+---
+
 ## RÉSUMÉ
 
 `tsconfig.json` : `strict: true` en premier, `target` et `module` selon ton runtime. La migration progressive passe par `allowJs: true`, puis le typage de la surface, puis l'élimination des `any`. Les boundaries du système (API, formulaires, JSON externe) demandent le typage le plus rigoureux. `as` est acceptable après une validation manuelle : inacceptable pour faire taire TS sans comprendre. Les interfaces pour les objets, les types pour les unions et les compositions. Les `.d.ts` pour typer du JS externe sans types. Préfère les unions de string literals aux enums pour éviter le runtime overhead.
@@ -458,4 +716,6 @@ Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), 
 > **Référence principale vérifiée le 2 novembre 2026 :** la première ressource de ce panneau, également enregistrée dans `source_url`, a été consultée pour le mécanisme versionné traité ici. Les autres liens sont des compléments officiels utiles ; ils ne constituent pas chacun une attestation indépendante de l’exemple du curriculum. Aucune référence ne prouve que l’exemple a été exécuté. Vérifie la version cible et teste dans ton environnement avant un usage réel.
 
 - [TypeScript : TSConfig Reference](https://www.typescriptlang.org/tsconfig/)
+- [TypeScript : `allowJs`](https://www.typescriptlang.org/tsconfig/allowJs.html)
+- [TypeScript : `checkJs`](https://www.typescriptlang.org/tsconfig/checkJs.html)
 - [Node.js : packages et règles de modules](https://nodejs.org/docs/v22.23.4/api/packages.html)

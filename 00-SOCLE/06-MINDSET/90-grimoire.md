@@ -5,6 +5,8 @@ acte: restituer
 
 # Grimoire : Module 00-SOCLE/06-MINDSET, Mindset
 
+> Rappel : ce grimoire simplifie via analogies. Lire d’abord [`91-18_GRIMOIRE_CODE_HONNEUR.md`](../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
+
 Ce grimoire est une fiche de rappel pour le challenge Mindset. Il ne remplace pas les leçons et ne demande pas de vocabulaire professionnel préalable. Le challenge utilise le cas fictif Kintana ; il ne demande aucun système réel.
 
 ## 1. Les mots à comprendre

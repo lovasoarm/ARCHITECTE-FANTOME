@@ -67,54 +67,44 @@ async function normalizeFilenames(dir) {
 // Extract-Transform-Load : lire une source, transformer, écrire ailleurs
 // cas concret : convertir les stats de match depuis CSV vers JSON enrichi
 
-import { createReadStream } from "node:fs";
-import { writeFile, mkdir } from "node:fs/promises";
-import { createInterface } from "node:readline";
+import { createReadStream, createWriteStream } from "node:fs";
+import { mkdir } from "node:fs/promises";
+import { pipeline } from "node:stream/promises";
+import { parse } from "csv-parse";
 import path from "node:path";
 
+// Dépendance à déclarer et verrouiller dans le projet : npm install csv-parse
+// Le parseur gère les virgules, guillemets échappés et retours à la ligne CSV.
 async function csvToJson(inputPath, outputDir) {
   await mkdir(outputDir, { recursive: true });
-
-  const stream = createReadStream(inputPath);
-  const rl = createInterface({ input: stream });
-
-  let headers = null;
-  const records = [];
-
-  for await (const line of rl) {
-    if (!line.trim()) continue;
-
-    const values = line.split(",").map((v) => v.trim().replace(/^"|"$/g, ""));
-
-    if (!headers) {
-      headers = values; // première ligne = headers
-      continue;
-    }
-
-    // assembler un objet depuis les headers et les valeurs
-    const record = Object.fromEntries(
-      headers.map((h, i) => [h, values[i] ?? null]),
-    );
-    records.push(record);
-  }
-
-  // enrichir les données avant de les écrire
-  const enriched = records.map((r, i) => ({
-    ...r,
-    id: i + 1,
-    processedAt: new Date().toISOString(),
-    // convertir les champs numériques
-    goals: parseInt(r.goals, 10) || 0,
-    assists: parseInt(r.assists, 10) || 0,
-  }));
-
   const outputPath = path.join(
     outputDir,
     path.basename(inputPath, ".csv") + ".json",
   );
-  await writeFile(outputPath, JSON.stringify(enriched, null, 2));
-
-  return { input: inputPath, output: outputPath, count: enriched.length };
+  let count = 0;
+  await pipeline(
+    createReadStream(inputPath),
+    parse({ columns: true, skip_empty_lines: true, trim: true, bom: true }),
+    async function* toJsonArray(source) {
+      let first = true;
+      yield "[\n";
+      for await (const record of source) {
+        count += 1;
+        const enriched = {
+          ...record,
+          id: count,
+          processedAt: new Date().toISOString(),
+          goals: Number.parseInt(record.goals, 10) || 0,
+          assists: Number.parseInt(record.assists, 10) || 0,
+        };
+        yield `${first ? "" : ",\n"}${JSON.stringify(enriched)}`;
+        first = false;
+      }
+      yield "\n]\n";
+    },
+    createWriteStream(outputPath, { encoding: "utf8" }),
+  );
+  return { input: inputPath, output: outputPath, count };
 }
 ```
 
@@ -127,7 +117,15 @@ async function csvToJson(inputPath, outputDir) {
 // seulement ceux qui sont nouveaux ou modifiés
 
 import { readdir, stat, copyFile, mkdir } from "node:fs/promises";
+import { createReadStream } from "node:fs";
+import { createHash } from "node:crypto";
 import path from "node:path";
+
+async function sha256(filePath) {
+  const hash = createHash("sha256");
+  for await (const chunk of createReadStream(filePath)) hash.update(chunk);
+  return hash.digest("hex");
+}
 
 async function syncDirs(source, dest) {
   await mkdir(dest, { recursive: true });
@@ -158,8 +156,12 @@ async function syncDirs(source, dest) {
         // destination n'existe pas encore
       }
 
-      const shouldCopy = !destStat || srcStat.mtime > destStat.mtime;
-      // copier si : fichier absent OU source plus récente que destination
+      // La date seule n'est pas une preuve : deux contenus différents peuvent
+      // partager taille et mtime. Compare les octets (hash streaming) avant de sauter.
+      const shouldCopy =
+        !destStat ||
+        srcStat.size !== destStat.size ||
+        (await sha256(srcPath)) !== (await sha256(destPath));
 
       if (shouldCopy) {
         await copyFile(srcPath, destPath);
@@ -183,20 +185,26 @@ async function syncDirs(source, dest) {
 ```js
 // générer un rapport markdown depuis des données JSON
 
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+
 async function generateReport(votes, outputPath) {
-  // agréger les données
-  const byPlayer = {};
+  // Map évite les collisions avec des noms tels que __proto__ ou constructor.
+  const byPlayer = new Map();
   votes.forEach(({ player, points, journalist }) => {
-    if (!byPlayer[player]) {
-      byPlayer[player] = { points: 0, votes: 0, journalists: [] };
-    }
-    byPlayer[player].points += points;
-    byPlayer[player].votes++;
-    byPlayer[player].journalists.push(journalist);
+    const stats = byPlayer.get(player) ?? {
+      points: 0,
+      votes: 0,
+      journalists: [],
+    };
+    stats.points += points;
+    stats.votes += 1;
+    stats.journalists.push(journalist);
+    byPlayer.set(player, stats);
   });
 
   // trier par points décroissants
-  const ranking = Object.entries(byPlayer)
+  const ranking = [...byPlayer.entries()]
     .sort(([, a], [, b]) => b.points - a.points)
     .map(([player, stats], index) => ({ rank: index + 1, player, ...stats }));
 
@@ -224,6 +232,7 @@ async function generateReport(votes, outputPath) {
       ),
   ];
 
+  await mkdir(path.dirname(outputPath), { recursive: true });
   await writeFile(outputPath, lines.join("\n"), "utf-8");
   return outputPath;
 }

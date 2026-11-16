@@ -18,7 +18,13 @@ assessment_role: diagnostic_mastery
 
 Lecture de la consigne : ~2 min
 
-> **LOCK : pas d'édition avant HYPOTHESES.md signé.** Tu ne modifies AUCUN fichier avant que ton `HYPOTHESES.md` soit signé (>= 3 hypothèses, chacune avec preuve attendue). Sinon, l'exo ne compte pas.
+> **LOCK : pas d'édition avant signature des hypothèses du cycle.** Pour chacun des trois cycles, complète d'abord la section `HYPOTHÈSES` correspondante dans `LECTURE_<nom>.md` : au moins trois hypothèses, chacune associée à une preuve attendue. Indique l'auteur et la date dans cette section. Ne modifie pas le code avant cette étape ; sinon, le cycle ne compte pas.
+>
+> **Signature pédagogique (convention commune) :** chaque section `HYPOTHÈSES` du cycle doit se terminer par les deux mentions suivantes :
+>
+> - `Auteur (nom ou identifiant) : ...`
+> - `Date (AAAA-MM-JJ) : ...`
+>   Pour cet exercice, signe séparément les trois sections de cycle dans le fichier unique `LECTURE_<nom>.md`. Cette mention identifie l’auteur et la date ; ce n’est ni une signature électronique ou juridique, ni une revue indépendante.
 >
 > **Budget lecture** : 180 lignes en 15 min chrono. Si tu dépasses, note pourquoi dans `MAP.md`. Objectif progressif : tu dois pouvoir tenir 500 lignes en 15 min à la fin du curriculum.
 >
@@ -47,11 +53,11 @@ Si ton hypothèse était fausse, tant mieux : tu viens d'apprendre où ton modè
 ## Enchainement
 
 - Réalise trois cycles avec trois extraits différents ; conserve les résultats dans les trois sections datées de `LECTURE_<nom>.md`.
-- Croise avec `EXO_VERIFICATION.md` du même module quand il existe : compare ton hypothèse humaine à celle qu'une IA produirait sur le même extrait.
+- Compare ton hypothèse à l'observation réelle issue de l'exécution ou des tests. Une analyse IA est facultative ; elle n'est comparable que si elle porte sur le même extrait, la même version et les mêmes conditions, et ne remplace jamais la vérification.
 
 ---
 
-Si tu veux "juste renommer une variable pour comprendre" : **note-le dans `HYPOTHESES.md`, ne le fais pas dans le fichier**.
+Si tu veux "juste renommer une variable pour comprendre" : **note d'abord cette intention dans la section `HYPOTHÈSES` du cycle correspondant de `LECTURE_<nom>.md`, ne modifie pas le fichier source pendant le cycle**.
 
 ## CHECKPOINT DE PROFONDEUR : variation L : changement d'avis
 

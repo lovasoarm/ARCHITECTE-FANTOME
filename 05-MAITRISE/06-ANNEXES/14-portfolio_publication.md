@@ -17,7 +17,7 @@ Temps de lecture ~5 min
 ## Checklist par projet publié
 
 - [ ] `README.md` : problème résolu, démo (GIF/screenshot), stack, `npm start` en 3 lignes.
-- [ ] `ADR/` : au moins 1 décision documentée.
+- [ ] Décision documentée : une petite réalisation peut utiliser une note de décision courte dans son README ; un projet moyen ou grand utilise un ADR structuré dans `ADR/`. Toute décision architecturale majeure possède son propre ADR.
 - [ ] un postmortem si un incident réel a eu lieu.
 - [ ] Lien vers `09-DEPENDENCY_LEDGER.md` racine.
 - [ ] Démo déployée (Vercel/Netlify/fly.io) : URL en tête du README.
@@ -40,18 +40,18 @@ Si tu choisis de publier le projet, le dépôt passe la checklist et sa publicat
 
 - La **publication GitHub n’est pas obligatoire** pour chaque mini-projet : une preuve locale, versionnée dans ton dépôt fil rouge, suffit lorsque le jalon ne demande pas de preuve externe.
 - La **contradiction est obligatoire**, mais elle peut être locale et hors ligne pendant le CORE : revue aveugle, checklist adversariale et objection écrite.
-- Une **preuve externe** devient obligatoire seulement lorsqu’un gate la demande explicitement (R1+ / T2+ / sortie terrain). Voir `COMMUNAUTE.md` et `48-EXTERNAL-REVIEW-GATE.md`.
+- Une **preuve externe** devient obligatoire seulement lorsqu’un gate la demande explicitement (R1+ / T2+ / sortie terrain). Voir [`12-COMMUNAUTE.md`](../../06-ANNEXES-TRANSVERSES/12-COMMUNAUTE.md) et [`48-EXTERNAL-REVIEW-GATE.md`](../../06-ANNEXES-TRANSVERSES/48-EXTERNAL-REVIEW-GATE.md).
 - Le lien du dépôt public et le `09-DEPENDENCY_LEDGER.md` sont des éléments de portfolio, pas des barrières techniques d’entrée.
 
 ## GRILLE D'AUTO-ÉVALUATION (10 points)
 
-| Critère                            | 0      | 1            | 2                            |
-| ---------------------------------- | ------ | ------------ | ---------------------------- |
-| README clair (pitch, install, run) | absent | présent flou | net + captures               |
-| Tests                              | 0      | quelques-uns | couverture des cas critiques |
-| POSTMORTEM                         | absent | brouillon    | publié                       |
-| ADR (si projet ≥ moyen)            | 0      | 1            | 1 par décision majeure       |
-| Relecture contradictoire           | 0      | 1 objection  | ≥ 3 objections traitées      |
+| Critère                               | 0       | 1                                                     | 2                                       |
+| ------------------------------------- | ------- | ----------------------------------------------------- | --------------------------------------- |
+| README clair (pitch, install, run)    | absent  | présent flou                                          | net + captures                          |
+| Tests                                 | 0       | quelques-uns                                          | couverture des cas critiques            |
+| POSTMORTEM                            | absent  | brouillon                                             | publié                                  |
+| Décision documentée (proportionnelle) | absente | note courte pour petit projet / ADR pour projet moyen | ADR par décision architecturale majeure |
+| Relecture contradictoire              | 0       | 1 objection                                           | ≥ 3 objections traitées                 |
 
 Note < 6/10 → reviens sur le point faible avant de déclarer la preuve complète. La publication externe n’entre en jeu que si le jalon la demande.
 

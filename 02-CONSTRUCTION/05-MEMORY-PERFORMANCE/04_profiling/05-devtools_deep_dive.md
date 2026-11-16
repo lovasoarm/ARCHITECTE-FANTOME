@@ -108,40 +108,28 @@ function mettreAJourDashboard(events) {
   afficherDashboard(stats, heatmap, classement); // 2ms
 }
 
-function genererHeatmap(events) {
-  // boucle naïve : O(n²):passe chaque event contre chaque zone
-  return zones.map((zone) => {
-    return events.filter((e) => estDansZone(e, zone)).length;
-  });
+function genererHeatmap(events, zones) {
+  // Z zones et E événements : O(Z × E), pas O(n²) sans préciser Z et E.
+  return zones.map(
+    (zone) => events.filter((event) => estDansZone(event, zone)).length,
+  );
 }
 ```
 
-Dans le flamegraph, tu verrais :
-
-```json
-[mettreAJourDashboard : 117ms]
- [calculerStats : 30ms] [genererHeatmap : 80ms] [trierJoueurs : 5ms]
-              [estDansZone x 10000]
-```
-
-La heatmap prend 80ms sur 117ms. Et c'est `estDansZone` appelé 10 000 fois.
-Solution : O(n) au lieu de O(n²) : trier les events par zone une fois, pas à chaque zone.
+Avec 100 zones et 100 événements, `estDansZone` est appelé 10 000 fois. Avec 100 zones et 10 000 événements, il l'est un million de fois. Les temps observés dépendent du matériel, du runtime et des données : le flamegraph doit confirmer la mesure sur ta machine.
 
 ```js
-function genererHeatmapOptimisee(events) {
-  // O(n) : un seul passage sur les events
-  const comptes = {};
-
+function genererHeatmapOptimisee(events, zones) {
+  // Si chaque événement connaît déjà son identifiant de zone : O(E + Z).
+  const comptes = new Map();
   for (const event of events) {
-    const zone = determinerZone(event); // O(1)
-    comptes[zone] = (comptes[zone] || 0) + 1;
+    comptes.set(event.zoneId, (comptes.get(event.zoneId) ?? 0) + 1);
   }
-
-  return zones.map((zone) => comptes[zone] || 0);
+  return zones.map((zone) => comptes.get(zone.id) ?? 0);
 }
 ```
 
-Résultat dans DevTools après : `genererHeatmap : 4ms`.
+La seconde version suppose que `zoneId` est déjà calculé et fiable. Si `determinerZone(event)` doit tester toutes les zones, le coût de cette affectation reste O(Z × E) ; ne revendique pas O(E + Z) sans cette précondition.
 
 ---
 

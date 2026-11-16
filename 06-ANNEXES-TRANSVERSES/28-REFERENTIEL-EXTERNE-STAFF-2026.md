@@ -4,7 +4,7 @@ perishability_id: PER-0103
 stability: perissable
 acte: annexe
 noyau: non
-verifie: 2026-08-22
+verifie: "2026-11-03"
 source_verified_on: "2026-11-03"
 freshness_status: "verified_reference"
 source_url: https://staffeng.com/guides/staff-archetypes/
@@ -57,6 +57,6 @@ Il ne doit pas transformer « Staff » en simple super-cours d'architecture.
 
 ## Pérennité
 
-Cette annexe est **périssable**. Elle doit être revue au plus tard le **2027-08-22**, ou immédiatement si les référentiels Staff utilisés comme benchmark changent fortement.
+Cette annexe est **périssable**. Elle doit être revue au plus tard le **2027-02-03**, ou immédiatement si les référentiels Staff utilisés comme benchmark changent fortement.
 
 Le noyau durable d'AF ne doit jamais dépendre d'une phrase provenant de cette annexe : les principes, modèles mentaux et mécanismes doivent rester autonomes.

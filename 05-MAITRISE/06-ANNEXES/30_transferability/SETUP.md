@@ -13,15 +13,26 @@ Lis d’abord le [`SETUP.md`](../SETUP.md) le plus proche dans l’arborescence.
 - [ ] Les dépendances du projet, lorsqu’il existe un `package.json`/lockfile ou équivalent, sont présentes ou préparées pour l’offline.
 - [ ] Une première commande de preuve est connue avant de commencer la mission.
 
-## 3. Technologie / environnement
+## 3. Technologies / versions de référence (vérifiées le 10 novembre 2026)
 
-**Environnement standard AF** : Node.js 22.23.4 + éditeur de texte suffisent tant qu’aucune dépendance locale supplémentaire n’est explicitement signalée par le contenu du dossier.
+Node.js reste l'environnement du curriculum principal ; **il ne suffit pas** pour ce dossier de transfert. Installe uniquement les langages du transfert que tu as choisi, pas les quatre par principe. Les versions ci-dessous forment la référence de cette édition ; un dépôt cible peut imposer une version plus ancienne dans son `README`, son fichier de toolchain ou son lockfile. Dans ce cas, le dépôt cible fait foi et la divergence doit être notée.
+
+| Langage / outil    | Version de référence | Vérification                                         |
+| ------------------ | -------------------- | ---------------------------------------------------- |
+| Node.js (socle AF) | 22.23.4              | `node --version` doit afficher `v22.23.4`            |
+| Python             | 3.15.2               | `python --version` puis `python -m pytest --version` |
+| Java               | JDK 25.0.5 LTS       | `java --version` et `javac --version`                |
+| Rust               | 1.99.1               | `rustc --version` et `cargo --version`               |
+| Go                 | 1.27.3               | `go version`                                         |
+
+Références officielles de versions consultées le 10 novembre 2026 : [Python releases](https://www.python.org/downloads/), [Go release history](https://go.dev/doc/devel/release), [Rust release announcements](https://blog.rust-lang.org/releases/), [JDK 25 release notes](https://www.oracle.com/java/technologies/javase/25all-relnotes.html). JDK 25 est retenu comme cible LTS ; le dépôt cible peut nécessiter une autre version compatible.
 
 ## 4. Première preuve
 
-1. Vérifier les prérequis ci-dessus.
-2. Exécuter **une seule** commande de preuve simple avant de commencer la mission.
-3. Si elle échoue, corriger l’environnement avant de modifier le code de l’exercice.
+1. Choisir le langage et vérifier sa version avec la commande du tableau.
+2. Pour Python, confirmer que `pytest` est disponible avec `python -m pytest --version` ; ne pas l'installer implicitement pendant une session offline.
+3. Lire le `README` et la configuration du dépôt choisi (`pyproject.toml`, `Cargo.toml`, `go.mod`, `pom.xml` ou équivalent), puis utiliser ses commandes de test.
+4. Si une dépendance manque, consigner `NON TESTÉ  : dépendance absente` plutôt que prétendre avoir exécuté la preuve.
 
 ## 5. Offline
 

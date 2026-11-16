@@ -23,7 +23,13 @@ provenance_note: "Référence interne explicitement reliée au sujet ; elle ancr
 
 Lecture de la consigne : ~2 min
 
-> **LOCK : pas d'édition avant HYPOTHESES.md signé.** Tu ne modifies AUCUN fichier avant que ton `HYPOTHESES.md` soit signé (>= 3 hypothèses, chacune avec preuve attendue). Sinon, l'exo ne compte pas.
+> **LOCK : pas d'édition avant le fichier `LECTURE_<nom>.md` signé.** Pour chacun des trois cycles, ajoute au moins trois hypothèses avec leur preuve attendue, puis indique l'auteur et la date dans la section du cycle. Le livrable est un seul fichier, pas trois fichiers parallèles.
+>
+> **Signature pédagogique (convention commune) :** chaque fichier d’hypothèses doit se terminer par les deux mentions suivantes :
+>
+> - `Auteur (nom ou identifiant) : ...`
+> - `Date (AAAA-MM-JJ) : ...`
+>   Pour un exercice en plusieurs cycles, signe chaque fiche de cycle ; pour un fichier unique, signe-le une fois après l’avoir complété. Cette mention identifie l’auteur et la date ; ce n’est ni une signature électronique ou juridique, ni une revue indépendante.
 >
 > **Budget lecture** : 300 lignes en 15 min chrono. Si tu dépasses, note pourquoi dans `MAP.md`. Objectif progressif : tu dois pouvoir tenir 500 lignes en 15 min à la fin du curriculum.
 >
@@ -52,11 +58,12 @@ Si ton hypothèse était fausse, tant mieux : tu viens d'apprendre où ton modè
 ## Enchainement
 
 - Réalise trois cycles avec trois extraits différents ; conserve les résultats dans les trois sections datées de `LECTURE_<nom>.md`.
-- Croise avec `EXO_VERIFICATION.md` du même module quand il existe : compare ton hypothèse humaine à celle qu'une IA produirait sur le même extrait.
+- Pour questionner une réponse IA trop confiante, utilise [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md) : ce drill examine une suggestion trompeuse, il ne remplace pas la compilation.
+- Pour une preuve de comportement et de typage, utilise [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md) : il exige une compilation TypeScript et des assertions exécutables.
 
 ---
 
-Si tu veux "juste renommer une variable pour comprendre" : **note-le dans `HYPOTHESES.md`, ne le fais pas dans le fichier**.
+Si tu veux "juste renommer une variable pour comprendre" : **note-le dans la section `HYPOTHÈSES` du cycle concerné dans `LECTURE_<nom>.md`, ne le fais pas dans le fichier source**.
 
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 

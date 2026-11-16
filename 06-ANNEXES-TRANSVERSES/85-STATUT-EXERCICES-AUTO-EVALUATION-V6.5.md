@@ -12,6 +12,8 @@ Cette annexe couvre les 26 pages qui déclarent explicitement ne pas fournir de 
 | Cadrage de mini-projet |      1 | Un brief, ses hypothèses, ses exclusions, ses checkpoints et son critère d’acceptation                  | La forme est contrôlable ; la pertinence du cadrage et des hypothèses nécessite un jugement qui n’est pas fourni par la page.                                                                 |
 | **Total**              | **26** |                                                                                                         | **Aucun corrigé/oracle indépendant livré dans ces 26 pages.**                                                                                                                                 |
 
+**À retenir avant de commencer :** tu peux pratiquer seul et utiliser la voie B ci-dessous sans attendre de reviewer. Le résultat reste `PRATIQUE  : AUTOÉVALUÉ` et non indépendant. La voie A ne s'applique que lorsqu'une gate exige réellement une revue indépendante ; une IA ou un vérificateur écrit par toi ne remplace pas cette personne.
+
 ## 2. Ce que l’exercice permet de déclarer
 
 - Tu peux réaliser l’exercice, conserver les artefacts et exécuter tes propres contrôles sans attendre un reviewer.
@@ -158,7 +160,7 @@ Une IA peut proposer des contre-exemples ou aider à préparer des questions. Se
 - [02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/97-EXO-VERIFICATION.md](../02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/97-EXO-VERIFICATION.md)
 - [02-CONSTRUCTION/17-OOP-JS/97-EXO-VERIFICATION.md](../02-CONSTRUCTION/17-OOP-JS/97-EXO-VERIFICATION.md)
 - [03-PILOTAGE/02-WEB-INCLUSIVE/97-EXO-VERIFICATION.md](../03-PILOTAGE/02-WEB-INCLUSIVE/97-EXO-VERIFICATION.md)
-- [03-PILOTAGE/04-SECURITY/12A-EXO-VERIFICATION.md](../03-PILOTAGE/04-SECURITY/12A-EXO-VERIFICATION.md)
+- [03-PILOTAGE/04-SECURITY/EXO-VERIFICATION-IA.md](../03-PILOTAGE/04-SECURITY/EXO-VERIFICATION-IA.md)
 - [03-PILOTAGE/04-SECURITY/97-EXO-VERIFICATION.md](../03-PILOTAGE/04-SECURITY/97-EXO-VERIFICATION.md)
 - [03-PILOTAGE/05-OBSERVABILITY/97-EXO-VERIFICATION.md](../03-PILOTAGE/05-OBSERVABILITY/97-EXO-VERIFICATION.md)
 - [03-PILOTAGE/10-TEAM-CRAFT/98-EXO-VERIFICATION.md](../03-PILOTAGE/10-TEAM-CRAFT/98-EXO-VERIFICATION.md)

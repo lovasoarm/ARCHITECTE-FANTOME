@@ -9,9 +9,9 @@ route: complete
 
 > Ce palier est un dispositif d’évaluation et de progression adossé à une expérience réelle. AF ne garantit pas qu’un parcours de cours, seul, confère le titre de Staff Engineer ou Distinguished Engineer.
 
-Palier terminal. [Pourquoi](01-00-why-this-level.md) → [prereq](00-PREREQUIS.md) →
+Palier terminal. Commence par le [prérequis](00-PREREQUIS.md), puis lis [Pourquoi](01-00-why-this-level.md) →
 [dossier unique](02-dossier_unique.md) → [tensions](03-trois_tensions.md) →
-[transfert](05A-transfert_hors_ecosysteme.md) → [IA en production : gouvernance](06-IA-GOVERNANCE-SECURITY.md) → [spécification agentique](07-SPECIFICATION-AGENTIQUE.md) → [organisation](08-ORGANIZATIONAL-REASONING.md) → [ownership & migration](09-SYSTEM-OWNERSHIP-MIGRATION.md) → [gouvernance autonome](10-AUTONOMOUS-SYSTEM-GOVERNANCE.md) → [ownership](11-PRODUCTION-OWNERSHIP-LOOP.md) → [jugement](12-STAFF-JUDGMENT-ARENA.md) → [grimoire](90-grimoire.md) →
+[transfert](TRANSFERT-HORS-ECOSYSTEME.md) → [IA en production : gouvernance](06-IA-GOVERNANCE-SECURITY.md) → [spécification agentique](07-SPECIFICATION-AGENTIQUE.md) → [organisation](08-ORGANIZATIONAL-REASONING.md) → [ownership & migration](09-SYSTEM-OWNERSHIP-MIGRATION.md) → [gouvernance autonome](10-AUTONOMOUS-SYSTEM-GOVERNANCE.md) → [ownership](11-PRODUCTION-OWNERSHIP-LOOP.md) → [jugement](12-STAFF-JUDGMENT-ARENA.md) → [grimoire](90-grimoire.md) →
 [challenge](95-challenge.md) → [boss fight](96-boss-fight.md) branché sur
 [09-CONTRADICTEUR.md](../../06-ANNEXES-TRANSVERSES/09-CONTRADICTEUR.md).
 
@@ -30,6 +30,8 @@ Le [Portefeuille avancé de systèmes 2035+](../09-PORTFOLIO-SYSTEMES-2035/READM
 
 <!-- PIECES-MODULE:fin -->
 
+> **Repère de navigation :** `05-PSYCHOLOGIE-DECISION/` est une collection d'exercices sur le jugement et les biais. `TRANSFERT-HORS-ECOSYSTEME.md` est une épreuve distincte de transférabilité technique dans la route Staff ; ce n'est ni une leçon du sous-dossier psychologie ni une étape « 05A ».
+
 ## Contenu du dossier
 
 <!-- CONTENU-DOSSIER:debut -->
@@ -39,13 +41,24 @@ Le [Portefeuille avancé de systèmes 2035+](../09-PORTFOLIO-SYSTEMES-2035/READM
 - [Le dossier unique : la pièce qui tient tout](02-dossier_unique.md)
 - [Les trois tensions : la seule preuve de croisement](03-trois_tensions.md)
 - [La revisite datée : ce qui sépare un dossier d'une photo](04-revisite_datee.md)
-- [07 : Transfert hors écosystème](05A-transfert_hors_ecosysteme.md)
+- [Transfert hors écosystème](TRANSFERT-HORS-ECOSYSTEME.md)
 - [Transformation décisionnelle](05-PSYCHOLOGIE-DECISION/README.md)
 - [Boss fight : soutenance du dossier unique sous contradiction](96-boss-fight.md)
 - [Challenge : assembler le dossier unique](95-challenge.md)
 - [Grimoire : relier les preuves](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
+
+## Modèles et copies de preuve
+
+Les fichiers `05-PSYCHOLOGIE-DECISION/03-BELIEF-CHANGE-LOG.md` et
+`05-PSYCHOLOGIE-DECISION/04-BIAS-LOG.md` ci-dessous sont des **modèles source**.
+Dans le dépôt de ton projet, crée et complète les copies
+`PREUVES/04-BELIEF-CHANGE-LOG.md` et `PREUVES/05-BIAS-LOG.md`.
+Les consignes des leçons 11 et 12 produisent respectivement
+`PREUVES/OWNERSHIP-LOOP.md` et `PREUVES/STAFF-JUDGMENT.md`.
+L'arborescence canonique et le statut attendu sont définis dans
+[PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md).
 
 ## Navigation complète des ressources
 
@@ -73,7 +86,7 @@ Les liens ci-dessous donnent accès aux ressources documentaires du module, y co
 - [`05-PSYCHOLOGIE-DECISION/15-PSYCHOLOGICAL-SAFETY.md`](05-PSYCHOLOGIE-DECISION/15-PSYCHOLOGICAL-SAFETY.md)
 - [`05-PSYCHOLOGIE-DECISION/16-EXPERT-TRAP.md`](05-PSYCHOLOGIE-DECISION/16-EXPERT-TRAP.md)
 - [`05-PSYCHOLOGIE-DECISION/README.md`](05-PSYCHOLOGIE-DECISION/README.md)
-- [`05A-transfert_hors_ecosysteme.md`](05A-transfert_hors_ecosysteme.md)
+- [`TRANSFERT-HORS-ECOSYSTEME.md`](TRANSFERT-HORS-ECOSYSTEME.md)
 - [`06-IA-GOVERNANCE-SECURITY.md`](06-IA-GOVERNANCE-SECURITY.md)
 - [`07-SPECIFICATION-AGENTIQUE.md`](07-SPECIFICATION-AGENTIQUE.md)
 - [`08-ORGANIZATIONAL-REASONING.md`](08-ORGANIZATIONAL-REASONING.md)

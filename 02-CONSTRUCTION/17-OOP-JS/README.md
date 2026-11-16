@@ -52,10 +52,10 @@ Une propriété absente sur l’objet est recherchée le long de sa chaîne de p
 | [`08-encapsulation_privacy.md`](08-encapsulation_privacy.md)                           | ENCAPSULATION & PRIVACY : CE QU'ON PROTÈGE VRAIMENT                       | 45 min |
 | [`09-static_getters_setters.md`](09-static_getters_setters.md)                         | STATIC, GETTERS, SETTERS : LOGIQUE CACHÉE DERRIÈRE UNE SYNTAXE D'ATTRIBUT | 45 min |
 | [`10-composition_vs_inheritance.md`](10-composition_vs_inheritance.md)                 | COMPOSITION VS INHERITANCE : LA VRAIE DÉCISION SENIOR                     | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                                                     | Page verrouillée                                                          | 30 min |
 | [`11-expliquer_a_3_publics_prototypes.md`](11-expliquer_a_3_publics_prototypes.md)     | Prototypes : expliqué à 3 publics                                         | 45 min |
 | [`12-EXO_LECTURE.md`](12-EXO_LECTURE.md)                                               | EXO LECTURE : ~20 minutes : un cycle (OOP en JS)                          | 20 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                     | EXO [JEUNE IA] : 02-CONSTRUCTION/17-OOP-JS                                | 45 min |
+| [`90-grimoire.md`](90-grimoire.md)                                                     | Page verrouillée                                                          | 30 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                         | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust                   | 45 min |
 
 Total : **11 h 35**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
@@ -106,14 +106,12 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Encapsulation & privacy : ce qu'on protège vraiment](08-encapsulation_privacy.md)
 - [Static, getters, setters : logique cachée derrière une syntaxe d'attribut](09-static_getters_setters.md)
 - [Composition vs inheritance : la vraie décision senior](10-composition_vs_inheritance.md)
-- [Page verrouillée](90-grimoire.md)
 - [Prototypes : expliqué à 3 publics](11-expliquer_a_3_publics_prototypes.md)
 - [EXO LECTURE : ~20 minutes : un cycle (OOP en JS)](12-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/17-oop-js](97-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
 - [Challenge : `17-OOP-JS`](95-challenge.md)
 - [Grimoire : `17-OOP-JS`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources

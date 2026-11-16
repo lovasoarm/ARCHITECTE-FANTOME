@@ -30,9 +30,23 @@ Ta 404 projet est correcte.
 
 ## APPLICATION
 
-- Crée `lib/errors.js` avec une classe d'erreur métier pour un projet introuvable.
-- Lance-la depuis `getProjectBySlug`.
-- Sur la route dynamique, attrape-la et déclenche la 404 native de Next.
+Crée `lib/errors.js` avec le contrat JavaScript explicite ci-dessous. La propriété héritée `Error.name` identifie la classe d'erreur ; le nom métier du projet est conservé dans `projectName` pour ne pas écraser cette information.
+
+```js
+class ProjectNotFoundError extends Error {
+  constructor(slug, projectName) {
+    super(`Projet introuvable : ${projectName} (${slug})`);
+    this.name = "ProjectNotFoundError";
+    this.slug = slug;
+    this.projectName = projectName;
+  }
+}
+
+module.exports = { ProjectNotFoundError };
+```
+
+- Lance `ProjectNotFoundError` depuis `getProjectBySlug`.
+- Sur la route dynamique, attrape cette erreur et déclenche la 404 native de Next.
 
 ## Critère de réussite
 

@@ -286,7 +286,7 @@ function badGoal(team) {
   matchState.score[team]++; // mutation directe
   // un comparateur shallow (===) ne verra aucune différence
   // matchState est toujours le même objet en mémoire
-  // React, Vue, ou ton système de détection ne se déclenchera pas
+  // un composant React qui compare l'identité d'un état via `useState`/`memo` peut ne pas rerendre si tu réutilises la même référence. Vue 3, lui, observe les propriétés imbriquées via ses proxies réactifs lorsque l'objet est dans le système de réactivité : une mutation imbriquée peut déclencher un effet. Le comportement dépend donc du framework et de la manière dont l'objet est suivi.
 }
 
 // BONNE mise à jour:retourne un nouvel état

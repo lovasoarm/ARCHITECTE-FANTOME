@@ -12,18 +12,18 @@ Temps de lecture ~2 min
 
 Chaque ligne se coche avec un chemin de fichier de **ton** dépôt en face. Sans chemin, non coché.
 
-| #   | Critère                                                     | Preuve attendue                                         |
-| --- | ----------------------------------------------------------- | ------------------------------------------------------- |
-| 1   | Carte de contextes justifiée par le langage                 | `ADR/contextes-bornes.md`                               |
-| 2   | Chaque frontière a un coût écrit                            | même fichier, section coût                              |
-| 3   | Contrat v2 publié, changements classés                      | `contrats/v2.md`                                        |
-| 4   | Double service effectif                                     | logs des deux versions le même jour                     |
-| 5   | Jeu de cas exécutable ≥ 8 cas dont 3 erreurs                | `contrats/cas/` + sortie CI                             |
-| 6   | Extinction datée et annoncée                                | en-tête `Sunset` + message d'annonce                    |
-| 7   | Refus chiffré avec seuil déclencheur                        | `ADR/refus-architecture.md`                             |
-| 8   | Gate sécurité passé (diff de schéma, pas de fuite de champ) | diff joint au boss fight                                |
-| 9   | Explication à trois publics rendue                          | fichier du module `01-CADRAGE/04-ERROR-HANDLING` rempli |
-| 10  | Défense orale enregistrée                                   | lien ou fichier local daté                              |
+| #   | Critère                                                     | Preuve attendue                                  |
+| --- | ----------------------------------------------------------- | ------------------------------------------------ |
+| 1   | Carte de contextes justifiée par le langage                 | `ADR/contextes-bornes.md`                        |
+| 2   | Chaque frontière a un coût écrit                            | même fichier, section coût                       |
+| 3   | Contrat v2 publié, changements classés                      | `contrats/v2/contrat.md`                         |
+| 4   | Double service effectif                                     | logs des deux versions le même jour              |
+| 5   | Jeu de cas exécutable ≥ 8 cas dont 3 erreurs                | `contrats/v2/cas/` + `contrats/v2/traces/ci.txt` |
+| 6   | Extinction datée et annoncée                                | en-tête `Sunset` + message d'annonce             |
+| 7   | Refus chiffré avec seuil déclencheur                        | `ADR/refus-architecture.md`                      |
+| 8   | Gate sécurité passé (diff de schéma, pas de fuite de champ) | diff joint au boss fight                         |
+| 9   | Explication à trois publics rendue                          | `07-expliquer_cqrs_a_3_publics.md`               |
+| 10  | Défense orale enregistrée                                   | lien ou fichier local daté                       |
 
 Passage : 9 critères sur 10, dont obligatoirement 3, 4, 6 et 8.
 
@@ -71,14 +71,12 @@ Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), 
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Contrat métier et langage commun Kintana
+## Mission Kintana : audit indépendant des preuves du module
 
-> **Arc Naruto / Konoha :** le mot « mission » ne veut pas dire la même chose pour le demandeur, l'agent et l'administrateur. Le vocabulaire doit coller au métier qui l'utilise.
+Relis les preuves déposées par un autre apprenant ou par toi-même avec un regard indépendant. Pour chaque critère, tente de réfuter la preuve : lien manquant, hypothèse non mesurée, contrat ambigu, sécurité non testée ou décision non datée. Distingue absence de preuve, preuve invalide et résultat réellement négatif.
 
-**Mission liée à « Critères de passage : module 16 » :** Anime une mini revue de domaine sur la création et l'affectation d'une demande. Construis un glossaire validé, un event storming simple, les invariants et les contextes candidats ; teste une ambiguïté avec une évolution.
+**Livrable :** grille annotée, liens vers les artefacts, trois réserves classées par gravité et verdict PASS / NON PASS motivé.
 
-**Livrable :** glossaire métier, diagramme commandes/événements, frontières proposées et ADR qui explique pourquoi une frontière existe ou non.
+**Acceptation :** aucune case cochée sans artefact consultable ; les critères obligatoires restent non compensables ; le verdict est reproductible par un second lecteur.
 
-**Critères d’acceptation :** chaque terme a un sens et un propriétaire ; les règles sont testables ; les contextes ne sont pas découpés par table ; les désaccords sont conservés comme questions ouvertes.
-
-**Transfert obligatoire :** Une nouvelle organisation utilise le mot « agent » pour deux rôles différents. Montre comment ton modèle absorbe ou refuse cette ambiguïté.
+**Transfert :** deux évaluateurs interprètent différemment un critère. Propose une formulation ou une preuve qui réduit le désaccord sans affaiblir l'exigence.

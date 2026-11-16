@@ -46,9 +46,37 @@ Imagine un dictionnaire des mots que tu connais. Quand ta maîtresse te demande 
 
 Tout objet a un lien interne `[[Prototype]]` (exposé via `Object.getPrototypeOf`). La résolution de propriété remonte cette chaîne jusqu'à `null`. `class Foo extends Bar` sucre sur `Foo.prototype.__proto__ = Bar.prototype`. Points chauds :
 
-- `Object.create(null)` = objet SANS prototype, utile pour éviter la pollution.
-- `Object.prototype.hasOwnProperty` vs `in` : le premier ignore la chaîne, le second la traverse.
-- Prototype pollution : injecter `__proto__.polluted = true` corrompt **tous** les objets. Vecteur d'attaque réel (CVE Lodash 2019).
+- `Object.create(null)` = objet sans prototype ; il n'hérite donc pas des propriétés de `Object.prototype`.
+- `Object.prototype.hasOwnProperty` vs `in` : le premier inspecte les propriétés propres, le second parcourt toute la chaîne.
+
+### Prototype pollution : un vecteur concret, pas une affectation magique
+
+L'expression isolée `__proto__.polluted = true` n'est pas un exemple autonome : `__proto__` n'est pas une variable globale. Le risque apparaît notamment lorsqu'un code de fusion récursive traite une clé fournie par une entrée non fiable comme une propriété ordinaire.
+
+```js
+// Démonstration volontairement vulnérable. À exécuter dans un processus Node isolé.
+function unsafeDeepMerge(target, source) {
+  for (const [key, value] of Object.entries(source)) {
+    if (value && typeof value === "object" && !Array.isArray(value)) {
+      target[key] ??= {};
+      unsafeDeepMerge(target[key], value);
+    } else {
+      target[key] = value;
+    }
+  }
+  return target;
+}
+
+const payload = JSON.parse('{"__proto__":{"polluted":true}}');
+unsafeDeepMerge({}, payload);
+console.log({}.polluted); // true dans ce processus : Object.prototype a été modifié
+
+delete Object.prototype.polluted; // nettoyage de la démonstration
+```
+
+Le code réel doit refuser au minimum les clés `__proto__`, `constructor` et `prototype` dans les chemins de fusion, ou employer une structure adaptée (`Map`, objet à prototype nul) avec une stratégie de copie sûre. L'impact concerne les objets qui héritent du prototype pollué ; un objet à prototype nul n'hérite pas de cette propriété. Ne décris donc pas le résultat comme une corruption littérale de « tous les objets ».
+
+- Prototype pollution : une fusion récursive non sûre peut modifier `Object.prototype` via une clé `__proto__` contrôlée par l'entrée. Voir la démonstration isolée ci-dessus ; les objets à prototype nul n'héritent pas de cette pollution.
 
 ## À UN CTO
 

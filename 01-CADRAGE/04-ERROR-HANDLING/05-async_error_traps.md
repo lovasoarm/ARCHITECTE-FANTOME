@@ -69,18 +69,17 @@ function chargerStatsMatch(id) {
       console.log("stats reçues :", data);
     });
   // pas de .catch()
-  // si fetch échoue : l'erreur disparaît en silence
+  // si la requête échoue au niveau réseau ou est bloquée par CORS dans le navigateur,
+  // la Promise de fetch rejette et ce rejet n'est pas traité ici.
 }
 
-chargerStatsMatch(99999); // ID inexistant
-// la Promise rejette
-// personne ne l'attrape
-// Node émet un warning "UnhandledPromiseRejection"
-// depuis Node.js 15, le mode par défaut est --unhandled-rejections=throw
-// sans gestionnaire unhandledRejection, le rejet devient une exception non interceptée
-// et le processus se termine normalement avec un code de sortie non nul
-// le flag --unhandled-rejections ou un gestionnaire peut modifier ce comportement
+chargerStatsMatch(42); // scénario navigateur : la connexion est interrompue pendant la requête
+// personne n'attrape le rejet de fetch
+// le navigateur signale le rejet non traité via son mécanisme global
+// Un HTTP 404/500 ne rejette PAS fetch : vérifier res.ok (voir la section suivante).
 ```
+
+> **Côté Node.js 22.23.4 :** passe une URL absolue à `fetch`. Si le rejet reste non géré, le mode par défaut `--unhandled-rejections=throw` le transforme en exception non interceptée lorsqu’aucun gestionnaire `unhandledRejection` ne le prend en charge. Un flag ou un gestionnaire peut modifier ce comportement ; ce n’est pas une stratégie de reprise à utiliser en production.
 
 ```text
 call stack :
@@ -121,12 +120,20 @@ await suspend la reprise de la fonction async, pas l’ensemble du runtime.
 La syntaxe qui rend l'async lisible : et qui récupère les erreurs naturellement.
 
 ```js
+class NotFoundError extends Error {
+  constructor(resource, id) {
+    super(`${resource} ${id} introuvable`);
+    this.name = "NotFoundError";
+  }
+}
+
+// Cet exemple utilise une URL relative côté navigateur. En Node.js, passe une URL absolue.
 async function chargerStatsMatch(id) {
   try {
     const res = await fetch(`/api/matchs/${id}`);
     if (!res.ok) {
-      throw new NotFoundError("Match", id);
-      // fetch ne lève pas d'erreur sur les 404:tu dois le faire toi-même
+      if (res.status === 404) throw new NotFoundError("Match", id);
+      throw new Error(`Erreur HTTP ${res.status}`);
     }
     const data = await res.json();
     return data;
@@ -141,7 +148,7 @@ async function chargerStatsMatch(id) {
 }
 ```
 
-Attention : distingue le runtime.
+Attention : distingue le runtime. Le premier extrait illustre une URL relative dans un navigateur ; dans Node.js, fournis une URL absolue (par exemple avec la base de l'API configurée par l'application).
 
 - **Dans un navigateur**, `fetch` applique la politique CORS. Une réponse cross-origin qui ne satisfait pas cette politique n'est pas exposée au JavaScript et la requête échoue comme une erreur réseau.
 - **Dans Node.js 22**, le `fetch` natif s'appuie sur Undici, qui n'applique pas par défaut les contrôles CORS du navigateur : il n'envoie pas automatiquement de préflight CORS et ne valide pas `Access-Control-Allow-Origin`. Cela ne rend pas un fetch serveur sûr pour autant : valide les destinations autorisées et protège-toi notamment contre les requêtes SSRF.
@@ -305,20 +312,20 @@ async function chargerStatsSafe(matchId) {
   try {
     const data = await chargerStats(matchId);
     return { ok: true, valeur: data };
-  } catch (e) {
-    return { ok: false, erreur: e };
+  } catch (cause) {
+    const erreur = cause instanceof Error ? cause : new Error(String(cause));
+    return { ok: false, erreur };
   }
 }
 
-// utilisation:zéro throw, zéro try/catch à l'extérieur
+// utilisation au niveau module ES : pas de return isolé au top level
 const result = await chargerStatsSafe(42);
 
-if (!result.ok) {
+if (result.ok) {
+  console.log("xG :", result.valeur.xG);
+} else {
   console.error("stats indisponibles :", result.erreur.message);
-  return;
 }
-
-console.log("xG :", result.valeur.xG);
 ```
 
 Avantage : le code appelant n'a pas à se soucier des try/catch. L'erreur est une valeur normale.

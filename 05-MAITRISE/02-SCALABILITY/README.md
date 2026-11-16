@@ -14,6 +14,8 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 # MODULE 02 SCALABILITY
 
+> **Repère de navigation :** `97-CHECKPOINT-PACK/` contient la grille et les preuves de checkpoint ; `97A-EXO-VERIFICATION.md` est un exercice indépendant d’application/vérification. Le premier est un dossier de critères, le second une activité : ce ne sont pas deux leçons successives.
+
 > Palier `05-MAITRISE`. Duree estimee : **10 h 58** (16 fichiers de travail).
 
 ## Sommaire du module
@@ -33,9 +35,9 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | [`51-message_queues_minimini_projet.md`](51-message_queues_minimini_projet.md) | 07 message queues minimini projet                                                         | 45 min |
 | [`09-b_hypotheses_panne_distribuee.md`](09-b_hypotheses_panne_distribuee.md)   | Hypothèses en panne distribuée : le pont que personne ne fait spontanément                | 45 min |
 | [`10-c_tests_de_resilience.md`](10-c_tests_de_resilience.md)                   | Tests de résilience : prouver qu'une panne d'un service dépendant ne coule pas les autres | 8 min  |
-| [`90-grimoire.md`](90-grimoire.md)                                             | Page verrouillée                                                                          | 30 min |
 | [`11-EXO_LECTURE.md`](11-EXO_LECTURE.md)                                       | EXO LECTURE : ~20 minutes : un cycle (Scalabilite)                                        | 20 min |
 | [`97A-EXO-VERIFICATION.md`](97A-EXO-VERIFICATION.md)                           | EXO [JEUNE IA] : 05-MAITRISE/02-SCALABILITY                                               | 45 min |
+| [`90-grimoire.md`](90-grimoire.md)                                             | Page verrouillée                                                                          | 30 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                 | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust                                   | 45 min |
 
 Total : **10 h 58**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
@@ -87,14 +89,12 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [51-message_queues_minimini_projet.md](51-message_queues_minimini_projet.md)
 - [Hypothèses en panne distribuée : le pont que personne ne fait spontanément](09-b_hypotheses_panne_distribuee.md)
 - [Tests de résilience : prouver qu'une panne d'un service dépendant ne coule pas les autres](10-c_tests_de_resilience.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~20 minutes : un cycle (Scalabilite)](11-EXO_LECTURE.md)
 - [EXO [jeune IA] : 05-maitrise/02-scalability](97A-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
 - [Challenge : `02-SCALABILITY`](95-challenge.md)
 - [Grimoire : `02-SCALABILITY`](90-grimoire.md)
 - [`97-CHECKPOINT-PACK/`](97-CHECKPOINT-PACK/README.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources

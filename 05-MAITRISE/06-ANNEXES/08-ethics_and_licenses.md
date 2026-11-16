@@ -112,49 +112,53 @@ Ferme la page et défends pendant quelques minutes une stratégie opposée à ce
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
 
-<!-- AF-DIAGRAM:security -->
+<!-- AF-DIAGRAM:license_decision -->
 
-## Repère visuel utile : Contrôle d'accès multi-rôle et multi-tenant
+## Repère visuel : décision d'usage d'un composant
 
 ```text
-requête + identité authentifiée
-             |
-             v
-      autorisation ressource/action
-        |               |
-        v               v
-      autorisé         refus
-        |               |
-        v               v
-règle métier + audit   réponse neutre + audit
+identifier le composant et sa version
+                |
+                v
+       lire la licence primaire
+                |
+                v
+usage prévu ? modification ? distribution ? service distant ?
+                |
+                v
+   obligations et notices applicables
+                |
+                v
+doute / combinaison complexe ? -> escalade juridique
+                |
+                v
+décision datée + attribution + registre OSS
 ```
 
-<!-- AF-LESSON-PROFILE: security -->
+<!-- AF-LESSON-PROFILE: contract -->
 
 ## Repères de décision
 
-- **Pourquoi :** La sécurité protège les utilisateurs, les données et la continuité du service. Un contrôle absent à une frontière peut exposer tous les tenants.
-- **Quand l’utiliser / quand l’éviter :** Modélise la menace avant une exposition, une nouvelle permission ou une intégration. Applique authentification et autorisation côté serveur ; n'utilise jamais l'interface comme frontière de confiance.
-- **Limites :** Un test négatif ne prouve pas l'absence de vulnérabilité. Une checklist ne remplace pas revue, configuration, mises à jour et surveillance ; les logs ne doivent pas contenir secrets ou données sensibles inutiles.
+- **Pourquoi :** Une dépendance peut apporter du code utile tout en introduisant des obligations de licence, d'attribution, de distribution ou de confidentialité.
+- **Quand l’utiliser / quand l’éviter :** Vérifie la licence avant d'intégrer, modifier, distribuer ou exposer un composant. En cas de combinaison complexe, de doute sur une œuvre dérivée ou d'enjeu commercial, demande un avis juridique compétent.
+- **Limites :** Cette annexe enseigne une méthode de repérage, pas un avis juridique. Le résultat dépend du texte exact, de la version, du mode de combinaison, de l'usage et de la juridiction.
 
 ## Mécanisme : la version sans magie
 
-Identifie actifs, acteurs, frontières et abus possibles ; applique le contrôle minimal côté serveur ; vérifie avec des tests négatifs et conserve un audit sans divulgation.
+Identifie le composant, la version, le texte de licence et le mode d’utilisation ; note modification, combinaison, distribution et service distant ; conserve les notices ; consigne les questions non tranchées.
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Éthique & Licences (annexe indispensable)** se rattache à ce cas concret : Un demandeur Kintana ne doit pas lire la demande d'un autre utilisateur, et un agent ne doit agir que sur son périmètre.
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Éthique & Licences (annexe indispensable)** se rattache à ce cas concret : avant d’intégrer une bibliothèque à Kintana, l’équipe relève son auteur, sa version, sa licence, ses dépendances et la façon dont le composant sera modifié, distribué ou exposé comme service.
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Contrôle d'accès multi-rôle et multi-tenant
+## Mission utile : Kintana : examiner une dépendance avant intégration
 
-> **Arc Walking Dead :** une porte qui semble fermée ne protège personne si le contrôle est seulement peint sur le mur. Vérifie l'autorisation là où l'action est exécutée.
+**Mission liée à « Éthique & Licences » :** choisis une dépendance réellement présente dans le manifeste de ton projet ou un composant envisagé. Identifie son nom, sa version, sa licence depuis le fichier LICENSE ou la source officielle, ses notices et ses dépendances pertinentes. Décris le mode d'utilisation prévu : usage interne, modification, redistribution du binaire/source ou service accessible à distance. Compare ce que le curriculum affirme avec le texte primaire ; marque toute conclusion juridique incertaine comme `À FAIRE VÉRIFIER`.
 
-**Mission liée à « Éthique & Licences (annexe indispensable) » :** Crée une matrice acteur/action/ressource pour Kintana. Implémente un contrôle d'autorisation serveur et teste demandeur, agent, superviseur, compte anonyme et tenant étranger. Vérifie les lectures autant que les écritures.
+**Livrable :** `OSS-LICENSE-REVIEW.md` avec composant/version, lien vers le texte primaire, notices à conserver, usage envisagé, obligations à vérifier, risques de combinaison et décision (utiliser / remplacer / escalader). Pas d'avis juridique définitif.
 
-**Livrable :** mini threat model, matrice de permissions, tests négatifs, journal d'audit masqué et note de remédiation.
+**Critères d’acceptation :** version et licence exactes ; texte primaire cité ; faits séparés des interprétations ; aucune obligation universelle inventée ; les questions à faire examiner sont explicites.
 
-**Critères d’acceptation :** le refus est côté serveur ; aucune ressource étrangère n'est divulguée ; l'identité vient de la session fiable ; les logs ne révèlent pas de secret ; les tests couvrent horizontal et vertical privilege escalation.
-
-**Transfert obligatoire :** Ajoute un nouveau rôle et une route alternative (mobile ou batch). Vérifie que la règle s'applique à toutes les surfaces.
+**Transfert obligatoire :** le composant passe d'un usage interne à une distribution publique ou à un service distant. Identifie les éléments de la décision qui doivent être revérifiés et les documents à mettre à jour.

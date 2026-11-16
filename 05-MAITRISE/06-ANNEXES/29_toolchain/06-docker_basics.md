@@ -231,28 +231,26 @@ usage reproductible
 
 ## Repères de décision
 
-- **Pourquoi :** La toolchain et les outils de diagnostic réduisent les tâches répétitives et rendent le comportement du système visible.
-- **Quand l’utiliser / quand l’éviter :** Choisis un outil quand il résout un problème fréquent et mesurable. Vérifie sa licence, sa maintenance, ses versions, ses permissions et son coût avant de l'ajouter.
-- **Limites :** Un outil n'est pas une politique de qualité. Un benchmark, logger ou générateur peut donner une fausse confiance si son protocole et ses limites ne sont pas écrits.
+- **Pourquoi :** Une image reproductible réduit les écarts entre postes et environnements ; l'isolation doit rester explicite et minimale.
+- **Quand l’utiliser / quand l’éviter :** Conteneurise quand tu as besoin d'un environnement reproductible ou isolé. N'ajoute pas Docker à une application simple si le coût de maintenance n'apporte rien.
+- **Limites :** Un conteneur n'est pas une frontière de sécurité absolue ni une garantie de disponibilité ; les volumes, privilèges et secrets restent à gérer.
 
 ## Mécanisme : la version sans magie
 
-Décris le problème, compare l'outil à une commande native ou à une alternative plus simple, épingle sa version et vérifie le résultat qu'il produit.
+Containerise un service Node avec un Dockerfile multi-stage. Sépare dépendances/build/runtime, exécute le processus sans privilèges root, expose uniquement les ports nécessaires, injecte la configuration au démarrage et garde les secrets hors de l'image. Si Compose est utilisé, documente les volumes et le réseau.
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Docker basics : containeriser une app node : dockerfile, compose, multi-stage builds** se rattache à ce cas concret : L'équipe Kintana doit pouvoir diagnostiquer une panne et refaire un build sans dépendre d'une configuration cachée sur le poste d'une seule personne.
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Docker : isolation, image et configuration runtime** s'applique au dépôt de l'équipe : la preuve doit correspondre à l'outil et au problème traités, pas à une automatisation générique.
 
-**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+**À observer :** comportement attendu, cas d'échec, trace utile et niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Ne transforme pas un exemple en résultat exécuté.
 
-## Mission utile : Kintana : Outil reproductible pour l'équipe Kintana
+## Mission utile : Kintana : Docker : isolation, image et configuration runtime
 
-> **Arc Capsule Corp. / DBZ :** le bon outil accélère le diagnostic ; dix outils mal choisis ne font que déplacer le bazar.
+**Mission liée à « Docker : isolation, image et configuration runtime » :** Containerise un service Node avec un Dockerfile multi-stage. Sépare dépendances/build/runtime, exécute le processus sans privilèges root, expose uniquement les ports nécessaires, injecte la configuration au démarrage et garde les secrets hors de l'image. Si Compose est utilisé, documente les volumes et le réseau.
 
-**Mission liée à « Docker basics : containeriser une app node : dockerfile, compose, multi-stage builds » :** Automatise une opération récurrente du cycle Kintana (analyse, benchmark, log, build ou debug). Ajoute un mode dry-run si l'action est destructive et une vérification qui empêche l'outil de masquer une erreur.
+**Livrable :** `CONTAINER-RUNBOOK.md`, Dockerfile, éventuel Compose et commandes de build/run/inspection ; aucune valeur secrète.
 
-**Livrable :** outil/script, README d'usage, tests sur succès/échec, version épinglée et comparaison au processus manuel.
+**Critères d’acceptation :** L'image de runtime n'embarque pas les outils de build inutiles ; le processus démarre avec la configuration externe ; les ports/volumes sont justifiés ; l'utilisateur runtime et la procédure d'arrêt sont documentés.
 
-**Critères d’acceptation :** les arguments sont validés ; les erreurs ont un code de sortie ; aucune donnée sensible n'est imprimée ; la même commande donne une sortie compréhensible et reproductible.
-
-**Transfert obligatoire :** Exécute l'outil sur une autre machine ou avec une version différente. Documente les prérequis et le mode dégradé.
+**Transfert obligatoire :** Le service doit écrire un fichier temporaire et joindre une base de données. Explique quels chemins doivent être persistants, quels paramètres restent externes et comment vérifier le comportement sans publier de secret.

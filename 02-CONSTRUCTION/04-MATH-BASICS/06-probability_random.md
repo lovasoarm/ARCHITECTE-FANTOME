@@ -35,9 +35,23 @@ Il utilise un PRNG (Pseudo-Random Number Generator) : pas vraiment aléatoire, d
 Math.random(); // 0.7234...
 Math.random(); // 0.1891...
 
-// transformer en entier entre min et max (inclus)
-function randInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+// Transformer en entier entre min et max (inclus).
+// Pratique pour une simulation, mais pas adapté à la sécurité ni à une preuve d'uniformité parfaite.
+function randInt(min, max, random = Math.random) {
+  if (!Number.isSafeInteger(min) || !Number.isSafeInteger(max) || min > max) {
+    throw new RangeError(
+      "min et max doivent être des entiers sûrs avec min <= max",
+    );
+  }
+  const range = max - min + 1;
+  if (!Number.isSafeInteger(range))
+    throw new RangeError(
+      "l'intervalle demandé est trop large pour un tirage Number exact",
+    );
+  const value = random();
+  if (!(value >= 0 && value < 1))
+    throw new RangeError("random() doit retourner une valeur dans [0, 1)");
+  return Math.floor(value * range) + min;
 }
 
 randInt(1, 6); // simule un dé : 1 à 6
@@ -51,13 +65,13 @@ Math.round(Math.random() * 6); // FAUX : 0 et 6 ont moitié moins de chances
 **Pourquoi `Math.round` est biaisé :**
 
 ```text
-Math.round distribue les probabilités comme ça :
-0     : [0.0, 0.5[ --> 50% de chance
-1, 2, 3, 4, 5 : chacun [n-0.5, n+0.5[ --> 100% de chance
-6     : [5.5, 6.0] --> 50% de chance
+Avec `Math.random() * 6`, les valeurs sont dans `[0, 6)` :
+0     : [0.0, 0.5[ --> 0,5 / 6 = 1/12 ≈ 8,33%
+1 à 5 : intervalle de largeur 1 chacun --> 1 / 6 ≈ 16,67% chacun
+6     : [5.5, 6.0[ --> 0,5 / 6 = 1/12 ≈ 8,33%
 
-0 et 6 ont moitié moins de chances que les autres.
-Math.floor évite ça complètement.
+0 et 6 ont donc moitié moins de chances que chacune des valeurs centrales.
+`Math.floor(Math.random() * 6)` produit six intervalles de même largeur.
 ```
 
 ---
@@ -108,8 +122,7 @@ random() * 100 --> tombe dans la zone --> résultat
 
 ## 3) SYSTÈMES DE DROP RATE : COMME DANS UN VRAI JEU
 
-Les drop rates dans les jeux RPG ne sont pas des `Math.random() < 0.01`.
-Les vrais systèmes utilisent des pity systems et des pseudo-random pour éviter les sequences absurdes.
+Un drop rate simple peut être modélisé par `Math.random() < taux`. Certains jeux ajoutent un _pity system_ (la probabilité augmente après des échecs) ou une distribution pseudo-aléatoire contrôlée. Ce sont des choix de conception, pas une règle universelle.
 
 ```js
 // drop rate naïf : 1% de chances
@@ -119,39 +132,59 @@ function naiveDrop() {
 
 // pity system : la probabilité augmente si on échoue
 class PityDrop {
-  constructor(baseRate, pityThreshold) {
-    this.baseRate = baseRate; // 0.01 = 1%
-    this.pityThreshold = pityThreshold; // après 100 essais, garanti
+  constructor(baseRate, pityThreshold, random = Math.random) {
+    if (
+      typeof baseRate !== "number" ||
+      !Number.isFinite(baseRate) ||
+      baseRate < 0 ||
+      baseRate > 1
+    ) {
+      throw new RangeError("baseRate doit être compris entre 0 et 1");
+    }
+    if (!Number.isSafeInteger(pityThreshold) || pityThreshold < 1) {
+      throw new RangeError("pityThreshold doit être un entier positif");
+    }
+    if (typeof random !== "function")
+      throw new TypeError("random doit être une fonction");
+    this.baseRate = baseRate;
+    this.pityThreshold = pityThreshold;
+    this.random = random; // injectable pour des tests reproductibles
     this.attempts = 0;
   }
 
   roll() {
     this.attempts++;
 
-    // pity garantied
+    // Le pity garantit un drop à l'essai seuil, même si le tirage aléatoire échoue.
     if (this.attempts >= this.pityThreshold) {
       this.attempts = 0;
       return true;
     }
 
-    // taux qui augmente progressivement après 50% du seuil
-    const progressRate =
-      this.attempts > this.pityThreshold * 0.5
-        ? this.baseRate + (this.attempts / this.pityThreshold) * 0.5
-        : this.baseRate;
+    const rampStart = Math.ceil(this.pityThreshold / 2);
+    const rampEnd = this.pityThreshold - 1;
+    let progressRate = this.baseRate;
+    if (this.attempts >= rampStart && rampEnd >= rampStart) {
+      const progress =
+        (this.attempts - rampStart + 1) / (rampEnd - rampStart + 1);
+      const targetRate = Math.max(this.baseRate, 0.5);
+      progressRate = this.baseRate + progress * (targetRate - this.baseRate);
+    }
 
-    if (Math.random() < progressRate) {
+    const draw = this.random();
+    if (!(draw >= 0 && draw < 1))
+      throw new RangeError("random() doit retourner une valeur dans [0, 1)");
+    if (draw < progressRate) {
       this.attempts = 0;
       return true;
     }
-
     return false;
   }
 }
 
 const chakraDrop = new PityDrop(0.01, 100);
-// garanti au bout de 100 essais max
-// mais la probabilité augmente doucement à partir de l'essai 50
+// un échec aux 99 premiers essais conduit à un drop garanti au 100e
+// avec ce scénario, le taux commence à augmenter progressivement à partir du 50e essai
 ```
 
 ---
@@ -176,7 +209,7 @@ function fisherYates(arr) {
   return result;
 }
 
-fisherYates(squad); // distribution uniforme garantie
+fisherYates(squad); // uniforme si randInt choisit réellement chaque entier de [0, i] avec la même probabilité
 ```
 
 **Pourquoi `.sort()` est biaisé :**
@@ -188,14 +221,15 @@ Mais .sort() n'est pas conçu pour ça : les éléments ne sont pas tous compar�
 Résultat : certaines permutations sont favorisées.
 
 Fisher-Yates : on parcourt de droite à gauche, on échange chaque élément
-avec un élément aléatoire à gauche. Chaque permutation a exactement 1/n! de chances.
+avec un indice choisi uniformément dans [0, i]. Sous cette hypothèse, chaque permutation a une probabilité de 1/n!.
+Avec `Math.random()` et le `randInt` pédagogique ci-dessus, on obtient un mélange pseudo-aléatoire pratique, pas une garantie cryptographique ou mathématique absolue.
 ```
 
 ---
 
 ## 5) LOI DES GRANDS NOMBRES : TESTER SON RNG
 
-Un bon générateur produit des fréquences qui convergent vers les probabilités théoriques au bout de beaucoup d'essais.
+Avec un générateur pseudo-aléatoire adapté, les fréquences observées tendent à se rapprocher des probabilités théoriques quand le nombre d'essais augmente ; un test statistique ne prouve pas à lui seul l'absence de biais.
 
 ```js
 // vérifier qu'un dé à 6 faces est équitable

@@ -35,10 +35,10 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | [`07-iterators_symbol.md`](07-iterators_symbol.md)                                       | ITERATORS ET SYMBOL.ITERATOR : CRÉER DES STRUCTURES QUI SE PARCOURENT | 45 min |
 | [`55-iterators_symbol_minimini_projet.md`](55-iterators_symbol_minimini_projet.md)       | 06 iterators symbol minimini projet                                   | 45 min |
 | [`95-challenge.md`](95-challenge.md)                                                     | FP CHALLENGE : LE PIPELINE QUI PROUVE QUE C'EST PAS QUE THÉORIQUE     | 90 min |
-| [`90-grimoire.md`](90-grimoire.md)                                                       | Page verrouillée                                                      | 30 min |
 | [`08-EXO_LECTURE.md`](08-EXO_LECTURE.md)                                                 | EXO LECTURE : ~20 minutes : un cycle (Programmation fonctionnelle)    | 20 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                       | EXO [JEUNE IA] : 02-CONSTRUCTION/09-FUNCTIONAL-JS                     | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                       | EXO IA MENTEUSE : module 02-CONSTRUCTION/09-FUNCTIONAL-JS             | 10 min |
+| [`90-grimoire.md`](90-grimoire.md)                                                       | Page verrouillée                                                      | 30 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                           | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust               | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                                             | PONT : de la pensée fonctionnelle aux design patterns                 | 45 min |
 
@@ -94,7 +94,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Iterators et symbol.iterator : créer des structures qui se parcourent](07-iterators_symbol.md)
 - [55-iterators_symbol_minimini_projet.md](55-iterators_symbol_minimini_projet.md)
 - [Fp challenge : le pipeline qui prouve que c'est pas que théorique](95-challenge.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~20 minutes : un cycle (Programmation fonctionnelle)](08-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/09-functional-js](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/09-FUNCTIONAL-JS](97-EXO-VERIFICATION.md)
@@ -102,7 +101,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [PONT : de la pensée fonctionnelle aux design patterns](99A-PONT.md)
 - [Challenge : `09-FUNCTIONAL-JS`](95-challenge.md)
 - [Grimoire : `09-FUNCTIONAL-JS`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources

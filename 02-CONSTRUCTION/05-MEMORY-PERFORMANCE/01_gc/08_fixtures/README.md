@@ -3,36 +3,40 @@ stability: intemporel
 acte: comprendre
 ---
 
-# Fixtures : GC et fuites mémoire
+# Fixtures complémentaires : GC et fuites mémoire
 
 Temps de lecture ~4 min
 
-Support reproductible pour `06-heap_snapshot_hands_on.md`. Deux scripts
-volontairement instrumentés :
+**Périmètre : approfondissement optionnel, distinct de l'exercice principal.**
+Pour l'exercice principal de `06-heap_snapshot_hands_on.md`, la fixture canonique est
+`02-CONSTRUCTION/02-MINI-PROJECTS/13_memory_hunter/00_fixture/00_leaky.js` : elle
+illustre la rétention de buffers via des closures. Les scripts de ce dossier illustrent
+un autre mécanisme (cache global non borné et listeners accumulés) et servent à un
+approfondissement comparatif, pas à remplacer la fixture principale.
 
-| Script          | Rôle                                                                                                                                                                                                       |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `leak_case.js`  | Reproduit deux fuites classiques (cache non borné + listeners orphelins). Une dérive du RSS peut être observée en corrélation avec les références retenues ; sa forme exacte dépend du runtime et de l'OS. |
-| `fixed_case.js` | Version corrigée avec cache LRU borné et listener attaché une seule fois. RSS stable.                                                                                                                      |
+| Script             | Rôle                                                                                                                                                                                                       |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `01_leak_case.js`  | Reproduit deux fuites classiques (cache non borné + listeners orphelins). Une dérive du RSS peut être observée en corrélation avec les références retenues ; sa forme exacte dépend du runtime et de l'OS. |
+| `00_fixed_case.js` | Version corrigée avec cache FIFO borné et listener attaché une seule fois. RSS variable selon runtime et OS.                                                                                               |
 
 ## Procédure minimale (5 min)
 
 ```bash
 # terminal 1 : fuite
-node --expose-gc --inspect=0.0.0.0:9229 leak_case.js
+node --expose-gc --inspect=127.0.0.1:9229 01_leak_case.js
 
 # terminal 2 : version saine (comparaison)
-node --expose-gc fixed_case.js
+node --expose-gc 00_fixed_case.js
 ```
 
 Laisse tourner 60 secondes chacun. Compare les colonnes `rss=` et `cache=` :
 
-- `leak_case.js` : on doit observer une tendance à la hausse du cache et des listeners, avec une hausse de RSS corrélée sur la machine d'essai. Les valeurs exactes de RSS sont indicatives, pas des critères binaires.
-- `fixed_case.js` : on doit observer un cache plafonné et des listeners stabilisés ; la variation de RSS dépend de l'OS, du runtime et de l'allocateur.
+- `01_leak_case.js` : on doit observer une tendance à la hausse du cache et des listeners, avec une hausse de RSS corrélée sur la machine d'essai. Les valeurs exactes de RSS sont indicatives, pas des critères binaires.
+- `00_fixed_case.js` : on doit observer un cache plafonné et des listeners stabilisés ; la variation de RSS dépend de l'OS, du runtime et de l'allocateur.
 
 ## Snapshots à comparer dans Chrome DevTools
 
-1. Ouvre `chrome://inspect`, clique sur le process de `leak_case.js`.
+1. Ouvre `chrome://inspect`, clique sur le process de `01_leak_case.js`.
 2. Onglet **Memory** → **Take heap snapshot** à `t=10s` (snapshot 1).
 3. Attends 50 s. Refais un snapshot à `t=60s` (snapshot 2).
 4. Vue **Comparison** entre 1 et 2 : le top delta doit contenir des `(string)`
@@ -47,7 +51,7 @@ Laisse tourner 60 secondes chacun. Compare les colonnes `rss=` et `cache=` :
    toujours atteignables via `cache` et via les closures des listeners. Le GC
    ne peut rien pour des références vivantes.
 
-Réponses attendues consignées : `../../fixtures/CHECK_ANSWERS.md` (à créer par
+Réponses attendues consignées : `CHECK_ANSWERS.md` (à créer par
 l'apprenant après avoir fait l'exercice, pas avant).
 
 ## Contenu du dossier

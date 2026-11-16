@@ -31,7 +31,7 @@ Temps de lecture ~5 min
 
 ## Exercice
 
-On te fournit [`11A-flaky.js`](./11A-flaky.js) (fonction autonome). Une branche rare ajoute `undefined` et fait renvoyer `NaN` à `computeTotal([1,2,3])`.
+On te fournit [`flaky-random-branch-fixture.js`](./flaky-random-branch-fixture.js) (fonction autonome). Une branche rare ajoute `undefined` et fait renvoyer `NaN` à `computeTotal([1,2,3])`.
 
 - Reproduis **déterministement** par injection d'une fonction aléatoire contrôlée (indice : appelle `computeTotal(items, () => 0)`). L'API standard `Math.random()` ne fournit pas de méthode standard pour fixer sa seed.
 - Écris le test qui casse à coup sûr.

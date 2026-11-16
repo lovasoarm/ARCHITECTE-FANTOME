@@ -32,9 +32,11 @@ Le parcours recommandé suit `19-API-CRAFT`. Ce diagnostic prépare les exercice
 
 ## Ce que tu dois déjà savoir faire
 
-- Tu as terminé [`19-API-CRAFT`](../../02-CONSTRUCTION/19-API-CRAFT/README.md), module précédent du fil.
+- Tu as terminé [`19-API-CRAFT`](../../02-CONSTRUCTION/19-API-CRAFT/README.md), module immédiatement précédent du fil.
+- Tu as déjà livré au moins une API HTTP exécutable : au minimum une route de lecture et une route d'écriture, validation d'entrée, codes HTTP et preuve par tests ou démonstration reproductible. Une simple lecture de tutoriel ne compte pas.
+- Tu sais expliquer les frontières UI / cas d'usage / domaine / infrastructure vues dans [`15-ARCHI-LAB`](../15-ARCHI-LAB/README.md), et tu as réalisé son challenge. Le module 19 réutilise cette compétence ; il ne remplace pas la preuve pratique d'une API.
 
 ## Verdict
 
-- [ ] Toutes les lignes passent → ouvre [`README.md`](README.md).
-- [ ] Une ligne ne passe pas → reviens ici quand elle passe. Note la date, pas l'excuse.
+- [ ] Les trois conditions sont démontrées → ouvre [`README.md`](README.md).
+- [ ] Une condition manque → retourne au module ou au projet indiqué. Note la preuve précise qui manque et la date de nouvelle vérification.

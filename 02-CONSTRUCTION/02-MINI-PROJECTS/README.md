@@ -18,11 +18,17 @@ POSTMORTEM à remplir, un TDD_JOURNAL, et au moins un ADR.
 
 Les projets sont numérotés dans un ordre d'ambition croissante, mais **les numéros ne créent pas à eux seuls une séquence obligatoire**. L'ancien gate global qui imposait les modules « 6, 14, 22, 29 » et des livrables avant l'entrée a été supprimé : il ne correspondait pas à la structure canonique du curriculum.
 
-Le contrôle d'entrée est désormais **spécifique à chaque projet**. Commence par [`00-PREREQUIS.md`](00-PREREQUIS.md) : tu y trouveras le socle commun, les leçons exactes à étudier pour chacun des 19 projets, une preuve minimale d'entrée et la règle `READY / NOT READY`. Il n'est pas nécessaire de terminer tous les modules d'un palier lorsqu'une poignée de leçons suffit à maîtriser le mécanisme utilisé.
+Le contrôle d'entrée est désormais **spécifique à chaque projet**. Commence par [`00-PREREQUIS.md`](00-PREREQUIS.md) : tu y trouveras le socle commun, les leçons exactes à étudier pour chacun des 19 projets, une preuve minimale d'entrée et la règle `READY / NOT READY`. Il n'est pas nécessaire de terminer tous les modules d'un palier lorsque seules quelques leçons suffisent à maîtriser le mécanisme utilisé.
+
+Avant ton premier projet, lis aussi [`00A-FIELD-PRACTICE-STANDARD.md`](00A-FIELD-PRACTICE-STANDARD.md). Ce document explique comment interpréter les tests fournis, les tests volontairement rouges, ceux que tu dois créer et les preuves finales. **`00` est le contrôle d'entrée ; `00A` est le standard commun de travail.** Ce ne sont ni deux niveaux ni deux projets.
+
+[`01A-00-why-mini-projects.md`](01A-00-why-mini-projects.md) est l'orientation du parcours. Le dossier [`01_rasengan_engine/`](01_rasengan_engine/README.md) est le premier projet réel de la liste. La [carte de réexposition](CARTE-REEXPOSITION.md) est un index transversal à consulter au besoin ; elle n'est pas une étape numérotée avant le projet 01.
 
 Quelques dépendances d'ordre sont réellement bloquantes et restent explicites : `15` demande d'avoir réalisé `01` ; `17` demande `15` ; `18` demande `10` ; `19` demande d'avoir terminé `01` à `18` ainsi que ses leçons de leadership et de gouvernance IA. Les autres projets peuvent être commencés dès que leur propre gate est validé.
 
 Les vagues `01–05`, `06–10` et `11–17` restent un **ordre conseillé** pour réduire les sauts de difficulté, pas une règle qui oblige à finir tous les projets d'une vague avant d'en ouvrir un autre. Les extensions Cloud, Docker, broker ou API réelle ne sont requises que lorsque la fiche du projet les rend explicitement obligatoires.
+
+> **Repère de navigation :** `97-templates/` est une boîte à outils de modèles réutilisables, à ouvrir quand un mini-projet y renvoie. `97A-EXO-VERIFICATION.md` est un exercice autonome de vérification ; ce n'est pas un modèle ni le contenu du dossier `97`.
 
 ## Liste
 
@@ -38,7 +44,7 @@ Les vagues `01–05`, `06–10` et `11–17` restent un **ordre conseillé** pou
 | 08  | `08_trapsoul_radio`                  | Streaming, backpressure                                                              |
 | 09  | `09_oracle_glitch`                   | Debug avancé                                                                         |
 | 10  | `10_legacy_dungeon`                  | Lecture de code hérité                                                               |
-| 11  | `11_scheduler`                       | Concurrence, pMap, backpressure                                                      |
+| 11  | `11_scheduler`                       | Files d’événements, concurrence bornée, pMap et annulation coopérative               |
 | 12  | `12_legacy_takeover`                 | Reprise de repo, TDD sur legacy                                                      |
 | 13  | `13_memory_hunter`                   | Fuites mémoire, heap snapshots                                                       |
 | 14  | `14_system_design_lab`               | System design pratique, brokers                                                      |
@@ -90,27 +96,30 @@ Un livrable n’est pas « acquis » parce que la suite de tests passe : l’app
 
 Les mini-projets 1 à 10 donnent un cadre plus explicite : contexte, contraintes, points d'entrée et garde-fous. Ils ne donnent pas la décision d'architecture à recopier, et leurs ADR restent à produire par l'apprenant. À partir du projet 11, le cahier des charges retire encore davantage de structure pour augmenter l'autonomie. Cette progression réduit le guidage sans transformer les premiers projets en corrigés.
 
-## Drill hors serie : "IA en panne"
+## Drill hors-série : "IA en panne"
 
-`05-MAITRISE/06-ANNEXES/16_career/05_ai_famine_drill.md` n'est pas dans la sequence numerotee 01-19. C'est un
-drill de survie technologique : reconstruire un module deja etudie, sur une
-machine vierge, sans IA, sans internet, sans autocompletion. A rejouer une
+`05-MAITRISE/06-ANNEXES/16_career/05_ai_famine_drill.md` n'est pas dans la séquence numérotée 01-19. C'est un
+drill de survie technologique : reconstruire un module déjà étudié, sur une
+machine vierge, sans IA, sans Internet, sans autocomplétion. À rejouer une
 fois par trimestre. Voir `05-MAITRISE/06-ANNEXES/16_career/05_ai_famine_drill.md`.
 
-## Gate securite (OWASP) : bloquant pour cloturer un projet
+## Gate sécurité : adaptée au risque du projet, bloquante pour clôturer
 
-Chaque POSTMORTEM de mini-projet doit contenir la checklist OWASP Top 10
-(voir `97-templates/09-POSTMORTEM.md`, section "GATE SECURITE").
-Tant qu'une ligne reste en ``, le projet **n'est pas livre**, meme si
-les tests passent. La checklist est obligatoire pour les **19 projets
-numerotes** (le drill hors serie "IA en panne" a son propre POSTMORTEM, sans
-gate reseau si le drill est fait hors-ligne).
+Chaque mini-projet doit produire une analyse de sécurité contextualisée. Le fichier distribué `03-SECURITY.md` est un **modèle AF** ; l'apprenant le copie une fois vers `SECURITY.md` à la racine de son dépôt, puis complète uniquement `SECURITY.md`. Les Security Gates et le POSTMORTEM pointent vers ce document final. Ne maintiens pas deux copies remplies.
 
-## Objection storm par ADR : bloquant pour signer un ADR
+La gate locale du projet définit les contrôles bloquants adaptés à son architecture. Le POSTMORTEM consigne le résultat. OWASP Top 10:2025 sert à classer les risques pertinents, sans imposer mécaniquement dix catégories à chaque projet. Toute catégorie non applicable est justifiée ; tout contrôle applicable non testé empêche un statut `PASSÉ`.
 
-Chaque ADR d'un mini-projet declenche **un objection storm chronometre**
-(voir `05-MAITRISE/06-ANNEXES/19_interview/04-objection_storm.md`). Pas de storm =
-ADR non defendu = projet non livre.
+Procédure : lire `03-SECURITY.md` → copier le modèle dans `SECURITY.md` → compléter `SECURITY.md` → exécuter les contrôles réalisables → faire pointer gate et POSTMORTEM vers `SECURITY.md`.
+
+## Défense des ADR et Objection Storm
+
+Chaque projet exige une **défense écrite cohérente** de ses décisions architecturales dans l'ADR : contexte, options crédibles, compromis, conséquences, risques résiduels et signal de réexamen. Cette défense fait partie du livrable ADR ; elle n'impose pas un Objection Storm complet pour chaque ADR.
+
+- **Projets débutants :** une objection substantielle et une réponse argumentée suffisent lorsque le projet demande explicitement une défense.
+- **Projets intermédiaires :** deux à trois objections pertinentes peuvent être ajoutées pour tester les alternatives et les risques.
+- **Objection Storm complet :** drill DEPTH facultatif, réalisé sur **un ADR significatif choisi**. Il comporte cinq objections substantielles et des réponses fondées sur des preuves. Il ne bloque pas les gates des mini-projets débutants.
+
+Le protocole détaillé est défini dans `05-MAITRISE/06-ANNEXES/19_interview/04-objection_storm.md`. Un retour d'un pair est utile mais facultatif ; une simulation solo doit être étiquetée `SIMULATION`, pas revue indépendante.
 
 <!-- PIECES-MODULE:debut -->
 
@@ -169,6 +178,7 @@ Le cas d’étude pédagogique commun [Kintana](../../06-ANNEXES-TRANSVERSES/77-
 
 - [Préparer l'activité (`SETUP.md`)](SETUP.md) : environnement, prérequis et commandes.
 
-## Cartes et vérification transversales
+## Références transversales : hors séquence des projets
 
-- [Carte de réexposition](01-REEXPOSURE-MAP.md) : retrouver où chaque mécanisme est repris et transféré.
+- [Standard commun de lecture des tests (`00A`)](00A-FIELD-PRACTICE-STANDARD.md) : à lire avant le premier projet, puis à garder comme référence.
+- [Carte de réexposition](CARTE-REEXPOSITION.md) : retrouver où chaque mécanisme est repris et transféré ; ce n'est pas un projet ni une étape de la séquence `01–19`.

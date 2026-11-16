@@ -122,42 +122,46 @@ OrderService --PUBLISH--> [Queue: order.created] <--CONSUME-- NotificationServic
                            <--CONSUME-- InventoryService
 ```
 
-Avantage : découplage total dans le temps. NotificationService peut être down : le message attend.
-Inconvénient : plus complexe, résultat non immédiat, debugging plus difficile.
+En pub/sub, un événement est distribué à chaque abonnement : NotificationService et InventoryService reçoivent chacun leur copie logique. Dans une queue de competing consumers, un message est au contraire remis à un seul consommateur du groupe.
+
+Cette simulation en mémoire illustre le fan-out mais ne garantit ni persistance, ni reprise après crash, ni livraison au moins une fois. Un broker réel doit définir ces garanties, les acknowledgements, les retries et l'idempotence.
 
 ```js
-// Simuler une message queue simple en JS (sans Redis ni RabbitMQ pour l'exemple)
-class MessageQueue {
-  #queues = new Map(); // Map des channels avec leurs messages en attente
+// Bus pub/sub en mémoire : chaque abonné reçoit sa propre copie de l'événement.
+// Ce code illustre le fan-out ; il ne fournit ni persistance ni livraison garantie.
+class InMemoryEventBus {
+  #subscribers = new Map();
 
-  // Publier un message dans une queue
-  publish(queueName, message) {
-    if (!this.#queues.has(queueName)) {
-      this.#queues.set(queueName, []);
-    }
-    this.#queues.get(queueName).push(message); // le message attend en queue
+  subscribe(topic, consumerName) {
+    if (!this.#subscribers.has(topic)) this.#subscribers.set(topic, new Map());
+    const queues = this.#subscribers.get(topic);
+    if (!queues.has(consumerName)) queues.set(consumerName, []);
   }
 
-  // Consommer (lire et supprimer) le prochain message d'une queue
-  consume(queueName) {
-    return this.#queues.get(queueName)?.shift() ?? null; // shift() prend le premier élément
+  publish(topic, event) {
+    const queues = this.#subscribers.get(topic);
+    if (!queues || queues.size === 0)
+      throw new Error(`Aucun abonné pour ${topic}`);
+    for (const queue of queues.values()) queue.push(structuredClone(event));
+  }
+
+  consume(topic, consumerName) {
+    const queue = this.#subscribers.get(topic)?.get(consumerName);
+    if (!queue) throw new Error(`Abonné inconnu : ${consumerName}`);
+    return queue.shift() ?? null;
   }
 }
 
-const queue = new MessageQueue();
+const bus = new InMemoryEventBus();
+bus.subscribe("order.created", "NotificationService");
+bus.subscribe("order.created", "InventoryService");
 
-// OrderService publie l'event sans attendre de réponse
-queue.publish("mission.assigned", {
-  missionId: "MSN-007",
-  shinobiId: "S-001",
-  rank: "B",
-});
+// OrderService publie une fois ; les deux consommateurs reçoivent chacun l'événement.
+bus.publish("order.created", { orderId: "ORD-042", customerId: "C-007" });
 
-// NotificationService consomme indépendamment (peut être décalé dans le temps)
-const mission = queue.consume("mission.assigned");
-if (mission) {
-  console.log(`Notification : mission ${mission.missionId} assignée`);
-}
+const notificationEvent = bus.consume("order.created", "NotificationService");
+const inventoryEvent = bus.consume("order.created", "InventoryService");
+console.log(notificationEvent.orderId, inventoryEvent.orderId); // ORD-042 ORD-042
 ```
 
 ---

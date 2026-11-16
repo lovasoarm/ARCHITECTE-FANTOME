@@ -7,46 +7,49 @@ acte: comprendre
 
 Temps de lecture ~2 min
 
-Deux scripts pour t'entraîner à trouver une fuite mémoire réelle, pas théorique.
+Une seule fixture est fournie. Elle montre une closure qui conserve un `Buffer` parce qu'elle reste dans le tableau `listeners` après éviction de son entrée de Map. Ce tableau est un registre de callbacks ordinaire, pas un `EventEmitter` : la fixture illustre la famille « closure retenue » ; le vrai cas `.on()` sans retrait doit être construit séparément. Les quatre autres familles du projet sont à construire dans `../src/` ; elles ne sont pas cachées dans ce fichier.
 
 ## Ce que tu as
 
-- `leaky.js` : script instrumenté qui log `rss / heap / cache size / listeners count`
- toutes les secondes. Il contient AU MOINS UNE fuite. Peut-être deux.
+- `00_leaky.js` : script instrumenté qui affiche `rss / heapUsed / external / arrayBuffers / cache size / listeners count` à chaque tick nominal d'environ une seconde. Il contient volontairement une rétention. Son exécution s'arrête automatiquement après 20 ticks (environ 20 secondes) et alloue au maximum 20 buffers de 1 Mio (20 MiB de payload), afin de limiter l'impact sur ta machine.
 
 ## Ta mission (3 étapes, dans l'ordre)
 
-### Étape 1 : Observer sans code (5 min)
+### Étape 1 : Observer sans modifier le code
+
+Depuis ce dossier, lance la commande facultative :
 
 ```bash
-node --expose-gc leaky.js
+node --expose-gc --inspect 00_leaky.js
 ```
 
-Laisse tourner 60 secondes. Note dans `LEAK_REPORT.md` :
-- courbe `rss` en 6 points (t=10, 20, 30, 40, 50, 60s),
-- courbe `cache` sur les mêmes points,
-- courbe `listeners` sur les mêmes points.
+Le script s'arrête seul après 20 secondes. Tu peux l'interrompre avant avec `Ctrl+C`. N'augmente pas `MAX_TICKS`, `BUFFER_BYTES` ou le nombre d'allocations. Note les mesures aux ticks 5, 10, 15 et 20 dans un rapport :
 
-Question : laquelle des trois croît **linéairement sans borne** ?
+- `rss`, `heapUsed`, `external` et `arrayBuffers` ;
+- taille de la Map ;
+- nombre de listeners conservés.
 
-### Étape 2 : Snapshot chirurgical (15 min)
+Question : la taille de la Map reste-t-elle bornée alors que le nombre de listeners augmente ? Quelle référence garde les buffers accessibles ?
 
-Suis le protocole de `02-CONSTRUCTION/05-MEMORY-PERFORMANCE/01_gc/06-heap_snapshot_hands_on.md`.
-Snapshots à t=10s et t=60s. Compare. Le top 3 delta est ta liste de suspects. Note-la.
+### Étape 2 : Snapshot chirurgical
 
-### Étape 3 : Fix + preuve (15 min)
+Suis le protocole de `02-CONSTRUCTION/05-MEMORY-PERFORMANCE/01_gc/06-heap_snapshot_hands_on.md`. Prends un snapshot pendant la période bornée, par exemple vers le tick 5 puis vers le tick 20, avec le même environnement et la même méthode. Compare les chemins de rétention. Un snapshot isolé ou un chiffre RSS isolé ne suffit pas à conclure.
 
-Écris `fixed.js` en ne touchant qu'aux lignes strictement nécessaires. Relance,
-compare `rss` à t=60s entre `leaky.js` et `fixed.js`. Consigne le delta dans
-`LEAK_REPORT.md`. Si le delta est < 50 MB → succès. Sinon → il te reste une fuite.
+### Étape 3 : Fix + preuve
 
-## Livrable final
+Dans ta copie de travail, crée une version corrigée sous `src/` ou dans ton dépôt d'exercice. Retire la closure de `listeners` lorsque l'entrée correspondante est évincée, ou remplace le mécanisme par un cycle de vie qui libère explicitement cette référence ; compare ensuite les mêmes indicateurs avec le même protocole. Vérifie aussi que l'éviction et les autres comportements fonctionnels restent corrects.
 
-`LEAK_REPORT.md` avec :
-- 3 courbes ASCII observées,
-- top 3 retainers avec chemin complet,
-- diff `leaky.js → fixed.js`,
-- courbe `rss` finale prouvant le fix.
+## Livrable de cette fixture
+
+Ajoute ce cas comme l'un de tes cinq rapports, avec :
+
+- les mesures aux quatre ticks ;
+- le chemin de rétention identifié ;
+- le diff de correction ;
+- les contrôles fonctionnels après correction ;
+- les limites de la mesure.
+
+Le seuil RSS `< 50 MB` n'est pas un critère universel : conclus à partir du chemin de rétention, des références conservées, des mesures comparables et de leurs limites.
 
 ## Contenu du dossier
 

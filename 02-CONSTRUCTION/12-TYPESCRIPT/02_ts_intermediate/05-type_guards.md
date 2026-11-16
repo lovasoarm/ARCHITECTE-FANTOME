@@ -276,6 +276,7 @@ function isTrackData(value: unknown): value is TrackData {
     typeof v.title === "string" &&
     typeof v.artist === "string" &&
     typeof v.duration === "number" &&
+    Number.isFinite(v.duration) &&
     v.duration >= 0
   );
 }

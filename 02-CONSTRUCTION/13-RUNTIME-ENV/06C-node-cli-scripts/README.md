@@ -6,15 +6,15 @@ review_interval: 6 mois
 freshness_status: "not_verified"
 source_verified_on: null
 source_type: "internal"
-canonical_resource: "02-CONSTRUCTION/13-RUNTIME-ENV/06_node_cli_scripts/02-cli_basics.md"
+canonical_resource: "02-CONSTRUCTION/13-RUNTIME-ENV/06C-node-cli-scripts/02-cli_basics.md"
 source_url: null
-source_scope: "Notion et parcours internes reliés à 02-CONSTRUCTION/13-RUNTIME-ENV/06_node_cli_scripts/02-cli_basics.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+source_scope: "Notion et parcours internes reliés à 02-CONSTRUCTION/13-RUNTIME-ENV/06C-node-cli-scripts/02-cli_basics.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
 provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
 # NODE CLI SCRIPTS
 
-> Sommaire de `02-CONSTRUCTION/13-RUNTIME-ENV/06_node_cli_scripts`.
+> Sommaire de `02-CONSTRUCTION/13-RUNTIME-ENV/06C-node-cli-scripts`.
 
 ## Contenu du dossier
 

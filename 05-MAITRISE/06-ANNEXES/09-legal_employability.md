@@ -49,52 +49,53 @@ Tu vas signer des contrats. Certains te feront perdre la propriété de TON code
 
 Un contrat mal lu est plus dangereux qu'un bug en prod. Le bug tu le fixes ; le contrat te suit 5 ans.
 
-<!-- AF-DIAGRAM:portfolio -->
+<!-- AF-DIAGRAM:contract_review -->
 
-## Repère visuel utile : Dossier de preuve examinable
+## Repère visuel : revue de contrat de travail ou de prestation
 
 ```text
-problème -> rôle -> artefact
-                   |
-                   v
-             commande reproductible
-                   |
-                   v
-             résultat + limites
-                   |
-                   v
-             revue / objection
-                   |
-                   v
-             preuve renforcée ou claim retiré
+document + version + juridiction
+              |
+              v
+      clauses et annexes
+              |
+              v
+rémunération / durée / préavis / IP / confidentialité
+              |
+              v
+obligations + risques + questions ouvertes
+              |
+              v
+avis compétent si nécessaire
+              |
+              v
+décision éclairée et trace écrite
 ```
 
-<!-- AF-LESSON-PROFILE: portfolio -->
+<!-- AF-LESSON-PROFILE: contract -->
 
 ## Repères de décision
 
-- **Pourquoi :** Un portfolio crédible relie compétence, artefact, décision et résultat sans transformer une simulation en expérience réelle.
-- **Quand l’utiliser / quand l’éviter :** Utilise-le pour montrer ton travail à un reviewer, entretien ou équipe. Mets en avant une preuve profonde plutôt qu'une collection de technologies.
-- **Limites :** Un portfolio personnel ne démontre pas à lui seul influence organisationnelle ou impact production. Respecte confidentialité, licences et données non publiques.
+- **Pourquoi :** Comprendre un contrat permet d'identifier les engagements, les droits cédés, les restrictions et les points à clarifier avant de s'engager.
+- **Quand l’utiliser / quand l’éviter :** Utilise cette grille pour préparer une lecture structurée d'une offre, d'un contrat de travail ou de prestation. Ne signe pas et ne conclus pas sur une clause complexe sur la seule base de cette annexe.
+- **Limites :** Les règles dépendent de la juridiction, du statut et du texte complet ; ce support n'est pas un conseil juridique. Fais vérifier les points à enjeu par une personne compétente.
 
 ## Mécanisme : la version sans magie
 
-Présente le problème, ton rôle, les contraintes, les choix, le code/tests, la mesure, les limites et ce qui a changé après feedback.
+Identifie la juridiction et le statut, repère les clauses qui créent droits ou obligations, vérifie les termes ambigus, note les risques et prépare des questions factuelles à poser avant signature.
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Juridique & employabilité : ce qu'on t'a pas dit** se rattache à ce cas concret : Les tranches Kintana peuvent servir de cas d'étude LAB ; les contributions externes ou travaux en entreprise doivent être séparés et attestés selon les faits.
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Juridique & employabilité : ce qu'on t'a pas dit** s'applique à une proposition d'emploi ou de prestation pour un rôle d'ingénierie : tu dois distinguer les promesses orales, les clauses écrites, la propriété intellectuelle, la confidentialité, la durée, la rémunération et les conditions de départ.
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Dossier de preuve examinable
+## Mission utile : Kintana : préparer la revue d'une offre ou d'un contrat
 
-> **Arc Arène Staff :** ton portfolio n'est pas une vitrine de captures. C'est un dossier que quelqu'un peut examiner, contredire et reproduire.
+**Mission liée à « Juridique & employabilité » :** utilise un exemple anonymisé ou un contrat fictif d'emploi/prestation. Repère les parties, la juridiction indiquée, le statut, la rémunération et ses modalités, la durée, la période d'essai, le préavis, les clauses de confidentialité et propriété intellectuelle, les restrictions post-contractuelles et les modalités de fin. Si le document ne fournit pas une information, inscris `ABSENT` au lieu de la supposer.
 
-**Mission liée à « Juridique & employabilité : ce qu'on t'a pas dit » :** Transforme une tranche Kintana en dossier de portfolio. Donne accès au commit, aux commandes reproductibles, aux tests, à l'ADR et aux limites. Fais une revue par un pair si possible ; sinon note `EXTERNAL_REVIEW: NOT RUN`.
+**Livrable :** `CONTRACT-REVIEW.md` avec les clauses, leur effet pratique en langage simple, les questions à poser, les risques/doutes, les sources publiques de la juridiction si elles sont mobilisées et les points nécessitant une revue juridique.
 
-**Livrable :** une étude de cas courte, liens d'artefacts, résultat de tests, décisions et registre des limites.
+**Critères d’acceptation :** chaque observation renvoie à une clause ; faits et interprétations sont séparés ; la juridiction n'est pas devinée ; aucun conseil définitif n'est donné sur un point incertain ; les informations personnelles sont anonymisées.
 
-**Critères d’acceptation :** ton rôle est précis ; les faits sont datés ; les résultats LAB/PILOT/PRODUCTION sont séparés ; les chiffres sont reproductibles ; aucune contribution d'équipe n'est revendiquée comme individuelle.
-
-**Transfert obligatoire :** Un reviewer conteste une mesure ou un choix. Ajoute la preuve qui manque ou retire la revendication au lieu de défendre un chiffre fragile.
+**Transfert obligatoire :** compare l'offre à une autre modalité (salariat/prestation ou autre juridiction) et liste les différences à faire vérifier avant toute décision.

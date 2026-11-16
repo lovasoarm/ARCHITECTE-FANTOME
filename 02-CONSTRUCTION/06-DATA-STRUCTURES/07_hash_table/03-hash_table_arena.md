@@ -86,8 +86,7 @@ Application : les scores de deux joueurs du Ballon d'Or qui totalisent exactemen
 
 ```js
 const scores = [45, 89, 32, 55, 67, 78, 11];
-twoSum(scores, 100); // --> [1, 5] : scores[1]=89 + scores[5]=78 != 100
-// --> [0, 3] : 45 + 55 = 100 : les deux joueurs
+twoSum(scores, 100); // --> [0, 3] : scores[0]=45 + scores[3]=55 = 100
 ```
 
 ---
@@ -212,7 +211,12 @@ Trouver la séquence de nombres consécutifs la plus longue dans un tableau non 
 
 ```js
 function longestConsecutive(nums) {
-  const numSet = new Set(nums); // O(1) lookup
+  if (!Array.isArray(nums)) throw new TypeError("nums doit être un tableau");
+  if (!nums.every(Number.isSafeInteger)) {
+    throw new TypeError("nums doit contenir uniquement des entiers sûrs");
+  }
+
+  const numSet = new Set(nums); // recherche attendue en O(1) en moyenne
   let longest = 0;
 
   for (const num of numSet) {
@@ -240,7 +244,7 @@ const jerseys = [100, 4, 200, 1, 3, 2];
 longestConsecutive(jerseys); // 4 : la séquence [1, 2, 3, 4]
 ```
 
-Le trick : en utilisant un Set, chaque nombre n'est visité qu'une ou deux fois au total. Malgré la double boucle apparente, la complexité reste O(n).
+Le principe : une séquence ne démarre que lorsque son prédécesseur est absent ; chaque valeur appartient donc à une seule extension de séquence. Le temps attendu est O(n) avec les coûts moyens usuels de `Set`. Le contrat impose ici des entiers sûrs : `Infinity`, les décimaux et les entiers hors plage sûre ne représentent pas correctement des pas de +1 et peuvent fausser ou bloquer l'extension.
 
 ---
 
@@ -251,19 +255,23 @@ En JS, on utilise souvent un objet ordinaire comme hash table. C'est pratique ma
 ```js
 // avec objet ordinaire
 const map = {};
-map["constructor"] = "override"; // écrase Object.prototype.constructor
-map["__proto__"] = "danger"; // pollution du prototype possible
+map["constructor"] = "override"; // crée une propriété propre qui masque celle héritée
+map["__proto__"] = { admin: true }; // modifie le prototype de CET objet via le setter historique
 
 // avec Map
 const safeMap = new Map();
-safeMap.set("constructor", "override"); // aucun risque : Map ne touche pas au prototype
-safeMap.set("__proto__", "safe");
+safeMap.set("constructor", "override"); // stocke la clé sans toucher au prototype
+safeMap.set("__proto__", "safe"); // stocke aussi cette chaîne comme une clé ordinaire
+
+Object.hasOwn(map, "constructor"); // true : propriété propre
+Object.getPrototypeOf(map).admin; // true : le prototype de map a été remplacé
+Object.getPrototypeOf(safeMap) === Map.prototype; // true : la clé n'a pas changé le prototype de Map
 ```
 
 Règle simple :
 
-- objet `{}` : uniquement si les clés sont des strings prévisibles et pas des entrées utilisateur
-- `Map` : dès que les clés viennent de l'extérieur ou peuvent contenir des noms réservés
+- un objet ordinaire hérite de propriétés comme `constructor` et possède un setter historique `__proto__` ; une affectation peut masquer une propriété héritée ou changer le prototype de cet objet, sans pour autant modifier automatiquement `Object.prototype` pour toute l'application ;
+- pour des clés dynamiques ou fournies par l'extérieur, préfère `Map` ; si tu as besoin d'un dictionnaire objet, `Object.create(null)` supprime la chaîne de prototypes, mais il faut tout de même valider les valeurs et les opérations de fusion.
 
 Voir `20_security` pour prototype pollution en détail.
 
@@ -281,9 +289,9 @@ Variante de Two Sum. Dans le tableau de scores d'un tournoi de foot :
 const scores = [-4, -1, -1, 0, 1, 2];
 ```
 
-Trouve tous les triplets uniques dont la somme vaut 0. Résultat attendu : `[[-4, 2, 2], [-1, -1, 2], [-1, 0, 1]]` (exemple fictif selon les valeurs).
+Trouve tous les triplets uniques dont la somme vaut 0. Résultat attendu : `[[-1, -1, 2], [-1, 0, 1]]`. Le triplet `[-4, 2, 2]` est impossible, car le tableau ne contient qu'une seule valeur `2`.
 
-(Contrainte : O(n²) est acceptable ici : two pointers + hash pour les doublons. Pas de triplets dupliqués dans le résultat)
+(Contrainte : O(n²) est acceptable ici. Trie d'abord une copie du tableau, puis utilise deux pointeurs et saute les valeurs déjà traitées pour éviter les doublons.)
 
 ---
 
@@ -291,11 +299,12 @@ Trouve tous les triplets uniques dont la somme vaut 0. Résultat attendu : `[[-4
 
 _~15 min_
 
-Un utilisateur de Trapsoul Radio veut la plus longue sous-séquence de chansons sans artiste répété.
+Un utilisateur de Trapsoul Radio veut le plus long segment **contigu** de chansons sans artiste répété. Avec une fenêtre glissante, on ne saute pas un élément pour prolonger le segment.
 
 ```js
 const queue = ["SZA", "Bryson", "SZA", "H.E.R.", "Daniel", "Bryson", "SZA"];
-// résultat attendu : 4 (sous-séquence "Bryson, SZA, H.E.R., Daniel"... ajuste selon la logique)
+// longueur maximale : 4 ; un segment valide est ["Bryson", "SZA", "H.E.R.", "Daniel"]
+// Un autre segment de longueur 4 peut être retourné si la règle de départage diffère.
 ```
 
 Implémente `longestUniqueArtistRun(queue)` avec sliding window + Map. Retourne la longueur maximale et la sous-séquence correspondante.

@@ -117,7 +117,7 @@ Résolution     dynamique        statique
 Chargement     synchrone        asynchrone possible
 __dirname      disponible       à reconstruire
 __filename     disponible       à reconstruire
-import() dynamic  non natif        natif
+import() dynamic  natif (Promise)   natif (Promise)
 Tree shaking    impossible       natif
 Extension fichier  .js ou .cjs      .js (avec type:module) ou .mjs
 ```
@@ -167,12 +167,18 @@ Extension  type:module absent  type:module présent
 ## 5) LES ERREURS QUI CASSENT TOUT
 
 ```js
-// ---- erreur 1 : CJS importe un package ESM-only ----
-// certains packages modernes (chalk v5, node-fetch v3...) sont ESM-only
-// ils n'exportent plus de version CJS
+// ---- cas 1 : require() vers un module ESM synchrone ----
+// Avec Node.js 22.23.4, require() peut charger un module ESM dont le graphe
+// ne dépend pas d'un top-level await. Ce n'est plus automatiquement ERR_REQUIRE_ESM.
+const chalkModule = require("chalk");
+```
 
-const chalk = require("chalk"); // ERR_REQUIRE_ESM
-// solution : migrer ton projet vers ESM, ou utiliser une version plus ancienne
+```js
+// ---- cas 2 : module ESM asynchrone (top-level await) ----
+// Un graphe ESM qui exige une évaluation asynchrone ne peut pas être chargé
+// synchroniquement par require() : Node peut signaler ERR_REQUIRE_ASYNC_MODULE.
+// Dans ce cas, utilise import() et attends sa Promise.
+const chalkAsync = await import("chalk");
 
 // ---- erreur 2 : ESM importe CJS sans default ----
 // les modules CJS s'importent différemment en ESM
@@ -183,11 +189,19 @@ import cjsModule from "some-cjs-package"; // default import
 const { specific } = cjsModule; // destructuration après
 
 // ---- erreur 3 : dynamic import dans le mauvais sens ----
-// en ESM, on peut importer du CJS dynamiquement
+// En ESM, le top-level await permet d'attendre import().
 const { default: module } = await import("./legacy-module.cjs");
 
-// en CJS, on ne peut pas faire d'await au top level
-// donc pas d'import() sans être dans une fonction async
+// En CommonJS, import() existe aussi et retourne une Promise.
+// Sans top-level await CJS, utilise .then() ou une fonction async.
+import("./legacy-module.cjs").then(({ default: legacy }) => {
+  console.log("Module chargé :", typeof legacy);
+});
+
+async function loadLegacyFromCommonJS() {
+  const { default: legacy } = await import("./legacy-module.cjs");
+  return legacy;
+}
 ```
 
 ---

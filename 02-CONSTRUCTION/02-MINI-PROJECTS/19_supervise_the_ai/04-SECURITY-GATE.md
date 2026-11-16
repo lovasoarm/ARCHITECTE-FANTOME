@@ -7,24 +7,26 @@ gate: bloquante
 
 # Security Gate : 19_supervise_the_ai
 
-> **Gate bloquante**. Ce mini-projet ne peut etre marque **publie** tant
-> que la checklist OWASP Top 10 ci-dessous n'est pas remplie **et signee**.
-> **Rejouer avant POSTMORTEM**.
+> **Gate bloquante locale au projet.** La validation porte sur les surfaces et risques réellement présents dans ce mini-projet. OWASP est un référentiel de classification, pas une liste de dix tests à exécuter mécaniquement.
 
-## Procedure
+## Procédure
 
-1. Copie `../97-templates/05-SECURITY-GATE.md` dans ce dossier
-   sous le nom `SECURITY_GATE_FILLED.md`.
-2. Renseigne **chaque** item A01 -> A10 avec une **preuve** (ADR, prompt,
-   review, test, log). `N/A` n'est autorise qu'avec une phrase de
-   motivation.
-3. Signe (`nom : date`) en fin de fichier.
-4. Ajoute le lien vers `SECURITY_GATE_FILLED.md` dans `README.md`,
-   section **Publication**.
+1. Lis le périmètre réel dans le README, le cahier des charges et les règles du projet ; identifie les données, entrées, acteurs, frontières de confiance et dépendances réellement présents.
+2. Copie le modèle commun [`../97-templates/05-SECURITY-GATE.md`](../97-templates/05-SECURITY-GATE.md) dans ce dossier sous le nom `SECURITY_GATE_FILLED.md`.
+3. Dans ce registre, ajoute une ligne pour chaque risque pertinent du projet, avec le contrôle, la preuve attendue et l'un des statuts `PASSÉ`, `ÉCHOUÉ`, `NON TESTÉ` ou `NON APPLICABLE`. Toute exclusion doit être motivée. Ne remplis pas artificiellement les dix catégories OWASP.
+4. Complète aussi le document final `SECURITY.md` du dépôt apprenant, copié depuis le modèle AF `03-SECURITY.md`. `SECURITY_GATE_FILLED.md` consigne la gate ; `SECURITY.md` contient l'analyse de sécurité du projet.
+5. Signe (`nom : date`) et ajoute le lien vers `SECURITY_GATE_FILLED.md` dans le README du projet, section **Publication**.
+6. Rejoue les contrôles applicables après toute modification du code ou du contrat. Une commande non exécutée reste `NON TESTÉ`.
 
-## Regle de blocage
+## Règle de blocage
 
-- Un item sans preuve **ni** motivation -> gate **echouee**, projet
+- Un item sans preuve **ni** motivation → gate **échouée**, projet
   **non publiable**.
-- La supervision n'exempte pas : si l'IA a genere du code sans qu'un
-  ADR couvre la deps utilisee, la gate echoue meme si le code compile.
+
+**Condition additionnelle propre à ce projet :** si du code généré par l’IA utilise une dépendance sans qu’une décision ADR couvre cette dépendance et ses risques, la gate est `ÉCHOUÉE`, même si le code compile. La compilation ne démontre pas la maîtrise de la dépendance.
+
+## Statuts et décision globale
+
+Statuts de ligne autorisés : `PASSÉ` (contrôle exécuté avec preuve suffisante), `ÉCHOUÉ` (contrôle exécuté, résultat insuffisant), `NON TESTÉ` (contrôle applicable non vérifié) et `NON APPLICABLE` (hors périmètre, justification obligatoire).
+
+Décision globale : `ÉCHOUÉE` dès qu'au moins un contrôle applicable est `ÉCHOUÉ` ; `À FAIRE` si aucun contrôle applicable n'a échoué mais qu'au moins un reste `NON TESTÉ` ; `PASSÉE` uniquement lorsque tous les contrôles applicables sont `PASSÉ` et que chaque exclusion `NON APPLICABLE` est justifiée. Une case cochée, un champ rempli ou une commande prévue mais non exécutée ne constitue pas une preuve.

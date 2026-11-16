@@ -16,7 +16,8 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~7 min
 
-> **Prérequis :** termine [`01-function_essentials.md`](01-function_essentials.md) et le module [Data Basics](../FOUNDATIONS/02_DATA_BASICS/README.md). Cette leçon traite des fonctions comme valeurs ; elle n'est pas l'introduction aux paramètres et à `return`.
+> **Prérequis :** termine [`01-function_essentials.md`](01-function_essentials.md) et le module [Data Basics](../FOUNDATIONS/02_DATA_BASICS/README.md). Cette leçon traite des fonctions comme valeurs ; elle n'est pas l'introduction aux paramètres et à `return`. Le passage par Types est un ordre pédagogique de la route Fundamentals, pas une dépendance syntaxique supplémentaire de chaque exemple.
+> **Position dans la route :** lis aussi le module [Types](../04_types/README.md) avant cette leçon, comme l’indique l’étape 6 du README Fundamentals. Le mécanisme des fonctions comme valeurs reste expliqué ici ; cet ordre évite de mélanger les étapes du parcours.
 
 Arrête de croire qu'une fonction = juste du code.
 

@@ -98,15 +98,20 @@ C'est ultra rapide à servir : le CDN balance un fichier statique, point. Le pi�
 ISR (Incremental Static Regeneration : régénération statique incrémentale) prend le meilleur des deux : du statique ultra rapide, mais qui se régénère automatiquement après un délai, sans tout rebuilder.
 
 ```js
-// Exemple conceptuel (style Next.js)
-export async function getStaticProps() {
-  const ninja = await getNinjaById("naruto-007");
+// Exemple conceptuel pour Next.js App Router (app/ninjas/[id]/page.js).
+// Le segment met en cache ce fetch puis autorise une revalidation après 60 s.
+export default async function NinjaPage() {
+  const response = await fetch("https://api.example.test/ninjas/naruto-007", {
+    next: { revalidate: 60 },
+  });
+  if (!response.ok) throw new Error(`API ninja : HTTP ${response.status}`);
+  const ninja = await response.json();
 
-  return {
-    props: { ninja },
-    revalidate: 60, // (après 60 secondes, la prochaine requête déclenche une régénération en arrière-plan)
-  };
+  return <NinjaProfile ninja={ninja} />;
 }
+
+// `getStaticProps` appartient au Pages Router ; l'App Router utilise ici
+// les Server Components et les options de cache/revalidation de `fetch`.
 ```
 
 ```text

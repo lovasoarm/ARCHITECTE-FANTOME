@@ -12,9 +12,15 @@ source_scope: "Notion et parcours internes reliés à 00-SOCLE/04-FUNDAMENTALS/0
 provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
+> **Repère de navigation :** les fichiers `40` à `46` servent à la première passe native ; les `50` à `55` sont des extensions React/Next.js différées. Le numéro ne correspond pas à ton niveau : le tableau ci-dessous donne l’ordre à suivre. Par exemple, `07-template_portals.md` est la quatrième leçon de cette route, pas la septième séance.
+
 # WEB BASICS
 
 > Sommaire de `00-SOCLE/04-FUNDAMENTALS/05_web_basics`.
+
+## Quand commencer ce dossier
+
+C'est l'étape 10 de la route canonique : ouvre-le après Types, les fonctions avancées, Scope, le Passage B de Variables et Function factory. Tu n'as pas besoin de React ou Next.js pour cette étape.
 
 ## Première passe : JavaScript et navigateur natifs
 

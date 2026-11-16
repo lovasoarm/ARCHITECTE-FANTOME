@@ -54,7 +54,7 @@ Le buffer d'alertes en attente doit être un état immuable à chaque étape : p
 Le dispatch de chaque alerte doit être asynchrone : un Chevalier met un délai variable à répondre (entre 200ms et 2s, simulé avec `setTimeout` dans une Promise). Plusieurs alertes peuvent être dispatchées en parallèle, mais le système doit pouvoir dire "tout est traité" seulement quand TOUTES les réponses sont arrivées, qu'elles aient réussi ou échoué.
 (indice : une seule méthode de `Promise` permet ça sans qu'un seul échec fasse tout planter)
 
-**Du module `01-CADRAGE/03-DEBUGGING` (error handling) :**
+**Du module `01-CADRAGE/04-ERROR-HANDLING` (gestion des erreurs) :**
 Trois scénarios d'erreur doivent être gérés distinctement, pas avec un seul `catch` générique :
 
 - Un Chevalier ne répond pas dans les 3 secondes (timeout)

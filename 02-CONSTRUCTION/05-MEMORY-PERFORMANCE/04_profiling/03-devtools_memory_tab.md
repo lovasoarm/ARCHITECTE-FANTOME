@@ -42,7 +42,7 @@ Léger. Bon pour prod-like. Te dit **quelle fonction** alloue le plus.
 3. Snapshot B.
 4. Fais l'action 10 fois.
 5. Snapshot C.
-6. Compare B→C. Si delta > 0 régulier → fuite.
+6. Compare B→C après plusieurs répétitions du même scénario. Un delta positif régulier est un **signal**, pas une preuve : vérifie le nombre d'objets encore retenus, les chemins de rétention et si la croissance cesse quand les caches/pools atteignent leur taille prévue.
 
 ## Piège
 

@@ -17,12 +17,19 @@ Temps de lecture ~2 min
 Règles minimales de release. Un projet qui échoue une de ces règles est marqué
 INCOMPLET par un critere binaire ecrit dans ton `02-TDD-JOURNAL.md`.
 
-## ADR_MINIMUM
+## ADR_MINIMUM : 2 décision(s) indépendantes
 
-Nombre minimum d'ADR à livrer dans `ADR/` : **4**
+Nombre minimum de décisions architecturales documentées dans `ADR/` : **2**.
 
-Un ADR unique ("choix d'architecture") ne suffit pas. Décisions latérales attendues :
-données, frontières de module, stratégie de tests, choix async, sécurité, observabilité.
+Les décisions obligatoires à couvrir sont :
+
+1. Choix du langage cible.
+2. Comparaison des modèles, conventions et conséquences du portage.
+
+Un ADR doit contenir contexte, contraintes, options crédibles, décision, conséquences, risques résiduels et signal de révision. Ne multiplie pas les fichiers pour une même décision ; un ADR supplémentaire n'est justifié que par une décision indépendante qui change une frontière, un contrat, un attribut de qualité, un risque ou un arbitrage structurant. Une correction éditoriale ou un changement mineur ne crée pas automatiquement un ADR.
+
+Les ADR de contexte fournis par AF ne sont pas automatiquement des preuves personnelles : l'apprenant doit vérifier, adopter ou réviser chaque décision et laisser une trace de son propre raisonnement.
+
 Template canonique : `../97-templates/03-ADR_TEMPLATE.md`.
 
 ## SPEC_DRIFT_MODE
@@ -35,14 +42,14 @@ Si activé, `08-POSTMORTEM.md` doit contenir la section `## Comment j'ai encaiss
 
 ## Security Gate
 
-Bloc obligatoire (drill `node learner-verifier.js` (auto-verif ecrite par toi)) :
+Bloc obligatoire : consigne une grille de vérification locale dans `SECURITY.md` et apporte une preuve par contrôle. Aucun script `learner-verifier.js` n’est fourni ou supposé.
 
 - **Entrées validées** : chaque entrée externe passe par un schéma explicite (Zod, manuel documenté).
-- **Secrets hors code** : jamais commités ; lus depuis env, documentés dans `SECURITY.md`.
+- **Secrets hors code** : jamais commités ; lus depuis env, documentés dans le document final `SECURITY.md` (produit depuis le modèle `03-SECURITY.md`).
 - **Dépendances scannées** : `npm audit` (ou équivalent), snapshot copié dans `SECURITY.md`.
 - **Surface d'exposition** : listée dans `SECURITY.md` (ports, endpoints, fichiers lus/écrits).
 
-Absence de `SECURITY.md` = release refusée.
+Absence de `SECURITY.md` final complété = release refusée. `03-SECURITY.md` reste le modèle AF ; ne maintiens pas deux versions complétées.
 
 ## TDD JOURNAL
 

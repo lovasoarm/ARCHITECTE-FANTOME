@@ -95,7 +95,7 @@ Le GC libère la mémoire des objets **inaccessibles** depuis les racines (varia
 
 C'est pour ça qu'une closure qui capture une grosse variable est un piège : tant que la closure vit, la variable vit.
 
-## 5. DRILL DE VÉRIFICATION AVANT DE PASSER À 08
+## 5. DRILL DE VÉRIFICATION AVANT D’OUVRIR MEMORY & PERFORMANCE
 
 Trois questions. Réponds en 30 secondes chacune, sans regarder :
 
@@ -103,7 +103,7 @@ Trois questions. Réponds en 30 secondes chacune, sans regarder :
 2. Quand tu écris `let a = { x: 1 }; let b = a; b.x = 2`, que vaut `a.x` ? Pourquoi ?
 3. Une closure qui capture un tableau de 10 000 entrées vit tant que quoi vit ?
 
-Si les 3 réponses coulent (8 octets ; 2 car même référence ; tant que la closure elle-même est référencée), tu peux ouvrir `02-CONSTRUCTION/05-MEMORY-PERFORMANCE/`. Sinon, relis ce fichier.
+Si les 3 réponses coulent (8 octets ; 2 car même référence ; tant que la closure elle-même est référencée), tu as le modèle mental requis pour ouvrir `02-CONSTRUCTION/05-MEMORY-PERFORMANCE/`. Sinon, relis ce fichier.
 
 ---
 
@@ -112,3 +112,15 @@ Si les 3 réponses coulent (8 octets ; 2 car même référence ; tant que la clo
 - Vient après : `02-CONSTRUCTION/04-MATH-BASICS/` complet (représentation numérique).
 - Prépare : `02-CONSTRUCTION/05-MEMORY-PERFORMANCE/01A-00-why-memory-performance.md`, puis `02-CONSTRUCTION/05-MEMORY-PERFORMANCE/01_gc/02-gc_basics.md`.
 - N'introduit pas d'API nouvelle. Uniquement le **modèle mental** que le reste du module `02-CONSTRUCTION/05-MEMORY-PERFORMANCE` utilisera.
+
+<!-- AF-TRANSFER-FIELD-1.1 -->
+
+## Transfert terrain : Kintana
+
+**Pourquoi ce transfert compte :** une notion que tu sais réciter mais que tu ne sais pas replacer dans un système est encore fragile.
+
+**Quand la réutiliser :** quand une contrainte du produit change (rôle, réseau, volume, concurrence, panne ou coût) et que tu dois déterminer ce qui reste invariant.
+
+**Limite :** ne transpose pas une syntaxe ou une solution sans vérifier ses hypothèses ; le même mécanisme peut avoir des garanties différentes selon le runtime et le stockage.
+
+**Mission courte :** applique le principe de cette page à un incrément de [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md) : Dans Kintana, choisis une opération réellement coûteuse, compare deux stratégies sur un jeu reproductible et mesure latence/mémoire avant de retenir une solution. Produis un petit test ou scénario de panne et note l'invariant conservé, l'hypothèse qui change et la limite observée. Cette mission complète le transfert ; elle ne remplace pas le projet évalué du module.

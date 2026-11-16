@@ -14,27 +14,26 @@ assessment_role: diagnostic_mastery
 
 # Garbage Collection : expliqué à 3 publics
 
-<!-- AF-DIAGRAM:event_loop -->
+<!-- AF-DIAGRAM:gc-responsiveness -->
 
 ```text
-┌──────────────┐
-│ Call Stack   │
-└──────┬───────┘
-       │ libère
-       ▼
-┌──────────────┐
-│ Microtasks   │
-└──────┬───────┘
-       │ vide
-       ▼
-┌──────────────┐
-│ Tasks/Timers │
-└──────┬───────┘
-       │
-       └──────────────► Call Stack
+Entrées utilisateur en attente
+          │
+          ▼
+┌───────────────────────────┐
+│ Main thread occupé        │
+│ script + éventuelle pause │
+│ de GC stop-the-world      │
+└─────────────┬─────────────┘
+              │ reprend
+              ▼
+       traitement / rendu
+              │
+              ▼
+        feedback visible
 ```
 
-L’Event Loop reprend le travail lorsque la pile est libérée, en drainant d’abord les microtasks avant les tâches suivantes.
+Certaines phases de GC peuvent interrompre le thread principal ; d'autres travaux du collecteur sont incrémentaux ou concurrents selon le moteur et sa version. Une pause peut retarder le traitement d'une entrée et le rendu suivant, mais tout cycle GC ne bloque pas nécessairement le thread principal.
 
 <!-- AF-DIAGRAM:gc -->
 
@@ -66,15 +65,15 @@ Imagine ta chambre pleine de jouets. Certains, tu joues avec toutes les semaines
 
 Le GC de V8 est **generational** + **mark-and-sweep** + **incremental**. Concrètement :
 
-- **New Space** (Scavenger) : objets fraîchement créés, GC toutes les 1-2 ms, très rapide.
-- **Old Space** (Major GC) : objets qui ont survécu 2 cycles, GC plus lourd (10-100 ms), incrémental pour ne pas geler la main thread.
+- **Young generation / New Space** : zone où commencent de nombreux objets récents ; les collectes mineures sont déclenchées selon la pression d'allocation et les heuristiques du runtime, pas selon une horloge fixe.
+- **Old generation / Old Space** : des objets peuvent y être promus selon des critères d'âge, de survie et de pression mémoire. Les cycles majeurs peuvent être plus coûteux ; leur durée et leur stratégie (incrémentale, concurrente ou pause) dépendent du moteur, de la version et de la charge.
 - **Racines** : globals, stack, closures actives. Tout objet joignable depuis une racine survit.
-- **Fuite typique** : `Map` ou array global qui accumule, closure sur DOM détaché, listener non détaché.
-- `WeakMap` / `WeakRef` : références qui **n'empêchent pas** la collecte.
+- **Fuite typique** : `Map` ou tableau global qui accumule, closure retenant une donnée inutile, listener non détaché.
+- `WeakMap` / `WeakRef` : références faibles ; elles ne forcent pas la collecte, qui dépend toujours de l'absence de références fortes.
 
 ## À UN CTO
 
-Le GC est invisible tant que la mémoire est saine. Il devient une catastrophe business quand : (1) GC pauses > 200 ms bloquent le event loop et cassent le SLO latence, (2) fuite lente (100 Ko/heure) fait OOM au bout de 3 semaines : donc en pleine prod, jamais reproductible en staging. Signal d'embauche mid/senior : sait poser `process.memoryUsage()` + heap snapshot et lire la différence. Junior : croit que "JS a un GC donc pas de souci mémoire".
+Le GC devient un sujet business quand ses pauses mesurées dégradent la latence ou quand une rétention inutile consomme la marge mémoire. Exemple chiffré, sous hypothèses explicites : 100 KiB/heure pendant 21 jours (504 h) représente environ 49,2 MiB supplémentaires. Cela ne provoque un OOM que si la marge disponible est inférieure à cette croissance et si le rythme reste stable. Un scénario configuré avec une limite mémoire et une charge constante peut être reproduit en staging ; il faut documenter les paramètres, la version du runtime et les mesures au lieu d'affirmer que c'est impossible.
 
 ## PREUVE EXIGÉE
 

@@ -111,18 +111,26 @@ app.use((req, res, next) => {
   next(); // OBLIGATOIRE : sans next(), la requête reste bloquée ici
 });
 
-// middleware d'auth : vérifie le header Authorization
-app.use((req, res, next) => {
-  const token = req.headers.authorization;
+// Middleware illustratif : vérifie un vrai access token signé.
+// `verifyAccessToken` est défini dans auth/auth.service.js (leçon JWT).
+import { verifyAccessToken } from "./auth/auth.service.js";
 
-  if (!token) {
-    // on ne passe pas next() : la chaîne s'arrête ici
-    return res.status(401).json({ error: "token manquant" });
+app.use((req, res, next) => {
+  const authorization = req.get("Authorization") ?? "";
+  const match = /^Bearer ([^\s]+)$/.exec(authorization);
+
+  if (!match) {
+    return res
+      .status(401)
+      .json({ error: "Bearer token manquant ou mal formé" });
   }
 
-  // token présent : on attache l'info à req pour les handlers suivants
-  req.user = { id: "decoded-from-token" };
-  next();
+  try {
+    req.user = verifyAccessToken(match[1]); // vérifie signature, expiration, issuer et audience
+    next();
+  } catch {
+    return res.status(401).json({ error: "token invalide ou expiré" });
+  }
 });
 ```
 

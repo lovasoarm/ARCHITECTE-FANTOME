@@ -30,7 +30,7 @@ tu portes ici n'est pas la syntaxe JS mais ce qu'elle t'a servi à apprendre :
 chaque `99-PORTAGE-MENTAL.md` rencontré depuis `02-CONSTRUCTION` (event loop,
 structures de données, gestion mémoire, contrats d'API...) existait déjà pour
 prouver, module après module, que le concept survivait au changement de langage.
-Le [transfert hors écosystème](05A-transfert_hors_ecosysteme.md) de ce palier est
+Le [transfert hors écosystème](TRANSFERT-HORS-ECOSYSTEME.md) de ce palier est
 la version grandeur nature de cet exercice répété : un service entier, pas une
 notion isolée, réécrit dans un second langage et redéployé chez un second
 fournisseur. Si un des encarts de portage t'a semblé abstrait en le lisant la
@@ -59,10 +59,10 @@ Le dossier doit aussi contenir la boucle de maturation décisionnelle : une croy
 Le [dossier unique](02-dossier_unique.md) tient dix sections. Les
 [trois tensions](03-trois_tensions.md) sont chiffrées des deux côtés. Une
 décision est **refusée** avec son chiffre. Le
-[transfert hors écosystème](05A-transfert_hors_ecosysteme.md) a été exécuté, pas
+[transfert hors écosystème](TRANSFERT-HORS-ECOSYSTEME.md) a été exécuté, pas
 raconté. Le [boss fight](96-boss-fight.md) a croisé le contradicteur.
 
-Sans `05A-transfert_hors_ecosysteme.md` (cité par le dossier unique, y compris hors
+Sans `TRANSFERT-HORS-ECOSYSTEME.md` (cité par le dossier unique, y compris hors
 lien markdown), le palier n'est pas franchissable : c'est pour ça que ce fichier
 existe sur le disque.
 

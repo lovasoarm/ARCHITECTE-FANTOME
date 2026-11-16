@@ -26,10 +26,10 @@ Array : accès par index, pas par valeur. BST équilibré : recherche en O(log n
 clé (string, number, ...) --> hash function --> index dans un tableau
 
 set("Naruto", 9001)
- "Naruto" --> hash() --> 3 --> tableau[3] = { key: "Naruto", value: 9001 }
+ "Naruto" --> hash("Naruto", 5) --> 4 --> tableau[4] = { key: "Naruto", value: 9001 }
 
 get("Naruto")
- "Naruto" --> hash() --> 3 --> return tableau[3].value // 9001
+ "Naruto" --> hash("Naruto", 5) --> 4 --> return tableau[4].value // 9001
 ```
 
 La hash function transforme n'importe quelle clé en un entier borné. Toujours le même entier pour la même clé.
@@ -39,28 +39,36 @@ La hash function transforme n'importe quelle clé en un entier borné. Toujours 
 ## 2) UNE HASH FUNCTION SIMPLE
 
 ```js
-// hash naive sur des strings
+// hash pédagogique pour chaînes de lettres ASCII (majuscules normalisées)
 function hash(key, tableSize) {
-  let total = 0;
-  const PRIME = 31; // un nombre premier réduit les collisions
-
-  for (let i = 0; i < Math.min(key.length, 100); i++) {
-    const charCode = key.charCodeAt(i) - 96; // 'a' = 1, 'b' = 2, ...
-    total = (total * PRIME + charCode) % tableSize;
+  if (typeof key !== "string") throw new TypeError("key doit être une chaîne");
+  if (!Number.isSafeInteger(tableSize) || tableSize < 1) {
+    throw new RangeError("tableSize doit être un entier positif");
   }
 
+  const normalized = key.toLowerCase();
+  if (!/^[a-z]*$/.test(normalized)) {
+    throw new TypeError("Cet exemple accepte uniquement les lettres ASCII a-z");
+  }
+
+  let total = 0;
+  const PRIME = 31;
+  for (let i = 0; i < Math.min(normalized.length, 100); i++) {
+    const charCode = normalized.charCodeAt(i) - 96; // 'a' = 1, 'b' = 2, ...
+    total = (total * PRIME + charCode) % tableSize; // reste toujours dans [0, tableSize)
+  }
   return total;
 }
 
-hash("Naruto", 10); // --> 4 (exemple)
-hash("Sasuke", 10); // --> 7
-hash("Sakura", 10); // --> 7 <-- même index : COLLISION
+hash("Naruto", 5); // --> 4
+hash("Sasuke", 5); // --> 1
+hash("Sakura", 5); // --> 1 <-- même index : COLLISION
 ```
 
 Deux propriétés essentielles d'une bonne hash function :
 
 - **déterministe** : même clé → même hash, toujours
-- **distribution uniforme** : les hash se répartissent sur tout le tableau, pas concentrés sur 3 cases
+- **distribution uniforme** : les index restent dans le tableau et les collisions sont raisonnablement réparties
 
 Le nombre premier dans le calcul : il améliore la distribution en évitant que des patterns réguliers dans les clés produisent des patterns réguliers dans les hash.
 
@@ -73,17 +81,28 @@ Quand deux clés hashent au même index, on a deux options classiques : chaining
 ```js
 class HashTable {
   constructor(size = 53) {
+    if (!Number.isSafeInteger(size) || size < 1) {
+      throw new RangeError("size doit être un entier positif");
+    }
     // 53 : nombre premier, bonne taille initiale
-    // chaque case commence à null (vide)
+    // chaque case commence à vide
     this.table = new Array(size).fill(null).map(() => []);
     this.size = size;
   }
 
   _hash(key) {
+    if (typeof key !== "string")
+      throw new TypeError("key doit être une chaîne");
+    const normalized = key.toLowerCase();
+    if (!/^[a-z]*$/.test(normalized)) {
+      throw new TypeError(
+        "Cet exemple accepte uniquement les lettres ASCII a-z",
+      );
+    }
     let total = 0;
     const PRIME = 31;
-    for (let i = 0; i < Math.min(key.length, 100); i++) {
-      total = (total * PRIME + (key.charCodeAt(i) - 96)) % this.size;
+    for (let i = 0; i < Math.min(normalized.length, 100); i++) {
+      total = (total * PRIME + (normalized.charCodeAt(i) - 96)) % this.size;
     }
     return total;
   }
@@ -134,34 +153,29 @@ class HashTable {
 ## 4) VISUALISER LE CHAINING
 
 ```js
-const ht = new HashTable(10)
+const ht = new HashTable(5)
 
 ht.set("Naruto", 9001)
 ht.set("Sasuke", 8500)
-ht.set("Sakura", 7200) // suppose que hash("Sakura", 10) = hash("Sasuke", 10) = 7
+ht.set("Sakura", 7200) // hash("Sasuke", 5) = hash("Sakura", 5) = 1
 
 // état interne après les trois insertions :
 [
  0: [],
- 1: [],
+ 1: [["Sasuke", 8500], ["Sakura", 7200]], // bucket avec collision gérée
  2: [],
  3: [],
- 4: [["Naruto", 9001]],
- 5: [],
- 6: [],
- 7: [["Sasuke", 8500], ["Sakura", 7200]], // bucket avec 2 entrées (collision gérée)
- 8: [],
- 9: []
+ 4: [["Naruto", 9001]]
 ]
 
 ht.get("Sakura")
-// hash("Sakura") --> 7
-// table[7] = [["Sasuke", 8500], ["Sakura", 7200]]
+// hash("Sakura", 5) --> 1
+// table[1] = [["Sasuke", 8500], ["Sakura", 7200]]
 // .find(p => p[0] === "Sakura") --> ["Sakura", 7200]
 // return 7200
 ```
 
-La collision n'est pas un bug, c'est un comportement attendu et géré. Un bucket avec 2 entrées fait une recherche linéaire en O(2) : toujours O(1) en pratique.
+La collision n’est pas un bug : elle est attendue et gérée. La recherche dans un bucket coûte O(k), où k est le nombre de paires dans ce bucket. O(1) est une complexité moyenne attendue sous une distribution raisonnable et un facteur de charge maîtrisé, pas une garantie dans le pire cas.
 
 ---
 

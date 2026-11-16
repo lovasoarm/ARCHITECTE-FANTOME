@@ -280,6 +280,125 @@ Teste sur au moins 3 formats d'entrée différents.
 
 ---
 
+## CORRIGÉS DE RÉFÉRENCE : À CONSULTER APRÈS UNE TENTATIVE
+
+Les solutions reconnaissent uniquement les formats définis par chaque exercice. Une regex qui extrait un motif n'est pas, à elle seule, une validation métier complète.
+
+### Corrigé Exo 1 : parser de logs
+
+```javascript
+function parseMissionAlerts(text) {
+  const pattern =
+    /^\[(?<type>ALERTE|NEUTRE)\]\s+(?<heure>\d{2}:\d{2}:\d{2})\s*\|\s*(?<message>.*?)\s*\|\s*Zone:\s*(?<zone>[^|]+?)\s*\|\s*Menace:\s*(?<menace>\d+|N\/A)\s*$/gm;
+  const alerts = [];
+
+  for (const match of text.matchAll(pattern)) {
+    if (match.groups.type !== "ALERTE") continue;
+    if (match.groups.menace === "N/A") continue;
+
+    alerts.push({
+      heure: match.groups.heure,
+      type: match.groups.type,
+      zone: match.groups.zone.trim(),
+      menace: Number(match.groups.menace),
+    });
+  }
+
+  return alerts;
+}
+```
+
+Sortie attendue pour la fixture : deux alertes, à `14:23:07` (Nord, 60) et `15:01:33` (Ouest, 15). La ligne `NEUTRE` est ignorée.
+
+### Corrigé Exo 2 : formateur de statistiques
+
+```javascript
+function parsePlayerStats(text) {
+  return text.split("|").map((record) => {
+    const separator = record.indexOf(":");
+    if (separator <= 0) throw new Error(`Enregistrement invalide : ${record}`);
+
+    const name = record.slice(0, separator).trim();
+    const statsText = record.slice(separator + 1);
+    const stats = {};
+    const normalizedStats = statsText.trim();
+    const statPattern =
+      /(?<key>goals|assists|xg)\s*=\s*(?<value>\d+(?:\.\d+)?)(?:\s*,\s*|$)/g;
+    let consumedUntil = 0;
+
+    for (const match of normalizedStats.matchAll(statPattern)) {
+      // Aucun caractère inattendu ne doit être ignoré entre deux captures.
+      if (match.index !== consumedUntil)
+        throw new Error(`Format de statistique invalide : ${record}`);
+      consumedUntil = match.index + match[0].length;
+      const key = match.groups.key;
+      if (Object.hasOwn(stats, key))
+        throw new Error(`Statistique dupliquée : ${key}`);
+      stats[key] = Number(match.groups.value);
+    }
+
+    if (
+      consumedUntil !== normalizedStats.length ||
+      !name ||
+      !["goals", "assists", "xg"].every((key) => Object.hasOwn(stats, key))
+    ) {
+      throw new Error(`Statistiques incomplètes ou mal formées : ${record}`);
+    }
+
+    return {
+      name,
+      goals: stats.goals,
+      assists: stats.assists,
+      xg: stats.xg,
+      xgPct: Math.round(stats.xg * 100),
+    };
+  });
+}
+```
+
+Pour la fixture donnée, `mbappe` devient `{ goals: 28, assists: 12, xg: 24.7, xgPct: 2470 }`. `xgPct` est un simple résultat de la consigne (xG × 100), pas une probabilité bornée entre 0 et 100.
+
+### Corrigé Exo 3 : cleaner de setlist générative
+
+Formats pris en charge par cette solution : `1. titre - artiste`, `02) titre – artiste` et `titre  : artiste`. Le séparateur doit être entouré d'espaces ; les titres contenant un séparateur ambigu doivent être échappés ou normalisés en amont.
+
+```javascript
+function titleCase(text) {
+  return text
+    .trim()
+    .toLocaleLowerCase("fr-FR")
+    .replace(/(^|[\s'’\-])\p{L}/gu, (part) => part.toLocaleUpperCase("fr-FR"));
+}
+
+function normaliserSetlist(text) {
+  if (typeof text !== "string")
+    throw new TypeError("La setlist doit être une chaîne.");
+
+  const lines = text
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const result = [];
+  const linePattern =
+    /^(?:\d+\s*[.)-]\s*)?(?<titre>.+?)\s+(?:-|–|—)\s+(?<artiste>.+?)\s*$/u;
+
+  for (const line of lines) {
+    const match = line.match(linePattern);
+    if (!match) throw new Error(`Ligne non reconnue : ${line}`);
+
+    result.push({
+      position: result.length + 1,
+      titre: titleCase(match.groups.titre),
+      artiste: match.groups.artiste.trim().replace(/\s+/g, " "),
+    });
+  }
+
+  return result;
+}
+```
+
+Les trois formes annoncées sont prises en charge. Les lignes non reconnues provoquent une erreur plutôt que de disparaître silencieusement ; dans un import réel, tu peux remplacer cette politique par une quarantaine avec numéro de ligne et motif de rejet.
+
 ## RÉSUMÉ
 
 `.matchAll()` pour extraire plusieurs groupes sur plusieurs matches. `.replace()` avec une fonction pour des transformations complexes. `.split()` avec des regex pour des séparateurs non-triviaux.

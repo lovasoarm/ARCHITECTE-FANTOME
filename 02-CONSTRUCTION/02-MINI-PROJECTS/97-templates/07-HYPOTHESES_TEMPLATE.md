@@ -63,3 +63,10 @@ Le bug est considéré mort ssi :
 - observé sur `<plateforme>`
 
 Sans ce paragraphe, le fix n'est pas mergeable.
+
+## 7. Auteur et date (signature pédagogique)
+
+- Auteur (nom ou identifiant) : `<à renseigner>`
+- Date (AAAA-MM-JJ) : `<à renseigner>`
+
+Cette mention identifie l’auteur et la date de la fiche. Elle n’est ni une signature électronique ou juridique, ni une revue indépendante.

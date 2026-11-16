@@ -261,12 +261,12 @@ Exemple de lecture rapide :
 
 ```js
 function mystery(arr) {
-  const result = {}; // O(1)
+  const result = Object.create(null); // O(1), dictionnaire sans prototype
 
   for (const item of arr) {
     // O(n) : boucle unique
     if (!result[item]) {
-      // O(1) : accès hash
+      // O(1) moyen : accès par clé dans ce dictionnaire
       result[item] = 0; // O(1)
     }
     result[item]++; // O(1)

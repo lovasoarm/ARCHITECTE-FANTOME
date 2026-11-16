@@ -9,6 +9,10 @@ acte: comprendre
 
 # Mini-projet 12 : Legacy Takeover
 
+<!-- AF-ADR-CONTRACT -->
+
+**Contrat ADR de ce projet : 4 décision(s) réellement indépendante(s).** Détails et périmètre exact dans [`01-RULES.md`](01-RULES.md). La quantité ne justifie jamais de fractionner artificiellement une même décision. Les ADR fournis sont des contextes de départ, pas une revue humaine ni une preuve d'adoption.
+
 ## Ordre de lecture
 
 Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADRs réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables.

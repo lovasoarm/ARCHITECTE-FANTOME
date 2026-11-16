@@ -43,7 +43,8 @@ Prérequis : `06-heap_snapshot_hands_on.md`.
   };
 
   document.getElementById("unmount").onclick = () => {
-    document.getElementById("host").innerHTML = ""; // "détaché", mais...
+    document.getElementById("host").replaceChildren();
+    cache.length = 0; // libère les références fortes conservées par le cache
   };
 </script>
 ```
@@ -60,7 +61,7 @@ Prérequis : `06-heap_snapshot_hands_on.md`.
 CAUSE               COMMENT LA RECONNAÎTRE        FIX
 --------------------------------  -----------------------------------  ------------------------
 1. Cache/registre global      Array/Map/Set qui ne se vide jamais  WeakMap/WeakSet OU vider
-2. Event listener non retiré    addEventListener sans removeListener AbortController.signal
+2. Event listener non retiré    addEventListener sans removeEventListener AbortController.signal
 3. Timer/interval non annulé    setInterval qui référence un nœud   clearInterval au unmount
 ```
 
@@ -73,10 +74,11 @@ const ac = new AbortController();
 el.addEventListener("click", handler, { signal: ac.signal });
 // au unmount :
 ac.abort(); // retire TOUS les listeners liés en 1 appel
+cache.length = 0; // abort() ne vide pas un cache qui conserve les nœuds
+document.getElementById("host").replaceChildren();
 ```
 
-Pourquoi c'est mieux que `removeEventListener` : tu n'as pas à garder une référence
-au handler exact. Un seul `abort()` nettoie tout un scope de listeners.
+Pourquoi c'est pratique : tu n'as pas à garder une référence au handler exact. Un seul `abort()` nettoie les listeners du scope. **Il ne supprime pas les autres références fortes** : vide aussi les caches/registries qui conservent les éléments. Pour le DOM, le nom est `removeEventListener` ; `removeListener` appartient notamment à l'API Node `EventEmitter`.
 
 ---
 

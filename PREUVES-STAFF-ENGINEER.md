@@ -49,10 +49,22 @@ PREUVES/
 ├── PLAN-MENTORAT.md
 ├── LIVRAISON-EXPLOITATION.md
 ├── EVALUATION-IA.md
+├── 04-BELIEF-CHANGE-LOG.md    # copie apprenant du modèle 05-PSYCHOLOGIE-DECISION/03-...
+├── 05-BIAS-LOG.md             # copie apprenant du modèle 05-PSYCHOLOGIE-DECISION/04-...
+├── OWNERSHIP-LOOP.md          # preuve produite dans la leçon 11
+├── STAFF-JUDGMENT.md          # preuve produite dans la leçon 12
 ├── STANDARDS-AGENTS.md        # seulement si des agents/automatisations autonomes sont utilisés
 ├── IA-EN-PROD.md              # seulement si une brique IA est intégrée au système
 └── PORTAGE.md
 ```
+
+Les fichiers `05-PSYCHOLOGIE-DECISION/03-BELIEF-CHANGE-LOG.md` et
+`05-PSYCHOLOGIE-DECISION/04-BIAS-LOG.md` sont les **modèles du curriculum**.
+Ils ne sont pas les livrables de l'apprenant : copie-les et complète-les sous les
+noms canoniques `PREUVES/04-BELIEF-CHANGE-LOG.md` et
+`PREUVES/05-BIAS-LOG.md`. De même, les leçons 11 et 12 fournissent les consignes ;
+les preuves exécutées sont `PREUVES/OWNERSHIP-LOOP.md` et
+`PREUVES/STAFF-JUDGMENT.md` dans ton dépôt.
 
 `PREUVES/00_INDEX.md` doit contenir pour chaque pièce : statut, commit source,
 date de mesure, lien vers l'artefact, preuve de recroisement et dernier passage

@@ -71,7 +71,7 @@ Angle : quel volume/vie du projet justifie ou disqualifie les couches ? Coût de
 ### Scénario 5 : "SQLite en prod ? Sérieusement ?"
 
 Contexte : voir aussi `../19_interview/02-desaccord_cto.md` objection 1.
-Angle : périmètre, écritures concurrentes, chemin de migration. Nomme le seuil (~50 écritures/s soutenues) où tu bascules.
+Angle : périmètre, écritures concurrentes, chemin de migration. Traite 50 écritures/s comme une hypothèse de charge du scénario, jamais comme un seuil universel. Définis les mesures qui feraient basculer la décision.
 
 ### Scénario 6 : "Pourquoi TypeScript ici ? C'est du bruit."
 
@@ -124,3 +124,11 @@ Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décisi
 Applique le mécanisme de « INTERVIEW DEFENSE : 10 scénarios d'objection » à une codebase inconnue et un incident dont les symptômes sont incomplets. Explique ce qui reste invariant, ce qui doit changer et quelle preuve te permet de confirmer que tu n’as pas simplement mémorisé le cas initial.
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+
+<!-- AF-CROSS-LANGUAGE-NO-EXTRA-GATE -->
+
+> **Périmètre de cette défense :** l’entretien peut interroger la transférabilité démontrée au mini-projet 15, mais il ne crée aucun portage supplémentaire. TypeScript garde sa gate indépendante ; le projet 17 reste un approfondissement DEPTH et aucun troisième langage n’est exigé.
+
+<!-- AF-SQLITE-THRESHOLD-IS-SCENARIO -->
+
+SQLite n’a pas de seuil universel de bascule exprimé en écritures par seconde. La sérialisation des écritures, la durée des transactions, les conflits, le stockage, le mode WAL et le profil lecture/écriture changent le débit soutenable. Pour trancher, mesure sur la charge représentative : latences p95/p99, taux et durée des `SQLITE_BUSY`, temps de transaction, profondeur d’attente, contention du verrou d’écriture, croissance et temps de récupération. Fixe ensuite un seuil propre au SLO et aux contraintes de l’application.

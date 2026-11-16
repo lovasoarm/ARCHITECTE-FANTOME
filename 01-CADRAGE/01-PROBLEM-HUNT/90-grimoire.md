@@ -7,6 +7,9 @@ acte: restituer
 
 # Grimoire : Module 01-CADRAGE/01-PROBLEM-HUNT, Problem Hunt
 
+> Rappel : ce grimoire simplifie via analogies. Lire d’abord [`91-18_GRIMOIRE_CODE_HONNEUR.md`](../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
+
+
 Temps de lecture ~7 min
 
 Ce grimoire comporte deux tables : le mémo à 4 colonnes, puis la table de défense orale à

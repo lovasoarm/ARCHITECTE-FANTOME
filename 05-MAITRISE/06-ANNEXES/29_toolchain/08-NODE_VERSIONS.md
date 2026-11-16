@@ -148,28 +148,26 @@ usage reproductible
 
 ## Repères de décision
 
-- **Pourquoi :** La toolchain et les outils de diagnostic réduisent les tâches répétitives et rendent le comportement du système visible.
-- **Quand l’utiliser / quand l’éviter :** Choisis un outil quand il résout un problème fréquent et mesurable. Vérifie sa licence, sa maintenance, ses versions, ses permissions et son coût avant de l'ajouter.
-- **Limites :** Un outil n'est pas une politique de qualité. Un benchmark, logger ou générateur peut donner une fausse confiance si son protocole et ses limites ne sont pas écrits.
+- **Pourquoi :** Une version Node cohérente évite les divergences de runtime et permet de déclarer le périmètre réellement pris en charge.
+- **Quand l’utiliser / quand l’éviter :** Épingle une version de développement et déclare séparément la plage de compatibilité du produit. Ne confonds pas la version installée localement et le contrat supporté.
+- **Limites :** Une matrice de versions ne remplace pas une exécution sur chaque cible ; les modules natifs et dépendances peuvent restreindre la compatibilité.
 
 ## Mécanisme : la version sans magie
 
-Décris le problème, compare l'outil à une commande native ou à une alternative plus simple, épingle sa version et vérifie le résultat qu'il produit.
+Pour un mini-projet, relève la version Node demandée par `.nvmrc`/`.node-version`, `engines.node`, le gestionnaire et le lockfile. Choisis une version minimale supportée et une version de référence actuelle selon la politique du dépôt, puis définis une matrice CI limitée et justifiée. Distingue version d'exécution, version du gestionnaire de paquets et format des modules.
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **NODE_VERSIONS.md** se rattache à ce cas concret : L'équipe Kintana doit pouvoir diagnostiquer une panne et refaire un build sans dépendre d'une configuration cachée sur le poste d'une seule personne.
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Node.js : compatibilité et stratégie de versions** s'applique au dépôt de l'équipe : la preuve doit correspondre à l'outil et au problème traités, pas à une automatisation générique.
 
-**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+**À observer :** comportement attendu, cas d'échec, trace utile et niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Ne transforme pas un exemple en résultat exécuté.
 
-## Mission utile : Kintana : Outil reproductible pour l'équipe Kintana
+## Mission utile : Kintana : Node.js : compatibilité et stratégie de versions
 
-> **Arc Capsule Corp. / DBZ :** le bon outil accélère le diagnostic ; dix outils mal choisis ne font que déplacer le bazar.
+**Mission liée à « Node.js : compatibilité et stratégie de versions » :** Pour un mini-projet, relève la version Node demandée par `.nvmrc`/`.node-version`, `engines.node`, le gestionnaire et le lockfile. Choisis une version minimale supportée et une version de référence actuelle selon la politique du dépôt, puis définis une matrice CI limitée et justifiée. Distingue version d'exécution, version du gestionnaire de paquets et format des modules.
 
-**Mission liée à « NODE_VERSIONS.md » :** Automatise une opération récurrente du cycle Kintana (analyse, benchmark, log, build ou debug). Ajoute un mode dry-run si l'action est destructive et une vérification qui empêche l'outil de masquer une erreur.
+**Livrable :** `NODE-COMPATIBILITY.md` avec versions, sources officielles, commandes de vérification, matrice prévue et limites non exécutées ; fichiers de pinning cohérents.
 
-**Livrable :** outil/script, README d'usage, tests sur succès/échec, version épinglée et comparaison au processus manuel.
+**Critères d’acceptation :** Les fichiers de version ne se contredisent pas ; les contraintes sont écrites en plages compréhensibles ; la matrice n'annonce comme validée que les versions réellement testées ; toute cible non testée reste `NON TESTÉE`.
 
-**Critères d’acceptation :** les arguments sont validés ; les erreurs ont un code de sortie ; aucune donnée sensible n'est imprimée ; la même commande donne une sortie compréhensible et reproductible.
-
-**Transfert obligatoire :** Exécute l'outil sur une autre machine ou avec une version différente. Documente les prérequis et le mode dégradé.
+**Transfert obligatoire :** Une dépendance abandonne la plus ancienne version ciblée. Montre comment détecter le conflit, choisir une version minimale réaliste et communiquer le changement de compatibilité.

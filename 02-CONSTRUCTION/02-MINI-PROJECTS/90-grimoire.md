@@ -8,6 +8,8 @@ route: survie
 
 # Grimoire : `02-MINI-PROJECTS`
 
+> Rappel : ce grimoire simplifie via analogies. Lire d’abord [`91-18_GRIMOIRE_CODE_HONNEUR.md`](../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
+
 Temps de lecture ~8 min
 
 Acte attendu : restituer. Un grimoire ne s'apprend pas en le lisant : il se récite, puis se
@@ -122,10 +124,10 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [TDD JOURNAL : LEGACY DUNGEON](10_legacy_dungeon/02-TDD-JOURNAL.md)
 - [CAHIER DES CHARGES : LEGACY DUNGEON](10_legacy_dungeon/00-CAHIER-DES-CHARGES.md)
 - [06-SPEC-DRIFT-DRILL.md : spec drift **en cours de projet** (mouvant)](11_scheduler/06-SPEC-DRIFT-DRILL.md)
-- [ADR-002 : décision d’architecture](11_scheduler/ADR/ADR-002_decision.md)
-- [ADR-002 : décision d’architecture](11_scheduler/ADR/ADR-002_decision.md)
+- [ADR-001 : consigne de décision](11_scheduler/ADR/ADR-001_decision.md)
+- [ADR-002 : consigne de décision](11_scheduler/ADR/ADR-002_decision.md)
 - [POSTMORTEM : SCHEDULER](11_scheduler/08-POSTMORTEM.md)
-- [11 : SCHEDULER (obligatoire, pas optionnel)](11_scheduler/README.md)
+- [11 : SCHEDULER : approfondissement async](11_scheduler/README.md)
 - [RULES : 11_scheduler](11_scheduler/01-RULES.md)
 - [SECURITY : 11_scheduler](11_scheduler/03-SECURITY.md)
 - [Security Gate : 11_scheduler](11_scheduler/04-SECURITY-GATE.md)
@@ -134,8 +136,8 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [CAHIER DES CHARGES : SCHEDULER](11_scheduler/00-CAHIER-DES-CHARGES.md)
 - [Tests : 11_scheduler](11_scheduler/tests/README.md)
 - [06-SPEC-DRIFT-DRILL.md : spec drift **en cours de projet** (mouvant)](12_legacy_takeover/06-SPEC-DRIFT-DRILL.md)
-- [ADR-003 : décision d’architecture](12_legacy_takeover/ADR/ADR-003_decision.md)
-- [ADR-003 : décision d’architecture](12_legacy_takeover/ADR/ADR-003_decision.md)
+- [ADR-001 : décision d’architecture](12_legacy_takeover/ADR/ADR-001_decision.md)
+- [ADR-002 : décision d’architecture](12_legacy_takeover/ADR/ADR-002_decision.md)
 - [ADR-003 : décision d’architecture](12_legacy_takeover/ADR/ADR-003_decision.md)
 - [09-DAY-ONE-SIMULATION.md : 4h chrono, ton premier jour dans une equipe](12_legacy_takeover/07-DAY-ONE-SIMULATION.md)
 - [MAP_15MIN.md : template standardise (livrable obligatoire, a copier depuis `97-templates/`)](97-templates/08-MAP_15MIN_TEMPLATE.md)
@@ -151,7 +153,7 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [06-SPEC-DRIFT-DRILL.md : spec drift **en cours de projet** (mouvant)](13_memory_hunter/06-SPEC-DRIFT-DRILL.md)
 - [FIXTURE : MEMORY HUNTER](13_memory_hunter/00_fixture/README.md)
 - [LEAK_REPORT : <nom du service ou fixture>](13_memory_hunter/09-LEAK-REPORT-TEMPLATE.md)
-- [ADR-002 : décision d’architecture](13_memory_hunter/ADR/ADR-002_decision.md)
+- [ADR-001 : décision d’architecture](13_memory_hunter/ADR/ADR-001_decision.md)
 - [ADR-002 : décision d’architecture](13_memory_hunter/ADR/ADR-002_decision.md)
 - [POSTMORTEM : MEMORY HUNTER](13_memory_hunter/08-POSTMORTEM.md)
 - [13 : MEMORY HUNTER](13_memory_hunter/README.md)
@@ -162,8 +164,8 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [TDD JOURNAL : MEMORY HUNTER](13_memory_hunter/02-TDD-JOURNAL.md)
 - [CAHIER DES CHARGES : MEMORY HUNTER](13_memory_hunter/00A-CAHIER-DES-CHARGES.md)
 - [SPEC DRIFT : 14_system_design_lab](14_system_design_lab/06-SPEC-DRIFT-DRILL.md)
-- [ADR-003 : décision d’architecture](14_system_design_lab/ADR/ADR-003_decision.md)
-- [ADR-003 : décision d’architecture](14_system_design_lab/ADR/ADR-003_decision.md)
+- [ADR-001 : consigne de décision](14_system_design_lab/ADR/ADR-001_decision.md)
+- [ADR-002 : décision d’architecture](14_system_design_lab/ADR/ADR-002_decision.md)
 - [ADR-003 : décision d’architecture](14_system_design_lab/ADR/ADR-003_decision.md)
 - [POSTMORTEM : SYSTEM DESIGN LAB](14_system_design_lab/08-POSTMORTEM.md)
 - [14 : SYSTEM DESIGN LAB](14_system_design_lab/README.md)
@@ -174,7 +176,7 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [TDD JOURNAL : SYSTEM DESIGN LAB](14_system_design_lab/02-TDD-JOURNAL.md)
 - [CAHIER DES CHARGES : SYSTEM DESIGN LAB](14_system_design_lab/00-CAHIER-DES-CHARGES.md)
 - [06-SPEC-DRIFT-DRILL.md : spec drift **en cours de projet** (mouvant)](15_porte_rasengan_engine_multilang/06-SPEC-DRIFT-DRILL.md)
-- [ADR-002 : décision d’architecture](15_porte_rasengan_engine_multilang/ADR/ADR-002_decision.md)
+- [ADR-001 : décision d’architecture](15_porte_rasengan_engine_multilang/ADR/ADR-001_decision.md)
 - [ADR-002 : décision d’architecture](15_porte_rasengan_engine_multilang/ADR/ADR-002_decision.md)
 - [POSTMORTEM : PORTAGE RASENGAN ENGINE](15_porte_rasengan_engine_multilang/08-POSTMORTEM.md)
 - [15 : PORTAGE RASENGAN ENGINE (JS → Python OU Go)](15_porte_rasengan_engine_multilang/README.md)
@@ -185,7 +187,7 @@ Restitue de mémoire, à voix haute, ce que chacune nomme : puis vérifie dans l
 - [TDD JOURNAL : PORTAGE RASENGAN ENGINE](15_porte_rasengan_engine_multilang/02-TDD-JOURNAL.md)
 - [CAHIER DES CHARGES : PORTAGE RASENGAN ENGINE](15_porte_rasengan_engine_multilang/00-CAHIER-DES-CHARGES.md)
 - [SPEC DRIFT : la specification change en cours de projet](16_distributed_arena/06-SPEC-DRIFT-DRILL.md)
-- [ADR-002 : décision d’architecture](16_distributed_arena/ADR/ADR-002_decision.md)
+- [ADR-001 : décision d’architecture](16_distributed_arena/ADR/ADR-001_decision.md)
 - [ADR-002 : décision d’architecture](16_distributed_arena/ADR/ADR-002_decision.md)
 - [POSTMORTEM : DISTRIBUTED ARENA](16_distributed_arena/08-POSTMORTEM.md)
 - [16 : DISTRIBUTED ARENA](16_distributed_arena/README.md)

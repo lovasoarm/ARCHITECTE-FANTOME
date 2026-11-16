@@ -59,12 +59,14 @@ type D = IsString<42>; // "non"
 ```
 
 ```ts
-// cas d'usage réel : NonNullable:extrait le type sans null ni undefined
-type NonNullable<T> = T extends null | undefined ? never : T;
+// Les utilitaires suivants existent déjà dans la bibliothèque standard TypeScript.
+// Le préfixe My évite de redéclarer leurs noms globaux dans un vrai projet.
+// cas d'usage réel : MyNonNullable extrait le type sans null ni undefined
+type MyNonNullable<T> = T extends null | undefined ? never : T;
 
-type E = NonNullable<string | null>; // string
-type F = NonNullable<number | undefined>; // number
-type G = NonNullable<null>; // never
+type E = MyNonNullable<string | null>; // string
+type F = MyNonNullable<number | undefined>; // number
+type G = MyNonNullable<null>; // never
 ```
 
 ---
@@ -84,13 +86,14 @@ type H = IsArray<string | number[]>;
 ```
 
 ```ts
-// Extract et Exclude sont des conditional types distributifs
-type Extract<T, U> = T extends U ? T : never;
-type Exclude<T, U> = T extends U ? never : T;
+// Extract et Exclude sont des conditional types distributifs.
+// Les alias pédagogiques sont préfixés pour ne pas entrer en collision avec les types natifs.
+type MyExtract<T, U> = T extends U ? T : never;
+type MyExclude<T, U> = T extends U ? never : T;
 
 type Events = "goal" | "card" | "substitution" | "injury";
 
-type CardEvents = Extract<Events, "card" | "injury">;
+type CardEvents = MyExtract<Events, "card" | "injury">;
 // "goal" extends "card" | "injury" ? "goal" : never => never
 // "card" extends "card" | "injury" ? "card" : never => "card"
 // "substitution" extends "card" | "injury" ? "substitution" : never => never
@@ -115,34 +118,43 @@ type I = IsStringNonDistributive<string | number>;
 `infer` permet de nommer un type à l'intérieur d'un conditional type pour l'utiliser dans la branche then. C'est l'outil qui rend les conditional types vraiment puissants.
 
 ```ts
-// ReturnType natif TS:réimplémenté pour comprendre
-type ReturnType<T> = T extends (...args: any[]) => infer R ? R : never;
+// `ReturnType` est un utilitaire natif TypeScript. Cette copie pédagogique porte un autre nom.
+type MyReturnType<T> = T extends (...args: any[]) => infer R ? R : never;
 // si T est une fonction, R est son type de retour
 
 function getPlayerStats(): { goals: number; assists: number } {
   return { goals: 31, assists: 12 };
 }
 
-type Stats = ReturnType<typeof getPlayerStats>;
+type Stats = MyReturnType<typeof getPlayerStats>;
 // { goals: number; assists: number }
 ```
 
 ```ts
 // extraire le type d'un tableau
-type ArrayElement<T> = T extends (infer E)[] ? E : never;
+type MyArrayElement<T> = T extends readonly (infer E)[] ? E : never;
 
-type J = ArrayElement<string[]>; // string
-type K = ArrayElement<Player[]>; // Player
-type L = ArrayElement<number>; // never:pas un tableau
+type J = MyArrayElement<string[]>; // string
+type K = MyArrayElement<Player[]>; // Player
+type L = MyArrayElement<number>; // never:pas un tableau
+type L2 = MyArrayElement<readonly string[]>; // string : les tableaux readonly sont acceptés
 ```
 
 ```ts
 // extraire le type d'une Promise
-type Awaited<T> = T extends Promise<infer R> ? R : T;
+type MyAwaited<T> = T extends null | undefined
+  ? T
+  : T extends object & { then(onfulfilled: infer F, ...args: any[]): any }
+    ? F extends (value: infer V, ...args: any[]) => any
+      ? MyAwaited<V>
+      : never
+    : T;
 
-type M = Awaited<Promise<Player>>; // Player
-type N = Awaited<Promise<string>>; // string
-type O = Awaited<string>; // string (pas une Promise)
+type M = MyAwaited<Promise<Player>>; // Player
+type N = MyAwaited<Promise<string>>; // string
+type O = MyAwaited<string>; // string (pas une Promise)
+type O2 = MyAwaited<Promise<Promise<number>>>; // number : déballage récursif
+type O3 = MyAwaited<{ then(resolve: (value: Promise<boolean>) => void): void }>; // boolean : thenable
 ```
 
 ```ts
@@ -181,14 +193,28 @@ type S = Serializable<() => void>; // undefined
 
 ## 5) DEEP READONLY ET AUTRES RÉCURSIFS
 
+`MyDeepReadonlyData` vise les DTO, tableaux et tuples. `Date`, `Map`, `Set`, les autres collections natives et les fonctions restent des types-feuilles : leurs méthodes ne sont pas rendues immuables. Ce type n’effectue aucune protection runtime et ne garantit pas le gel profond d’une instance arbitraire.
+
 ```ts
-// utility type récursif qui rend tout readonly, même les objets imbriqués
-// Partial natif est shallow:DeepReadonly descend dans les niveaux
-type DeepReadonly<T> = T extends (infer E)[]
-  ? ReadonlyArray<DeepReadonly<E>>
-  : T extends object
-    ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
-    : T;
+// Version pédagogique limitée aux DTO (objets de données), tableaux et tuples.
+// Les fonctions et collections natives restent des types-feuilles : leur API demeure mutable.
+type MyDeepReadonlyData<T> = T extends (...args: any[]) => any
+  ? T
+  : T extends
+        | Date
+        | RegExp
+        | Map<any, any>
+        | ReadonlyMap<any, any>
+        | Set<any>
+        | ReadonlySet<any>
+        | WeakMap<object, any>
+        | WeakSet<object>
+    ? T
+    : T extends readonly unknown[]
+      ? { readonly [K in keyof T]: MyDeepReadonlyData<T[K]> }
+      : T extends object
+        ? { readonly [K in keyof T]: MyDeepReadonlyData<T[K]> }
+        : T;
 
 interface TeamConfig {
   name: string;
@@ -199,8 +225,8 @@ interface TeamConfig {
   };
 }
 
-type FrozenTeam = DeepReadonly<TeamConfig>;
-// tout est readonly:y compris stats.wins et stats.players[n].name
+type FrozenTeam = MyDeepReadonlyData<TeamConfig>;
+// les propriétés de données imbriquées sont readonly au niveau des types
 ```
 
 ---

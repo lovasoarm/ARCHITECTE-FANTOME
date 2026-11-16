@@ -32,7 +32,12 @@ tout de suite** : il n'y a aucune dependance a installer.
 - Fournir 3 scripts pratiques :
   - `npm start` -> `node index.js`
   - `npm test` -> `node --test` (runner natif Node)
-  - `npm run watch` -> re-execute a chaque sauvegarde
+  - `npm run watch` -> re-exécute le point d’entrée à chaque sauvegarde
+
+Le test de fumée [`tests/index.test.js`](tests/index.test.js) est réellement découvert
+par `npm test`. Il vérifie que `index.js` se lance sans erreur et produit le message
+attendu. Il ne teste pas de logique métier et ne remplace pas les tests des projets
+ultérieurs.
 
 ## Quand faire `npm install` ici
 
@@ -55,9 +60,11 @@ structure avant d'en generer un toi-meme avec `npm init -y`.
 
 ## Sources officielles
 
-- [npm : package.json (`engines`, `type`, scripts)](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/)
-- [Node.js v22 : modules et champ `type`](https://nodejs.org/docs/latest-v22.x/api/packages.html)
-- [Node.js v22 : test runner natif](https://nodejs.org/docs/latest-v22.x/api/test.html)
+**Convention des références Node.js dans AF :** lorsqu'une affirmation dépend d'un correctif précis du runtime, utilise l'URL versionnée `v22.23.4`. Pour une page de référence générale de la branche majeure 22, `latest-v22.x` est accepté uniquement si le texte précise que la compatibilité visée est Node 22 et non un comportement propre au correctif 22.23.4. Les URL non versionnées vers la documentation courante ne sont pas utilisées pour enseigner le runtime épinglé.
+
+- [npm : package.json (`engines`, `type`, scripts)](https://docs.npmjs.com/cli/v10/configuring-npm/package-json/)
+- [Node.js v22.23.4 : modules et champ `type`](https://nodejs.org/docs/v22.23.4/api/packages.html)
+- [Node.js v22.23.4 : test runner natif](https://nodejs.org/docs/v22.23.4/api/test.html)
 - [Node.js : archive de la version 22.23.4](https://nodejs.org/en/download/archive/v22.23.4)
 
-Vérifié le 1er novembre 2026. `engines` est une déclaration de compatibilité ; npm peut la traiter comme un avertissement plutôt qu'un blocage lorsque `engine-strict` n'est pas activé. La commande de version du terminal reste le contrôle immédiat pour l'apprenant.
+Vérifié le 3 novembre 2026. `engines` est une déclaration de compatibilité ; npm peut la traiter comme un avertissement plutôt qu'un blocage lorsque `engine-strict` n'est pas activé. La commande de version du terminal reste le contrôle immédiat pour l'apprenant.

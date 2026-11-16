@@ -8,8 +8,11 @@ acte: restituer
 > Pour l'intégration entre modules, ne traite pas sécurité, observabilité, SLO, cloud et plateforme comme des checklists indépendantes. Termine les leçons correspondantes puis applique [59 : Atelier DevOps/SRE](../06-ANNEXES-TRANSVERSES/59-LAB-DEVOPS-LIFECYCLE.md) au même fil rouge : release, signal, incident, récupération et correction.
 
 Porte d'entrée du palier. Douze modules. Tu tiens un système en production et tu le chiffres.
-Livrables : `06A-BUDGET-CLOUD.md`, `SLO.md`, revue de sécurité, `STANDARDS-AGENTS.md`,
-`DECISION-ARBITRAGE.md`.
+Livrables : `06A-BUDGET-CLOUD.md`, `SLO.md`, revue de sécurité,
+`DECISION-ARBITRAGE.md` et `EVALUATION-IA.md` (contrôle transversal G8).
+`STANDARDS-AGENTS.md` s’ajoute uniquement si le fil rouge utilise des agents ou
+automatisations autonomes qui prennent ou exécutent des décisions/actions. Sinon,
+`EVALUATION-IA.md` documente la décision de non-usage, son périmètre et les contrôles conservés.
 
 Cinq modules **Staff** de ce palier : `06-FIABILITE-SLO`,
 `07-CLOUD-FOUNDATIONS`, `08-PRODUIT-COUT-ROI`, `11-LEADERSHIP-MENTORAT`, `12-PLATFORM-ENGINEERING`. La

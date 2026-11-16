@@ -6,7 +6,7 @@ route: complete
 
 # Module 03-PILOTAGE/01-ROADMAP-RUN : Roadmap Run
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../02-CONSTRUCTION/20-API-DOJO/README.md) | [Niveau suivant](../03-QUALITY-SHIELD/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../02-CONSTRUCTION/20-API-DOJO/README.md) | [Niveau suivant](../03-QUALITY-SHIELD/README.md)
 
 **Ce niveau réutilise :** [03-MVP-SPLIT](../../01-CADRAGE/05-MVP-SPLIT/04-estimating-honestly.md) : l'estimation honnete et l'effet tunnel, réutilises pour batir un planning risk-first.
 
@@ -21,7 +21,7 @@ route: complete
 [challenge](../../02-CONSTRUCTION/20-API-DOJO/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au module `03-PILOTAGE/01-ROADMAP-RUN` une difficulté qui vient du 20-API-DOJO.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que c'est
 

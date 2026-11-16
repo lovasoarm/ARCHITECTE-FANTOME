@@ -94,7 +94,7 @@ Code inefficace --> plus de CPU utilisé --> plus d'électricité consommée -->
 
 ### Pourquoi c'est devenu un critère, pas une option
 
-Pendant longtemps, l'optimisation visait uniquement la vitesse perçue par l'utilisateur. Mais une requête plus rapide consomme aussi, presque toujours, moins d'énergie : moins de cycles CPU, moins de temps serveur allumé, moins de transferts réseau. Le GreenOps ne demande pas un sacrifice de performance : il aligne deux objectifs qui pointaient déjà dans la même direction.
+Pendant longtemps, l'optimisation visait uniquement la vitesse perçue par l'utilisateur. Une requête plus rapide peut réduire l'énergie dans certains contextes, mais ce lien n'est pas universel : une optimisation peut augmenter le parallélisme, la fréquence CPU, la mémoire active ou les transferts. Performance et énergie sont deux dimensions à mesurer séparément. Le GreenOps cherche à réduire l'énergie ou l'empreinte carbone à service rendu comparable, sans supposer que toute baisse de latence entraîne automatiquement une baisse de consommation.
 
 ```js
 // Mauvais : recalculer un classement complet à chaque requête, même si rien n'a changé
@@ -136,18 +136,21 @@ cron.schedule("0 13 * * *", runNightlyReportGeneration); // tâche non urgente, 
 Optimiser sans mesurer, c'est sortir le Kaioken sans savoir combien de ki il reste. Les outils existent pour chiffrer précisément ce qu'un bout de code coûte, en argent et en énergie.
 
 ```text
-AWS Cost Explorer / GCP Billing --> coût détaillé par service, par tag, par période
-Carbon footprint tools (cloud)  --> estimation de l'empreinte CO2 par charge de travail
-Lighthouse (déjà vu en 08)     --> un score de perf élevé corrèle presque toujours avec moins d'énergie
-node --prof (déjà vu en 08)    --> identifier le code qui consomme le plus de CPU, donc le plus de watts
+AWS Cost Explorer / GCP Billing --> coût financier par service, tag et période
+Cloud carbon tools                --> estimation carbone selon leurs facteurs et leur périmètre
+Lighthouse                       --> métriques de performance web ; pas une mesure en joules
+node --prof                       --> profil d'exécution / CPU ; pas une mesure en watts
+console.time()                    --> durée écoulée ; pas une mesure d'énergie
 ```
 
 ```js
 // Mesurer avant d'affirmer qu'une fonction "coûte cher" : l'intuition se trompe souvent
 console.time("computeFullRanking");
 const ranking = computeFullRanking(allMatches);
-console.timeEnd("computeFullRanking"); // computeFullRanking: 842ms : voilà la vraie cible à optimiser
+console.timeEnd("computeFullRanking"); // computeFullRanking: 842ms : durée mesurée dans cet exemple, pas énergie consommée
 ```
+
+**Mesurer l'énergie séparément :** utilise un compteur matériel/plateforme réellement disponible (par exemple un compteur d'énergie CPU exposé par le matériel, un wattmètre adapté ou une télémétrie énergétique du fournisseur cloud). Note le périmètre couvert, l'unité (J ou Wh), la durée, la charge, la température/conditions si elles influencent le résultat et l'énergie par opération utile. Répète les runs et compare des scénarios à service rendu équivalent. Si aucun compteur énergétique n'est disponible, écris `ENERGY: NOT MEASURED` ; ne convertis ni les millisecondes ni le temps CPU en joules sans modèle validé.
 
 ---
 

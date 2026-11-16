@@ -59,7 +59,7 @@ Une seule. La plus douloureuse. Pas trois pour diluer.
 > Cette section est un marqueur de maturité, pas de faiblesse. Voir
 > [`../../../00-SOCLE/03-REFERENTIEL/04-JE_NE_SAIS_PAS_ENCORE.md`](../../../00-SOCLE/03-REFERENTIEL/04-JE_NE_SAIS_PAS_ENCORE.md)
 > pour le pourquoi. Résumé : "je ne sais pas encore, mais je sais où
-> regarder si j'en IA besoin" bat "je fais semblant". Toujours.
+> regarder si j'en ai besoin" bat "je fais semblant". Toujours.
 
 Liste 1 à 3 points du projet que tu n'as pas complètement maîtrisés, avec **où tu irais chercher** si le sujet remontait demain :
 
@@ -78,40 +78,34 @@ Une technique, une méthode, un réflexe qui t'a fait gagner du temps. Nomme-la,
 
 ---
 
-## GATE SECURITE (OWASP) : OBLIGATOIRE POUR CLORE LE PROJET
+## GATE SÉCURITÉ : OBLIGATOIRE POUR CLÔTURER LE PROJET
 
-Un mini-projet non securise n'est pas un mini-projet livre. Cette checklist
-s'applique aux **19 mini-projets** du parcours. Complete `SECURITY.md` du
-projet **avant** de considerer ce POSTMORTEM comme fini. Coche chaque ligne
-avec un statut : `OK` / `NA (justifie)` / `(bloquant)`.
+La gate de sécurité s'applique aux mini-projets selon leur périmètre réel. Complète **le document final `SECURITY.md`** du dépôt apprenant avant de clôturer ce POSTMORTEM ; `03-SECURITY.md` est le modèle AF à copier au départ. Les gates locales du projet restent applicables lorsqu'elles couvrent un risque propre à ce projet.
 
-### OWASP Top 10 (2021) applique au projet
+### Registre contextualisé
 
-| #   | Categorie OWASP           | Question a te poser sur CE projet                                                                            | Statut |
-| --- | ------------------------- | ------------------------------------------------------------------------------------------------------------ | ------ |
-| A01 | Broken Access Control     | IA-je des endpoints/commandes qui devraient etre restreints ? Comment je le prouve ?                         |        |
-| A02 | Cryptographic Failures    | Y a-t-il des donnees sensibles en transit ou au repos ? Chiffrees comment ?                                  |        |
-| A03 | Injection                 | Toutes les entrees externes sont-elles validees / parametrees (SQL, shell, HTML, regex) ?                    |        |
-| A04 | Insecure Design           | IA-je pense a la surface d'attaque **avant** d'ecrire le code ? (voir `00-CAHIER-DES-CHARGES.md`)            |        |
-| A05 | Security Misconfiguration | Valeurs par defaut, headers, CORS, verbose errors en prod : lesquelles restent ouvertes ?                    |        |
-| A06 | Vulnerable Components     | `npm audit` propre ? Snapshot commite dans `SECURITY.md` ?                                                   |        |
-| A07 | Auth Failures             | Si le projet a de l'auth : timing attacks, bruteforce, secrets forts ?                                       |        |
-| A08 | Software / Data Integrity | Signatures, verif d'integrite, source des deps : ou est le risque de tampering ?                             |        |
-| A09 | Logging & Monitoring      | IA-je un log minimal des erreurs et acces sensibles ?                                                        |        |
-| A10 | SSRF                      | Le projet fait-il des requetes vers des URL fournies par l'utilisateur ? Whitelist / timeout / no-metadata ? |        |
+N'impose pas mécaniquement les dix catégories OWASP à chaque projet. Identifie les risques présents, classe-les si utile avec [OWASP Top 10:2025](https://owasp.org/Top10/2025/) et documente les risques non applicables avec une justification explicite. Un contrôle applicable mais non testé empêche la validation `PASSÉE`.
 
-### Regle de cloture
+| ID  | Risque du projet | Contrôle / preuve                | Statut    | Justification si NON APPLICABLE |
+| --- | ---------------- | -------------------------------- | --------- | ------------------------------- |
+| G1  | `<risque>`       | `<fichier, test ou observation>` | NON TESTÉ | :                               |
+| G2  | `<risque>`       | `<fichier, test ou observation>` | NON TESTÉ | :                               |
+| G3  | `<risque>`       | `<fichier, test ou observation>` | NON TESTÉ | :                               |
 
-- **0 ligne ** : projet livrable.
-- **Toute ligne restante** : projet **non livrable**. Meme si les tests passent.
-  Meme si le portfolio est pret. Un post-mortem qui laisse un OWASP est un
-  aveu que le projet n'est pas fini.
-- **Toute ligne NA** doit tenir en une phrase de justification honnete (« pas
-  d'entree utilisateur externe », « projet local, pas de reseau », etc.).
+Statuts de ligne autorisés : `PASSÉ`, `ÉCHOUÉ`, `NON TESTÉ`, `NON APPLICABLE` (justification obligatoire pour ce dernier).
 
-### Reference
+### Règle de clôture
 
-- `03-PILOTAGE/04-SECURITY/` pour la theorie.
-- `../../../00-SOCLE/01-GETTING-STARTED/07-devsec_perso.md` pour l'hygiene minimale.
-- `SECURITY.md` du projet pour la version detaillee (celui-ci est le miroir
-  de cloture).
+- Tous les contrôles applicables sont `PASSÉ` : la gate peut être déclarée `PASSÉE`.
+- Au moins un contrôle applicable reste `NON TESTÉ` : la gate reste `À FAIRE`.
+- Au moins un contrôle applicable est `ÉCHOUÉ` : la gate est `ÉCHOUÉE`.
+- Les contrôles `NON APPLICABLE` doivent être justifiés.
+
+N'affirme pas qu'un scan, un test, un build ou une revue a été réalisé s'il ne l'a pas été. Le POSTMORTEM doit renvoyer vers le même `SECURITY.md` final que la gate ; ne conserve pas deux versions remplies.
+
+### Référence
+
+- `03-PILOTAGE/04-SECURITY/` pour la théorie.
+- `../../../00-SOCLE/01-GETTING-STARTED/07-devsec_perso.md` pour l’hygiène minimale.
+- `SECURITY.md` du projet pour la version détaillée (ce document constitue la trace
+  de clôture).

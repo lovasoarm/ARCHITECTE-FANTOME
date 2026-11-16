@@ -16,7 +16,7 @@ Temps de lecture ~2 min
 Choisis un rythme. Un parcours irrégulier coûte plus cher qu'un parcours lent.
 
 Carte : [03-the-map.md](../00-SOCLE/02-PROLOGUE/03-the-map.md).
-Ordre détaillé : [04A-CARTE-DU-PARCOURS.md](04A-CARTE-DU-PARCOURS.md).
+Ordre détaillé : [01A-CARTE-DU-PARCOURS.md](01A-CARTE-DU-PARCOURS.md).
 
 ## SPRINT : 12 h / semaine
 
@@ -50,7 +50,7 @@ Plancher. 2 h lire / 2 h produire. En dessous : droit d'entrée à chaque repris
 
 La route CORE planifie 192 heures pour une progression intensive et sélective ; c'est une hypothèse à calibrer lors d'un pilote, pas une durée mesurée valable pour tous les profils. Aucun critère de compétence ne doit être contourné pour tenir le calendrier. DEPTH/VAULT reste distinct du parcours obligatoire.
 
-Le détail opérationnel est dans [19A-ROUTE-CORE-16-SEMAINES.md](19A-ROUTE-CORE-16-SEMAINES.md). Les 19 projets sont cartographiés dans [25-CORE-MINI-PROJECT-MAP.md](25-CORE-MINI-PROJECT-MAP.md).
+Le détail opérationnel est dans [58A-ROUTE-CORE-16-SEMAINES.md](58A-ROUTE-CORE-16-SEMAINES.md). Les 19 projets sont cartographiés dans [25-CORE-MINI-PROJECT-MAP.md](25-CORE-MINI-PROJECT-MAP.md).
 
 Chaque semaine : 3 h compréhension active + 5 h pratique + 2 h ambiguïté/transfert + 1 h rappel + 1 h journal de décision.
 

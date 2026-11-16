@@ -68,12 +68,7 @@ interface Ninja {
   village: string;
 }
 
-// Le contrat est respecté : Naruto est bien un Ninja
-const naruto: Ninja = {
-  name: "Naruto",
-  chakra: 9000,
-  village: "Konoha",
-};
+// Les instances seront créées après la déclaration complète du contrat.
 ```
 
 Ce qui rend `interface` particulière : elle peut se **fusionner**.
@@ -90,8 +85,17 @@ interface Ninja {
 }
 
 // Maintenant Ninja = { name: string, jutsu: string[] }
+const naruto: Ninja = {
+  name: "Naruto",
+  chakra: 9000,
+  village: "Konoha",
+  jutsu: ["Rasengan"],
+};
+
 const kakashi: Ninja = {
   name: "Kakashi",
+  chakra: 6000,
+  village: "Konoha",
   jutsu: ["Chidori", "Sharingan Copy"],
 };
 ```
@@ -153,52 +157,54 @@ Une interface ne peut pas faire ça. Tu essaies `interface NinjaStatus = "alive"
 
 Les deux peuvent s'étendre. La syntaxe diffère.
 
+Chaque bloc ci-dessous est un exemple autonome sur le plan conceptuel, mais les noms restent distincts pour que tu puisses aussi réunir les extraits dans un même fichier de démonstration sans collision.
+
 ```ts
 // Interface étend une interface
-interface Ninja {
+interface NinjaContract {
   name: string;
   chakra: number;
 }
 
-interface SageNinja extends Ninja {
+interface SageNinjaContract extends NinjaContract {
   sageMode: boolean; // un Ninja normal + le mode Sage
 }
 
 // Type étend un type (intersection)
-type Ninja = {
+type NinjaShape = {
   name: string;
   chakra: number;
 };
 
-type SageNinja = Ninja & {
-  sageMode: boolean; // même résultat, syntaxe différente
+type SageNinjaShape = NinjaShape & {
+  sageMode: boolean; // même forme finale, syntaxe différente
 };
 ```
 
-La vraie différence : `interface extends` donne une erreur si les propriétés sont incompatibles.
-`type &` silencieusement produit `never` si tu intersectes des types incompatibles.
+La vraie différence : `interface extends` donne une erreur si les propriétés héritées sont incompatibles.
+`type &` accepte la composition, mais une propriété dont les types s'excluent devient `never`.
 
 ```ts
-interface A {
+interface CompatibleBase {
   value: string;
 }
 
-interface B extends A {
-  value: number; // ERREUR : "number" n'est pas compatible avec "string"
+// Cette déclaration est volontairement invalide : TypeScript doit signaler TS2430.
+// @ts-expect-error la propriété value ne peut pas remplacer string par number
+interface IncompatibleChild extends CompatibleBase {
+  value: number;
 }
 
-type A = { value: string };
-type B = A & { value: number };
-// Pas d'erreur à la déclaration.
-// Mais B.value est de type "never" : string & number = impossible
-// Ce type piège n'existera jamais en runtime:et TypeScript ne t'avertit pas tout de suite
+type AIntersection = { value: string };
+type BIntersection = AIntersection & { value: number };
+type ImpossibleValue = BIntersection["value"]; // never
 ```
 
 Diagramme :
 
 ```text
 interface extends interface --> erreur immédiate si conflit
-type & type         --> never silencieux si conflit
+string & number              --> never pour la propriété conflictuelle
 ```
 
 ---
@@ -280,6 +286,87 @@ Réponds sans lancer le code. Vérifie ensuite dans ton éditeur.
 (indice : `string & number` donne quelque chose d'impossible)
 
 ---
+
+## CORRIGÉS DE RÉFÉRENCE : À CONSULTER APRÈS UNE TENTATIVE
+
+Ces solutions sont des exemples de référence, pas les seules réponses possibles. Les types et objets peuvent être renommés si le contrat reste équivalent.
+
+### Corrigé Exo 1 : équipe de football
+
+```ts
+interface Player {
+  name: string;
+  number: number;
+  position: string;
+  nationality: string;
+}
+
+interface Captain extends Player {
+  armband: true;
+  yearsOfExperience: number;
+}
+
+type Transfer =
+  | { kind: "permanent"; player: Player; fee: number }
+  | { kind: "loan"; player: Player; returnDate: string };
+
+const captain: Captain = {
+  name: "Amina",
+  number: 8,
+  position: "milieu",
+  nationality: "MG",
+  armband: true,
+  yearsOfExperience: 4,
+};
+
+const transfer: Transfer = {
+  kind: "loan",
+  player: captain,
+  returnDate: "2027-06-30",
+};
+```
+
+Pour le bonus, l'extension conflictuelle doit échouer à la compilation. `@ts-expect-error` permet de garder ce cas négatif dans une suite de vérification sans faire échouer tout le fichier.
+
+### Corrigé Exo 2 : réseau de distribution
+
+```ts
+interface NetworkNode {
+  id: string;
+  location: string;
+  riskLevel: "low" | "medium" | "high";
+}
+
+interface DistributionHub extends NetworkNode {
+  capacity: number;
+  connectedNodes: string[];
+}
+
+type NetworkEdge = [from: string, to: string, weight: number];
+
+const hub: DistributionHub = {
+  id: "hub-tana-01",
+  location: "Antananarivo",
+  riskLevel: "medium",
+  capacity: 120,
+  connectedNodes: ["hub-ita-02"],
+};
+
+const edge: NetworkEdge = [hub.id, "hub-ita-02", 12.5];
+```
+
+Une interface peut décrire et étendre un objet ; `NetworkEdge` est un tuple à longueur et positions fixes, représenté ici directement par un alias `type`.
+
+### Corrigé Exo 3 : intersection impossible
+
+```ts
+type EntityA = { id: string; score: number };
+type EntityB = EntityA & { score: string };
+
+type ScoreAfterIntersection = EntityB["score"]; // never
+```
+
+`score` doit être à la fois `number` et `string`. Aucune valeur ordinaire ne satisfait ces deux contraintes ; son type devient donc `never`. L'objet complet n'est pas devenu `never` : c'est la propriété conflictuelle qui est impossible.
 
 ## RÉSUMÉ
 

@@ -61,14 +61,16 @@ L’Event Loop reprend le travail lorsque la pile est libérée, en drainant d�
 
 > Palier `01-CADRAGE`. Le tableau ci-dessous contient **10 ressources de référence** dont les durées repères totalisent **6 h 05** (7 × 45 min + 20 min + 2 × 15 min). Ce total ne représente pas la durée globale du module : les quatre sous-parcours pratiques obligatoires et leurs mini-projets n'ont pas tous une durée estimée. Aucune durée totale fictive n'est annoncée.
 
-## Ressources de référence à la racine
+## Inventaire des ressources racine : pas un ordre de lecture
+
+Ce tableau recense les ressources et leurs durées repères. Il ne donne pas l’ordre d’apprentissage : suis le tableau **Parcours obligatoire : à suivre dans cet ordre** juste après.
 
 | Ressource                                                                        | Durée repère |
 | -------------------------------------------------------------------------------- | -----------: |
-| [`02A-mental_model_js.md`](02A-mental_model_js.md)                               |       45 min |
-| [`50-mental_model_js_minimini_projet.md`](50-mental_model_js_minimini_projet.md) |       45 min |
 | [`00-PREREQUIS.md`](00-PREREQUIS.md)                                             |       15 min |
 | [`01A-00-why-async.md`](01A-00-why-async.md)                                     |       45 min |
+| [`02A-mental_model_js.md`](02A-mental_model_js.md)                               |       45 min |
+| [`50-mental_model_js_minimini_projet.md`](50-mental_model_js_minimini_projet.md) |       45 min |
 | [`06-event_loop_drill_5ans.md`](06-event_loop_drill_5ans.md)                     |       45 min |
 | [EXO LECTURE : ~20 minutes : un cycle (Asynchrone)](07-EXO_LECTURE.md)           |       20 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                               |       45 min |

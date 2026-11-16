@@ -43,7 +43,7 @@ Ce qui a traversé sans être repensé, et pourquoi c'était possible :
 | Le modèle de données et ses index                                         | SQL standard, aucune extension propriétaire utilisée.                       |
 | Les 34 cas de test de contrat                                             | Écrits en HTTP contre l'API, pas contre les fonctions internes.             |
 | Les invariants métier (pas de double réservation, créneau jamais négatif) | Formulés en français dans l'ADR, donc réimplémentables.                     |
-| Le SLO (99,9 %, p99 < 300 ms)                                             | Une promesse à l'utilisateur ne dépend pas de la technologie qui la tient.  |
+| Le SLO (99,5 % de requêtes éligibles réussies en 500 ms ou moins sur 7 jours) | Une promesse à l'utilisateur ne dépend pas de la technologie qui la tient ; le portage doit conserver la cible de S3, sauf décision explicite de changement. |
 
 Enseignement, formulé en une phrase défendable : ce qui a traversé, c'est exactement ce qui
 avait été écrit **en dehors** du code. La transférabilité n'est pas une qualité du développeur,

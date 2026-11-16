@@ -68,6 +68,27 @@ Serveur retourne les données si la signature est valide
 
 ---
 
+---
+
+## 3) FRONTIÈRES WEB : CORS, CSP ET CSRF
+
+Ces trois mécanismes répondent à des questions différentes. Aucun ne remplace l'autorisation métier côté serveur.
+
+**CORS (Cross-Origin Resource Sharing)** : mécanisme du navigateur qui détermine si un script d'une origine différente peut lire la réponse. Le navigateur peut parfois envoyer une requête cross-origin même si le script n'a pas le droit d'en lire la réponse. CORS n'est donc ni une authentification, ni une règle d'accès métier ; il ne suffit pas à empêcher une requête CSRF.
+
+**CSP (Content Security Policy)** : politique envoyée par le serveur, généralement via `Content-Security-Policy`, qui limite les sources depuis lesquelles la page peut charger ou exécuter certains types de ressources (`script-src`, `style-src`, `img-src`, `connect-src`, etc.). Elle réduit certaines possibilités d'injection/exécution, mais ne corrige pas à elle seule une faille XSS.
+
+**CSRF (Cross-Site Request Forgery)** : un site tiers tente de faire envoyer par le navigateur d'une victime une requête vers un site où elle est déjà authentifiée, souvent parce que le navigateur joint automatiquement un cookie. Les défenses dépendent du contexte : cookies `SameSite`, jeton CSRF lié à la session, vérifications `Origin`/`Referer` et méthodes qui ne modifient pas l'état via GET. Le choix doit être adapté aux flux cross-site légitimes.
+
+```text
+CORS : le JavaScript d'une autre origine peut-il lire la réponse ?
+CSP  : quelles ressources / exécutions la page accepte-t-elle ?
+CSRF : une requête déclenchée depuis un autre site peut-elle agir avec la session de la victime ?
+AuthZ: l'acteur identifié a-t-il le droit d'effectuer cette action sur cette ressource ?
+```
+
+Un préflight CORS ne constitue pas un jeton CSRF universel : toutes les requêtes cross-site ne déclenchent pas nécessairement un préflight, et CORS ne remplace pas la validation d'origine ou le contrôle anti-CSRF côté serveur.
+
 ## 2) JWT EN PROFONDEUR
 
 <!-- AF-DIAGRAM:jwt -->

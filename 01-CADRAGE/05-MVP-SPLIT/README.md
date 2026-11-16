@@ -24,7 +24,7 @@ Must prove
 
 Le MVP choisit la plus petite tranche capable de tester l’hypothèse importante et de produire une mesure.
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Module précédent : Error Handling](../04-ERROR-HANDLING/README.md) | [Niveau suivant](../../02-CONSTRUCTION/01-USER-WIZARD/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Module précédent : Error Handling](../04-ERROR-HANDLING/README.md) | [Niveau suivant](../../02-CONSTRUCTION/01-USER-WIZARD/README.md)
 
 **Ce niveau réutilise :** [02-PROBLEM-HUNT](../01-PROBLEM-HUNT/04-scope-and-non-goals.md) : les non-objectifs et la metrique de succes, qui donnent les bornes du decoupage en tranches.
 
@@ -41,7 +41,7 @@ complémentaire sur Problem Hunt, pas un second filtre. Si Error Handling n’es
 reprends [son grimoire](../04-ERROR-HANDLING/90-grimoire.md) et son challenge ; si Problem Hunt
 est fragile, reprends [son grimoire](../01-PROBLEM-HUNT/90-grimoire.md) et son challenge.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que c'est
 

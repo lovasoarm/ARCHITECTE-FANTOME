@@ -18,7 +18,7 @@ assessment_role: diagnostic_mastery
 
 Temps de lecture ~6 min
 
-> **Prérequis obligatoires :** [Function essentials](01-function_essentials.md), [Data Basics](../FOUNDATIONS/02_DATA_BASICS/README.md) et lecture des fonctions comme valeurs dans [`02-function_basics.md`](02-function_basics.md). Si les tableaux, les index, les paramètres ou `return` sont nouveaux, retourne à ces leçons avant de continuer.
+> **Prérequis obligatoires :** [Function essentials](01-function_essentials.md), [Data Basics](../FOUNDATIONS/02_DATA_BASICS/README.md), [Types](../04_types/README.md) selon la route canonique, et lecture des fonctions comme valeurs dans [`02-function_basics.md`](02-function_basics.md). Si les tableaux, les index, les paramètres ou `return` sont nouveaux, retourne à ces leçons avant de continuer.
 
 Bienvenue dans le labo des fonctions qui manipulent des fonctions. _(Fonctionception.)_
 

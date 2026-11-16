@@ -34,6 +34,10 @@ Le GC peut récupérer ce qui n’est plus atteignable depuis les racines du run
 
 > Sommaire de `02-CONSTRUCTION/05-MEMORY-PERFORMANCE/01_gc`.
 
+## Comment lire les ressources `08`
+
+Le fichier [`08A-worker_leak_reproduction.md`](08A-worker_leak_reproduction.md) est la procédure d’exercice pour reproduire et analyser une fuite liée à un Worker. Le dossier [`08_fixtures/`](08_fixtures/README.md) contient les fixtures (fichiers d’entrée statiques) utilisées par cet exercice. Ce sont deux ressources complémentaires, pas deux étapes successives numérotées `08`.
+
 ## Contenu du dossier
 
 <!-- CONTENU-DOSSIER:debut -->

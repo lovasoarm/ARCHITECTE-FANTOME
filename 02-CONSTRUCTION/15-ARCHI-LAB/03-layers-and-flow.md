@@ -112,9 +112,11 @@ function peutReserver(nbReservationsActives: number): boolean {
 // application/reserverCreneau.ts : orchestre, connaît l'interface, pas l'implémentation
 async function reserverCreneau(
   adherentId: string,
+  creneauId: string,
   repo: ReservationRepository,
 ): Promise<Resultat> {
   const nb = await repo.compterReservationsActives(adherentId);
+  // creneauId sert ensuite à vérifier la disponibilité et créer la réservation.
   if (!peutReserver(nb)) {
     return { succes: false, raison: "Trop de réservations actives" };
   }
@@ -147,7 +149,7 @@ Résultat concret pour l'exemple du club d'escalade :
 ```text
 1. Requête HTTP POST /reservations arrive       (couche UI)
 2. La route extrait adherentId, creneauId du body JSON
-3. La route appelle le cas d'usage reserverCreneau(adherentId, creneauId, repo, ...)
+3. La route appelle le cas d'usage reserverCreneau(adherentId, creneauId, repo)
                                                   (couche Application)
 4. Le cas d'usage appelle les règles du domaine  (couche Domaine)
    - peutReserver(nb)
@@ -231,14 +233,12 @@ Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **U
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Défendre une frontière de domaine Kintana
+## Mission utile : Kintana : Faire respecter le sens des dépendances entre couches
 
-> **Arc Capsule Corp. / DBZ :** une architecture est le plan du vaisseau et les coûts qu'il impose. Si chaque pièce doit connaître toutes les autres, le vaisseau ne décolle jamais.
+**Mission liée à « UI, cas d'usage, domaine, infra : l'inversion de dépendance concrète » :** Prends la création de réservation. Sépare l'entrée HTTP, le cas d'usage, une règle métier pure et le port de dépôt défini côté intérieur ; fais implémenter ce port par un adaptateur de persistance. Le cas d'usage doit pouvoir être testé avec un faux dépôt sans serveur ni base de données.
 
-**Mission liée à « UI, cas d'usage, domaine, infra : l'inversion de dépendance concrète » :** Dessine le flux réel d'une création de demande. Identifie les invariants, propriétaires de données et dépendances ; compare monolithe modulaire et service séparé dans un ADR. Simule une évolution et mesure le nombre de composants touchés.
+**Livrable :** quatre petits modules ou fichiers, contrat du dépôt, adaptateur, test unitaire du cas d'usage et graphe des imports.
 
-**Livrable :** diagramme de composants/flux, ADR avec deux options, contrat de frontière et test de changement.
+**Critères d’acceptation :** le domaine ne dépend d'aucun framework ou driver ; l'application dépend du contrat et non de l'adaptateur concret ; l'infrastructure peut implémenter le contrat intérieur ; les erreurs métier sont traduites par l'UI.
 
-**Critères d’acceptation :** la frontière possède une responsabilité claire ; les données ont un propriétaire ; le coût d'exploitation est explicite ; le microservice n'est pas choisi par prestige ; une condition de révision est écrite.
-
-**Transfert obligatoire :** Le nombre d'équipes ou le volume double. Indique quel signal justifierait de séparer un composant et quel coût tu acceptes.
+**Transfert obligatoire :** remplace l'adaptateur PostgreSQL par un dépôt en mémoire sans modifier le domaine ni le cas d'usage.

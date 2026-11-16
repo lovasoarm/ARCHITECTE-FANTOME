@@ -27,9 +27,8 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 - [Bundlers : webpack, vite, esbuild, rollup : choisir sans subir](05-bundlers.md)
 - [Docker basics : containeriser une app node : dockerfile, compose, multi-stage builds](06-docker_basics.md)
 - [06 : CI/CD basics (feedback automatique)](07-cicd_basics.md)
-- [Page verrouillée](90-grimoire.md)
 - [08-NODE_VERSIONS.md](08-NODE_VERSIONS.md)
-
+- [Page verrouillée](90-grimoire.md)
 <!-- CONTENU-DOSSIER:fin -->
 
 <!-- AF-KINTANA-MODULE -->

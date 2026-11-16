@@ -7,28 +7,28 @@ acte: comprendre
 
 Temps de lecture ~2 min
 
-Dossier de depot. Les ADR de ce projet, c'est toi qui les ecris :
-ils sont un livrable note, pas une lecture.
+Dossier de dépôt. Les ADR de ce projet, c'est toi qui les écris : ce sont des livrables notés, pas des lectures préalables.
 
 ## Format attendu
 
-`ADR-NNN_<slug>.md`, numerotation continue a partir de `ADR-001`, sur le gabarit
-[03-ADR_TEMPLATE.md](../../97-templates/03-ADR_TEMPLATE.md). Minimum 3 ADR pour valider le mini-projet,
-cf. [../README.md](../README.md).
+`ADR-NNN_<slug>.md`, numérotation continue à partir de `ADR-001`, sur le gabarit
+[03-ADR_TEMPLATE.md](../../97-templates/03-ADR_TEMPLATE.md). **Minimum 4 ADR distincts** pour valider le mini-projet, conformément à [`01-RULES.md`](../01-RULES.md).
 
-## Critere de succes
+Les décisions peuvent porter sur le modèle de ressources, les frontières de responsabilité, la stratégie de tests/mesures, le cycle de vie asynchrone, la sécurité ou l'observabilité. Choisis uniquement les décisions réellement nécessaires à ton travail ; si tu ne peux pas justifier quatre décisions distinctes, le projet n'est pas prêt à être déclaré complet. Ne découpe pas artificiellement une même décision en plusieurs ADR.
 
-Chaque ADR porte une decision reellement prise pendant ce projet : contexte,
-options ecartees, decision, consequence, signal de revision. Un ADR ecrit
-apres coup pour remplir le quota se voit : il n'a pas de consequence.
+## Critère de succès
+
+Chaque ADR porte une décision réellement prise pendant ce projet : contexte,
+options écartées, décision, conséquence, signal de révision. Un ADR écrit
+après coup pour remplir le quota se voit : il n'a pas de conséquence.
 
 ## Contenu du dossier
 
 <!-- CONTENU-DOSSIER:debut -->
 
-Fourni par le cours (contexte impose, ne remplace pas tes ADR) :
+Fournis par le cours comme prompts, pas comme décisions de référence. Leur simple présence ne compte pas ; ils peuvent compter parmi les quatre ADR si tu les complètes par deux décisions réelles, distinctes et argumentées :
 
-- [ADR-001 : décision d’architecture](ADR-001_decision.md)
-- [ADR-002 : décision d’architecture](ADR-002_decision.md)
+- [ADR-001 : décision à produire par l'apprenant](ADR-001_decision.md)
+- [ADR-002 : décision à produire par l'apprenant](ADR-002_decision.md)
 
 <!-- CONTENU-DOSSIER:fin -->

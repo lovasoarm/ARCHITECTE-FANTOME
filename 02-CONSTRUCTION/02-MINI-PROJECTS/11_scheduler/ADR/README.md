@@ -5,52 +5,21 @@ acte: comprendre
 
 # ADR : 11_scheduler
 
-<!-- AF-DIAGRAM:scheduler -->
-
-```text
-┌─────────────┐
-│ tâches      │
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│ queue       │
-└──────┬──────┘
-       ▼
-┌──────┴──────┐
-│ worker pool │
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│ résultats   │
-└─────────────┘
-```
-
-Le scheduler transforme un flux de tâches en travail ordonnancé par une capacité d’exécution limitée.
-
-Temps de lecture ~2 min
-
-Dossier de depot. Les ADR de ce projet, c'est toi qui les ecris :
-ils sont un livrable note, pas une lecture.
+Les ADR de ce projet sont des livrables de l'apprenant, pas des réponses à recopier.
 
 ## Format attendu
 
-`ADR-NNN_<slug>.md`, numerotation continue a partir de `ADR-001`, sur le gabarit
-[03-ADR_TEMPLATE.md](../../97-templates/03-ADR_TEMPLATE.md). Minimum 3 ADR pour valider le mini-projet,
-cf. [../README.md](../README.md).
+`ADR-NNN_<slug>.md`, numérotation continue à partir de `ADR-001`, selon le [gabarit commun](../../97-templates/03-ADR_TEMPLATE.md).
 
-## Critere de succes
+**Minimum : 3 décisions distinctes réellement prises.** Les fichiers `ADR-001_decision.md` et `ADR-002_decision.md` fournis dans ce dossier sont des consignes d'épreuve non résolues ; ils ne comptent pas comme décisions terminées.
 
-Chaque ADR porte une decision reellement prise pendant ce projet : contexte,
-options ecartees, decision, consequence, signal de revision. Un ADR ecrit
-apres coup pour remplir le quota se voit : il n'a pas de consequence.
+Sujets possibles : modèle des files et ordre de drainage ; politique de concurrence et bornes ; propagation des erreurs et annulation ; stratégie de tests. Choisis uniquement les décisions qui ont effectivement influencé ton implémentation.
 
-## Contenu du dossier
+## Critère de succès
 
-<!-- CONTENU-DOSSIER:debut -->
+Chaque ADR décrit le contexte, les options considérées, la décision, ses conséquences et le signal qui ferait réviser le choix. Ne rédige pas un ADR après coup uniquement pour atteindre un quota.
 
-Fourni par le cours (contexte impose, ne remplace pas tes ADR) :
+## Contenu fourni
 
-- [ADR-001 : décision d’architecture](ADR-001_decision.md)
-- [ADR-002 : décision d’architecture](ADR-002_decision.md)
-
-<!-- CONTENU-DOSSIER:fin -->
+- [ADR-001 : consigne de décision](ADR-001_decision.md)
+- [ADR-002 : consigne de décision](ADR-002_decision.md)

@@ -51,7 +51,6 @@ await suspend la reprise de la fonction async, pas l’ensemble du runtime.
 - [Abortcontroller : annuler ce qui ne doit plus se terminer](05-c_abort_controller.md)
 - [52-c_abort_controller_minimini_projet.md](52-c_abort_controller_minimini_projet.md)
 - [Page verrouillée](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 <!-- AF-KINTANA-MODULE -->

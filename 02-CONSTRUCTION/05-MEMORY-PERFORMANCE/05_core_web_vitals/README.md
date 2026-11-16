@@ -20,7 +20,7 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 <!-- CONTENU-DOSSIER:debut -->
 
-- [Lcp, inp, cls : les trois chiffres que google regarde sur ton site](02-lcp_inp_cls_basics.md)
+- [Core Web Vitals : mesurer le chargement, la réactivité et la stabilité](02-lcp_inp_cls_basics.md)
 - [Lighthouse : lire un rapport sans se noyer dans les chiffres](03-lighthouse_audit.md)
 - [Le budget de performance : tu le poses, le CI le fait respecter](04-perf_budget_enforcer.md)
 

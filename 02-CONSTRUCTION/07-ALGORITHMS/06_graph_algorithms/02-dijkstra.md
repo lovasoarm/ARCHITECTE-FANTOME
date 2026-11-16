@@ -16,9 +16,9 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~10 min
 
-Tout système de navigation tourne sur Dijkstra ou une variante. Google Maps, les routeurs réseau, les jeux vidéo avec pathfinding, les systèmes de livraison. Ce n'est pas un algo théorique : c'est le moteur de tout ce qui doit trouver un chemin optimal dans un graphe pondéré.
+De nombreux problèmes de navigation, de routage réseau et de pathfinding peuvent être modélisés avec des graphes pondérés. Dijkstra est un algorithme classique pour trouver les coûts minimaux depuis un départ lorsque tous les poids sont non négatifs ; les systèmes réels peuvent employer d’autres algorithmes ou des variantes adaptées à leur échelle.
 
-La question à laquelle il répond : **dans un graphe pondéré avec des poids positifs, quel est le chemin le moins coûteux entre un point de départ et tous les autres ?**
+La question à laquelle il répond : **dans un graphe pondéré avec des poids non négatifs, quel est le chemin le moins coûteux entre un point de départ et tous les autres ?**
 
 Prérequis : graphes (`02-CONSTRUCTION/06-DATA-STRUCTURES/08_graphs`), heaps (`02-CONSTRUCTION/06-DATA-STRUCTURES/05_heap`). Si c'est flou, réviser là-bas d'abord.
 
@@ -26,7 +26,7 @@ Prérequis : graphes (`02-CONSTRUCTION/06-DATA-STRUCTURES/08_graphs`), heaps (`0
 
 ## 1) L'INTUITION : POURQUOI ÇA MARCHE
 
-Dijkstra est un greedy sur un graphe. À chaque étape, on traite le noeud non visité le plus proche du départ. Pourquoi c'est optimal ? Parce qu'avec des poids positifs, un chemin déjà trouvé vers un noeud ne peut qu'empirer si on passe par d'autres noeuds non visités. Le noeud le plus proche est définitivement réglé.
+Dijkstra est un greedy sur un graphe. À chaque étape, on traite le noeud non visité le plus proche du départ. Pourquoi c'est optimal ? Parce qu'avec des poids non négatifs, un chemin déjà trouvé vers un noeud ne peut qu'empirer si on passe par d'autres noeuds non visités. Le noeud le plus proche est définitivement réglé.
 
 ```text
         2     4
@@ -97,7 +97,34 @@ class MinHeap {
 }
 
 function dijkstra(graph, start) {
-  // graph : Map<node, Array<[neighbor, weight]>>
+  // Contrat : graphe orienté représenté par Map<node, Array<[neighbor, weight]>>.
+  // Chaque voisin doit être une clé du graphe ; chaque poids doit être fini et >= 0.
+  if (!(graph instanceof Map)) throw new TypeError("graph doit être une Map");
+  if (!graph.has(start))
+    throw new RangeError("start doit être un sommet du graphe");
+
+  for (const [node, edges] of graph) {
+    if (!Array.isArray(edges)) {
+      throw new TypeError(
+        `Les arêtes de ${String(node)} doivent former un tableau`,
+      );
+    }
+    for (const edge of edges) {
+      if (!Array.isArray(edge) || edge.length !== 2) {
+        throw new TypeError("Chaque arête doit être [neighbor, weight]");
+      }
+      const [neighbor, weight] = edge;
+      if (!graph.has(neighbor)) {
+        throw new RangeError(
+          `Sommet voisin absent du graphe : ${String(neighbor)}`,
+        );
+      }
+      if (!Number.isFinite(weight) || weight < 0) {
+        throw new RangeError("Les poids doivent être finis et non négatifs");
+      }
+    }
+  }
+
   const dist = new Map();
   const prev = new Map(); // pour reconstruire le chemin
   const pq = new MinHeap();
@@ -133,15 +160,21 @@ function dijkstra(graph, start) {
 
 // Reconstruire le chemin depuis start vers target
 function getPath(prev, start, target) {
+  if (!(prev instanceof Map)) throw new TypeError("prev doit être une Map");
+  if (!prev.has(start) || !prev.has(target)) return [];
+
   const path = [];
+  const visited = new Set(); // garde-fou contre une map de prédécesseurs incohérente
   let current = target;
 
-  while (current !== null) {
+  while (current !== null && current !== undefined) {
+    if (visited.has(current)) return []; // cycle inattendu dans les prédécesseurs
+    visited.add(current);
     path.unshift(current);
     current = prev.get(current);
   }
 
-  return path[0] === start ? path : []; // pas de chemin si le départ n'est pas là
+  return path[0] === start ? path : [];
 }
 ```
 
@@ -209,9 +242,9 @@ const network = new Map([
 
 const { dist, prev } = dijkstra(network, "ABQ");
 
-console.log(dist.get("Las Vegas")); // 695 : ABQ→El Paso→Tucson→Phoenix→Las Vegas (695 min)
+console.log(dist.get("Las Vegas")); // 825 minutes
 console.log(getPath(prev, "ABQ", "Las Vegas"));
-// ["ABQ", "El Paso", "Tucson", "Phoenix", "Las Vegas"]
+// ["ABQ", "Tucson", "Phoenix", "Las Vegas"]
 ```
 
 **Trace d'exécution :**
@@ -240,17 +273,16 @@ Pop (450, Denver) :
  Las Vegas : 450+750=1200 < Inf => ...
 
 Pop (535, Phoenix) :
- Las Vegas : 535+290=825 < 1200 => dist[Las Vegas]=825...
+ Las Vegas : 535+290=825 < 1200 => dist[Las Vegas]=825, push (825, "Las Vegas")
 
-... Mais El Paso → Tucson → Phoenix → Las Vegas = 280+280+115+290 = 965 ?
- Non : ABQ → El Paso → Tucson = 280+280=560 > ABQ → Santa Fe → ...
- Chemin optimal : ABQ(0) → El Paso(280) → Tucson(280+280=560)?
- Non car dist[Tucson] = 420 via direct ABQ→Tucson, pas via El Paso.
- Phoenix depuis Tucson : 420+115 = 535
- Las Vegas depuis Phoenix : 535+290 = 825
+Pop (710, Phoenix) :
+ 710 > dist[Phoenix] (535) => entrée obsolète, skip
 
-Résultat final dist[Las Vegas] = 825 (pas 695 comme montré ci-dessus)
-=> l'exemple numérique est ce qu'il est, la trace confirme le mécanisme
+Pop (825, Las Vegas) :
+ destination atteinte ; aucune amélioration n'est possible avec les poids non négatifs.
+
+Chemin optimal : ABQ → Tucson → Phoenix → Las Vegas
+Coût : 420 + 115 + 290 = 825 minutes
 ```
 
 ---
@@ -305,37 +337,44 @@ const brokenGraph = new Map([
 
 ---
 
-## 6) VARIANTE : K PLUS COURTS CHEMINS
+## 6) VARIANTE PÉDAGOGIQUE : K CHEMINS SIMPLES PAR COÛT
 
-Parfois on veut les K meilleurs chemins, pas juste le meilleur.
+Pour un petit graphe fini à poids non négatifs, on peut énumérer les K chemins simples par coût croissant, puis comparer un second critère (risque, péage, nombre de changements) sur les chemins réellement restitués. Ce code d’apprentissage n’est pas un algorithme de navigation à grande échelle : le nombre de chemins simples peut croître exponentiellement.
 
 ```js
-function dijkstraKShortest(graph, start, target, k) {
-  // on autorise de revisiter les noeuds jusqu'à k fois
-  const count = new Map();
-  for (const node of graph.keys()) count.set(node, 0);
+function kShortestSimplePaths(graph, start, target, k) {
+  if (!Number.isSafeInteger(k) || k < 1) {
+    throw new RangeError("k doit être un entier strictement positif");
+  }
 
-  const pq = new MinHeap();
-  pq.push([0, start]);
+  // Ce parcours énumère les chemins simples par coût croissant.
+  // Il exige des poids finis et non négatifs, et un graphe fini.
+  // La recherche peut être exponentielle : réserve-la aux graphes pédagogiques
+  // ou aux réseaux de taille maîtrisée, pas à un service de navigation général.
+  const queue = new MinHeap();
+  queue.push([0, [start]]);
   const results = [];
 
-  while (pq.size > 0 && results.length < k) {
-    const [dist, node] = pq.pop();
-    count.set(node, count.get(node) + 1);
+  while (queue.size > 0 && results.length < k) {
+    const [distance, path] = queue.pop();
+    const node = path[path.length - 1];
 
-    // un noeud peut être visité au plus k fois
-    if (count.get(node) > k) continue;
-
-    if (node === target) results.push(dist);
+    if (node === target) {
+      results.push({ distance, path });
+      continue;
+    }
 
     for (const [neighbor, weight] of graph.get(node) || []) {
-      if (count.get(neighbor) < k) {
-        pq.push([dist + weight, neighbor]);
+      if (!Number.isFinite(weight) || weight < 0) {
+        throw new RangeError("Les poids doivent être finis et non négatifs");
       }
+      // Empêche les cycles : chaque résultat est un chemin simple.
+      if (path.includes(neighbor)) continue;
+      queue.push([distance + weight, [...path, neighbor]]);
     }
   }
 
-  return results; // liste des k plus courtes distances vers target
+  return results; // [{ distance, path }, ...], triés par distance croissante
 }
 ```
 
@@ -470,9 +509,269 @@ Implémenter deux versions de Dijkstra : une avec un array simple (trouver le mi
 
 ---
 
+## CORRIGÉ DE RÉFÉRENCE : À CONSULTER APRÈS TA TENTATIVE
+
+Les corrections ci-dessous utilisent la classe `MinHeap`, la fonction `dijkstra()` et `getPath()` présentées plus haut dans ce document. Elles donnent une implémentation de référence ; tu peux proposer une autre solution si elle respecte le contrat et les mêmes cas limites.
+
+### Exo 1 : Le GPS de León Luis
+
+```js
+function fastestRoute(city, start, target) {
+  const { dist, prev } = dijkstra(city, start);
+  const distance = dist.get(target);
+  if (distance === undefined || !Number.isFinite(distance)) {
+    return { path: [], minutes: Infinity };
+  }
+  const path = getPath(prev, start, target);
+  return path.length > 0
+    ? { path, minutes: distance }
+    : { path: [], minutes: Infinity };
+}
+
+const route = fastestRoute(city, "Shinjuku", "Ginza");
+console.log(route);
+// { path: ["Shinjuku", "Shibuya", "Roppongi", "Ginza"], minutes: 30 }
+```
+
+Le chemin passe par Shibuya puis Roppongi : `12 + 8 + 10 = 30` minutes. La route directe Shinjuku → Shibuya → Ginza coûte `12 + 22 = 34` minutes.
+
+### Exo 2 : Dijkstra avec contrainte de carburant
+
+La consigne initiale ne fournissait pas de coût de carburant. Voici une fixture explicite. Ici, `maxFuel` est un **budget total de carburant pour tout le trajet**, sans ravitaillement intermédiaire ; chaque arête contient `[voisin, minutes, carburant]`.
+
+```js
+const fuelCity = new Map([
+  [
+    "Konoha",
+    [
+      ["Suna", 12, 6],
+      ["Kiri", 18, 3],
+    ],
+  ],
+  [
+    "Suna",
+    [
+      ["Kiri", 3, 1],
+      ["Iwa", 12, 6],
+    ],
+  ],
+  [
+    "Kiri",
+    [
+      ["Suna", 3, 1],
+      ["Iwa", 9, 4],
+    ],
+  ],
+  ["Iwa", []],
+]);
+
+function fastestRouteWithFuel(graph, start, target, maxFuel) {
+  if (!(graph instanceof Map)) throw new TypeError("graph doit être une Map");
+  if (!graph.has(start) || !graph.has(target))
+    throw new RangeError("Sommet de départ ou d'arrivée absent");
+  if (!Number.isFinite(maxFuel) || maxFuel < 0)
+    throw new RangeError("maxFuel doit être fini et positif ou nul");
+
+  for (const [node, edges] of graph) {
+    if (!Array.isArray(edges))
+      throw new TypeError(`Arêtes invalides pour ${String(node)}`);
+    for (const edge of edges) {
+      if (!Array.isArray(edge) || edge.length !== 3)
+        throw new TypeError(
+          "Chaque arête doit être [voisin, minutes, carburant]",
+        );
+      const [neighbor, minutes, fuel] = edge;
+      if (!graph.has(neighbor))
+        throw new RangeError(`Voisin absent : ${String(neighbor)}`);
+      if (
+        !Number.isFinite(minutes) ||
+        minutes < 0 ||
+        !Number.isFinite(fuel) ||
+        fuel < 0
+      ) {
+        throw new RangeError(
+          "Minutes et carburant doivent être finis et non négatifs",
+        );
+      }
+    }
+  }
+
+  // Un état est défini par le sommet ET le carburant déjà consommé.
+  const best = new Map([...graph.keys()].map((node) => [node, new Map()]));
+  const queue = new MinHeap();
+  best.get(start).set(0, 0);
+  queue.push([0, start, 0, [start]]); // [minutes, sommet, carburant, chemin]
+
+  while (queue.size > 0) {
+    const [minutes, node, fuel, path] = queue.pop();
+    if (minutes !== best.get(node).get(fuel)) continue;
+    if (node === target) return { path, minutes, fuel };
+
+    for (const [neighbor, edgeMinutes, edgeFuel] of graph.get(node)) {
+      const nextFuel = fuel + edgeFuel;
+      if (nextFuel > maxFuel) continue;
+      const nextMinutes = minutes + edgeMinutes;
+      const previousBest = best.get(neighbor).get(nextFuel) ?? Infinity;
+      if (nextMinutes < previousBest) {
+        best.get(neighbor).set(nextFuel, nextMinutes);
+        queue.push([nextMinutes, neighbor, nextFuel, [...path, neighbor]]);
+      }
+    }
+  }
+
+  return { path: [], minutes: Infinity, fuel: Infinity };
+}
+
+console.log(fastestRouteWithFuel(fuelCity, "Konoha", "Iwa", 8));
+// { path: ["Konoha", "Kiri", "Iwa"], minutes: 27, fuel: 7 }
+```
+
+Le chemin Konoha → Suna → Iwa est plus rapide en temps brut (`24` minutes), mais consomme `12` unités de carburant : il dépasse le budget de `8` et doit être rejeté. L'état doit donc mémoriser le carburant restant/consommé, pas seulement le sommet.
+
+### Exo 3 : Réseau de distribution Walking Dead
+
+```js
+const { dist: campDistances } = dijkstra(roads, "Alexandria");
+const reachableCamps = [...campDistances.entries()].filter(([, distance]) =>
+  Number.isFinite(distance),
+);
+const farthestCamp = reachableCamps.reduce((best, current) =>
+  current[1] > best[1] ? current : best,
+);
+
+console.log(Object.fromEntries(campDistances));
+// { Alexandria: 0, Hilltop: 50, Kingdom: 120, Saviors: 80, Oceanside: 160 }
+console.log(farthestCamp); // ["Oceanside", 160]
+console.log(
+  farthestCamp[1] > 200 ? "ALERTE : plus de 200 km" : "Distance sous le seuil",
+);
+// "Distance sous le seuil"
+```
+
+Le chemin optimal vers Oceanside passe par Hilltop : `50 + 110 = 160 km`. Le réseau ne déclenche donc pas l'avertissement de 200 km.
+
+### Exo 4 : Comparaison naive vs heap
+
+La fixture ci-dessous crée un graphe **non orienté, connexe, déterministe** de 100 sommets et 500 arêtes distinctes. Le générateur pseudo-aléatoire sert uniquement à produire une fixture reproductible ; il ne convient pas à un usage cryptographique.
+
+```js
+function createSeededRandom(seed) {
+  let state = seed >>> 0;
+  return () => {
+    state = (Math.imul(1664525, state) + 1013904223) >>> 0;
+    return state / 2 ** 32;
+  };
+}
+
+function generateGraph(nodeCount = 100, edgeCount = 500, seed = 42) {
+  if (
+    nodeCount < 3 ||
+    edgeCount < nodeCount ||
+    edgeCount > (nodeCount * (nodeCount - 1)) / 2
+  ) {
+    throw new RangeError("Dimensions de graphe impossibles");
+  }
+  const random = createSeededRandom(seed);
+  const graph = new Map(
+    Array.from({ length: nodeCount }, (_, node) => [node, []]),
+  );
+  const keys = new Set();
+
+  function addEdge(a, b) {
+    if (a === b) return false;
+    const low = Math.min(a, b);
+    const high = Math.max(a, b);
+    const key = `${low}:${high}`;
+    if (keys.has(key)) return false;
+    keys.add(key);
+    const weight = 1 + Math.floor(random() * 20);
+    graph.get(a).push([b, weight]);
+    graph.get(b).push([a, weight]);
+    return true;
+  }
+
+  // Un cycle connecte les 100 sommets avant l'ajout des autres arêtes.
+  for (let node = 0; node < nodeCount; node++)
+    addEdge(node, (node + 1) % nodeCount);
+  while (keys.size < edgeCount) {
+    const a = Math.floor(random() * nodeCount);
+    const b = Math.floor(random() * nodeCount);
+    addEdge(a, b);
+  }
+  return graph;
+}
+
+function dijkstraNaive(graph, start) {
+  const dist = new Map([...graph.keys()].map((node) => [node, Infinity]));
+  const unvisited = new Set(graph.keys());
+  dist.set(start, 0);
+
+  while (unvisited.size > 0) {
+    let current = null;
+    let smallest = Infinity;
+    for (const node of unvisited) {
+      if (dist.get(node) < smallest) {
+        smallest = dist.get(node);
+        current = node;
+      }
+    }
+    if (current === null) break;
+    unvisited.delete(current);
+
+    for (const [neighbor, weight] of graph.get(current)) {
+      if (!unvisited.has(neighbor)) continue;
+      const candidate = smallest + weight;
+      if (candidate < dist.get(neighbor)) dist.set(neighbor, candidate);
+    }
+  }
+  return dist;
+}
+
+function assertSameDistances(left, right) {
+  for (const [node, distance] of left) {
+    if (distance !== right.get(node))
+      throw new Error(`Distance différente pour le sommet ${node}`);
+  }
+}
+
+function median(values) {
+  const sorted = [...values].sort((a, b) => a - b);
+  return sorted[Math.floor(sorted.length / 2)];
+}
+
+const benchmarkGraph = generateGraph(100, 500, 42);
+const naiveExpected = dijkstraNaive(benchmarkGraph, 0);
+const heapExpected = dijkstra(benchmarkGraph, 0).dist;
+assertSameDistances(naiveExpected, heapExpected); // même résultat avant mesure
+
+const naiveTimes = [];
+const heapTimes = [];
+for (let run = 0; run < 5; run++) {
+  let startTime = performance.now();
+  dijkstraNaive(benchmarkGraph, 0);
+  naiveTimes.push(performance.now() - startTime);
+
+  startTime = performance.now();
+  dijkstra(benchmarkGraph, 0);
+  heapTimes.push(performance.now() - startTime);
+}
+console.log({
+  nodes: benchmarkGraph.size,
+  edges: 500,
+  runs: 5,
+  naiveMedianMs: median(naiveTimes),
+  heapMedianMs: median(heapTimes),
+  resultsIdentical: true,
+});
+```
+
+Ne transforme pas un seul temps mesuré en loi générale : sur un graphe de 100 sommets, le coût de démarrage et le moteur peuvent masquer l'écart théorique. La preuve attendue est d'abord l'égalité des distances, puis une mesure répétée et contextualisée.
+
+---
+
 ## RÉSUMÉ
 
-Dijkstra = greedy sur graphe pondéré avec poids positifs. À chaque étape, finaliser le noeud le plus proche. La priority queue rend ça efficace : `O((V+E) log V)` au lieu de `O(V²)`. Deux pièges absolus : les poids négatifs (Dijkstra donne des résultats silencieusement incorrects : utiliser Bellman-Ford) et oublier le check `currDist > dist.get(node)` qui permet de skip les entrées obsolètes dans la queue. Reconstruire le chemin se fait avec la map `prev` en remontant depuis la destination.
+Dijkstra s'applique à un graphe fini dont les poids sont **non négatifs** (zéro est autorisé). À chaque étape, il extrait le sommet de distance provisoire minimale. Avec une file de priorité binaire, la complexité usuelle est `O((V+E) log V)`. Deux pièges absolus : accepter un poids négatif (utiliser Bellman-Ford à la place) et oublier le contrôle `currDist > dist.get(node)`, qui ignore les entrées obsolètes de la file. La reconstruction remonte les prédécesseurs ; elle doit aussi traiter explicitement une destination inconnue ou inaccessible.
 
 ## CHECKPOINT DE PROFONDEUR : variation A : prédire avant de réparer
 

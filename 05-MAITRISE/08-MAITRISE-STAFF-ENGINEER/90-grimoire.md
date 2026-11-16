@@ -9,6 +9,9 @@ type: grimoire
 
 # Grimoire : relier les preuves
 
+> Rappel : ce grimoire simplifie via analogies. Lire d’abord [`91-18_GRIMOIRE_CODE_HONNEUR.md`](../06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
+
+
 Temps de lecture ~2 min
 
 À n'ouvrir qu'après le [dossier unique](02-dossier_unique.md) rédigé. Deux

@@ -6,11 +6,6 @@ stability: stable
 
 # EXO : Vérifier une IA séduisante
 
-stability: evolutif
-acte: construction
-noyau: renfort
-
----
 
 ## EXO IA séduisante : l'agent qui découpe trop
 

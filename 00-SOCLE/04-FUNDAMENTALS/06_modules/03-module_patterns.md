@@ -279,6 +279,298 @@ Trois plugins à créer :
 
 ---
 
+## CORRIGÉS DE RÉFÉRENCE : À CONSULTER APRÈS UNE TENTATIVE
+
+Les exemples ci-dessous sont des implémentations de référence. Les données et formules des exercices 2 et 3 sont des **hypothèses pédagogiques explicites** : elles rendent le comportement déterministe et testable ; elles ne prétendent pas représenter un vrai calcul de survie ou un modèle professionnel de xG.
+
+### Corrigé 1 : module de camp (`camp.js`)
+
+Pour rendre le scénario reproductible, le corrigé choisit un état initial documenté : aucun survivant, 20 munitions et 10 unités de nourriture. `consommerRessources` retourne `true` si la consommation a été effectuée, `false` si les ressources sont insuffisantes. Une quantité nulle, négative ou non entière est rejetée.
+
+```js
+// camp.js
+const survivants = [];
+let munitions = 20;
+let nourriture = 10;
+
+export function ajouterSurvivant(nom) {
+  if (typeof nom !== "string" || nom.trim() === "") {
+    throw new TypeError("Le nom du survivant doit être une chaîne non vide.");
+  }
+  const nomNormalise = nom.trim();
+  if (
+    survivants.some(
+      (item) =>
+        item.toLocaleLowerCase("fr") === nomNormalise.toLocaleLowerCase("fr"),
+    )
+  ) {
+    return false;
+  }
+  survivants.push(nomNormalise);
+  return true;
+}
+
+export function consommerRessources(type, quantite) {
+  if (!Number.isSafeInteger(quantite) || quantite <= 0) {
+    throw new RangeError("La quantité doit être un entier positif sûr.");
+  }
+  if (type !== "munitions" && type !== "nourriture") {
+    throw new TypeError('Le type doit être "munitions" ou "nourriture".');
+  }
+  const disponible = type === "munitions" ? munitions : nourriture;
+  if (quantite > disponible) return false;
+  if (type === "munitions") munitions -= quantite;
+  else nourriture -= quantite;
+  return true;
+}
+
+export function getStatsCamp() {
+  return {
+    survivants: [...survivants],
+    munitions,
+    nourriture,
+  };
+}
+
+export function estEnDanger() {
+  return munitions < 10 || nourriture < 5;
+}
+```
+
+Le tableau de survivants retourné est une copie. Modifier `getStatsCamp().survivants` ne modifie donc pas l'état privé du module. Les valeurs numériques sont primitives et sont copiées par valeur.
+
+### Corrigé 2 : façade de Konoha
+
+Le scénario fixe trois shinobis et deux cibles synthétiques. La formule de survie est volontairement simple : `70 + bonus de rang + bonus kunaï - 5 × puissance ennemie - 2 × taille ennemie`, bornée entre 0 et 100. C'est un mécanisme d'exercice, **pas** une estimation réaliste de survie.
+
+```js
+// internal/ennemis.js
+const ennemis = [
+  { nom: "Zabuza", taille: 2, puissance: 8 },
+  { nom: "Bandit", taille: 1, puissance: 3 },
+];
+
+export function genererEnnemi(nom) {
+  const ennemi = ennemis.find((item) => item.nom === nom);
+  return ennemi ? { ...ennemi } : null;
+}
+```
+
+```js
+// internal/shinobis.js
+const shinobis = [
+  { nom: "Naruto", rang: "Genin", kunai: true },
+  { nom: "Sakura", rang: "Chunin", kunai: false },
+  { nom: "Kakashi", rang: "Jonin", kunai: true },
+];
+
+export function trouverShinobi(nom) {
+  const shinobi = shinobis.find((item) => item.nom === nom);
+  return shinobi ? { ...shinobi } : null;
+}
+```
+
+```js
+// internal/calcul.js
+const bonusRang = { Genin: 0, Chunin: 8, Jonin: 15 };
+
+export function tauxSurvie(ennemi, shinobi) {
+  if (!ennemi || !shinobi || !(shinobi.rang in bonusRang)) {
+    throw new TypeError("Ennemi ou shinobi invalide.");
+  }
+  const taux =
+    70 +
+    bonusRang[shinobi.rang] +
+    (shinobi.kunai ? 5 : 0) -
+    5 * ennemi.puissance -
+    2 * ennemi.taille;
+  return Math.max(0, Math.min(100, taux));
+}
+```
+
+```js
+// konoha.js  : seule façade publique
+import { genererEnnemi } from "./internal/ennemis.js";
+import { trouverShinobi } from "./internal/shinobis.js";
+import { tauxSurvie } from "./internal/calcul.js";
+
+export function lancerMission(nomCible, nomShinobi) {
+  const ennemi = genererEnnemi(nomCible);
+  const shinobi = trouverShinobi(nomShinobi);
+  if (!ennemi) throw new Error(`Cible inconnue : ${nomCible}`);
+  if (!shinobi) throw new Error(`Shinobi inconnu : ${nomShinobi}`);
+
+  const probabilitePedagogique = tauxSurvie(ennemi, shinobi);
+  return {
+    cible: ennemi.nom,
+    shinobi: shinobi.nom,
+    probabilitePedagogique,
+    niveauRisque:
+      probabilitePedagogique >= 70
+        ? "faible"
+        : probabilitePedagogique >= 40
+          ? "modéré"
+          : "élevé",
+    recommandation:
+      probabilitePedagogique >= 40
+        ? "Mission envisageable selon le scénario."
+        : "Renforcer l'équipe ou revoir la mission.",
+  };
+}
+```
+
+```js
+// main.js
+import { lancerMission } from "./konoha.js";
+
+console.log(lancerMission("Bandit", "Kakashi"));
+```
+
+`main.js` dépend uniquement de la façade. Les modules internes peuvent être réorganisés sans modifier son import tant que le contrat public de `konoha.js` reste stable.
+
+### Corrigé 3 : registre de plugins de statistiques
+
+Les trois plugins utilisent un même contrat : une fonction reçoit un objet d'entrée et retourne un résultat. Les noms sont uniques ; les fonctions inconnues ou les doublons provoquent une erreur explicite. Le calcul xG ci-dessous est un **proxy géométrique simplifié**, non calibré sur des tirs réels.
+
+```js
+// core/statsRegistry.js
+const plugins = new Map();
+
+export function register(nom, calculer) {
+  if (
+    typeof nom !== "string" ||
+    nom.trim() === "" ||
+    typeof calculer !== "function"
+  ) {
+    throw new TypeError("Un nom non vide et une fonction sont requis.");
+  }
+  if (plugins.has(nom)) throw new Error(`Plugin déjà enregistré : ${nom}`);
+  plugins.set(nom, calculer);
+}
+
+export function executer(nom, donnees) {
+  const calculer = plugins.get(nom);
+  if (!calculer) throw new Error(`Plugin inconnu : ${nom}`);
+  return calculer(donnees);
+}
+
+export function lister() {
+  return [...plugins.keys()];
+}
+```
+
+```js
+// plugins/possession.js
+import { register } from "../core/statsRegistry.js";
+
+function possession({ passesEquipe, passesAdversaire }) {
+  for (const valeur of [passesEquipe, passesAdversaire]) {
+    if (!Number.isSafeInteger(valeur) || valeur < 0) {
+      throw new RangeError(
+        "Les nombres de passes doivent être des entiers positifs ou nuls.",
+      );
+    }
+  }
+  const total = passesEquipe + passesAdversaire;
+  if (total === 0)
+    throw new RangeError("Impossible de calculer une possession sans passe.");
+  return Number(((passesEquipe / total) * 100).toFixed(1));
+}
+
+register("possession", possession);
+```
+
+```js
+// plugins/xg.js  : proxy pédagogique, pas modèle professionnel
+import { register } from "../core/statsRegistry.js";
+
+function xg({ tirs }) {
+  if (!Array.isArray(tirs)) throw new TypeError("tirs doit être un tableau.");
+  return Number(
+    tirs
+      .reduce((total, tir) => {
+        const { x, y } = tir ?? {};
+        if (
+          ![x, y].every(Number.isFinite) ||
+          x < 0 ||
+          x > 100 ||
+          y < 0 ||
+          y > 100
+        ) {
+          throw new RangeError(
+            "Chaque tir doit avoir x et y compris entre 0 et 100.",
+          );
+        }
+        const distanceAuBut = Math.hypot(100 - x, 50 - y);
+        const probabilite = Math.max(
+          0,
+          Math.min(0.95, 0.65 - distanceAuBut * 0.008),
+        );
+        return total + probabilite;
+      }, 0)
+      .toFixed(3),
+  );
+}
+
+register("xg", xg);
+```
+
+```js
+// plugins/rating.js  : barème d'exercice explicite, sur 10
+import { register } from "../core/statsRegistry.js";
+
+function rating({ buts, passesDecisives, taclesGagnes, pertesBalle }) {
+  const valeurs = [buts, passesDecisives, taclesGagnes, pertesBalle];
+  if (!valeurs.every((v) => Number.isFinite(v) && v >= 0)) {
+    throw new RangeError(
+      "Les statistiques doivent être des nombres positifs ou nuls.",
+    );
+  }
+  const note =
+    5 +
+    buts * 0.8 +
+    passesDecisives * 0.5 +
+    taclesGagnes * 0.1 -
+    pertesBalle * 0.15;
+  return Number(Math.max(0, Math.min(10, note)).toFixed(2));
+}
+
+register("rating", rating);
+```
+
+```js
+// main.js
+import "./plugins/possession.js";
+import "./plugins/xg.js";
+import "./plugins/rating.js";
+import { executer, lister } from "./core/statsRegistry.js";
+
+console.log(lister());
+console.log(
+  executer("possession", { passesEquipe: 420, passesAdversaire: 380 }),
+);
+console.log(
+  executer("xg", {
+    tirs: [
+      { x: 90, y: 50 },
+      { x: 80, y: 45 },
+    ],
+  }),
+);
+console.log(
+  executer("rating", {
+    buts: 1,
+    passesDecisives: 1,
+    taclesGagnes: 4,
+    pertesBalle: 2,
+  }),
+);
+```
+
+Le plugin xG est une fonction d'illustration des contrats, non un modèle de prédiction. Une utilisation sportive réelle demanderait des données de tirs, une définition des variables, un entraînement/calibrage et une validation hors échantillon. Le barème rating est tout aussi pédagogique : ne le présente pas comme une note officielle de joueur.
+
+---
+
 ## RÉSUMÉ
 
 Un module = une responsabilité. Une interface publique réduite. Un état interne protégé.

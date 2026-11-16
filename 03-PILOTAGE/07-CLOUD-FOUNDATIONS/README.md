@@ -25,6 +25,8 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 3. Choisir un fournisseur sur des critères écrits, dont un critère de sortie.
 4. Porter un service chez un second fournisseur et mesurer l'écart réel.
 
+> **Repère de navigation :** `06A-BUDGET-CLOUD.md` est le gabarit de preuve S1 (budget). Le dossier `06-reference-portability/` contient un laboratoire séparé de portabilité entre fournisseurs ; il est facultatif et ne fait pas partie des 10 h 20 annoncées pour le parcours de base.
+
 ## Parcours
 
 | Fichier                                                                    | Objet                                      | Durée          |
@@ -33,12 +35,12 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | `02-modeles_cout.md`                                                       | modèles de coût et unités facturées        | 45 min         |
 | `03-rayon_impact_zones.md`                                                 | régions, zones, rayon d'impact             | 45 min         |
 | `04-choisir_fournisseur.md`                                                | grille de choix et critère de sortie       | 45 min         |
-| `99-PORTAGE-MENTAL.md`                                                     | portage, preuve de transférabilité         | 45 min         |
-| [`06-reference-portability/README.md`](06-reference-portability/README.md) | laboratoire de portabilité AWS/GCP         | selon le jalon |
-| `05-releve_tarifaire_reel.md`                                              | relevé personnel daté (anti-copie)         | 75 min         |
 | `07-RELEVE-REFERENCE-2026.md`                                              | simulation de budget, jamais un tarif réel | 20 min         |
-| `90-grimoire.md`                                                           | lignes à retenir                           | 30 min         |
+| `05-releve_tarifaire_reel.md`                                              | relevé personnel daté (anti-copie)         | 75 min         |
 | `95-challenge.md` / `96-boss-fight.md`                                     | mise en pratique et passage                | 4 h 30         |
+| `90-grimoire.md`                                                           | lignes à retenir, après la pratique        | 30 min         |
+| `99-PORTAGE-MENTAL.md`                                                     | portage, preuve de transférabilité         | 45 min         |
+| [`06-reference-portability/README.md`](06-reference-portability/README.md) | laboratoire facultatif hors durée de base  | selon le jalon |
 
 ## Livrable
 
@@ -64,16 +66,17 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 - [Modèles de coût : l'unité avant le prix](02-modeles_cout.md)
 - [04 : Rayon d'impact, zones et le prix d'une neuvième](03-rayon_impact_zones.md)
 - [Choisir un fournisseur : la grille, et la porte de sortie](04-choisir_fournisseur.md)
-- [06 : Porter son budget chez un second fournisseur](99-PORTAGE-MENTAL.md)
 - [07 : Relevé tarifaire réel, obligatoire et contredisible](05-releve_tarifaire_reel.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
 - [06A-BUDGET-CLOUD.md](06A-BUDGET-CLOUD.md)
 - [Simulation de budget cloud (données fictives)](07-RELEVE-REFERENCE-2026.md)
-- [BOSS FIGHT : MODULE 07 : LA FACTURE A TRIPLÉ CE MOIS-CI](96-boss-fight.md)
+- [Relevé tarifaire réel, daté](05-releve_tarifaire_reel.md)
+- [`97-CHECKPOINT-PACK/`](97-CHECKPOINT-PACK/README.md) : grille de preuves à consulter avant l’évaluation
 - [95-challenge.md](95-challenge.md)
-- [Grimoire : cloud foundations](90-grimoire.md)
-- [`06-reference-portability/`](06-reference-portability/README.md) : laboratoire de portabilité AWS/GCP
-- [`97-CHECKPOINT-PACK/`](97-CHECKPOINT-PACK/README.md)
+- [BOSS FIGHT : MODULE 07 : LA FACTURE A TRIPLÉ CE MOIS-CI](96-boss-fight.md)
+- [Grimoire : cloud foundations : après la pratique](90-grimoire.md)
+- [99-PORTAGE-MENTAL.md : transfert du raisonnement](99-PORTAGE-MENTAL.md)
+- [`06-reference-portability/`](06-reference-portability/README.md) : laboratoire facultatif de portabilité AWS/GCP
 
 <!-- CONTENU-DOSSIER:fin -->
 

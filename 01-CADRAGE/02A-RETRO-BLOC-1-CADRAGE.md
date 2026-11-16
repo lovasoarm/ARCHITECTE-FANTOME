@@ -25,15 +25,15 @@ Must prove
 
 Le MVP choisit la plus petite tranche capable de tester l’hypothèse importante et de produire une mesure.
 
-[Sommaire](../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/08-ROADMAP-rythmes.md) | Style
+[Sommaire](../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/08-ROADMAP-rythmes.md) | Style
 
 Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opération précise : tu
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
 est désormais faux, et pourquoi ce n'était pas visible à l'époque.
 
 Durée : 60 à 90 minutes. À faire après le boss-fight du 05-MVP-SPLIT, avant d'ouvrir le bloc
-suivant. Ne saute pas cette étape : c'est la seule fois du parcours où tu juges ton propre
-travail passé avec des yeux différents.
+suivant. Ne saute pas cette étape : c'est une étape structurée du parcours où tu réévalues ton
+travail passé avec les connaissances et les critères acquis depuis sa réalisation.
 
 ## Contrôle d'antériorité du bloc
 

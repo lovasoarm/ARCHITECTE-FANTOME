@@ -16,6 +16,10 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 > Bloc `00-SOCLE`. Durée estimée de la **première passe obligatoire : 11 h 15** (16 ressources chronométrées). Deux exercices complémentaires sont facultatifs : un exercice autonome de pratique et de vérification (45 min), puis un exercice de détection d’une suggestion IA trompeuse (10 min), soit **55 min** supplémentaires au total. Le travail actif atteint donc **12 h 10** si tu choisis aussi de les faire. Le pont différé reste hors de ces totaux. Ces estimations décrivent le travail du module, pas une séance unique ni une échéance.
 
+## Prérequis d’entrée
+
+Avant de commencer ce module, termine la route canonique et le challenge de [Fundamentals](../04-FUNDAMENTALS/README.md), puis réalise son [pont obligatoire vers Problem Solving](../04-FUNDAMENTALS/99A-PONT.md). Ce pont n’ajoute pas une leçon de syntaxe : il prépare au passage entre écrire du code et formuler le problème, ses états et ses invariants.
+
 **Règle de première passe :** avance une leçon et sa pratique locale à la fois, dans l'ordre. Les six exercices du cas fictif de Noa constituent les pratiques de base. Les ponts Kintana, défis de profondeur, deux vérifications IA marquées « facultatif » et références différées ne sont pas exigés dans cette première passe. Aucun de ces compléments ne conditionne sa validation. Répartis le travail sur plusieurs séances et conserve une preuve par exercice ; ne cherche pas à tout terminer d'une traite.
 
 ## Sommaire du module
@@ -36,10 +40,10 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | [`54-read_fuzzy_requirements_minimini_projet.md`](54-read_fuzzy_requirements_minimini_projet.md) | 05 read fuzzy requirements minimini projet                    | 45 min              | Première passe                    |
 | [`07-design_for_change.md`](07-design_for_change.md)                                             | CONCEVOIR POUR CE QUI VA CHANGER                              | 45 min              | Première passe                    |
 | [`55-design_for_change_minimini_projet.md`](55-design_for_change_minimini_projet.md)             | 06 design for change minimini projet                          | 45 min              | Première passe                    |
-| [`90-grimoire.md`](90-grimoire.md)                                                               | Page verrouillée                                              | 30 min              | Première passe, après la pratique |
 | [`08-EXO_LECTURE.md`](08-EXO_LECTURE.md)                                                         | EXO DE LECTURE : trois cycles de 15 minutes (45 min au total) | 45 min              | Première passe                    |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                               | Exercice autonome : implémenter et vérifier un concept        | 45 min              | Facultatif : hors première passe  |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                               | EXO IA MENTEUSE : détecter une suggestion trompeuse           | 10 min              | Facultatif : hors première passe  |
+| [`90-grimoire.md`](90-grimoire.md)                                                               | Page verrouillée                                              | 30 min              | Première passe, après la pratique |
 | [`99A-PONT.md`](99A-PONT.md)                                                                     | PONT DIFFÉRÉ : à consulter à l'étape Async, après Mindset     | ~10 min, hors total | Différé : étape Async             |
 
 Total obligatoire de la première passe : **11 h 15**, somme des 16 lignes marquées « Première passe ». Les deux exercices complémentaires facultatifs représentent **55 min** supplémentaires (45 min + 10 min) ; si tu les réalises aussi, le travail actif total est de **12 h 10**. Le pont `99A-PONT.md` est différé et exclu de ces totaux (environ 10 min à l'étape Async). Le challenge (1 h 30) est une évaluation séparée, décrite dans `95-challenge.md`, et n'est pas ajouté aux durées de la première passe. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints et critères de sortie déclarés font foi.
@@ -95,14 +99,12 @@ Les insertions Kintana dans les mini-pratiques sont des **ponts différés**, d�
 - [54-read_fuzzy_requirements_minimini_projet.md](54-read_fuzzy_requirements_minimini_projet.md)
 - [Concevoir pour ce qui va changer](07-design_for_change.md)
 - [55-design_for_change_minimini_projet.md](55-design_for_change_minimini_projet.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO DE LECTURE : trois cycles de 15 minutes (45 min au total)](08-EXO_LECTURE.md)
 - [Exercice autonome : implémenter et vérifier un concept : facultatif, hors première passe](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 00-SOCLE/05-PROBLEM-SOLVING : complément facultatif, hors première passe](97-EXO-VERIFICATION.md)
 - [PONT DIFFÉRÉ : consulter à l'étape Async](99A-PONT.md)
 - [Challenge : `05-PROBLEM-SOLVING`](95-challenge.md)
 - [Grimoire : `05-PROBLEM-SOLVING`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 <!-- AF-KINTANA-MODULE -->

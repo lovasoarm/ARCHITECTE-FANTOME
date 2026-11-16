@@ -20,7 +20,7 @@ Temps de lecture ~5 min
 > l'état réel du dépôt : six blocs physiques (`00` à `05`), 54 modules pédagogiques directs et des paliers de capacité `A` à `H`. La carte narrative
 > du parcours est [00-SOCLE/02-PROLOGUE/03-the-map.md](../../00-SOCLE/02-PROLOGUE/03-the-map.md) ;
 > l'ordre de passage fait foi dans
-> [06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md).
+> [06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md).
 
 ```text
 ce parcours/
@@ -45,7 +45,7 @@ ce parcours/
 │   ├── 05-MVP-SPLIT/                 # Découper en tranches verticales livrables
 │   └── 02A-RETRO-BLOC-1-CADRAGE.md    # Rétrospective de bloc
 │
-├── 02-CONSTRUCTION/                  # Bloc 02 : Construction ; 02bis est sa sous-étape Architecture
+├── 02-CONSTRUCTION/                  # Bloc 02 : Construction ; 21 modules numérotés, 02bis est sa sous-étape Architecture
 │   ├── 01-USER-WIZARD/               # Parcours utilisateur et cas limites
 │   ├── 02-MINI-PROJECTS/             # 19 mini-projets + gabarits sans corrigés livrés
 │   ├── 03-TESTING/                   # AAA, fixtures, doublures, tests de mutation
@@ -66,12 +66,13 @@ ce parcours/
 │   ├── 18-WEB-CONCEPTS/              # HTTP, CORS, cookies, HTTPS, HTTP/3
 │   ├── 19-API-CRAFT/                 # REST, GraphQL, tRPC, contrats, versioning
 │   ├── 20-API-DOJO/                  # Spec d'API, politique d'erreurs et d'authentification
+│   ├── 21-CLIENT-SYSTEMS-FLUTTER/     # Client mobile, cycle de vie, navigation et tests Flutter
 │   ├── 02b-BOSS-1/ … 20b-BOSS-9/     # Les 9 épreuves BOSS du palier, intercalées
 │   ├── 02A-c-MI-RETRO-BLOC-2-BUILD.md  # Mi-parcours du palier 2
 │   ├── 03A-c-RETRO-BLOC-2-BUILD-CONFIRME.md
 │   └── 04A-RETRO-BLOC-2BIS-ARCHI.md
 │
-├── 03-PILOTAGE/                      # Bloc 03 : Pilotage (11 modules)
+├── 03-PILOTAGE/                      # Bloc 03 : Pilotage (12 modules)
 │   ├── 01-ROADMAP-RUN/               # Planifier par le risque
 │   ├── 02-WEB-INCLUSIVE/             # a11y + i18n : deux angles d'inclusion
 │   ├── 03-QUALITY-SHIELD/            # Stratégie de tests, quoi mesurer, quoi alerter
@@ -86,16 +87,17 @@ ce parcours/
 │   ├── 12-PLATFORM-ENGINEERING/       # GitOps, IDP, golden paths, plateforme comme produit
 │   └── 02A-RETRO-BLOC-3-CONDUITE.md   # Rétrospective de bloc
 │
-├── 04-EPREUVE/                       # Bloc 04 : Épreuve (6 modules ; épreuves de bloc déclarées séparément)
+├── 04-EPREUVE/                       # Bloc 04 : Épreuve (5 modules pédagogiques + 1 gate externe ; 2 boss séparés)
 │   ├── 01-BONUS-VAULT/               # Sécurité, coûts, données personnelles
 │   ├── 02-TOOL-CAVE/                 # Éditeur, shell, outillage de débogage
 │   ├── 03-REALTIME/                  # WebSocket, SSE, WebRTC
 │   ├── 04-BIG-APP-SNOOP/             # Entrer dans un gros code inconnu
 │   ├── 05-CAPSTONE-ARENA/            # Le projet complet depuis un brief ambigu
+│   ├── 08-EXTERNAL-VALIDATION/       # Gate de preuve externe : review, utilisateurs, mission ou production
 │   ├── 03b-BOSS-1/ , 04b-BOSS-2/     # Les deux épreuves BOSS du palier
 │   └── 02A-RETRO-BLOC-4-EPREUVE.md    # Rétrospective de bloc
 │
-├── 05-MAITRISE/                      # Bloc 05 : Maîtrise (7 modules pédagogiques + annexes)
+├── 05-MAITRISE/                      # Bloc 05 : Maîtrise (6 modules pédagogiques + annexes)
 │   ├── 01-DATABASES/                 # SQL, index, transactions, ORM sains
 │   ├── 02-SCALABILITY/               # Vertical, horizontal, cache, file d'attente
 │   ├── 03-EDGE-CASES/                # Encodage, fuseaux, flottants, Unicode
@@ -108,7 +110,7 @@ ce parcours/
 └── 06-ANNEXES-TRANSVERSES/           # Hors palier : appelées par les modules
     ├── 02-OU-CHERCHER-DE-L-AIDE.md   ├── 10-SIMULATION-ENTREPRISE.md
     ├── 03-NODE_VERSION.md            ├── 11-PEREMPTION-2027.md
-    ├── 04A-CARTE-DU-PARCOURS.md   ├── 12-COMMUNAUTE.md
+    ├── 01A-CARTE-DU-PARCOURS.md   ├── 12-COMMUNAUTE.md
     ├── 04-TECH-ILA/                  ├── 13-ANNEXE-perennite.md
     ├── 05-UNIVERS_AUTORISES.md       ├── 15-ANNEXE-et-apres.md
     ├── 06-DEV_JOURNAL_HEBDO.md       ├── 16-SUPPORT.md
@@ -120,7 +122,7 @@ ce parcours/
 
 ```text
 06-ANNEXES/
-├── 16A-ARBORESCENCE.md            # Ce fichier
+├── ARBORESCENCE-CURRICULUM.md            # Ce fichier
 ├── 18-PERISSABILITE.md           # Qui périme quand
 ├── 99A-PONT.md     # Table des transitions ponctuées (`99A-PONT.md`)
 ├── 16_career/                    # Portfolio, pitch, pivot, replay du premier clic

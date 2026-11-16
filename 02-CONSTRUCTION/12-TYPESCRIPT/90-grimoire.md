@@ -22,11 +22,9 @@ claim_reviewed_on: "2026-11-03"
 
 # Page verrouillée
 
-Temps de lecture ~12 min
-
 > Rappel : ce grimoire simplifie via analogies. Lire d'abord [`../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md`](../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
 
-Temps de lecture ~11 min
+Temps de lecture ~11 min : séance complète estimée : 30 min (lecture, restitution et révision).
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
 > Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.

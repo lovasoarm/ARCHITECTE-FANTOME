@@ -55,3 +55,7 @@ Les sorties de terminal, captures, nombres d'utilisateurs, volumes, taux, latenc
 - `PRODUCTION` exige une exploitation effective, des signaux observés et un responsable ; un Dockerfile ou un déploiement local ne suffit pas.
 
 **Format minimal d'une mesure revendiquée :** objectif, commande/protocole, versions, matériel/environnement, taille et nature des données, répétitions, résultat brut, limites et décision prise. Ne transforme jamais un chiffre pédagogique en résultat de ton projet.
+
+## Convention du livrable de sécurité
+
+`03-SECURITY.md` est le modèle AF fourni. L'apprenant le copie une seule fois dans son dépôt sous `SECURITY.md`, puis complète uniquement `SECURITY.md`. Les gates et POSTMORTEM désignent ce document final. Les contrôles locaux restent spécifiques au risque du projet ; OWASP classe les risques pertinents sans imposer toutes les catégories partout.

@@ -22,7 +22,11 @@ Durée : 1 h 30.
    complet du commit audité.
 2. **Note d'une page pour une direction** sur ta décision la plus coûteuse : un chiffre, une
    contrepartie, zéro jargon non défini.
-3. **`STANDARDS-AGENTS.md`** complet, avec la commande de vérification qui tourne réellement.
+3. **Preuve de gouvernance des agents**, selon ton fil rouge : si tu utilises réellement
+   un agent autonome, fournis `STANDARDS-AGENTS.md` et la commande de vérification avec
+   son résultat brut ; sinon, fournis `STANDARDS-AGENTS-EXERCICE.md`, un scénario de
+   contrôle sur table marqué `SIMULATION`, et la décision de non-usage dans `EVALUATION-IA.md`.
+   Dans la voie simulée, indique `NOT RUN` pour toute commande non exécutée.
 
 ## Contrainte
 
@@ -31,7 +35,8 @@ Aucune pièce ne suppose une équipe. Si tu en as une, tant mieux ; le barème e
 ## Barème (12 points, 9 pour passer)
 
 Revue publique consultable (4) · niveaux correctement calibrés (2) · note direction reformulable par
-un non-technique (3) · standards vérifiables par une commande (3).
+un non-technique (3) · gouvernance des agents (3) : standard réel et preuve d’exécution si un
+agent est utilisé, ou standard d’exercice et simulation explicitement étiquetée sinon.
 
 ## CHECKPOINT DE PROFONDEUR : variation K : mesure avant conclusion
 

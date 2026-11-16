@@ -16,6 +16,9 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 # Grimoire : cloud foundations
 
+> Rappel : ce grimoire simplifie via analogies. Lire d’abord [`91-18_GRIMOIRE_CODE_HONNEUR.md`](../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
+
+
 Temps de lecture ~2 min
 
 Cinq colonnes comme partout : Terme, Définition, Code, Analogies, Limite. Deux analogies au

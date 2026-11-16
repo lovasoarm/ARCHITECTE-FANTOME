@@ -22,10 +22,10 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | ------------------------------------------------------ | --------------------------------------------------------------------------------------------- | ------ |
 | [`00-PREREQUIS.md`](00-PREREQUIS.md)                   | 00 : Prereq check : TypeScript                                                                | 15 min |
 | [`01A-00-why-typescript.md`](01A-00-why-typescript.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : TYPESCRIPT                                              | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                     | Page verrouillée                                                                              | 30 min |
 | [`02A-EXO_LECTURE.md`](02A-EXO_LECTURE.md)             | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (TypeScript)                                   | 50 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)     | EXO [JEUNE IA] : 02-CONSTRUCTION/12-TYPESCRIPT                                                | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)     | EXO IA MENTEUSE : module 02-CONSTRUCTION/12-TYPESCRIPT                                        | 10 min |
+| [`90-grimoire.md`](90-grimoire.md)                     | Page verrouillée                                                                              | 30 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)         | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust                                       | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                           | PONT : de typer du code à connaître le sol sur lequel il tourne à l'environnement d'exécution | 45 min |
 
@@ -70,7 +70,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [`01_ts_basics/`](01_ts_basics/README.md)
 - [`02_ts_intermediate/`](02_ts_intermediate/README.md)
 - [`03_ts_advanced/`](03_ts_advanced/README.md)
-- [Page verrouillée](90-grimoire.md)
 - [`04_typescript_tooling/`](04_typescript_tooling/README.md)
 - [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (TypeScript)](02A-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/12-typescript](98-EXO-VERIFICATION.md)
@@ -79,7 +78,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [PONT : de typer du code à connaître le sol sur lequel il tourne à l'environnement d'exécution](99A-PONT.md)
 - [Challenge : `12-TYPESCRIPT`](95-challenge.md)
 - [Grimoire : `12-TYPESCRIPT`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources
@@ -138,3 +136,9 @@ Kintana est un cas d’étude pédagogique commun, pas un projet personnel impos
 
 - [Atelier de consolidation](ATELIER-CONSOLIDATION.md) : réutiliser les notions du module dans un cas intégré.
 - [Corrigé de référence de l'atelier](corriges/ATELIER-CONSOLIDATION-CORRIGE.md) : à consulter après une tentative autonome.
+
+<!-- AF-TS-INDEPENDENT-GATE -->
+
+## Gate propre à TypeScript : indépendante du transfert interlangage
+
+La sortie de ce module dépend uniquement des leçons, exercices, mini-projets, vérifications et critères définis dans ce dossier. La validation de TypeScript ne dépend pas du challenge carrière Cross-Language, du mini-projet 15 ni du projet 17. Le transfert JavaScript vers Python OU Go est évalué séparément au mini-projet 15. Aucun langage supplémentaire ne peut être ajouté rétroactivement comme condition de sortie de TypeScript.

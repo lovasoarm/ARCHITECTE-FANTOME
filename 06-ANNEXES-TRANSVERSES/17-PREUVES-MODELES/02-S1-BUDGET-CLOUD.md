@@ -40,14 +40,15 @@ Projet fictif : **Lumen**, plateforme de réservation de créneaux pour ateliers
 
 ## 2. Paramètres de coût fictifs
 
-| Poste           |                      Paramètre de simulation | Limite                                                     |
-| --------------- | -------------------------------------------: | ---------------------------------------------------------- |
-| Calcul          |                              0,02 € / vCPU-h | Coût par vCPU-heure, sans engagement ni taxe               |
-| Base managée    | 15 € / 210 € / 3 100 € par mois selon palier | Forfaits fictifs, pas de SKU réel                          |
-| Stockage objet  |                            0,023 € / GB-mois | Requêtes et récupération exclues                           |
-| Egress Internet |                                  0,08 € / GB | Seuils gratuits et transferts internes exclus              |
-| Observabilité   |     0 € / 25 € / 640 € par mois selon palier | Forfaits fictifs de logs, sans métriques additionnelles    |
-| CDN / edge      |             210 € / mois au palier 1 000 000 | Forfait fictif ; transfert traité séparément dans l'egress |
+| Poste             |                      Paramètre de simulation | Limite                                                                                |
+| ----------------- | -------------------------------------------: | ------------------------------------------------------------------------------------- |
+| Calcul            |                              0,02 € / vCPU-h | Coût par vCPU-heure, sans engagement ni taxe                                          |
+| Base managée      | 15 € / 210 € / 3 100 € par mois selon palier | Forfaits fictifs, pas de SKU réel                                                     |
+| Stockage objet    |                            0,023 € / GB-mois | Requêtes et récupération exclues                                                      |
+| Egress Internet   |                                  0,08 € / GB | Seuils gratuits et transferts internes exclus                                         |
+| Observabilité     |     0 € / 25 € / 640 € par mois selon palier | Forfaits fictifs de logs, sans métriques additionnelles                               |
+| File d'événements |  18 € / mois au palier de base de l'option B | Hypothèse fictive de S2 ; aucune extrapolation aux autres paliers sans tarif distinct |
+| CDN / edge        |             210 € / mois au palier 1 000 000 | Forfait fictif ; transfert traité séparément dans l'egress                            |
 
 Les calculs suivent les formules affichées. Les forfaits sont des hypothèses d'entrée ; aucun prix unitaire réel n'est déduit.
 
@@ -64,14 +65,15 @@ Les calculs suivent les formules affichées. Les forfaits sont des hypothèses d
 
 ## 4. Facture mensuelle simulée, à 10 000 utilisateurs
 
-| Catégorie       | Quantité / règle      |                Calcul | Coût mensuel simulé |
-| --------------- | --------------------- | --------------------: | ------------------: |
-| Calcul          | 7 000 vCPU-h          |        7 000 × 0,02 € |            140,00 € |
-| Base de données | forfait intermédiaire |       donnée d'entrée |            210,00 € |
-| Stockage objet  | 20 GB-mois            |          20 × 0,023 € |              0,46 € |
-| Egress          | 180 GB                |          180 × 0,08 € |             14,40 € |
-| Observabilité   | forfait 10 GB de logs |       donnée d'entrée |             25,00 € |
-| **Total**       |                       | somme des cinq lignes |        **389,86 €** |
+| Catégorie                                | Quantité / règle      |                            Calcul | Coût mensuel simulé |
+| ---------------------------------------- | --------------------- | --------------------------------: | ------------------: |
+| Calcul                                   | 7 000 vCPU-h          |                    7 000 × 0,02 € |            140,00 € |
+| Base de données                          | forfait intermédiaire |                   donnée d'entrée |            210,00 € |
+| Stockage objet                           | 20 GB-mois            |                      20 × 0,023 € |              0,46 € |
+| Egress                                   | 180 GB                |                      180 × 0,08 € |             14,40 € |
+| Observabilité                            | forfait 10 GB de logs |                   donnée d'entrée |             25,00 € |
+| File d'événements (option B de l'ADR S2) | palier de base        | hypothèse fictive retenue dans S2 |             18,00 € |
+| **Total**                                |                       |              somme des six lignes |        **407,86 €** |
 
 ## 5. Facture mensuelle simulée, à 1 000 000 utilisateurs
 

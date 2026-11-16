@@ -172,16 +172,28 @@ Exemples :
  node ballon-dor.js rank
 `;
 
+function parseStrictInteger(raw) {
+  if (typeof raw !== "string" || !/^-?\d+$/.test(raw)) return null;
+  const value = Number(raw);
+  return Number.isSafeInteger(value) ? value : null;
+}
+
 function validateArgs(command, flags) {
   const errors = [];
 
   if (command === "vote") {
     if (!flags.player) errors.push("--player est requis pour la commande vote");
-    if (!flags.points) errors.push("--points est requis pour la commande vote");
-
-    const points = parseInt(flags.points, 10);
-    if (isNaN(points) || points < 1 || points > 15) {
-      errors.push("--points doit être un nombre entre 1 et 15");
+    if (flags.points === undefined) {
+      errors.push("--points est requis pour la commande vote");
+    } else {
+      const points = parseStrictInteger(flags.points);
+      if (points === null || points < 1 || points > 15) {
+        errors.push(
+          "--points doit être un entier entre 1 et 15 (sans texte ajouté)",
+        );
+      } else {
+        flags.points = points; // convertir uniquement après validation complète
+      }
     }
   }
 

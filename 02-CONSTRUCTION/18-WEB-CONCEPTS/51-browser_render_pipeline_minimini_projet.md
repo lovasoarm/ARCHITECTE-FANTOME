@@ -26,13 +26,13 @@ Parsing, layout, paint, composite : savoir quelles propriétés CSS sont chères
 
 ## APPLICATION
 
-- Anime le survol d'une carte avec `width`/`top`, mesure dans l'onglet performance.
+- Anime le survol d'une carte avec `width`/`top`, mesure dans l'onglet Performance. Pour que `top` agisse, donne d'abord à la carte une valeur `position` autre que `static` (par exemple `position: relative`).
 - Refais la même animation avec `transform` et `opacity` seulement.
 - Compare le nombre de recalculs de layout.
 
 ## Critère de réussite
 
-- [ ] Anime le survol d'une carte avec `width`/`top`, mesure dans l'onglet performance.
+- [ ] Anime le survol d'une carte avec `width`/`top` après avoir défini `position: relative` (ou une autre position non statique), puis mesure dans l'onglet Performance.
 - [ ] Refais la même animation avec `transform` et `opacity` seulement.
 - [ ] Je peux expliquer le résultat obtenu sans relire le cours.
 
@@ -51,9 +51,9 @@ Après l'expérience, conserve :
 
 ## Ce que tu viens de démontrer
 
-Dans ce scénario, tu as vérifié que : le survol de tes cartes est fluide à 60 fps.
+Dans ce scénario, tu as comparé les recalculs de mise en page des deux animations. N'annonce aucun résultat FPS prédéfini : relève les frames et les éventuelles frames manquées uniquement si ton enregistrement Performance fournit cette mesure. Le nombre de Layout recalculs ne prouve pas, à lui seul, un maintien à 60 FPS.
 
-L'effet le plus visible du site est aussi le moins coûteux. Commit les classes Tailwind correspondantes.
+L'effet le plus visible du site doit être justifié par la trace réellement observée. Commit les classes correspondantes.
 
 ## CHECKPOINT DE PROFONDEUR : variation C : décision sous contrainte
 

@@ -75,7 +75,7 @@ CrazyDB travaille directement avec des fichiers, des bytes, des buffers, des err
 ## Leçons AF à faire avant de choisir ton langage
 
 - [Structures de données](../../../02-CONSTRUCTION/06-DATA-STRUCTURES/README.md), [algorithmes](../../../02-CONSTRUCTION/07-ALGORITHMS/README.md) et [mémoire/performance](../../../02-CONSTRUCTION/05-MEMORY-PERFORMANCE/README.md).
-- [Streams et buffers](../../../02-CONSTRUCTION/13-RUNTIME-ENV/03-streams_buffers.md), [filesystem](../../../02-CONSTRUCTION/13-RUNTIME-ENV/06_node_cli_scripts/03-filesystem_ops.md), [worker threads](../../../02-CONSTRUCTION/13-RUNTIME-ENV/06A-worker_threads.md) et [gestion des erreurs](../../../01-CADRAGE/04-ERROR-HANDLING/README.md).
+- [Streams et buffers](../../../02-CONSTRUCTION/13-RUNTIME-ENV/03-streams_buffers.md), [filesystem](../../../02-CONSTRUCTION/13-RUNTIME-ENV/06C-node-cli-scripts/03-filesystem_ops.md), [worker threads](../../../02-CONSTRUCTION/13-RUNTIME-ENV/06A-worker_threads.md) et [gestion des erreurs](../../../01-CADRAGE/04-ERROR-HANDLING/README.md).
 
 ## Documentation officielle : parcours de lecture
 

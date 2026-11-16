@@ -4,91 +4,77 @@ acte: comprendre
 route_family: depth
 ---
 
-> **Statut des tests à l'état vierge :** les tests d'acceptation présents dans `tests/` importent les implémentations que l'apprenant doit produire dans `src/`. Ils sont donc attendus **rouges au départ**. Après ton implémentation, ils deviennent une preuve d'exécution ; leur rougeur initiale n'est pas une panne de la release.
-> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
+> **Statut à l'état vierge :** les tests fournis importent les modules que l'apprenant doit créer dans `src/`. Ils sont donc attendus rouges au départ. Le rouge n'est acceptable que parce que l'absence de ces deux fichiers est intentionnelle et explicitement documentée.
 
-# Cahier des charges : scheduler
+# Cahier des charges : 11_scheduler
 
-<!-- AF-DIAGRAM:scheduler -->
+Le mini-projet relie une boucle d'événements pédagogique à une fonction de mapping asynchrone à concurrence bornée. Il ne cherche pas à réimplémenter le moteur JavaScript ni à fournir un service réseau.
 
-```text
-┌─────────────┐
-│ tâches      │
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│ queue       │
-└──────┬──────┘
-       ▼
-┌──────┴──────┐
-│ worker pool │
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│ résultats   │
-└─────────────┘
-```
+## Prérequis et environnement
 
-Le scheduler transforme un flux de tâches en travail ordonnancé par une capacité d’exécution limitée.
+Le gate d'entrée est décrit dans le [README du projet](README.md). Il suppose les bases de fonctions, tableaux, modules ES, Promises, `async`/`await`, Event Loop, `AbortController` et lecture de tests.
 
-Temps de lecture ~2 min
+Le dépôt fournit un `package.json` sans dépendances, avec modules ES et commande `npm test`. Runtime cible : Node.js `22.23.4`, cohérent avec le `.nvmrc` racine. Ne télécharge aucune dépendance pour ce mini-projet.
 
-## C'EST QUOI CE PROJET, CONCRÈTEMENT
+## Objectif
 
-Tu construis ton propre event loop, comme Rock Lee qui apprend le taijutsu sans ninjutsu : pas de magie du moteur, juste les mains dans la mécanique brute.
+Implémenter :
 
-## PRÉREQUIS ET GATE D’ENTRÉE
+1. une classe `Loop` dans `src/loop.js`, avec `queueMicro(fn)`, `queueMacro(fn)` et `drain()` ;
+2. une fonction nommée `pMap` dans `src/pmap.js`, avec limite de concurrence, ordre de résultat préservé et annulation coopérative.
 
-Ce cahier des charges suppose que le [gate des prérequis pédagogiques du projet](README.md) est satisfait : fondamentaux JavaScript (fonctions, tableaux et modules), parcours Async obligatoire (callbacks, Promises, `async`/`await`, Event Loop), leçon `AbortController` et bases de lecture de tests. Reprends les leçons liées dans le README avant de coder si tu ne peux pas expliquer l’ordre des microtasks, le rejet d’une Promise ou les limites de l’annulation coopérative.
+Les contrats complets, signatures, limites et noms attendus sont définis dans le [README](README.md). Les tests fournis font foi pour les comportements qu'ils couvrent ; toute évolution du contrat doit modifier ensemble les tests et les documents.
 
-Node.js 22.x est le runtime du rail AF. Les tests utilisent `node:test` et des modules ES ; dans ton dépôt apprenant, rends le mode module explicite avec `package.json` (`"type": "module"`) ou une configuration équivalente vérifiée.
+## Contraintes fonctionnelles
 
-## OBJECTIF
+- Les files micro et macro sont FIFO.
+- Si un callback échoue, `drain()` rejette immédiatement ; les callbacks non exécutés restent en file pour un nouvel appel.
+- `Loop.drain()` exécute une macro puis vide la file micro avant la macro suivante ; les microtasks imbriquées sont également drainées.
+- `pMap` accepte un tableau et une fonction mapper ; la concurrence doit être un entier de 1 à 100, défaut 5.
+- Le résultat garde l'ordre initial, même si les opérations terminent dans le désordre.
+- Une entrée invalide est rejetée avec une erreur explicite.
+- Une erreur mapper arrête le lancement de nouveaux éléments et est propagée.
+- Une annulation avant le départ empêche tout lancement ; une annulation en cours empêche les nouveaux lancements et est propagée. Les opérations déjà lancées ne sont annulables que si elles respectent le signal transmis.
+- N'utilise pas de timer `0` pour faire passer artificiellement une macrotask pour une microtask.
 
-Réimplémenter un event loop miniature (files micro/macrotasks) et un `pMap` avec limite de concurrence et annulation par AbortController.
+## Sécurité contextuelle
 
-## CONTRAINTES NON NÉGOCIABLES
+Les risques réels de ce projet sont les entrées mal formées, la consommation excessive de ressources et une mauvaise compréhension de l'annulation. Ils sont analysés dans le document final `SECURITY.md`, copié depuis le modèle AF `03-SECURITY.md`, et vérifiés par [`04-SECURITY-GATE.md`](04-SECURITY-GATE.md).
 
-- Aucun `setTimeout(fn, 0)` pour simuler une microtask : `queueMicrotask` uniquement.
-- `pMap` doit préserver l'ordre de sortie même si les mappers finissent dans le désordre.
-- Annulation propre : zéro timer qui fuit après un `abort()`.
+Ce mini-projet n'expose par défaut ni endpoint HTTP, ni port, ni entrée STDIN/CLI, ni fichier utilisateur, ni secret, ni dépendance npm tierce. Les exigences qui supposeraient ces surfaces (authentification, stockage de secrets, scan de dépendances applicatives ou test d'endpoint) sont **non applicables au périmètre livré**. Ne crée pas artificiellement un serveur ou des secrets pour cocher une checklist générique.
 
-## LIVRABLE
+## Livrables
 
-`mini-loop.js`, `pMap.js`, une suite de tests qui prouve l'ordre micro/macro et la borne de concurrence.
+- `src/loop.js` et `src/pmap.js` implémentés par l'apprenant ;
+- tests pertinents dans `tests/` ;
+- `SECURITY.md` complété avec risques, mesures et références de tests ;
+- trois ADR distincts minimum, basés sur des décisions réellement prises ;
+- `02-TDD-JOURNAL.md` et `08-POSTMORTEM.md` complétés honnêtement.
 
-## SÉCURITÉ (gate obligatoire)
+## ADR minimum
 
-Avant de considérer le projet fini, tu dois traiter ces exigences OWASP contextuelles. Un projet qui marche mais qui est vulnérable n'est pas fini.
+Produis **3 ADR** minimum dans `ADR/`. Ils doivent traiter trois décisions distinctes et réellement prises, par exemple : modèle de files et ordre de drainage ; stratégie de planification et borne de concurrence ; politique d'erreur et d'annulation. Ne crée pas de décisions fictives pour atteindre le quota. Utilise le gabarit commun et documente contexte, options, choix, conséquences et signal de révision.
 
-- Validation d'entrée (OWASP A03 - Injection) : `pMap` doit rejeter proprement un `items` non-itérable ou un `mapper` non-fonction plutôt que crasher avec une stack qui fuit l'implémentation interne.
-- Déni de service (OWASP A05 - Misconfiguration) : borner `concurrency` à une valeur max raisonnable pour éviter qu'un appelant lance 1 000 000 de promesses et fasse tomber le process.
+## État des tests
 
-Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Ajoute dans le dossier `tests/` de ce projet un test ciblé pour au moins une des menaces retenues. Documente dans le README la commande exacte qui exécute ce test. Aucun pack de correction séparé n’est fourni dans ce projet.
+- Les tests de `tests/` sont fournis comme contrat de départ.
+- Ils sont volontairement rouges à réception car les deux modules de `src/` sont absents.
+- Après implémentation, la commande canonique est `npm test` depuis ce dossier.
+- Les cas supplémentaires listés dans `tests/README.md` doivent être ajoutés si l'apprenant étend le contrat au-delà de la base fournie.
 
-## AUTO-ÉVALUATION
+## Auto-évaluation
 
-- [ ] Livrable complet et fonctionnel
-- [ ] Contraintes respectées et vérifiées
-- [ ] Section Sécurité traitée et testée
-- [ ] ADR rédigé et relu
-- [ ] POSTMORTEM honnête écrit
+- [ ] Les tests fournis passent sans affaiblissement.
+- [ ] Les cas invalides, erreurs, limites et annulations sont testés.
+- [ ] La concurrence active ne dépasse jamais la limite configurée.
+- [ ] Le gate de sécurité contextuel est complété avec des preuves réelles.
+- [ ] Trois ADR reflètent des décisions effectivement prises.
+- [ ] Le journal TDD et le postmortem distinguent observations, hypothèses et limites.
 
----
+## Rôle des dossiers
 
-## Securite (gate obligatoire, Partie I)
-
-- **Exigence 1** : aucune donnee sensible (secret, token, cle) dans le code source ni dans les logs. Utiliser variables d'environnement + `.env.example` versionne (jamais `.env`).
-- **Exigence 2** : toute entree externe (STDIN, fichier, HTTP, CLI) est validee AVANT usage (type, longueur, format). En cas d'invalidite : erreur explicite, jamais un crash silencieux.
-
-Un test dans `node learner-verifier.js` (auto-verif ecrite par toi) doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
-
-## RÔLE DES DOSSIERS (ne skippe pas)
-
-- `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
-- `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
-- `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
-- `08-POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
-- `02-TDD-JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
-
-**Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
+- `src/` : implémentation à produire ; les fichiers métier sont absents volontairement.
+- `tests/` : contrat de départ ; ajoute des tests avant de modifier le code.
+- `ADR/` : décisions architecturales de l'apprenant ; les deux fichiers fournis sont des consignes de décision, pas des décisions déjà validées.
+- `02-TDD-JOURNAL.md` : traces réelles du cycle rouge/vert/refactor.
+- `08-POSTMORTEM.md` : bilan final, y compris les défauts qui restent et les limites de validation.

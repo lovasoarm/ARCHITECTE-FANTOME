@@ -6,7 +6,7 @@ route: complete
 
 # Module 02-CONSTRUCTION/15-ARCHI-LAB : Archi-Lab
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../08-DATA-SPELLS/README.md) | [Niveau suivant](../20-API-DOJO/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../14-ARCHITECTURE-PATTERNS/README.md) | [Niveau suivant](../16-DDD-CONTRATS/README.md)
 
 **Ce niveau réutilise :** [08-DATA-SPELLS](../08-DATA-SPELLS/03-relations-and-normalization.md) : normalisation et source de vérité d'une donnée, réutilisees pour poser les frontieres entre couches.
 
@@ -21,7 +21,7 @@ route: complete
 [challenge](../08-DATA-SPELLS/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au 15-ARCHI-LAB une difficulté qui vient du 08-DATA-SPELLS.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que c'est
 
@@ -55,20 +55,20 @@ tout, sinon ces leçons resteront abstraites.
 - [03-layers-and-flow.md](03-layers-and-flow.md) : UI / cas d'usage / domaine / infra, inversion de dépendance
 - [04-state-and-truth.md](04-state-and-truth.md) : source de vérité, cache, duplication, cohérence éventuelle
 - [05-choosing-architecture.md](05-choosing-architecture.md) : monolithe modulaire vs services : critères, coûts réels
-- [06-arbitrage-a-l-epreuve-du-temps.md](06-arbitrage-a-l-epreuve-du-temps.md) : mesurer après coup si le critère retenu a tenu
 - [95-challenge.md](95-challenge.md) : exercice appliqué et livrable noté
 - [96-boss-fight.md](96-boss-fight.md) : situation adverse réaliste + grille d'évaluation
+- [06-arbitrage-a-l-epreuve-du-temps.md](06-arbitrage-a-l-epreuve-du-temps.md) : revisite différée, au moins 14 jours après le challenge
 - [90-grimoire.md](90-grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 
 Dans l'ordre, sans sauter. `02` et `03` sont le cœur théorique : tout le reste s'appuie dessus.
 `04` est le piège le plus sournois de ce niveau : la plupart des bugs de production que tu
-verras dans ta carrière viennent de là. `05` referme la boucle en te donnant un cadre de
-décision, pas une religion ("microservices for ever" ou "monolithe for ever" sont deux sectes
-à fuir). `06` referme une deuxième boucle, plus tardive : elle ne se fait pas le jour du
-challenge, mais deux semaines après, une fois que le critère de `05` a eu le temps d'être
-vrai ou faux.
+verras dans ta carrière viennent de là. `05` te donne un cadre de décision, pas une religion
+("microservices for ever" ou "monolithe for ever" sont deux sectes à fuir). Passe ensuite le
+challenge `95`, puis le Boss `96`. Enfin, reviens sur `06` au moins 14 jours après le challenge :
+cette activité différée mesure si le critère de `05` a réellement tenu dans le temps. Elle ne
+peut pas être validée le jour de la décision initiale.
 
 ## Ce qui ne se passe pas ici
 
@@ -99,10 +99,10 @@ religion à apprendre par cœur.
 - [UI, cas d'usage, domaine, infra : l'inversion de dépendance concrète](03-layers-and-flow.md)
 - [Source de vérité, cache, duplication, cohérence éventuelle](04-state-and-truth.md)
 - [Monolithe modulaire vs services : critères de décision, coûts réels](05-choosing-architecture.md)
-- [Arbitrage à l'épreuve du temps : mesurer, pas relire](06-arbitrage-a-l-epreuve-du-temps.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
-- [Boss Fight : Le refactoring sous deadline](96-boss-fight.md)
 - [Challenge : Refactorer un système couplé en modules sains](95-challenge.md)
+- [Boss Fight : Le refactoring sous deadline](96-boss-fight.md)
+- [Arbitrage à l'épreuve du temps : mesurer, pas relire : à réaliser au moins 14 jours après le challenge](06-arbitrage-a-l-epreuve-du-temps.md)
 - [Grimoire : Module 02-CONSTRUCTION/15-ARCHI-LAB, Archi-Lab](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->

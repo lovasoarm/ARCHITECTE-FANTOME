@@ -13,7 +13,7 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~3 min
 
-## Contexte : exercice `09-exo_repro_deterministe.md`, fixture `11A-flaky.js`
+## Contexte : exercice `09-exo_repro_deterministe.md`, fixture `flaky-random-branch-fixture.js`
 
 > Livrable de référence à ouvrir APRÈS avoir tenté l'exercice. Il montre
 > comment formuler des hypothèses, fournir une preuve falsifiable et
@@ -51,7 +51,7 @@ Le test à écrire attend `6` lorsque la source injectée retourne `0` :
 ```js
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { computeTotal } = require("./11A-flaky.js");
+const { computeTotal } = require("./flaky-random-branch-fixture.js");
 
 test("un bonus absent ne change pas le total", () => {
   assert.equal(

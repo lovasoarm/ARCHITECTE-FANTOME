@@ -34,8 +34,9 @@ Cinquante connexions simultanees, une coupure reseau au milieu, aucun message pe
 
 ## Conditions de passage (toutes)
 
-- [ ] Reconnexion automatique avec reprise, prouvee par un scenario rejouable.
-- [ ] Ordre et unicite des messages garantis ou explicitement non garantis, ecrit dans le contrat.
+- [ ] Reconnexion automatique avec reprise, prouvée par un scénario rejouable après coupure.
+- [ ] Aucun message perdu ni dupliqué n'est visible côté utilisateur sur le scénario de référence ; preuve par identifiant de message, compteur d'envoi/réception et rejeu. Si le système utilise une livraison au moins une fois, la déduplication côté consommateur doit être démontrée.
+- [ ] L'ordre est défini dans le contrat par portée (par conversation/agrégat ou global). Si l'ordre global n'est pas garanti, le contrat le dit et la preuve démontre le respect de l'ordre garanti ; cette réserve ne dispense jamais de prouver l'absence de perte ou de doublon visible.
 - [ ] Mesure de latence au 95e centile sous charge.
 - [ ] Gate securite : aucune donnee sensible exposee par le livrable ; ecris la ligne de verification.
 - [ ] Un fichier `BOSS-<date>.md` dans ton depot : ce qui a marche, ce qui a rate, ce que tu refais.

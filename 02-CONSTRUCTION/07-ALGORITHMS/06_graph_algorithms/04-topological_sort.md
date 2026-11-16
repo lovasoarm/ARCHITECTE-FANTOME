@@ -90,68 +90,42 @@ function topoSortKahn(graph) {
 ## 3) EXEMPLE : DÉPENDANCES DE MODULES JS
 
 ```js
-// Modules et leurs dépendances (A dépend de B => arête A→B)
+// Convention canonique : B dépend de A => arête A→B.
+// Une dépendance est donc toujours traitée avant le module qui l'utilise.
 const modules = new Map([
-  ["app", new Set(["router", "store", "utils"])],
-  ["router", new Set(["utils"])],
-  ["store", new Set(["api", "utils"])],
-  ["api", new Set(["utils", "config"])],
-  ["utils", new Set(["config"])],
-  ["config", new Set()],
+  ["config", new Set(["utils", "api"])],
+  ["utils", new Set(["router", "store", "app", "api"])],
+  ["api", new Set(["store"])],
+  ["router", new Set(["app"])],
+  ["store", new Set(["app"])],
+  ["app", new Set()],
 ]);
 
 console.log(topoSortKahn(modules));
-// ["config", "utils", "api", "router", "store", "app"]
-// ou une autre permutation valide
-// contrainte : config avant utils, utils avant api, etc.
+// Un ordre valide : ["config", "utils", "api", "router", "store", "app"]
+// Les dépendances précèdent toujours les modules qui en dépendent.
 ```
 
 **Trace :**
 
+```text
+Arêtes : config→utils, config→api, utils→router/store/app/api,
+         api→store, router→app, store→app
+
+in-degrees initiaux :
+ config=0, utils=1, api=2, router=1, store=2, app=3
+
+Queue initiale : [config]
+Pop config : utils devient libre ; api passe à 1
+Pop utils : api passe à 0, router passe à 0, store passe à 1, app passe à 2
+Pop api : store passe à 0
+Pop router : app passe à 1
+Pop store : app passe à 0
+Pop app : fin
+
+Ordre obtenu : [config, utils, api, router, store, app]
+Chaque dépendance est placée avant son consommateur.
 ```
-in-degrees : config=0, utils=1, api=1, router=1, store=1, app=0...
-       config=0 (personne ne dépend de config comme source? Si, utils dépend de config)
-       Recalcul :
-       config : in=0 (personne ne pointe vers config)
-       utils : in=2 (router et app et store... non)
-
-Arêtes : app→router, app→store, app→utils
-     router→utils
-     store→api, store→utils
-     api→utils, api→config
-     utils→config
-
-in-degrees :
- app  : 0 (personne ne pointe vers app)
- router : 1 (app→router)
- store : 1 (app→store)
- utils : 3 (app→utils, router→utils, store→utils, api→utils = 4... non, compter)
- api  : 1 (store→api)
- config : 2 (api→config, utils→config)
-
-Queue initiale : [app]  (seul noeud avec in-degree 0)
-
-Pop app : result=[app], décrémenter router(0), store(0), utils(3-1=3)
- => queue = [router, store]
-
-Pop router : result=[app,router], décrémenter utils(3-1=2)
- => queue = [store]
-
-Pop store : result=[app,router,store], décrémenter api(0), utils(2-1=1)
- => queue = [api]
-
-Pop api : result=[app,router,store,api], décrémenter utils(1-1=0), config(2-1=1)
- => queue = [utils]
-
-Pop utils : result=[app,router,store,api,utils], décrémenter config(1-1=0)
- => queue = [config]
-
-Pop config : result=[app,router,store,api,utils,config]
-
-=> ordre de build valide mais inversé pour l'ordre d'import :
-  pour charger app, on charge d'abord config, utils, api, store, router, puis app
-```
-
 ---
 
 ## 4) DFS-BASED : L'AUTRE APPROCHE

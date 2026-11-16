@@ -77,7 +77,7 @@ app.use(
     cookie: {
       httpOnly: true, // JS ne peut pas lire le cookie
       secure: true, // HTTPS uniquement
-      sameSite: "Strict", // protection CSRF
+      sameSite: "Lax", // nécessaire au callback OAuth en navigation GET de premier niveau; protéger les mutations par un contrôle CSRF dédié
       maxAge: 1000 * 60 * 60 * 24, // 24h en millisecondes
     },
   }),
@@ -138,50 +138,79 @@ Inconvénients :
 ```js
 const jwt = require("jsonwebtoken");
 
-const JWT_SECRET = process.env.JWT_SECRET; // jamais en dur, jamais dans git
-const ACCESS_TOKEN_EXPIRY = "15m"; // court : si volé, valide 15 minutes max
-const REFRESH_TOKEN_EXPIRY = "7d"; // long : pour regénérer l'access token
+const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET;
+const JWT_ISSUER = "kintana-auth";
+if (
+  !ACCESS_TOKEN_SECRET ||
+  !REFRESH_TOKEN_SECRET ||
+  ACCESS_TOKEN_SECRET === REFRESH_TOKEN_SECRET
+) {
+  throw new Error("Deux secrets JWT distincts doivent être configurés");
+}
+const ACCESS_TOKEN_EXPIRY = "15m";
+const REFRESH_TOKEN_EXPIRY = "7d";
+
+function signAccessToken(user) {
+  return jwt.sign(
+    { role: user.role, tokenUse: "access" },
+    ACCESS_TOKEN_SECRET,
+    {
+      subject: String(user.id),
+      issuer: JWT_ISSUER,
+      audience: "kintana-api",
+      expiresIn: ACCESS_TOKEN_EXPIRY,
+    },
+  );
+}
+
+function signRefreshToken(user) {
+  return jwt.sign({ tokenUse: "refresh" }, REFRESH_TOKEN_SECRET, {
+    subject: String(user.id),
+    issuer: JWT_ISSUER,
+    audience: "kintana-refresh",
+    expiresIn: REFRESH_TOKEN_EXPIRY,
+  });
+}
 
 // Génération au login
 app.post("/quarry-gate", async (req, res) => {
   const user = await verifyCredentials(req.body.email, req.body.password);
   if (!user) return res.status(401).json({ error: "Identifiants incorrects" });
 
-  // access token : courte durée, contient les infos nécessaires pour les requêtes
-  const accessToken = jwt.sign(
-    { userId: user.id, role: user.role }, // payload : seulement ce qui est nécessaire
-    JWT_SECRET,
-    { expiresIn: ACCESS_TOKEN_EXPIRY },
-  );
+  const accessToken = signAccessToken(user);
+  const refreshToken = signRefreshToken(user);
 
-  // refresh token : longue durée, stocké en cookie httpOnly (pas en localStorage)
-  const refreshToken = jwt.sign({ userId: user.id }, JWT_SECRET, {
-    expiresIn: REFRESH_TOKEN_EXPIRY,
-  });
-
-  // refresh token en cookie httpOnly : JS ne peut pas y accéder
+  // Lax permet le retour OAuth via une navigation de premier niveau (callback GET).
+  // Conserve une protection CSRF explicite sur les endpoints mutateurs.
   res.cookie("refreshToken", refreshToken, {
     httpOnly: true,
     secure: true,
-    sameSite: "Strict",
+    sameSite: "Lax",
+    path: "/refresh",
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
-  res.json({ accessToken }); // access token renvoyé au client, stocké en mémoire JS
+  res.json({ accessToken }); // access token en mémoire côté client
 });
 
-// Middleware de vérification
+// Middleware access-token uniquement : un refresh token ne peut pas être accepté ici.
 const requireAuth = (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader?.startsWith("Bearer ")) {
     return res.status(401).json({ error: "Token manquant" });
   }
 
-  const token = authHeader.split(" ")[1];
-
+  const token = authHeader.slice("Bearer ".length);
   try {
-    const decoded = jwt.verify(token, JWT_SECRET); // vérifie signature + expiration
-    req.user = decoded; // { userId, role, iat, exp }
+    const decoded = jwt.verify(token, ACCESS_TOKEN_SECRET, {
+      issuer: JWT_ISSUER,
+      audience: "kintana-api",
+    });
+    if (decoded.tokenUse !== "access" || !decoded.sub || !decoded.role) {
+      return res.status(401).json({ error: "Type de token incorrect" });
+    }
+    req.user = { id: decoded.sub, role: decoded.role };
     next();
   } catch (err) {
     if (err.name === "TokenExpiredError") {
@@ -193,25 +222,36 @@ const requireAuth = (req, res, next) => {
   }
 };
 
-// Endpoint de refresh : regénérer l'access token depuis le refresh token
-app.post("/refresh", (req, res) => {
-  const refreshToken = req.cookies.refreshToken;
+// userRepository.findById(id) est le port du dépôt de données à brancher à la base réelle.
+// Le rôle est relu depuis la source courante : un rôle révoqué ne survit pas au refresh.
+app.post("/refresh", verifyCsrf, async (req, res) => {
+  const refreshToken = req.cookies?.refreshToken;
   if (!refreshToken)
     return res.status(401).json({ error: "Refresh token manquant" });
 
   try {
-    const decoded = jwt.verify(refreshToken, JWT_SECRET);
-    const newAccessToken = jwt.sign(
-      { userId: decoded.userId, role: decoded.role },
-      JWT_SECRET,
-      { expiresIn: ACCESS_TOKEN_EXPIRY },
-    );
-    res.json({ accessToken: newAccessToken });
+    const decoded = jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, {
+      issuer: JWT_ISSUER,
+      audience: "kintana-refresh",
+    });
+    if (decoded.tokenUse !== "refresh" || !decoded.sub) {
+      return res.status(401).json({ error: "Type de token incorrect" });
+    }
+
+    const user = await userRepository.findById(decoded.sub);
+    if (!user || user.disabled) {
+      return res.status(401).json({ error: "Compte indisponible" });
+    }
+    return res.json({ accessToken: signAccessToken(user) });
   } catch {
-    res.status(401).json({ error: "Refresh token invalide ou expiré" });
+    return res.status(401).json({ error: "Refresh token invalide ou expiré" });
   }
 });
 ```
+
+<!-- AF-JWT-TOKEN-SEPARATION -->
+
+> **Dépendances du snippet :** `userRepository.findById(id)` doit être implémenté par l'accès aux données de l'application ; `verifyCsrf` est le middleware CSRF défini dans la leçon précédente. Les deux secrets doivent être générés séparément et conservés dans un gestionnaire de secrets. Les audiences, l'émetteur et `tokenUse` empêchent la confusion de destination ; le secret séparé ajoute une frontière cryptographique. En production, prévoir aussi rotation/révocation des refresh tokens, limites de renouvellement et gestion des sessions.
 
 ### Où stocker le JWT côté client
 
@@ -256,43 +296,98 @@ Serveur --> [5] Vérifie l'id_token, crée la session utilisateur
 Client --> [6] Connecté
 ```
 
-### Le paramètre state : protection anti-CSRF dans OAuth
+### Le paramètre state, PKCE et nonce : protections complémentaires
+
+- `state` lie la réponse au démarrage de connexion et protège contre la substitution de réponse (CSRF).
+- PKCE avec `S256` lie l'échange du code au client qui a démarré le flux. Il est requis pour les clients publics et recommandé aussi pour les clients confidentiels.
+- `nonce` lie l'ID Token OIDC à la demande d'authentification. Il ne remplace ni `state` ni PKCE.
+
+Le cookie de session doit être `SameSite: "Lax"` pour être renvoyé lors du callback GET de premier niveau. Les opérations mutatrices de l'application conservent leur contrôle CSRF propre.
 
 ```js
-// Avant la redirection, générer un state aléatoire et le stocker en session
+// Exemple pédagogique côté serveur : crypto vient du module Node.js.
+const crypto = require("node:crypto");
+
 app.get("/auth/google", (req, res) => {
-  const state = crypto.randomBytes(16).toString("hex"); // imprévisible
-  req.session.oauthState = state; // stocké en session pour vérification au retour
+  const state = crypto.randomBytes(32).toString("base64url");
+  const nonce = crypto.randomBytes(32).toString("base64url");
+  const codeVerifier = crypto.randomBytes(32).toString("base64url");
+  const codeChallenge = crypto
+    .createHash("sha256")
+    .update(codeVerifier)
+    .digest("base64url");
+
+  req.session.oauthState = state;
+  req.session.oidcNonce = nonce;
+  req.session.pkceCodeVerifier = codeVerifier; // reste côté serveur, jamais dans l'URL
 
   const params = new URLSearchParams({
     client_id: process.env.GOOGLE_CLIENT_ID,
     redirect_uri: "https://app.com/auth/google/callback",
     response_type: "code",
     scope: "openid email profile",
-    state: state, // envoyé à Google, renvoyé dans le callback
+    state,
+    nonce,
+    code_challenge: codeChallenge,
+    code_challenge_method: "S256",
   });
 
-  res.redirect(`https://accounts.google.com/o/oauth2/auth?${params}`);
+  res.redirect(`https://accounts.google.com/o/oauth2/v2/auth?${params}`);
 });
 
-app.get("/auth/google/callback", async (req, res) => {
-  const { code, state } = req.query;
+app.get("/auth/google/callback", async (req, res, next) => {
+  try {
+    const { code, state, error } = req.query;
+    if (error)
+      return res
+        .status(401)
+        .send("Authentification refusée par le fournisseur");
 
-  // vérifier que le state correspond à ce qu'on a envoyé (protection CSRF OAuth)
-  if (state !== req.session.oauthState) {
-    return res.status(403).send("State invalide : possible attaque CSRF");
+    const expectedState = req.session.oauthState;
+    const expectedNonce = req.session.oidcNonce;
+    const codeVerifier = req.session.pkceCodeVerifier;
+    if (
+      typeof state !== "string" ||
+      typeof expectedState !== "string" ||
+      !expectedState ||
+      !expectedNonce ||
+      !codeVerifier
+    ) {
+      return res.status(403).send("Session OAuth absente ou incomplète");
+    }
+
+    const received = Buffer.from(state);
+    const expected = Buffer.from(expectedState);
+    if (
+      received.length !== expected.length ||
+      !crypto.timingSafeEqual(received, expected)
+    ) {
+      return res.status(403).send("State invalide : possible attaque CSRF");
+    }
+    if (typeof code !== "string" || !code) {
+      return res.status(400).send("Code d'autorisation manquant");
+    }
+
+    // Consommer les valeurs à usage unique avant l'échange.
+    delete req.session.oauthState;
+    delete req.session.oidcNonce;
+    delete req.session.pkceCodeVerifier;
+
+    // Le serveur envoie le code_verifier au token endpoint, jamais au navigateur.
+    const tokens = await exchangeCodeForTokens(code, { codeVerifier });
+    // Le validateur OIDC doit contrôler signature, issuer, audience, exp ET nonce.
+    const userInfo = await verifyIdToken(tokens.id_token, { expectedNonce });
+
+    const user = await upsertUser(userInfo);
+    req.session.userId = user.id;
+    res.redirect("/dashboard");
+  } catch (error) {
+    next(error);
   }
-
-  // échanger le code contre les tokens (appel serveur à serveur)
-  const tokens = await exchangeCodeForTokens(code);
-  const userInfo = verifyIdToken(tokens.id_token);
-
-  // créer ou retrouver l'utilisateur dans ta DB
-  const user = await upsertUser(userInfo);
-  req.session.userId = user.id;
-  res.redirect("/dashboard");
 });
 ```
+
+`exchangeCodeForTokens` et `verifyIdToken` représentent ici des fonctions serveur à implémenter avec une bibliothèque/procédure vérifiée : ne pas accepter un ID Token sans vérifier sa signature, son issuer, son audience, son expiration et le `nonce` attendu. Le `code_verifier` doit être fourni au token endpoint, et le fournisseur doit vérifier qu'il correspond au `code_challenge` S256 initial.
 
 ---
 

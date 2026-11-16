@@ -213,13 +213,28 @@ type DisplayStats = Stringified<RawStats>;
 
 ## 6) DEEP MAPPED TYPES
 
+`MyDeepReadonlyData` cible les DTO, tableaux et tuples. Il laisse `Date`, `Map`, `Set`, les fonctions et autres collections natives comme types-feuilles ; leurs méthodes et leur état interne ne deviennent pas immuables. Ce type ne réalise aucun gel runtime.
+
 ```ts
-// DeepReadonly : descend dans tous les objets imbriqués
-type DeepReadonly<T> = {
-  readonly [K in keyof T]: T[K] extends object
-    ? DeepReadonly<T[K]> // si c'est un objet, on descend récursivement
-    : T[K]; // sinon on garde tel quel
-};
+// Version pédagogique limitée aux DTO, tableaux et tuples.
+// Les fonctions et collections natives restent des types-feuilles : leurs méthodes restent mutables.
+type MyDeepReadonlyData<T> = T extends (...args: any[]) => any
+  ? T
+  : T extends
+        | Date
+        | RegExp
+        | Map<any, any>
+        | ReadonlyMap<any, any>
+        | Set<any>
+        | ReadonlySet<any>
+        | WeakMap<object, any>
+        | WeakSet<object>
+    ? T
+    : T extends readonly unknown[]
+      ? { readonly [K in keyof T]: MyDeepReadonlyData<T[K]> }
+      : T extends object
+        ? { readonly [K in keyof T]: MyDeepReadonlyData<T[K]> }
+        : T;
 
 interface TeamConfig {
   name: string;
@@ -232,8 +247,8 @@ interface TeamConfig {
   };
 }
 
-type FrozenTeam = DeepReadonly<TeamConfig>;
-// tout est readonly, y compris coach.tactics.formation
+type FrozenTeam = MyDeepReadonlyData<TeamConfig>;
+// les propriétés de données imbriquées sont readonly au niveau des types
 ```
 
 ---
@@ -242,14 +257,14 @@ type FrozenTeam = DeepReadonly<TeamConfig>;
 
 ```ts
 // Record<K, V> est un mapped type sur une union
-type Record<K extends keyof any, V> = {
+type MyRecord<K extends keyof any, V> = {
   [P in K]: V;
 };
 
 // Utile pour créer des maps typées
 type Position = "attaquant" | "milieu" | "défenseur" | "gardien";
 
-type PositionConfig = Record<
+type PositionConfig = MyRecord<
   Position,
   {
     minPlayers: number;

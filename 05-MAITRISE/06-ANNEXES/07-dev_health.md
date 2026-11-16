@@ -56,54 +56,57 @@ Sans relire, choisis une solution avec une contrainte supplémentaire (budget, l
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
 
-<!-- AF-DIAGRAM:learning -->
+<!-- AF-DIAGRAM:work_sustainability -->
 
-## Repère visuel utile : Rappel actif et transfert
+## Repère visuel utile : ajuster une charge soutenable
 
 ```text
-Lire -> masquer la leçon -> rappeler
-                         |
-                         v
-                   pratiquer Kintana
-                         |
-                         v
-                   comparer au test
-                         |
-                +--------+--------+
-                v                 v
-             corriger          expliquer
-                |                 |
-                +--------+--------+
-                         v
-                   transfert différé
+contraintes et temps réellement disponible
+                  |
+                  v
+       planifier un périmètre réaliste
+                  |
+                  v
+   observer charge, pauses et interruptions
+                  |
+                  v
+      comparer prévu / vécu / résultat
+                  |
+         +--------+--------+
+         v                 v
+     réduire scope      adapter rythme
+         |                 |
+         +--------+--------+
+                  v
+         réévaluer sans culpabiliser
 ```
 
-<!-- AF-LESSON-PROFILE: learning -->
+Ce schéma sert à ajuster l'organisation du travail. Il ne constitue ni un outil de diagnostic ni une règle médicale.
+
+<!-- AF-LESSON-PROFILE: scope -->
 
 ## Repères de décision
 
-- **Pourquoi :** Un parcours long ne produit pas de maîtrise par simple lecture. Il faut transformer chaque notion en rappel, application, correction et preuve conservée.
-- **Quand l’utiliser / quand l’éviter :** Utilise cette méthode pour planifier, réviser ou sortir d'un plateau. Évite de transformer le suivi en usine à cases cochées : le signal est la capacité à résoudre un problème nouveau.
-- **Limites :** Le journal et le calendrier ne prouvent pas la compétence. Seule une tâche refaite sans copier, puis transférée à un autre contexte, apporte une preuve utile.
+- **Pourquoi :** Un travail durable dépend d'une charge compatible avec le temps, l'énergie, les contraintes personnelles et les conditions de travail réelles.
+- **Quand l’utiliser / quand l’éviter :** Utilise cette annexe pour observer ton organisation, ajuster ton périmètre et demander du soutien quand nécessaire. Ne l'utilise pas pour diagnostiquer ta santé ou juger celle d'un collègue.
+- **Limites :** Les besoins et capacités varient d'une personne à l'autre. Les signaux cités ne sont pas un diagnostic ; un relevé personnel ne remplace pas l'aide d'un professionnel en cas de détresse ou de difficulté persistante.
 
 ## Mécanisme : la version sans magie
 
-Prédis, rappelle sans support, pratique, compare à un critère, corrige, puis reviens après un délai et transfère vers un cas différent.
+Compare la charge planifiée au temps réellement disponible, repère les sources de surcharge, choisis une adaptation limitée (réduire le périmètre, déplacer une tâche exigeante, ajouter une pause ou demander de l'aide), puis observe si elle améliore la soutenabilité.
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Santé mentale & rythme du dev** se rattache à ce cas concret : Le cas d’étude Kintana donne un contexte stable ; tu peux vérifier si une notion apprise sur le client réapparaît correctement dans l'API, les données ou l'exploitation.
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Santé mentale & rythme du dev** se rattache à l'organisation d'une itération : le périmètre prévu doit rester compatible avec le temps de travail réellement disponible et les imprévus, sans faire de la surcharge un indicateur d'engagement.
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Rappel actif et transfert
+## Mission utile : Kintana : construire un rythme de travail soutenable
 
-> **Arc Équipe 7 / Naruto :** le scroll ne te rend pas meilleur. Ce qui compte, c'est ce que tu peux rappeler, expliquer et réutiliser sans regarder la solution.
+**Mission liée à « Santé mentale & rythme du dev » :** prends une semaine de travail ou d'étude ordinaire. Note uniquement les données que tu souhaites conserver : créneaux prévus et réels, taille des tâches, interruptions, pauses et éléments qui ont déplacé le plan. Repère un écart récurrent et propose une seule adaptation concrète pour la semaine suivante (réduire le périmètre, déplacer une tâche, ajouter une marge ou demander un soutien). Tu n'as pas à révéler d'information médicale ou personnelle.
 
-**Mission liée à « Santé mentale & rythme du dev » :** Choisis une capacité Kintana déjà étudiée. Sans rouvrir la leçon, reconstruis le mécanisme, applique-le à une évolution imprévue, puis compare ton résultat aux critères de la leçon et consigne l'écart.
+**Livrable :** `RYTHME-TRAVAIL.md` avec un planning anonymisé, les limites de temps disponibles, les écarts prévus/réels, une adaptation choisie et un retour après une semaine. Un exemple fictif est accepté s'il est marqué `SIMULATION`.
 
-**Livrable :** une fiche de rappel à froid, un commit ou artefact produit, les tests exécutés et une note de correction datée.
+**Critères d’acceptation :** le plan reste réaliste ; les signaux sont décrits comme des observations et non des diagnostics ; aucune norme horaire universelle n'est imposée ; l'adaptation réduit une source de surcharge identifiable ; la confidentialité est respectée.
 
-**Critères d’acceptation :** la tentative initiale est conservée ; l'écart est expliqué ; le transfert change au moins une contrainte ; le niveau de preuve est étiqueté LAB, PILOT ou PRODUCTION sans confusion.
-
-**Transfert obligatoire :** Refais la tâche une semaine plus tard sans relire la fiche. Si tu ne peux pas expliquer les limites, classe la compétence en cours plutôt que maîtrisée.
+**Transfert obligatoire :** une semaine comporte un imprévu majeur. Ajuste le périmètre et explique ce que tu reportes, délègues ou abandonnes au lieu de compenser automatiquement par davantage d'heures. Si une détresse ou difficulté persiste, le document rappelle de consulter un professionnel adapté.

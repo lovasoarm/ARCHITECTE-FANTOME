@@ -20,13 +20,13 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 | Fichier                                                          | Objet                                                        | Duree  |
 | ---------------------------------------------------------------- | ------------------------------------------------------------ | ------ |
-| [`02A-navigation.md`](02A-navigation.md)                         | NAVIGATION : DATA STRUCTURES EN 3 PALIERS                    | 45 min |
 | [`00-PREREQUIS.md`](00-PREREQUIS.md)                             | 00 : Prereq check : Data Structures                          | 15 min |
 | [`01A-00-why-data-structures.md`](01A-00-why-data-structures.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : DATA STRUCTURES        | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                               | Page verrouillée                                             | 30 min |
+| [`02A-navigation.md`](02A-navigation.md)                         | NAVIGATION : DATA STRUCTURES EN 3 PALIERS                    | 45 min |
 | [`03A-EXO_LECTURE.md`](03A-EXO_LECTURE.md)                       | EXO LECTURE : ~20 minutes : un cycle (Structures de donnees) | 20 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)               | EXO [JEUNE IA] : 02-CONSTRUCTION/06-DATA-STRUCTURES          | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)               | EXO IA MENTEUSE : module 02-CONSTRUCTION/06-DATA-STRUCTURES  | 10 min |
+| [`90-grimoire.md`](90-grimoire.md)                               | Page verrouillée                                             | 30 min |
 | [`99A-PONT.md`](99A-PONT.md)                                     | PONT : de stocker à traiter à les algorithmes                | 45 min |
 
 Total : **4 h 15**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
@@ -77,7 +77,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [`07_hash_table/`](07_hash_table/README.md)
 - [`08_graphs/`](08_graphs/README.md)
 - [`09_advanced_bonus/`](09_advanced_bonus/README.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~20 minutes : un cycle (Structures de donnees)](03A-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/06-data-structures](12_EXO_VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/06-DATA-STRUCTURES](97-EXO-VERIFICATION.md)
@@ -85,7 +84,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [PONT : de stocker à traiter à les algorithmes](99A-PONT.md)
 - [Challenge : `06-DATA-STRUCTURES`](95-challenge.md)
 - [Grimoire : `06-DATA-STRUCTURES`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources

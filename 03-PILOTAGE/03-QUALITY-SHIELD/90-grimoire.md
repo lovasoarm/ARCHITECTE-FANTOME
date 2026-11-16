@@ -22,6 +22,8 @@ claim_reviewed_on: "2026-11-03"
 
 # Grimoire : Quality Shield
 
+> Rappel : ce grimoire simplifie via analogies. Lire d’abord [`91-18_GRIMOIRE_CODE_HONNEUR.md`](../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
+
 Temps de lecture ~5 min
 
 Ce grimoire comporte deux tables : le mémo à 4 colonnes, puis la table de défense orale à

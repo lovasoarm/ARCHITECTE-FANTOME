@@ -75,24 +75,24 @@ Ce document répond à une seule question, répétée des dizaines de fois :
 
 ## Sommaire
 
-Le contenu est un index de consultation, pas une séquence à lire. Ouvre uniquement la fiche ciblée par la Route 58 ou le module courant, après vérification de ses prérequis locaux. Les numéros classent les sujets ; ils ne créent aucune gate. En incident, ouvre directement le fichier 09.
+Le contenu est un index de consultation, pas une séquence à lire. Ouvre uniquement la fiche ciblée par la Route 58 ou le module courant, après vérification de ses prérequis locaux. Les numéros classent les sujets ; ils ne créent aucune gate. En incident, ouvre directement le fichier 10 : Mode urgence.
 
-| # | Fichier | Section | Taille indicative | Ce que tu y gagnes |
-|---|---|---|---:|---|
-| 0-3 | [02-orientation.md](tech-ila/02-orientation.md) | Lire, classer, ordonner | 294 lignes | La méthode, la classification, la carte des niveaux |
-| 4 | [03-niveau-1-socle.md](tech-ila/03-niveau-1-socle.md) | Niveau 1 : Socle professionnel | 975 lignes | Terminal, Git, Node, TS, HTTP, SQL, Docker |
-| 5 | [04-niveau-2-frontend.md](tech-ila/04-niveau-2-frontend.md) | Niveau 2 : Frontend | 658 lignes | React, état, stratégies de rendu, perf, a11y |
-| 6 | [05-niveau-3-backend.md](tech-ila/05-niveau-3-backend.md) | Niveau 3 : Backend | 517 lignes | Express, NestJS, auth, Redis, fichiers, temps réel |
-| 7 | [06-niveau-4-systemes.md](tech-ila/06-niveau-4-systemes.md) | Niveau 4 : Systèmes professionnels | 771 lignes | CI/CD, cloud, observabilité, résilience |
-| 8 | [07-niveau-5-transfert.md](tech-ila/07-niveau-5-transfert.md) | Niveau 5 : Transfert | 642 lignes | Python, Java/Spring, .NET |
-| 9 | [06-niveau-6-IA.md](tech-ila/06-niveau-6-IA.md) | Niveau 6 : IA | 165 lignes | Diriger, vérifier, refuser |
-| 10-11 | [08-cartes-parcours-technologies.md](tech-ila/08-cartes-parcours-technologies.md) | Cartes du parcours ↔ technologies | 362 lignes | Le mapping module par module, et l’inverse |
-| 12-14 | [08-IA-exercices-marche-audit.md](tech-ila/08-IA-exercices-marche-audit.md) | Exercices, marché, audit | 123 lignes | Ce qui reste ton travail, la preuve, l’honnêteté |
-| 15 | [09-mode-urgence.md](tech-ila/09-mode-urgence.md) | Mode urgence | 126 lignes | Trouver la bonne page en incident en moins de 30 s |
+| #     | Fichier                                                                           | Section                            | Taille indicative | Ce que tu y gagnes                                  |
+| ----- | --------------------------------------------------------------------------------- | ---------------------------------- | ----------------: | --------------------------------------------------- |
+| 0-3   | [01-orientation.md](tech-ila/01-orientation.md)                                   | Lire, classer, ordonner            |        294 lignes | La méthode, la classification, la carte des niveaux |
+| 4     | [02-niveau-1-socle.md](tech-ila/02-niveau-1-socle.md)                             | Niveau 1 : Socle professionnel     |        975 lignes | Terminal, Git, Node, TS, HTTP, SQL, Docker          |
+| 5     | [03-niveau-2-frontend.md](tech-ila/03-niveau-2-frontend.md)                       | Niveau 2 : Frontend                |        658 lignes | React, état, stratégies de rendu, perf, a11y        |
+| 6     | [04-niveau-3-backend.md](tech-ila/04-niveau-3-backend.md)                         | Niveau 3 : Backend                 |        517 lignes | Express, NestJS, auth, Redis, fichiers, temps réel  |
+| 7     | [05-niveau-4-systemes.md](tech-ila/05-niveau-4-systemes.md)                       | Niveau 4 : Systèmes professionnels |        771 lignes | CI/CD, cloud, observabilité, résilience             |
+| 8     | [06-niveau-5-transfert.md](tech-ila/06-niveau-5-transfert.md)                     | Niveau 5 : Transfert               |        642 lignes | Python, Java/Spring, .NET                           |
+| 9     | [07-niveau-6-IA.md](tech-ila/07-niveau-6-IA.md)                                   | Niveau 6 : IA                      |        165 lignes | Diriger, vérifier, refuser                          |
+| 10-11 | [08-cartes-parcours-technologies.md](tech-ila/08-cartes-parcours-technologies.md) | Cartes du parcours ↔ technologies  |        362 lignes | Le mapping module par module, et l’inverse          |
+| 12-14 | [09-IA-exercices-marche-audit.md](tech-ila/09-IA-exercices-marche-audit.md)       | Exercices, marché, audit           |        123 lignes | Ce qui reste ton travail, la preuve, l’honnêteté    |
+| 15    | [10-mode-urgence.md](tech-ila/10-mode-urgence.md)                                 | Mode urgence                       |        126 lignes | Trouver la bonne page en incident en moins de 30 s  |
 
 Les nombres de lignes sont indicatifs : ils donnent une idée du volume, pas une consigne de lecture ni un prérequis.
 
-Le niveau 6 (fichier 06) intègre désormais l'ancienne section « angles morts de l'IA » : une doctrine de vérification unifiée, documentée à un endroit de référence puis réutilisée depuis les modules concernés.
+Le niveau 6 (fichier 07) intègre désormais l'ancienne section « angles morts de l'IA » : une doctrine de vérification unifiée, documentée à un endroit de référence puis réutilisée depuis les modules concernés.
 
 ---
 
@@ -104,11 +104,11 @@ Certaines zones bougent plus vite que les mécanismes de fond. Avant de réutili
 
 | Zone susceptible d’évoluer      | Fichier                                                       | Point à revalider avant réutilisation                                                                              |
 | ------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| Next.js et stratégies de rendu  | [04-niveau-2-frontend.md](tech-ila/04-niveau-2-frontend.md)   | App Router / Pages Router / RSC ont-ils encore la même forme, ou une nouvelle stratégie de rendu a-t-elle émergé ? |
-| Défaillances IA par technologie | 06-niveau-6-IA.md                                             | Les modèles produisent-ils encore les mêmes erreurs types sur ces technos, ou la liste est-elle obsolète ?         |
-| Économie du serverless          | [06-niveau-4-systemes.md](tech-ila/06-niveau-4-systemes.md)   | Les ordres de grandeur de coût donnés sont-ils encore réalistes chez les fournisseurs actuels ?                    |
-| Threads virtuels Java           | [07-niveau-5-transfert.md](tech-ila/07-niveau-5-transfert.md) | Le statut (preview, stable, par défaut) a-t-il changé depuis la dernière revue ?                                   |
-| Express 4 vs 5                  | [05-niveau-3-backend.md](tech-ila/05-niveau-3-backend.md)     | La version majeure recommandée par défaut a-t-elle changé ?                                                        |
+| Next.js et stratégies de rendu  | [03-niveau-2-frontend.md](tech-ila/03-niveau-2-frontend.md)   | App Router / Pages Router / RSC ont-ils encore la même forme, ou une nouvelle stratégie de rendu a-t-elle émergé ? |
+| Défaillances IA par technologie | 07-niveau-6-IA.md                                             | Les modèles produisent-ils encore les mêmes erreurs types sur ces technos, ou la liste est-elle obsolète ?         |
+| Économie du serverless          | [05-niveau-4-systemes.md](tech-ila/05-niveau-4-systemes.md)   | Les ordres de grandeur de coût donnés sont-ils encore réalistes chez les fournisseurs actuels ?                    |
+| Threads virtuels Java           | [06-niveau-5-transfert.md](tech-ila/06-niveau-5-transfert.md) | Le statut (preview, stable, par défaut) a-t-il changé depuis la dernière revue ?                                   |
+| Express 4 vs 5                  | [04-niveau-3-backend.md](tech-ila/04-niveau-3-backend.md)     | La version majeure recommandée par défaut a-t-elle changé ?                                                        |
 
 Ce tableau aide à repérer les sujets volatils ; les fiches concernées précisent les conditions qui justifient une nouvelle vérification. Les dates et statuts de source conservés dans leur front-matter décrivent le périmètre documentaire, sans garantir l’actualité d’une version au moment où tu la réutilises.
 
@@ -136,6 +136,5 @@ Le module [`12-PLATFORM-ENGINEERING`](../../03-PILOTAGE/12-PLATFORM-ENGINEERING/
 ### CMS comme terrain, pas comme spécialité
 
 Le lab [`06-CMS-ARCHITECTURE-LAB`](../../03-PILOTAGE/08-PRODUIT-COUT-ROI/06-CMS-ARCHITECTURE-LAB/README.md) montre comment une technologie encore largement utilisée devient un exercice Staff : choisir, mesurer, migrer, sécuriser, sortir.
-
 
 Il n’y a aucune progression à terminer dans TECH-ILA ; ses niveaux ne constituent pas une gate générale du parcours.

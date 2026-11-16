@@ -30,15 +30,20 @@ Tes projets sont accessibles via une API dont les contrats sont explicites.
 
 ## APPLICATION
 
-- Expose `GET /api/projects` (liste) et `GET /api/projects/:slug` (détail) en réutilisant les données existantes du portfolio.
-- Définis les codes de statut : succès, ressource absente, entrée invalide.
-- Vérifie la forme de la réponse d'erreur : elle doit être exploitable par un client (message et code stables).
-- Documente les deux routes dans `docs/api.md` : URL, paramètres, réponse type, erreurs possibles.
+- Expose `GET /api/projects` et `GET /api/projects/:slug` pour lire la collection et une ressource.
+- Expose `POST /api/projects` pour créer un projet avec un slug unique et les champs requis.
+- Expose `PUT /api/projects/:slug` pour remplacer la représentation complète et `PATCH /api/projects/:slug` pour modifier uniquement les champs autorisés.
+- Expose `DELETE /api/projects/:slug` pour supprimer une ressource existante.
+- Valide les champs et l'unicité du slug ; refuse les propriétés non autorisées (mass assignment).
+- Utilise des données en mémoire pour cet exercice si aucune persistance n'est fournie, et précise qu'elles sont perdues au redémarrage ; ne prétends pas livrer une persistance durable.
+- Documente les cinq routes HTTP dans `docs/api.md` : URL, paramètres, corps, réponse, codes et erreurs possibles.
 
 ## Critère de réussite
 
-- [ ] Fait : un slug inexistant renvoie un statut d'absence et un corps d'erreur exploitable.
-- [ ] Fait : `docs/api.md` décrit les deux routes et leurs erreurs.
+- [ ] Fait : les cinq opérations CRUD (GET collection, GET détail, POST, PUT/PATCH, DELETE) sont testées sur des cas nominaux.
+- [ ] Fait : slug absent, doublon, champ invalide, champ interdit et corps vide donnent des erreurs stables ; aucun champ comme `role` ne peut être injecté.
+- [ ] Fait : `docs/api.md` décrit toutes les opérations et leurs erreurs.
+- [ ] Fait : la limite de persistance (mémoire locale ou stockage réellement implémenté) est déclarée honnêtement.
 - [ ] Je peux expliquer le résultat obtenu sans relire le cours.
 
 ## Vérification
@@ -56,7 +61,7 @@ Après l'expérience, conserve :
 
 ## Ce que tu viens de démontrer
 
-Dans ce scénario, tu as vérifié que : tes données de projets sont servies par une API aux contrats explicites.
+Dans ce scénario, tu as vérifié que les opérations de création, lecture, remplacement, modification partielle et suppression respectent un contrat explicite, avec des erreurs prévisibles.
 
 Tu as écrit un contrat, pas seulement du code. Commit `docs/api.md`.
 

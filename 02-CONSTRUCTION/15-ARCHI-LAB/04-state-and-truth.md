@@ -37,14 +37,22 @@ laquelle des copies fait foi en cas de désaccord. C'est la source de vérité. 
 pouvoir être reconstruit à partir d'elle.
 
 ```text
-Source de vérité : la table `reservations` (chaque ligne = une réservation active ou annulée)
+Données canoniques nécessaires au calcul :
+  - `creneaux.capaciteMax` : capacité autorisée, modifiée par le propriétaire du créneau
+  - `reservations` : historique des réservations ; seules les lignes `active` occupent une place
+
+Calcul de référence : `placesRestantes = capaciteMax - nombreReservationsActives`
+La capacité et les réservations actives sont toutes deux des données de référence ; aucune
+ne peut être reconstruite à partir du seul compteur dénormalisé.
 
 Dérivés (peuvent être faux temporairement, jamais faire foi) :
   - compteur `placesRestantes` dans `creneaux`      --> dénormalisation pour la lecture rapide
   - cache Redis "places par créneau"                 --> optimisation de charge
   - panneau d'affichage à l'accueil                   --> copie locale rafraîchie toutes les 5s
 
-Règle : en cas de doute, on recompte depuis `reservations`, jamais depuis un dérivé.
+Règle : en cas de doute, on relit `creneaux.capaciteMax` et on recompte les réservations
+actives ; on ne reconstruit jamais la capacité depuis un dérivé. La confirmation de la
+réservation doit vérifier atomiquement que le nombre actif reste inférieur à `capaciteMax`.
 ```
 
 Le bug du panneau d'accueil n'est pas un bug de synchronisation réseau : c'est un bug de
@@ -95,8 +103,9 @@ d'écriture indépendants : c'est là que naissent les divergences silencieuses.
 ```text
 Duplication saine (une source de vérité, un dérivé) :
 
-  reservations (source) --> écrit --> creneaux.placesRestantes (dérivé, recalculé)
-       ^ toute écriture de réservation passe forcément par ici
+  creneaux.capaciteMax (référence) ----+
+                                      +--> placesRestantes (dérivé, recalculé)
+reservations actives (référence) -----+    toute confirmation respecte la capacité
 
 Duplication dangereuse (deux écritures indépendantes, aucune source claire) :
 
@@ -205,14 +214,12 @@ Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **S
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Défendre une frontière de domaine Kintana
+## Mission utile : Kintana : Reconstituer la vérité des places disponibles
 
-> **Arc Capsule Corp. / DBZ :** une architecture est le plan du vaisseau et les coûts qu'il impose. Si chaque pièce doit connaître toutes les autres, le vaisseau ne décolle jamais.
+**Mission liée à « Source de vérité, cache, duplication, cohérence éventuelle » :** Définis les données canoniques nécessaires à `placesRestantes` : capacité totale du créneau et réservations actives. Distingue-les du compteur dénormalisé, du cache Redis et de l'écran d'accueil. Simule deux clients qui tentent de prendre la dernière place au même instant et précise où la décision finale est arbitrée.
 
-**Mission liée à « Source de vérité, cache, duplication, cohérence éventuelle » :** Dessine le flux réel d'une création de demande. Identifie les invariants, propriétaires de données et dépendances ; compare monolithe modulaire et service séparé dans un ADR. Simule une évolution et mesure le nombre de composants touchés.
+**Livrable :** modèle des données de référence, formule de reconstruction, politique d'invalidation/réconciliation, scénario de concurrence et test qui interdit de dépasser la capacité.
 
-**Livrable :** diagramme de composants/flux, ADR avec deux options, contrat de frontière et test de changement.
+**Critères d’acceptation :** la capacité a un propriétaire explicite ; le compteur est dérivé ; la confirmation finale revalide la source dans une opération atomique ou sous contrainte d'intégrité ; l'âge des données affichées est visible.
 
-**Critères d’acceptation :** la frontière possède une responsabilité claire ; les données ont un propriétaire ; le coût d'exploitation est explicite ; le microservice n'est pas choisi par prestige ; une condition de révision est écrite.
-
-**Transfert obligatoire :** Le nombre d'équipes ou le volume double. Indique quel signal justifierait de séparer un composant et quel coût tu acceptes.
+**Transfert obligatoire :** le propriétaire du créneau réduit sa capacité après des réservations existantes. Décris la règle métier et le traitement des réservations excédentaires sans inventer une capacité négative.

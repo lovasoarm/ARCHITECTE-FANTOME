@@ -267,32 +267,32 @@ Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris 
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
 
-<!-- AF-LESSON-PROFILE: reference -->
+<!-- AF-LESSON-PROFILE: architecture -->
 
 ## Repères de décision
 
-- **Pourquoi :** Un référentiel sert à rendre les compétences observables et à éviter de confondre familiarité, autonomie et maîtrise.
-- **Quand l’utiliser / quand l’éviter :** Utilise-le pour établir un point de départ, prioriser une révision ou préparer une revue de portfolio. Ne l'utilise pas comme classement de valeur personnelle.
-- **Limites :** Une auto-évaluation est biaisée. Le niveau doit être confirmé par une tâche inconnue, un artefact reproductible et, aux paliers avancés, une revue externe.
+- **Pourquoi :** Une charte de diagrammes réduit les ambiguïtés : mêmes formes, mêmes flèches et même vocabulaire dans les leçons et les décisions.
+- **Quand l’utiliser / quand l’éviter :** Utilise l'un des huit schémas canoniques quand il représente réellement le mécanisme. N'impose pas un diagramme qui déforme le système ; si aucun modèle ne convient, explique la limite et propose une extension.
+- **Limites :** Un dessin clair ne prouve pas que l'architecture est correcte. Chaque relation doit être décrite, sourcée ou marquée comme hypothèse ; l'ASCII ne remplace ni le code ni les tests.
 
 ## Mécanisme : la version sans magie
 
-Associe une compétence à une tâche, un critère, une preuve, une date et un statut. Réévalue quand le contexte ou la technologie change.
+Choisis le type de schéma, nomme ses éléments, applique la syntaxe commune, vérifie le sens des flèches et ajoute une légende. Compare ensuite le dessin à la structure ou à l'exécution réelle et corrige les ambiguïtés.
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Charte ascii : la norme unique** se rattache à ce cas concret : Pour Kintana, une compétence comme l'idempotence n'est acquise que si tu sais l'expliquer, l'implémenter et vérifier le rejeu et les conflits.
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Charte ASCII : la norme unique** s'applique à un flux de création de demande : représente les acteurs, l'API, le service métier, la persistance et les événements, sans masquer les appels asynchrones ni confondre dépendance et succession.
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Référentiel de compétences par preuves
+## Mission utile : Kintana : produire et relire des diagrammes ASCII
 
-> **Arc DBZ / Capsule Corp. :** Bulma ne dit pas « je suis forte » parce qu'elle a lu le manuel. Elle vérifie ce que l'outil permet réellement.
+> **Arc DBZ / Capsule Corp. :** un plan de capsule doit pouvoir être lu par l'ingénieur qui ne l'a pas dessiné.
 
-**Mission liée à « Charte ascii : la norme unique » :** Établis ton état initial sur une tranche Kintana : sélectionne trois compétences, réalise une tâche de chacune sans suivre un corrigé, garde les tests et note ce que tu n'as pas pu démontrer.
+**Mission liée à « Charte ASCII : la norme unique » :** choisis deux mécanismes réellement présents dans Kintana et représente-les avec deux des huit schémas canoniques appropriés (par exemple flux asynchrone et pipeline de données). Pour chacun, définis la question que le dessin doit éclairer, les composants, les relations, les étapes et les limites. Ajoute un troisième mini-exemple volontairement ambigu, puis corrige-le avec la syntaxe commune.
 
-**Livrable :** un registre de compétences avec preuves liées, statut honnête, date de révision et prochain test de transfert.
+**Livrable :** `DIAGRAMMES.md` avec deux schémas canoniques complets, leurs légendes et sources internes, plus l'avant/après du diagramme ambigu et une courte checklist de revue.
 
-**Critères d’acceptation :** chaque statut pointe vers un artefact ; une compétence non testée reste `NON ÉVALUÉE` ; aucune preuve déclarative ne vaut une exécution ; les lacunes ont une action de remédiation.
+**Critères d’acceptation :** les boîtes désignent des composants ou états ; les flèches ont un sens explicite ; `-.->` est réservé aux relations indirectes/asynchrones ; le dessin n'invente pas de composants ; un lecteur peut reconstruire le parcours sans explication orale.
 
-**Transfert obligatoire :** Reprends une compétence dans un langage ou un composant différent et vérifie si le principe se transfère réellement.
+**Transfert obligatoire :** demande à un lecteur de décrire le flux à partir du dessin seul (ou réalise toi-même cette relecture après un délai). Corrige toute interprétation divergente et note les éléments qui restent ambigus.

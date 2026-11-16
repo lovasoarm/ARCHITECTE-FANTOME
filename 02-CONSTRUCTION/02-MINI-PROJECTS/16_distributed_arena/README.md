@@ -10,6 +10,8 @@ Temps de lecture ~3 min
 
 # 16 : DISTRIBUTED ARENA
 
+> **Repère de navigation :** le dossier `00_fixture`/`00_fixtures` contient les données statiques nécessaires au scénario ; `00A-CAHIER-DES-CHARGES.md` décrit le travail à réaliser. Le dossier fournit les entrées, le fichier `00A` donne le contrat : ce ne sont pas deux leçons numérotées à lire dans cet ordre.
+
 ## Ordre de lecture
 
 Lis ce dossier dans cet ordre : `README.md` → `00A-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADRs réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables.

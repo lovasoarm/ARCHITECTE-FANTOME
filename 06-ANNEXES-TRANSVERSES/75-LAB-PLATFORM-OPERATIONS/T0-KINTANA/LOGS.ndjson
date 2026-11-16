@@ -1,0 +1,11 @@
+{"timestamp":"2026-11-10T08:50:00Z","round":1,"level":"INFO","event":"backup.completed","backup_id":"bk-0850","records":5,"note":"fixture de restauration synthétique; voir BACKUP-MANIFEST.csv"}
+{"timestamp":"2026-11-10T09:00:00Z","round":1,"level":"INFO","event":"release.started","from":"1.8.1","to":"1.8.2","ref":"sim-7e1a9c2"}
+{"timestamp":"2026-11-10T09:03:00Z","round":1,"level":"WARN","event":"payment.timeout_rate_increased","timeout_ms":900,"sample_count":40}
+{"timestamp":"2026-11-10T09:04:00Z","round":1,"level":"WARN","event":"queue.age_threshold_exceeded","oldest_message_age_s":35}
+{"timestamp":"2026-11-10T09:07:00Z","round":1,"level":"WARN","event":"worker.retry_burst","attempts_per_request_observed":3.1,"backoff_ms":0}
+{"timestamp":"2026-11-10T09:11:00Z","round":1,"level":"ERROR","event":"reservation.pending_backlog","queue_depth":640,"oldest_message_age_s":95}
+{"timestamp":"2026-11-10T09:16:00Z","round":1,"level":"WARN","event":"worker.concurrency_saturated","inflight":80,"configured_max":80}
+{"timestamp":"2026-11-10T09:20:00Z","round":1,"level":"INFO","event":"mitigation.applied","actions":["disable_async_payment_retry","cap_retry_attempts_to_1","reduce_worker_concurrency_to_30"],"note":"simulation action; no real system changed"}
+{"timestamp":"2026-11-10T09:40:00Z","round":1,"level":"INFO","event":"service_stabilizing","queue_depth":95,"oldest_message_age_s":14}
+{"timestamp":"2026-11-10T10:00:00Z","round":2,"level":"ERROR","event":"payment_provider.unavailable","note":"variation 2; external provider fails closed; do not mark reservations confirmed"}
+{"timestamp":"2026-11-10T10:06:00Z","round":2,"level":"INFO","event":"recovery_decision_required","note":"preserve pending reservations, stop retry amplification, communicate delayed confirmation"}

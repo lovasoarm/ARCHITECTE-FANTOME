@@ -23,9 +23,9 @@ claim_reviewed_on: "2026-11-03"
 
 [← Sommaire TECH-ILA](../README.md)
 
-> **Tu viens de** : [03-niveau-1-socle.md](03-niveau-1-socle.md) (Node, npm/pnpm, TypeScript, HTTP/REST, Git, Docker, PostgreSQL, déploiement de base)
+> **Tu viens de** : [02-niveau-1-socle.md](02-niveau-1-socle.md) (Node, npm/pnpm, TypeScript, HTTP/REST, Git, Docker, PostgreSQL, déploiement de base)
 > **Tu dois déjà savoir** : closures et portée (`00-SOCLE/04-FUNDAMENTALS/02_scope/04-closure_trap.md`), fonctions pures (`../../../02-CONSTRUCTION/09-FUNCTIONAL-JS/02-pure_functions.md`), les patrons d'architecture de base (`02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/`)
-> **Ensuite** : [05-niveau-3-backend.md](05-niveau-3-backend.md) (Express, NestJS, auth, Redis, files, temps réel)
+> **Ensuite** : [04-niveau-3-backend.md](04-niveau-3-backend.md) (Express, NestJS, auth, Redis, files, temps réel)
 
 # Niveau 2 : Frontend (section 5)
 
@@ -605,7 +605,7 @@ Six points. Aucun ne demande de connaître la dernière API à la mode.
 
 ---
 
-[← Niveau 1 : Socle](03-niveau-1-socle.md) · [Sommaire](../README.md) · [03-niveau-3-backend →](05-niveau-3-backend.md)
+[← Niveau 1 : Socle](02-niveau-1-socle.md) · [Sommaire](../README.md) · [03-niveau-3-backend →](04-niveau-3-backend.md)
 
 ## Flutter : même cerveau, autre peau
 

@@ -55,7 +55,7 @@ function computeRanking(votes) {
     .reduce((acc, { name, points }) => {
       acc[name] = (acc[name] ?? 0) + points;
       return acc;
-    }, {});
+    }, Object.create(null)); // noms comme "__proto__" et "constructor" sans collision
 }
 
 // si cette fonction met 3 secondes :
@@ -132,12 +132,12 @@ const votes = workerData;
 const ranking = votes
   .flatMap((v) => v.players)
   .reduce((acc, { name, points }) => {
-    acc[name] = (acc[name] ?? 0) + points;
+    acc.set(name, (acc.get(name) ?? 0) + points);
     return acc;
-  }, {});
+  }, new Map());
 
-// on envoie le résultat au thread principal
-parentPort.postMessage(ranking);
+// On envoie des paires [nom, points] ; les noms spéciaux restent des clés sûres.
+parentPort.postMessage([...ranking.entries()]);
 // le worker se termine automatiquement après ça
 ```
 
@@ -153,99 +153,207 @@ import { workerData, parentPort } from "node:worker_threads";
 
 const { votes, batchSize } = workerData;
 const total = votes.length;
-const acc = {};
+const acc = new Map();
 
 for (let i = 0; i < total; i += batchSize) {
   const batch = votes.slice(i, i + batchSize);
 
   batch.forEach(({ name, points }) => {
-    acc[name] = (acc[name] ?? 0) + points;
+    acc.set(name, (acc.get(name) ?? 0) + points);
   });
 
-  // on envoie la progression au thread principal
+  // Ce message est informatif : il ne termine pas la tâche.
   parentPort.postMessage({
     type: "progress",
-    percent: Math.round(((i + batchSize) / total) * 100),
+    percent: Math.min(100, Math.round(((i + batch.length) / total) * 100)),
   });
 }
 
-// calcul terminé : on envoie le résultat final
-parentPort.postMessage({ type: "result", data: acc });
+// Map est clonable via le protocole de messages Node : les noms spéciaux restent des clés sûres.
+parentPort.postMessage({ type: "result", data: [...acc.entries()] });
 ```
 
 ```js
-// --- main.js : gérer les deux types de messages ---
-const worker = new Worker("./ranking-worker.js", {
+// --- main.js : les messages progress ne terminent pas la tâche ---
+import { Worker } from "node:worker_threads";
+import { fileURLToPath } from "node:url";
+
+const workerPath = fileURLToPath(
+  new URL("./ranking-worker.js", import.meta.url),
+);
+const worker = new Worker(workerPath, {
   workerData: { votes, batchSize: 10000 },
 });
 
-worker.on("message", ({ type, percent, data }) => {
-  if (type === "progress") {
-    process.stdout.write(`\r Calcul en cours : ${percent}%`);
+worker.on("message", (message) => {
+  if (message.type === "progress") {
+    process.stdout.write(`\rCalcul en cours : ${message.percent}%`);
+  } else if (message.type === "result") {
+    console.log("\nClassement final :", new Map(message.data));
+  } else if (message.type === "error") {
+    console.error("Échec du calcul :", message.message);
+  }
+});
+worker.on("error", (error) => console.error("Worker interrompu :", error));
+worker.on("exit", (code) => {
+  if (code !== 0) console.error(`Worker terminé avec le code ${code}`);
+});
+```
+
+Un message `progress` n'est jamais un résultat. Le protocole distingue explicitement `progress`, `result` et `error`; le pool ci-dessous ne libère une tâche qu'à la réception de `result` ou `error`.
+
+---
+
+## 4) WORKER POOL : RÉUTILISER ET RÉCUPÉRER
+
+Un pool doit traiter les messages typés, les erreurs et les sorties inattendues. Il remplace un Worker mort, conserve les tâches encore en file et rejette la tâche qui était en cours : il ne la rejoue pas automatiquement, car elle a peut-être déjà produit un effet de bord.
+
+```js
+import { Worker } from "node:worker_threads";
+import { fileURLToPath } from "node:url";
+
+class WorkerPool {
+  constructor(workerPath, size) {
+    if (!Number.isInteger(size) || size < 1)
+      throw new RangeError("size doit être >= 1");
+    this.workerPath = workerPath;
+    this.size = size;
+    this.queue = [];
+    this.slots = [];
+    this.closed = false;
+    for (let i = 0; i < size; i += 1) this.#addWorker();
   }
 
-  if (type === "result") {
-    console.log("\n Classement final :", data);
+  #addWorker() {
+    if (this.closed) return;
+    const slot = {
+      thread: new Worker(this.workerPath),
+      busy: false,
+      job: null,
+      dead: false,
+    };
+    this.slots.push(slot);
+
+    slot.thread.on("message", (message) => {
+      if (slot.dead || !slot.job) return;
+      const job = slot.job;
+      if (message?.type === "progress") {
+        job.onProgress?.(message.percent);
+        return;
+      }
+      if (message?.type === "result") {
+        slot.job = null;
+        slot.busy = false;
+        job.resolve(message.data);
+        this.#dispatchNext(slot);
+        return;
+      }
+      if (message?.type === "error") {
+        slot.job = null;
+        slot.busy = false;
+        job.reject(
+          new Error(message.message || "Erreur signalée par le worker"),
+        );
+        this.#dispatchNext(slot);
+        return;
+      }
+      this.#retire(
+        slot,
+        new Error(`Message Worker inconnu : ${String(message?.type)}`),
+      );
+    });
+
+    slot.thread.on("error", (error) => this.#retire(slot, error));
+    slot.thread.on("exit", (code) => {
+      if (!this.closed)
+        this.#retire(slot, new Error(`Worker terminé (code ${code})`));
+    });
+    this.#dispatchNext(slot);
+  }
+
+  run(data, { onProgress } = {}) {
+    if (this.closed) return Promise.reject(new Error("Pool fermé"));
+    return new Promise((resolve, reject) => {
+      this.queue.push({ data, resolve, reject, onProgress });
+      const idle = this.slots.find((slot) => !slot.dead && !slot.busy);
+      if (idle) this.#dispatchNext(idle);
+    });
+  }
+
+  #dispatchNext(slot) {
+    if (this.closed || slot.dead || slot.busy || this.queue.length === 0)
+      return;
+    const job = this.queue.shift();
+    slot.job = job;
+    slot.busy = true;
+    try {
+      slot.thread.postMessage({ type: "run", data: job.data });
+    } catch (error) {
+      slot.job = null;
+      slot.busy = false;
+      job.reject(error);
+      this.#dispatchNext(slot);
+    }
+  }
+
+  #retire(slot, error) {
+    if (slot.dead || this.closed) return;
+    slot.dead = true;
+    if (slot.job) {
+      slot.job.reject(error);
+      slot.job = null;
+    }
+    // La promesse de terminate est consommée ; la sortie ultérieure est ignorée grâce à dead.
+    void slot.thread.terminate().catch(() => {});
+    this.#addWorker();
+  }
+
+  async destroy() {
+    this.closed = true;
+    const reason = new Error("Pool fermé avant exécution");
+    for (const job of this.queue.splice(0)) job.reject(reason);
+    const active = this.slots.filter((slot) => !slot.dead);
+    for (const slot of active) {
+      if (slot.job) {
+        slot.job.reject(reason);
+        slot.job = null;
+      }
+      slot.dead = true;
+    }
+    await Promise.all(active.map((slot) => slot.thread.terminate()));
+  }
+}
+
+const workerPath = fileURLToPath(
+  new URL("./ranking-worker.js", import.meta.url),
+);
+const pool = new WorkerPool(workerPath, 4);
+const result = await pool.run(votes, {
+  onProgress: (percent) => process.stdout.write(`\r${percent}%`),
+});
+await pool.destroy();
+```
+
+Le worker doit respecter le protocole d'entrée/sortie :
+
+```js
+// ranking-worker.js  : exemple minimal du contrat attendu par WorkerPool
+import { parentPort } from "node:worker_threads";
+import { computeRanking } from "./ranking.js";
+
+parentPort.on("message", async (message) => {
+  if (message?.type !== "run") return;
+  try {
+    parentPort.postMessage({ type: "progress", percent: 0 });
+    const data = await computeRanking(message.data);
+    parentPort.postMessage({ type: "result", data });
+  } catch (error) {
+    parentPort.postMessage({ type: "error", message: error.message });
   }
 });
 ```
 
----
-
-## 4) WORKER POOL : RÉUTILISER LES WORKERS
-
-Créer un worker pour chaque requête, c'est coûteux. En prod, on crée un pool de workers et on les réutilise.
-
-```js
-// version simplifiée d'un worker pool
-class WorkerPool {
-  constructor(workerPath, size) {
-    this.workers = Array.from({ length: size }, () => ({
-      thread: new Worker(workerPath),
-      busy: false,
-    }));
-    this.queue = []; // tâches en attente si tous les workers sont occupés
-  }
-
-  run(data) {
-    return new Promise((resolve, reject) => {
-      const available = this.workers.find((w) => !w.busy);
-
-      if (available) {
-        this.#dispatch(available, data, resolve, reject);
-      } else {
-        // tous les workers sont occupés : on met en attente
-        this.queue.push({ data, resolve, reject });
-      }
-    });
-  }
-
-  #dispatch(worker, data, resolve, reject) {
-    worker.busy = true;
-    worker.thread.postMessage(data);
-
-    worker.thread.once("message", (result) => {
-      worker.busy = false;
-      resolve(result);
-
-      // y'a des tâches en attente ? on les traite
-      if (this.queue.length > 0) {
-        const next = this.queue.shift();
-        this.#dispatch(worker, next.data, next.resolve, next.reject);
-      }
-    });
-
-    worker.thread.once("error", (err) => {
-      worker.busy = false;
-      reject(err);
-    });
-  }
-}
-
-// usage
-const pool = new WorkerPool("./ranking-worker.js", 4); // 4 workers
-const result = await pool.run(votes);
-```
+Le chemin du Worker est construit depuis `import.meta.url`, et non depuis le répertoire courant du terminal. Un crash rejette la tâche active, remplace le Worker et laisse les tâches en attente disponibles. Aucun retry automatique n'est effectué sans contrat d'idempotence.
 
 ---
 
@@ -260,7 +368,10 @@ const sharedBuffer = new SharedArrayBuffer(4); // 4 octets = 1 Int32
 const counter = new Int32Array(sharedBuffer);
 counter[0] = 0;
 
-const worker = new Worker("./counter-worker.js", {
+const counterWorkerPath = fileURLToPath(
+  new URL("./counter-worker.js", import.meta.url),
+);
+const worker = new Worker(counterWorkerPath, {
   workerData: { sharedBuffer }, // on partage le buffer, pas une copie
 });
 
@@ -283,13 +394,17 @@ T'as cette fonction qui analyse les stats d'un match (supposons qu'elle soit len
 
 ```js
 function analyzeMatchData(events) {
-  // simulation d'un calcul intensif
-  let result = {};
+  // Map accepte tout nom de joueur sans collision avec les propriétés d'Object.prototype.
+  const result = new Map();
+  if (events.length === 0) return [];
+
   for (let i = 0; i < 10_000_000; i++) {
-    const e = events[i % events.length];
-    result[e.player] = (result[e.player] ?? 0) + 1;
+    const event = events[i % events.length];
+    result.set(event.player, (result.get(event.player) ?? 0) + 1);
   }
-  return result;
+
+  // Les entrées Map sont clonables par le protocole de messages Worker.
+  return [...result.entries()];
 }
 ```
 

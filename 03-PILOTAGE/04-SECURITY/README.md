@@ -20,13 +20,15 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 La table ci-dessous décrit l'ordre d'étude, pas une promesse de durée totale. Les fichiers de support, grimoire, transfert, challenges et validations ont des rôles différents ; ne les additionne pas comme s'ils étaient des leçons indépendantes. La maîtrise est décidée par les preuves du projet et du challenge.
 
+Attention aux noms : `12-chiffrement_repos_transit.md` est une leçon sur le chiffrement. `EXO-VERIFICATION-IA.md` est un exercice transversal de vérification du module ; ce n'est ni la suite de la leçon 12 ni un chapitre 12A. Suis l'étape 4 de la table pour le placer au bon moment.
+
 | Étape                            | Ressources                                                                                                                                                                    | Ce qu'il faut démontrer                                                                                           |
 | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | 0. Prérequis et menace           | `00-PREREQUIS.md`, `01-00-why-security.md`                                                                                                                                    | Définir les actifs, frontières de confiance et conséquences d'une faille                                          |
 | 1. Entrées hostiles              | `02-xss_injection.md`, `50-xss_injection_minimini_projet.md`, `03-csrf_cors.md`, `51-csrf_cors_minimini_projet.md`, `04-prototype_pollution.md`                               | Reproduire un cas vulnérable contrôlé, puis prouver que la correction bloque le scénario                          |
 | 2. Identité et données sensibles | `05-auth_flows.md`, `06-hashing_bcrypt.md`, `52-hashing_bcrypt_minimini_projet.md`, `11-secrets_et_rotation.md`, `12-chiffrement_repos_transit.md`, `13-autorisation_rbac.md` | Distinguer authentification/autorisation, secrets/chiffrement et rôles/permissions objet ; tester un accès refusé |
 | 3. Vie privée et supply chain    | `07-privacy_and_data_regulation.md`, `08-supply_chain_sbom.md`, `09-audit_your_supply_chain.md`, `14-owasp_checklist.md`                                                      | Relier une menace à un contrôle, une preuve et un risque résiduel explicite                                       |
-| 4. Vérification et transfert     | `10-EXO_LECTURE.md`, `12A-EXO-VERIFICATION.md`, `97-EXO-VERIFICATION.md`, `98-EXO-VERIFICATION.md`, `99-PORTAGE-MENTAL.md`, `99A-PONT.md`                                     | Détecter les affirmations fausses, transférer le contrôle à un autre contexte/langage et expliquer la limite      |
+| 4. Vérification et transfert     | `10-EXO_LECTURE.md`, `EXO-VERIFICATION-IA.md`, `97-EXO-VERIFICATION.md`, `98-EXO-VERIFICATION.md`, `99-PORTAGE-MENTAL.md`, `99A-PONT.md`                                      | Détecter les affirmations fausses, transférer le contrôle à un autre contexte/langage et expliquer la limite      |
 | 5. Restitution                   | `95-challenge.md`, puis `90-grimoire.md` après la pratique                                                                                                                    | Réaliser un audit ciblé, garder les tests négatifs et restituer les invariants sans s'appuyer sur la fiche        |
 
 Le `SETUP.md` local décrit les outils et l'exécution. L'installation ne vaut jamais résultat de sécurité : une application lancée sans test négatif n'a pas démontré qu'elle refusait un accès non autorisé.
@@ -62,6 +64,8 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 
 ## Contenu du dossier
 
+L’inventaire ci-dessous suit la séquence du tableau pédagogique ; les ressources d’appui et les deux exercices de vérification sont regroupés à l’étape 4.
+
 <!-- CONTENU-DOSSIER:debut -->
 
 - [00 : Prereq check : Security](00-PREREQUIS.md)
@@ -74,21 +78,21 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [OAUTH, sessions, JWT](05-auth_flows.md)
 - [Stocker un mot de passe : Argon2id, paramètres et compatibilité bcrypt](06-hashing_bcrypt.md)
 - [52-hashing_bcrypt_minimini_projet.md](52-hashing_bcrypt_minimini_projet.md)
-- [Les 10 vulnérabilités OWASP](14-owasp_checklist.md)
-- [Page verrouillée](90-grimoire.md)
-- [RGPD et IA ACT : ce que tu n'as pas le droit de logger](07-privacy_and_data_regulation.md)
-- [09 : Supply chain & SBOM](08-supply_chain_sbom.md)
-- [Exercice : auditer ta propre supply chain](09-audit_your_supply_chain.md)
+- [Secrets : stockage, rotation, fuite](11-secrets_et_rotation.md)
+- [Chiffrement : au repos, en transit, et les clés](12-chiffrement_repos_transit.md)
+- [Autorisation : RBAC, ABAC, IDOR](13-autorisation_rbac.md)
+- [Vie privée et réglementation](07-privacy_and_data_regulation.md)
+- [Supply chain et SBOM](08-supply_chain_sbom.md)
+- [Auditer sa supply chain](09-audit_your_supply_chain.md)
+- [Checklist OWASP](14-owasp_checklist.md)
 - [EXO LECTURE : ~20 minutes : un cycle (Securite)](10-EXO_LECTURE.md)
-- [EXO [jeune IA] : 03-pilotage/04-security](12A-EXO-VERIFICATION.md)
-- [13 : Secrets : stockage, rotation, fuite](11-secrets_et_rotation.md)
-- [14 : Chiffrement : au repos, en transit, et les clés](12-chiffrement_repos_transit.md)
-- [15 : Autorisation : RBAC, ABAC, IDOR](13-autorisation_rbac.md)
+- [Exercice de vérification IA : sécurité applicative](EXO-VERIFICATION-IA.md)
 - [EXO IA MENTEUSE : module 03-PILOTAGE/04-SECURITY](97-EXO-VERIFICATION.md)
-- [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
-- [Pont : de sécuriser du code humain à sécuriser du code IA puis le développement natif IA](99A-PONT.md)
+- [EXO de vérification complémentaire](98-EXO-VERIFICATION.md)
+- [Portage mental](99-PORTAGE-MENTAL.md)
+- [Pont vers la suite du parcours](99A-PONT.md)
 - [Challenge : `04-SECURITY`](95-challenge.md)
-- [Grimoire : `04-SECURITY`](90-grimoire.md)
+- [Grimoire : `04-SECURITY` : après le challenge](90-grimoire.md)
 
 <!-- CONTENU-DOSSIER:fin -->
 

@@ -32,11 +32,12 @@ Temps de lecture ~5 min
 
 > Le but n’est pas de te bloquer : ce diagnostic t’aide à choisir une révision utile.
 
-> **Note pour ce module précis** : la différence CORS/CSP, ce qui bloque le
-> rendu d'une page, et les directives Cache-Control sont le contenu que ce
-> module va t'enseigner (notamment `02-http_rest_basics.md`) : normal de
-> ne pas encore les maîtriser. Ta compréhension est testée en fin de
-> module, dans `90-grimoire.md`.
+> **Note pour ce module précis** : CORS, CSP et CSRF sont introduits dans
+> [`06-auth_authz.md`](06-auth_authz.md), le rendu navigateur dans
+> [`03-browser_render_pipeline.md`](03-browser_render_pipeline.md), et les
+> directives `Cache-Control` dans [`05-caching_strategies.md`](05-caching_strategies.md).
+> Tu peux arriver sans les maîtriser ; le challenge vérifie que tu sais les
+> distinguer à la fin du parcours.
 
 ## CHECKPOINT DE PROFONDEUR : variation A : prédire avant de réparer
 

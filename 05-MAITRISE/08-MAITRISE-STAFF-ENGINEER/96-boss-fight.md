@@ -44,7 +44,7 @@ Réussi si, après contradiction :
 - les six familles + le portage + les trois tensions restent cohérents ;
 - aucune promesse ne dépasse le budget ou le SLO ;
 - une décision refusée est assumée **avec son chiffre** ;
-- `05A-transfert_hors_ecosysteme.md` existe et est cité. `STANDARDS-AGENTS.md` est joint si le fil rouge utilise des agents/automatisations autonomes ; sinon, `EVALUATION-IA.md` justifie le non-usage et son périmètre.
+- `TRANSFERT-HORS-ECOSYSTEME.md` existe et est cité. `STANDARDS-AGENTS.md` est joint si le fil rouge utilise des agents/automatisations autonomes ; sinon, `EVALUATION-IA.md` justifie le non-usage et son périmètre.
 
 Échec : S6 encore CREUX, contradicteur non joué, ou tension qui ne perd rien.
 

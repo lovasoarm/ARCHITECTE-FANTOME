@@ -22,9 +22,9 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | -------------------------------------------------- | --------------------------------------------------------- | ------ |
 | [`00-PREREQUIS.md`](00-PREREQUIS.md)               | 00 : Prereq check : Realtime                              | 15 min |
 | [`01A-00-why-realtime.md`](01A-00-why-realtime.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : REAL-TIME           | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                 | Page verrouillée                                          | 30 min |
 | [`02A-EXO_LECTURE.md`](02A-EXO_LECTURE.md)         | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Realtime) | 50 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md) | EXO [JEUNE IA] : 04-EPREUVE/03-REALTIME                   | 45 min |
+| [`90-grimoire.md`](90-grimoire.md)                 | Page verrouillée                                          | 30 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)     | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust   | 45 min |
 
 Total : **3 h 50**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
@@ -68,13 +68,11 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [`01_websockets/`](01_websockets/README.md)
 - [`02_sse/`](02_sse/README.md)
 - [`03_webrtc/`](03_webrtc/README.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Realtime)](02A-EXO_LECTURE.md)
 - [EXO [jeune IA] : 04-epreuve/03-realtime](97-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
 - [Challenge : `03-REALTIME`](95-challenge.md)
 - [Grimoire : `03-REALTIME`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources

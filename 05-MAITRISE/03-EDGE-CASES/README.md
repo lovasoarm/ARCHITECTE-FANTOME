@@ -28,10 +28,10 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | [`05-prototype_chain_dark.md`](05-prototype_chain_dark.md)                           | LA CHAÎNE PROTOTYPE DANS SES ZONES SOMBRES                     | 45 min |
 | [`06-race_condition_hunter.md`](06-race_condition_hunter.md)                         | 05 : Race Condition Hunter                                     | 45 min |
 | [`07-heisenbug_arena.md`](07-heisenbug_arena.md)                                     | HEISENBUG ARENA : LE BUG QUI DISPARAÎT QUAND TU LE REGARDES    | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                                                   | Page verrouillée                                               | 30 min |
 | [`08-b_race_condition_hunt.md`](08-b_race_condition_hunt.md)                         | 07b : Race Condition Hunt (bouclier senior)                    | 45 min |
 | [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                                             | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Edge Cases)    | 50 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                   | EXO [JEUNE IA] : 05-MAITRISE/03-EDGE-CASES                     | 45 min |
+| [`90-grimoire.md`](90-grimoire.md)                                                   | Page verrouillée                                               | 30 min |
 | [`10-SPEC_DRIFT_DRILL.md`](10-SPEC_DRIFT_DRILL.md)                                   | SPEC_DRIFT_DRILL : 45 min                                      | 45 min |
 | [`11-SPEC_FLOU_DRIFT_COMBO_DRILL.md`](11-SPEC_FLOU_DRIFT_COMBO_DRILL.md)             | Drill : spec floue + spec qui dérive (combo)                   | 45 min |
 | [`12-specifications-verifiables-agents.md`](12-specifications-verifiables-agents.md) | Spécifications vérifiables pour un changement délégué          | 45 min |
@@ -82,7 +82,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [La chaîne prototype dans ses zones sombres](05-prototype_chain_dark.md)
 - [05 : Race Condition Hunter](06-race_condition_hunter.md)
 - [Heisenbug arena : le bug qui disparaît quand tu le regardes](07-heisenbug_arena.md)
-- [Page verrouillée](90-grimoire.md)
 - [07b : Race Condition Hunt (bouclier senior)](08-b_race_condition_hunt.md)
 - [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Edge Cases)](09-EXO_LECTURE.md)
 - [EXO [jeune IA] : 05-maitrise/03-edge-cases](97-EXO-VERIFICATION.md)
@@ -93,7 +92,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - PONT 28 -> 29 : edge cases -> agents autonomes
 - [Challenge : `03-EDGE-CASES`](95-challenge.md)
 - [Grimoire : `03-EDGE-CASES`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources

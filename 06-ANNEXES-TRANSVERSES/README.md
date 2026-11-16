@@ -23,12 +23,23 @@ Les annexes approfondissent le parcours ; elles ne forment pas une route parall�
 - [00 : Guide](00-GUIDE.md) : orientation générale.
 - [01 : Comment utiliser le parcours](01-COMMENT-UTILISER-LE-PARCOURS.md) : navigation.
 - [58 : Route apprenant cohérente](58-ROUTE-APPRENANT-COHERENTE.md) : ordre des ressources, productions, gates et remédiations.
+- [58A : Route CORE de 16 semaines](58A-ROUTE-CORE-16-SEMAINES.md) : sélection intensive facultative, à ne pas confondre avec la route canonique ou une preuve de maîtrise professionnelle.
 - [26 : Protocole de leçon profonde](26-PROTOCOLE-LECON-PROFONDE.md) : comprendre, expliquer, perturber, transférer.
 - [62 : Fiche de preuve d'apprentissage](62-FICHE-APPRENTISSAGE-PREUVE.md) : consigner une preuve de compétence.
 - [63 : Laboratoire de tests](63-LAB-TESTING-ENGINEERING.md) : écrire des tests qui détectent de vrais défauts et vérifier leur pouvoir discriminant.
 - [64 : Laboratoire de fondations](64-LAB-FONDATIONS-ET-RAISONNEMENT.md) : sémantique JS, async, structures de données et tests discriminants.
 - [67 : Gate de maîtrise/capstone](67-GATE-MAITRISE-ET-CAPSTONE.md) : barème commun, critères non compensatoires et progression du projet fil rouge.
 - [61 : Pack d'exercices systèmes et arbitrages](61-PACK-EXERCICES-SYSTEMES-ET-ARBITRAGES.md) : exercices cumulatifs avec corrections de référence.
+
+### Ressources compagnes et identifiants associés
+
+Certains noms partagent un numéro parce qu’ils se complètent, pas parce qu’ils représentent deux étapes successives. Le rôle exact est indiqué ici :
+
+- [`04-TECH-ILA/`](04-TECH-ILA/README.md) est le sous-parcours de transfert technologique ; [`01A-CARTE-DU-PARCOURS.md`](01A-CARTE-DU-PARCOURS.md) est la carte générale du curriculum. La carte ne fait pas partie du sous-parcours TECH-ILA.
+- [`17-PREUVES-MODELES/`](17-PREUVES-MODELES/README.md) contient des exemples de preuves ; [`17A-PROTOCOLE-DONNEE-SOURCEE.md`](17A-PROTOCOLE-DONNEE-SOURCEE.md) définit la règle commune pour sourcer les montants et données chiffrées.
+- [`19-PRODUIT-IA-REFERENCE/`](19-PRODUIT-IA-REFERENCE/README.md) est un laboratoire de référence IA ; la route intensive facultative est [`58A-ROUTE-CORE-16-SEMAINES.md`](58A-ROUTE-CORE-16-SEMAINES.md), distincte du laboratoire.
+
+Quand deux ressources partagent un préfixe, cette relation doit être comprise par leur intitulé et ce README ; leur proximité alphabétique ne suffit pas à définir une progression.
 
 ## Ateliers transversaux
 

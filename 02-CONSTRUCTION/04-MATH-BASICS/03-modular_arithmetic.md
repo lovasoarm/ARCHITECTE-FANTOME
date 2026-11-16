@@ -141,18 +141,25 @@ class RingBuffer {
 
 ## 3) LE PIÈGE AVEC LES NOMBRES NÉGATIFS
 
-En JS, `%` peut retourner un nombre négatif si l'opérande gauche est négatif. Ce n'est pas un bug JS : c'est le comportement standard de C. Mais ça casse les cycles.
+En JavaScript, `%` renvoie le reste de la division et son signe suit celui de l'opérande gauche. Ce n'est pas un bug, mais ce résultat peut surprendre lorsqu'on veut calculer une position toujours positive dans un cycle.
 
 ```js
-(-1 % 4) - // -1 en JS :pas 3 comme en maths
-  (5 % 3); // -2 en JS :pas 1
+-1 % 4; // -1 en JavaScript, pas 3
+-5 % 3; // -2 en JavaScript, pas 1
 
-// pour un vrai modulo positif :
-const mod = (a, n) => ((a % n) + n) % n;
+// Pour un modulo mathématique positif, n doit être un entier strictement positif.
+function mod(a, n) {
+  if (!Number.isSafeInteger(a) || !Number.isSafeInteger(n) || n <= 0) {
+    throw new RangeError(
+      "a doit être un entier sûr et n un entier sûr positif",
+    );
+  }
+  return ((a % n) + n) % n;
+}
 
-mod(-1, 4); // 3 :correct pour les cycles
-mod(-5, 3); // 1 :correct
-mod(7, 3); // 1 :fonctionne aussi sur les positifs
+mod(-1, 4); // 3
+mod(-5, 3); // 1
+mod(7, 3); // 1
 ```
 
 **Quand utiliser `mod` vs `%` :**
@@ -168,9 +175,10 @@ Le modulo est la dernière étape de beaucoup de fonctions de hash : ramener une
 
 ```js
 // distribuer des clés dans un tableau de taille fixe
+// Réutilise la fonction mod() définie à la section précédente.
 const TAILLE_TABLE = 16;
 
-const indexHash = (valeurHash) => valeurHash % TAILLE_TABLE;
+const indexHash = (valeurHash) => mod(valeurHash, TAILLE_TABLE);
 // si valeurHash = 273 => 273 % 16 = 1
 // si valeurHash = 289 => 289 % 16 = 1 :collision ! (même index)
 // le hash parfait n'existe pas : le modulo amplifie les collisions
@@ -186,10 +194,11 @@ Deux nombres sont **congrus modulo n** s'ils ont le même reste.
 
 ```js
 // 7 ≡ 3 (mod 4) car 7 % 4 = 3 % 4 = 3
-const congruents = (a, b, n) => a % n === b % n;
+const congruents = (a, b, n) => mod(a, n) === mod(b, n);
 
 congruents(7, 3, 4); // true
-congruents(13, 1, 4); // true (13 % 4 = 1, 1 % 4 = 1)
+congruents(13, 1, 4); // true
+congruents(-1, 3, 4); // true : -1 et 3 sont congrus modulo 4
 ```
 
 Utilité en pratique :
@@ -197,10 +206,10 @@ Utilité en pratique :
 ```js
 // même jour de la semaine que dans n jours
 const jourSemaine = ["lun", "mar", "mer", "jeu", "ven", "sam", "dim"];
-const dansNJours = (jourActuel, n) => jourSemaine[(jourActuel + n) % 7];
+const dansNJours = (jourActuel, n) => jourSemaine[mod(jourActuel + n, 7)];
 
 // le Ballon d'Or se vote en décembre : quel mois dans 20 mois ?
-const moisSuivant = (moisActuel, n) => (moisActuel + n) % 12;
+const moisSuivant = (moisActuel, n) => mod(moisActuel + n, 12);
 // moisActuel = 11 (décembre), n = 20
 // (11 + 20) % 12 = 31 % 12 = 7 => août
 ```
@@ -235,6 +244,108 @@ Puis écrire `prochainDisponible(nomJutsu, tourActuel, dernierUsage)` qui retour
 ## EXO 3 : Ring buffer pour les replays
 
 Dans un jeu de foot, les 10 dernières actions sont gardées en mémoire pour le replay. Implémenter un `ReplayBuffer` de taille fixe 10 avec `push(action)` et `getAll()` qui retourne les actions dans l'ordre chronologique.
+
+---
+
+## CORRIGÉS DE RÉFÉRENCE : À CONSULTER APRÈS UNE TENTATIVE
+
+### Corrigé EXO 1 : cooldowns
+
+Convention retenue : un jutsu jamais utilisé (`dernierUsage = null`) est disponible. Sinon, il est disponible dès que `tourActuel - dernierUsage >= cooldown`. `prochainDisponible` retourne `0` si le jutsu est déjà disponible ; sinon, il retourne le nombre de tours restants.
+
+```js
+const COOLDOWNS = Object.freeze({
+  Rasengan: 3,
+  "Rasengan Géant": 5,
+  Rasenshuriken: 7,
+  "Sage Mode": 10,
+});
+
+function verifierEntrees(nomJutsu, tourActuel, dernierUsage) {
+  if (!Object.hasOwn(COOLDOWNS, nomJutsu))
+    throw new RangeError(`Jutsu inconnu : ${nomJutsu}`);
+  if (!Number.isSafeInteger(tourActuel) || tourActuel < 0)
+    throw new RangeError("tourActuel invalide");
+  if (
+    dernierUsage !== null &&
+    (!Number.isSafeInteger(dernierUsage) ||
+      dernierUsage < 0 ||
+      dernierUsage > tourActuel)
+  ) {
+    throw new RangeError("dernierUsage doit être null ou un tour déjà écoulé");
+  }
+}
+
+export function jutsuDisponible(nomJutsu, tourActuel, dernierUsage) {
+  verifierEntrees(nomJutsu, tourActuel, dernierUsage);
+  return (
+    dernierUsage === null || tourActuel - dernierUsage >= COOLDOWNS[nomJutsu]
+  );
+}
+
+export function prochainDisponible(nomJutsu, tourActuel, dernierUsage) {
+  verifierEntrees(nomJutsu, tourActuel, dernierUsage);
+  if (dernierUsage === null) return 0;
+  return Math.max(0, COOLDOWNS[nomJutsu] - (tourActuel - dernierUsage));
+}
+```
+
+### Corrigé EXO 2 : planning round-robin à 16 équipes
+
+L'algorithme du cercle garde la première équipe fixe et fait tourner les quinze autres. À chaque journée, les positions opposées sont associées. Il produit 15 journées de 8 matchs, soit 120 rencontres distinctes.
+
+```js
+export function genererPlanning(equipes) {
+  if (
+    !Array.isArray(equipes) ||
+    equipes.length !== 16 ||
+    equipes.some((e) => typeof e !== "string" || e.trim() === "") ||
+    new Set(equipes).size !== 16
+  ) {
+    throw new TypeError(
+      "Fournir exactement 16 noms d'équipes distincts et non vides.",
+    );
+  }
+  const rotation = [...equipes];
+  const planning = [];
+  for (let journee = 0; journee < 15; journee++) {
+    const matchs = [];
+    for (let i = 0; i < 8; i++) {
+      matchs.push([rotation[i], rotation[15 - i]]);
+    }
+    planning.push(matchs);
+    const dernier = rotation.pop();
+    rotation.splice(1, 0, dernier);
+  }
+  return planning;
+}
+```
+
+### Corrigé EXO 3 : ReplayBuffer de dix actions
+
+```js
+export class ReplayBuffer {
+  #data = new Array(10);
+  #next = 0;
+  #count = 0;
+
+  push(action) {
+    this.#data[this.#next] = action;
+    this.#next = (this.#next + 1) % 10;
+    this.#count = Math.min(this.#count + 1, 10);
+  }
+
+  getAll() {
+    const debut = (this.#next - this.#count + 10) % 10;
+    return Array.from(
+      { length: this.#count },
+      (_, i) => this.#data[(debut + i) % 10],
+    );
+  }
+}
+```
+
+`getAll()` retourne une nouvelle liste dans l'ordre ancien → récent. Après plus de dix insertions, seules les dix actions les plus récentes restent présentes. Le tableau interne n'est jamais exposé.
 
 ---
 

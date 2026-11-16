@@ -258,19 +258,17 @@ function buildMatchReport(events, players, config) {
   const valid = events.filter((e) => e.minute <= 90); // O(e)
 
   // 2. Grouper par joueur
-  const byPlayer = {};
+  const byPlayer = new Map();
   for (const event of valid) {
-    // O(e)
-    if (!byPlayer[event.playerId]) {
-      byPlayer[event.playerId] = [];
-    }
-    byPlayer[event.playerId].push(event); // O(1) amortized
+    // O(e) moyen : Map ne confond pas une clé utilisateur avec un nom hérité de Object.prototype.
+    if (!byPlayer.has(event.playerId)) byPlayer.set(event.playerId, []);
+    byPlayer.get(event.playerId).push(event); // O(1) amortized en moyenne
   }
 
   // 3. Calculer les stats de chaque joueur
   const stats = players.map((player) => {
     // O(p)
-    const playerEvents = byPlayer[player.id] || []; // O(1)
+    const playerEvents = byPlayer.get(player.id) ?? []; // O(1) moyen
     return {
       ...player,
       goals: playerEvents.filter((e) => e.type === "goal").length, // O(e/p) moyen

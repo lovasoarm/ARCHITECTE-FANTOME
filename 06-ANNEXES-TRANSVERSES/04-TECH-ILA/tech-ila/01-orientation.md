@@ -21,7 +21,7 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 > **Tu viens de** : l'introduction du [README](../README.md).
 > **Tu dois déjà savoir** : rien de technique : cette section pose la méthode de lecture.
-> **Ensuite** : [Niveau 1 : Socle professionnel](03-niveau-1-socle.md)
+> **Ensuite** : [Niveau 1 : Socle professionnel](02-niveau-1-socle.md)
 
 # Orientation : lire, classer, ordonner (sections 0 à 3)
 
@@ -61,7 +61,7 @@ Trois usages. Choisis le tien.
 
 **Usage 1 : parcours.** La Route 58 et les modules principaux restent prioritaires. Tu ouvres une section TECH-ILA seulement lorsqu’un jalon te la signale, et après avoir atteint ses prérequis locaux. Le tableau de correspondance sert à retrouver une fiche ; il ne transforme pas chaque correspondance en lecture obligatoire.
 
-**Usage 2 : dépannage.** Tu es en galère sur React ou NestJS. Tu ouvres la [carte inverse](08-cartes-parcours-technologies.md#11-carte-inverse-technologie-fichiers-du-parcours), tu retrouves le fichier du parcours qui explique le mécanisme sous-jacent, tu relis, tu reviens. En situation d'incident réel (prod qui casse), tu n'ouvres pas ce document : tu ouvres le [mode urgence](./09-mode-urgence.md).
+**Usage 2 : dépannage.** Tu es en galère sur React ou NestJS. Tu ouvres la [carte inverse](08-cartes-parcours-technologies.md#11-carte-inverse-technologie-fichiers-du-parcours), tu retrouves le fichier du parcours qui explique le mécanisme sous-jacent, tu relis, tu reviens. En situation d'incident réel (prod qui casse), tu n'ouvres pas ce document : tu ouvres le [mode urgence](./10-mode-urgence.md).
 
 **Usage 3 : décision.** Tu dois choisir un outil. Tu ouvres la fiche techno, tu lis "Quand ne pas la choisir" et "Alternatives", tu écris un ADR (`03-PILOTAGE/10-TEAM-CRAFT/03-adr_writing.md`).
 
@@ -236,7 +236,7 @@ NIVEAU 6  IA             diriger · vérifier · refuser
                          est nécessaire avant cette famille de fiches, pas avant le parcours débutant)
 ```
 
-À côté de ces six niveaux, un fichier n'est pas un niveau : le [mode urgence](./09-mode-urgence.md) est une page de consultation en incident, pas de lecture linéaire : index par message d'erreur, index par symptôme, procédure d'incident en une page.
+À côté de ces six niveaux, un fichier n'est pas un niveau : le [mode urgence](./10-mode-urgence.md) est une page de consultation en incident, pas de lecture linéaire : index par message d'erreur, index par symptôme, procédure d'incident en une page.
 
 Les numéros organisent les familles de sujets ; ils ne créent ni ordre de lecture ni obligation de terminer un niveau. Respecte les prérequis indiqués dans chaque fiche. La Route 58 peut ne renvoyer qu’à une section précise, ou à aucune section TECH-ILA.
 
@@ -257,7 +257,7 @@ Les numéros organisent les familles de sujets ; ils ne créent ni ordre de lect
 
 ---
 
-[← Sommaire](../README.md) · [Niveau 1 →](03-niveau-1-socle.md)
+[← Sommaire](../README.md) · [Niveau 1 →](02-niveau-1-socle.md)
 
 <!-- AF-LESSON-PROFILE: reference -->
 

@@ -262,10 +262,19 @@ type GetStatsParams = Parameters<typeof getPlayerStats>;
 // [id: number, season: string]
 
 // utile quand tu veux wrapper une fonction existante
+const statsCache = new Map<string, ReturnType<typeof getPlayerStats>>();
+
 function cachedGetPlayerStats(
   ...args: Parameters<typeof getPlayerStats>
 ): ReturnType<typeof getPlayerStats> {
-  // check cache, appelle getPlayerStats, retourne
+  const [id, season] = args;
+  const key = `${id}:${season}`;
+  const cached = statsCache.get(key);
+  if (cached !== undefined) return cached;
+
+  const result = getPlayerStats(...args);
+  statsCache.set(key, result);
+  return result;
 }
 ```
 

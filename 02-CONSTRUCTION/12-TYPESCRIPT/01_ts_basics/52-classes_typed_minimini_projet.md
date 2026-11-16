@@ -26,17 +26,17 @@ Le portfolio est fonctionnel, mais deux classes restent légitimes : les erreurs
 
 ## OBJECTIF
 
-Tes erreurs sont typées et discriminées.
+Le contrat de l'erreur projet est porté en TypeScript sans perdre ses données métier.
 
 ## APPLICATION
 
-- Type proprement la classe d'erreur `ProjectNotFoundError` créée en `01-CADRAGE/04-ERROR-HANDLING` (propriété `slug`, `name`).
+- Porte en TypeScript le contrat `ProjectNotFoundError` défini dans `01-CADRAGE/04-ERROR-HANDLING/51-custom_errors_minimini_projet.md` : `slug: string`, `projectName: string` et `name = "ProjectNotFoundError"` hérité de `Error`.
 - Écris un garde de type `isProjectNotFound(e: unknown)`.
 - Utilise-le dans ton `catch` au lieu d'un `any`.
 
 ## Critère de réussite
 
-- [ ] Type proprement la classe d'erreur `ProjectNotFoundError` créée en `01-CADRAGE/04-ERROR-HANDLING` (propriété `slug`, `name`).
+- [ ] Porte proprement en TypeScript le contrat de `ProjectNotFoundError` (`slug`, `projectName`, `Error.name`) sans confondre le nom de classe et le nom métier du projet.
 - [ ] Écris un garde de type `isProjectNotFound(e: unknown)`.
 - [ ] Je peux expliquer le résultat obtenu sans relire le cours.
 

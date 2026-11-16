@@ -39,6 +39,7 @@ Maximum indicatif : 500 mots. Elle doit contenir :
 - **Problème** : ce qui arrive, pour qui, avec quel impact.
 - **Contraintes connues** : dernière place, délai réseau, rôles et besoin de traçabilité. Sépare ce qui est fourni de ce que tu supposes.
 - **Non-objectifs** : au moins deux sujets hors du périmètre de cette décision.
+- **Modèle du système** : identifie les acteurs, entrées, sorties, états partagés, effets de bord et frontières. Ajoute au moins deux invariants qui ne doivent jamais être violés dans le scénario de dernière place et de demande rejouée.
 - **Hypothèse mesurable** : formule un seuil chiffré comme hypothèse de travail, pas comme donnée réelle. Décris une vérification en moins d'une journée à partir d'un scénario ou d'un jeu synthétique ; indique ce que cette simulation ne pourra pas prouver.
 - **Critères de succès** : observations qui permettraient de juger la décision après une période d'utilisation réelle. Marque-les comme critères futurs, non mesurés.
 
@@ -63,6 +64,7 @@ Maximum indicatif : 500 mots. Il doit contenir, dans cet ordre :
 4. Un lecteur qui ne connaît pas le scénario peut reconstituer le problème, les options et la raison de la proposition.
 5. Les documents distinguent explicitement `FAIT DU SCÉNARIO`, `HYPOTHÈSE`, `JUGEMENT` et `NON MESURÉ`.
 6. Aucun résultat de simulation n'est présenté comme une observation auprès de vrais utilisateurs ou comme une preuve d'implémentation.
+7. Le modèle présente explicitement les acteurs, les entrées, les sorties, l'état partagé, les effets de bord, les frontières et au moins deux invariants ; le lecteur peut suivre le parcours d'une demande et son rejeu sans ambiguïté.
 
 ## Ce qui ne valide pas le fil rouge personnel
 

@@ -197,12 +197,12 @@ La solution : `worker_threads` pour sortir le calcul lourd du main thread (voir 
 ```js
 // Profiler un script qui démarre et finit immédiatement : résultat inutile
 node --cpu-prof script-qui-finit-en-5ms.js
-// Le fichier .cpuprofile contient quelques centaines de samples
-// Impossible de voir quoi que ce soit : la résolution est trop basse
+// Avec un échantillonnage de l'ordre de la milliseconde, 5 ms ne donnent
+// que quelques échantillons : la trace est trop courte pour une conclusion fiable.
 
 // Règle : pour qu'un profil CPU soit exploitable, le script doit tourner
-// au minimum 2-3 secondes avec une charge représentative
-// Moins de ça : le profil ne contient pas assez de samples pour être fiable
+// plusieurs secondes, idéalement davantage, sous une charge représentative
+// La durée utile dépend de la fréquence d'échantillonnage et du coût à observer.
 ```
 
 Deuxième cas : profiler en mode development avec `--inspect` actif.

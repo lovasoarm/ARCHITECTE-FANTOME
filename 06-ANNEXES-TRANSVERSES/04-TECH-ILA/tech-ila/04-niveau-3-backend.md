@@ -23,9 +23,9 @@ claim_reviewed_on: "2026-11-03"
 
 [← Sommaire TECH-ILA](../README.md)
 
-> **Tu viens de** : [04-niveau-2-frontend.md](04-niveau-2-frontend.md) (React, état, Vite, routing/formulaires/a11y, Next.js)
-> **Tu dois déjà savoir** : `node:http` et les fondamentaux Node (`03-niveau-1-socle.md`), composition de fonctions (`../../../02-CONSTRUCTION/09-FUNCTIONAL-JS/04-composition.md`), les patrons SOLID de base (`02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md`)
-> **Ensuite** : [06-niveau-4-systemes.md](06-niveau-4-systemes.md) (CI/CD, cloud, observabilité, résilience)
+> **Tu viens de** : [03-niveau-2-frontend.md](03-niveau-2-frontend.md) (React, état, Vite, routing/formulaires/a11y, Next.js)
+> **Tu dois déjà savoir** : `node:http` et les fondamentaux Node (`02-niveau-1-socle.md`), composition de fonctions (`../../../02-CONSTRUCTION/09-FUNCTIONAL-JS/04-composition.md`), les patrons SOLID de base (`02-CONSTRUCTION/14-ARCHITECTURE-PATTERNS/03-solid_principles.md`)
+> **Ensuite** : [05-niveau-4-systemes.md](05-niveau-4-systemes.md) (CI/CD, cloud, observabilité, résilience)
 
 # Niveau 3 : Backend (section 6)
 

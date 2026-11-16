@@ -14,7 +14,7 @@ module.
 | Template                   | Rôle                                                  | Utilisé par                                                                                   |
 | -------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `02-POSTMORTEM.md`         | Squelette de post-mortem d'incident ou de mini-projet | 02-CONSTRUCTION/02-MINI-PROJECTS, 03-PILOTAGE/05-OBSERVABILITY, 03-PILOTAGE/04-SECURITY       |
-| `HYPOTHESES.md`            | Grille d'hypothèses pour un debug méthodique          | 01-CADRAGE/03-DEBUGGING, 05-MAITRISE/03-EDGE-CASES, 03-PILOTAGE/05-OBSERVABILITY              |
+| `03-HYPOTHESES.md`         | Grille d'hypothèses pour un debug méthodique          | 01-CADRAGE/03-DEBUGGING, 05-MAITRISE/03-EDGE-CASES, 03-PILOTAGE/05-OBSERVABILITY              |
 | `PUBLICATION_CHECKLIST.md` | Checklist avant de publier un billet ou un repo       | 02-CONSTRUCTION/02-MINI-PROJECTS, 03-PILOTAGE/10-TEAM-CRAFT, 05-MAITRISE/06-ANNEXES/16_career |
 
 ## Convention

@@ -46,6 +46,13 @@ L'expérience minimale qui prouve que l'hypothèse est vraie. Résultat attendu 
 - Résultat observé : ...
 - Verdict : confirmée / infirmée (si infirmée, retour étape 1).
 
+## 5. Auteur et date (signature pédagogique)
+
+- Auteur (nom ou identifiant) : `<à renseigner>`
+- Date (AAAA-MM-JJ) : `<à renseigner>`
+
+Cette mention identifie l’auteur et la date de la fiche. Elle n’est ni une signature électronique ou juridique, ni une revue indépendante.
+
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
 Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décision technique proposes-tu ? Qui gagne, qui perd, quelle incitation perverse apparait et quelle preuve permettrait de renégocier l'accord ?

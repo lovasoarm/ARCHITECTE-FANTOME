@@ -89,16 +89,26 @@ Fenêtre glissante / seau de jetons (token bucket) :
 
 Réponse attendue en cas de dépassement, exploitable par un client automatique :
 
-```text
-HTTP 429 Too Many Requests
-Retry-After: 42
-X-RateLimit-Limit: 100
-X-RateLimit-Remaining: 0
-X-RateLimit-Reset: 1735689600
+```js
+const retryAfterSeconds = 42;
+const resetEpochSeconds = Math.floor(Date.now() / 1000) + retryAfterSeconds;
+
+res.set({
+  "Retry-After": String(retryAfterSeconds),
+  "X-RateLimit-Limit": "100",
+  "X-RateLimit-Remaining": "0",
+  // Convention de cette API pédagogique : epoch Unix en secondes.
+  "X-RateLimit-Reset": String(resetEpochSeconds),
+});
 ```
 
-Un client bien écrit lit `Retry-After` et attend ce délai précis avant de retenter, au lieu
-de deviner un backoff arbitraire qui pourrait retomber encore dans la fenêtre limitée.
+`Retry-After` et `X-RateLimit-Reset` sont calculés à partir du même instant serveur :
+la date de réinitialisation doit donc être environ 42 secondes après l'instant de réponse.
+`X-RateLimit-Reset` est ici un header de convention applicative, pas une garantie de
+standardisation universelle ; documente son unité et son fuseau pour les clients.
+
+Un client bien écrit lit `Retry-After` et attend ce délai avant de retenter, au lieu de
+deviner un backoff arbitraire qui pourrait retomber encore dans la fenêtre limitée.
 
 ### Cache HTTP : réduire le travail refait pour rien
 
@@ -112,7 +122,7 @@ Cache-Control: max-age=3600          --> le client (ou un cache intermédiaire) 
 
 ETag: "a1b2c3d4"                     --> empreinte du contenu ; le client renvoie
 If-None-Match: "a1b2c3d4"              cette empreinte au prochain appel, le serveur répond
-                                        304 Not Found Modified (corps vide) si rien n'a changé,
+                                        304 Not Modified (corps vide) si rien n'a changé,
                                         évitant de retransmettre un contenu identique
 ```
 

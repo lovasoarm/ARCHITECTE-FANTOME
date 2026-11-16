@@ -311,6 +311,124 @@ Un masque réseau est un entier 32 bits. Écrire `compterBitsReseau(masque)` qui
 
 ---
 
+## CORRIGÉS DE RÉFÉRENCE : À CONSULTER APRÈS UNE TENTATIVE
+
+### Corrigé EXO 1 : flags de capacités
+
+Les flags sont validés contre la liste déclarée. On refuse les combinaisons inconnues et les masques qui sortent du domaine prévu.
+
+```js
+export const CAPACITES = Object.freeze({
+  NINJUTSU: 1 << 0,
+  TAIJUTSU: 1 << 1,
+  GENJUTSU: 1 << 2,
+  SENJUTSU: 1 << 3,
+  KURAMA: 1 << 4,
+});
+const VALEURS = Object.values(CAPACITES);
+const TOUS_LES_FLAGS = VALEURS.reduce((masque, flag) => masque | flag, 0);
+
+function verifierFlag(flag) {
+  if (!VALEURS.includes(flag)) throw new RangeError("Capacité inconnue");
+}
+function verifierMasque(ninja) {
+  if (
+    !Number.isInteger(ninja) ||
+    ninja < 0 ||
+    ninja > 0x7fffffff ||
+    (ninja & ~TOUS_LES_FLAGS) !== 0
+  ) {
+    throw new RangeError("Masque de capacités invalide");
+  }
+}
+
+export function creerNinja(capacites) {
+  if (!Array.isArray(capacites))
+    throw new TypeError("capacites doit être un tableau");
+  return capacites.reduce((masque, flag) => {
+    verifierFlag(flag);
+    return masque | flag;
+  }, 0);
+}
+export function peutUtiliser(ninja, capacite) {
+  verifierMasque(ninja);
+  verifierFlag(capacite);
+  return (ninja & capacite) !== 0;
+}
+export function apprendreCapacite(ninja, capacite) {
+  verifierMasque(ninja);
+  verifierFlag(capacite);
+  return ninja | capacite;
+}
+export function perdCapacite(ninja, capacite) {
+  verifierMasque(ninja);
+  verifierFlag(capacite);
+  return ninja & ~capacite;
+}
+```
+
+### Corrigé EXO 2 : parser et encoder une couleur RGB hexadécimale
+
+```js
+function valeurHex(caractere) {
+  const code = caractere.charCodeAt(0);
+  if (code >= 48 && code <= 57) return code - 48; // 0–9
+  if (code >= 65 && code <= 70) return code - 55; // A–F
+  if (code >= 97 && code <= 102) return code - 87; // a–f
+  throw new TypeError("Caractère hexadécimal invalide");
+}
+
+export function parseHex(hex) {
+  if (typeof hex !== "string" || !/^#[0-9a-fA-F]{6}$/.test(hex)) {
+    throw new TypeError("La couleur doit respecter le format #RRGGBB");
+  }
+  let packed = 0;
+  for (const caractere of hex.slice(1)) {
+    packed = (packed << 4) | valeurHex(caractere);
+  }
+  return {
+    r: (packed >>> 16) & 0xff,
+    g: (packed >>> 8) & 0xff,
+    b: packed & 0xff,
+  };
+}
+
+export function toHex(r, g, b) {
+  for (const canal of [r, g, b]) {
+    if (!Number.isInteger(canal) || canal < 0 || canal > 255) {
+      throw new RangeError(
+        "Chaque canal RGB doit être un entier entre 0 et 255",
+      );
+    }
+  }
+  const packed = (r << 16) | (g << 8) | b;
+  return `#${packed.toString(16).padStart(6, "0").toUpperCase()}`;
+}
+```
+
+`valeurHex` convertit chaque caractère en nibble (un groupe de 4 bits), puis `<<` et `|` construisent la valeur 24 bits. `toHex` empaquette les trois canaux avec les mêmes opérations. Le domaine RGB 24 bits reste positif dans la représentation signée 32 bits de JavaScript.
+
+### Corrigé EXO 3 : compter les bits d'un masque réseau
+
+```js
+export function compterBitsReseau(masque) {
+  if (!Number.isInteger(masque) || masque < 0 || masque > 0xffffffff) {
+    throw new RangeError("Le masque doit être un entier non signé sur 32 bits");
+  }
+  let valeur = masque >>> 0;
+  let total = 0;
+  while (valeur !== 0) {
+    total += valeur & 1;
+    valeur >>>= 1;
+  }
+  return total;
+}
+```
+
+`compterBitsReseau(0xffffff00)` retourne `24`. Cette fonction compte les bits à 1 ; elle ne vérifie pas à elle seule que les bits à 1 forment un préfixe contigu. Pour valider un masque IPv4 CIDR, ajoute un contrôle de contiguïté avant de l'accepter comme masque réseau.
+
+---
+
 ## RÉSUMÉ
 
 Les bits permettent d'encoder plusieurs états dans un seul entier. Le pattern flags + masques (`|` pour activer, `&` pour vérifier, `^` pour toggle, `& ~flag` pour désactiver) se retrouve dans les permissions, les couleurs, les options de config. Le shift `<<` construit des flags propres. Et XOR a des propriétés uniques : `a ^ a = 0`, `a ^ 0 = a` : ce sont les bases des algos de swap et de toggle. C'est du bas niveau, mais c'est du bas niveau qui s'utilise en prod.

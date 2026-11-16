@@ -159,8 +159,55 @@ router.patch("/:id", (req, res) => {
     return res.status(404).json({ error: `joueur ${id} introuvable` });
   }
 
-  // spread : garde les anciens champs, écrase seulement ceux envoyés
-  const updated = { ...player, ...req.body, id }; // id ne peut pas être modifié
+  // Le corps doit être un objet JSON simple ; ne pas fusionner un input arbitraire.
+  if (!req.body || typeof req.body !== "object" || Array.isArray(req.body)) {
+    return res.status(400).json({ error: "corps PATCH invalide" });
+  }
+
+  // Allow-list : seuls les champs métier explicitement modifiables sont acceptés.
+  const allowedFields = new Set(["name", "team", "goals"]);
+  const submittedFields = Object.keys(req.body);
+  const forbiddenFields = submittedFields.filter(
+    (field) => !allowedFields.has(field),
+  );
+  if (forbiddenFields.length > 0) {
+    return res
+      .status(400)
+      .json({ error: "champ(s) non modifiable(s)", fields: forbiddenFields });
+  }
+  if (submittedFields.length === 0) {
+    return res
+      .status(400)
+      .json({ error: "PATCH exige au moins un champ modifiable" });
+  }
+  if (
+    req.body.name !== undefined &&
+    (typeof req.body.name !== "string" || !req.body.name.trim())
+  ) {
+    return res
+      .status(400)
+      .json({ error: "name doit être une chaîne non vide" });
+  }
+  if (
+    req.body.team !== undefined &&
+    (typeof req.body.team !== "string" || !req.body.team.trim())
+  ) {
+    return res
+      .status(400)
+      .json({ error: "team doit être une chaîne non vide" });
+  }
+  if (
+    req.body.goals !== undefined &&
+    (!Number.isSafeInteger(req.body.goals) || req.body.goals < 0)
+  ) {
+    return res
+      .status(400)
+      .json({ error: "goals doit être un entier sûr positif ou nul" });
+  }
+  const allowedUpdate = Object.fromEntries(
+    submittedFields.map((field) => [field, req.body[field]]),
+  );
+  const updated = { ...player, ...allowedUpdate, id: player.id };
   players = players.map((p) => (p.id === id ? updated : p));
 
   res.json(updated);

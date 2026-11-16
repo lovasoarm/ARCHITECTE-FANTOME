@@ -276,6 +276,223 @@ Ne te contente pas de `parseInt()` : il pourrait accepter le début d'une chaîn
 
 ---
 
+## CORRIGÉ DE RÉFÉRENCE : À CONSULTER APRÈS TA TENTATIVE
+
+Ces solutions donnent une réponse possible, pas l'unique façon correcte de coder. Essaie d'abord seul, puis compare les cas limites et les critères demandés.
+
+### Exo 1 : Le Faux Prix
+
+```javascript
+const price = "199";
+const total = Number(price) + 1;
+
+console.log(total); // 200
+```
+
+`price` est une chaîne. L'opérateur `+` peut concaténer deux chaînes ; convertir explicitement avant l'addition évite ce piège. Dans une vraie saisie utilisateur, il faut aussi vérifier que le nombre obtenu est fini et respecte les règles métier.
+
+### Exo 2 : Nettoyeur d'une valeur en `px`
+
+```javascript
+function parsePx(value) {
+  if (typeof value !== "string") return -1;
+
+  const text = value.trim();
+  if (!text.endsWith("px")) return -1;
+
+  const numericText = text.slice(0, -2).trim();
+  // Ce mini-exercice accepte une notation décimale simple, pas toutes les syntaxes CSS.
+  if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(numericText)) return -1;
+
+  const result = Number(numericText);
+  return Number.isFinite(result) ? result : -1;
+}
+
+console.log(parsePx("300px")); // 300
+console.log(parsePx("abc")); // -1
+console.log(parsePx("300pxx")); // -1
+console.log(parsePx("")); // -1
+console.log(parsePx("Infinitypx")); // -1
+```
+
+Le suffixe doit être exactement `px` et toute la partie avant le suffixe doit être un nombre décimal accepté. `parseInt()` seul ne suffit pas : il peut accepter un début de chaîne et ignorer ce qui suit.
+
+### Exo 3 : Mindfuck Boolean
+
+```javascript
+console.log(Boolean("false")); // true : la chaîne n'est pas vide
+console.log(Boolean(" ")); // true : elle contient un caractère espace
+console.log(Boolean([])); // true : un tableau, même vide, est un objet truthy
+console.log(Boolean(0)); // false : zéro est falsy
+```
+
+La conversion booléenne ne lit pas le sens du texte. Elle regarde la valeur JavaScript elle-même.
+
+### Exo 4 : Inspecteur Ultime
+
+```javascript
+function inspect(value) {
+  const type =
+    value === null ? "null" : Array.isArray(value) ? "array" : typeof value;
+
+  return {
+    type,
+    estArray: Array.isArray(value),
+    estNumberValide: typeof value === "number" && Number.isFinite(value),
+    estFalsy: Boolean(value) === false,
+  };
+}
+
+console.log(inspect(0));
+// { type: "number", estArray: false, estNumberValide: true, estFalsy: true }
+console.log(inspect("0"));
+// { type: "string", estArray: false, estNumberValide: false, estFalsy: false }
+console.log(inspect([]));
+// { type: "array", estArray: true, estNumberValide: false, estFalsy: false }
+console.log(inspect(null));
+// { type: "null", estArray: false, estNumberValide: false, estFalsy: true }
+console.log(inspect(NaN));
+// { type: "number", estArray: false, estNumberValide: false, estFalsy: true }
+```
+
+`0` est un nombre fini même s'il est falsy. `NaN` a `typeof "number"`, mais n'est pas un nombre valide selon le critère demandé.
+
+### Exo 5 : Currency Boss
+
+```javascript
+function parseCurrency(value) {
+  if (typeof value !== "string") return null;
+
+  const text = value.trim();
+  if (text === "") return null;
+
+  const numericText = text.endsWith("$") ? text.slice(0, -1).trim() : text;
+
+  if (!/^[+-]?(?:\d+(?:\.\d+)?|\.\d+)$/.test(numericText)) return null;
+
+  const amount = Number(numericText);
+  return Number.isFinite(amount) ? amount : null;
+}
+
+console.log(parseCurrency("100$")); // 100
+console.log(parseCurrency(" 250 ")); // 250
+console.log(parseCurrency("abc")); // null
+console.log(parseCurrency("100$abc")); // null
+console.log(parseCurrency("")); // null
+console.log(parseCurrency(null)); // null
+console.log(parseCurrency("Infinity$")); // null
+```
+
+Cette fonction vérifie le format simple de l'entrée ; elle ne vérifie pas encore qu'un montant est positif, qu'il respecte un nombre maximal de décimales ou que le symbole `$` correspond à la devise attendue.
+
+---
+
+## CORRIGÉS DE RÉFÉRENCE : À CONSULTER APRÈS UNE TENTATIVE
+
+Ces propositions montrent une solution possible. Les noms ou l'organisation peuvent varier si les contrats et les cas limites restent respectés.
+
+### Corrigé Exo 1 : le faux prix
+
+```javascript
+const price = "199";
+const numericPrice = parseFiniteNumber(price);
+const total = numericPrice === null ? null : numericPrice + 1;
+
+console.log(total); // 200
+```
+
+On vérifie le résultat de conversion avant l'addition : `null` ne doit pas être transformé implicitement en zéro.
+
+### Corrigé Exo 2 : nettoyeur `px`
+
+```javascript
+function parsePx(value) {
+  if (typeof value !== "string") return -1;
+
+  const text = value.trim();
+  if (!text.endsWith("px")) return -1;
+
+  const numericText = text.slice(0, -2).trim();
+  // Format décimal explicite : pas de suffixe résiduel ni d'hexadécimal.
+  if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(numericText)) {
+    return -1;
+  }
+
+  const parsed = Number(numericText);
+  return Number.isFinite(parsed) ? parsed : -1;
+}
+
+parsePx("300px"); // 300
+parsePx("abc"); // -1
+parsePx("300pxx"); // -1
+parsePx(""); // -1
+parsePx("Infinitypx"); // -1
+```
+
+### Corrigé Exo 3 : Mindfuck Boolean
+
+```javascript
+Boolean("false"); // true : toute chaîne non vide est truthy
+Boolean(" "); // true : la chaîne contient un caractère espace
+Boolean([]); // true : les tableaux, même vides, sont truthy
+Boolean(0); // false : zéro est falsy
+```
+
+Le contenu textuel d'une chaîne n'est pas interprété comme un booléen : `"false"` n'est pas la valeur booléenne `false`.
+
+### Corrigé Exo 4 : inspecteur ultime
+
+```javascript
+function inspect(value) {
+  const type =
+    value === null ? "null" : Array.isArray(value) ? "array" : typeof value;
+
+  return {
+    type,
+    estArray: Array.isArray(value),
+    estNumberValide: typeof value === "number" && Number.isFinite(value),
+    estFalsy: Boolean(value) === false,
+  };
+}
+
+inspect(0); // { type: "number", estArray: false, estNumberValide: true, estFalsy: true }
+inspect("0"); // { type: "string", estArray: false, estNumberValide: false, estFalsy: false }
+inspect([]); // { type: "array", estArray: true, estNumberValide: false, estFalsy: false }
+inspect(null); // { type: "null", estArray: false, estNumberValide: false, estFalsy: true }
+inspect(NaN); // { type: "number", estArray: false, estNumberValide: false, estFalsy: true }
+```
+
+### Corrigé Exo 5 : Currency Boss
+
+```javascript
+function parseCurrency(value) {
+  if (typeof value !== "string") return null;
+
+  const text = value.trim();
+  if (text === "") return null;
+
+  const numericText = text.endsWith("$") ? text.slice(0, -1).trim() : text;
+
+  // Toute la chaîne doit respecter le format décimal choisi.
+  if (!/^[+-]?(?:\d+(?:\.\d+)?|\.\d+)$/.test(numericText)) {
+    return null;
+  }
+
+  const amount = Number(numericText);
+  return Number.isFinite(amount) ? amount : null;
+}
+
+parseCurrency("100$"); // 100
+parseCurrency(" 250 "); // 250
+parseCurrency("abc"); // null
+parseCurrency("100$abc"); // null
+parseCurrency(""); // null
+parseCurrency(null); // null
+parseCurrency("Infinity$"); // null
+```
+
+Cette fonction valide le format numérique demandé ; elle ne vérifie pas les règles métier d'une devise (montant positif, nombre de décimales autorisé, devise acceptée ou plafonds).
+
 ## RÉSUMÉ FINAL
 
 - Transformer **avant** d'utiliser

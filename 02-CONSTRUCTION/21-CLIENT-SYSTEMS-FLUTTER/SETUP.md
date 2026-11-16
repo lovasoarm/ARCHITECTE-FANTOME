@@ -15,9 +15,19 @@ Lis d’abord le [`SETUP.md`](../../SETUP.md) le plus proche dans l’arborescen
 
 ## 3. Technologie / environnement
 
-**Flutter / Dart** : installer une version explicitement compatible avec le lab et conserver le SDK hors ligne si la séance est isolée.
+**Version de référence du curriculum (10 novembre 2026)** : Flutter **3.47.9 stable**, avec Dart **3.13.7** fourni dans le SDK Flutter. Cette paire est le point de référence reproductible pour les snippets et le mini-projet de cette version d'AF ; ne mélange pas un Flutter d'une version et un Dart installé séparément.
 
-`flutter --version` doit répondre sans télécharger de composant.
+Le SDK Flutter inclut le SDK Dart : installe/extrais un seul SDK Flutter correspondant à la plateforme ciblée, puis conserve son archive hors ligne si la séance est isolée. Si un correctif plus récent est nécessaire, crée une mise à jour explicite du setup et vérifie les exemples, l'analyse, les tests et les plugins avant de modifier cette référence.
+
+Première preuve attendue :
+
+```bash
+flutter --version
+# doit afficher Flutter 3.47.9 et Dart 3.13.7
+flutter doctor -v
+```
+
+Les exemples, dépendances et `pubspec.lock` doivent être testés avec cette paire. Le versionnement ne garantit pas que le SDK ou les composants de plateforme sont déjà installés localement.
 
 ### 3.1 Cible de plateforme
 

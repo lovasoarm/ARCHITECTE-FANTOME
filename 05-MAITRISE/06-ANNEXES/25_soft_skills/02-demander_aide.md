@@ -51,10 +51,14 @@ Ordre non négociable. Ne mets jamais la question en premier. La personne qui te
 
 > Contexte : je fetch trois APIs en parallèle avec Promise.all, la 3e ne résout jamais.
 > Ce que j'ai essayé : (a) log dans la 3e fonction : elle est bien appelée. (b) je l'appelle isolément : elle retourne bien. (c) j'ai remplacé Promise.all par Promise.allSettled : la 3e est bien en pending.
-> Mon hypothèse : la 3e fonction ne fait pas de return sur son await, ça se voit pas dans le log parce que je log avant.
+> Mon hypothèse initiale était que la 3e fonction ne faisait pas de `return` après son `await`. Mais cela expliquerait une valeur finale `undefined` après résolution, pas une promesse qui reste `pending` : je dois vérifier quelle promesse exacte ne se termine pas.
 > Ce qui me bloque : je ne trouve pas le missing return après 20 min de relecture, je préfère demander qu'y passer une heure. Voici les 15 lignes de la fonction : [snippet]
 
 Deux minutes à écrire, une réponse ciblée en retour.
+
+<!-- AF-PENDING-PROMISE-DIAGNOSIS -->
+
+**Distinction importante :** une fonction `async` qui exécute `await operation()` sans `return` se termine par une promesse résolue à `undefined` lorsque `operation()` se termine. L'absence de `return` fait perdre la valeur, mais ne laisse pas à elle seule la promesse en attente. Si `Promise.allSettled()` montre toujours `pending`, identifie la promesse réellement attendue et vérifie si l'opération interne se résout/rejette sur chaque branche, si un `resolve`/`reject` est oublié, si un événement attendu n'arrive jamais ou si un flux n'est pas fermé. Fournis un cas minimal qui distingue `undefined` après résolution d'une promesse qui ne settle jamais.
 
 ## LA RÈGLE DES TROIS TENTATIVES
 

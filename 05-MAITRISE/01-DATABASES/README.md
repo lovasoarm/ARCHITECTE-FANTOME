@@ -28,10 +28,10 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | [`50-data_modeling_minimini_projet.md`](50-data_modeling_minimini_projet.md) | 03 data modeling minimini projet                               | 45 min |
 | [`05-redis_caching.md`](05-redis_caching.md)                                 | Se souvenir vite pour ne pas redemander à chaque fois          | 45 min |
 | [`06-db_in_js.md`](06-db_in_js.md)                                           | Connecter ton code à la DB sans te perdre dans l'abstraction   | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                                           | Page verrouillée                                               | 30 min |
 | [`07-EXO_LECTURE.md`](07-EXO_LECTURE.md)                                     | EXO LECTURE : ~20 minutes : un cycle (Databases)               | 20 min |
 | [`09-EXO-VERIFICATION.md`](09-EXO-VERIFICATION.md)                           | Exercice 09 : analyse de risque d’une suppression multi-tenant | 30 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                           | Exercice 97 : laboratoire transactionnel PostgreSQL            | 60 min |
+| [`90-grimoire.md`](90-grimoire.md)                                           | Page verrouillée                                               | 30 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                               | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust        | 45 min |
 | [`08-du_single_node_au_cluster.md`](08-du_single_node_au_cluster.md)         | Du single-node au cluster : le pont vers le distribué          | 45 min |
 
@@ -79,7 +79,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [50-data_modeling_minimini_projet.md](50-data_modeling_minimini_projet.md)
 - [Se souvenir vite pour ne pas redemander à chaque fois](05-redis_caching.md)
 - [Connecter ton code à la DB sans te perdre dans l'abstraction](06-db_in_js.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~20 minutes : un cycle (Databases)](07-EXO_LECTURE.md)
 - [Exercice 09 : analyse de risque multi-tenant](09-EXO-VERIFICATION.md)
 - [Exercice 97 : laboratoire transactionnel PostgreSQL](97-EXO-VERIFICATION.md)
@@ -87,7 +86,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Du single-node au cluster : le pont vers le distribué](08-du_single_node_au_cluster.md)
 - [Challenge : `01-DATABASES`](95-challenge.md)
 - [Grimoire : `01-DATABASES`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources

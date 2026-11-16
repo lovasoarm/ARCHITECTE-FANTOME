@@ -69,7 +69,7 @@ Contrepoint : dans quel cas tu changerais d'avis
 - [ ] Tu peux défendre l'ADR 20 min face à un pair (simulation) (1 pt)
 
 **Seuil de validation : 8/10.** En dessous, tu recommences avec un autre triplet
-de bugs (voir `pool_bugs/` dans ce dossier).
+de bugs (voir `09_pool_bugs/` dans ce dossier).
 
 ---
 
@@ -88,7 +88,7 @@ C'est ça, être irremplaçable par une IA générique en 2026 comme en 2031.
 ## POUR TROUVER LES DÉPÔTS-CIBLES
 
 Trois candidats calibrés (ni triviaux, ni gigantesques) sont listés dans
-`pool_bugs/CANDIDATS.md`. Choisis-en un par langage. Si tu utilises un dépôt
+`09_pool_bugs/02-CANDIDATS.md`. Choisis-en un par langage. Si tu utilises un dépôt
 non-listé, note-le et justifie en 2 lignes dans le rapport.
 
 ## CHECKPOINT DE PROFONDEUR : variation G : boîte noire

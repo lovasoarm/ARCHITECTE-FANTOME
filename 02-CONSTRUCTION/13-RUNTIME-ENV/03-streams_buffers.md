@@ -110,25 +110,40 @@ createReadStream("./replays/finale.mp4")
 import { createReadStream } from "node:fs";
 import { createInterface } from "node:readline";
 
-// lire un fichier CSV ligne par ligne
-// sans jamais charger tout le CSV en mémoire
+// Démonstration limitée au CSV pédagogique à 3 colonnes sans guillemets,
+// virgules intégrées ni retours à la ligne dans les champs.
+// Pour un CSV général (RFC 4180), utiliser un parseur dédié comme dans
+// 06C-node-cli-scripts/04-automation_scripts.md.
+// Lecture progressive : ne pas charger tout le fichier en mémoire.
 async function processMatchStats(filepath) {
   const stream = createReadStream(filepath);
   const lines = createInterface({ input: stream });
+  // Un agrégat par joueur, pas un objet par ligne d'entrée.
+  // La mémoire dépend donc du nombre de joueurs distincts.
+  const totalsByPlayer = new Map();
 
-  const results = [];
-
-  for await (const line of lines) {
-    // chaque ligne arrive une par une
-    const [joueur, buts, passes] = line.split(",");
-    results.push({ joueur, buts: +buts, passes: +passes });
+  try {
+    for await (const line of lines) {
+      if (line.trim() === "") continue;
+      const [joueur, butsText, passesText] = line.split(",");
+      const current = totalsByPlayer.get(joueur) ?? { buts: 0, passes: 0 };
+      current.buts += Number(butsText);
+      current.passes += Number(passesText);
+      totalsByPlayer.set(joueur, current);
+    }
+  } finally {
+    lines.close();
+    stream.destroy();
   }
 
-  return results;
+  return [...totalsByPlayer.entries()].map(([joueur, stats]) => ({
+    joueur,
+    ...stats,
+  }));
 }
 
-// sur un CSV de 1M de lignes : mémoire stable
-// sans stream : on charge tout avant de traiter la première ligne
+// La lecture est progressive ; la mémoire est proportionnelle au nombre de joueurs distincts,
+// pas au nombre de lignes. Pour des clés non bornées, agréger dans un stockage externe.
 ```
 
 ---

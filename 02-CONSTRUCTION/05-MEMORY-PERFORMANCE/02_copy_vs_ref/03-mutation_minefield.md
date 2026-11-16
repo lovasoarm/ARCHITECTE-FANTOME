@@ -16,20 +16,20 @@ assessment_role: diagnostic_mastery
 
 # Mutation minefield : toucher un objet et tout casser ailleurs
 
-<!-- AF-DIAGRAM:slo -->
+<!-- AF-DIAGRAM:mutation -->
 
 ```text
-SLO
- │
- ├──► SLI mesuré ───► conformité
- │
- └──► Error Budget ─► capacité à prendre du risque
-                         │
-                         ▼
-                  freeze / release / invest
+Référence A ───────────────┐
+                           ▼
+                    Objet partagé
+                           ▲
+Référence B ───────────────┘
+                           │ mutation via A
+                           ▼
+              B observe aussi le nouvel état
 ```
 
-Le SLO définit la cible, le SLI mesure le service et l’error budget relie fiabilité et cadence de changement.
+Une affectation d'objet copie sa référence, pas son contenu. Si A et B désignent le même objet, une mutation faite via A est visible via B.
 
 Temps de lecture ~9 min
 
@@ -134,7 +134,7 @@ function getLogs() {
 ### Mine #3 : L'initialisation d'objet partagée
 
 ```js
-// Piège classique avec des valeurs par défaut en objet
+// Ce paramètre par défaut est évalué à chaque appel : les objets ne sont PAS partagés.
 function createNinja(name, options = { level: 1, village: "Konoha" }) {
   options.name = name;
   return options;
@@ -142,10 +142,18 @@ function createNinja(name, options = { level: 1, village: "Konoha" }) {
 
 const ninja1 = createNinja("Naruto");
 const ninja2 = createNinja("Sasuke");
+console.log(ninja1 === ninja2); // false
+console.log(ninja1.name, ninja2.name); // Naruto Sasuke
 
-console.log(ninja1.name); // → "Sasuke"
-// l'objet par défaut est créé UNE FOIS et partagé entre les appels
-// ninja1 et ninja2 partagent le même objet options
+// Un partage réel apparaît si la même référence est réutilisée explicitement.
+const sharedOptions = { level: 1, village: "Konoha" };
+function createNinjaWithSharedDefault(name, options = sharedOptions) {
+  options.name = name;
+  return options;
+}
+const sharedNaruto = createNinjaWithSharedDefault("Naruto");
+const sharedSasuke = createNinjaWithSharedDefault("Sasuke");
+console.log(sharedNaruto === sharedSasuke); // true : même objet réutilisé
 ```
 
 ```js
@@ -181,7 +189,7 @@ Les méthodes mutantes à connaître :
 
 - `sort()`, `reverse()` → utilisent `toSorted()`, `toReversed()`
 - `push()`, `pop()`, `shift()`, `unshift()`, `splice()` → utiliser spread + concat pour les alternatives immutables
-- `fill()` → crée un nouveau tableau si nécessaire
+- `fill()` → mute le tableau en place et retourne la même référence ; pour préserver l'original, utiliser `[...arr].fill(value)`
 
 ---
 
@@ -260,32 +268,31 @@ frozenNinja.stats.power = 0; // fonctionne:stats n'est pas freezé
 console.log(frozenNinja.stats.power); // → 0
 ```
 
-Pour un freeze profond :
+Pour une configuration composée uniquement d'objets simples et de tableaux, on peut parcourir les références avec un `WeakSet` pour éviter les boucles. Attention : `Object.freeze(new Map())` n'empêche pas `map.set()` ; `Map` et `Set` exigent un contrat ou un wrapper dédié. Ce helper refuse donc explicitement les collections et les instances non prises en charge.
 
 ```js
-function deepFreeze(obj) {
-  Object.freeze(obj);
-
-  for (const key of Object.keys(obj)) {
-    if (
-      obj[key] &&
-      typeof obj[key] === "object" &&
-      !Object.isFrozen(obj[key])
-    ) {
-      deepFreeze(obj[key]);
-    }
+function deepFreezePlain(value, seen = new WeakSet()) {
+  if (value === null || typeof value !== "object" || seen.has(value))
+    return value;
+  const proto = Object.getPrototypeOf(value);
+  if (!Array.isArray(value) && proto !== Object.prototype && proto !== null) {
+    throw new TypeError(
+      "deepFreezePlain accepte seulement objets simples et tableaux",
+    );
   }
-
-  return obj;
+  seen.add(value);
+  for (const key of Reflect.ownKeys(value)) {
+    deepFreezePlain(value[key], seen);
+  }
+  return Object.freeze(value);
 }
 
-const frozenConfig = deepFreeze({
+const frozenConfig = deepFreezePlain({
   server: { host: "localhost", port: 3000 },
   db: { name: "foxriver" },
 });
-
-frozenConfig.server.port = 9999; // ignoré
-console.log(frozenConfig.server.port); // → 3000
+frozenConfig.server.port = 9999; // en strict mode : TypeError ; sinon écriture ignorée
+console.log(frozenConfig.server.port); // 3000
 ```
 
 ---
@@ -385,13 +392,17 @@ const initialState = {
 
 ### EXO 3 : DEEP FREEZE EN PROD
 
-Dans le système de config du serveur de Fox River, n'importe quel module peut accidentellement modifier la config globale. Implémente `createImmutableConfig(config)` qui :
+Dans le système de config du serveur de Fox River, n'importe quel module peut accidentellement modifier la config globale. Implémente `createImmutableConfig(config)` selon un contrat explicite :
 
-1. Deep freeze la config
-2. Retourne un proxy qui log un message précis si quelqu'un essaie de modifier quelque chose
-3. Fonctionne sur des objets imbriqués
+1. Accepte uniquement des objets simples (`Object` ou `null` comme prototype) et des tableaux ; refuse clairement `Map`, `Set`, `Date`, les instances de classes, les fonctions et les propriétés accesseurs non prises en charge.
+2. Détache la configuration de l'objet fourni par l'appelant (copie du graphe accepté) afin qu'une référence externe vers l'objet initial ne contourne pas le proxy.
+3. Retourne un proxy récursif : lire une propriété imbriquée doit aussi renvoyer une vue protégée. Utilise un `WeakMap` pour conserver l'identité des proxys, les références partagées et les cycles sans récursion infinie.
+4. Intercepte au minimum `set`, `deleteProperty`, `defineProperty` et `setPrototypeOf`. Chaque tentative doit produire un diagnostic avec le chemin et l'opération, puis être refusée de manière déterministe (par exemple en lançant une `TypeError` explicite).
+5. N'appelle pas `Object.freeze()` sur les cibles avant de les envelopper : cela complique les invariants des proxys et peut empêcher le trap `get` de renvoyer les proxys imbriqués attendus. La protection repose ici sur les traps récursifs et sur l'absence de référence brute accessible.
 
-_(Indice : `Proxy` avec un trap `set` qui retourne `false` en strict mode lève une `TypeError` : ça te permettra de donner un meilleur message d'erreur que le freeze seul)_
+**Preuves obligatoires :** teste une affectation sur la racine, une affectation imbriquée (`config.server.port`), `delete`, `Object.defineProperty`, une mutation de tableau (`push`), une référence partagée, un cycle, une tentative de mutation via l'objet initial et un type explicitement refusé. Le test doit démontrer que les valeurs protégées restent inchangées et que chaque tentative refusée est diagnostiquée.
+
+**Limites à écrire :** ce contrat ne couvre pas automatiquement les objets exotiques ou les effets de bord cachés dans des getters ; ils sont refusés, pas silencieusement acceptés. Un proxy récursif n'est pas une frontière de sécurité contre du code hostile disposant d'autres capacités d'accès au processus.
 
 ---
 

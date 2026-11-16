@@ -72,22 +72,42 @@ if (debug) {
 } // 'false' est truthy:le string 'false' n'est pas false
 
 // bon : on valide et on convertit à l'entrée
-function getConfig() {
-  const port = parseInt(process.env.PORT ?? "3000", 10);
-  const debug = process.env.DEBUG === "true";
-  const apiKey = process.env.API_KEY;
+function getConfig(env = process.env) {
+  const rawPort = env.PORT ?? "3000";
+  // Number() seul ne suffit pas : on exige une chaîne entière sans suffixe.
+  if (!/^\d+$/.test(rawPort)) {
+    throw new Error("PORT doit contenir uniquement des chiffres");
+  }
+  const port = Number(rawPort);
+  if (!Number.isInteger(port) || port < 1 || port > 65535) {
+    throw new Error("PORT doit être compris entre 1 et 65535");
+  }
 
+  const nodeEnv = env.NODE_ENV ?? "development";
+  const allowedEnvironments = new Set(["development", "test", "production"]);
+  if (!allowedEnvironments.has(nodeEnv)) {
+    throw new Error("NODE_ENV doit être development, test ou production");
+  }
+
+  const rawDebug = env.DEBUG ?? "false";
+  if (rawDebug !== "true" && rawDebug !== "false") {
+    throw new Error("DEBUG doit valoir true ou false");
+  }
+  const apiKey = env.API_KEY;
   if (!apiKey) {
     throw new Error(
       "API_KEY manquante : configure la variable d'environnement",
     );
   }
 
-  return { port, debug, apiKey };
+  return { port, nodeEnv, debug: rawDebug === "true", apiKey };
 }
 
 // toutes les erreurs de config éclatent au démarrage, pas en cours de route
 const config = getConfig();
+
+// Tests ciblés : PORT=abc, PORT=70000, PORT=12abc et NODE_ENV=staging doivent échouer.
+// PORT=3000, NODE_ENV=production, DEBUG=false et une API_KEY définie sont valides.
 ```
 
 ---
@@ -168,19 +188,30 @@ process.stdout.write(" OK\n");
 // utile pour rediriger les erreurs indépendamment
 process.stderr.write("Erreur critique : fichier introuvable\n");
 
-// process.stdin : lire depuis le terminal (interactif)
+// Une seule branche consomme stdin : mode interactif OU mode pipe.
 process.stdin.setEncoding("utf-8");
-process.stdin.on("data", (input) => {
-  const vote = input.trim();
-  console.log(`Vote enregistré : ${vote}`);
-});
 
-// lire stdin en mode pipe (données provenant d'une autre commande)
-// cat players.txt | node process-votes.js
-if (!process.stdin.isTTY) {
-  // les données arrivent depuis un pipe, pas depuis un clavier
+function processVoteLine(line) {
+  const vote = line.trim();
+  if (vote.length === 0) return;
+  console.log(`Vote enregistré : ${vote}`);
+}
+
+function processVotes(input) {
+  const lines = input.split(/\r?\n/).filter((line) => line.trim() !== "");
+  for (const line of lines) processVoteLine(line);
+  console.log(`${lines.length} vote(s) traité(s) depuis le pipe.`);
+  return lines.length;
+}
+
+if (process.stdin.isTTY) {
+  process.stdin.on("data", processVoteLine);
+} else {
+  // Exemple : cat players.txt | node process-votes.js
   let data = "";
-  process.stdin.on("data", (chunk) => (data += chunk));
+  process.stdin.on("data", (chunk) => {
+    data += chunk;
+  });
   process.stdin.on("end", () => processVotes(data));
 }
 ```

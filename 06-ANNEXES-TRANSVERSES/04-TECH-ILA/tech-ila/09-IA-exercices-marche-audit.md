@@ -6,7 +6,7 @@ acte: pratiquer
 
 > **SCÈNE CRAZYDEVS : salle d'audit :** une belle démonstration ne suffit pas. Il faut retrouver les sources, reproduire les décisions et savoir dire ce qui n'a pas été vérifié.
 
-[← Sommaire TECH-ILA](../README.md) · [← Niveau 6 : IA](06-niveau-6-IA.md) · [Cartes du parcours →](08-cartes-parcours-technologies.md)
+[← Sommaire TECH-ILA](../README.md) · [← Niveau 6 : IA](07-niveau-6-IA.md) · [Cartes du parcours →](08-cartes-parcours-technologies.md)
 
 # Exercices IA, marché et audit
 
@@ -121,4 +121,4 @@ Avant d'accepter une correction Markdown, vérifie :
 
 Les chiffres de marché et les capacités des modèles vieillissent rapidement : ils décrivent une population et une période, pas l'avenir. Les calendriers réglementaires doivent être relus dans le texte officiel avant toute décision. Une revue éditoriale du curriculum ne vaut pas avis juridique, audit de sécurité d'un produit ni validation opérationnelle d'un système.
 
-[← Niveau 6 : IA](06-niveau-6-IA.md) · [Cartes du parcours →](08-cartes-parcours-technologies.md)
+[← Niveau 6 : IA](07-niveau-6-IA.md) · [Cartes du parcours →](08-cartes-parcours-technologies.md)

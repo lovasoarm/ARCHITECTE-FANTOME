@@ -19,10 +19,9 @@ INCOMPLET par un critere binaire ecrit dans ton `02-TDD-JOURNAL.md`.
 
 ## ADR_MINIMUM
 
-Nombre minimum d'ADR à livrer dans `ADR/` : **4**
+Nombre minimum d'ADR distincts, rédigés par l'apprenant et livrés dans `ADR/` : **4**
 
-Un ADR unique ("choix d'architecture") ne suffit pas. Décisions latérales attendues :
-données, frontières de module, stratégie de tests, choix async, sécurité, observabilité.
+Les deux fichiers `ADR-001_decision.md` et `ADR-002_decision.md` fournis sont des prompts, pas des décisions déjà prises. Leur simple présence ne compte pas ; chacun peut compter si tu le complètes par une décision réelle et distincte. Quatre décisions réelles et distinctes sont attendues au total, choisies parmi les sujets pertinents : données, frontières de module, stratégie de tests/mesures, choix async, sécurité ou observabilité. Ne fractionne pas artificiellement une décision pour atteindre le nombre.
 Template canonique : `../97-templates/03-ADR_TEMPLATE.md`.
 
 ## SPEC_DRIFT_MODE
@@ -35,7 +34,7 @@ Si activé, `08-POSTMORTEM.md` doit contenir la section `## Comment j'ai encaiss
 
 ## Security Gate
 
-Bloc obligatoire (drill `node learner-verifier.js` (auto-verif ecrite par toi)) :
+Bloc obligatoire : écris dans `tests/` une auto-vérification adaptée au scénario, puis documente dans le README la commande exacte que tu as réellement exécutée. Exemple possible : `node tests/learner-verifier.js` (fichier à créer par toi, non fourni).
 
 - **Entrées validées** : chaque entrée externe passe par un schéma explicite (Zod, manuel documenté).
 - **Secrets hors code** : jamais commités ; lus depuis env, documentés dans `SECURITY.md`.

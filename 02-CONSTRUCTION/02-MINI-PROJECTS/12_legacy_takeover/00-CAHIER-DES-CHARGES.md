@@ -8,6 +8,10 @@ route_family: core
 
 # Cahier des charges : legacy takeover
 
+<!-- AF-ADR-CONTRACT -->
+
+**Contrat ADR de ce projet : 4 décision(s) réellement indépendante(s).** Détails et périmètre exact dans [`01-RULES.md`](01-RULES.md). La quantité ne justifie jamais de fractionner artificiellement une même décision. Les ADR fournis sont des contextes de départ, pas une revue humaine ni une preuve d'adoption.
+
 Temps de lecture ~2 min
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
@@ -32,7 +36,7 @@ Fork avec bug corrigé, `ONBOARDING.md`, `REPRO.md`, PR propre avec message expl
 
 Avant de considérer le projet fini, tu dois traiter ces exigences OWASP contextuelles. Un projet qui marche mais qui est vulnérable n'est pas fini.
 
-- Audit de dépendances (OWASP A06 - Vulnerable Components) : lancer `npm audit`, documenter les CVE trouvées dans `ONBOARDING.md`, patcher ou justifier chaque vulnérabilité laissée.
+- Audit de dépendances (OWASP A03:2025 : Software Supply Chain Failures) : lancer `npm audit`, documenter les CVE trouvées dans `ONBOARDING.md`, patcher ou justifier chaque vulnérabilité laissée.
 - Secrets (OWASP A07) : vérifier qu'aucune clé/API token n'est committée dans l'historique du repo repris avant de le publier.
 
 Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Ajoute dans le dossier `tests/` de ce projet un test ciblé pour au moins une des menaces retenues. Documente dans le README la commande exacte qui exécute ce test. Aucun pack de correction séparé n’est fourni dans ce projet.
@@ -58,7 +62,7 @@ Un test dans `node learner-verifier.js` (auto-verif ecrite par toi) doit prouver
 
 - `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
 - `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
-- `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
+- `ADR/` : **4 décision(s) indépendante(s)**, selon le contrat canonique de `01-RULES.md`.
 - `08-POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
 - `02-TDD-JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
 

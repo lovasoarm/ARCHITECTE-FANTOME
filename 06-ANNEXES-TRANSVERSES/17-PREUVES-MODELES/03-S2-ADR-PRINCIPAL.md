@@ -35,8 +35,12 @@ modélisé au 04/03 où une annulation de planification supprime une réservatio
 
 **Décision.** Option B. Dans le scénario, le coût hypothétique de 9 jours et 18 €/mois est justifié par l'incident du
 04/03, dont le correctif d'urgence a coûté à lui seul 1,5 jour à l'équipe. L'option C est
-écartée : son coût est trois fois supérieur pour un gain de disponibilité non demandé au
-SLO actuel (`PREUVES/SLO.md` de ce projet fictif fixe la cible à 99,5 %, atteignable avec B).
+écartée : elle demande 21 jours-personne contre 9 pour B, soit **2,33 fois l'effort initial** ;
+son coût mensuel hypothétique est de 65 € contre 18 €, soit **3,61 fois le coût récurrent**.
+Ces deux ratios ne sont pas additionnés : les jours-personne et les euros mensuels sont des
+unités distinctes. Aucun coût total sur la durée de vie n'est calculé sans horizon et taux
+journalier explicités. Le gain de disponibilité supplémentaire de C n'est pas demandé au
+SLO actuel (`PREUVES/SLO.md` fixe la cible à 99,5 %, atteignable avec B dans ce scénario).
 
 **Conséquences.** Dans ce scénario, le modèle de lecture de `Réservation` peut afficher une place comme
 disponible jusqu'à 150 ms après sa publication par `Planification`, selon l'hypothèse du scénario. Cette latence est
@@ -56,7 +60,7 @@ par rapport au palier 100 utilisateurs, pour l'ajout de la réplique de lecture.
 
 ## ADR-003 : rupture de contrat sur l'API publique de disponibilité (résumé)
 
-**Statut :** acceptée : 30/05, extinction de l'ancien contrat le 30/08 (délai de 90 jours)
+**Statut :** acceptée : 30/05, extinction de l'ancien contrat le 28/08 (90 jours calendaires après le 30/05, jour de départ exclu).
 **Décision.** Le champ `places_libres` (entier) est remplacé par `disponibilite`
 (énumération : `libre`, `limitee`, `complet`), pour ne plus exposer un chiffre exact
 exploitable par des scripts tiers de réservation automatisée, un abus constaté sur la

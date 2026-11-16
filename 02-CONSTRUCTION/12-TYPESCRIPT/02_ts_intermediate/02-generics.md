@@ -254,7 +254,7 @@ function broken<T>(a: T, b: any): T {
   // mais en runtime, b peut être n'importe quoi
 }
 
-const result = broken<number>("naruto", { goals: 31 });
+const result = broken<number>(42, { goals: 31 });
 // TS dit que result est number
 // result est en réalité un objet
 // bonjour les erreurs runtime introuvables

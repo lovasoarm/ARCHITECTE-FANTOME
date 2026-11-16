@@ -52,9 +52,9 @@ Ce fichier couvre tout le cycle. Pas juste le happy path, aussi ce qui foire.
 JWT (JSON Web Token) = trois parties encodées en base64, séparées par des points.
 
 ```text
-eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3Iiwibmluamph.aXpfaWQiOiJuYXJ1dG8ifQ.abc123xyz
-   ^             ^                   ^
- HEADER           PAYLOAD               SIGNATURE
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3IiwibmluamphX2lkIjoibmFydXRvIn0.SIGNATURE
+   ^             ^                                      ^
+ HEADER           PAYLOAD                                SIGNATURE
 ```
 
 **Header** : algorithme utilisé (`HS256` = HMAC-SHA256)
@@ -205,6 +205,10 @@ export function verifyRefreshToken(token) {
 // auth/auth.router.js
 import { Router } from "express";
 import argon2 from "argon2";
+
+// Dans app.js (bootstrap, pas dans ce routeur) :
+// import cookieParser from "cookie-parser";
+// app.use(cookieParser()); // avant app.use(authRouter)
 import {
   signAccessToken,
   signRefreshToken,
@@ -274,7 +278,24 @@ router.post(
     res.json({ accessToken });
   }),
 );
+```
 
+**Bootstrap obligatoire dans `app.js` (avant le montage du routeur d’authentification)** :
+
+```js
+import express from "express";
+import cookieParser from "cookie-parser";
+import authRouter from "./auth/auth.router.js";
+
+const app = express();
+app.use(express.json());
+app.use(cookieParser()); // remplit req.cookies avant les handlers
+app.use("/clan", authRouter);
+```
+
+Sans `app.use(cookieParser())` placé avant le routeur, `req.cookies` n’est pas fourni par Express et l’endpoint de renouvellement ne peut pas lire le cookie.
+
+```js
 // POST /clan/renouveler-sceau
 router.post(
   "/renouveler-sceau",

@@ -7,6 +7,9 @@ acte: mémoriser
 
 # Grimoire : Platform Engineering
 
+> Rappel : ce grimoire simplifie via analogies. Lire d’abord [`91-18_GRIMOIRE_CODE_HONNEUR.md`](../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
+
+
 | Terme       | Définition                          | Signal                    | Analogie CrazyDevs             |
 | ----------- | ----------------------------------- | ------------------------- | ------------------------------ |
 | GitOps      | État désiré versionné et réconcilié | drift détectable          | plan de Scofield               |

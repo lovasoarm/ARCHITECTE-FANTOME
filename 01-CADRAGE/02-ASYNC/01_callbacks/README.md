@@ -24,7 +24,6 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 - [50-callback_maze_minimini_projet.md](50-callback_maze_minimini_projet.md)
 - [Orchestrer sans perdre le fil](95-challenge.md)
 - [Page verrouillée](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 <!-- AF-KINTANA-MODULE -->

@@ -6,7 +6,7 @@ route: complete
 
 # Module 02-CONSTRUCTION/08-DATA-SPELLS : Data Spells
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../01-USER-WIZARD/README.md) | [Niveau suivant](../15-ARCHI-LAB/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../01-USER-WIZARD/README.md) | [Niveau suivant](../15-ARCHI-LAB/README.md)
 
 **Ce niveau réutilise :** [01-USER-WIZARD](../01-USER-WIZARD/03-states-and-empty-cases.md) : les états obligatoires d'un affichage (vide, chargement, erreur), qui deviennent des contraintes sur le modèle de données.
 
@@ -18,7 +18,7 @@ route: complete
 
 **Verdict de l'auto-test :** ce diagnostic oriente la révision, il ne ferme pas l'accès. Si les états d'interface ou l'idempotence sont flous, relis le [grimoire du niveau précédent](../01-USER-WIZARD/90-grimoire.md), puis refais son [challenge](../01-USER-WIZARD/95-challenge.md) si cela t'aide. Tu peux commencer la lecture de Data Spells en parallèle ; les notions SQL sont introduites dans ce niveau.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce niveau en une phrase
 

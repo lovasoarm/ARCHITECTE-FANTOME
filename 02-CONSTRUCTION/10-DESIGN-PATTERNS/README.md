@@ -22,11 +22,11 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | ---------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------ |
 | [`00-PREREQUIS.md`](00-PREREQUIS.md)                             | 00 : Prereq check : Design Patterns                                             | 15 min |
 | [`01A-00-why-design-patterns.md`](01A-00-why-design-patterns.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : DESIGN PATTERNS                           | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                               | Page verrouillée                                                                | 30 min |
 | [`02A-EXO_LECTURE.md`](02A-EXO_LECTURE.md)                       | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Design Patterns)                | 50 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)               | EXO [JEUNE IA] : 02-CONSTRUCTION/10-DESIGN-PATTERNS                             | 45 min |
 | [`03A-EXO_FRONTIERE.md`](03A-EXO_FRONTIERE.md)                   | EXO FRONTIÈRE : quel module aurait dû accueillir ce geste ?                     | 30 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)               | EXO [IA MENTEUSE] : design_patterns (singleton qui fuit)                        | 20 min |
+| [`90-grimoire.md`](90-grimoire.md)                               | Page verrouillée                                                                | 30 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                   | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust                         | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                     | PONT : de reconnaître des patterns à réécrire pour les révéler à le refactoring | 45 min |
 
@@ -71,7 +71,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [`01_creational/`](01_creational/README.md)
 - [`02_structural/`](02_structural/README.md)
 - [`03_behavioral/`](03_behavioral/README.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Design Patterns)](02A-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/10-design-patterns](98-EXO-VERIFICATION.md)
 - [EXO FRONTIÈRE : quel module aurait dû accueillir ce geste ?](03A-EXO_FRONTIERE.md)
@@ -80,7 +79,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [PONT : de reconnaître des patterns à réécrire pour les révéler à le refactoring](99A-PONT.md)
 - [Challenge : `10-DESIGN-PATTERNS`](95-challenge.md)
 - [Grimoire : `10-DESIGN-PATTERNS`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources

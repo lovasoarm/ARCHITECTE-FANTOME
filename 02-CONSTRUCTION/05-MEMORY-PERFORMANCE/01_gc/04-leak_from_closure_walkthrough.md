@@ -44,26 +44,22 @@ Le GC est intelligent, mais il obéit à une règle bête : **si c'est atteignab
 ```js
 function attachHandler(bigData) {
   return function onClick() {
-    console.log("clicked");
-    // bigData n'est jamais lu, mais capturé
+    // Cette lecture rend la rétention explicite et observable.
+    console.log("première valeur", bigData[0]);
   };
 }
 
 const handlers = [];
-for (let i = 0; i < 1000; i++) {
-  handlers.push(attachHandler(new Array(100000).fill(i)));
+for (let i = 0; i < 100; i++) {
+  handlers.push(attachHandler(new Array(10_000).fill(i)));
 }
 ```
 
-Chaque `onClick` maintient vivant un tableau de 100000 entrées. On stocke 1000 handlers. RAM: ~800 MB pour rien.
+Chaque handler qui reste dans `handlers` utilise encore `bigData` : le tableau reste donc atteignable. La mémoire exacte dépend de la représentation des valeurs, du moteur et du runtime ; ne déduis pas un nombre de Mo fixe du seul nombre d'éléments.
 
 ## Le heap snapshot
 
-```text
-AVANT boucle : heap ~ 5 MB
-APRÈS boucle : heap ~ 810 MB
-Retained size de "onClick" : ~800 KB chacun
-```
+Prends une mesure avant et après la boucle, puis compare les chemins de rétention vers `bigData`. Note la version de Node, les options mémoire et le résultat observé. Les valeurs mesurées ne sont pas une sortie universelle à recopier.
 
 Dans DevTools > Memory > Heap snapshot : filtre par "closure", tu vois les 1000 fonctions et leur `[[Scopes]]` qui pointe sur `bigData`.
 

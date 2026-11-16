@@ -7,10 +7,11 @@ acte: comprendre
 
 # Prérequis : Client Systems / Flutter
 
-Ce diagnostic prépare les travaux pratiques ; **il ne bloque ni la lecture du module ni l'étude de ses exemples**. Il n'est pas demandé de posséder un téléphone de test, un compte fournisseur ou une expérience Flutter préalable.
+Ce diagnostic prépare les travaux pratiques ; **il ne bloque ni la lecture du module ni l'étude de ses exemples**. Il n'est pas demandé de posséder un téléphone de test, un compte fournisseur ou une expérience Flutter préalable. En revanche, avant d'écrire le mini-projet Flutter, termine la passerelle [Dart 01A](01A-DART-FOUNDATIONS.md) ou apporte une preuve équivalente de ces bases du langage.
 
 Avant le mini-projet, vérifie que tu peux expliquer, même avec tes mots :
 
+- les bases Dart de la passerelle 01A (types, null safety, collections, classes, `Future` / `async` / `await`) ;
 - état local vs état conservé par le serveur ;
 - retry vs répétition d'une commande (idempotence) ;
 - timeout vs annulation ;

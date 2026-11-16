@@ -7,10 +7,14 @@ acte: restituer
 
 # Grimoire : Module 02-CONSTRUCTION/15-ARCHI-LAB, Archi-Lab
 
+> Rappel : ce grimoire simplifie via analogies. Lire d’abord [`91-18_GRIMOIRE_CODE_HONNEUR.md`](../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
+
+
 Temps de lecture ~6 min
 
-Ce grimoire comporte deux tables : le mémo à 4 colonnes, puis la table de défense orale à
-3 colonnes : premiere colonne nommee `Notion`, donc hors canon 5 colonnes du grimoire (voir la règle de style du dépôt).
+Ce grimoire comporte deux tables : un mémo technique à cinq colonnes (Terme, Définition,
+Code, Analogies, Limite), puis une table de défense orale à trois colonnes dédiée aux questions.
+La table orale est un format d'évaluation distinct, pas un second mémo.
 
 Mémo à ouvrir avant de trancher un découpage de modules ou un choix monolithe/services. Sert
 à nommer le mécanisme qui casse, pas à réciter du vocabulaire d'architecture.
@@ -61,8 +65,9 @@ Le Domaine ne connait ni HTTP, ni SQL, ni JSON, ni aucun framework.
 - [ ] Je peux decrire ce module en une phrase sans "et".
 - [ ] Si je le supprime et le remplace par une autre implementation du meme contrat, je sais
       exactement combien de fichiers je dois toucher ailleurs (idealement zero).
-- [ ] Aucun import ne remonte d'une couche "basse" (infra) vers une couche "haute" (domaine,
-      cas d'usage, UI).
+- [ ] Les dépendances pointent vers l'intérieur : le Domaine n'importe ni l'Application,
+      ni l'UI, ni l'Infrastructure concrète ; l'Application dépend des contrats intérieurs,
+      tandis que l'Infrastructure peut importer ces contrats pour les implémenter.
 - [ ] La règle métier qu'il porte se teste sans base de données ni serveur demarre.
 - [ ] Je sais nommer sa source de vérité si ce module manipule une donnée dupliquee ailleurs.
 

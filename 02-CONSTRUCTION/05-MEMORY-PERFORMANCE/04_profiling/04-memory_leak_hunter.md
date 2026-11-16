@@ -152,29 +152,25 @@ function getStats(joueurObj) {
 
 **4. Closures qui retiennent trop**
 
-```js
-// analyse de match : on garde une référence inutile à un gros tableau
-function creerAnalyseur(historique) {
-  // historique peut peser plusieurs MB
-  const premierMatch = historique[0]; // on veut juste ça
+Une closure ne retient pas automatiquement tout le tableau reçu : elle retient les valeurs qu'elle utilise et les objets encore atteignables par ces valeurs. Ce premier exemple capture réellement `historique`, car le callback y accède plus tard :
 
+```js
+function creerAnalyseur(historique) {
   return {
-    getPremierMatch: () => premierMatch,
-    // problème : la closure retient TOUT historique en mémoire
-    // même si on n'a besoin que de premierMatch
+    getPremierMatch: () => historique[0],
+    getNombreDeMatchs: () => historique.length,
   };
 }
 
-// correction : extraire ce dont on a besoin, laisser le reste au GC
-function creerAnalyseur(historique) {
-  const premierMatch = { ...historique[0] }; // copie, pas référence
-  // historique peut maintenant être collecté par le GC
-
-  return {
-    getPremierMatch: () => premierMatch,
-  };
+// Variante : ne conserver que les champs dont l'analyseur a besoin.
+function creerAnalyseurCompact(historique) {
+  const premier = historique[0];
+  const resume = { id: premier.id, score: premier.score }; // projection primitive
+  return { getPremierMatch: () => resume };
 }
 ```
+
+Attention : copier superficiellement `historique[0]` peut encore conserver des références imbriquées ; une extraction de champs primitifs évite cette rétention indirecte si ces champs suffisent au besoin.
 
 ---
 
@@ -212,8 +208,8 @@ DevTools > More tools > Performance monitor
 ```
 
 Regarde JS heap size en temps réel pendant que tu utilises l'app.
-Une courbe qui monte sans jamais descendre : c'est une fuite.
-Une courbe en dents de scie (monte puis descend) : c'est normal, c'est le GC qui travaille.
+Une courbe qui monte est un **signal à investiguer**, pas une preuve de fuite : caches qui se remplissent, pools, montée en charge ou initialisation peuvent produire une hausse légitime. Rejoue plusieurs fois le même scénario après échauffement, observe la mémoire retenue après GC lorsque tu peux le provoquer, puis inspecte les chemins de rétention/dominators. Une croissance qui persiste après des cycles comparables et dont les références ne sont plus utiles renforce l'hypothèse de fuite ; elle ne la prouve pas à elle seule.
+Une courbe en dents de scie est compatible avec une collecte périodique, mais n'exclut pas une fuite lente.
 
 ---
 

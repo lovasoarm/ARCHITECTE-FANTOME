@@ -1,8 +1,6 @@
 ---
 stability: evolutif
 type: depth-boundaries-and-specialization-map
-release: 1.1.33
-introduced_release: 1.1.4
 freshness_status: "not_verified"
 source_verified_on: null
 source_type: "internal"

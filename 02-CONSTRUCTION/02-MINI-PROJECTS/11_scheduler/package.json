@@ -1,0 +1,12 @@
+{
+  "name": "af-scheduler-lab",
+  "private": true,
+  "type": "module",
+  "description": "Mini-projet pédagogique : event loop miniature et pMap borné.",
+  "engines": {
+    "node": ">=22.23.4 <23"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}

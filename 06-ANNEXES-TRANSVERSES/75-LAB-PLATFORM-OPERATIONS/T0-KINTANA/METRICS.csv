@@ -1,0 +1,9 @@
+round,timestamp_utc,stage,app_version,requests,successes,errors,api_p95_ms,api_p99_ms,payment_p95_ms,queue_depth,oldest_message_age_s,worker_inflight,retries_per_request
+1,2026-11-10T08:55:00Z,baseline,1.8.1,1200,1198,2,190,350,260,12,2,18,0.02
+1,2026-11-10T09:05:00Z,post_release,1.8.2,1250,1200,50,850,2400,1200,190,28,80,1.8
+1,2026-11-10T09:10:00Z,degraded,1.8.2,1500,1380,120,1750,5100,2600,640,95,80,3.4
+1,2026-11-10T09:15:00Z,worsening,1.8.2,1500,1305,195,2400,8800,3200,1120,160,80,4.2
+1,2026-11-10T09:25:00Z,after_retry_cap_and_flag_off,1.8.2,1450,1408,42,620,1800,850,780,110,45,0.3
+1,2026-11-10T09:40:00Z,stabilizing,1.8.2,1500,1491,9,390,700,310,95,14,22,0.05
+2,2026-11-10T10:00:00Z,variation_provider_down,1.8.2,900,810,90,430,1300,0,220,40,12,0.1
+2,2026-11-10T10:05:00Z,variation_provider_down,1.8.2,900,720,180,510,1800,0,500,125,12,0.1

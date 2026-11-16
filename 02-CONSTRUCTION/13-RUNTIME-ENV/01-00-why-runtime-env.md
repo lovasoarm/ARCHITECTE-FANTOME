@@ -27,8 +27,6 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 # Pourquoi ce module mérite ton temps : runtime environment
 
-Temps de lecture ~6 min
-
 > **Durée de vie estimée : 3–5 ans pour les exemples et pratiques décrits.** Les notions d’event loop, de streams et de séparation des environnements restent transférables ; vérifie les API et versions du runtime avant de les réutiliser.
 >
 > \*\*Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.

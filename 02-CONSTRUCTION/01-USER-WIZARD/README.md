@@ -6,7 +6,7 @@ route: complete
 
 # Module 02-CONSTRUCTION/01-USER-WIZARD : User Wizard
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../01-CADRAGE/05-MVP-SPLIT/README.md) | [Niveau suivant](../08-DATA-SPELLS/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../01-CADRAGE/05-MVP-SPLIT/README.md) | [Niveau suivant](../08-DATA-SPELLS/README.md)
 
 **Ce niveau réutilise :** [03-MVP-SPLIT](../../01-CADRAGE/05-MVP-SPLIT/02-slicing-value.md) : la tranche verticale, réutilisee ici pour livrer un parcours utilisateur complet plutôt qu'un ecran isole.
 
@@ -18,7 +18,7 @@ route: complete
 
 **Verdict de l'auto-test :** ce diagnostic oriente la révision, il ne ferme pas l'accès. Si une réponse hésite, relis le [grimoire du niveau précédent](../../01-CADRAGE/05-MVP-SPLIT/90-grimoire.md) et, si nécessaire, refais son [challenge](../../01-CADRAGE/05-MVP-SPLIT/95-challenge.md). Tu peux commencer la lecture de User Wizard en parallèle ; consolide le cadrage avant de défendre le périmètre de ton propre parcours utilisateur.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce niveau en une phrase
 

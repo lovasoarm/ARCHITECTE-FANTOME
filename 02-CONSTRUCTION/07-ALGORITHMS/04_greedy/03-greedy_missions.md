@@ -31,6 +31,22 @@ Pourquoi le slot le plus tardif ? Pour garder les slots tôt libres pour des tâ
 
 ```js
 function jobScheduling(jobs) {
+  if (!Array.isArray(jobs)) throw new TypeError("jobs doit être un tableau");
+  if (jobs.length === 0) return { schedule: [], totalProfit: 0, slots: [] };
+  for (const job of jobs) {
+    if (
+      !job ||
+      !Number.isInteger(job.deadline) ||
+      job.deadline < 1 ||
+      !Number.isFinite(job.profit) ||
+      job.profit < 0
+    ) {
+      throw new TypeError(
+        "Chaque mission doit avoir une deadline entière >= 1 et un profit fini >= 0",
+      );
+    }
+  }
+
   // trier par profit décroissant : les plus rentables d'abord
   const sorted = [...jobs].sort((a, b) => b.profit - a.profit);
 
@@ -69,8 +85,9 @@ const missions = [
 ];
 
 const result = jobScheduling(missions);
-console.log(result.schedule); // ['M2' ou 'M4', 'M1', 'M5'] selon l'ordre
+console.log(result.schedule); // ["M3", "M1", "M5"]
 console.log(result.totalProfit); // 142
+console.log(jobScheduling([])); // { schedule: [], totalProfit: 0, slots: [] }
 ```
 
 **Trace :**

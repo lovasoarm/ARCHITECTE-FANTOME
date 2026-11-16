@@ -29,14 +29,14 @@ g(n) = coût réel depuis le départ jusqu'à n
 h(n) = estimation (heuristique) du coût restant de n jusqu'à l'arrivée
 ```
 
-Si `h(n) = 0` : A* se comporte exactement comme Dijkstra.
-Si `h(n)` est parfaite : A* trouve le chemin optimal sans explorer un seul noeud inutile.
+Si `h(n) = 0` : A\* se comporte comme Dijkstra (avec une règle de départage éventuellement différente).
+Si `h(n)` est parfaite : l'exploration peut être fortement réduite, mais plusieurs noeuds situés sur des chemins optimaux peuvent encore être examinés selon les égalités et le départage.
 
 ---
 
 ## 1) L'HEURISTIQUE : LE COEUR D'A\*
 
-L'heuristique `h(n)` doit être **admissible** : elle ne doit jamais surestimer le coût réel. Si elle surestime, A* peut rater le chemin optimal. Si elle sous-estime (ou est exacte), A* est garantie optimale.
+L'heuristique `h(n)` doit être **admissible** : elle ne doit jamais surestimer le coût restant réel. Avec des coûts d'arêtes non négatifs et cette implémentation qui peut réouvrir un sommet lorsqu'un meilleur coût est trouvé, une heuristique admissible permet de préserver l'optimalité. Une heuristique cohérente (consistante) simplifie en plus la gestion des sommets déjà explorés. Une heuristique qui surestime peut faire perdre la garantie d'optimalité.
 
 ```
 Grille 2D, mouvements dans 4 directions :
@@ -45,12 +45,15 @@ h(n) = distance Manhattan = |x1-x2| + |y1-y2|
     => admissible
 
 Grille 2D, mouvements en 8 directions :
-h(n) = distance Chebyshev = max(|x1-x2|, |y1-y2|)
-    => admissible
+- Chebyshev = max(|dx|, |dy|) si un pas diagonal coûte exactement 1,
+  comme un pas horizontal ou vertical.
+- Distance octile si un pas droit coûte 1 et un pas diagonal coûte √2.
+  Elle tient compte du coût réel des déplacements diagonaux.
 
 Espace euclidien (coordonnées continues) :
-h(n) = distance euclidienne = sqrt((x1-x2)² + (y1-y2)²)
-    => admissible (ligne droite = chemin le plus court)
+h(n) = distance euclidienne = sqrt(dx² + dy²)
+    => admissible si chaque déplacement autorisé coûte au moins
+       la distance euclidienne qu'il parcourt.
 
 Heuristique nulle :
 h(n) = 0 => Dijkstra pur, toujours admissible mais pas de gain de perf
@@ -62,15 +65,49 @@ h(n) = 0 => Dijkstra pur, toujours admissible mais pas de gain de perf
 
 ```js
 function astar(grid, start, goal) {
-  // grid : tableau 2D, 0 = libre, 1 = obstacle
+  // Contrat : grille rectangulaire non vide, 0 = libre, 1 = obstacle.
+  if (
+    !Array.isArray(grid) ||
+    grid.length === 0 ||
+    !Array.isArray(grid[0]) ||
+    grid[0].length === 0
+  ) {
+    throw new TypeError("grid doit être une grille rectangulaire non vide");
+  }
   const rows = grid.length;
   const cols = grid[0].length;
+  if (
+    !grid.every(
+      (row) =>
+        Array.isArray(row) &&
+        row.length === cols &&
+        row.every((cell) => cell === 0 || cell === 1),
+    )
+  ) {
+    throw new TypeError(
+      "chaque ligne doit avoir la même longueur et contenir uniquement 0 ou 1",
+    );
+  }
+  const validPoint = (point) =>
+    Array.isArray(point) &&
+    point.length === 2 &&
+    point.every(Number.isSafeInteger);
+  if (!validPoint(start) || !validPoint(goal)) {
+    throw new TypeError(
+      "start et goal doivent être des paires d'indices entiers",
+    );
+  }
   const [sr, sc] = start;
   const [gr, gc] = goal;
+  const inside = (r, c) => r >= 0 && r < rows && c >= 0 && c < cols;
+  if (!inside(sr, sc) || !inside(gr, gc)) {
+    throw new RangeError("start et goal doivent se trouver dans la grille");
+  }
+  if (grid[sr][sc] === 1 || grid[gr][gc] === 1) return null;
 
   function heuristic(r, c) {
     // distance Manhattan : admissible pour mouvements en 4 directions
-    return Math.abs(r - gr) + Math.abs(c - gc);
+    return Math.abs(r - gr) + Math.abs(c - gc); // coût unitaire et mouvements 4 directions
   }
 
   function key(r, c) {
@@ -90,8 +127,9 @@ function astar(grid, start, goal) {
 
   // open set : noeuds à explorer, triés par f
   // (min-heap en prod, array trié ici pour lisibilité)
+  // Une amélioration peut créer une nouvelle entrée. Les anciennes entrées
+  // restent dans le tableau et seront ignorées lorsqu'elles deviendront périmées.
   const openSet = [[f.get(key(sr, sc)), sr, sc]];
-  const openSetKeys = new Set([key(sr, sc)]);
 
   const directions = [
     [-1, 0],
@@ -103,9 +141,9 @@ function astar(grid, start, goal) {
   while (openSet.length > 0) {
     // extraire le noeud avec f minimal
     openSet.sort((a, b) => a[0] - b[0]);
-    const [, r, c] = openSet.shift();
+    const [queuedF, r, c] = openSet.shift();
     const currKey = key(r, c);
-    openSetKeys.delete(currKey);
+    if (queuedF !== f.get(currKey)) continue; // entrée périmée : une meilleure priorité existe
 
     // arrivée atteinte : reconstruire le chemin
     if (r === gr && c === gc) {
@@ -137,10 +175,8 @@ function astar(grid, start, goal) {
         const fVal = tentativeG + heuristic(nr, nc);
         f.set(neighborKey, fVal);
 
-        if (!openSetKeys.has(neighborKey)) {
-          openSet.push([fVal, nr, nc]);
-          openSetKeys.add(neighborKey);
-        }
+        // Toujours empiler la nouvelle priorité : ne jamais conserver une priorité obsolète.
+        openSet.push([fVal, nr, nc]);
       }
     }
   }

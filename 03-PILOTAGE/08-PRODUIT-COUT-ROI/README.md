@@ -43,9 +43,9 @@ Une décision produit compare valeur, coût, risque et valeur sacrifiée ailleur
 | `03-roi_refactoring_point_mort.md`         | point mort                          | 45 min |
 | `04-dette_technique_declaree.md`           | dette déclarée                      | 45 min |
 | `05-refus_chiffre_direction_financiere.md` | exercice de refus                   | 45 min |
-| `90-grimoire.md`                           | lignes à retenir                    | 30 min |
 | `95-challenge.md`                          | **produit `DECISION-ARBITRAGE.md`** | 1 h 30 |
 | `96-boss-fight.md`                         | épreuve de passage                  | 3 h    |
+| `90-grimoire.md`                           | lignes à retenir, après la pratique | 30 min |
 
 ## Terrain supplémentaire : CMS Architecture Lab
 
@@ -78,10 +78,10 @@ Le [lab CMS](06-CMS-ARCHITECTURE-LAB/README.md) ne sert pas à apprendre un prod
 - [ROI d'un refactoring et point mort](03-roi_refactoring_point_mort.md)
 - [La dette technique déclarée](04-dette_technique_declaree.md)
 - [Exercice : le refus chiffré d'une direction financière](05-refus_chiffre_direction_financiere.md)
-- [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
-- [BOSS FIGHT : MODULE 08 : L'ARBITRAGE DEVANT CELUI QUI PAIE](96-boss-fight.md)
 - [95-challenge.md](95-challenge.md)
-- [Grimoire : produit, coût, ROI](90-grimoire.md)
+- [BOSS FIGHT : MODULE 08 : L'ARBITRAGE DEVANT CELUI QUI PAIE](96-boss-fight.md)
+- [Grimoire : produit, coût, ROI : après la pratique](90-grimoire.md)
+- [99-PORTAGE-MENTAL.md : transfert du concept vers un autre langage](99-PORTAGE-MENTAL.md)
 
 <!-- CONTENU-DOSSIER:fin -->
 

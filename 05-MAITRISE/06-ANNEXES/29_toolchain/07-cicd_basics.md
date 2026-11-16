@@ -33,21 +33,21 @@ Fichier : `.github/workflows/ci.yml`
 ```yaml
 name: ci
 on:
- push:
-  branches: [main]
- pull_request:
+  push:
+    branches: [main]
+  pull_request:
 
 jobs:
- test:
-  runs-on: ubuntu-latest
-  steps:
-   - uses: actions/checkout@v4
-   - uses: actions/setup-node@v4
-    with:
-     node-version-file: '.nvmrc'
-   - run: npm ci --ignore-scripts
-   - run: node --test tests/
-   - run: npm run lint --if-present
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --ignore-scripts
+      - run: node --test tests/
+      - run: npm run lint --if-present
 ```
 
 ## Pourquoi `--ignore-scripts`
@@ -61,10 +61,10 @@ d'attaque supply chain**. Voir `03-PILOTAGE/04-SECURITY/08-supply_chain_sbom.md`
 Ajoute pour accélérer :
 
 ```yaml
-   - uses: actions/setup-node@v4
-    with:
-     node-version-file: '.nvmrc'
-     cache: 'npm'
+- uses: actions/setup-node@v4
+  with:
+    node-version-file: .nvmrc
+    cache: npm
 ```
 
 ## Signalisation dans le README
@@ -115,28 +115,26 @@ usage reproductible
 
 ## Repères de décision
 
-- **Pourquoi :** La toolchain et les outils de diagnostic réduisent les tâches répétitives et rendent le comportement du système visible.
-- **Quand l’utiliser / quand l’éviter :** Choisis un outil quand il résout un problème fréquent et mesurable. Vérifie sa licence, sa maintenance, ses versions, ses permissions et son coût avant de l'ajouter.
-- **Limites :** Un outil n'est pas une politique de qualité. Un benchmark, logger ou générateur peut donner une fausse confiance si son protocole et ses limites ne sont pas écrits.
+- **Pourquoi :** La CI transforme les critères de qualité en contrôles répétés à chaque changement et rend visible la raison d'un échec.
+- **Quand l’utiliser / quand l’éviter :** Exécute les vérifications nécessaires au risque du dépôt. N'ajoute pas de déploiement automatique avant d'avoir un rollback, des permissions et des environnements maîtrisés.
+- **Limites :** Un pipeline vert ne prouve pas l'absence de défaut ; il prouve uniquement que les contrôles configurés ont réussi sur ce commit.
 
 ## Mécanisme : la version sans magie
 
-Décris le problème, compare l'outil à une commande native ou à une alternative plus simple, épingle sa version et vérifie le résultat qu'il produit.
+Construis un workflow qui checkout, configure la version Node du dépôt, installe à partir du lockfile, lance tests/lint/build et publie un résumé lisible. Introduis volontairement une assertion qui échoue pour vérifier que le job devient rouge et bloque le succès global ; restaure ensuite le test.
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **06 : CI/CD basics (feedback automatique)** se rattache à ce cas concret : L'équipe Kintana doit pouvoir diagnostiquer une panne et refaire un build sans dépendre d'une configuration cachée sur le poste d'une seule personne.
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **CI/CD : pipeline de vérification et seuil de merge** s'applique au dépôt de l'équipe : la preuve doit correspondre à l'outil et au problème traités, pas à une automatisation générique.
 
-**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+**À observer :** comportement attendu, cas d'échec, trace utile et niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Ne transforme pas un exemple en résultat exécuté.
 
-## Mission utile : Kintana : Outil reproductible pour l'équipe Kintana
+## Mission utile : Kintana : CI/CD : pipeline de vérification et seuil de merge
 
-> **Arc Capsule Corp. / DBZ :** le bon outil accélère le diagnostic ; dix outils mal choisis ne font que déplacer le bazar.
+**Mission liée à « CI/CD : pipeline de vérification et seuil de merge » :** Construis un workflow qui checkout, configure la version Node du dépôt, installe à partir du lockfile, lance tests/lint/build et publie un résumé lisible. Introduis volontairement une assertion qui échoue pour vérifier que le job devient rouge et bloque le succès global ; restaure ensuite le test.
 
-**Mission liée à « 06 : CI/CD basics (feedback automatique) » :** Automatise une opération récurrente du cycle Kintana (analyse, benchmark, log, build ou debug). Ajoute un mode dry-run si l'action est destructive et une vérification qui empêche l'outil de masquer une erreur.
+**Livrable :** `.github/workflows/ci.yml`, une capture/trace de run vert et un run d'échec volontaire, avec le SHA du commit testé.
 
-**Livrable :** outil/script, README d'usage, tests sur succès/échec, version épinglée et comparaison au processus manuel.
+**Critères d’acceptation :** Le workflow se parse ; l'installation respecte le lockfile ; chaque étape critique a un code de sortie ; un test échoué fait échouer le job ; aucun secret n'est exposé et aucun déploiement n'est ajouté sans nécessité.
 
-**Critères d’acceptation :** les arguments sont validés ; les erreurs ont un code de sortie ; aucune donnée sensible n'est imprimée ; la même commande donne une sortie compréhensible et reproductible.
-
-**Transfert obligatoire :** Exécute l'outil sur une autre machine ou avec une version différente. Documente les prérequis et le mode dégradé.
+**Transfert obligatoire :** Le pipeline doit aussi lancer un job de vérification rapide sur une pull request. Décris les contrôles parallélisables, les dépendances entre jobs et le signal qui autorise le merge.

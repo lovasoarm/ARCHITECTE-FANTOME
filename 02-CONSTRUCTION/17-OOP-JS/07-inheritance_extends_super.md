@@ -121,30 +121,56 @@ Plus la chaîne est longue, plus un changement dans `Entite` (le sommet) a un ef
 ## 5) L'EXEMPLE QUI CASSE : LE CHANGEMENT EN CASCADE
 
 ```js
-class Entite {
+// Version initiale de l'API parent.
+class EntiteV1 {
   constructor() {
     this.vivant = true;
   }
 }
 
-class Combattant extends Entite {
+class CombattantV1 extends EntiteV1 {
   constructor() {
     super();
     this.pv = 100;
   }
 }
 
-// six mois plus tard, quelqu'un "corrige" Entite :
-class Entite {
+const ancienTest = new CombattantV1();
+console.log(ancienTest.vivant, ancienTest.pv); // true 100
+
+// Six mois plus tard, le contrat du parent exige un nom valide.
+class EntiteV2 {
   constructor(nom) {
-    this.nom = nom; // ajout d'un paramètre obligatoire dans l'esprit du dev
+    if (typeof nom !== "string" || nom.trim() === "") {
+      throw new TypeError("Un nom non vide est obligatoire");
+    }
+    this.nom = nom;
     this.vivant = true;
   }
 }
 
-// Combattant n'a jamais été mis à jour :
-const test = new Combattant();
-console.log(test.nom); // undefined, et personne n'a pensé à vérifier ici
+// Sous-classe non migrée : elle appelle encore super() sans argument.
+class CombattantV2 extends EntiteV2 {
+  constructor() {
+    super();
+    this.pv = 100;
+  }
+}
+
+try {
+  new CombattantV2(); // TypeError : contrat parent non respecté
+} catch (error) {
+  console.log(error.message);
+}
+
+// Migration correcte : le nom est transmis au parent.
+class CombattantV2Corrige extends EntiteV2 {
+  constructor(nom) {
+    super(nom);
+    this.pv = 100;
+  }
+}
+console.log(new CombattantV2Corrige("Gaara").nom); // "Gaara"
 ```
 
 Modifier la classe au sommet de la hiérarchie a un effet sur toutes les classes filles, sans qu'elles soient forcément revues. Plus la hiérarchie est profonde, plus ce risque grandit, et c'est précisément l'argument qui mène au fichier 09 : composition vs héritage.

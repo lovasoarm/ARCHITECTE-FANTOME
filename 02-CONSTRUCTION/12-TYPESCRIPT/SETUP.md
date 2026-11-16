@@ -15,9 +15,16 @@ Lis d’abord le [`SETUP.md`](../../SETUP.md) le plus proche dans l’arborescen
 
 ## 3. Technologie / environnement
 
-**TypeScript** : utiliser Node 22.23.4 et le gestionnaire de dépendances/lockfile fourni par l’activité.
+**TypeScript** : utiliser Node 22.23.4 et le compilateur TypeScript fourni par l’environnement du projet (dépendance locale ou outil déjà installé). Node.js seul ne fournit pas `tsc`.
 
-`node --version` puis la commande de build/typecheck indiquée dans l’exercice constituent la preuve minimale.
+Vérifier explicitement les deux outils avant une activité :
+
+```bash
+node --version
+tsc --version
+```
+
+Si `tsc` n’est pas disponible, l’environnement TypeScript n’est pas prêt : ne remplace pas la compilation par des tests JavaScript et ne déclare pas la preuve validée. Utilise la procédure de dépendances définie par le projet, puis consigne la version effectivement utilisée. La commande de typecheck de l’activité reste la preuve minimale.
 
 ## 4. Première preuve
 

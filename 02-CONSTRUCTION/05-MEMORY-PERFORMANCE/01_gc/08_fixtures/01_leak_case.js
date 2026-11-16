@@ -1,6 +1,6 @@
-// Fixture de fuite mémoire reproductible pour 05_heap_snapshot_hands_on.md
+// Fixture de fuite mémoire reproductible pour `06-heap_snapshot_hands_on.md`
 // Usage :
-//   node --expose-gc --inspect=0.0.0.0:9229 08_memory_performance/01_gc/fixtures/leak_case.js
+//   node --expose-gc --inspect=127.0.0.1:9229 01_leak_case.js
 //
 // Le process alloue un batch de 5000 objets par tick, en garde une référence
 // dans un cache global qui n'est jamais vidé, et enregistre à chaque tick

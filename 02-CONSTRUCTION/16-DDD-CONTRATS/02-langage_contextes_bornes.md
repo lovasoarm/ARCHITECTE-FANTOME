@@ -52,9 +52,9 @@ Trois relations suffisent pour 95 % des cas :
 
 ## 4) LE COÛT D'UNE FRONTIÈRE
 
-Chaque frontière coûte : une traduction, une latence, un mode de panne, un déploiement coordonné.
-Écris ce coût. Une frontière que tu ne sais pas justifier par un mot ambigu ou une équipe distincte
-est une frontière à supprimer.
+Une frontière de contexte impose d'abord un coût **logique** : maintenir des modèles, invariants et traductions cohérents entre les contextes. Elle n'entraîne pas automatiquement une latence réseau, un mode de panne distribué ou un déploiement coordonné.
+
+Ces coûts **physiques** apparaissent lorsque tu sépares les contextes en processus, services ou déploiements distincts. Dans un monolithe modulaire, la frontière peut rester un module interne : pas de réseau entre modules ni de déploiement indépendant obligatoire. Écris séparément le coût logique, le coût d'organisation et, seulement si le déploiement le crée, le coût opérationnel. Une frontière que tu ne sais pas justifier par des règles ou un langage métier distinct est à reconsidérer.
 
 ## Exercice (25 min)
 
@@ -107,14 +107,12 @@ Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **L
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Contrat métier et langage commun Kintana
+## Mission Kintana : trouver les frontières dans le vocabulaire
 
-> **Arc Naruto / Konoha :** le mot « mission » ne veut pas dire la même chose pour le demandeur, l'agent et l'administrateur. Le vocabulaire doit coller au métier qui l'utilise.
+À partir du scénario Kintana, mène un event storming court avec demandeur, agent et superviseur. Recueille au moins cinq termes réellement ambigus (par exemple « attribuée », « clôturée », « urgente »), note qui emploie chaque terme et dans quel sens, puis propose une carte de contextes. Ne découpe pas par table ou écran.
 
-**Mission liée à « Langage ubiquitaire et contextes bornés » :** Anime une mini revue de domaine sur la création et l'affectation d'une demande. Construis un glossaire validé, un event storming simple, les invariants et les contextes candidats ; teste une ambiguïté avec une évolution.
+**Livrable :** glossaire avec propriétaire et définition par contexte, carte des contextes, deux traductions explicites et un ADR qui justifie une frontière conservée et une frontière refusée.
 
-**Livrable :** glossaire métier, diagramme commandes/événements, frontières proposées et ADR qui explique pourquoi une frontière existe ou non.
+**Acceptation :** les désaccords sont visibles ; les invariants métier ont un propriétaire ; aucune frontière n'est justifiée uniquement par une technologie.
 
-**Critères d’acceptation :** chaque terme a un sens et un propriétaire ; les règles sont testables ; les contextes ne sont pas découpés par table ; les désaccords sont conservés comme questions ouvertes.
-
-**Transfert obligatoire :** Une nouvelle organisation utilise le mot « agent » pour deux rôles différents. Montre comment ton modèle absorbe ou refuse cette ambiguïté.
+**Transfert :** le même mot « clôturée » signifie « réponse envoyée » pour l'agent et « demandeur satisfait » pour le superviseur. Décris comment tu évites de fusionner ces deux états.

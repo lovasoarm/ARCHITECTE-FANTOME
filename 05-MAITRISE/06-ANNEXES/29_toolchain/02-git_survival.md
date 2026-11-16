@@ -200,28 +200,26 @@ usage reproductible
 
 ## Repères de décision
 
-- **Pourquoi :** La toolchain et les outils de diagnostic réduisent les tâches répétitives et rendent le comportement du système visible.
-- **Quand l’utiliser / quand l’éviter :** Choisis un outil quand il résout un problème fréquent et mesurable. Vérifie sa licence, sa maintenance, ses versions, ses permissions et son coût avant de l'ajouter.
-- **Limites :** Un outil n'est pas une politique de qualité. Un benchmark, logger ou générateur peut donner une fausse confiance si son protocole et ses limites ne sont pas écrits.
+- **Pourquoi :** Un historique Git exploitable permet de comprendre qui a changé quoi, de résoudre une divergence et de retrouver l'introduction d'une régression.
+- **Quand l’utiliser / quand l’éviter :** Utilise merge/rebase selon le contrat de la branche et la coordination de l'équipe. N'effectue pas de réécriture d'historique partagé sans accord.
+- **Limites :** `git bisect` dépend d'un oracle de test fiable ; un mauvais test peut désigner un commit innocent.
 
 ## Mécanisme : la version sans magie
 
-Décris le problème, compare l'outil à une commande native ou à une alternative plus simple, épingle sa version et vérifie le résultat qu'il produit.
+Pars d'un dépôt d'exercice avec deux branches qui modifient la même zone. Inspecte `log`, `status` et `diff`, résous le conflit sans jeter le changement légitime, puis choisis merge ou rebase et justifie ce choix. Sur un historique préparé avec une régression, exécute `git bisect` avec un test déterministe et identifie le premier commit fautif.
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Git survival : branches, rebase, conflits, bisect** se rattache à ce cas concret : L'équipe Kintana doit pouvoir diagnostiquer une panne et refaire un build sans dépendre d'une configuration cachée sur le poste d'une seule personne.
+Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Git survival : conflit, historique et bisect** s'applique au dépôt de l'équipe : la preuve doit correspondre à l'outil et au problème traités, pas à une automatisation générique.
 
-**À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
+**À observer :** comportement attendu, cas d'échec, trace utile et niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Ne transforme pas un exemple en résultat exécuté.
 
-## Mission utile : Kintana : Outil reproductible pour l'équipe Kintana
+## Mission utile : Kintana : Git survival : conflit, historique et bisect
 
-> **Arc Capsule Corp. / DBZ :** le bon outil accélère le diagnostic ; dix outils mal choisis ne font que déplacer le bazar.
+**Mission liée à « Git survival : conflit, historique et bisect » :** Pars d'un dépôt d'exercice avec deux branches qui modifient la même zone. Inspecte `log`, `status` et `diff`, résous le conflit sans jeter le changement légitime, puis choisis merge ou rebase et justifie ce choix. Sur un historique préparé avec une régression, exécute `git bisect` avec un test déterministe et identifie le premier commit fautif.
 
-**Mission liée à « Git survival : branches, rebase, conflits, bisect » :** Automatise une opération récurrente du cycle Kintana (analyse, benchmark, log, build ou debug). Ajoute un mode dry-run si l'action est destructive et une vérification qui empêche l'outil de masquer une erreur.
+**Livrable :** `GIT-RECOVERY.md`, le commit de résolution et le journal de commandes `bisect`.
 
-**Livrable :** outil/script, README d'usage, tests sur succès/échec, version épinglée et comparaison au processus manuel.
+**Critères d’acceptation :** Le conflit est résolu sans perte des deux intentions ; l'historique est compréhensible ; `bisect` identifie le commit attendu avec un test stable ; aucune branche partagée n'est réécrite sans justification.
 
-**Critères d’acceptation :** les arguments sont validés ; les erreurs ont un code de sortie ; aucune donnée sensible n'est imprimée ; la même commande donne une sortie compréhensible et reproductible.
-
-**Transfert obligatoire :** Exécute l'outil sur une autre machine ou avec une version différente. Documente les prérequis et le mode dégradé.
+**Transfert obligatoire :** Une deuxième régression est introduite dans un autre fichier. Indique si le même test peut la détecter et comment éviter un diagnostic biaisé.

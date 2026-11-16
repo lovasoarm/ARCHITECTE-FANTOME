@@ -24,22 +24,27 @@ Temps de lecture ~2 min
 
 Sans assistance de solution ni autocomplétion générative pendant cette activité, choisis le concept-clé du module et rédige d’abord `SPEC-DRILL.md` **avant toute implémentation**. Ce fichier doit fixer : le contrat de la fonction (entrée, sortie et erreurs attendues), au moins trois cas précis (nominal, limite et invalide) et leurs résultats attendus.
 
-Implémente ensuite ton propre module `drill-2.js`. Écris `learner-verifier.js` pour importer ce module et vérifier son comportement réel avec `node:assert/strict`. Les assertions doivent contrôler les résultats ou effets attendus ; elles ne doivent pas seulement vérifier ou imprimer un message de réussite. N’importe aucun corrigé du curriculum. Le message final `drill 2 OK` ne doit être affiché qu’après la réussite de toutes les assertions.
+Implémente ensuite ton propre module `drill-2.ts`. Écris `learner-verifier.ts` pour importer ce module, vérifier son comportement et contenir au moins une assertion de type compilée (par exemple `Expect<Equal<...>>`). La vérification runtime doit contrôler les résultats ou effets attendus ; elle ne doit pas seulement imprimer un message de réussite. N’importe aucun corrigé du curriculum. Le concept doit comporter au moins un contrat TypeScript vérifiable à la compilation : signature générique, union discriminée, type guard ou type conditionnel.
 
 ## Critère de réussite (deterministe)
 
 ```bash
-node learner-verifier.js
-# doit sortir avec le code 0 et afficher exactement : drill 2 OK
+# 1. Vérification des types sans émettre de JavaScript.
+tsc --noEmit --strict --target ES2022 --module commonjs --lib ES2022,DOM drill-2.ts learner-verifier.ts
+
+# 2. Compilation, puis vérification du comportement réel.
+tsc --strict --target ES2022 --module commonjs --lib ES2022,DOM --outDir dist drill-2.ts learner-verifier.ts
+node dist/learner-verifier.js
+# code de sortie 0 et message final : drill 2 OK
 ```
 
-Le résultat est accepté uniquement si les assertions de `learner-verifier.js` portent sur le comportement du module `drill-2.js` et passent toutes. Un simple message imprimé sans assertions effectives ne valide pas l’activité.
+La réussite exige les deux étapes : compilation stricte sans erreur et assertions runtime passantes. `drill 2 OK` n’est affiché qu’après toutes les assertions. Les tests runtime ne remplacent pas la preuve du système de types.
 
 ## Livrable
 
 - `SPEC-DRILL.md` : contrat et cas de test écrits avant l’implémentation.
-- `drill-2.js` : ta propre implémentation du concept choisi.
-- `learner-verifier.js` : assertions exécutables qui importent et testent `drill-2.js`.
+- `drill-2.ts` : ta propre implémentation typée du concept choisi.
+- `learner-verifier.ts` : assertions de type et vérifications runtime qui importent et testent `drill-2.ts`.
 - `JOURNAL-EXERCICE.md` facultatif : temps, blocages et notions à revoir.
 
 ## Auto-evaluation (a cocher honnetement)

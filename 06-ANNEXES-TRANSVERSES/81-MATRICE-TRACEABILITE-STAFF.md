@@ -1,8 +1,6 @@
 ---
 stability: stable
 type: staff-evidence-traceability
-release: 1.1.33
-introduced_release: 1.1.4
 ---
 
 # 81 : Matrice de traçabilité des huit piliers, preuves S et gates G

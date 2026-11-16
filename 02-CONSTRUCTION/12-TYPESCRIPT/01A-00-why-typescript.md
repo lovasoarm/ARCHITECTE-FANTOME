@@ -27,11 +27,11 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 # Pourquoi ce module mérite ton temps : typescript
 
-Temps de lecture ~6 min
+Temps de lecture ~6 min : séance complète estimée : 45 min avec lecture, exemples, réflexion et notes.
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-Temps de lecture ~8 min
+Temps de lecture ~6 min
 
 `undefined is not a function`. Cette erreur, tu l'as croisée. Elle arrive en prod, jamais en dev, toujours au pire moment. TypeScript existe pour une raison simple : te dire AVANT d'exécuter le code que tu es en train d'appeler une fonction qui n'existe pas sur cet objet, ou de passer une string là où une fonction attend un number.
 

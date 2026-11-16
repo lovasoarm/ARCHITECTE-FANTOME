@@ -19,7 +19,7 @@ Temps de lecture ~3 min
 
 ## Mode d'emploi
 
-- **Durée cible** : 90 min (4-5 min par question, hors debrief).
+- **Durée cible** : 94 à 100 min (20 questions ; 4 à 5 min par question, hors debrief).
 - **Setup** : timer, carnet, éditeur ouvert, **aucune IA**, aucun Google.
 - Réponds à voix haute ou à l'écrit. Note ta réponse **avant** de lire la rubrique.
 - Auto-notation à la fin, seuil de passage : **≥ 60/100**.
@@ -56,7 +56,9 @@ Temps de lecture ~3 min
 14. Un requête SQL passe de 20ms à 20s d'un jour à l'autre : les 5 hypothèses
     à écarter dans l'ordre.
 
-## Bloc C : Défense de décision (6 questions, 20 min)
+## Bloc C : Défense de décision (6 questions, 24 à 30 min)
+
+Le calcul est explicite : Bloc A = 7 × 5 min = 35 min ; Bloc B = 7 × 5 min = 35 min ; Bloc C = 6 × 4 à 5 min = 24 à 30 min ; total = 94 à 100 min, hors débrief.
 
 15. Défends ton choix de framework pour ton dernier projet : les 2
     alternatives que tu as **rejetées** et **pourquoi**.

@@ -22,10 +22,10 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | ------------------------------------------------------ | ------------------------------------------------------ | ------ |
 | [`00-PREREQUIS.md`](00-PREREQUIS.md)                   | 00 : Prereq check : Algorithms                         | 15 min |
 | [`01A-00-why-algorithms.md`](01A-00-why-algorithms.md) | POURQUOI CE MODULE MÉRITE TON TEMPS : ALGORITHMS       | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                     | Page verrouillée                                       | 30 min |
 | [`02A-EXO_LECTURE.md`](02A-EXO_LECTURE.md)             | EXO LECTURE : ~20 minutes : un cycle (Algorithmes)     | 20 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)     | EXO [JEUNE IA] : 02-CONSTRUCTION/07-ALGORITHMS         | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)     | EXO IA MENTEUSE : module 02-CONSTRUCTION/07-ALGORITHMS | 10 min |
+| [`90-grimoire.md`](90-grimoire.md)                     | Page verrouillée                                       | 30 min |
 
 Total : **2 h 45**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
 
@@ -71,14 +71,12 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [`04_greedy/`](04_greedy/README.md)
 - [`05_backtracking/`](05_backtracking/README.md)
 - [`06_graph_algorithms/`](06_graph_algorithms/README.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~20 minutes : un cycle (Algorithmes)](02A-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/07-algorithms](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 02-CONSTRUCTION/07-ALGORITHMS](97-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
 - [Challenge : `07-ALGORITHMS`](95-challenge.md)
 - [Grimoire : `07-ALGORITHMS`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources

@@ -14,47 +14,18 @@ assessment_role: instructional_checkpoint
 
 # Prototype chain raw : la chaîne brute, sans sucre
 
-<!-- AF-DIAGRAM:event_loop -->
-
-```text
-┌──────────────┐
-│ Call Stack   │
-└──────┬───────┘
-       │ libère
-       ▼
-┌──────────────┐
-│ Microtasks   │
-└──────┬───────┘
-       │ vide
-       ▼
-┌──────────────┐
-│ Tasks/Timers │
-└──────┬───────┘
-       │
-       └──────────────► Call Stack
-```
-
-L’Event Loop reprend le travail lorsque la pile est libérée, en drainant d’abord les microtasks avant les tâches suivantes.
-
-<!-- AF-DIAGRAM:microtasks -->
-
-```text
-        ┌──────────────┐
-        │ Call Stack   │
-        └──────┬───────┘
-               ▼
-        ┌──────────────┐
-        │ Microtasks   │◄──── Promise.then / queueMicrotask
-        └──────┬───────┘
-               ▼
-        ┌──────────────┐
-        │ Task Queue   │◄──── timers / IO
-        └──────────────┘
-```
-
-Les microtasks sont traitées avant de passer à la prochaine task.
-
 <!-- AF-DIAGRAM:prototype -->
+
+```text
+objet
+  │ propriété absente
+  ▼
+[[Prototype]] ──► prototype suivant ──► ... ──► null
+      │                 │
+      └─ recherche      └─ arrêt si propriété trouvée
+```
+
+Une lecture remonte la chaîne de prototypes jusqu'à trouver une propriété ou atteindre `null`.
 
 ```text
 ┌──────────────┐
@@ -76,7 +47,7 @@ Une propriété absente sur l’objet est recherchée le long de sa chaîne de p
 
 Temps de lecture ~10 min
 
-Un objet JS qui ne trouve pas une propriété ne renvoie pas direct `undefined`. Il va chercher chez son parent. Puis chez le parent du parent. Jusqu'à la racine. Cette chaîne, c'est le moteur entier de l'OOP en JS. `class` n'existe pas sans elle. Si tu comprends ça, tout le reste du module `02-CONSTRUCTION/17-OOP-JS` devient de la syntaxe au-dessus d'un mécanisme que tu connais déjà.
+Lorsqu'une propriété n'est pas propre à un objet, JavaScript cherche dans son prototype, puis dans les prototypes suivants. Si la recherche atteint `null` sans trouver la propriété, la lecture renvoie `undefined`. Cette chaîne est le mécanisme central de l'héritage par prototype en JavaScript. `class` n'existe pas sans elle. Si tu comprends ça, tout le reste du module `02-CONSTRUCTION/17-OOP-JS` devient de la syntaxe au-dessus d'un mécanisme que tu connais déjà.
 
 ---
 
@@ -152,7 +123,7 @@ console.log(Object.getPrototypeOf(Object.prototype)); // null : fin de la chaîn
 naruto --> ninja --> Object.prototype --> null
 ```
 
-Quand tu accèdes à `naruto.toString()`, tu remontes toute la chaîne jusqu'à `Object.prototype`, qui le possède. C'est pour ça qu'absolument tout objet JS a accès à `toString`, `hasOwnProperty`, `valueOf`, etc. sans que tu les écrives.
+Quand tu accèdes à `naruto.toString()`, la recherche remonte ici jusqu'à `Object.prototype`, qui possède cette méthode. C'est vrai pour les objets dont la chaîne de prototypes inclut `Object.prototype`, ce qui est courant avec les objets littéraux et les instances de classes. Ce n'est pas universel : `Object.create(null)` crée un objet sans prototype, qui ne possède donc pas `toString` ni `hasOwnProperty` par héritage.
 
 ```js
 // preuve :
@@ -234,7 +205,7 @@ Object.getPrototypeOf(naruto) === ninja; // true
 // vérifier si un objet est le prototype d'un autre
 ninja.isPrototypeOf(naruto); // true
 ninja.isPrototypeOf(sasuke); // true (si sasuke a été créé avec Object.create(ninja))
-Object.prototype.isPrototypeOf(naruto); // true : Object.prototype est dans la chaîne de tout objet
+Object.prototype.isPrototypeOf(naruto); // true pour cet objet ordinaire ; false pour Object.create(null)
 
 // voir TOUTES les propriétés propres d'un objet (pas les héritées)
 Object.keys(naruto); // ["nom", "esquiver"] : propres et énumérables
@@ -281,15 +252,14 @@ les deux changent ensemble, sans qu'on touche sasuke ou sakura directement
 Ce n'est pas un bug : c'est exactement ce que fait un prototype partagé. Le risque réel : une lib tierce ou un autre module qui modifie un prototype partagé (le sien ou, pire, un natif comme `Array.prototype`) fait muter silencieusement tout le programme.
 
 ```js
-// exemple catastrophique : monkey-patching (modification d'un prototype natif à l'exécution)
+// Démonstration syntaxiquement valide : la méthode est ajoutée au prototype natif.
 Array.prototype.dernierElement = function () {
   return this[this.length - 1];
-}[
-  // maintenant TOUS les tableaux du programme ont cette méthode
-  // y compris ceux de tes dépendances qui ne s'y attendent pas
-  (1, 2, 3)
-].dernierElement(); // 3 : ça marche
-// mais tu viens de modifier un objet partagé par tout le runtime
+};
+
+console.log([1, 2, 3].dernierElement()); // 3
+// Tous les tableaux de ce realm héritent maintenant de cette méthode.
+// Ne fais pas ce monkey-patching dans une application partagée en production.
 ```
 
 C'est pour ça que la pollution de prototype (voir `05-MAITRISE/03-EDGE-CASES/04`) est traitée comme une vulnérabilité de sécurité, pas juste une mauvaise pratique.
@@ -343,7 +313,7 @@ Donne à `sasuke` sa propre version de `technique()`, différente de celle du cl
 ## RÉSUMÉ
 
 Un objet JS ne possède pas forcément ce qu'il semble avoir : il y a souvent un lien invisible vers un autre objet qui porte la propriété réelle.
-La chaîne se lit en remontant, se termine à `null`, et passe toujours par `Object.prototype`.
+La chaîne se lit en remontant et se termine à `null`. Les objets ordinaires passent généralement par `Object.prototype`, mais un objet créé avec `Object.create(null)` n'y passe pas.
 `hasOwnProperty` regarde l'objet seul. `in` regarde toute la chaîne.
 L'écriture ne grimpe jamais la chaîne : elle pose toujours une propriété propre, qui masque sans modifier.
 Muter un prototype partagé impacte instantanément toutes les instances liées : arme à double tranchant, vulnérabilité de sécurité si c'est un prototype natif.

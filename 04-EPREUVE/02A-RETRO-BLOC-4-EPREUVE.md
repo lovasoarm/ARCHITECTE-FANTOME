@@ -7,7 +7,7 @@ acte: évaluer
 
 # Rétrospective de bloc : Bloc EPREUVE (Capstone et modules complémentaires réalisés)
 
-[Sommaire](../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/08-ROADMAP-rythmes.md) | Style
+[Sommaire](../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/08-ROADMAP-rythmes.md) | Style
 
 Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opération précise : tu
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
@@ -122,8 +122,15 @@ transforme un exercice de raisonnement en exercice de remplissage.
 
 ## Si tu bloques
 
-Rouvre [95-challenge.md](04-BIG-APP-SNOOP/95-challenge.md) et relis seulement sa section de critères de réussite : la plupart
-des FAUX se voient en comparant un livrable à ses propres critères, pas à ta mémoire.
+Commence par la [grille d’évaluation du Capstone](05-CAPSTONE-ARENA/04-evaluation-grid.md)
+et le [challenge du Capstone](05-CAPSTONE-ARENA/95-challenge.md). Compare une affirmation
+FAUX ou INCOMPLET de ta note de cadrage, de `HYPOTHESES.md` ou de `REVUE-DE-RISQUES.md`
+aux critères correspondants, puis note l’écart observable.
+
+Si tu as réellement suivi Big App Snoop et que ton blocage porte sur l’exploration d’un
+codebase inconnu, tu peux ensuite consulter ses [critères de challenge](04-BIG-APP-SNOOP/95-challenge.md)
+comme ressource complémentaire. Si tu ne l’as pas suivi, ignore cette ressource : elle n’est
+ni requise ni nécessaire pour terminer cette rétrospective.
 
 <!-- VERDICT-BOSS:debut -->
 

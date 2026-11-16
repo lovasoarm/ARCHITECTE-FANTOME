@@ -50,7 +50,7 @@ Le projet ne te demande pas de construire une base de données, un serveur HTTP,
 
 ## Ordre de lecture
 
-Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADR réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables.
+Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADR réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables. `03-SECURITY.md` est le modèle AF : après lecture, copie-le vers `SECURITY.md` dans le dépôt apprenant et complète uniquement ce dernier.
 
 > **Route CORE 16 semaines :** consulte [la carte CORE](../../../06-ANNEXES-TRANSVERSES/25-CORE-MINI-PROJECT-MAP.md) pour le slice recommandé. Le passage CORE ajoute une perturbation, un transfert et un rappel à froid ; voir [Engine d’ambiguïté](../../../06-ANNEXES-TRANSVERSES/20-ENGINE-AMBIGUITE.md).
 
@@ -231,7 +231,7 @@ Présente le problème de cohérence que tu as choisi, le contrat du cache, les 
 - [Cahier des charges](00-CAHIER-DES-CHARGES.md)
 - [Règles du projet](01-RULES.md)
 - [Journal TDD](02-TDD-JOURNAL.md)
-- [Préparation sécurité](03-SECURITY.md)
+- [Modèle de préparation sécurité (à copier vers SECURITY.md)](03-SECURITY.md)
 - [Security Gate](04-SECURITY-GATE.md)
 - [Déclencheurs de spec drift](05-SPEC-DRIFT-TRIGGERS.md)
 - [Drill de spec drift](06-SPEC-DRIFT-DRILL.md)

@@ -1,6 +1,6 @@
 ---
 stability: intemporel
-last_reviewed: 2026-07
+last_reviewed: 2026-11
 depends_on_vendor: false
 acte: comprendre
 cognitive_level: L4
@@ -12,13 +12,13 @@ assessment_role: diagnostic_mastery
 
 > **SCÈNE CRAZYDEVS : jauge de chakra :** optimiser sans mesurer, c'est demander à Naruto de vider son chakra sans regarder la jauge. D'abord la mesure, ensuite le coup de génie ; sinon tu optimises peut-être le mauvais ralentissement.
 
-# Lcp, inp, cls : les trois chiffres que google regarde sur ton site
+# Core Web Vitals : mesurer le chargement, la réactivité et la stabilité
 
 Temps de lecture ~11 min
 
-Google mesure la qualité de ton UI avec trois métriques. Si elles passent dans le rouge, ton site descend dans les résultats de recherche. Et les utilisateurs partent avant que la page finisse de charger.
+Les Core Web Vitals regroupent trois métriques centrées sur l'expérience réelle : le chargement du contenu principal, la réactivité aux interactions et la stabilité visuelle. Google recommande de viser de bons résultats ; ces métriques participent aux signaux d'expérience de page, mais elles ne garantissent pas à elles seules une position dans les résultats de recherche.
 
-Ces métriques ne sont pas des opinions. Ce sont des mesures du ressenti réel de l'utilisateur : est-ce que ça charge vite ? est-ce que ça réagit quand je clique ? est-ce que le contenu saute partout ?
+On les évalue idéalement au 75e percentile des visites, séparément sur mobile et ordinateur. Une mesure de laboratoire aide à reproduire un problème ; les données de terrain indiquent ce que vivent réellement les utilisateurs.
 
 ---
 
@@ -26,9 +26,9 @@ Ces métriques ne sont pas des opinions. Ce sont des mesures du ressenti réel d
 
 ### Ce que ça mesure
 
-Le temps entre le premier octet reçu et le moment où le plus grand élément visible est rendu à l'écran.
+Le moment où le plus grand élément de contenu visible dans la fenêtre d'affichage est rendu, mesuré depuis le début de la navigation de l'utilisateur.
 
-Cet élément, c'est généralement une image hero, un bloc de texte principal, ou une vidéo.
+Cet élément est généralement une image, un bloc de texte ou une vidéo. Le LCP inclut aussi le temps de déchargement de la page précédente, la connexion, les redirections et le TTFB (temps jusqu'au premier octet). Ce n'est donc pas une métrique qui commence au premier octet reçu.
 
 ```text
 Navigation start
@@ -41,9 +41,9 @@ Navigation start
 ### Les seuils
 
 ```text
-LCP < 2.5s  => vert  : bien
-LCP < 4s   => orange : à améliorer
-LCP >= 4s   => rouge : mauvais
+LCP <= 2.5s          => vert   : bon
+2.5s < LCP <= 4.0s   => orange : à améliorer
+LCP > 4.0s           => rouge  : mauvais
 ```
 
 ### Ce qui fait exploser le LCP
@@ -55,7 +55,15 @@ LCP >= 4s   => rouge : mauvais
 <img src="hero-naruto-4k.png" />
 
 <!-- correct : format WebP + taille adaptée -->
-<img src="hero-naruto.webp" width="800" height="450" fetchpriority="high" />
+<img
+  src="hero-naruto.webp"
+  srcset="hero-naruto-800.webp 800w, hero-naruto-1600.webp 1600w"
+  sizes="(max-width: 800px) 100vw, 800px"
+  width="1600"
+  height="900"
+  fetchpriority="high"
+  alt="Illustration principale"
+/>
 ```
 
 **CSS qui bloque le rendu :**
@@ -64,16 +72,18 @@ LCP >= 4s   => rouge : mauvais
 <!-- mauvais : CSS bloquant en tête de page -->
 <link rel="stylesheet" href="all-styles-5000-lines.css" />
 
-<!-- correct : CSS critique inline, le reste différé -->
-<style>
-  /* styles critiques only */
-</style>
+<!-- approche : isoler les styles nécessaires au premier rendu -->
+<link rel="stylesheet" href="critical.css" />
 <link
-  rel="stylesheet"
-  href="rest.css"
-  media="print"
-  onload="this.media='all'"
+  rel="preload"
+  href="below-the-fold.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
 />
+<noscript><link rel="stylesheet" href="below-the-fold.css" /></noscript>
+<!-- Ne diffère que les styles réellement non critiques et conserve un fallback
+     sans JavaScript. Une CSP stricte peut imposer un chargeur externe plutôt
+     qu'un attribut onload inline. -->
 ```
 
 **JavaScript qui retarde le premier rendu :**
@@ -85,8 +95,11 @@ LCP >= 4s   => rouge : mauvais
   ...
 </body>
 
-<!-- correct : defer ou async -->
-<script src="analytics.js" defer></script>
+<!-- scripts du site qui doivent respecter l'ordre et attendre le parsing -->
+<script src="app.js" defer></script>
+
+<!-- script d'analytics indépendant du code applicatif -->
+<script src="analytics.js" async></script>
 ```
 
 ### Comment mesurer le LCP depuis le code
@@ -95,15 +108,15 @@ LCP >= 4s   => rouge : mauvais
 // PerformanceObserver : observe les événements de rendu
 const observer = new PerformanceObserver((list) => {
   const entries = list.getEntries();
-  // le dernier entry LCP est le plus récent (l'élément le plus grand)
-  const lcp = entries[entries.length - 1];
+  if (entries.length === 0) return;
 
+  // Le dernier candidat livré est le candidat LCP le plus récent.
+  const lcp = entries[entries.length - 1];
   console.log("LCP element:", lcp.element);
   console.log("LCP time:", lcp.startTime, "ms");
 
-  // alerte si on passe dans l'orange
   if (lcp.startTime > 2500) {
-    console.warn("LCP trop lent : utilisateur qui attend");
+    console.warn("LCP au-dessus du seuil de 2,5 secondes");
   }
 });
 
@@ -117,9 +130,9 @@ observer.observe({ type: "largest-contentful-paint", buffered: true });
 
 ### Ce que ça mesure
 
-Le temps entre un clic / tap / frappe clavier et le moment où le navigateur affiche la réponse visuelle.
+Le délai entre le début d'une interaction (clic, toucher ou touche du clavier) et le moment où le navigateur peut présenter la frame suivante. INP observe les interactions pendant toute la durée de la visite et retient une valeur représentative de la plus lente ; pour les pages avec beaucoup d'interactions, un très petit nombre de valeurs extrêmes est écarté.
 
-INP remplace FID (First Input Delay) depuis 2024. La différence : FID mesurait seulement la première interaction. INP mesure **toutes** les interactions et prend le pire cas.
+INP a remplacé FID en mars 2024. FID ne mesurait que le délai avant le début du premier gestionnaire d'événement. INP inclut le délai d'entrée, l'exécution des gestionnaires et le délai avant la présentation de la frame suivante. Le survol et le défilement seuls ne sont pas des interactions prises en compte par INP.
 
 ```text
 User clique sur un bouton
@@ -134,9 +147,9 @@ User clique sur un bouton
 ### Les seuils
 
 ```text
-INP < 200ms  => vert  : réactif
-INP < 500ms  => orange : lent
-INP >= 500ms  => rouge : l'utilisateur sent que le site est cassé
+INP <= 200ms         => vert   : bon
+200ms < INP <= 500ms => orange : à améliorer
+INP > 500ms          => rouge  : mauvais
 ```
 
 ### Ce qui fait exploser l'INP
@@ -152,63 +165,77 @@ button.addEventListener("click", () => {
   displayResult(result);
 });
 
-// correct : couper le travail pour laisser le rendu passer
-button.addEventListener("click", async () => {
-  // scheduler.yield() cède le thread au navigateur entre deux tâches
-  // le bouton visuellement réagit d'abord, puis le calcul suit
+// correct : afficher un retour immédiat et déplacer le calcul hors du thread UI
+const rankingWorker = new Worker("./rankings.worker.js", { type: "module" });
+let latestRequestId = 0;
+
+button.addEventListener("click", () => {
+  const requestId = ++latestRequestId;
   showLoadingState();
-  await scheduler.yield();
-  const result = computePlayerRankings(10000);
-  displayResult(result);
+  button.disabled = true;
+  rankingWorker.postMessage({ requestId, players });
+});
+
+rankingWorker.addEventListener("message", (event) => {
+  // Ignore un résultat ancien si une demande plus récente a été lancée.
+  if (event.data.requestId !== latestRequestId) return;
+  displayResult(event.data.rankedPlayers);
+  button.disabled = false;
+  showReadyState();
+});
+```
+
+Dans le fichier séparé `rankings.worker.js` :
+
+```js
+self.addEventListener("message", (event) => {
+  const { requestId, players } = event.data;
+  const rankedPlayers = [...players].sort(
+    (a, b) => b.points - a.points || String(a.id).localeCompare(String(b.id)),
+  );
+  self.postMessage({ requestId, rankedPlayers });
 });
 ```
 
 **Trop de travail synchrone dans une interaction :**
 
 ```js
-// mauvais : 50 composants re-render en même temps sur un seul clic
+// mauvais : mélange rendu, recalcul lourd et télémétrie dans le même gestionnaire
 function handleFilterChange(value) {
-  setFilter(value); // trigger re-render global
-  updateURL(value); // manipulation DOM
-  trackAnalytics(value); // requête réseau synchrone
-  rebuildIndex(items); // recalcul de 5000 items
-}
-
-// correct : prioriser le feedback visuel, différer le reste
-function handleFilterChange(value) {
-  setFilter(value); // feedback immédiat au utilisateur
-
-  // le reste peut attendre 16ms
-  requestAnimationFrame(() => {
-    updateURL(value);
-    trackAnalytics(value);
-    rebuildIndex(items);
-  });
+  setFilter(value);
+  updateURL(value);
+  trackAnalytics(value); // fetch() est asynchrone, mais le travail JS de préparation reste ici
+  rebuildIndex(items); // recalcul synchrone qui peut bloquer le prochain paint
 }
 ```
-
-### Mesurer l'INP
 
 ```js
-const observer = new PerformanceObserver((list) => {
-  for (const entry of list.getEntries()) {
-    // inputDelay : temps entre l'interaction et le début de l'event handler
-    // processingTime : temps passé dans l'event handler
-    // presentationDelay : temps entre la fin du handler et l'affichage
-    const total = entry.duration;
+// meilleur découpage : feedback d'abord, calcul lourd dans un Worker
+function handleFilterChange(value) {
+  setFilter(value); // le framework planifie le retour visuel
+  rankingWorker.postMessage({
+    requestId: ++latestRequestId,
+    items,
+    filter: value,
+  });
 
-    console.log(`Interaction: ${entry.name}`);
-    console.log(`Total INP: ${total}ms`);
-    console.log(`Input delay: ${entry.processingStart - entry.startTime}ms`);
+  // Télémétrie non bloquante : sendBeacon renvoie immédiatement un booléen.
+  const payload = JSON.stringify({ event: "filter_changed", value });
+  navigator.sendBeacon(
+    "/analytics",
+    new Blob([payload], { type: "application/json" }),
+  );
+}
 
-    if (total > 200) {
-      console.warn(`Interaction lente détectée : ${total}ms`);
-    }
-  }
-});
-
-observer.observe({ type: "event", durationThreshold: 16, buffered: true });
+// requestAnimationFrame sert à synchroniser une mise à jour visuelle avec une frame.
+// Il ne rend PAS un calcul CPU lourd non bloquant : un long callback rAF retarde le paint.
 ```
+
+### Mesurer les interactions liées à l'INP
+
+Un événement `event` représente un événement de timing, pas forcément une interaction entière. Plusieurs événements peuvent appartenir au même geste (`interactionId`). L'exemple de mesure plus complet plus bas regroupe les événements par `interactionId` et garde la durée la plus longue de chaque geste.
+
+Les trois phases sont : `input delay` (attente avant le gestionnaire), `processing duration` (exécution de tous les gestionnaires du geste dans la frame) et `presentation delay` (attente avant la frame présentée). `entry.duration` donne une durée globale pour l'entrée observée ; il ne décompose pas à lui seul les trois phases.
 
 ---
 
@@ -216,9 +243,9 @@ observer.observe({ type: "event", durationThreshold: 16, buffered: true });
 
 ### Ce que ça mesure
 
-La somme de tous les décalages visuels inattendus pendant le cycle de vie de la page.
+Le score du plus grand groupe de décalages visuels inattendus pendant toute la durée de vie de la page. Ce groupe, appelé _session window_, rassemble des décalages séparés de moins d'une seconde, dans une fenêtre qui ne dépasse pas cinq secondes.
 
-C'est le score qui explose quand une pub se charge et pousse tout le contenu vers le bas. Ou quand une image apparaît sans dimensions et déplace le texte. Le utilisateur clique sur un lien, la page bouge, il clique sur autre chose. Frustrant.
+Ce n'est donc plus la somme de tous les décalages sur toute la vie de la page. Un changement directement lié à une interaction discrète récente peut être exclu (`hadRecentInput`), mais ce drapeau n'exclut pas indistinctement tous les décalages suivant un scroll ou un geste continu.
 
 ```text
 Score CLS = somme de (impact fraction * distance fraction)
@@ -230,9 +257,9 @@ Score CLS = somme de (impact fraction * distance fraction)
 ### Les seuils
 
 ```text
-CLS < 0.1   => vert  : stable
-CLS < 0.25  => orange : instable
-CLS >= 0.25  => rouge : la page saute dans tous les sens
+CLS <= 0.10         => vert   : bon
+0.10 < CLS <= 0.25  => orange : à améliorer
+CLS > 0.25          => rouge  : mauvais
 ```
 
 ### Ce qui fait exploser le CLS
@@ -271,8 +298,8 @@ setTimeout(() => {
 
 ```css
 /* réserver l'espace pour une bannière qui chargera plus tard */
-.promo-banner-valeur d’exemple {
-  min-height: 90px; /* hauteur max anticipée */
+.promo-banner {
+  min-height: 90px; /* réserve la hauteur réelle attendue pour cette bannière */
   width: 100%;
 }
 ```
@@ -280,44 +307,77 @@ setTimeout(() => {
 **Polices qui causent un flash :**
 
 ```css
-/* mauvais : pas de fallback dimensionné = layout shift quand la font charge */
-font-family: "CustomFont", sans-serif;
-
-/* correct : size-adjust pour que le fallback ait les mêmes dimensions */
+/* La police principale est remplacée temporairement par un fallback. */
 @font-face {
   font-family: "CustomFont";
-  src: url("custom-font.woff2");
-  font-display: swap; /* affiche le fallback pendant le chargement */
-  size-adjust: 105%; /* ajuste la taille du fallback pour limiter le shift */
+  src: url("custom-font.woff2") format("woff2");
+  font-display: swap;
+}
+
+/* Ajuster le fallback, pas la police principale.
+   Les pourcentages ci-dessous sont des exemples à calculer avec les métriques
+   des deux polices ; ne pas les recopier sans mesure. */
+@font-face {
+  font-family: "AdjustedFallback";
+  src: local("Arial");
+  size-adjust: 98%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+body {
+  font-family: "CustomFont", "AdjustedFallback", sans-serif;
 }
 ```
 
-### Mesurer le CLS
+### Mesurer le CLS par fenêtres de session
 
 ```js
-let clsScore = 0;
+let clsValue = 0;
+let sessionValue = 0;
+let sessionStart = null;
+let lastShiftTime = null;
 
 const observer = new PerformanceObserver((list) => {
-  for (const entry of list.getEntries()) {
-    // hadRecentInput : exclut les shifts causés par une interaction utilisateur
-    // (un scroll ou un clic qui cause un shift ne compte pas)
-    if (!entry.hadRecentInput) {
-      clsScore += entry.value;
-      console.log(`Layout shift détecté : +${entry.value}`);
-      console.log(`CLS cumulé : ${clsScore}`);
+  const entries = [...list.getEntries()].sort(
+    (a, b) => a.startTime - b.startTime,
+  );
+
+  for (const entry of entries) {
+    // Les décalages associés à une interaction discrète récente sont exclus.
+    if (entry.hadRecentInput) continue;
+
+    const startsNewSession =
+      lastShiftTime === null ||
+      entry.startTime - lastShiftTime >= 1000 ||
+      entry.startTime - sessionStart >= 5000;
+
+    if (startsNewSession) {
+      sessionStart = entry.startTime;
+      sessionValue = entry.value;
+    } else {
+      sessionValue += entry.value;
     }
+
+    lastShiftTime = entry.startTime;
+    clsValue = Math.max(clsValue, sessionValue);
   }
 });
 
 observer.observe({ type: "layout-shift", buffered: true });
 
-// afficher le score final quand l'utilisateur quitte la page
+function reportCls() {
+  console.log(`CLS observé (plus grande session) : ${clsValue.toFixed(3)}`);
+}
+
 document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "hidden") {
-    console.log(`CLS final : ${clsScore}`);
-  }
+  if (document.visibilityState === "hidden") reportCls();
 });
+window.addEventListener("pagehide", reportCls);
 ```
+
+Cette version illustre les fenêtres de session. Elle ne couvre pas toutes les subtilités de la métrique sur les pages restaurées depuis le BFCache ou les décalages provenant d'iframes. Pour la mesure de production, préfère `web-vitals`.
 
 ---
 
@@ -342,8 +402,10 @@ LCP ok + INP ok + CLS élevé
 ### Mesurer les trois en une passe
 
 ```js
-// web-vitals est la lib officielle Google pour mesurer depuis le code
-// npm install web-vitals
+// web-vitals est la bibliothèque de référence recommandée pour mesurer en production.
+// Elle gère des cas particuliers de cycle de vie et de mesure que le code natif
+// pédagogique ci-dessous ne reproduit pas tous.
+// Installation : npm install web-vitals
 import { onLCP, onINP, onCLS } from "web-vitals";
 
 function sendToAnalytics({ name, value, rating }) {
@@ -354,10 +416,173 @@ function sendToAnalytics({ name, value, rating }) {
 onLCP(sendToAnalytics);
 onINP(sendToAnalytics);
 onCLS(({ name, value, rating }) => {
-  // CLS est un score sans unité, pas une durée
+  // CLS est un score sans unité, pas une durée.
   console.log(`${name}: ${value.toFixed(3)} : ${rating}`);
 });
 ```
+
+### Fonctions testables sans navigateur
+
+Ces fonctions pures servent à tester les seuils, l'approximation de la valeur INP et le regroupement CLS. Elles ne remplacent pas les règles complètes de la bibliothèque `web-vitals`.
+
+```js
+export function rateLcp(value) {
+  if (!Number.isFinite(value)) return "unavailable";
+  if (value <= 2500) return "good";
+  if (value <= 4000) return "needs-improvement";
+  return "poor";
+}
+
+export function rateInp(value) {
+  if (!Number.isFinite(value)) return "unavailable";
+  if (value <= 200) return "good";
+  if (value <= 500) return "needs-improvement";
+  return "poor";
+}
+
+export function rateCls(value) {
+  if (!Number.isFinite(value)) return "unavailable";
+  if (value <= 0.1) return "good";
+  if (value <= 0.25) return "needs-improvement";
+  return "poor";
+}
+
+// `values` contient déjà une durée maximale par interactionId.
+// On écarte une valeur extrême par tranche de 50 interactions.
+export function approximateInp(values) {
+  if (!Array.isArray(values) || values.length === 0) return null;
+  const sorted = [...values].sort((a, b) => a - b);
+  const ignoredOutliers = Math.floor(sorted.length / 50);
+  return sorted[sorted.length - 1 - ignoredOutliers];
+}
+
+export function createClsSessionTracker() {
+  let sessionStart = null;
+  let lastShiftTime = null;
+  let sessionValue = 0;
+  let maxSessionValue = 0;
+
+  return {
+    add(entry) {
+      if (entry.hadRecentInput) return maxSessionValue;
+
+      const startsNewSession =
+        lastShiftTime === null ||
+        entry.startTime - lastShiftTime >= 1000 ||
+        entry.startTime - sessionStart >= 5000;
+
+      if (startsNewSession) {
+        sessionStart = entry.startTime;
+        sessionValue = entry.value;
+      } else {
+        sessionValue += entry.value;
+      }
+
+      lastShiftTime = entry.startTime;
+      maxSessionValue = Math.max(maxSessionValue, sessionValue);
+      return maxSessionValue;
+    },
+    value() {
+      return maxSessionValue;
+    },
+  };
+}
+```
+
+### Mesure native pédagogique des trois métriques
+
+Le code suivant assemble ces fonctions avec les API natives. C'est une version didactique : les limites de l'API (iframes, BFCache, pages maintenues longtemps en arrière-plan et certains cas de cycle de vie) empêchent de la considérer comme une implémentation de production complète.
+
+```js
+function measureVitals(onReport = console.log) {
+  const values = { lcp: null, inp: null, cls: 0 };
+  const interactions = new Map();
+  const observers = [];
+  const clsTracker = createClsSessionTracker();
+
+  function addInteraction(entry) {
+    if (!Number.isInteger(entry.interactionId) || entry.interactionId <= 0)
+      return;
+    const previous = interactions.get(entry.interactionId) ?? 0;
+    interactions.set(entry.interactionId, Math.max(previous, entry.duration));
+    values.inp = approximateInp([...interactions.values()]);
+  }
+
+  function observe(type, callback, extraOptions = {}) {
+    if (!PerformanceObserver.supportedEntryTypes?.includes(type)) return;
+    try {
+      const observer = new PerformanceObserver((list) =>
+        callback(list.getEntries()),
+      );
+      observer.observe({ type, buffered: true, ...extraOptions });
+      observers.push(observer);
+    } catch {
+      // Type d'entrée ou option non pris en charge par ce navigateur.
+    }
+  }
+
+  observe("largest-contentful-paint", (entries) => {
+    for (const entry of entries) values.lcp = entry.startTime;
+  });
+
+  observe(
+    "event",
+    (entries) => {
+      for (const entry of entries) addInteraction(entry);
+    },
+    { durationThreshold: 16 },
+  );
+
+  // Le premier événement peut être plus court que le seuil des entrées `event`.
+  observe("first-input", (entries) => {
+    for (const entry of entries) addInteraction(entry);
+  });
+
+  observe("layout-shift", (entries) => {
+    for (const entry of [...entries].sort(
+      (a, b) => a.startTime - b.startTime,
+    )) {
+      values.cls = clsTracker.add(entry);
+    }
+  });
+
+  function snapshot() {
+    const result = {
+      ...values,
+      ratings: {
+        lcp: rateLcp(values.lcp),
+        inp: rateInp(values.inp),
+        cls: rateCls(values.cls),
+      },
+    };
+    onReport(result);
+    if (Object.values(result.ratings).includes("poor")) {
+      console.warn(
+        "Au moins une métrique Core Web Vitals est dans la zone poor.",
+      );
+    }
+    return result;
+  }
+
+  function reportWhenHidden() {
+    if (document.visibilityState === "hidden") snapshot();
+  }
+
+  document.addEventListener("visibilitychange", reportWhenHidden);
+  window.addEventListener("pagehide", snapshot);
+
+  return {
+    snapshot,
+    disconnect() {
+      for (const observer of observers) observer.disconnect();
+      document.removeEventListener("visibilitychange", reportWhenHidden);
+      window.removeEventListener("pagehide", snapshot);
+    },
+  };
+}
+```
+
+**Limites de cette version native :** le suivi INP est une approximation du percentile et ne traite pas les iframes ; la gestion du cycle de vie n'intègre pas toutes les règles BFCache ; le navigateur peut ne pas exposer tous les types d'entrée. Pour une mesure de terrain, utilise la bibliothèque `web-vitals` et valide les données réelles.
 
 ---
 
@@ -405,15 +630,73 @@ Identifie les 4 sources de CLS. Corrige-les une par une. Mesure le CLS avant et 
 
 ---
 
+## CORRIGÉS DE RÉFÉRENCE
+
+Les corrigés sont à consulter après une première tentative. Les valeurs de départ des exercices sont des données de scénario, pas des mesures de production.
+
+### Corrigé : EXO 1 : diagnostic LCP
+
+1. **Priorité au contenu LCP :** identifier l'élément réellement retenu par le navigateur dans la trace. S'il s'agit de l'image hero, fournir des variantes adaptées (`srcset` et `sizes`), compresser l'image, déclarer ses dimensions et lui donner `fetchpriority="high"`. Ne pas appliquer `loading="lazy"` à l'image principale visible immédiatement.
+2. **Réduire le blocage du rendu :** séparer les styles nécessaires au premier écran du reste ; mesurer avant d'externaliser ou de retarder des feuilles, pour éviter un flash sans style.
+3. **Revoir les scripts analytics :** retirer ceux qui ne sont pas nécessaires au premier rendu. Utiliser `defer` pour les scripts applicatifs qui doivent respecter l'ordre après le parsing ; `async` pour un script réellement indépendant. Ne pas appliquer `async` à un script qui dépend de l'ordre d'exécution.
+
+Exemple de correction HTML pour l'image et les scripts :
+
+```html
+<img
+  src="hero-1600.webp"
+  srcset="hero-800.webp 800w, hero-1600.webp 1600w"
+  sizes="100vw"
+  width="1600"
+  height="900"
+  fetchpriority="high"
+  alt="Action principale du match"
+/>
+<script src="app.js" defer></script>
+<script src="analytics.js" async></script>
+```
+
+On ne promet pas que LCP passera de 6,2 s à une valeur précise sans mesurer la page après chaque changement.
+
+### Corrigé : EXO 2 : interaction lente
+
+Le gestionnaire doit afficher un état immédiat, puis transférer le tri à un Web Worker pour ne pas monopoliser le thread principal. Remplacer un tri O(n²) par un tri O(n log n) avec un comparateur déterministe ; ignorer les réponses d'une requête devenue obsolète. L'analytique ne doit pas exécuter de calcul réseau synchrone dans le handler : `sendBeacon` ou `fetch` avec `keepalive` est un envoi non bloquant.
+
+Le code du Worker et du gestionnaire dans la section INP constitue le modèle de référence. Dans une application réelle, il faut aussi vérifier le coût de copie/transfert des 15 000 objets ; un tableau typé transférable peut être plus approprié si la structure des données le permet. Un Worker ne garantit pas à lui seul une INP inférieure à 200 ms : le rendu initial, la taille du DOM et les autres tâches doivent aussi être mesurés.
+
+### Corrigé : EXO 3 : layout shift hunting
+
+- **Images :** ajouter `width` et `height` cohérents avec le ratio réel, ou un conteneur avec `aspect-ratio`.
+- **Publicité :** réserver avant le chargement une zone correspondant à sa taille réelle ; ne pas insérer tardivement une bannière au-dessus du contenu déjà lu.
+- **Police :** définir `font-display` avec un fallback adapté ; mesurer les métriques typographiques et ajuster le fallback (`size-adjust`, `ascent-override`, `descent-override` si nécessaire), au lieu de copier une valeur de 105 % sans mesure.
+- **Commentaires :** ne pas injecter le bloc au-dessus du contenu. Le placer après l'article ou réserver explicitement son espace avant le chargement.
+
+La mesure « avant/après » doit comparer le plus grand _session window_, pas additionner toute la vie de la page. Le bloc `createClsSessionTracker()` permet de tester la logique de regroupement ; le score réel doit être observé dans un navigateur sur le parcours concerné.
+
+### Corrigé : EXO 4 : pipeline de mesure
+
+La fonction `measureVitals()` plus haut observe les quatre types d'entrée nécessaires (`largest-contentful-paint`, `event`, `first-input`, `layout-shift`), regroupe les événements par `interactionId`, calcule une valeur INP pédagogique, met à jour le CLS à partir de sessions et expose `snapshot()` ainsi que `disconnect()`.
+
+Les valeurs nulles signifient qu'aucune observation exploitable n'est disponible ; elles ne doivent pas être présentées comme un zéro mesuré. Pour une exploitation de production, remplacer cette implémentation didactique par `web-vitals`, qui gère davantage de cas du cycle de vie, et transmettre les résultats avec le contexte de navigation.
+
 ## RÉSUMÉ
 
-LCP : le temps jusqu'au plus grand élément visible. Le réseau, les images lourdes, et le CSS bloquant le font sauter.
+- **LCP :** moment du rendu du plus grand élément visible, calculé depuis le début de la navigation. Le réseau, les redirections, le TTFB, les images et le CSS peuvent le retarder.
+- **INP :** réactivité aux clics, tapes et frappes clavier. La valeur représente la plupart des interactions, pas une moyenne naïve ni systématiquement le pire événement isolé.
+- **CLS :** stabilité visuelle, mesurée par la plus grande session window de décalages inattendus, pas par la somme de toute la vie de la page.
 
-INP : la réactivité à chaque interaction. Le thread principal bloqué par du JS lourd est le principal coupable.
+Les trois métriques se lisent ensemble. Les seuils sont des repères de terrain au 75e percentile, à segmenter mobile/ordinateur ; un résultat de laboratoire n'est pas une preuve de performance en production.
 
-CLS : la stabilité visuelle. Images sans dimensions et contenu injecté dynamiquement sont les causes les plus fréquentes.
+## RÉFÉRENCES OFFICIELLES
 
-Les trois métriques se lisent ensemble : chacune révèle une couche différente du problème de performance. Un site avec LCP bon mais INP mauvais n'est pas performant : il charge vite et réagit comme un escargot.
+Sources consultées le 11 novembre 2026. Les seuils sont les recommandations Core Web Vitals actuelles ; vérifier de nouveau la documentation avant une certification ou un changement important de version.
+
+- Google Search Central : [Core Web Vitals et résultats de recherche](https://developers.google.com/search/docs/appearance/core-web-vitals) : rôle des métriques dans l'expérience de page et repères recommandés.
+- web.dev : [Largest Contentful Paint (LCP)](https://web.dev/articles/lcp) : définition relative au début de navigation et prise en compte des étapes réseau précédant le rendu.
+- web.dev : [Interaction to Next Paint (INP)](https://web.dev/articles/inp) : interactions prises en compte, calcul et limites de l'API Event Timing.
+- web.dev : [Cumulative Layout Shift (CLS)](https://web.dev/articles/cls) : sessions de décalages, exclusions et limites de la mesure native.
+- web.dev : [Optimiser les polices web](https://web.dev/learn/performance/optimize-web-fonts) : `font-display`, fallback et risques de décalage visuel.
+- web.dev : [Seuils des Core Web Vitals](https://web.dev/articles/defining-core-web-vitals-thresholds) : justification des seuils.
 
 ## CHECKPOINT DE PROFONDEUR : variation E : diagnostic à information incomplète
 

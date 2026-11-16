@@ -1,42 +1,55 @@
-// FIXTURE MEMORY HUNTER : leak volontaire
-// Lance avec :  node --expose-gc --inspect leaky.js
+// FIXTURE MEMORY HUNTER : rétention volontaire, charge bornée.
+// Depuis ce dossier : node --expose-gc --inspect 00_leaky.js
 //
-// Objectif : trouver POURQUOI la RSS grimpe alors que le "cache" a une taille max.
-// Indice : la taille max en éléments n'est PAS la taille en octets.
+// La Map est bornée à 5 entrées, mais le tableau listeners garde les closures
+// des entrées évincées. Chaque closure conserve son Buffer.
+// Limites de sécurité : 20 ticks au maximum, 1 Buffer de 1 Mio par tick.
 
 const cache = new Map();
-const MAX_ENTRIES = 100; // "borné" ??
+const MAX_ENTRIES = 5;
+const MAX_TICKS = 20;
+const BUFFER_BYTES = 1024 * 1024;
 const listeners = [];
 
 function makeHeavy(id) {
-  // 1 MB par entrée, mais on croit que MAX_ENTRIES suffit à borner
-  const payload = Buffer.alloc(1024 * 1024, id % 256);
-  const onEvent = () => payload[0]; // closure capture payload
-  listeners.push(onEvent); //   jamais nettoyé
+  const payload = Buffer.alloc(BUFFER_BYTES, id % 256);
+  const onEvent = () => payload[0]; // la closure capture payload
+  listeners.push(onEvent); // rétention volontaire, jamais nettoyée
   return { id, payload, onEvent };
 }
 
 function put(id) {
   if (cache.size >= MAX_ENTRIES) {
-    // évince le plus ancien... mais pas le listener associé
     const firstKey = cache.keys().next().value;
-    cache.delete(firstKey);
+    cache.delete(firstKey); // l'entrée disparaît de la Map, pas de listeners
   }
   cache.set(id, makeHeavy(id));
 }
 
-let i = 0;
+let tick = 0;
 const timer = setInterval(() => {
-  for (let k = 0; k < 10; k++) put(i++);
-  const m = process.memoryUsage();
-  console.log(
-    `t=${(i / 10).toFixed(0)}s  rss=${(m.rss / 1e6).toFixed(1)}MB  ` +
-      `heap=${(m.heapUsed / 1e6).toFixed(1)}MB  cache=${cache.size}  listeners=${listeners.length}`,
-  );
+  tick += 1;
+  put(tick);
+
   if (global.gc) global.gc();
+  const memory = process.memoryUsage();
+  const toMB = (bytes) => (bytes / 1e6).toFixed(1);
+  console.log(
+    `tick=${tick}/${MAX_TICKS} rss=${toMB(memory.rss)}MB ` +
+      `heapUsed=${toMB(memory.heapUsed)}MB ` +
+      `external=${toMB(memory.external)}MB ` +
+      `arrayBuffers=${toMB(memory.arrayBuffers)}MB ` +
+      `cache=${cache.size} listeners=${listeners.length}`,
+  );
+
+  if (tick >= MAX_TICKS) {
+    clearInterval(timer);
+    console.log(`[DONE] Arrêt automatique après ${MAX_TICKS} ticks ; charge bornée.`);
+  }
 }, 1000);
 
-process.on("SIGINT", () => {
+process.once('SIGINT', () => {
   clearInterval(timer);
-  process.exit(0);
+  console.log('[STOP] Interruption demandée ; timer annulé.');
+  process.exitCode = 130;
 });

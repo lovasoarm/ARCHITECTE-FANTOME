@@ -42,7 +42,7 @@ Si tu ne peux pas répondre aux 3 sans hésiter : relis `00-SOCLE/04-FUNDAMENTAL
 
 ## SI TU BLOQUES
 
-Relis le module précédent avant de continuer. Ce pont existe précisément parce que sauter cette marche brise 80% des apprenants sur le module suivant. Aucune honte à revenir.
+Relis le module précédent avant de continuer. Ce pont existe parce que le module suivant demande de raisonner sur le problème avant de coder. Le sauter peut rendre ce changement plus difficile. Aucune honte à revenir.
 
 <!-- AF-TRANSFER-FIELD-1.1 -->
 
@@ -54,4 +54,4 @@ Relis le module précédent avant de continuer. Ce pont existe précisément par
 
 **Limite :** ne transpose pas une syntaxe ou une solution sans vérifier ses hypothèses ; le même mécanisme peut avoir des garanties différentes selon le runtime et le stockage.
 
-**Mission courte :** applique le principe de cette page à un incrément de [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md) : Pour le problème de cette page, écris une petite fonction de domaine indépendante de l’interface, puis expose-la à un appelant. Note l’entrée, la sortie, une erreur et l’invariant qui doit rester vrai lors du passage aux modules suivants. Produis un petit test ou scénario de panne et note l'invariant conservé, l'hypothèse qui change et la limite observée. Cette mission complète le transfert ; elle ne remplace pas le projet évalué du module.
+**Mission courte :** applique le principe de cette page à un incrément de [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md) : À partir de la situation du formulaire décrite dans la question 1 du drill, écris une petite fonction de domaine indépendante de l’interface, puis expose-la à un appelant. Note l’entrée, la sortie, une erreur et l’invariant qui doit rester vrai lors du passage aux modules suivants. Produis un petit test ou scénario de panne et note l'invariant conservé, l'hypothèse qui change et la limite observée. Cette mission complète le transfert ; elle ne remplace pas le projet évalué du module.

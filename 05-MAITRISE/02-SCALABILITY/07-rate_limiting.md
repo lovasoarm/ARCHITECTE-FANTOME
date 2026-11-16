@@ -37,16 +37,20 @@ Combien de requêtes déjà faites dans la fenêtre de temps actuelle ?
 ```
 
 ```js
-// Version naïve avec Redis (vu en détail dans 05-MAITRISE/01-DATABASES/04_redis_caching)
-async function isAllowed(userId) {
-  const key = `ratelimit:${userId}`;
-  const count = await redis.incr(key); // incrémente, crée la clé à 1 si elle n'existe pas
+// Opération Redis atomique (API node-redis v4) : INCR et EXPIRE sont exécutés ensemble.
+const INCREMENT_WITH_TTL = `
+  local count = redis.call("INCR", KEYS[1])
+  if count == 1 then redis.call("EXPIRE", KEYS[1], ARGV[1]) end
+  return count
+`;
 
-  if (count === 1) {
-    await redis.expire(key, 60); // la fenêtre dure 60 secondes
-  }
-
-  return count <= 100; // max 100 requêtes par minute
+async function isAllowed(identifier) {
+  const key = `ratelimit:${identifier}`;
+  const count = await redis.eval(INCREMENT_WITH_TTL, {
+    keys: [key],
+    arguments: ["60"],
+  });
+  return Number(count) <= 100; // max 100 requêtes par fenêtre de 60 secondes
 }
 ```
 
@@ -150,14 +154,22 @@ const limits = {
 ## 4) LA RÉPONSE QUAND ON BLOQUE : NE PAS LAISSER LE SHINOBI DANS LE FLOU
 
 ```js
-app.use((req, res, next) => {
-  if (!isAllowed(req.user.id)) {
-    return res
-      .status(429)
-      .set("Retry-After", "30") // dit au client QUAND réessayer
-      .json({ error: "Trop de requêtes, réessaie dans 30 secondes" });
+app.use(async (req, res, next) => {
+  try {
+    // Avant authentification : IP. Après authentification : identifiant stable du compte.
+    const identifier = req.user?.id || req.ip;
+    const allowed = await isAllowed(identifier);
+    if (!allowed) {
+      return res
+        .status(429)
+        .set("Retry-After", "60")
+        .json({ error: "Trop de requêtes, réessaie plus tard" });
+    }
+    return next();
+  } catch (error) {
+    // Politique fail-closed pour les routes sensibles ; documenter le choix métier.
+    return res.status(503).json({ error: "Rate limiter indisponible" });
   }
-  next();
 });
 ```
 
@@ -242,3 +254,7 @@ Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **P
 **Critères d’acceptation :** La clé de limitation est justifiée ; les rafales et fenêtres sont expliquées ; la réponse indique quand réessayer ; les limites sont testées sur plusieurs tenants.
 
 **Transfert obligatoire :** Une charge abusive partage la même clé qu’un client sain : propose une isolation plus pertinente.
+
+<!-- AF-RATE-LIMIT-ATOMIC-ASYNC -->
+
+**Important :** le middleware est asynchrone et doit `await` `isAllowed`. Pour protéger `/login` avant que `req.user` existe, la clé doit être fondée sur `req.ip` (avec prise en compte correcte des proxies de confiance) ; après authentification, une clé par compte peut être ajoutée. Une politique distincte peut combiner IP, compte et route. La stratégie fail-closed ci-dessus renvoie `503` si Redis est indisponible ; une autre politique doit être explicitement justifiée selon le risque, jamais implicite.

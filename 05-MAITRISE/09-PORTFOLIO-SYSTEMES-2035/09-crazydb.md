@@ -21,17 +21,17 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 ## Parcours de préparation obligatoire
 
-Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0--socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
+Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0-socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
 
 Ce projet est le plus bas niveau du portefeuille. Ne le commence pas parce que tu sais faire des requêtes SQL.
 
 1. [Structures de données](../../02-CONSTRUCTION/06-DATA-STRUCTURES/README.md), [algorithmes](../../02-CONSTRUCTION/07-ALGORITHMS/README.md), [memory/performance](../../02-CONSTRUCTION/05-MEMORY-PERFORMANCE/README.md).
-2. [Streams/buffers](../../02-CONSTRUCTION/13-RUNTIME-ENV/03-streams_buffers.md), [filesystem](../../02-CONSTRUCTION/13-RUNTIME-ENV/06_node_cli_scripts/03-filesystem_ops.md), [worker threads](../../02-CONSTRUCTION/13-RUNTIME-ENV/06A-worker_threads.md).
+2. [Streams/buffers](../../02-CONSTRUCTION/13-RUNTIME-ENV/03-streams_buffers.md), [filesystem](../../02-CONSTRUCTION/13-RUNTIME-ENV/06C-node-cli-scripts/03-filesystem_ops.md), [worker threads](../../02-CONSTRUCTION/13-RUNTIME-ENV/06A-worker_threads.md).
 3. [Databases](../01-DATABASES/README.md), [du single-node au cluster](../01-DATABASES/08-du_single_node_au_cluster.md), [Lab transactions 65](../../06-ANNEXES-TRANSVERSES/65-LAB-DONNEES-API-ET-TRANSACTIONS.md).
 4. [Distributed primitives](../02-SCALABILITY/03-distributed_primitives.md) et [Distributed Arena](../../02-CONSTRUCTION/02-MINI-PROJECTS/16_distributed_arena/README.md).
 5. Choisis **Go ou Rust** et suis le [pont langage système 09](LECONS-PONTS/09-langage-systeme-go-rust.md) jusqu'à sa preuve `READY` (les ressources officielles de langage font partie du parcours). Étudie ensuite [WAL/MVCC/Raft : pont 04](LECONS-PONTS/04-stockage-wal-mvcc-raft.md).
 
-**Gate d'entrée :** tu as un verdict `READY` documenté du [pont Go/Rust 09](LECONS-PONTS/09-langage-systeme-go-rust.md), tu peux écrire et relire des bytes, définir un format de record, gérer erreur I/O, écrire des tests de concurrence et expliquer commit/flush/recovery. `Pont lu` ou `code généré qui compile` ne suffit pas. Si tu n'as pas pratiqué Go ou Rust, diffère CrazyDB. Raft est une extension après WAL local et transactions ; ce n'est pas une étape V1. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-3--routes-spécialisées).
+**Gate d'entrée :** tu as un verdict `READY` documenté du [pont Go/Rust 09](LECONS-PONTS/09-langage-systeme-go-rust.md), tu peux écrire et relire des bytes, définir un format de record, gérer erreur I/O, écrire des tests de concurrence et expliquer commit/flush/recovery. `Pont lu` ou `code généré qui compile` ne suffit pas. Si tu n'as pas pratiqué Go ou Rust, diffère CrazyDB. Raft est une extension après WAL local et transactions ; ce n'est pas une étape V1. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-3-routes-specialisees).
 
 ## Mission
 

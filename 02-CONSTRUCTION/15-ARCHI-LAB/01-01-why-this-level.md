@@ -196,14 +196,12 @@ Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **P
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Défendre une frontière de domaine Kintana
+## Mission utile : Kintana : Diagnostiquer une douleur avant de dessiner une architecture
 
-> **Arc Capsule Corp. / DBZ :** une architecture est le plan du vaisseau et les coûts qu'il impose. Si chaque pièce doit connaître toutes les autres, le vaisseau ne décolle jamais.
+**Mission liée à « Pourquoi ce niveau existe » :** À partir d'un changement demandé sur le parcours de réservation, reconstruis le flux actuel et recueille trois faits observables : fichiers/modules touchés, étapes qui ralentissent le changement et incidents associés. Sépare les symptômes des causes supposées ; ne propose pas encore de microservice ni de nouveau découpage.
 
-**Mission liée à « Pourquoi ce niveau existe » :** Dessine le flux réel d'une création de demande. Identifie les invariants, propriétaires de données et dépendances ; compare monolithe modulaire et service séparé dans un ADR. Simule une évolution et mesure le nombre de composants touchés.
+**Livrable :** carte du flux actuel, tableau symptôme / preuve / hypothèse, et définition mesurable de ce qui rendrait le prochain changement moins coûteux.
 
-**Livrable :** diagramme de composants/flux, ADR avec deux options, contrat de frontière et test de changement.
+**Critères d’acceptation :** chaque hypothèse renvoie à une observation ou est explicitement marquée non vérifiée ; les coûts visibles sont chiffrés ou mesurables ; aucune solution n'est présentée comme démontrée avant le diagnostic.
 
-**Critères d’acceptation :** la frontière possède une responsabilité claire ; les données ont un propriétaire ; le coût d'exploitation est explicite ; le microservice n'est pas choisi par prestige ; une condition de révision est écrite.
-
-**Transfert obligatoire :** Le nombre d'équipes ou le volume double. Indique quel signal justifierait de séparer un composant et quel coût tu acceptes.
+**Transfert obligatoire :** refais le diagnostic avec un autre parcours (annulation ou notification) et indique quelles hypothèses ne se transfèrent pas.

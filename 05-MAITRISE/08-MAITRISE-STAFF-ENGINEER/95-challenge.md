@@ -42,29 +42,29 @@ Chaque section contient au moins une affirmation vérifiable, un chiffre daté a
 - Joindre le contrôle transversal G8 `PREUVES/EVALUATION-IA.md`, même si le système ne contient pas de brique IA ; dans ce cas, justifier explicitement pourquoi le risque IA est absent ou hors périmètre.
 - Joindre `STANDARDS-AGENTS.md` uniquement si le système utilise des agents ou automatisations autonomes qui prennent ou exécutent des décisions/actions. Si aucun n’est utilisé, `EVALUATION-IA.md` documente le non-usage, son périmètre et les contrôles conservés. Un assistant sous validation humaine directe ne déclenche pas automatiquement cette pièce.
 - Joindre `PREUVES/IA-EN-PROD.md` uniquement si une brique IA est réellement en production.
-- Annexer `04-BELIEF-CHANGE-LOG.md`, `05-BIAS-LOG.md`, `BAD-NEWS-UPWARD` et au moins deux épreuves de `05-PSYCHOLOGIE-DECISION/`.
+- Annexer les copies apprenant `PREUVES/04-BELIEF-CHANGE-LOG.md` et `PREUVES/05-BIAS-LOG.md`, établies depuis les modèles source `05-PSYCHOLOGIE-DECISION/03-BELIEF-CHANGE-LOG.md` et `04-BIAS-LOG.md`, ainsi que `BAD-NEWS-UPWARD` et au moins deux autres épreuves de `05-PSYCHOLOGIE-DECISION/`.
 - Inclure une date de revisite et le fichier `04-revisite_datee.md`.
 
 Ne coche pas une pièce inexistante. Si un nom ou chemin varie dans ton dépôt, donne le chemin réel et vérifie qu'il ouvre bien le bon artefact.
 
-## 3. Les trois tensions
+## 3. Les trois axes d'analyse des tensions
 
-Pour chaque tension, indique les deux objectifs qui se contredisent, leurs unités, la période et la source. Par exemple :
+Examine les trois axes canoniques ci-dessous, mais ne présume pas qu'une contradiction existe dans chaque contexte. Pour chaque axe, apporte les deux faits comparables et leurs sources si une tension est observée. Si elle n'est pas applicable ou pas démontrée, écris `NON APPLICABLE` ou `NON DÉMONTRÉE`, justifie cette conclusion et formule, si pertinent, une hypothèse à tester. Tu peux remplacer un axe non pertinent par une tension réelle entre deux autres familles. Une hypothèse n'est pas une mesure et ne compte pas comme tension prouvée.
 
 | Tension | Côté A | Côté B | Arbitrage attendu |
 |---|---:|---:|---|
 | Délai / fiabilité | temps de livraison médian | taux d'échec de release | quel risque accepte-t-on et pour combien de temps ? |
 | Coût / résilience | coût mensuel réel | durée/fréquence d'indisponibilité | quel niveau de redondance est justifié ? |
-| Autonomie / contrôle | temps de self-service | exceptions ou incidents de sécurité | quels garde-fous sont nécessaires ? |
+| Autonomie / contrôle (S5 × S6) | Si le système utilise un agent/automatisme autonome : part des actions autorisées sans approbation, avec périmètre et source | interventions humaines, exceptions, erreurs ou délai d'escalade sur le même périmètre ; si aucun agent autonome : niveau d'automatisation des tâches et décisions qui restent soumises à approbation, à partir de la procédure réellement décrite | quelles frontières d'autonomie, validations, traces et possibilités d'arrêt sont nécessaires ? |
 
-Ce tableau est un exemple de structure, pas des données à recopier. Utilise les mesures de ton fil rouge. Une tension sans unité, sans période ou sans conséquence n'est pas recevable.
+Ce tableau est un exemple de structure, pas des données à recopier. Utilise les mesures de ton fil rouge. Pour un système sans agent autonome, n'en invente pas : analyse les frontières d'automatisation existantes, les validations humaines, la livraison, le rollback et la reprise. Documente explicitement le non-usage dans `PREUVES/EVALUATION-IA.md`. Une tension déclarée comme observée sans unités, période, périmètre et sources comparables n'est pas recevable.
 
 ## 4. Contrôle de qualité avant remise
 
 - [ ] Les dix sections existent et suivent le plan.
 - [ ] Chaque chiffre possède une date, une unité, une méthode et une source.
 - [ ] Les liens relatifs ouvrent les artefacts cités ; les chemins ne sont pas fictifs.
-- [ ] Les trois tensions présentent des mesures des deux côtés.
+- [ ] Les trois axes ont un statut explicite : tension étayée, non applicable ou non démontrée. Toute tension déclarée observée présente des mesures comparables des deux côtés ; aucune contradiction n'est inventée pour remplir le dossier.
 - [ ] Au moins un échec, une hypothèse infirmée ou un coût sous-estimé est analysé sans maquillage.
 - [ ] Les options écartées et les conditions qui feraient changer la décision sont explicites.
 - [ ] Le dossier distingue mesure observée, estimation, hypothèse et opinion.
@@ -79,7 +79,7 @@ Ce tableau est un exemple de structure, pas des données à recopier. Utilise le
 | Architecture et frontières | 4 | responsabilités, dépendances, contrat et limites justifiés |
 | Coût et arbitrages | 4 | hypothèses explicites, alternatives comparées, coût de sortie inclus |
 | Fiabilité et exploitation | 4 | SLI/SLO, budgets, RPO/RTO, rollback et signaux observables cohérents |
-| Trois tensions | 4 | deux côtés mesurés, unités et période comparables, coût assumé |
+| Analyse des tensions | 4 | axes examinés honnêtement ; toute tension revendiquée repose sur deux côtés comparables ; non-applicabilité et absence de preuve sont justifiées |
 | Transfert | 2 | changement de langage/fournisseur réellement essayé, limites documentées |
 | Transformation décisionnelle | 4 | contradiction sourcée, biais identifié, réponse modifiée et compensation vérifiable |
 | Traçabilité et lisibilité | 3 | références ouvrables, dates, artefacts, dossier autonome |

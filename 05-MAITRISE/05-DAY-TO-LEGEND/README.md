@@ -6,7 +6,7 @@ route: complete
 
 # Module 05-MAITRISE/05-DAY-TO-LEGEND : Day-to-Legend
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../04-EPREUVE/05-CAPSTONE-ARENA/README.md) | [Contrôle d'entrée](00-PREREQUIS.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../04-EPREUVE/05-CAPSTONE-ARENA/README.md) | [Contrôle d'entrée](00-PREREQUIS.md)
 
 **Ce niveau réutilise :** [12-CAPSTONE-ARENA](../../04-EPREUVE/05-CAPSTONE-ARENA/04-evaluation-grid.md) : la grille d'evaluation chiffrée, réutilisee comme modèle pour batir ton propre suivi de progression.
 
@@ -21,7 +21,7 @@ de parcours. Les questions ci-dessus vérifient que les acquis de collaboration 
 sont encore mobilisables. Les critères détaillés sont centralisés dans
 [`00-PREREQUIS.md`](00-PREREQUIS.md).
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que c'est
 

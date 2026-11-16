@@ -80,6 +80,14 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 
 <!-- PIECES-MODULE:fin -->
 
+### Dossier de scénarios et exercice 17A
+
+`17_scenarios/` regroupe les cas de debugging consultables dans leurs propres fichiers. `17A-EXO_VERIFICATION.md` est un exercice séparé qui utilise les notions du module ; il ne s'agit ni d'un fichier contenu dans le sous-dossier ni d'une étape « 17 bis » de la liste des scénarios.
+
+### Fichier de support : fixture, pas une leçon numérotée
+
+`flaky-random-branch-fixture.js` est un fichier JavaScript utilisé par les exercices de reproduction déterministe. Il ne constitue pas une leçon `11A`. `11-heisenbug_arena.md` est uniquement une redirection historique vers la ressource désormais maintenue dans Edge Cases.
+
 ## Contenu du dossier
 
 <!-- CONTENU-DOSSIER:debut -->

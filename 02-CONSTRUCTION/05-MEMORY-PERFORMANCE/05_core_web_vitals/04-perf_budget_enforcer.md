@@ -1,6 +1,6 @@
 ---
 stability: intemporel
-last_reviewed: 2026-07
+last_reviewed: 2026-11
 depends_on_vendor: false
 acte: comprendre
 cognitive_level: L3
@@ -37,7 +37,7 @@ Ton site est rapide aujourd'hui.
 Dans 6 mois, quelqu'un a ajouté une librairie d'analytics, un widget de chat, trois fonts Google, et un carousel. LCP : 4.2s. CLS : 0.31. Le score Lighthouse est passé de 94 à 61 sans que personne s'en aperçoive.
 
 Le budget de performance, c'est le garde du corps que tu mets en place avant que ça arrive.
-Il bloque le build si une métrique dépasse le seuil. Pas un warning. Un blocage.
+Une assertion configurée en `error` bloque le build ; une assertion en `warn` signale le dépassement sans faire échouer le contrôle. Le niveau doit être explicite pour chaque règle.
 
 Sans ça, la perf se dégrade en silence : chaque PR est "juste un petit truc", et au bout de 20 PRs t'as un site qui charge en 6 secondes.
 
@@ -48,11 +48,12 @@ Sans ça, la perf se dégrade en silence : chaque PR est "juste un petit truc", 
 Un budget de performance c'est un ensemble de seuils que ton projet ne peut pas dépasser.
 
 ```text
-LCP    <= 2.5s
-INP    <= 200ms
-CLS    <= 0.1
-JS bundle <= 200kb (gzipped)
-Score   >= 90
+LCP (labo)   <= 2.5s
+TBT (labo)   <= 200ms
+CLS (labo)   <= 0.1
+INP (terrain) <= 200ms, suivi séparément via CrUX/RUM
+JS bundle gzip <= 200 KiB
+Score Performance Lighthouse >= 90 (version et environnement fixés)
 ```
 
 Ce n'est pas une recommandation. C'est un contrat.
@@ -93,29 +94,56 @@ module.exports = {
     collect: {
       // l'URL à auditer:en local ou sur un serveur de preview
       url: ["http://localhost:3000", "http://localhost:3000/about"],
-      numberOfRuns: 3, // on fait la moyenne sur 3 runs pour éviter les faux positifs
+      numberOfRuns: 3, // plusieurs runs réduisent l'effet d'une seule mesure
     },
     assert: {
+      // Chaque assertion mesurée fixe explicitement sa méthode d’agrégation à la médiane ;
+      // les trois passages réduisent l’effet d’une mesure isolée sans créer une garantie de stabilité.
       assertions: {
-        // Core Web Vitals:les seuils Google "Good"
-        "largest-contentful-paint": ["error", { maxNumericValue: 2500 }],
-        "cumulative-layout-shift": ["error", { maxNumericValue: 0.1 }],
-        "total-blocking-time": ["error", { maxNumericValue: 200 }],
+        // Métriques de laboratoire prises en charge par Lighthouse CI.
+        "largest-contentful-paint": [
+          "error",
+          { maxNumericValue: 2500, aggregationMethod: "median" },
+        ],
+        "cumulative-layout-shift": [
+          "error",
+          { maxNumericValue: 0.1, aggregationMethod: "median" },
+        ],
+        "total-blocking-time": [
+          "error",
+          { maxNumericValue: 200, aggregationMethod: "median" },
+        ],
+        // INP est une métrique terrain : ne pas prétendre la mesurer ici via TBT.
 
         // taille du bundle JS:ce qui se paye à chaque chargement
-        "resource-summary:script:size": ["error", { maxNumericValue: 204800 }], // 200kb
+        "resource-summary:script:size": [
+          "error",
+          { maxNumericValue: 204800, aggregationMethod: "median" },
+        ], // 200 KiB
 
         // score global:le plancher en dessous duquel on ne descend pas
-        "categories:performance": ["error", { minScore: 0.9 }],
-        "categories:accessibility": ["warn", { minScore: 0.9 }],
+        "categories:performance": [
+          "error",
+          { minScore: 0.9, aggregationMethod: "median" },
+        ],
+        "categories:accessibility": [
+          "warn",
+          { minScore: 0.9, aggregationMethod: "median" },
+        ],
       },
     },
     upload: {
-      target: "temporary-public-storage", // stocke les rapports en ligne pendant 7 jours
+      target: "filesystem", // stockage local : pas de rapport public par URL
     },
   },
 };
 ```
+
+### Confidentialité des rapports
+
+La configuration ci-dessus utilise `target: "filesystem"` : les rapports restent dans le dossier local `.lighthouseci` et ne sont pas envoyés à un stockage public. Si tu choisis `target: "temporary-public-storage"`, toute personne qui possède l'URL du rapport peut le consulter ; les rapports sont temporaires et supprimés après quelques jours. N'y envoie pas de pages authentifiées, de données personnelles, de chemins internes sensibles ni de contenu confidentiel. Pour conserver des rapports privés, utilise le stockage local ou un serveur Lighthouse CI privé dont les accès sont configurés.
+
+Référence : [documentation officielle Lighthouse CI : choix de la cible d'upload](https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/configuration.md#target).
 
 Lancer l'audit :
 
@@ -133,46 +161,38 @@ Si une assertion échoue, la commande sort avec un code non-zéro : le CI le dé
 ```yaml
 # .github/workflows/perf-budget.yml
 name: Performance Budget
-
 on:
- pull_request:
-  branches: [main]
- push:
-  branches: [main]
-
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
 jobs:
- lighthouse:
-  runs-on: ubuntu-latest
-
-  steps:
-   - uses: actions/checkout@v4
-
-   - name: Setup Node
-    uses: actions/setup-node@v4
-    with:
-     node-version: "22.23.4"
-
-   - name: Install dependencies
-    run: npm ci
-
-   - name: Build
-    run: npm run build
-
-   - name: Start server
-    run: npm run start & # démarre en background
-    env:
-     PORT: 3000
-
-   - name: Wait for server
-    run: npx wait-on http://localhost:3000 --timeout 30000
-
-   - name: Run Lighthouse CI
-    run: npx lhci autorun
-    env:
-     LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.23.4"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Start server
+        run: npm run start > server.log 2>&1 &
+        env:
+          PORT: 3000
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000 --timeout 30000
+      - name: Run Lighthouse CI
+        run: npx lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 ```
 
-Résultat : chaque PR affiche un commentaire avec les scores et bloque le merge si un seuil est dépassé.
+Résultat : l'intégration officielle Lighthouse CI publie des status checks GitHub et des liens vers les rapports. Elle ne garantit pas à elle seule un commentaire récapitulatif dans le fil de chaque PR ; ajoute une action séparée si ce commentaire est un besoin explicite.
 
 ```text
 PR #47 : "Add analytics widget"
@@ -191,7 +211,7 @@ PR #47 : "Add analytics widget"
 ## 4) BUDGET PAR RESSOURCE AVEC BUNDLESIZE
 
 Lighthouse mesure les métriques runtime. `bundlesize` mesure les fichiers statiques.
-Les deux se complètent : l'un voit le résultat final, l'autre voit les fichiers jutsus.
+Les deux se complètent : l'un mesure les résultats d'audit, l'autre contrôle le poids des fichiers livrés.
 
 ```bash
 npm install -D bundlesize
@@ -204,7 +224,7 @@ Dans `package.json` :
   "bundlesize": [
     {
       "path": "./dist/js/*.js",
-      "maxSize": "200 kB" // gzipped par défaut
+      "maxSize": "200 kB"
     },
     {
       "path": "./dist/css/*.css",
@@ -212,7 +232,8 @@ Dans `package.json` :
     },
     {
       "path": "./dist/images/*.{jpg,png,webp}",
-      "maxSize": "100 kB"
+      "maxSize": "100 kB",
+      "compression": "none"
     }
   ],
   "scripts": {
@@ -236,75 +257,105 @@ npm run size
 Avant de pousser, tu veux savoir si tu vas casser le budget.
 
 ```js
+// Enregistrer ce fichier sous scripts/check-budget.js.
 // Scofield check : est-ce que le plan tient avant d'exécuter ?
 
-const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
+const zlib = require("zlib");
 
 const BUDGET = {
-  lcp: 2500, // ms
+  lcp: 2500, // ms, laboratoire
   cls: 0.1,
-  tbt: 200, // ms
-  jsBundleKb: 200, // kb gzipped
+  tbt: 200, // ms, laboratoire ; proxy imparfait de la réactivité
+  jsGzipKiB: 200,
+  cssGzipKiB: 30,
   score: 90,
 };
 
-function checkBundleSize() {
-  const distDir = path.join(__dirname, "../dist/js");
-
-  if (!fs.existsSync(distDir)) {
-    console.error("dist/ introuvable : lance le build d'abord");
-    process.exit(1);
+function listFilesRecursively(directory) {
+  if (!fs.existsSync(directory)) {
+    throw new Error(
+      `Dossier introuvable : ${directory}. Lance le build d'abord.`,
+    );
   }
 
-  const files = fs.readdirSync(distDir).filter((f) => f.endsWith(".js"));
-  let totalBytes = 0;
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const fullPath = path.join(directory, entry.name);
+    return entry.isDirectory() ? listFilesRecursively(fullPath) : [fullPath];
+  });
+}
 
-  for (const file of files) {
-    const stats = fs.statSync(path.join(distDir, file));
-    totalBytes += stats.size;
+function totalGzipBytes(files) {
+  return files.reduce((sum, file) => {
+    const source = fs.readFileSync(file);
+    return sum + zlib.gzipSync(source).byteLength;
+  }, 0);
+}
+
+function checkStaticBudgets() {
+  const distDir = path.resolve(__dirname, "../dist");
+  const allFiles = listFilesRecursively(distDir);
+  const groups = [
+    { label: "JavaScript", extension: ".js", budget: BUDGET.jsGzipKiB },
+    { label: "CSS", extension: ".css", budget: BUDGET.cssGzipKiB },
+  ];
+
+  let ok = true;
+  for (const group of groups) {
+    const files = allFiles.filter((file) =>
+      file.toLowerCase().endsWith(group.extension),
+    );
+    if (files.length === 0) {
+      throw new Error(
+        `Aucun fichier ${group.extension} trouvé dans dist/ : vérifie le build et les chemins.`,
+      );
+    }
+    const actualKiB = totalGzipBytes(files) / 1024;
+    const passed = actualKiB <= group.budget;
+    console.log(
+      `[${passed ? "PASS" : "FAIL"}] ${group.label} gzip agrégé : ${actualKiB.toFixed(1)} KiB (budget : ${group.budget} KiB; fichiers : ${files.length})`,
+    );
+    if (!passed) ok = false;
   }
-
-  // approximation gzip : ~30% de la taille réelle
-  const estimatedGzipKb = Math.round((totalBytes * 0.3) / 1024);
-  const status = estimatedGzipKb <= BUDGET.jsBundleKb ? "PASS" : "FAIL";
-
-  console.log(
-    `[${status}] JS bundle: ~${estimatedGzipKb}kb (budget: ${BUDGET.jsBundleKb}kb)`,
-  );
-
-  return status === "PASS";
+  return ok;
 }
 
 function printBudgetReminder() {
   console.log("\n--- BUDGET DE PERFORMANCE ---");
-  console.log(`LCP    <= ${BUDGET.lcp}ms`);
-  console.log(`CLS    <= ${BUDGET.cls}`);
-  console.log(`TBT    <= ${BUDGET.tbt}ms`);
-  console.log(`JS bundle <= ${BUDGET.jsBundleKb}kb`);
-  console.log(`Score   >= ${BUDGET.score}`);
+  console.log(`LCP labo <= ${BUDGET.lcp}ms`);
+  console.log(`CLS labo <= ${BUDGET.cls}`);
+  console.log(`TBT labo <= ${BUDGET.tbt}ms`);
+  console.log(`JS gzip agrégé <= ${BUDGET.jsGzipKiB} KiB`);
+  console.log(`CSS gzip agrégé <= ${BUDGET.cssGzipKiB} KiB`);
+  console.log(`Score Lighthouse >= ${BUDGET.score}`);
+  console.log("INP terrain : surveillé séparément via CrUX/RUM.");
   console.log("-----------------------------\n");
 }
 
-printBudgetReminder();
-const bundleOk = checkBundleSize();
-
-if (!bundleOk) {
-  console.error(
-    '\nBudget bundle dépassé. Lance "npm run build -- --analyze" pour identifier la source.',
-  );
-  process.exit(1);
+try {
+  printBudgetReminder();
+  if (!checkStaticBudgets()) {
+    console.error(
+      "\nBudget statique dépassé. Inspecte les fichiers responsables avant de modifier le seuil.",
+    );
+    process.exitCode = 1;
+  } else {
+    console.log(
+      "\nBudgets statiques OK. Lance Lighthouse CI pour les métriques de laboratoire.",
+    );
+  }
+} catch (error) {
+  console.error(error instanceof Error ? error.message : String(error));
+  process.exitCode = 1;
 }
-
-console.log("\nBudget bundle OK. Lance lhci pour les métriques runtime.");
 ```
 
 ---
 
 ## 6) QUAND UN SEUIL SE CASSE : PROCESSUS DE DÉCISION
 
-Le budget bloque une PR. Deux options, pas trois :
+Le budget peut bloquer une PR si les assertions configurées échouent. Les seuils de terrain (comme INP) doivent être alimentés par une source RUM/CrUX distincte, et leur politique de blocage doit être définie séparément :
 
 ```text
 Budget cassé
@@ -368,8 +419,8 @@ import AnalyticsSuite from "analytics-suite"; // 89kb gzipped
 
 - lit les fichiers du dossier `dist/`
 - calcule la taille totale des `.js` et `.css`
-- applique une estimation gzip (facteur 0.3)
-- compare aux seuils du budget
+- calcule la taille gzip réelle de chaque fichier avec `zlib.gzipSync`, puis additionne les tailles
+- compare séparément JS et CSS aux seuils du budget
 - sort avec `process.exit(1)` si dépassement
 - affiche un message clair avec quelle catégorie dépasse et de combien
 
@@ -377,10 +428,71 @@ import AnalyticsSuite from "analytics-suite"; // 89kb gzipped
 
 ---
 
+## CORRIGÉS DE RÉFÉRENCE
+
+Les valeurs de budgets ci-dessous sont des décisions de scénario à ajuster à l'application et à son objectif. Elles ne sont pas des seuils universels pour tous les produits.
+
+### Corrigé : EXO 1 : le contrat de Scofield
+
+Un profil cible final cohérent peut être : LCP labo ≤ 2 500 ms, CLS ≤ 0,10, TBT ≤ 200 ms, JS gzip agrégé ≤ 200 KiB et score Lighthouse ≥ 90. Pour les données de terrain, suivre séparément LCP/INP/CLS au 75e percentile ; ne pas convertir TBT en INP.
+
+La demande de deux niveaux (`warn` et `error`) appelle une précision : Lighthouse CI ne prend qu'une assertion par audit et par configuration. Ne duplique pas la clé d'un même audit dans l'objet JavaScript/JSON en espérant deux seuils : une clé répétée sera écrasée. Deux options valides :
+
+1. utiliser un profil `warn` durant les premiers sprints puis promouvoir la même assertion à `error` au sprint final ;
+2. ajouter un contrôle local personnalisé avec deux seuils explicites, par exemple `warn` au-dessus de 2 500 ms et `error` au-dessus de 4 000 ms pour LCP.
+
+Le TBT à 310 ms est un problème important : il dépasse le budget de scénario de 200 ms et peut signaler du travail bloquant sur le thread principal. Mais il n'est pas automatiquement « le plus urgent » : le LCP à 2,8 s, le bundle JS à 287 KiB et les parcours utilisateurs doivent être comparés avec la trace et les données terrain. Le TBT est un indicateur de laboratoire, pas une mesure directe de l'INP.
+
+### Corrigé : EXO 2 : l'analytics qui tue le score
+
+Deux stratégies complémentaires : charger la bibliothèque seulement au moment où la fonction analytics est réellement nécessaire via `import()` ; ou déplacer un traitement CPU lourd vers un Web Worker. Différer le chargement ne suffit pas si l'import est immédiatement suivi d'un gros calcul dans le gestionnaire d'interaction.
+
+```js
+let analyticsModulePromise;
+
+function loadAnalyticsModule() {
+  analyticsModulePromise ??= import("analytics-suite");
+  return analyticsModulePromise;
+}
+
+button.addEventListener("click", async () => {
+  showImmediateFeedback();
+  try {
+    const analyticsModule = await loadAnalyticsModule();
+    // `track` représente l'export documenté par la bibliothèque choisie.
+    if (typeof analyticsModule.track !== "function") {
+      throw new TypeError(
+        "L'export track() attendu n'existe pas dans analytics-suite.",
+      );
+    }
+    analyticsModule.track("ranking_opened");
+  } catch (error) {
+    console.error("Analytics indisponible :", error);
+  }
+});
+```
+
+Exemple de garde-fou pour l'entrée dédiée, en plus du budget de bundle principal :
+
+```json
+{
+  "bundlesize": [
+    { "path": "./dist/js/main.js", "maxSize": "200 kB" },
+    { "path": "./dist/js/analytics-*.js", "maxSize": "90 kB" }
+  ]
+}
+```
+
+`bundlesize` vérifie chaque fichier qui correspond au motif. Ce seuil ne mesure pas la somme globale de tous les chunks ; le script local de la section 5 répond à ce besoin agrégé.
+
+### Corrigé : EXO 3 : script de guardrail local
+
+Le script complet de la section 5 est le corrigé de référence : il parcourt récursivement `dist/`, calcule les tailles gzip avec zlib pour les fichiers JavaScript et CSS, compare chaque agrégat au budget et renvoie un code non nul en cas de dépassement. Un ratio fixe de 0,3 serait seulement une approximation et ne doit pas être présenté comme une taille gzip mesurée.
+
 ## RÉSUMÉ
 
-Un budget de performance sans CI, c'est une règle que personne ne respecte.
-Le flow : tu définis les seuils dans `lighthouserc.js`, tu intègres dans GitHub Actions, le build bloque si les métriques dépassent.
+Un budget automatisé rend les régressions visibles à chaque changement.
+Le flow : tu définis les seuils dans `lighthouserc.js`, tu intègres Lighthouse CI dans GitHub Actions, et seules les assertions `error` bloquent le workflow ; les assertions `warn` restent des alertes.
 `bundlesize` surveille les fichiers statiques. Lighthouse CI surveille les métriques runtime. Les deux ensemble couvrent tout.
 Quand un budget est cassé : tu réduis la source ou tu révises le seuil en documentant pourquoi. Jamais en silence.
 
@@ -421,3 +533,11 @@ Dans [Kintana](../../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), 
 **Critères d’acceptation :** Le seuil dérive d’un objectif produit ; le bruit est évalué ; les exceptions ont une échéance ; une mesure de laboratoire n’est pas assimilée au terrain.
 
 **Transfert obligatoire :** Le pipeline échoue de façon intermittente : améliore la stabilité de mesure avant d’assouplir silencieusement le seuil.
+
+## RÉFÉRENCES OFFICIELLES
+
+Sources consultées le 11 novembre 2026 :
+
+- GoogleChrome : [Lighthouse performance scoring](https://developer.chrome.com/docs/lighthouse/performance/performance-scoring) : métriques et pondérations par version.
+- GoogleChrome : [Lighthouse CI configuration](https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/configuration.md) : assertions, agrégation et budgets de ressources.
+- `bundlesize` : [README du projet](https://github.com/siddharthkp/bundlesize) : configuration, compression gzip par défaut et comparaison fichier par fichier.

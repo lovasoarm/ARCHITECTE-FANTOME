@@ -6,7 +6,7 @@ route: complete
 
 # Module 03-PILOTAGE/09-TEAM-QUEST : Team Quest
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../08-PRODUIT-COUT-ROI/README.md) | [Niveau suivant](../10-TEAM-CRAFT/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../08-PRODUIT-COUT-ROI/README.md) | [Niveau suivant](../10-TEAM-CRAFT/README.md)
 
 **Ce niveau réutilise :** [08-ROADMAP-RUN](../01-ROADMAP-RUN/04-tracking-reality.md) : les signaux de derive, réutilises pour reperer un desaccord d'equipe avant qu'il bloque un jalon.
 
@@ -22,7 +22,7 @@ et de Roadmap Run, pas le contenu de Team Quest.
 celui de [Roadmap Run](../01-ROADMAP-RUN/90-grimoire.md). Roadmap Run est un prérequis amont
 réutilisé, pas le précédent immédiat dans l'ordre du bloc.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que c'est
 

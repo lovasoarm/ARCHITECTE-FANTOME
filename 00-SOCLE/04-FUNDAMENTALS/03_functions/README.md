@@ -16,24 +16,25 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 > Sommaire de `00-SOCLE/04-FUNDAMENTALS/03_functions`.
 
-## Contenu du dossier
+## Ordre de travail : en plusieurs retours
 
-Commence par Function essentials. Les fonctions comme valeurs et les callbacks supposent également Data Basics. Les fabriques de fonctions utilisent les closures : reporte-les après le module Scope.
+Ne lis pas tout ce dossier d'une traite. La route canonique du module parent place les notions dans cet ordre :
 
-<!-- CONTENU-DOSSIER:debut -->
+1. **Avant Types :** lis [`01-function_essentials.md`](01-function_essentials.md), puis réalise le [micro-projet sans framework : calculateur de frais de livraison](50-function_essentials_minimini_projet.md). Tu dois savoir déclarer et appeler une fonction, utiliser paramètres, arguments et `return`.
+2. **Après Types :** reviens à [`02-function_basics.md`](02-function_basics.md), puis à [`03-hof_map_filter.md`](03-hof_map_filter.md). Réalise les missions **La Team Functions** et **La Team HOF** directement dans les leçons. Elles utilisent les types et les tableaux déjà rencontrés dans Data Basics.
+3. **Après Scope et les closures :** lis [`04-function_factory.md`](04-function_factory.md) et réalise la mission **La Team Factory**. Ne commence pas les fabriques de fonctions avant d'avoir étudié les closures.
 
-- [Function essentials : écrire et appeler une fonction](01-function_essentials.md)
-- [Pratique : calculateur de total](50-function_essentials_minimini_projet.md)
-- [Functions as objects : une fonction est une valeur](02-function_basics.md) : réalise la mission locale de la leçon.
-- **Projet Portfolio différé (React/JSX) :** [ProjectCard](50-function_basics_minimini_projet.md). Ce projet n'est pas la pratique obligatoire de la leçon et ne bloque pas Fundamentals ; reporte-le jusqu'à connaître les prérequis React/JSX et l'environnement du Portfolio.
-- [Higher-order functions : map, filter et reduce](03-hof_map_filter.md) : réalise la mission locale de la leçon.
-- **Projet Portfolio différé (React/Next.js) :** [catalogue de projets](51-hof_map_filter_minimini_projet.md). Ce projet n'est pas la pratique obligatoire de la leçon et ne bloque pas Fundamentals ; reporte-le jusqu'à connaître les prérequis React/Next.js et l'environnement du Portfolio.
-- **Après le module Scope : closures acquises :**
-- [Function factory : usine à fonctions](04-function_factory.md) : réalise la mission locale après Scope.
-- [Pratique Portfolio différée : Function factory](52-function_factory_minimini_projet.md) : à reprendre après Scope, les closures et les prérequis du projet.
-- [Page verrouillée](90-grimoire.md)
+### Extensions Portfolio différées
 
-<!-- CONTENU-DOSSIER:fin -->
+Les fichiers ci-dessous ne sont pas les pratiques de première passe. Ils supposent un projet Portfolio et des outils ou notions d'interface qui ne sont pas requis pour apprendre les fonctions :
+
+- [ProjectCard avec React/JSX](51-function_basics_minimini_projet.md) ;
+- [Catalogue avec React/Next.js](52-hof_map_filter_minimini_projet.md) ;
+- [Function factory dans le Portfolio](53-function_factory_minimini_projet.md).
+
+Tu peux les laisser de côté sans bloquer Fundamentals. La pratique locale des leçons suffit pour cette première progression ; reprends ces extensions seulement lorsque leurs prérequis sont réellement acquis.
+
+> **Repère de numérotation :** `50` est ici le micro-projet local sans framework ; `51` à `53` sont les extensions Portfolio. Ce sont des identifiants de fichiers, pas des niveaux ni des étapes successives. La route canonique du README parent définit quand revenir dans ce dossier.
 
 <!-- AF-KINTANA-MODULE -->
 

@@ -8,6 +8,8 @@ route: complete
 
 # Grimoire : `03-REFERENTIEL`
 
+> Rappel : ce grimoire simplifie via analogies. Lire d’abord [`91-18_GRIMOIRE_CODE_HONNEUR.md`](../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
+
 Temps de lecture ~2 min
 
 Acte attendu : restituer. Un grimoire ne s'apprend pas en le lisant : il se récite, puis se

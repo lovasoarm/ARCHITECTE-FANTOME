@@ -91,7 +91,7 @@ document, et c'est exactement le réflexe que ce niveau construit.
 
 ## Durée cible
 
-6 h, égal à la durée de ce niveau dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md). Si tu dépasses
+6 h, égal à la durée de ce niveau dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md). Si tu dépasses
 largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
 de bâcler la fin du livrable.
 

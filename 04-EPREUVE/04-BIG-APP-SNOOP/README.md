@@ -4,7 +4,7 @@ acte: comprendre
 route: complete
 ---
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent dans le bloc Épreuve](../03-REALTIME/README.md) | [Suite d'intégration conseillée, non bloquante](../05-CAPSTONE-ARENA/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Niveau précédent dans le bloc Épreuve](../03-REALTIME/README.md) | [Suite d'intégration conseillée, non bloquante](../05-CAPSTONE-ARENA/README.md)
 
 # Module 04-EPREUVE/04-BIG-APP-SNOOP : Big App Snoop
 
@@ -31,7 +31,7 @@ pour reconnaître un pattern de repository et un contrat d'appel entre services.
 centralisés dans [`00-PREREQUIS.md`](00-PREREQUIS.md). Ce README ne crée pas de second filtre
 ni de dépendance supplémentaire.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 Prérequis : terminer le module précédent du bloc, `04-EPREUVE/03-REALTIME`, ainsi que `02-CONSTRUCTION/15-ARCHI-LAB` et `02-CONSTRUCTION/20-API-DOJO`. Realtime conserve la continuité du bloc ; Archi Lab et API Dojo fournissent les connaissances techniques effectivement réutilisées ici. Le contrat complet d'entrée est dans [`00-PREREQUIS.md`](00-PREREQUIS.md).
 

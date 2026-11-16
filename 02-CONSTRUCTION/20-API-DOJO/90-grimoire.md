@@ -7,6 +7,9 @@ acte: restituer
 
 # Grimoire : Module 02-CONSTRUCTION/20-API-DOJO, API Dojo
 
+> Rappel : ce grimoire simplifie via analogies. Lire d’abord [`91-18_GRIMOIRE_CODE_HONNEUR.md`](../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
+
+
 <!-- AF-DIAGRAM:api_request -->
 
 ```text

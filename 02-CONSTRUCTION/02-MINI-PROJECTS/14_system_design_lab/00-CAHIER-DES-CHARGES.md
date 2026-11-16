@@ -8,6 +8,11 @@ route_family: core
 
 # Cahier des charges : system design lab
 
+
+<!-- AF-ADR-CONTRACT -->
+
+**Contrat ADR de ce projet : 6 décision(s) réellement indépendante(s).** Détails et périmètre exact dans [`01-RULES.md`](01-RULES.md). La quantité ne justifie jamais de fractionner artificiellement une même décision. Les ADR fournis sont des contextes de départ, pas une revue humaine ni une preuve d'adoption.
+
 Temps de lecture ~2 min
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
@@ -59,7 +64,7 @@ Un test dans `node learner-verifier.js` (auto-verif ecrite par toi) doit prouver
 
 - `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
 - `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
-- `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
+- `ADR/` : **6 décision(s) indépendante(s)**, selon le contrat canonique de `01-RULES.md`.
 - `08-POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
 - `02-TDD-JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
 

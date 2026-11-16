@@ -49,7 +49,7 @@ Le réseau de distribution est un graphe orienté pondéré. Le poids de chaque 
 (indice : qu'est-ce qui distingue une structure qu'on reconstruit d'une structure qu'on met à jour ?)
 
 **Du module `02-CONSTRUCTION/07-ALGORITHMS` (algorithms) :**
-Dijkstra pour trouver la route la plus sûre entre deux villes. Mais attention : Walter veut aussi pouvoir dire "donne-moi la route la plus sûre PARMI les 3 plus rapides", pas juste la plus sûre tout court. Ça veut dire combiner deux critères, pas juste appliquer l'algo de base tel quel.
+Le temps de trajet sert à obtenir jusqu'à trois chemins simples candidats, triés par durée croissante, avec `kShortestSimplePaths()` dans `02-CONSTRUCTION/07-ALGORITHMS/06_graph_algorithms/02-dijkstra.md`. Cette fonction restitue chaque chemin et sa distance ; elle est réservée au réseau de taille pédagogique annoncé. Calcule ensuite un score de risque documenté pour chacun des chemins, puis choisis le plus faible parmi les candidats. Définis l'unité, les sources, la fenêtre temporelle et la règle d'agrégation du risque. Si tu supposes les risques d'arêtes indépendants, justifie cette hypothèse ; sinon, utilise un score métier adapté sans prétendre calculer une probabilité exacte.
 Le knapsack (sac à dos) pour `stockOptimizer.js` : étant donné une capacité de transport limitée par route, quel mix de jutsus maximise la valeur transportée sans dépasser la capacité.
 
 **Du module `02-CONSTRUCTION/09-FUNCTIONAL-JS` (functional js) :**
@@ -75,14 +75,15 @@ Si tu codes le pipeline en impératif avec des `let` réassignés partout : ça 
 
 ```json
 [ ] Le poids des arêtes se met à jour sans reconstruction complète du graphe
-[ ] Dijkstra combine 2 critères (sécurité + rapidité), pas un seul
+[ ] Les trois chemins simples les plus courts (ou moins si le graphe en fournit moins) sont restitués avec leur séquence de nœuds et leur durée
+[ ] Le score de risque est calculé et comparé sur chacun des chemins candidats, avec hypothèses et unités explicites
 [ ] Le knapsack respecte une capacité de transport stricte
 [ ] Le pipeline de calcul est composé avec pipe/compose, zéro let réassigné en chaîne
 [ ] Un profiling réel existe sur 500 villes simulées, avec un ordre de grandeur Big O affirmé
 [ ] Le calcul de risque combiné utilise une vraie formule de probabilité, pas une moyenne
 ```
 
-Si ton profiling te dit O(n²) sur un truc qui devrait être O(n log n) : c'est pas la fin du monde, mais c'est un signal que ta structure de données du module `02-CONSTRUCTION/06-DATA-STRUCTURES` a un problème de fond, pas juste un détail d'implémentation.
+Une mesure proche de O(V²) n'indique pas, à elle seule, une mauvaise structure. Dijkstra peut utiliser une sélection linéaire des sommets non traités en O(V²), choix parfois pertinent sur un graphe dense représenté par matrice. Avec une liste d'adjacence et un tas binaire, l'ordre de grandeur usuel est O((V + E) log V). Avant de conclure, documente V, E, la densité, la représentation, la file de priorité, le volume mesuré et le protocole de benchmark. Une comparaison sans ces informations ne permet pas d'attribuer le coût à la structure de données.
 
 ---
 

@@ -103,7 +103,7 @@ Un test de crash de processus n'est pas une coupure électrique physique. Un WAL
 ## Leçons AF et prérequis
 
 - [Data Structures](../../../02-CONSTRUCTION/06-DATA-STRUCTURES/README.md), [Algorithms](../../../02-CONSTRUCTION/07-ALGORITHMS/README.md), [Memory & Performance](../../../02-CONSTRUCTION/05-MEMORY-PERFORMANCE/README.md).
-- [Runtime, streams et buffers](../../../02-CONSTRUCTION/13-RUNTIME-ENV/03-streams_buffers.md) et [filesystem](../../../02-CONSTRUCTION/13-RUNTIME-ENV/06_node_cli_scripts/03-filesystem_ops.md).
+- [Runtime, streams et buffers](../../../02-CONSTRUCTION/13-RUNTIME-ENV/03-streams_buffers.md) et [filesystem](../../../02-CONSTRUCTION/13-RUNTIME-ENV/06C-node-cli-scripts/03-filesystem_ops.md).
 - [Databases](../../01-DATABASES/README.md), [single-node to cluster](../../01-DATABASES/08-du_single_node_au_cluster.md), [transactions lab 65](../../../06-ANNEXES-TRANSVERSES/65-LAB-DONNEES-API-ET-TRANSACTIONS.md).
 - [Distributed primitives](../../02-SCALABILITY/03-distributed_primitives.md), [Distributed Arena](../../../02-CONSTRUCTION/02-MINI-PROJECTS/16_distributed_arena/README.md).
 - Choisir un seul langage système et réussir [Leçon-pont 09 : Go ou Rust](09-langage-systeme-go-rust.md).

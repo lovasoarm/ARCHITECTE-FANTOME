@@ -22,7 +22,7 @@ route: complete
 
 Le cycle API relie transport, validation, logique métier, persistance et réponse observable.
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../15-ARCHI-LAB/README.md) | [Niveau suivant](../../03-PILOTAGE/01-ROADMAP-RUN/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../19-API-CRAFT/README.md) | [Niveau suivant](../../03-PILOTAGE/01-ROADMAP-RUN/README.md)
 
 **Ce niveau réutilise :** [15-ARCHI-LAB](../15-ARCHI-LAB/03-layers-and-flow.md) : les couches UI / cas d'usage / domaine / infra, réutilisees pour situer la frontiere publique d'un contrat d'API.
 
@@ -37,7 +37,7 @@ Le cycle API relie transport, validation, logique métier, persistance et répon
 [challenge](../15-ARCHI-LAB/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au 20-API-DOJO une difficulté qui vient du 15-ARCHI-LAB.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que c'est
 

@@ -17,12 +17,23 @@ Temps de lecture ~2 min
 Règles minimales de release. Un projet qui échoue une de ces règles est marqué
 INCOMPLET par un critere binaire ecrit dans ton `02-TDD-JOURNAL.md`.
 
-## ADR_MINIMUM
+## ADR_MINIMUM : 6 décision(s) indépendantes
 
-Nombre minimum d'ADR à livrer dans `ADR/` : **6**
+Nombre minimum de décisions architecturales documentées dans `ADR/` : **6**.
 
-Un ADR unique ("choix d'architecture") ne suffit pas. Décisions latérales attendues :
-données, frontières de module, stratégie de tests, choix async, sécurité, observabilité.
+Les décisions obligatoires à couvrir sont :
+
+1. Architecture et frontières.
+2. Modèle de données et source de vérité.
+3. Cohérence et transactions.
+4. Concurrence et ordonnancement.
+5. Sécurité et modèle de menace.
+6. Exploitation, observabilité et récupération.
+
+Un ADR doit contenir contexte, contraintes, options crédibles, décision, conséquences, risques résiduels et signal de révision. Ne multiplie pas les fichiers pour une même décision ; un ADR supplémentaire n'est justifié que par une décision indépendante qui change une frontière, un contrat, un attribut de qualité, un risque ou un arbitrage structurant. Une correction éditoriale ou un changement mineur ne crée pas automatiquement un ADR.
+
+Les ADR de contexte fournis par AF ne sont pas automatiquement des preuves personnelles : l'apprenant doit vérifier, adopter ou réviser chaque décision et laisser une trace de son propre raisonnement.
+
 Template canonique : `../97-templates/03-ADR_TEMPLATE.md`.
 
 ## SPEC_DRIFT_MODE

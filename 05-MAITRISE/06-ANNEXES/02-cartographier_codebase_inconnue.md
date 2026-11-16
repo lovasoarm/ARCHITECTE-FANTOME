@@ -12,16 +12,33 @@ assessment_role: instructional_checkpoint
 
 # Cartographier une codebase inconnue en 15 minutes
 
-<!-- AF-DIAGRAM:rto_rpo -->
+<!-- AF-DIAGRAM:codebase_map -->
+
+## Repère visuel : carte minimale d'une codebase
 
 ```text
-Incident
-│<──── RTO : délai maximal de reprise ────>│
-│
-└─<── RPO : perte maximale de données ──>│
+README / package / config
+          |
+          v
+    point d'entrée
+          |
+          v
+ route / CLI / UI
+          |
+          v
+ cas d'usage / service
+      |          \
+      v           v
+ repository    API externe
+      |
+      v
+ base / fichier
+
+Tests : unitaires -> intégration -> parcours complet
+Transversal : auth, config, logs, métriques
 ```
 
-RTO mesure le temps acceptable avant reprise ; RPO mesure la quantité de données acceptable à perdre.
+Les flèches sont des dépendances ou appels à confirmer dans le dépôt ; marque les liens supposés `À VÉRIFIER` tant que tu n'as pas suivi les références ou les tests.
 
 Temps de lecture ~3 min
 
@@ -120,7 +137,7 @@ apres 2 mois.
 ## Ou l'exercer
 
 - `EXO_LECTURE.md` de tous les modules qui en portent un (voir liste dans
-  `./16A-ARBORESCENCE.md`).
+  `./ARBORESCENCE-CURRICULUM.md`).
 - Mini-projet `02-CONSTRUCTION/02-MINI-PROJECTS/10_legacy_dungeon/` et
   `02-CONSTRUCTION/02-MINI-PROJECTS/12_legacy_takeover/` : le protocole est la premiere
   chose a executer avant toute modification.
@@ -135,32 +152,32 @@ Applique le mécanisme de « Cartographier une codebase inconnue en 15 minutes �
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
 
-<!-- AF-LESSON-PROFILE: debug -->
+<!-- AF-LESSON-PROFILE: architecture -->
 
 ## Repères de décision
 
-- **Pourquoi :** Sans reproduction, un correctif peut masquer le symptôme tout en laissant la cause active. Un diagnostic solide réduit le risque de régression et le temps perdu en production.
-- **Quand l’utiliser / quand l’éviter :** Utilise cette méthode dès qu'un défaut est observable mais sa cause incertaine. Évite de modifier plusieurs variables à la fois ou d'ajouter des logs qui exposent des données sensibles.
-- **Limites :** Un bug intermittent peut disparaître sous instrumentation. Une reproduction locale peut ne pas contenir la charge, le réseau ou les données du terrain ; conserve les limites de ton diagnostic.
+- **Pourquoi :** La carte d'une codebase inconnue réduit les modifications à l'aveugle et montre où vivent les responsabilités, dépendances, tests et risques.
+- **Quand l’utiliser / quand l’éviter :** Utilise-la avant une reprise, une migration, une revue ou un diagnostic. Ne prétends pas comprendre tout le dépôt après une lecture de quinze minutes : la carte doit signaler les zones inconnues.
+- **Limites :** Les conventions et noms de dossiers ne prouvent pas les dépendances réelles. Vérifie les points d'entrée, appels, configurations et tests ; marque les hypothèses non confirmées.
 
 ## Mécanisme : la version sans magie
 
-Énonce une hypothèse falsifiable, fixe les entrées, reproduis, collecte un signal ciblé, élimine les hypothèses, corrige puis garde un test de non-régression.
+Repère les manifestes et scripts, suis un flux représentatif depuis son point d'entrée jusqu'à ses dépendances, localise les tests correspondants, relève les configurations et frontières, puis dessine la carte avec ses sources et ses inconnues.
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Cartographier une codebase inconnue en 15 minutes** se rattache à ce cas concret : Kintana reçoit un signalement de double demande après un délai réseau. Il faut déterminer s'il s'agit d'un double clic, d'un retry, d'un worker rejoué ou d'une transaction non atomique.
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Cartographier une codebase inconnue en 15 minutes** se rattache à ce cas concret : un nouvel ingénieur doit retrouver le parcours d'une création de demande. Il identifie le point d'entrée, le cas d'usage, la persistance, les intégrations, les contrôles d'accès et les tests avant de proposer un changement.
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Reproduction et correction d'un incident Kintana
+## Mission utile : Kintana : Cartographier un dépôt inconnu
 
-> **Arc Walking Dead :** quand l'alerte sonne, courir dans tous les sens ne sauve personne. Reproduis, isole, mesure, puis répare.
+> **Arc :** avant de réparer un vaisseau, repère le cockpit, les circuits, les alimentations et les pièces qui peuvent se bloquer ensemble.
 
-**Mission liée à « Cartographier une codebase inconnue en 15 minutes » :** Reproduis un scénario de double création ou de notification manquante. Écris trois hypothèses classées, collecte un identifiant de corrélation, isole une cause puis ajoute un test qui échoue avant le correctif.
+**Mission liée à « Cartographier une codebase inconnue en 15 minutes » :** prends un dépôt que tu ne connais pas. En quinze minutes, sans demander à une IA de résumer le repo, trouve ses commandes d'entrée, ses manifestes, un parcours fonctionnel représentatif, ses principaux modules/dépendances, ses tests, sa configuration et une zone fragile à vérifier. Suis les références utiles plutôt que de lire tous les fichiers.
 
-**Livrable :** un rapport d'incident court, les étapes de reproduction, le patch minimal, le test de régression et les limites non reproduites.
+**Livrable :** `CARTE.md` avec les six éléments : (1) commandes et points d'entrée ; (2) flux fonctionnel principal ; (3) modules et responsabilités ; (4) dépendances externes et données ; (5) tests et commandes de vérification ; (6) zones fragiles, inconnues et sources consultées. Ajoute un diagramme ASCII lisible et la date de la carte.
 
-**Critères d’acceptation :** la cause est étayée par un signal ; une seule variable principale change à la fois ; le test détecte l'ancien défaut ; les données sensibles sont masquées dans les traces.
+**Critères d’acceptation :** chaque flèche du diagramme est confirmée par un fichier, une référence ou une commande, ou marquée `À VÉRIFIER` ; les tests cités existent ; les limites sont explicites ; aucune modification du code n'est requise pour réussir l'exercice.
 
-**Transfert obligatoire :** Change l'ordre des événements ou ajoute une latence variable. Vérifie si la même hypothèse tient toujours.
+**Transfert obligatoire :** applique la même méthode à un dépôt d'un autre langage ou à un service dont le point d'entrée est une CLI au lieu d'une API HTTP. Identifie ce qui change dans la carte et ce qui reste invariant.

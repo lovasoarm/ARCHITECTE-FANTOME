@@ -47,7 +47,6 @@ Une Promise évolue d’un état en attente vers un résultat résolu ou rejeté
 - [Chaîner des opérations async sans perdre les erreurs en route](03-promise_chain_reactor.md)
 - [51-promise_chain_reactor_minimini_projet.md](51-promise_chain_reactor_minimini_projet.md)
 - [Page verrouillée](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 <!-- AF-KINTANA-MODULE -->

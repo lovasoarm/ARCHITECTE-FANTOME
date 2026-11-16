@@ -12,9 +12,15 @@ source_scope: "Notion et parcours internes reliés à 00-SOCLE/04-FUNDAMENTALS/0
 provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
+> **Repère de navigation :** les leçons portent ici les préfixes `02` à `07`, tandis que `50` à `53` désignent des pratiques associées. Ce ne sont pas des pages 2 à 53 : suis l’ordre de cette liste et la route canonique du module parent.
+
 # SCOPE
 
 > Sommaire de `00-SOCLE/04-FUNDAMENTALS/02_scope`.
+
+## Quand commencer ce dossier
+
+Commence Scope **après Types et les fonctions avancées** (`02-function_basics.md`, puis `03-hof_map_filter.md` dans `03_functions/`). C'est l'étape 7 obligatoire de la route canonique du module parent, même si `noyau: non` classe ce sous-dossier comme une ressource interne de l'arborescence. Les closures étudiées ici servent ensuite au Passage B de Variables et aux Function factories. Ne te fie pas seulement au préfixe `02` du nom de ce dossier pour déterminer sa place.
 
 ## Portée des missions Kintana
 

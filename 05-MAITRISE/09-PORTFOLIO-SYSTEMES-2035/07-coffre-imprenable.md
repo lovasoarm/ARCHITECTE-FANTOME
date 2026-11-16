@@ -21,13 +21,13 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 ## Parcours de préparation obligatoire
 
-Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0--socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
+Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0-socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
 
 - [HTTP/REST](../../02-CONSTRUCTION/18-WEB-CONCEPTS/02-http_rest_basics.md), puis [Leçon-pont 12 : Fondations réseau](LECONS-PONTS/12-fondations-reseau-dns-tcp-tls.md) et son livrable `NETWORK-REQUEST-JOURNEY.md` ; ensuite [architectures réseau, DNS, flux publics/privés et identités Cloud](../../03-PILOTAGE/07-CLOUD-FOUNDATIONS/08-ARCHITECTURES-RESEAUX-IDENTITES-REPRISE.md), puis [TLS/chiffrement et certificats](../../03-PILOTAGE/04-SECURITY/12-chiffrement_repos_transit.md), [auth flows](../../03-PILOTAGE/04-SECURITY/05-auth_flows.md) et [autorisation RBAC/ABAC/IDOR](../../03-PILOTAGE/04-SECURITY/13-autorisation_rbac.md).
 - [TLS/chiffrement et certificats](../../03-PILOTAGE/04-SECURITY/12-chiffrement_repos_transit.md), [secrets/rotation](../../03-PILOTAGE/04-SECURITY/11-secrets_et_rotation.md), [SBOM](../../03-PILOTAGE/04-SECURITY/08-supply_chain_sbom.md), [audit supply chain](../../03-PILOTAGE/04-SECURITY/09-audit_your_supply_chain.md).
 - [Quality Shield / CI](../../03-PILOTAGE/03-QUALITY-SHIELD/04-review-and-ci.md), [Lab 66 : sécurité et architecture](../../06-ANNEXES-TRANSVERSES/66-LAB-SECURITE-ET-ARCHITECTURE.md), puis [Leçon-pont 06](LECONS-PONTS/06-zero-trust-et-supply-chain.md).
 
-**Gate d'entrée :** tu peux remettre `NETWORK-REQUEST-JOURNEY.md` et dessiner le trajet d'une requête depuis le client en expliquant IP, port, résolution DNS, transport TCP ou QUIC selon le cas, TLS, HTTP, point d'entrée, réseau public/privé, service et dépendance. Tu distingues TLS de mTLS et décris ce qu'un certificat vérifie. Tu démontres aussi la différence authentification/autorisation, testes un refus cross-tenant, protèges et fais tourner un secret et expliques ce qu'une SBOM ou une signature prouve : et ne prouve pas. Le réseau et le TLS ne sont pas validés par le seul fait de lire leurs noms. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-1--systèmes-en-production).
+**Gate d'entrée :** tu peux remettre `NETWORK-REQUEST-JOURNEY.md` et dessiner le trajet d'une requête depuis le client en expliquant IP, port, résolution DNS, transport TCP ou QUIC selon le cas, TLS, HTTP, point d'entrée, réseau public/privé, service et dépendance. Tu distingues TLS de mTLS et décris ce qu'un certificat vérifie. Tu démontres aussi la différence authentification/autorisation, testes un refus cross-tenant, protèges et fais tourner un secret et expliques ce qu'une SBOM ou une signature prouve : et ne prouve pas. Le réseau et le TLS ne sont pas validés par le seul fait de lire leurs noms. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-1-systemes-en-production).
 
 ## Mission
 
@@ -57,7 +57,7 @@ Montrer que la confiance est vérifiée à chaque frontière. L’identité, les
 
 ## Dossier de preuves attendu
 
-Threat model, matrice identité-action-ressource, policy-as-code, runbook de rotation/révocation, SBOM, provenance/signature, tests négatifs et rapport de migration crypto.
+Threat model, matrice identité-action-ressource, policy-as-code, runbook de rotation/révocation, SBOM, provenance/signature et tests négatifs. **Si l’extension Depth de migration cryptographique a été choisie**, joindre également son rapport de migration (inventaire, décision, compatibilité, retour arrière et limites). Ce rapport n’est pas un prérequis CORE.
 
 ## Hors périmètre et limites
 

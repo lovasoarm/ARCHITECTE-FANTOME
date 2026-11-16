@@ -36,16 +36,13 @@ En GraphQL, une seule requête :
 
 ```graphql
 query {
-  player(id: "7") {
+  player(id: "1") {
     name
     team {
       name
-      stadium
     }
-    stats {
-      goals
-      assists
-    }
+    goals
+    assists
   }
 }
 ```
@@ -136,6 +133,9 @@ const teams = [
   { id: "1", name: "Real Madrid" },
   { id: "2", name: "Man City" },
 ];
+// Séquence monotone pour cette démo en mémoire : ne pas réutiliser players.length + 1.
+// En production, déléguer l'ID à une séquence/colonne auto-incrémentée en base.
+let nextPlayerId = Math.max(0, ...players.map((player) => Number(player.id))) + 1;
 
 export const resolvers = {
   // resolvers de Query
@@ -158,7 +158,7 @@ export const resolvers = {
   Mutation: {
     createPlayer: (parent, { input }, context) => {
       const newPlayer = {
-        id: String(players.length + 1),
+        id: String(nextPlayerId++),
         ...input,
         goals: input.goals ?? 0,
         assists: 0,
@@ -331,13 +331,16 @@ Teste le cas où le client demande `players { name seasons { year goals } }`.
 Voici une mutation qui a un bug de N+1 :
 
 ```js
-Mutation: {
-  assignPlayersToTeam: async (_, { teamId, playerIds }) => {
-    // pour chaque playerId : une requête DB séparée
-    const players = await Promise.all(playerIds.map((id) => db.findPlayer(id)));
-    // ...
-  };
-}
+const resolvers = {
+  Mutation: {
+    assignPlayersToTeam: async (_, { teamId, playerIds }) => {
+      // Version N+1 : une requête DB par identifiant.
+      const players = await Promise.all(playerIds.map((id) => db.findPlayer(id)));
+      // Le resolver reste syntaxiquement valide ; le batch est à implémenter ensuite.
+      return db.assignPlayersToTeam(teamId, players.map((player) => player.id));
+    },
+  },
+};
 ```
 
 Propose une version qui batch les requêtes DB en une seule.

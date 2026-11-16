@@ -1,7 +1,7 @@
 ---
 perennite: evolutif
 stability: evolutif
-duree_de_vie_estimee: 3-5 ans
+duree_de_vie_estimee: "5+ ans"
 raison: "HTTP/3, HTTPS, CORS : le stack web bouge par cycles."
 acte: comprendre
 cognitive_level: L4
@@ -26,8 +26,6 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 > **CE MODULE RÉUTILISE** : HTTP basics (02-CONSTRUCTION/19-API-CRAFT, approfondi plus loin dans le fil), async (01-CADRAGE/02-ASYNC). Sécurité (03-PILOTAGE/04-SECURITY, approfondi plus loin dans le fil) : ce module pointe vers la distinction authentication/authorization, creusée en détail plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # Pourquoi ce module mérite ton temps : web concepts
-
-Temps de lecture ~5 min
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 

@@ -6,7 +6,7 @@ route: survie
 
 # Module 01-CADRAGE/01-PROBLEM-HUNT : Problem Hunt
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../00-SOCLE/06-MINDSET/README.md) | [Module suivant : Async](../02-ASYNC/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../../00-SOCLE/06-MINDSET/README.md) | [Module suivant : Async](../02-ASYNC/README.md)
 
 **Ce niveau réutilise :** [01-MINDSET](../../00-SOCLE/06-MINDSET/03-cost-of-decisions.md) : le coût réel d'une décision, réutilise pour chiffrer le coût d'un mauvais cadrage.
 
@@ -21,7 +21,7 @@ route: survie
 [challenge](../../00-SOCLE/06-MINDSET/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au 01-PROBLEM-HUNT une difficulté qui vient du 01-CADRAGE.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que c'est
 

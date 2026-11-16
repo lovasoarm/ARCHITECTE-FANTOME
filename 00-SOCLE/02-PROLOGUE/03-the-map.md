@@ -57,7 +57,7 @@ Tu ne collectionnes pas des patterns. Tu choisis une forme parce qu’elle répo
 
 ## Exploiter
 
-Le **03-PILOTAGE** fait passer le code au système en fonctionnement : sécurité, logs, métriques, traces, SLO, récupération, cloud et coût.
+Le **03-PILOTAGE** fait passer le code au système en fonctionnement : sécurité, logs, métriques, traces, SLO, récupération, cloud et coût. La capacité est démontrée par l’[Incident Commander Gate 50](../../06-ANNEXES-TRANSVERSES/50-INCIDENT-COMMANDER-GATE.md) et son scénario T0 reproductible ; les exercices Docker/Cloud restent des approfondissements selon l’environnement.
 
 ## Arbitrer
 

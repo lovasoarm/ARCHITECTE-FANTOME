@@ -23,9 +23,9 @@ claim_reviewed_on: "2026-11-03"
 
 [← Sommaire TECH-ILA](../README.md)
 
-> **Tu viens de** : [06-niveau-4-systemes.md](06-niveau-4-systemes.md)
+> **Tu viens de** : [05-niveau-4-systemes.md](05-niveau-4-systemes.md)
 > **Tu dois déjà savoir** : un backend TypeScript complet (NestJS ou Express), les principes SOLID, la notion d'injection de dépendances.
-> **Ensuite** : 06-niveau-6-IA.md
+> **Ensuite** : 07-niveau-6-IA.md
 
 # Niveau 5 : Transfert vers d'autres écosystèmes (section 8)
 
@@ -597,7 +597,7 @@ Cette phrase est vérifiable en entretien. Elle vaut plus que dix lignes de logo
 
 ---
 
-[← Niveau 4 : Systèmes professionnels](06-niveau-4-systemes.md) · [Sommaire](../README.md) · Niveau 6 : IA →
+[← Niveau 4 : Systèmes professionnels](05-niveau-4-systemes.md) · [Sommaire](../README.md) · Niveau 6 : IA →
 
 <!-- AF-LESSON-PROFILE: reference -->
 

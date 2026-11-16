@@ -1,8 +1,8 @@
-// Version corrigée de leak_case.js. Deux corrections minimales :
-//   1) Le cache global devient une LRU bornée (taille max 1000).
+// Version corrigée de `01_leak_case.js`. Deux corrections minimales :
+//   1) Le cache global devient une FIFO bornée (taille max 1000).
 //   2) Le listener est attaché UNE fois, hors du setInterval.
 //
-// Lance côte à côte avec leak_case.js et compare le RSS à t=60s.
+// Lance côte à côte avec `01_leak_case.js` et compare le RSS à t=60s.
 
 "use strict";
 
@@ -10,11 +10,15 @@ const { EventEmitter } = require("node:events");
 
 const emitter = new EventEmitter();
 
-// Cache LRU minimal via l'ordre d'insertion de Map
+// Cache FIFO minimal via l'ordre d'insertion de Map (get ne rafraîchit pas l'ordre).
 const MAX = 1000;
 const cache = new Map();
 function cachePut(k, v) {
-  if (cache.has(k)) cache.delete(k);
+  if (cache.has(k)) {
+    // Mettre à jour une valeur ne rafraîchit pas son ancienneté FIFO.
+    cache.set(k, v);
+    return;
+  }
   cache.set(k, v);
   if (cache.size > MAX) {
     const firstKey = cache.keys().next().value;

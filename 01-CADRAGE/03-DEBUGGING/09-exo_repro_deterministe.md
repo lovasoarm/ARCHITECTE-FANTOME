@@ -23,10 +23,10 @@ Prendre un défaut qui semble intermittent parce qu'une branche rare dépend d'u
 
 ## ÉNONCÉ
 
-Utilise le fichier [`11A-flaky.js`](./11A-flaky.js). Sa fonction `computeTotal(items, random)` accepte une source aléatoire injectable. La branche rare renvoie volontairement `undefined` comme bonus ; l'addition produit alors `NaN`.
+Utilise le fichier [`flaky-random-branch-fixture.js`](./flaky-random-branch-fixture.js). Sa fonction `computeTotal(items, random)` accepte une source aléatoire injectable. La branche rare renvoie volontairement `undefined` comme bonus ; l'addition produit alors `NaN`.
 
 ```js
-const { computeTotal } = require("./11A-flaky.js");
+const { computeTotal } = require("./flaky-random-branch-fixture.js");
 
 console.log(computeTotal([1, 2, 3], () => 0.5)); // 6 : branche normale
 console.log(computeTotal([1, 2, 3], () => 0));   // NaN : branche rare fautive
@@ -46,7 +46,7 @@ Exemple de test à compléter dans le cadre de l'exercice :
 ```js
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { computeTotal } = require("./11A-flaky.js");
+const { computeTotal } = require("./flaky-random-branch-fixture.js");
 
 test("un bonus absent ne change pas le total", () => {
   assert.equal(computeTotal([1, 2, 3], () => 0), 6);

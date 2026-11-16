@@ -14,7 +14,7 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 # MODULE 13 RUNTIME ENV
 
-> Palier `02-CONSTRUCTION`. Duree estimee : **7 h 05** (11 fichiers de travail).
+> Palier `02-CONSTRUCTION`. Temps des 11 ressources de travail : **7 h 05** ; avec l’auto-test d’entrée de 15 min, la somme des 12 lignes du tableau est **7 h 20**.
 
 ## Sommaire du module
 
@@ -27,12 +27,19 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | [`04-commonjs_vs_esm.md`](04-commonjs_vs_esm.md)       | COMMONJS VS ESM : L'HISTOIRE D'UNE GUERRE QUI N'EST PAS FINIE   | 45 min |
 | [`05-process_env_argv.md`](05-process_env_argv.md)     | PROCESS.ENV ET PROCESS.ARGV : LA CONFIG QUI NE SE HARD-CODE PAS | 45 min |
 | [`06A-worker_threads.md`](06A-worker_threads.md)       | WORKER THREADS : PARALLÉLISER SANS BLOQUER L'EVENT LOOP         | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                     | Page verrouillée                                                | 30 min |
+| [`06B-child_process.md`](06B-child_process.md)         | CHILD_PROCESS : LANCER UN PROCESSUS SÉPARÉ                      | 15 min |
 | [`07-EXO_LECTURE.md`](07-EXO_LECTURE.md)               | EXO LECTURE : ~20 minutes : un cycle (Runtime & Env)            | 20 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)     | EXO [JEUNE IA] : 02-CONSTRUCTION/13-RUNTIME-ENV                 | 45 min |
-| [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)         | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust         | 45 min |
+| [`90-grimoire.md`](90-grimoire.md)                     | Page de rappel, à lire après les exercices                      | 30 min |
+| [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)         | Transfert du raisonnement vers Python, Go ou Rust               | 45 min |
 
-Total : **7 h 05**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
+Total du tableau : **7 h 20**, dont 15 min d’auto-test d’entrée ; les 11 autres ressources représentent **7 h 05**. Le challenge `95-challenge.md` (1 h 30) est une évaluation séparée, à faire après les leçons et les exercices, avant de lire le grimoire ; il n'est pas ajouté à ce total. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
+
+### Trois ressources `06` à ne pas confondre
+
+- `06A-worker_threads.md` : paralléliser du travail dans des threads du même processus Node.js.
+- `06B-child_process.md` : lancer un processus séparé.
+- `06C-node-cli-scripts/` : sous-parcours pratique de scripts CLI et de manipulation de fichiers. C’est une extension optionnelle, non incluse dans les **7 h 20** du tableau ; ouvre-la après `05-process_env_argv.md` si tu dois automatiser une tâche locale. Elle n’est pas une troisième variante de thread ou de processus.
 
 ## Comment travailler ce module
 
@@ -75,19 +82,22 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Commonjs vs ESM : l'histoire d'une guerre qui n'est pas finie](04-commonjs_vs_esm.md)
 - [Process.env et process.argv : la config qui ne se hard-code pas](05-process_env_argv.md)
 - [Worker threads : paralléliser sans bloquer l'event loop](06A-worker_threads.md)
-- [`06_node_cli_scripts/`](06_node_cli_scripts/README.md)
-- [Page verrouillée](90-grimoire.md)
+- [Node.js child_process : lancer un programme sans confondre processus et thread](06B-child_process.md)
 - [EXO LECTURE : ~20 minutes : un cycle (Runtime & Env)](07-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/13-runtime-env](97-EXO-VERIFICATION.md)
-- [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
-- [Challenge : `13-RUNTIME-ENV`](95-challenge.md)
-- [Grimoire : `13-RUNTIME-ENV`](90-grimoire.md)
+- [Challenge : `13-RUNTIME-ENV` : après les leçons et exercices](95-challenge.md)
+- [Grimoire : `13-RUNTIME-ENV` : après le challenge](90-grimoire.md)
+- [Portage mental : transfert vers Python, Go ou Rust](99-PORTAGE-MENTAL.md)
 
 <!-- CONTENU-DOSSIER:fin -->
 
+### Extension hors séquence noyau
+
+- [`06C-node-cli-scripts/`](06C-node-cli-scripts/README.md) : sous-parcours optionnel de scripts CLI ; il n'est pas une étape obligatoire du parcours de base ni inclus dans les 7 h 20 du tableau.
+
 ## Navigation complète des ressources
 
-Les liens ci-dessous donnent accès aux ressources documentaires du module, y compris les sous-dossiers. Le sommaire conserve l’ordre pédagogique recommandé ; cet index n’ajoute pas d’étape obligatoire.
+Les liens ci-dessous donnent accès aux ressources documentaires du module, y compris les sous-dossiers. C’est un inventaire de navigation ; le sommaire et la section « Contenu du dossier » ci-dessus donnent l’ordre à suivre.
 
 - [`00-PREREQUIS.md`](00-PREREQUIS.md)
 - [`01-00-why-runtime-env.md`](01-00-why-runtime-env.md)
@@ -96,12 +106,13 @@ Les liens ci-dessous donnent accès aux ressources documentaires du module, y co
 - [`04-commonjs_vs_esm.md`](04-commonjs_vs_esm.md)
 - [`05-process_env_argv.md`](05-process_env_argv.md)
 - [`06A-worker_threads.md`](06A-worker_threads.md)
-- [`06_node_cli_scripts/02-cli_basics.md`](06_node_cli_scripts/02-cli_basics.md)
-- [`06_node_cli_scripts/03-filesystem_ops.md`](06_node_cli_scripts/03-filesystem_ops.md)
-- [`06_node_cli_scripts/04-automation_scripts.md`](06_node_cli_scripts/04-automation_scripts.md)
-- [`06_node_cli_scripts/05-cli_tool_builder.md`](06_node_cli_scripts/05-cli_tool_builder.md)
-- [`06_node_cli_scripts/README.md`](06_node_cli_scripts/README.md)
-- [`06_node_cli_scripts/SETUP.md`](06_node_cli_scripts/SETUP.md)
+- [`06B-child_process.md`](06B-child_process.md)
+- [`06C-node-cli-scripts/02-cli_basics.md`](06C-node-cli-scripts/02-cli_basics.md)
+- [`06C-node-cli-scripts/03-filesystem_ops.md`](06C-node-cli-scripts/03-filesystem_ops.md)
+- [`06C-node-cli-scripts/04-automation_scripts.md`](06C-node-cli-scripts/04-automation_scripts.md)
+- [`06C-node-cli-scripts/05-cli_tool_builder.md`](06C-node-cli-scripts/05-cli_tool_builder.md)
+- [`06C-node-cli-scripts/README.md`](06C-node-cli-scripts/README.md)
+- [`06C-node-cli-scripts/SETUP.md`](06C-node-cli-scripts/SETUP.md)
 - [`07-EXO_LECTURE.md`](07-EXO_LECTURE.md)
 - [`90-grimoire.md`](90-grimoire.md)
 - [`91-90-grimoire.md`](91-90-grimoire.md)

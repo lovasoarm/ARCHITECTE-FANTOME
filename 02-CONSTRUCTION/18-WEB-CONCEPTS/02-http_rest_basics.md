@@ -105,15 +105,17 @@ Location: /api/prisoners/42
 GET   => lire une ressource, jamais de side effect (effet de bord), idempotent
 POST  => créer une ressource, body requis, non idempotent
 PUT   => remplacer une ressource complète, idempotent
-PATCH  => modifier partiellement une ressource, idempotent
+PATCH  => modifier partiellement une ressource ; idempotence dépend de l'opération et du format de patch
 DELETE => supprimer une ressource, idempotent
 HEAD  => comme GET mais sans body en réponse (vérifier si une ressource existe)
 OPTIONS => demander ce que le serveur accepte (utilisé par CORS)
 ```
 
-Idempotent (idempotent) : appeler la méthode 1 fois ou 10 fois donne le même résultat côté serveur.
+Idempotent (idempotent) : appeler la même requête plusieurs fois laisse la ressource dans le même état qu'après la première application.
 GET sur `/users/1` 10 fois = même résultat. Sûr.
 POST sur `/users` 10 fois = 10 utilisateurs créés. Pas idempotent.
+
+`PATCH` n'est pas intrinsèquement idempotent. Remplacer `{"name":"Rick"}` par cette valeur peut être idempotent si le serveur applique une affectation déterministe ; `{"increment":1}` ne l'est pas, car chaque répétition augmente encore le compteur. Le RFC 5789 précise qu'une opération PATCH peut être conçue comme idempotente, mais ne l'est pas par garantie générale.
 
 ```js
 // GET : lire sans toucher

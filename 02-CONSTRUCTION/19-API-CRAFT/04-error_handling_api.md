@@ -133,20 +133,41 @@ export function errorHandler(err, req, res, next) {
     stack: err.stack,
   });
 
-  // erreur opérationnelle connue : on peut lui faire confiance
+  // Si les headers sont déjà partis (stream commencé, par exemple), Express
+  // doit laisser son handler par défaut terminer la connexion proprement.
+  if (res.headersSent) {
+    return next(err);
+  }
+
+  // Erreurs de parsing JSON connues : erreur client, pas erreur serveur.
+  if (err.type === "entity.parse.failed") {
+    return res.status(400).json({
+      error: { code: "INVALID_JSON", message: "corps JSON mal formé", status: 400 },
+    });
+  }
+  if (err.type === "entity.too.large") {
+    return res.status(413).json({
+      error: { code: "PAYLOAD_TOO_LARGE", message: "corps de requête trop volumineux", status: 413 },
+    });
+  }
+
+  // Erreur opérationnelle connue : le statut est borné à une réponse client/serveur valide.
   if (err.isOperational) {
-    return res.status(err.statusCode).json({
+    const status = Number.isInteger(err.statusCode) && err.statusCode >= 400 && err.statusCode <= 599
+      ? err.statusCode
+      : 500;
+    return res.status(status).json({
       error: {
-        code: err.code,
+        code: err.code ?? "APPLICATION_ERROR",
         message: err.message,
-        status: err.statusCode,
+        status,
       },
     });
   }
 
-  // erreur inconnue / bug non géré : 500 générique
+  // Erreur inconnue / bug non géré : 500 générique
   // on ne révèle JAMAIS les détails techniques en prod (stack trace, paths internes)
-  res.status(500).json({
+  return res.status(500).json({
     error: {
       code: "INTERNAL_ERROR",
       message: "une erreur est survenue",
@@ -328,11 +349,22 @@ Monte un errorHandler global qui les formate uniformément.
 Teste que les erreurs inconnues (bug JS classique) renvoient un 500 générique.
 
 **EXO 2 : La validation du formulaire de Walter White**
-Tu reçois des requêtes d'inscription : `{ email, plan, region, priority }`.
-`product` et `destination` sont obligatoires (strings).
-`quantity` est un entier entre 1 et 1000.
-`priority` est optionnel mais si présent doit être `"low"`, `"medium"` ou `"high"`.
-Implémente le middleware de validation avec Zod. Si invalide : 400 avec la liste des champs en erreur.
+Tu reçois des requêtes d'inscription avec le contrat unique : `{ email, plan, region, priority }`.
+- `email` : adresse email valide.
+- `plan` : chaîne choisie parmi `starter`, `pro` et `enterprise`.
+- `region` : chaîne non vide après suppression des espaces externes.
+- `priority` : optionnelle ; si présente, elle vaut `low`, `medium` ou `high`.
+
+Aucun champ `product`, `destination` ou `quantity` ne fait partie de ce formulaire. Implémente le middleware de validation avec Zod en refusant les propriétés inconnues (`strict`). Si le contrat est invalide : 400 avec la liste des champs en erreur.
+
+```js
+const inscriptionSchema = z.object({
+  email: z.string().email(),
+  plan: z.enum(["starter", "pro", "enterprise"]),
+  region: z.string().trim().min(1),
+  priority: z.enum(["low", "medium", "high"]).optional(),
+}).strict();
+```
 
 **EXO 3 : Le wrapper asyncHandler de Fox River**
 Toutes les routes de l'API Prison Break appellent des fonctions async qui peuvent rejeter.

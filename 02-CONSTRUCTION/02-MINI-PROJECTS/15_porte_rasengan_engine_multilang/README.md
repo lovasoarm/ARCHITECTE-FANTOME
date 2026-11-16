@@ -9,6 +9,11 @@ Temps de lecture ~2 min
 
 # 15 : PORTAGE RASENGAN ENGINE (JS → Python OU Go)
 
+
+<!-- AF-ADR-CONTRACT -->
+
+**Contrat ADR de ce projet : 2 décision(s) réellement indépendante(s).** Détails et périmètre exact dans [`01-RULES.md`](01-RULES.md). La quantité ne justifie jamais de fractionner artificiellement une même décision. Les ADR fournis sont des contextes de départ, pas une revue humaine ni une preuve d'adoption.
+
 ## Ordre de lecture
 
 Lis ce dossier dans cet ordre : `README.md` → `00-CAHIER-DES-CHARGES.md` → `01-RULES.md` → `02-TDD-JOURNAL.md` → `03-SECURITY.md` → `04-SECURITY-GATE.md` → `05-SPEC-DRIFT-TRIGGERS.md` → `06-SPEC-DRIFT-DRILL.md` → travail dans `src/` et `tests/` → `08-POSTMORTEM.md` → ADRs réellement produits. Les dossiers `ADR/`, `src/` et `tests/` sont des espaces de production, pas des lectures préalables.
@@ -31,7 +36,7 @@ Tu prends ton propre `01_rasengan_engine`, tu le portes dans un autre langage, e
 
 ## MISSION
 
-1. Choisis Python OU Go (pas les deux au premier jet).
+1. Choisis Python OU Go comme unique langage cible obligatoire pour ce projet.
 2. Reproduis 100% des fonctionnalités du Rasengan Engine original.
 3. Reproduis 100% des tests (adapte le framework, garde les cas).
 4. Écris `ADR-COMPARAISON.md` : concurrency model, gestion d'erreurs, écosystème de dépendances, dev experience. Verdict argumenté, pas juste des "j'aime bien".
@@ -52,8 +57,8 @@ Tu vas croire que "traduire ligne à ligne" suffit. Tu vas te planter. Les idiom
 
 - [ ] Toutes les features portées
 - [ ] Tous les tests verts dans le nouveau langage
-- [ ] ADR lue et validée par un pair
-- [ ] Publié GitHub
+- [ ] ADR relue par auto-contradiction individuelle ; retour d’un pair facultatif
+- [ ] Historique Git local exploitable ; publication GitHub facultative pour le portfolio
 
 ## THÈME NEUTRE (optionnel)
 
@@ -98,7 +103,7 @@ Consulte aussi le [standard commun des mini-projets](../00A-FIELD-PRACTICE-STAND
 - **Tests à créer :** contrat commun, fixtures de scénario, cas limites et erreurs, ordre déterministe, sérialisation et comparaison des sorties normalisées. Documente explicitement les divergences de sémantique.
 - **Ordre de construction :** choisir les deux environnements, définir le contrat et les invariants partagés, écrire les fixtures/tests, implémenter chaque port, puis normaliser et comparer les sorties.
 - **Validation finale :** exécuter la même fixture sur les deux implémentations depuis des environnements propres ; conserver commandes, versions et sorties.
-- **Preuve attendue :** au moins un scénario nominal, un scénario limite et un scénario d'erreur reproduits à l'identique, ou tout écart justifié dans l'ADR.
+- **Preuve attendue :** au moins un scénario nominal, un scénario limite et un scénario d’erreur comparés ; tout écart de sémantique est expliqué dans l’ADR. Une exécution non réalisée est marquée `NON TESTÉE`, jamais supposée.
 
 ## Ressources pratiques associées
 

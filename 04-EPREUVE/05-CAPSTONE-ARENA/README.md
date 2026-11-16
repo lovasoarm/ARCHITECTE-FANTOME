@@ -4,7 +4,7 @@ acte: comprendre
 route: complete
 ---
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Contrôle d'entrée](00-PREREQUIS.md) | [Après validation : Day-to-Legend](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Contrôle d'entrée](00-PREREQUIS.md) | [Après validation : Day-to-Legend](../../05-MAITRISE/05-DAY-TO-LEGEND/README.md)
 
 # Module 04-EPREUVE/05-CAPSTONE-ARENA : Capstone Arena
 
@@ -63,7 +63,7 @@ la machine de l'apprenant, avec procédure reproductible et limites déclarées.
 valider le travail technique du Capstone dans son périmètre local ; elle ne vaut ni déploiement
 public, ni preuve de production, ni fermeture automatique de S6 ou S7.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 Prérequis d'entrée : satisfaire **toutes** les conditions documentées dans
 [`00-PREREQUIS.md`](00-PREREQUIS.md) : les quatre pièces amont, les trois éléments chiffrés

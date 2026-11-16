@@ -65,18 +65,17 @@ On construit un cache "malin" :
 ```js
 const cache = new Map();
 function makeHandler(user) {
-  const history = new Array(100_000).fill(user.name); // gros
+  const history = new Array(10_000).fill(user.name);
   return function onClick() {
     console.log(history[0]);
   };
 }
-for (let i = 0; i < 10_000; i++) {
+for (let i = 0; i < 100; i++) {
   cache.set(i, makeHandler({ name: `user_${i}` }));
 }
 ```
 
-Sur le papier, `history` est "local". En pratique, chaque handler dans `cache`
-retient sa closure → chaque `history` reste vivant → **1 Go de RAM**.
+Chaque handler conservé dans `cache` retient sa closure et le tableau `history` correspondant. La taille mémoire exacte dépend du moteur, de la version et de la représentation des chaînes : mesure-la au lieu de recopier une estimation fixe. Le volume de cet atelier est volontairement borné pour éviter une allocation de l'ordre du milliard de références.
 
 ## Atelier (3 étapes)
 
@@ -96,7 +95,7 @@ Prends **trois** snapshots :
 
 Dans Chrome DevTools → "Comparison" entre snapshot 1 et 2. Trie par
 "Retained Size" décroissant. Cherche `(closure)` et `Array`. Tu dois voir
-~10 000 fermetures et ~10 000 tableaux de 100k éléments.
+environ 100 fermetures et 100 tableaux de 10k éléments ; le nombre et la taille observés peuvent varier selon les outils et le runtime.
 
 ### 3. Trouve la racine
 

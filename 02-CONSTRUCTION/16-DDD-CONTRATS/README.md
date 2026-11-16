@@ -7,6 +7,8 @@ route: complete
 
 # 16 : DDD ET CONTRATS : LE LANGAGE AVANT LE CODE
 
+> **Repère de navigation :** `97-CHECKPOINT-PACK/` contient la grille et les preuves de checkpoint ; `97A-EXO-VERIFICATION.md` est un exercice indépendant d’application/vérification. Le premier est un dossier de critères, le second une activité : ce ne sont pas deux leçons successives.
+
 <!-- AF-DIAGRAM:ddd -->
 
 ```text
@@ -20,7 +22,7 @@ route: complete
 
 Les bounded contexts isolent des modèles locaux et relient les domaines par des contrats explicites.
 
-> Palier 2bis : Construction. Durée estimée : 11 h 45.
+> Palier 2bis : Construction. Durée estimée : 12 h 30, cas fil rouge obligatoire inclus.
 > Frontière de palier : `14-ARCHITECTURE-PATTERNS` t'apprend **les formes** (couches, ports, hexagone).
 > `15-ARCHI-LAB` te fait **assembler** ces formes sur un cas. Ce module-ci travaille **le langage et les
 > contrats** : ce que les mots veulent dire, et ce que tu promets à l'extérieur. Trois modules, trois
@@ -41,19 +43,20 @@ Voir `00-PREREQUIS.md`. Si un seul point tombe, retourne le voir : ce module ne 
 
 | Fichier                                  | Objet                                                     | Durée  |
 | ---------------------------------------- | --------------------------------------------------------- | ------ |
+| `00-PREREQUIS.md`                        | contrôle d'entrée à réaliser avant toute leçon            | 15 min |
 | `01-00-why-ddd-contrats.md`              | pourquoi ce module mérite ton temps                       | 45 min |
-| `00-PREREQUIS.md`                        | contrôle d'entrée                                         | 15 min |
 | `02-langage_contextes_bornes.md`         | langage ubiquitaire, contextes bornés, carte de contextes | 45 min |
 | `03-cqrs_coherence_terme.md`             | lecture / écriture, deux leçons, coût réel                | 45 min |
 | `04-b_event_driven_distinct.md`          | event-driven ≠ CQRS (fichier distinct)                    | 30 min |
 | `05-contrats_migration.md`               | versionner, déprécier, éteindre                           | 45 min |
 | `06-exercice_architecture_trop_belle.md` | exercice : refuser par écrit                              | 45 min |
 | `07-expliquer_cqrs_a_3_publics.md`       | junior, pair, direction                                   | 45 min |
+| `10-CAS-FIL-ROUGE-COMMANDE-LIVRAISON.md` | cas intégré obligatoire avant challenge et Boss           | 45 min |
 | `97A-EXO-VERIFICATION.md`                | corriger la sortie d'un agent                             | 45 min |
-| `90-grimoire.md`                         | les lignes à retenir                                      | 30 min |
 | `95-challenge.md`                        | mise en pratique bornée                                   | 1 h 30 |
 | `96-boss-fight.md`                       | épreuve de passage                                        | 3 h    |
 | `08-defense-orale.md`                    | soutenance de 12 minutes                                  | 45 min |
+| `90-grimoire.md`                         | les lignes à retenir, après la pratique                   | 30 min |
 
 ## Livrables produits
 
@@ -63,7 +66,7 @@ Voir `00-PREREQUIS.md`. Si un seul point tombe, retourne le voir : ce module ne 
 
 ## Vérification
 
-`97-CHECKPOINT-PACK/criteres.md` fixe les critères de passage. Le boss fight ne se coche pas sans eux.
+`97-CHECKPOINT-PACK/97-criteres.md` fixe les critères de passage. Consulte la grille avant le challenge, renseigne les preuves au fil du parcours et arrête le verdict après le Boss Fight.
 
 <!-- PIECES-MODULE:debut -->
 
@@ -89,18 +92,18 @@ Voir `00-PREREQUIS.md`. Si un seul point tombe, retourne le voir : ce module ne 
 - [Exercice : refuser une architecture trop belle](06-exercice_architecture_trop_belle.md)
 - [Expliquer CQRS à trois publics](07-expliquer_cqrs_a_3_publics.md)
 - [EXO jeune IA : l'agent qui découpe trop](97A-EXO-VERIFICATION.md)
-- [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
-- [BOSS FIGHT : MODULE 16 : LA RUPTURE DE CONTRAT EN DIRECT](96-boss-fight.md)
 - [Challenge : la carte, le contrat, le refus](95-challenge.md)
+- [BOSS FIGHT : MODULE 16 : LA RUPTURE DE CONTRAT EN DIRECT](96-boss-fight.md)
 - [Défense orale : module 16](08-defense-orale.md)
-- [Grimoire : DDD et contrats](90-grimoire.md)
+- [Grimoire : DDD et contrats : après la pratique](90-grimoire.md)
+- [99-PORTAGE-MENTAL.md : transfert du concept](99-PORTAGE-MENTAL.md)
 - [`97-CHECKPOINT-PACK/`](97-CHECKPOINT-PACK/README.md)
 
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Usage recommandé
 
-Étudier les leçons dans l’ordre, puis réaliser le cas fil rouge `10-CAS-FIL-ROUGE-COMMANDE-LIVRAISON.md` avant le challenge et le boss fight. La maîtrise exige une carte de contextes et des contrats défendus, pas seulement un diagramme ou la création de microservices.
+Commencer par `00-PREREQUIS.md`, puis lire `01-00-why-ddd-contrats.md` et les leçons dans l’ordre. Consulter la grille `97-CHECKPOINT-PACK/97-criteres.md` dès le départ, réaliser le cas fil rouge `10-CAS-FIL-ROUGE-COMMANDE-LIVRAISON.md`, puis l’exercice `97A-EXO-VERIFICATION.md`, le challenge `95`, le Boss Fight `96` et la défense orale `08`. Le grimoire `90` se lit après ces tentatives ; le portage `99` est une ressource de transfert de fin de module. La maîtrise exige une carte de contextes et des contrats défendus, pas seulement un diagramme ou la création de microservices.
 
 ## Préparer l'environnement
 

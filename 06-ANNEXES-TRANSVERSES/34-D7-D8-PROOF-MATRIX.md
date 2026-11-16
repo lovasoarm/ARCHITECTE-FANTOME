@@ -56,3 +56,14 @@ Pour D8, ajouter :
 ## Anti-gaming
 
 Le document ne fournit aucune solution d’exercice ni architecture canonique à recopier. Il sert uniquement à rendre l’attendu de profondeur observable.
+
+<!-- AF-D8-LEADERSHIP-TRACE -->
+
+## Traçabilité D8 : décision, objection et transmission
+
+| Compétence intégratrice                      | Épreuve                                                                                                                                                                                          | Preuve exigée                                                                                | Statut de preuve                                                                                                  |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Reconstruire une décision sous contrainte    | [29 : Épreuve D8](29-EPREUVE-D8-RECONSTRUCTION.md) et [73 : Leadership Simulation Gate](73-TECHNICAL-LEADERSHIP-PRACTICUM.md#leadership-simulation-gate--kintana--décision-technique-transverse) | Décision initiale, contrainte inconnue, objection adverse, ADR révisé, défense et passation  | `SIMULATION` si personnages fictifs ; revue/adoption réelle uniquement si observée séparément                     |
+| Rendre le système reprenable sans son auteur | Gate 73, étape 7                                                                                                                                                                                 | `HANDOVER.md`, responsabilités, invariants, risques, runbook, rollback et décisions ouvertes | La qualité du document peut être évaluée en simulation ; la reprise effective par un tiers est une preuve externe |
+
+La réussite D8 dépend de la chaîne `hypothèse → information contradictoire → révision → décision → transfert → passation`. Un ADR bien rédigé sans objection examinée ni transfert ne suffit pas à démontrer D8.

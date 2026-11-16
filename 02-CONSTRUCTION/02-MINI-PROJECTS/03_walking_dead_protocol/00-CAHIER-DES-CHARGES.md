@@ -37,10 +37,9 @@ CAMP_STATE_FILE="$tmp/camp.json" node legacy/campV1.js consume --resource food -
 
 Le dernier appel met en évidence le défaut volontaire. Après création de la v2, d'un `package.json`, des tests et des scripts npm, tu pourras installer Playwright localement puis utiliser `npm test` et `npm run test:e2e`. Ne lance pas ces commandes avant d'avoir créé leurs prérequis.
 
-
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
-Le groupe de Rick Grimes a besoin d'un système de gestion de camp : inventaire de ressources, rotations de garde, rations alimentaires, niveaux de sécurité par périmètre. Le code est fourni dans [`legacy/campV1.js`](legacy/campV1.js) : une entrée monolithique, un état mutable et plusieurs responsabilités mélangées. Aucun test de caractérisation n’est fourni. Un défaut reproductible  : la consommation négative  : constitue le premier comportement à capturer.
+Le groupe de Rick Grimes a besoin d'un système de gestion de camp : inventaire de ressources, rotations de garde, rations alimentaires, niveaux de sécurité par périmètre. Le code est fourni dans [`legacy/campV1.js`](legacy/campV1.js) : une entrée monolithique, un état mutable et plusieurs responsabilités mélangées. Aucun test de caractérisation n’est fourni. Un défaut reproductible : la consommation négative : constitue le premier comportement à capturer.
 
 Ton boulot : ne jamais ajouter de feature avant d'avoir des tests. Refactorer sans rien casser. Transformer ce camp en forteresse de code propre.
 

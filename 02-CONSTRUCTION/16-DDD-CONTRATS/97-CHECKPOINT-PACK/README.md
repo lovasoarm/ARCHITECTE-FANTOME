@@ -6,9 +6,9 @@ noyau: renfort
 
 # PACK DE VÉRIFICATION : MODULE 16
 
-Ce dossier ne s'ouvre qu'après le challenge et le boss fight.
+Ce dossier est consultable dès le début du module : lis les critères avant le challenge, puis renseigne les preuves au fur et à mesure. Le verdict final ne se prononce qu'après le challenge et le Boss Fight. La grille ne constitue pas un prérequis caché et ne dépend pas d'une validation future pour être consultée.
 
-- `criteres.md` : la grille de passage, à cocher soi-même puis à faire contredire.
+- `97-criteres.md` : la grille de passage, à consulter avant l'épreuve, renseigner pendant le parcours, puis faire contredire.
 
 ## Procédure
 

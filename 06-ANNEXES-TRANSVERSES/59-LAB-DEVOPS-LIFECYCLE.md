@@ -218,3 +218,11 @@ Dans [Kintana](77-FIL-ROUGE-KINTANA/README.md), **59 : Atelier DevOps/SRE : du c
 **Critères d’acceptation :** aucune ressource fictive n'est marquée déployée ; permissions minimales ; coût et limites écrits ; procédure de rollback/restauration vérifiée seulement si elle a été exécutée.
 
 **Transfert obligatoire :** Le trafic est multiplié par cinq et le fournisseur devient indisponible. Identifie le premier goulot et les coûts qui augmentent.
+
+<!-- AF-EXPLOITER-T0-GATE -->
+
+## Gate intégrée Exploiter T0 : Kintana : Release, incident et récupération
+
+La preuve fondamentale de la compétence Exploiter est l'[Incident Commander Gate 50](50-INCIDENT-COMMANDER-GATE.md) et son [pack autonome T0](75-LAB-PLATFORM-OPERATIONS/T0-KINTANA/INCIDENT-INJECTS.md). Il fournit architecture, manifeste de release, métriques, logs, manifeste de sauvegarde, fixture de restauration, injections et barème. Il peut être traité localement à partir de fichiers statiques ; aucune installation ni infrastructure réelle n'est requise.
+
+Le présent laboratoire approfondit les mêmes mécanismes dans un environnement de test lorsque cela est possible. Toute étape Docker/Cloud non exécutée est marquée `NON TESTÉE` et ne bloque pas la gate T0. Une simulation ne doit jamais être présentée comme déploiement, mesure ou incident de production.

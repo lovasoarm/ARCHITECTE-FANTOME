@@ -21,14 +21,14 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 ## Parcours de préparation obligatoire
 
-Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0--socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
+Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0-socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
 
 - [HTTP/REST et API Craft](../../02-CONSTRUCTION/18-WEB-CONCEPTS/02-http_rest_basics.md) et [API Craft](../../02-CONSTRUCTION/19-API-CRAFT/README.md).
 - [Async](../../01-CADRAGE/02-ASYNC/README.md), [annulation et délais](../../01-CADRAGE/02-ASYNC/03_async_await/05-c_abort_controller.md), [gestion des erreurs](../../01-CADRAGE/04-ERROR-HANDLING/README.md), [rate limiting](../02-SCALABILITY/07-rate_limiting.md).
 - [Observability](../../03-PILOTAGE/05-OBSERVABILITY/README.md), [coût IA](../../06-ANNEXES-TRANSVERSES/19-PRODUIT-IA-REFERENCE/02-COST.md), [Lab IA 60](../../06-ANNEXES-TRANSVERSES/60-LAB-SERVICE-IA-END-TO-END.md), puis [Leçon-pont 07 : Gateway LLM](LECONS-PONTS/07-gateway-llm-fiabilite.md).
 - Étudie d'abord la [Leçon-pont 02 : Évaluation IA](LECONS-PONTS/02-evaluation-et-llm-judge.md), puis termine le [Tribunal des IA](02-tribunal-des-ia.md) avec un verdict `PASS` traçable avant d'automatiser les décisions de routage ; lire sa fiche ou son pont ne suffit pas.
 
-**Gate d'entrée :** le [Tribunal des IA](02-tribunal-des-ia.md) est validé `PASS` ; tu sais aussi gérer un timeout sans supposer que l'effet distant est annulé, limiter les retries, expliquer un circuit breaker, mesurer coût/latence et refuser un fallback incompatible avec la classification des données. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-2--route-ia).
+**Gate d'entrée :** le [Tribunal des IA](02-tribunal-des-ia.md) est validé `PASS` ; tu sais aussi gérer un timeout sans supposer que l'effet distant est annulé, limiter les retries, expliquer un circuit breaker, mesurer coût/latence et refuser un fallback incompatible avec la classification des données. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-2-route-ia).
 
 ## Mission
 

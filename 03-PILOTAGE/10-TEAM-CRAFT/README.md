@@ -36,10 +36,10 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | [`13-three_audiences_intro.md`](13-three_audiences_intro.md)   | 3 publics, 1 concept                                                | 45 min |
 | [`14-three_audiences_drill.md`](14-three_audiences_drill.md)   | DRILL 3 AUDIENCES : TU EXPLIQUES OU TU NE COMPRENDS PAS             | 45 min |
 | [`15-argumentaire_technique.md`](15-argumentaire_technique.md) | ARGUMENTAIRE TECHNIQUE : CONVAINCRE UN PAIR EN 1 PAGE               | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                             | Page verrouillée                                                    | 30 min |
 | [`16-EXO_LECTURE.md`](16-EXO_LECTURE.md)                       | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Team Craft)         | 50 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)             | EXO [JEUNE IA] : 03-PILOTAGE/10-TEAM-CRAFT                          | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)             | EXO IA MENTEUSE : module 03-PILOTAGE/10-TEAM-CRAFT                  | 10 min |
+| [`90-grimoire.md`](90-grimoire.md)                             | Page verrouillée                                                    | 30 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                 | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust             | 45 min |
 
 Total : **14 h 30**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
@@ -94,14 +94,12 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [3 publics, 1 concept](13-three_audiences_intro.md)
 - [Drill 3 audiences : tu expliques ou tu ne comprends pas](14-three_audiences_drill.md)
 - [Argumentaire technique : convaincre un pair en 1 page](15-argumentaire_technique.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Team Craft)](16-EXO_LECTURE.md)
 - [EXO [jeune IA] : 03-pilotage/10-team-craft](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 03-PILOTAGE/10-TEAM-CRAFT](97-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
 - [Challenge : `10-TEAM-CRAFT`](95-challenge.md)
 - [Grimoire : `10-TEAM-CRAFT`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Frontière avec TEAM-QUEST

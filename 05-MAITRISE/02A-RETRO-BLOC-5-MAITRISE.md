@@ -7,7 +7,7 @@ acte: évaluer
 
 # Rétrospective de bloc : Bloc MAITRISE (05-MAITRISE, modules `01-DATABASES` a `08-MAITRISE-STAFF-ENGINEER`)
 
-[Sommaire](../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/08-ROADMAP-rythmes.md) | Style
+[Sommaire](../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Rythmes](../06-ANNEXES-TRANSVERSES/08-ROADMAP-rythmes.md) | Style
 
 Une rétrospective de bloc n'est pas un bilan de motivation. C'est une opération précise : tu
 rouvres un livrable écrit avant d'avoir appris ce que tu sais maintenant, et tu écris ce qui
@@ -155,7 +155,12 @@ avec les yeux d'un recruteur qui n'a pas ton contexte.
 - [ ] Tu nommes **trois tensions** que le dossier n'a pas résolues, et ce que chacune coûte.
 - [ ] Tes **SLO** sont chiffrés, mesurés, et tu montres la fois où ils ont été violés.
 - [ ] Chaque décision structurante a son **ADR**, écrit avant la solution, pas après.
-- [ ] `STANDARDS-AGENTS.md` décrit ce que tes agents font, et surtout ce qu'ils n'ont pas le droit de faire.
+- [ ] **Contrôle G8 :** si le fil rouge utilise des agents ou automatisations autonomes,
+      `STANDARDS-AGENTS.md` décrit les tâches déléguées, permissions, validations humaines,
+      limites, vérification des sorties et mécanisme d’arrêt. Sinon, `EVALUATION-IA.md`
+      documente la décision de non-usage, son périmètre et les contrôles conservés ; ne crée
+      pas de fichier de gouvernance fictif. Un assistant sous validation humaine directe
+      ne déclenche pas automatiquement cette pièce.
 
 Aucun item ne se coche sur une relecture : chacun se coche sur un artefact que tu peux ouvrir.
 

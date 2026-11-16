@@ -10,19 +10,19 @@ assessment_role: instructional_checkpoint
 
 > **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
 
-# Frontieres entre 12 (Design Patterns), 13 (Refactoring), 16 (Architecture) et 18 (OOP JS)
+# Frontières entre 10 (Design Patterns), 11 (Refactoring), 14 (Architecture Patterns) et 17 (OOP JS)
 
 Temps de lecture ~4 min
 
 -> ~5 min
 
-Trois modules qui parlent d'organisation du code. Ils ne se recouvrent pas.
+Quatre modules qui traitent d’organisation du code à des échelles différentes. Ils se recouvrent parfois, mais ne répondent pas à la même question.
 Ce fichier fige les frontieres pour empecher la sensation "je relis la
 meme chose sous trois titres".
 
 ## Table de contrat
 
-| Question posee          | 12 Design Patterns                            | 13 Refactoring                                          | 16 Architecture Patterns                              |
+| Question posée          | 10 Design Patterns                            | 11 Refactoring                                          | 14 Architecture Patterns                              |
 | ----------------------- | --------------------------------------------- | ------------------------------------------------------- | ----------------------------------------------------- |
 | Echelle                 | 1 a 3 classes / fonctions                     | 1 fichier a 1 module                                    | 1 module a tout le systeme                            |
 | Point de depart         | "j'ai une intention recurrente a exprimer"    | "j'ai du code deja ecrit qui pue"                       | "j'ai un systeme a decouper en briques"               |
@@ -30,24 +30,24 @@ meme chose sous trois titres".
 | Reference culte         | Gang of Four                                  | Fowler, Refactoring                                     | Evans (DDD), Fowler (PoEAA), Hohpe (EIP)              |
 | Exemple typique         | Strategy, Observer, Factory                   | Extract Function, Replace Conditional with Polymorphism | Hexagonal, CQRS, Event-driven                         |
 | Ne fait PAS             | reorganiser un module entier                  | inventer de nouvelles primitives                        | choisir le nom d'une variable                         |
-| Signal "mauvais module" | tu decris des flux entre services -> va en 16 | tu inventes un pattern reutilisable -> va en 12         | tu discutes du nommage d'une fonction -> va en 13     |
+| Signal "mauvais module" | tu décris des flux entre services -> va en 14 | tu inventes un pattern réutilisable -> va en 10         | tu discutes du nommage d'une fonction -> va en 11     |
 
 ## Regle de tri en 10 secondes
 
-1. Est-ce que tu changes le **comportement** ? Non -> 13. Oui -> 12 ou 16.
+1. Est-ce que tu changes le **comportement** ? Non -> 11. Oui -> 10 ou 14.
 2. Est-ce que le probleme rentre dans **une classe / fonction / paire de
-   fonctions** ? Oui -> 12. Non -> 16.
+   fonctions** ? Oui -> 10. Non -> 14.
 3. Est-ce que tu discutes de la **topologie du systeme** (qui parle a qui,
-   avec quel protocole, ou vivent les donnees) ? -> 16.
+   avec quel protocole, ou vivent les donnees) ? -> 14.
 
 ## Zones grises assumees
 
-- Extract Class (13 selon Fowler) peut aboutir a l'application d'un pattern
-  du 12. C'est normal : le refactoring est le pont vers le pattern, pas
+- Extract Class (11 selon Fowler) peut aboutir a l'application d'un pattern
+  du 10. C'est normal : le refactoring est le pont vers le pattern, pas
   le pattern lui-meme.
-- Le pattern Repository (12) est aussi une brique d'architecture
+- Le pattern Repository (10) est aussi une brique d'architecture
   hexagonale (16). Le 12 en donne la mecanique, le 16 en donne le role
-  dans le systeme.
+  dans le système.
 
 ## Ou l'analogie casse
 
@@ -55,13 +55,13 @@ On parle de "frontieres". Elles sont poreuses en pratique. Ce tableau
 sert d'aide a la decision quand tu **commences** une lecon, pas de
 verite absolue.
 
-## Et 18 (OOP JS) dans tout ca ?
+## Et 17 (OOP JS) dans tout ça ?
 
 `02-CONSTRUCTION/17-OOP-JS` traite du **mecanisme JS de l'orientation objet** (prototype chain,
 `class`, `this`, heritage, mixins). C'est de la mecanique de langage, pas
 une strategie d'organisation :
 
-| Question posee          | 18 OOP JS                                                                                   |
+| Question posée          | 17 OOP JS                                                                                   |
 | ----------------------- | ------------------------------------------------------------------------------------------- |
 | Echelle                 | 1 objet / 1 prototype                                                                       |
 | Point de depart         | "comment JS implemente l'heritage"                                                          |
@@ -71,7 +71,7 @@ une strategie d'organisation :
 | Ne fait PAS             | choisir un pattern GoF ; refactorer un module                                               |
 | Signal "mauvais module" | tu discutes de Strategy vs Factory -> va en 12 ; tu discutes de qui parle a qui -> va en 16 |
 
-Regle : **18 = COMMENT ca marche en JS. 12 = QUELLE intention j'exprime. 13 = COMMENT je re-arrange sans casser. 16 = COMMENT le systeme entier est cable.**
+Regle : **17 = COMMENT ça marche en JS. 10 = QUELLE intention j'exprime. 11 = COMMENT je réarrange sans casser. 14 = COMMENT le système entier est câblé.**
 
 ## Reference
 

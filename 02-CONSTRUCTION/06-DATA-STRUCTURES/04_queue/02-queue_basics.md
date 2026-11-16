@@ -236,6 +236,9 @@ enqueue("F") : tail revient à 0
 ```js
 class RingBuffer {
   constructor(capacity) {
+    if (!Number.isSafeInteger(capacity) || capacity < 1) {
+      throw new RangeError("capacity doit être un entier positif");
+    }
     this.capacity = capacity;
     this.buffer = new Array(capacity);
     this.head = 0; // prochain à sortir
@@ -244,13 +247,17 @@ class RingBuffer {
   }
 
   enqueue(value) {
-    if (this.size === this.capacity) {
-      throw new Error("RingBuffer plein : t'as dépassé la limite");
-    }
+    const wasFull = this.size === this.capacity;
 
+    // Si le buffer est plein, tail == head : l'écriture remplace le plus ancien.
     this.buffer[this.tail] = value;
-    this.tail = (this.tail + 1) % this.capacity; // boucle avec modulo
-    this.size++;
+    this.tail = (this.tail + 1) % this.capacity;
+
+    if (wasFull) {
+      this.head = this.tail; // l'élément situé à head vient d'être écrasé
+    } else {
+      this.size++;
+    }
   }
 
   dequeue() {
@@ -270,8 +277,7 @@ class RingBuffer {
 ```
 
 Cas d'usage parfait : buffer d'events de match en temps réel.
-Tu gardes les N derniers events. Les vieux s'écrasent.
-Pas de malloc, pas de GC, pas de surprise.
+Tu gardes les N derniers événements. Les plus anciens sont écrasés lorsque le buffer est plein. La capacité du tableau est fixée à la construction et `enqueue` ne l'agrandit pas ; en JavaScript, cela ne garantit toutefois ni absence d'allocation interne ni absence de garbage collection.
 
 ---
 

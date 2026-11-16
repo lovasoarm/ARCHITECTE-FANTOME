@@ -8,139 +8,58 @@ transfer_distance: high
 assessment_role: diagnostic_mastery
 ---
 
-> **SCÈNE CRAZYDEVS : Mur Maria :** découper un système, c'est choisir où placer les murs et surtout où ne pas en mettre. Chaque frontière doit payer son loyer en autonomie, résilience ou changement futur.
+# CHALLENGE CROSS-LANGUAGE : défendre un transfert déjà réalisé
 
-# CHALLENGE CROSS-LANGUAGE : preuve de transferabilité
+Temps de lecture : environ 3 minutes. Travail : 2 à 4 heures selon les preuves déjà produites.
 
-Temps de lecture ~3 min
+## Rôle dans le parcours
 
--> ~6-10 h de travail effectif, à répartir sur 1-2 semaines
+Ce challenge est une **synthèse de transfert**, pas une deuxième campagne de portage. La preuve principale de transfert obligatoire est le mini-projet [15 : Portage Rasengan Engine](../../../02-CONSTRUCTION/02-MINI-PROJECTS/15_porte_rasengan_engine_multilang/README.md) : un portage de JavaScript vers **Python OU Go**, au choix. Un seul langage cible est exigé pour cette preuve.
 
-Compétence visée : prouver, par produit, que ton raisonnement d'ingénieur ne dépend pas de JavaScript. C'est la Pierre 6 (pensée transférable) qui cesse d'être une promesse pour devenir une preuve.
+La validation du module [12 : TypeScript](../../../02-CONSTRUCTION/12-TYPESCRIPT/README.md) est indépendante. Aucun résultat de ce challenge, aucun troisième langage et aucune preuve du projet 17 ne peut retarder ou annuler la gate TypeScript.
 
-> **CHECKPOINT BLOQUANT** : ce challenge est **obligatoire apres le module
-> `02-CONSTRUCTION/12-TYPESCRIPT`**. Tant qu'il n'est pas passe avec produit commite (algo + pattern
-> dans un langage non-JS, tests verts sur `crosslang_compare.sh`), tu ne considere
-> pas le module `02-CONSTRUCTION/12-TYPESCRIPT` comme valide, meme si la roadmap continue. Raison : sans drill
-> valide dans un second langage, la Pierre 6 (pensee transferable) reste postulee,
-> pas prouvee. Aucune auto-attestation de module `02-CONSTRUCTION/12-TYPESCRIPT` sans ce livrable. Le
-> `08-POSTMORTEM.md` du mini-projet 15 s'appuie explicitement sur ce checkpoint.
+Le projet [17 : Polyglot Forge](../../../02-CONSTRUCTION/02-MINI-PROJECTS/17_polyglot_forge/README.md) est un approfondissement DEPTH sur la sémantique de l'event loop. Il peut réutiliser le langage cible déjà choisi au projet 15. Il n'impose pas une troisième langue et ne bloque pas la validation fondamentale du parcours.
 
-Ce challenge complète et remplace la question ouverte "je saurais refaire ça ailleurs" par un livrable comparable à la référence JS.
+## Travail demandé
 
-Renvois utiles :
+À partir des livrables réellement produits au projet 15 :
 
-- `05-MAITRISE/06-ANNEXES/30_transferability/` (exercices ciblés existants : `02-closure_in_python.md`, `04-event_loop_in_pseudorust.md`, `07-observer_in_go.md`, `95-challenge.md`).
-- `02-CONSTRUCTION/02-MINI-PROJECTS/15_porte_rasengan_engine_multilang/` (mini-projet cross-language de référence).
-- `node learner-verifier.js` (auto-verif ecrite par toi) (comparateur de sorties, fourni).
+1. Présente le contrat fonctionnel partagé entre l'implémentation JavaScript et le portage choisi.
+2. Montre au moins trois cas : nominal, limite et erreur. Indique la commande réellement exécutée, les versions de runtime et la sortie observée ; si tu ne peux pas exécuter les deux côtés, marque explicitement la comparaison `NON TESTÉE`.
+3. Explique deux invariants qui restent identiques et deux différences de sémantique qui ont exigé une adaptation.
+4. Présente l'ADR de comparaison et au moins une objection substantielle à ta décision. Réponds avec une preuve ou révise ta conclusion.
+5. Défends oralement ce que tu pourrais transférer dans un autre langage, ce que tu ne peux pas encore affirmer et quelle documentation officielle tu consulterais.
 
-## LE CONTRAT
+## Livrables
 
-Tu vas produire, dans **un langage non-JS au choix** (Python, Go, Rust, Java, C#) :
+Dans ton dossier de preuves du projet 15, référence :
 
-1. **Un algorithme** issu de `02-CONSTRUCTION/07-ALGORITHMS/`. Choix libre : tri, recherche binaire, graphe (BFS/DFS/Dijkstra), programmation dynamique. Complexité annoncée identique à la version JS.
-2. **Un pattern** issu de `02-CONSTRUCTION/10-DESIGN-PATTERNS/`. Choix libre parmi Strategy, Observer, Builder, Adapter, Decorator, State. Interface publique équivalente.
+- le commit local de référence et le commit du portage ;
+- le langage cible unique (Python ou Go) et ses versions ;
+- les commandes de test réellement exécutées et leurs sorties ;
+- l'ADR de comparaison ;
+- le rapport des écarts, hypothèses et limites ;
+- la revue contradictoire individuelle (objection, réponse, preuve, décision révisée ou maintenue).
 
-Les deux livrables doivent :
+Un dépôt public peut enrichir le portfolio, mais n'est pas requis pour valider cette épreuve. L'historique Git local et les artefacts reproductibles restent nécessaires.
 
-- Prendre les mêmes entrées (format identique, JSON ou lignes de texte) que la version JS.
-- Produire les mêmes sorties (byte-exact ou à `EPSILON` près pour du flottant).
-- Passer la même batterie de tests (portée par `crosslang_compare.sh`).
+## Grille de validation
 
-## STRUCTURE DE LIVRAISON
+| Critère                   | Preuve attendue                                                                                                                     |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Contrat commun            | Entrées, sorties, erreurs et invariants explicités                                                                                  |
+| Parité                    | Au moins un cas nominal, un cas limite et un cas d'erreur comparés ; résultat réellement exécuté ou `NON TESTÉ` honnêtement déclaré |
+| Raisonnement de transfert | Deux invariants conservés et deux adaptations sémantiques justifiées                                                                |
+| Décision                  | ADR avec contexte, alternatives, conséquences et signal de révision                                                                 |
+| Défense                   | Une objection sérieuse traitée par preuve, révision ou justification                                                                |
+| Limites                   | Aucune affirmation au-delà des environnements et tests réellement vérifiés                                                          |
 
-```text
-crosslang_challenge/
-  algo_<nom>/
-    js/    (référence, extraite de 02-CONSTRUCTION/07-ALGORITHMS)
-    <lang>/
-      src/
-      tests/
-      README.md   (choix de langage, ADR mini)
-  pattern_<nom>/
-    js/
-    <lang>/
-      src/
-      tests/
-      README.md
-  RAPPORT.md      (ce que tu as appris, ce qui a résisté, ce qui a plié)
-```
+La réussite ne repose pas sur un nombre artificiel de langages ou de mots. Une preuve incomplète reste incomplète ; une preuve honnête et limitée n'est pas présentée comme une exécution réussie.
 
-## GRILLE DE CONFORMITÉ (à cocher toi-même)
+## Enchaînement
 
-| #   | Critère                                                                             | OK  |
-| --- | ----------------------------------------------------------------------------------- | --- |
-| 1   | Sorties identiques à la version JS sur ≥ 10 cas de test                             |     |
-| 2   | Complexité asymptotique documentée et respectée                                     |     |
-| 3   | Erreurs / cas limites gérés de façon équivalente (pas de crash silencieux)          |     |
-| 4   | Choix de langage justifié en 5 lignes minimum                                       |     |
-| 5   | RAPPORT.md nomme au moins 3 choses qui ont mieux fonctionné, ou moins bien, hors JS |     |
-| 6   | `crosslang_compare.sh` renvoie 0 sur la totalité des cas de test                    |     |
+Prérequis : le mini-projet 15 et les leçons de transfert qu'il référence. Le projet 17 peut ensuite approfondir l'event loop, sans devenir un troisième langage obligatoire. Ce challenge ne crée ni prérequis caché pour TypeScript ni gate supplémentaire pour les débutants.
 
-6/6 obligatoire. Pas de 5/6 "presque bon". **Rappel checkpoint bloquant** : ce
-6/6 est le prerequis de sortie du module `02-CONSTRUCTION/12-TYPESCRIPT` ; sans lui, la Pierre 6 reste une
-promesse.
+## Variation de profondeur : boîte noire
 
-## POURQUOI CETTE GREFFE, ET PAS UN NOUVEAU MODULE
-
-Un nouveau module aurait allongé le curriculum sans preuve additionnelle. Une greffe unique à la fin du parcours, exigeant deux artefacts vérifiables, prouve la transferabilité **une fois pour toutes** : et ça passe au portfolio.
-
-## RAPPORT.md : STRUCTURE OBLIGATOIRE
-
-1. **Langage choisi et pourquoi.** Pas "j'aime Python", mais "j'avais besoin de X".
-2. **Ce que le typage / la mémoire manuelle / le GC différent m'a forcé à reconsidérer.**
-3. **Un concept JS qui a mal survécu au portage** (closure, coercion, event loop, prototype).
-4. **Un concept qui a mieux survécu que prévu.**
-5. **Ce que je changerais dans mon code JS après avoir fait ce challenge.**
-
-## ENCHAÎNEMENT
-
-- Prérequis : `02-CONSTRUCTION/07-ALGORITHMS/` complet, `02-CONSTRUCTION/10-DESIGN-PATTERNS/` complet, `../30_transferability/README.md` lu.
-- Ne pas commencer avant : la fin des mini-projets `01`, `05`, `15`. Sinon tu n'as pas la maturité pour comparer.
-- Après : passe à `./03-interview_defense.md` scénario 2. Tu défendras plus solidement.
-
----
-
-## PALIERS OBLIGATOIRES : 3 langages, une même fonction pure
-
-Le "un langage non-JS au choix" reste la porte d'entrée. Mais pour prouver
-la Pierre 6 comme un pilier (et non une note de bas de page), tu franchis
-**3 paliers cumulatifs** en réimplémentant la **même fonction pure**
-(entrée -> sortie déterministe, pas d'effet de bord) dans 3 familles de
-langages :
-
-### Palier A : langage à typage dynamique proche (Python)
-
-- Choix imposé : **Python**.
-- Objectif : voir ce qui change quand la stdlib est riche et le typage nominal absent.
-- Livrable : `crosslang_challenge/pure_fn/python/` avec `src/`, `tests/`, `README.md`.
-
-### Palier B : langage à typage statique et modèle mémoire différent (Go **ou** Rust)
-
-- Choix libre entre **Go** et **Rust**.
-- Objectif : affronter le compilateur, gérer la mémoire ou le GC autrement.
-- Livrable : `crosslang_challenge/pure_fn/<go|rust>/`.
-
-### Palier C : langage jamais vu (Elixir, Zig, Gleam, OCaml, Roc...)
-
-- Choix libre parmi une famille inconnue **au moment où tu commences**.
-- Objectif : prouver que tu peux atteindre "hello world utile" dans un
-  écosystème neuf en <= 8 h, tests compris.
-- Livrable : `crosslang_challenge/pure_fn/<lang>/` + une section
-  "ce que je n'aurais pas trouvé sans la doc officielle" dans le README.
-
-### Grille 6/6 par palier
-
-Chaque palier doit passer la même grille que ci-dessus (sorties identiques,
-complexité, cas limites, justification, RAPPORT, comparateur à 0). **3 x 6/6
-obligatoire** pour valider le diplôme. Un palier à 5/6 = palier non passé.
-
-### Pourquoi 3 paliers, pas 1
-
-Un seul langage prouve "je peux". Trois paliers prouvent "je peux dans
-n'importe quelle famille" : ce qui est la définition opérationnelle de la
-Pierre 6. C'est ce qui bloque le diplôme, pas la roadmap.
-
-## CHECKPOINT DE PROFONDEUR : variation G : boîte noire
-
-Tu n'as plus le nom de la technologie ni l'exemple du cours. Décris uniquement le problème, le mécanisme, les invariants et les observations attendues. Puis indique quelle famille d'outils pourrait implémenter ce mécanisme et pourquoi ce choix n'est pas la compétence elle-même.
+Sans nommer la technologie, explique le problème, le mécanisme, les invariants et les observations attendues. Décris ensuite quelle famille d'outils pourrait implémenter ce mécanisme, pourquoi tu la choisirais et quelle hypothèse pourrait invalider ce choix.

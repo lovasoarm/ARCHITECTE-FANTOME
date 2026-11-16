@@ -91,14 +91,12 @@ Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **E
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Contrat métier et langage commun Kintana
+## Mission Kintana : refuser une architecture disproportionnée
 
-> **Arc Naruto / Konoha :** le mot « mission » ne veut pas dire la même chose pour le demandeur, l'agent et l'administrateur. Le vocabulaire doit coller au métier qui l'utilise.
+On te propose d'isoler chaque étape d'une demande Kintana dans un microservice, avec broker, base séparée et orchestration. Construis la meilleure défense de cette proposition, puis compare-la à un monolithe modulaire et à une séparation partielle. Utilise uniquement les volumes, contraintes d'équipe et incidents disponibles ; identifie ce qui manque.
 
-**Mission liée à « Exercice : refuser une architecture trop belle » :** Anime une mini revue de domaine sur la création et l'affectation d'une demande. Construis un glossaire validé, un event storming simple, les invariants et les contextes candidats ; teste une ambiguïté avec une évolution.
+**Livrable :** note d'arbitrage avec trois options, coûts d'exploitation, risques, réversibilité, seuil déclencheur et date de réexamen.
 
-**Livrable :** glossaire métier, diagramme commandes/événements, frontières proposées et ADR qui explique pourquoi une frontière existe ou non.
+**Acceptation :** le refus ou l'acceptation repose sur les contraintes ; les estimations sont étiquetées ; le coût de migration et d'astreinte apparaît ; une observation peut invalider la décision.
 
-**Critères d’acceptation :** chaque terme a un sens et un propriétaire ; les règles sont testables ; les contextes ne sont pas découpés par table ; les désaccords sont conservés comme questions ouvertes.
-
-**Transfert obligatoire :** Une nouvelle organisation utilise le mot « agent » pour deux rôles différents. Montre comment ton modèle absorbe ou refuse cette ambiguïté.
+**Transfert :** l'équipe double et deux domaines changent à des rythmes différents. Reconsidère la frontière sans imposer mécaniquement des microservices.

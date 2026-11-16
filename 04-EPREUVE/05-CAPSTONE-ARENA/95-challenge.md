@@ -174,7 +174,7 @@ direction, refus chiffré). Le seuil de 60/100 ci-dessous se lit donc 204/340.
 ## Durée cible
 
 32 heures au total, réparties en trois jalons seuillés : 4 h de cadrage, 8 h d'architecture,
-20 h de V1 et preuve. Fourchette acceptable annoncée dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) :
+20 h de V1 et preuve. Fourchette acceptable annoncée dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) :
 25 à 40 h. Au-delà de 40 h, le problème n'est pas ta vitesse : c'est ton périmètre, et le
 05-MVP-SPLIT t'a donné les ciseaux.
 

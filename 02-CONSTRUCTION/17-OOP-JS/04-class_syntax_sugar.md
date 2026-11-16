@@ -169,32 +169,37 @@ n2.missions // ["A"] : oups         n2.missions // [] : correct
 
 TypeScript ajoute des annotations au-dessus des class fields ES2022, mais le mécanisme runtime reste le même.
 
-```js
-// TypeScript
-class Ninja {
- nom: string        // annotation de type : n'existe pas au runtime
- readonly village: string // readonly TS : erreur de compilation si réassigné
- #chakra = 100       // champ privé JS : vrai runtime, visible dans les erreurs JS
+```ts
+// Source TypeScript : les annotations et readonly sont vérifiés par tsc.
+class NinjaTS {
+  nom: string;
+  readonly village: string;
+  #chakra = 100; // champ privé JavaScript conservé au runtime
 
- constructor(nom: string, village: string) {
-  this.nom = nom
-  this.village = village
- }
+  constructor(nom: string, village: string) {
+    this.nom = nom;
+    this.village = village;
+  }
 }
+```
 
-// JavaScript compilé (ce qui s'exécute vraiment)
-class Ninja {
- #chakra = 100       // le seul qui survit : c'est du JS réel
- constructor(nom, village) {
-  this.nom = nom
-  this.village = village
- }
+```js
+// Forme JavaScript équivalente après suppression des annotations TypeScript.
+class NinjaJS {
+  #chakra = 100;
+  nom;
+  village;
+
+  constructor(nom, village) {
+    this.nom = nom;
+    this.village = village;
+  }
 }
 ```
 
 `readonly` en TS n'existe que dans le compilateur. Il disparaît à la compilation. `#chakra` en JS existe vraiment au runtime : le moteur JS le connaît, il apparaît dans les stack traces, et il est vraiment inaccessible de l'extérieur.
 
-La règle : TypeScript ajoute des garanties **à la compilation**. JavaScript `#private` ajoute des garanties **au runtime**. Les deux ne sont pas interchangeables. En `02-CONSTRUCTION/17-OOP-JS/07_encapsulation_privacy`, on explore ça en détail.
+La règle : TypeScript ajoute des garanties **à la compilation**. JavaScript `#private` ajoute des garanties **au runtime**. Les deux ne sont pas interchangeables. En [`08-encapsulation_privacy.md`](08-encapsulation_privacy.md), on explore ça en détail.
 
 ## TIPS D'ÉVOLUTION
 

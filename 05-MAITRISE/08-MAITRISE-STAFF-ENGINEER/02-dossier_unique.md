@@ -31,7 +31,7 @@ Un dossier de 10 à 14 pages, écrit sur **ton** fil rouge, qu'un jury ouvre san
 | 6   | La note direction               | une page, zéro jargon, un chiffre, une contrepartie                                                                                    | S5, `03-PILOTAGE/11-LEADERSHIP-MENTORAT` et `10-TEAM-CRAFT`                                                                                |
 | 7   | Livraison & exploitation        | version, release, migration, signaux post-déploiement, rollback/recovery daté                                                          | S6                                                                                                                                         |
 | 8   | Les trois tensions              | trois contradictions chiffrées **entre** familles                                                                                      | `03-trois_tensions.md`                                                                                                                     |
-| 9   | Le transfert                    | portage hors langage et hors fournisseur                                                                                               | S7, `05A-transfert_hors_ecosysteme.md`                                                                                                     |
+| 9   | Le transfert                    | portage hors langage et hors fournisseur                                                                                               | S7, `TRANSFERT-HORS-ECOSYSTEME.md`                                                                                                         |
 | 10  | La transformation décisionnelle | croyance initiale, confiance, preuve contradictoire, changement d’avis, biais, junior-was-right, pression et mécanisme de compensation | `05-PSYCHOLOGIE-DECISION/README.md`                                                                                                        |
 
 Le squelette exact de `PREUVES/`, les pièces conditionnelles et leur statut de preuve sont définis dans [PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md). Ce tableau de dix sections est le document de synthèse du jury ; il ne remplace pas les pièces sources.
@@ -54,11 +54,11 @@ Le squelette exact de `PREUVES/`, les pièces conditionnelles et leur statut de 
 - [ ] `PREUVES/IA-EN-PROD.md` est annexée uniquement si une brique IA fait partie du système réel.
 - [ ] `REVUE-SECURITE.md`, `DECISION-ARBITRAGE.md` et `PLAN-MENTORAT.md` sont présentes avec leur niveau de preuve réel ; un plan de mentorat non exécuté ne prouve pas un résultat humain.
 - [ ] Le dossier `ADR/` contient les ADR détaillés demandés par S2 ; `ADR-PRINCIPAL.md` en est l’index/synthèse.
-- [ ] La section 8 contient trois tensions **chiffrées des deux côtés**.
+- [ ] La section 8 examine les trois axes canoniques S1×S3, S4×S2 et S5×S6. Chaque tension réellement observée est chiffrée et sourcée des deux côtés ; un axe non applicable ou non démontré est explicitement marqué et justifié, sans inventer de contradiction. Pour chaque axe écarté, une autre tension pertinente entre familles peut être documentée.
 - [ ] La section 9 contient un dossier `transfert/` réellement exécutable.
 - [ ] Une date de revisite est fixée (`04-revisite_datee.md`).
 - [ ] La section 10 contient une comparaison avant / pendant / après avec au moins une mesure chiffrée.
-- [ ] `04-BELIEF-CHANGE-LOG.md`, `05-BIAS-LOG.md` et au moins deux épreuves de `05-PSYCHOLOGIE-DECISION/` sont annexés.
+- [ ] `PREUVES/04-BELIEF-CHANGE-LOG.md` et `PREUVES/05-BIAS-LOG.md` sont des copies remplies des modèles `05-PSYCHOLOGIE-DECISION/03-BELIEF-CHANGE-LOG.md` et `05-PSYCHOLOGIE-DECISION/04-BIAS-LOG.md` ; au moins deux autres épreuves de `05-PSYCHOLOGIE-DECISION/` sont annexées avec leur niveau de preuve.
 
 ## Défense
 

@@ -8,19 +8,19 @@ perturbation_modes: [changement_echelle, decision_inversee]
 anti_recipe_key: changement_echelle+decision_inversee
 transfer_distance: medium
 assessment_role: instructional_checkpoint
-source_verified_on: "2026-11-03"
+source_verified_on: "2026-11-11"
 freshness_status: "verified_reference"
-source_url: "https://r2.nodejs.org/docs/latest-v22.x/api/process.html#event-unhandledrejection"
+source_url: "https://nodejs.org/docs/v22.23.4/api/process.html#event-unhandledrejection"
 source_type: "primary"
 review_interval: "6 mois"
 review_due: "2027-05-03"
-source_scope: "Documentation officielle Node.js 22.x sur process/unhandledRejection. Le lien R2 est le miroir officiel de la documentation versionnée. La référence soutient les événements Node.js ciblés, pas les autres comportements de test du module."
-provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+source_scope: "Documentation officielle versionnée Node.js 22.23.4 sur process/unhandledRejection. La référence soutient les événements et le comportement du runtime ciblés, pas les autres comportements de test du module."
+provenance_note: "V6.5, 2026-11-11 : référence alignée sur l’URL Node.js 22.23.4 du runtime épinglé. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l’échéance ou avant toute décision."
 canonical_resource: null
-source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
-claim_alignment_status: "OFFICIAL_NODE_22_VERSIONED_MIRROR_CONFIRMED_2026-11-03"
-source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
-claim_reviewed_on: "2026-11-03"
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-11"
+claim_alignment_status: "OFFICIAL_NODE_22_23_4_PROCESS_REFERENCE_CONFIRMED_2026-11-11"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-11"
+claim_reviewed_on: "2026-11-11"
 ---
 
 > **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
@@ -60,7 +60,7 @@ Explique ce que ce mécanisme coûte lorsqu'on l'applique à grande échelle. Id
 
 ## Références officielles utiles
 
-> **Référence principale vérifiée le 2 novembre 2026 :** la première ressource ci-dessous, également enregistrée dans `source_url`, documente le comportement versionné demandé dans la question 3. La note de version confirme la publication de Node.js 22.23.4. Ces références n’attestent pas que du code a été exécuté dans ce curriculum.
+> **Référence principale vérifiée le 11 novembre 2026 :** la première ressource ci-dessous, également enregistrée dans `source_url`, documente le comportement versionné demandé dans la question 3. La note de version confirme la publication de Node.js 22.23.4. Ces références n’attestent pas que du code a été exécuté dans ce curriculum.
 
-- [Node.js 22 : Process API, événement `unhandledRejection`](https://r2.nodejs.org/docs/latest-v22.x/api/process.html#event-unhandledrejection)
+- [Node.js 22 : Process API, événement `unhandledRejection`](https://nodejs.org/docs/v22.23.4/api/process.html#event-unhandledrejection)
 - [Node.js : publication de la version 22.23.4](https://nodejs.org/en/blog/release/v22.23.4)

@@ -16,7 +16,7 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~10 min
 
-Chercher un pattern dans une string : O(n\*m) avec brute force. O(n+m) avec KMP. Mais si tu dois chercher des milliers de patterns dans la même string longue, recompiler un index à chaque fois est inacceptable. Le Suffix Array construit un index une fois pour toutes, puis répond à chaque requête en O(m log n).
+Chercher un pattern dans une string : O(n\*m) avec brute force. O(n+m) avec KMP. Mais si tu dois chercher des milliers de patterns dans la même string longue, recompiler un index à chaque fois est inacceptable. Le Suffix Array construit un index une fois pour toutes, puis localise la plage correspondante en O(m log n). Dans l’implémentation ci-dessous, trier les k positions retournées ajoute O(k log k).
 
 Cas réels : moteurs de recherche full-text, détection de plagiats, bioinformatique (recherche de séquences ADN), autocomplétion.
 
@@ -127,12 +127,27 @@ function buildSuffixArray(str) {
 
 ---
 
-## 4) RECHERCHE DE PATTERN : O(m log n)
+## 4) RECHERCHE DE PATTERN : O(m log n) POUR LOCALISER LES MATCHES
 
 Une fois le suffix array construit, chercher un pattern c'est une recherche binaire : tous les suffixes qui commencent par le pattern sont contigus dans le tableau trié.
 
 ```js
 function searchPattern(str, sa, pattern) {
+  if (
+    typeof str !== "string" ||
+    typeof pattern !== "string" ||
+    pattern.length === 0
+  ) {
+    throw new TypeError(
+      "str et pattern doivent être des chaînes ; pattern ne peut pas être vide",
+    );
+  }
+  if (!Array.isArray(sa) || sa.length !== str.length) {
+    throw new TypeError(
+      "sa doit être le suffix array construit pour cette chaîne",
+    );
+  }
+  // Précondition importante : sa doit provenir de buildSuffixArray(str), pas d'une autre chaîne.
   const m = pattern.length;
   const n = str.length;
 
@@ -189,18 +204,18 @@ const sa = buildSuffixArray(lyrics);
 
 // chercher "nobody"
 const positions = searchPattern(lyrics, sa, "nobody");
-// [29, 49, 58] : trois occurrences, aux positions 29, 49 et 58
+// [5, 48, 60] : trois occurrences, aux positions 5, 48 et 60
 
 // chercher "love"
 searchPattern(lyrics, sa, "love");
-// [20, 40] : deux occurrences
+// [18, 34] : deux occurrences
 
 // chercher "like"
 searchPattern(lyrics, sa, "like");
-// [12, 52]
+// [27, 55]
 
 // le suffix array est construit une fois
-// chaque recherche suivante est O(m log n):indépendante de la longueur du texte
+// localisation : O(m log n) comparaisons ; tri des k positions retournées : O(k log k)
 ```
 
 ---
@@ -301,7 +316,7 @@ Teste sur `"abracadabra"` et `"aaabaaab"`.
 
 ## RÉSUMÉ
 
-Le Suffix Array trie les indices des suffixes d'une string. Une fois construit, chercher un pattern prend O(m log n) via recherche binaire : contre O(n\*m) en brute force. Construction naïve en O(n² log n), prefix doubling en O(n log² n). Le LCP array complète la structure pour les requêtes sur les préfixes communs. Idéal quand un même corpus est interrogé par de nombreux patterns différents : construire l'index une fois, chercher des milliers de fois.
+Le Suffix Array trie les indices des suffixes d'une string. Une fois construit, localiser les occurrences d'un pattern prend O(m log n) via recherche binaire, contre O(n\*m) en brute force. Dans cette implémentation, le tri des k indices retournés ajoute O(k log k). Construction naïve en O(n² log n), prefix doubling en O(n log² n). Le LCP array complète la structure pour les requêtes sur les préfixes communs. Idéal quand un même corpus est interrogé par de nombreux patterns différents : construire l'index une fois, chercher des milliers de fois.
 
 ## CHECKPOINT DE PROFONDEUR : variation I : reconstruction sans template
 

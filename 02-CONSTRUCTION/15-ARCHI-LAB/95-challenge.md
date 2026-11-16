@@ -79,7 +79,7 @@ d'arbitrage non mesurable (« c'est plus propre », « c'est plus moderne »).
 
 ## Durée cible
 
-10 h, égal à la durée de ce niveau dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md). Si tu dépasses
+10 h, égal à la durée de ce niveau dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md). Si tu dépasses
 largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
 de bâcler la fin du livrable.
 

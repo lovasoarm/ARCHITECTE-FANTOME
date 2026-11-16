@@ -48,9 +48,9 @@ Le SLO définit la cible, le SLI mesure le service et l’error budget relie fia
 | `05-post_mortem_sans_coupable.md` | post-mortem                               | 45 min |
 | `06-panne_subie_sur_fil_rouge.md` | exercice de panne tirée au sort           | 45 min |
 | `07-injection_panne.md`           | panne **injectée** (geste, pas texte)     | 45 min |
-| `90-grimoire.md`                  | lignes à retenir                          | 30 min |
 | `95-challenge.md`                 | mise en pratique                          | 1 h 30 |
 | `96-boss-fight.md`                | épreuve de passage                        | 3 h    |
+| `90-grimoire.md`                  | lignes à retenir, après la pratique       | 30 min |
 
 ## Livrable
 
@@ -79,10 +79,10 @@ Le SLO définit la cible, le SLI mesure le service et l’error budget relie fia
 - [Post-mortem sans coupable](05-post_mortem_sans_coupable.md)
 - [Exercice : la panne subie (et non choisie)](06-panne_subie_sur_fil_rouge.md)
 - [Injection de panne : la résilience se joue au geste](07-injection_panne.md)
-- [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
-- [BOSS FIGHT : MODULE 06 : LE BUDGET EST VIDE, LE MÉTIER VEUT LIVRER](96-boss-fight.md)
 - [CHALLENGE : LE `SLO.md` QUI TIENT DEBOUT](95-challenge.md)
-- [Grimoire : fiabilité et SLO](90-grimoire.md)
+- [BOSS FIGHT : MODULE 06 : LE BUDGET EST VIDE, LE MÉTIER VEUT LIVRER](96-boss-fight.md)
+- [Grimoire : fiabilité et SLO : après la pratique](90-grimoire.md)
+- [99-PORTAGE-MENTAL.md : transfert du concept vers un autre langage](99-PORTAGE-MENTAL.md)
 
 <!-- CONTENU-DOSSIER:fin -->
 

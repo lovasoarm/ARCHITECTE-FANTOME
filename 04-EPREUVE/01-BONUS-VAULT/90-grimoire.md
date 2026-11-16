@@ -7,6 +7,9 @@ acte: restituer
 
 # Grimoire : Bonus Vault
 
+> Rappel : ce grimoire simplifie via analogies. Lire d’abord [`91-18_GRIMOIRE_CODE_HONNEUR.md`](../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
+
+
 Temps de lecture ~7 min
 
 > Gabarit d'ADR de référence : [03-PILOTAGE/10-TEAM-CRAFT/03-adr_writing.md](../../03-PILOTAGE/10-TEAM-CRAFT/03-adr_writing.md). Ce fichier ne le redéfinit pas, il le rappelle.

@@ -7,6 +7,9 @@ acte: mémoriser
 
 # Grimoire : Client Systems
 
+> Rappel : ce grimoire simplifie via analogies. Lire d’abord [`91-18_GRIMOIRE_CODE_HONNEUR.md`](../../05-MAITRISE/06-ANNEXES/91-18_GRIMOIRE_CODE_HONNEUR.md).
+
+
 | Terme         | Définition                                            | Code / signal                | Analogie CrazyDevs                          |
 | ------------- | ----------------------------------------------------- | ---------------------------- | ------------------------------------------- |
 | State         | Information qui influence le rendu ou le comportement | variable / store / snapshot  | état du combattant                          |

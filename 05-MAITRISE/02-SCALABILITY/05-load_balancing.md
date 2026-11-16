@@ -144,7 +144,9 @@ N'importe quel serveur peut traiter N'IMPORTE QUELLE requête de N'IMPORTE QUEL 
 // Le load balancer interroge périodiquement chaque serveur
 async function healthCheck(server) {
   try {
-    const res = await fetch(`http://${server.ip}/health`, { timeout: 2000 });
+    const res = await fetch(`http://${server.ip}/health`, {
+      signal: AbortSignal.timeout(2000),
+    });
     return res.status === 200;
   } catch {
     return false; // pas de réponse = serveur considéré mort
@@ -154,15 +156,15 @@ async function healthCheck(server) {
 // toutes les X secondes, le load balancer retire les serveurs en échec de la rotation
 ```
 
-Le pourquoi : sans health check, le load balancer continue d'envoyer du trafic vers un serveur planté, et chaque requête vers lui timeout ou échoue. Avec health check, le serveur mort est retiré automatiquement de la liste, et le trafic se redistribue sur les serveurs vivants, sans intervention humaine.
+Le health check réduit le rayon d’impact, mais n’annule pas les requêtes déjà envoyées pendant la fenêtre de détection. Une bascule sans erreur n’est pas garantie : les autres serveurs doivent avoir une capacité suffisante, et les timeouts/retries doivent être bornés. Le contrôle doit avoir un vrai timeout via `AbortSignal.timeout()` ou un `AbortController`.
 
 ```text
 SANS health check :
 Server B crash --> load balancer continue d'envoyer 1/3 du trafic vers B --> 33% d'erreurs
 
 AVEC health check :
-Server B crash --> health check échoue --> B retiré de la rotation --> 0% d'erreur,
-A et C absorbent temporairement toute la charge
+Server B crash --> les requêtes peuvent échouer jusqu'à la détection --> B est retiré,
+A et C absorbent le trafic si leur capacité restante suffit ; le taux d'erreur baisse sans garantie de 0%
 ```
 
 ---

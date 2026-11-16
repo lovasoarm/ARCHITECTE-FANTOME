@@ -54,7 +54,7 @@ continu, qui sert uniquement à la lecture. Le scénario suppose que les utilisa
 
 Nous recommandons la version solide, et nous prévenons dès cette semaine les sept structures
 en attente que la livraison arrive dans quatre semaines. Ce que nous perdons : huit jours de
-délai, et une facture d'infrastructure simulée qui passe de 389,86 à 485,86 € par mois (total S1 à 10 000 utilisateurs, puis +96 € mensuels dans ce scénario). Ce que nous
+délai, et une facture d'infrastructure simulée qui passe de 407,86 à 503,86 € par mois (total S1 à 10 000 utilisateurs, file d'événements incluse, puis +96 € mensuels dans ce scénario). Ce que nous
 évitons : une promesse écrite rompue le premier mois, devant les trois clients qui l'ont
 signée.
 

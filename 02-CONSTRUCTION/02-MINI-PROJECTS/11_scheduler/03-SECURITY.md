@@ -4,95 +4,55 @@ acte: construire
 artefact: gabarit-apprenant
 ---
 
-> **SCÈNE CRAZYDEVS : armure Garo :** une protection qui existe mais n'est jamais vérifiée est juste un costume brillant. Ici, chaque garde-fou doit être testable et attaquable.
-
 # SECURITY : 11_scheduler
 
-<!-- AF-DIAGRAM:scheduler -->
+Ce document est un gabarit à compléter par l'apprenant. Il ne certifie pas à lui seul la sécurité du code.
 
-```text
-┌─────────────┐
-│ tâches      │
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│ queue       │
-└──────┬──────┘
-       ▼
-┌──────┴──────┐
-│ worker pool │
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│ résultats   │
-└─────────────┘
-```
+## 1. Périmètre réellement livré
 
-Le scheduler transforme un flux de tâches en travail ordonnancé par une capacité d’exécution limitée.
+Le projet de base est une bibliothèque locale sans serveur, endpoint HTTP, port réseau, accès fichier utilisateur, entrée STDIN/CLI, authentification, secret ou dépendance tierce. Ne crée pas ces surfaces uniquement pour satisfaire une checklist générique.
 
-Ce fichier est un **gabarit de préparation**, pas une preuve de sécurité déjà obtenue.
-La preuve finale est produite dans le dépôt apprenant et recroisée avec
-`04-SECURITY-GATE.md`, `08-POSTMORTEM.md` et les tests du projet.
+Éléments réellement exposés :
 
-## 1. Entrées et frontières
+- arguments publics de `pMap(items, mapper, options)` ;
+- callbacks enregistrés dans `Loop` ;
+- consommation de mémoire/CPU induite par les tableaux, les callbacks et la concurrence.
 
-- Sources d'entrée à relever :
-- Données sensibles possibles :
-- Surface d'exposition :
-- Hypothèses de confiance :
+## 2. Menaces et contrôles à démontrer
 
-## 2. Secrets et dépendances
+| Menace contextualisée | Contrôle attendu | Preuve à référencer |
+|---|---|---|
+| `items` ou `mapper` invalide | Rejeter proprement avant de démarrer du travail | Test d'argument invalide |
+| `concurrency` nul, non entier ou excessif | Refuser hors de l'intervalle 1–100 ; défaut documenté à 5 | Tests des bornes 0, 1, 100 et 101 |
+| Trop de tâches simultanées | Ne jamais dépasser la limite configurée | Mesure du maximum de mappers actifs |
+| Erreur d'un mapper | Propager l'erreur et ne pas lancer de nouveaux éléments | Test de rejet et de non-poursuite |
+| Annulation avant/après le départ | Aucun lancement après abort ; transmettre le signal aux mappers | Tests d'annulation avant et pendant le traitement |
+| Callback de boucle invalide ou en erreur | Refuser une callback non-fonction et propager une erreur d'exécution | Tests ciblés de `Loop` |
 
-<!-- AF-DIAGRAM:secrets -->
+## 3. Limites qui doivent rester explicites
 
-```text
-┌──────────────┐
-│ Secret store │
-└──────┬───────┘
-       │ inject
-       ▼
-┌──────────────┐      ✗ hardcode
-│ Runtime      │◄──────────────
-└──────┬───────┘
-       ▼
-   application
-```
+- `AbortSignal` est coopératif : il ne peut pas interrompre de force une fonction déjà en cours qui ignore le signal.
+- Une limite de concurrence ne borne pas à elle seule la taille de `items` ni la mémoire occupée par le tableau résultat. Le périmètre d'entrée doit être documenté par le consommateur si les données sont externes.
+- Le modèle `Loop` est pédagogique et simplifié ; il ne constitue pas une implémentation compatible avec toutes les phases de l'event loop de Node.js ou d'un navigateur.
+- La bibliothèque ne fournit ni chiffrement, ni authentification, ni stockage de secrets, ni protection réseau, car elle ne traite aucune de ces fonctions.
 
-Un secret doit entrer dans le système au runtime et ne pas être figé dans le code ou l’image.
+## 4. Dépendances et secrets
 
-- Variables d'environnement réellement utilisées :
-- Secrets hors dépôt vérifiés :
-- Dépendances et versions relevées :
-- Commande de vérification :
-- Résultat daté :
+- Dépendances runtime tierces : aucune dans le manifeste fourni.
+- Secrets requis : aucun.
+- Vérification : inspecter `package.json` et vérifier qu'aucune nouvelle dépendance ni donnée sensible n'a été ajoutée.
+- Commande de test : `npm test`.
 
-## 3. Contrôles de sécurité
+Si l'apprenant ajoute une dépendance ou une surface externe, il doit étendre le threat model et choisir une vérification adaptée. Ne prétends pas qu'un scan de dépendances a été exécuté s'il n'y en a aucune ou si l'outil n'était pas disponible.
 
-- Validation des entrées :
-- Authentification / autorisation si applicable :
-- Gestion des erreurs et des sorties :
-- Journalisation sans données sensibles :
-- Tests de cas adverses :
+## 5. Décision de sécurité
 
-## 4. Gate de livraison
+Risques résiduels acceptés :
 
-Avant de déclarer le mini-projet terminé, l'apprenant doit :
+Mesure et preuve réellement obtenues :
 
-- [ ] jouer la checklist OWASP demandée par `04-SECURITY-GATE.md` ;
-- [ ] conserver les commandes et résultats réellement exécutés ;
-- [ ] reporter les écarts dans `08-POSTMORTEM.md` ;
-- [ ] rejouer le gate après la dernière modification ;
-- [ ] définir un seuil de réouverture si le contexte change.
-
-## 5. Décision
-
-Risque résiduel accepté :
+Limites non testées :
 
 Décision et justification :
 
-Preuve datée :
-
 Seuil de réouverture :
-
-> Ce fichier ne doit jamais être interprété comme une certification tant que les
-> cases et preuves réelles ne sont pas produites dans le dépôt de l'apprenant.

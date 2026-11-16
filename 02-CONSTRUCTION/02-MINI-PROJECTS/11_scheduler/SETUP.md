@@ -1,35 +1,26 @@
-# SETUP : 11 scheduler
+# SETUP : 11_scheduler
 
-Ce `SETUP.md` est le point de passage obligatoire avant la pratique, l’exercice ou le livrable situé dans ce dossier.
+Ce guide précise uniquement les prérequis propres à ce mini-projet.
 
-## 1. Héritage
+## Prérequis
 
-Lis d’abord le [`SETUP.md`](../SETUP.md) le plus proche dans l’arborescence. Ce document ne répète que les éléments utiles à cette activité.
+- Le gate pédagogique du [README](README.md) est satisfait.
+- Node.js `22.23.4` est la version cible du dépôt (`.nvmrc` racine).
+- Le dossier contient un `package.json` sans dépendance tierce ; aucune installation npm n'est nécessaire.
 
-## 2. Pré-requis locaux
+## Première preuve
 
-- [ ] Le socle global est validé.
-- [ ] La technologie demandée par le dossier est disponible **dans la version indiquée ci-dessous**.
-- [ ] Les dépendances du projet, lorsqu’il existe un `package.json`/lockfile ou équivalent, sont présentes ou préparées pour l’offline.
-- [ ] Une première commande de preuve est connue avant de commencer la mission.
+Depuis ce dossier :
 
-## 3. Technologie / environnement
+```bash
+node --version
+npm test
+```
 
-**Environnement standard AF** : Node.js 22.23.4 + éditeur de texte suffisent tant qu’aucune dépendance locale supplémentaire n’est explicitement signalée par le contenu du dossier.
+À réception, `npm test` échoue avec des imports manquants tant que l'apprenant n'a pas créé `src/loop.js` et `src/pmap.js`. Ce premier rouge est attendu et documenté dans `tests/README.md`.
 
-## 4. Première preuve
+Après implémentation, la même commande doit terminer avec tous les tests verts. Note la version exacte de Node réellement utilisée. Si elle diffère de `22.23.4`, n'affirme pas avoir validé le runtime cible.
 
-1. Vérifier les prérequis ci-dessus.
-2. Exécuter **une seule** commande de preuve simple avant de commencer la mission.
-3. Si elle échoue, corriger l’environnement avant de modifier le code de l’exercice.
+## Hors périmètre
 
-## 5. Offline
-
-Aucun script automatique n’est requis pour l’installation. Prépare simplement les installateurs, caches, binaires, images ou fixtures mentionnés par ce document et son parent.
-
-## 6. Anti-friction
-
-- Ne pas installer Git/IDE/extensions si l’activité n’en dépend pas.
-- Ne pas remplacer une version explicitement épinglée par une version « plus récente » pendant l’exercice.
-- Ne pas lancer une commande qui télécharge implicitement des dépendances sur une machine isolée.
-- Une dépendance commune est documentée au niveau parent ; ne pas la réinstaller dans chaque exercice.
+Pas de Docker, Flutter, service réseau, base de données, dépendance npm ou compte externe requis pour le projet de base. Si tu ajoutes volontairement une de ces surfaces, documente-la et adapte les prérequis avant de poursuivre.

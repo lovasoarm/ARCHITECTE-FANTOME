@@ -38,7 +38,7 @@ deux exigences qui se contredisent, et d'arbitrer par un nombre.
 
 ## Ce qu'est une tension recevable
 
-Une contradiction **réelle et chiffrée des deux côtés**, entre deux familles différentes.
+Une tension est une contradiction ou un arbitrage documenté entre deux familles différentes. Elle est **observée** uniquement lorsque les deux côtés sont étayés par des faits comparables et sourcés. Une hypothèse plausible mais non vérifiée reste une hypothèse, pas une preuve.
 
 ```txt
 Tension 1 (S1 x S3) : la haute disponibilité de la base coûte +58 €/mois (S1).
@@ -47,13 +47,17 @@ Arbitrage : sauvegarde restaurable en 12 min + SLO abaissé à 99,3 %, réexamen
 Ce que je perds : deux heures de service par an dans le pire cas. Assumé, écrit, daté.
 ```
 
-## Les trois tensions imposées (une par ligne)
+## Les trois axes canoniques à examiner (sans contradiction forcée)
 
-| Tension | Familles | Question forcée                                                                   |
-| ------- | -------- | --------------------------------------------------------------------------------- |
-| 1       | S1 x S3  | ta promesse de service est-elle finançable ?                                      |
-| 2       | S4 x S2  | l'architecture choisie est-elle rentable, ou seulement élégante ?                 |
-| 3       | S5 x S6  | ce que l'agent décide seul est-il compatible avec ce que tu promets aux humains ? |
+| Tension | Familles | Question forcée                                                                                                                                                                                                                                                                                                    |
+| ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1       | S1 x S3  | ta promesse de service est-elle finançable ?                                                                                                                                                                                                                                                                       |
+| 2       | S4 x S2  | l'architecture choisie est-elle rentable, ou seulement élégante ?                                                                                                                                                                                                                                                  |
+| 3       | S5 x S6  | Si un agent/automatisme autonome existe : son périmètre de décision et ses garde-fous sont-ils compatibles avec les engagements humains et opérationnels ? Sans agent autonome : quelles tâches sont automatisées, quelles décisions restent humaines, et comment livraison, arrêt et reprise sont-ils contrôlés ? |
+
+Un axe peut être marqué `NON APPLICABLE` ou `NON DÉMONTRÉE` si le contexte ne fournit pas de contradiction vérifiable. Explique le périmètre examiné et la raison. Tu peux sélectionner une autre tension entre familles si elle représente mieux le système. L'honnêteté sur une absence de preuve est préférable à une contradiction fabriquée.
+
+Pour un système sans agent autonome, ne crée pas artificiellement une gouvernance d'agent : documente le non-usage et son périmètre dans `PREUVES/EVALUATION-IA.md`, puis analyse les automatisations réellement présentes, les validations humaines et la capacité de livraison/reprise.
 
 ## La structure d'une tension écrite (5 lignes, jamais plus)
 
@@ -65,8 +69,7 @@ Ce que je perds : deux heures de service par an dans le pire cas. Assumé, écri
 
 ## Auto-recalage
 
-Si une de tes tensions se résout sans rien perdre, ce n'était pas une tension : c'était un malentendu.
-Recommence avec un vrai conflit : il y en a toujours trois dans un système réel.
+Si deux faits sont compatibles ou si aucun coût/arbitrage n'est établi, ne présente pas le cas comme une tension observée. Requalifie-le en hypothèse, en complémentarité ou en `NON DÉMONTRÉE`. Ne cherche pas à remplir artificiellement trois cases : les trois axes sont des pistes de vérification, pas une loi selon laquelle tout système réel contient nécessairement trois contradictions mesurables. Si tu ne trouves pas trois tensions, explique ce que tu as examiné et conserve cette limite.
 
 ## CHECKPOINT DE PROFONDEUR : variation J : conflit d'acteurs
 
@@ -74,9 +77,13 @@ Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décisi
 
 ### Vérification observable : critères de réussite
 
-Prépare trois vérifications : cas nominal, cas limite et cas invalide. Écris avant l’exécution l’assertion attendue pour « Les trois tensions : la seule preuve de croisement », puis conserve le résultat et explique tout écart.
+Prépare trois contrôles de décision :
 
-**Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
+1. **Comparabilité :** les deux faits utilisent-ils une période, une population, une unité et un périmètre compatibles ?
+2. **Contre-épreuve :** quelle observation crédible pourrait invalider chaque fait ou montrer qu'il est incomplet ?
+3. **Révision :** quel seuil observable déclenche une nouvelle décision, qui en est responsable et à quelle date ?
+
+Une tension peut être issue d'un cas fictif ; elle doit alors être étiquetée `SIMULATION`. N'invente ni mesure ni incident réel. La preuve porte sur le raisonnement, les sources, les limites et la révision de décision, pas sur une exception logicielle.
 
 <!-- AF-LESSON-PROFILE: leadership -->
 
@@ -98,10 +105,10 @@ Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **L
 
 ## Mission utile : Kintana : Analyser une initiative sous trois tensions
 
-**Mission liée à « Les trois tensions : la seule preuve de croisement » :** Évalue une évolution Kintana sous trois angles : qualité technique, valeur produit et coût organisationnel. Explique les tensions, le compromis choisi et les garde-fous.
+**Mission liée à « Les trois tensions : la seule preuve de croisement » :** Évalue une évolution Kintana sur les axes S1×S3, S4×S2 et S5×S6. Pour chaque axe, identifie une tension étayée ou indique `NON APPLICABLE` / `NON DÉMONTRÉE` avec justification. Pour S5×S6, traite l'autonomie d'un agent seulement si le système en utilise ; sinon, examine les automatismes existants, les validations humaines et les garanties de livraison/reprise. Tu peux proposer une autre tension inter-familles si elle est mieux fondée. Explique les arbitrages réels et les garde-fous sans inventer de métriques.
 
-**Livrable :** Matrice des trois tensions et décision argumentée.
+**Livrable :** Matrice d’analyse des trois axes, avec statut et sources, plus décision argumentée sur les tensions réellement démontrées.
 
-**Critères d’acceptation :** Aucun axe n’est optimisé isolément ; le compromis est explicite ; les conséquences reportées ont un propriétaire.
+**Critères d’acceptation :** Les axes sont examinés sans forcer une contradiction ; les statuts observé / hypothèse / non démontré / non applicable sont distincts ; les arbitrages revendiqués sont sourcés ; les conséquences ont un propriétaire.
 
 **Transfert obligatoire :** Le contexte change et l’équilibre se déplace : précise quel indicateur déclenche une nouvelle décision.

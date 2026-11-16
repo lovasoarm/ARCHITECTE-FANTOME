@@ -85,12 +85,30 @@ TRACE "jutsu-7f3a9b"
 
 ```js
 // Un span minimal : un segment de temps, avec un nom et un parent
-function startSpan(name, parentSpanId, traceId) {
+function createTraceId() {
+  return crypto.randomBytes(16).toString("hex"); // 32 caractères hexadécimaux
+}
+
+function createSpanId() {
+  return crypto.randomBytes(8).toString("hex"); // 16 caractères hexadécimaux
+}
+
+function startSpan(name, parentSpanId, traceId, sampled = false) {
+  if (!/^[0-9a-f]{32}$/i.test(traceId) || /^0{32}$/i.test(traceId)) {
+    throw new TypeError("traceId W3C invalide");
+  }
+  if (
+    parentSpanId !== null &&
+    (!/^[0-9a-f]{16}$/i.test(parentSpanId) || /^0{16}$/i.test(parentSpanId))
+  ) {
+    throw new TypeError("parentSpanId W3C invalide");
+  }
   return {
-    spanId: crypto.randomUUID(),
-    parentSpanId, // null si c'est le premier span de la trace
+    spanId: createSpanId(),
+    parentSpanId, // null pour le span racine
     traceId, // même traceId pour tous les spans d'une requête
-    name, // ex: "rotation"
+    traceFlags: sampled ? "01" : "00",
+    name,
     startTime: Date.now(),
   };
 }
@@ -117,19 +135,36 @@ La couche appelée les lit en entrée, et continue la MÊME trace, pas une nouve
 
 ```js
 // Couche appelante : propage le contexte de trace dans les headers HTTP
-async function callNextLayer(traceId, parentSpanId) {
+function parseTraceparent(header) {
+  const match =
+    /^(?!ff)([0-9a-f]{2})-([0-9a-f]{32})-([0-9a-f]{16})-([0-9a-f]{2})$/i.exec(
+      header || "",
+    );
+  if (!match || /^0{32}$/i.test(match[2]) || /^0{16}$/i.test(match[3]))
+    return null;
+  return {
+    version: match[1].toLowerCase(),
+    traceId: match[2].toLowerCase(),
+    parentSpanId: match[3].toLowerCase(),
+    traceFlags: match[4].toLowerCase(),
+  };
+}
+
+async function callNextLayer(traceId, parentSpanId, sampled) {
+  const flags = sampled ? "01" : "00";
   return fetch("http://condensation/receive", {
-    headers: {
-      traceparent: `00-${traceId}-${parentSpanId}-01`, // format standard W3C Trace Context
-    },
+    headers: { traceparent: `00-${traceId}-${parentSpanId}-${flags}` },
   });
 }
 
-// Couche appelée : lit le header, continue la trace au lieu d'en créer une nouvelle
+// Couche appelée : valider le format avant de continuer la trace.
 app.use((req, res, next) => {
-  const incoming = req.headers["traceparent"];
-  req.traceId = incoming ? parseTraceId(incoming) : crypto.randomUUID();
-  // si un traceparent existe déjà, on le respecte : on est un sous-span, pas une nouvelle trace
+  const incoming = parseTraceparent(req.headers["traceparent"]);
+  req.traceId = incoming?.traceId || createTraceId();
+  req.parentSpanId = incoming?.parentSpanId || null;
+  req.sampled = incoming
+    ? (parseInt(incoming.traceFlags, 16) & 1) === 1
+    : Math.random() < 0.01;
   next();
 });
 ```
@@ -158,20 +193,19 @@ SAMPLING À 1%
  --> 1 requête sur 100 est tracée, les 99 autres passent sans overhead
  --> léger, mais tu peux manquer la trace EXACTE de l'incident qui t'intéresse
 
-SAMPLING ADAPTATIF (le plus utilisé en prod)
- --> trace systématiquement les requêtes en erreur ou anormalement lentes
- --> trace un petit pourcentage des requêtes normales pour avoir une vue d'ensemble
+HEAD SAMPLING (décision au début)
+ --> conserve un échantillon aléatoire des traces normales
+ --> ne peut pas garantir à lui seul de garder les erreurs qui surviendront ensuite
 ```
 
 ```js
-function shouldSample(req) {
-  if (req.hasError) return true; // toujours tracer un incident
-  if (req.duration > 60 * 1000) return true; // toujours tracer une lenteur suspecte
-  return Math.random() < 0.01; // sinon, 1% du trafic normal
+function shouldHeadSample() {
+  // Décision au début de la requête : elle ne connaît pas encore l'erreur ni la durée finale.
+  return Math.random() < 0.01;
 }
 ```
 
-Le pourquoi : tracer 100% des requêtes d'un service qui en traite des millions par jour génère une quantité de données ingérable et coûteuse pour un bénéfice marginal, puisque la plupart sont identiques et dans les temps. Le sampling adaptatif garde l'essentiel (les cas anormaux, là où tu as VRAIMENT besoin de creuser) sans payer le prix du tout-tracer.
+Le head sampling limite le volume mais peut perdre une trace qui échouera après la décision initiale. Pour conserver toutes les erreurs ou lenteurs, il faut du **tail sampling** : un collecteur regroupe les spans par traceId dans un tampon borné, attend une fenêtre de complétion, puis décide à partir des statuts d’erreur et durées réellement observés. Ce tampon consomme mémoire et peut lui-même perdre des traces sous pression ; sa capacité, son délai et sa politique de débordement doivent être documentés. Le flag de propagation doit refléter la décision de sampling, pas être fixé à `01` partout.
 
 ---
 

@@ -316,13 +316,14 @@ Une codebase en vrac, tu ne la réécris pas : tu l'audites, tu la figes avec de
 
 Construis le plus petit contre-exemple crédible qui ferait échouer le conseil de cette page. Explique pourquoi il échoue, comment le détecter en production, et quelle modification minimale du modèle le rend à nouveau utile.
 
-## Barème autonome : Refactoring (20 points)
 
-- **Caractérisation (4 pts)** : comportement existant capturé avant modification par tests ou exemples reproductibles.
-- **Diagnostic (4 pts)** : code smell relié à un coût concret (changement, défaut, complexité) et non à une préférence esthétique.
-- **Séquence sûre (4 pts)** : petites étapes, tests verts et diff relisible à chaque étape.
-- **Conception (4 pts)** : frontières et principes de conception appliqués sans recopier SOLID comme une recette.
-- **Résultat (4 pts)** : comportement préservé, dette ciblée réduite et choix documenté avec limites.
+## Barème autonome  : Refactoring (20 points)
+
+- **Caractérisation (4 pts)**  : comportement existant capturé avant modification par tests ou exemples reproductibles.
+- **Diagnostic (4 pts)**  : code smell relié à un coût concret (changement, défaut, complexité) et non à une préférence esthétique.
+- **Séquence sûre (4 pts)**  : petites étapes, tests verts et diff relisible à chaque étape.
+- **Conception (4 pts)**  : frontières et principes de conception appliqués sans recopier SOLID comme une recette.
+- **Résultat (4 pts)**  : comportement préservé, dette ciblée réduite et choix documenté avec limites.
 
 **Seuil de réussite : 15/20**, avec au moins 2 points sur chaque critère. Échec critique : changer simultanément comportement et structure sans filet de vérification.
 

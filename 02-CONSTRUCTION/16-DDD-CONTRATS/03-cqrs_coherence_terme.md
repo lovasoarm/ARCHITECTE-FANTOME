@@ -107,16 +107,19 @@ Exemple d'exercice (remplace par tes mesures) :
 - trafic : 20 req/s en pointe ;
 - table : 200 000 lignes ;
 - requête liste : **180 ms** sans index, **35 ms** avec l'index métier ;
-- projection asynchrone : worker **60 €/mois**, 2 Go de stockage, **4 h/mois**
+- projection asynchrone : worker **60 €/mois**, **2 Go de stockage** dont le tarif mensuel par Go est noté `s` (€/Go/mois), **4 h/mois**
   d'exploitation (à 45 €/h d'exercice = 180 €/mois de temps humain).
 
-À ce volume, le CRUD + index **rapporte plus** que CQRS : tu gagnes 145 ms pour
-~240 €/mois de coût total de la marche 3. Le seuil de décision se calcule :
+Le coût connu est donc `60 + 180 = 240 €/mois`, auquel il faut ajouter `2 × s` pour le stockage : le total est `240 + 2s €/mois`. Le tarif `s` n'est pas fourni dans cet exemple.
+
+Les données disponibles ne suffisent pas à conclure que CRUD + index est économiquement supérieur : les requêtes mensuelles réellement concernées, la distribution de latence, le coût du stockage et la valeur économique d'une milliseconde ne sont pas tous renseignés. Les **145 ms** d'écart sont une différence de latence observée dans l'exemple, pas à eux seuls une valeur monétaire. La décision reste donc **indéterminée** jusqu'à collecte des données manquantes. Le seuil de décision se calcule :
 
 ```text
 cout_cqrs_mois = worker + stockage + heures_ops × taux
-gain = (latence_avant - latence_apres) × req_mois × valeur_ms
-si gain < cout_cqrs_mois : refuser la marche 3
+cout_cqrs_mois = 60 + 2 × s + 4 × 45
+cout_crud_mois = infra_crud + exploitation_crud
+gain_mensuel_estime = req_mois × gain_ms_pondere × valeur_economique_par_ms
+si gain_mensuel_estime <= cout_cqrs_mois - cout_crud_mois : refuser la marche 3
 ```
 
 Tant que l'index, la pagination ou une lecture dédiée synchrone suffisent,
@@ -132,7 +135,9 @@ Dans `PREUVES/ADR/` (ou équivalent), une page :
 2. coût mensuel CRUD (infra + rien d'autre) ;
 3. coût fixe + variable de la marche 3 ;
 4. délai de cohérence accepté **par le métier** (phrase d'un humain, pas de toi) ;
-5. la marche que tu **refuses**, et le seuil qui ferait rouvrir.
+5. la marche que tu **refuses** ou la décision « données insuffisantes », et le seuil qui ferait rouvrir.
+
+Ne transforme pas les millisecondes économisées en euros sans expliciter le volume de requêtes concerné et la méthode qui valorise ce gain. Sans ces mesures, le calcul sert à identifier les données à collecter, pas à prouver un gagnant.
 
 La décision est révisable quand un chiffre franchit le seuil. Pas avant.
 
@@ -165,14 +170,12 @@ Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **C
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Contrat métier et langage commun Kintana
+## Mission Kintana : décider si une lecture séparée paie son coût
 
-> **Arc Naruto / Konoha :** le mot « mission » ne veut pas dire la même chose pour le demandeur, l'agent et l'administrateur. Le vocabulaire doit coller au métier qui l'utilise.
+Choisis une page de Kintana qui lit des demandes ou des interventions. Mesure un cas de lecture représentatif avant optimisation, puis compare trois marches : modèle commun, lecture synchrone dédiée (index/vue), projection asynchrone. Définis la tolérance métier au retard et le comportement read-your-writes.
 
-**Mission liée à « CQRS et cohérence à terme : deux leçons, un seuil » :** Anime une mini revue de domaine sur la création et l'affectation d'une demande. Construis un glossaire validé, un event storming simple, les invariants et les contextes candidats ; teste une ambiguïté avec une évolution.
+**Livrable :** tableau des mesures, calcul de coûts avec hypothèses explicites, seuil de réexamen et décision argumentée. Tu peux conclure « données insuffisantes » si les mesures manquent.
 
-**Livrable :** glossaire métier, diagramme commandes/événements, frontières proposées et ADR qui explique pourquoi une frontière existe ou non.
+**Acceptation :** le stockage et l'exploitation sont comptés ; la latence est associée à un volume ; le délai de cohérence est validé par le métier ; aucun bénéfice monétaire n'est inventé.
 
-**Critères d’acceptation :** chaque terme a un sens et un propriétaire ; les règles sont testables ; les contextes ne sont pas découpés par table ; les désaccords sont conservés comme questions ouvertes.
-
-**Transfert obligatoire :** Une nouvelle organisation utilise le mot « agent » pour deux rôles différents. Montre comment ton modèle absorbe ou refuse cette ambiguïté.
+**Transfert :** un pic de lecture disparaît mais un export mensuel devient critique. Réévalue la solution sans présumer que CQRS reste utile.

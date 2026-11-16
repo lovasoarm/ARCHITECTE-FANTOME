@@ -34,7 +34,7 @@ Encart obligatoire (Pierre 6 : Pensee Transferable). 3 lignes.
 Objectif : prouver que ce que tu viens d'apprendre n'est pas _JS_, c'est
 un concept d'ingenierie que tu retrouveras ailleurs.
 
-- **Python** : Python : `requests`/`httpx` pour HTTP ; pas de DOM natif (BeautifulSoup pour parser HTML) ; ASGI = pendant de la fetch API cote serveur.
+- **Python** : `requests`/`httpx` servent à effectuer des requêtes HTTP ; pas de DOM natif (BeautifulSoup parse le HTML). ASGI définit l’interface entre un serveur de protocole et une application Python (HTTP, WebSocket, etc.) : ce n’est pas l’équivalent de `fetch`.
 - **Go** : Go : `net/http` en stdlib, tres proche du bas niveau ; pas de DOM cote serveur ; middleware = composition de `http.Handler`.
 - **Rust** : Rust : `reqwest`/`hyper` pour HTTP client, `axum`/`actix` cote serveur ; pas de DOM, mais WASM permet le web natif.
 

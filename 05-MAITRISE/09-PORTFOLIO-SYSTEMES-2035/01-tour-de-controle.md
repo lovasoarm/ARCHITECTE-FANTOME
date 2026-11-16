@@ -6,9 +6,9 @@ route: depth
 freshness_status: "not_verified"
 source_verified_on: null
 source_type: "internal"
-canonical_resource: "05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/01-rag-recherche-hybride.md"
+canonical_resource: "03-PILOTAGE/05-OBSERVABILITY/README.md"
 source_url: null
-source_scope: "Notion et parcours internes reliés à 05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/LECONS-PONTS/01-rag-recherche-hybride.md ; la provenance interne ne couvre pas les affirmations externes hors de ce périmètre."
+source_scope: "Parcours interne relié au module 03-PILOTAGE/05-OBSERVABILITY (OpenTelemetry, logs, traces, métriques et alertes) et aux SLI/SLO de 03-PILOTAGE/06-FIABILITE-SLO ; ne couvre pas les affirmations externes hors de ce périmètre."
 provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
@@ -21,7 +21,7 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 ## Parcours de préparation obligatoire
 
-Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0--socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
+Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0-socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
 
 Avant de commencer, termine les leçons suivantes :
 
@@ -29,7 +29,7 @@ Avant de commencer, termine les leçons suivantes :
 - [SLI/SLO et budget d'erreur](../../03-PILOTAGE/06-FIABILITE-SLO/02-sli_slo_budget_erreur.md), [RPO/RTO](../../03-PILOTAGE/06-FIABILITE-SLO/04-reprise_rpo_rto.md), [injection de panne](../../03-PILOTAGE/06-FIABILITE-SLO/07-injection_panne.md).
 - [59 : Atelier DevOps/SRE](../../06-ANNEXES-TRANSVERSES/59-LAB-DEVOPS-LIFECYCLE.md) ; [Leçon-pont 11 : Tests de charge HTTP](LECONS-PONTS/11-tests-de-charge-http.md).
 
-**Gate d'entrée :** tu sais instrumenter un service HTTP, relier logs/traces par un identifiant, définir un SLI avec son dénominateur, injecter une panne contrôlée et restaurer le service. Tu as aussi validé la [leçon-pont 11 : Tests de charge HTTP](LECONS-PONTS/11-tests-de-charge-http.md) et produit une baseline locale reproductible avec trois essais, résultats bruts et limites explicites. Si tu ne sais pas récupérer le système ou interpréter une mesure de charge, tu n'es pas encore `READY`. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-1--systèmes-en-production).
+**Gate d'entrée :** tu sais instrumenter un service HTTP, relier logs/traces par un identifiant, définir un SLI avec son dénominateur, injecter une panne contrôlée et restaurer le service. Tu as aussi validé la [leçon-pont 11 : Tests de charge HTTP](LECONS-PONTS/11-tests-de-charge-http.md) et produit une baseline locale reproductible avec trois essais, résultats bruts et limites explicites. Si tu ne sais pas récupérer le système ou interpréter une mesure de charge, tu n'es pas encore `READY`. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-1-systemes-en-production).
 
 ## Mission
 

@@ -73,17 +73,16 @@ Si tu hésites entre B et C : t'es encore en N1-N2. Si tu réponds A, D, C, B di
 Lire du code, c'est invisible. Personne te demande "t'as bien lu ?". Et pourtant, lire du code que tu n'as pas écrit occupe une part importante du métier.
 
 ```text
-N1  Tu lis un fichier isolé et tu comprends ce qu'il fait
-N2  Tu suis une donnée à travers 3-4 fichiers sans te perdre
-N3  Tu repères la zone à risque dans un module avant de le toucher
-N4  Tu rentres dans un dépôt inconnu de 50k lignes et tu trouves le point d'entrée en moins de 10 minutes
+N1  Tu lis un fichier isolé et tu expliques son rôle
+N2  Tu suis une même donnée à travers 3-4 fichiers, en montrant les transformations et les appels
+N3  Avant de modifier un module, tu identifies une zone à risque et justifies cette zone par le flux de données, les dépendances ou les invariants
+N4  Tu entres dans un dépôt inconnu d'environ 50k lignes et localises son point d'entrée en moins de 10 minutes, sans confondre vitesse d'orientation et compréhension complète
 ```
 
 **Modules qui construisent cet axe :** `00-SOCLE/05-PROBLEM-SOLVING` (décomposition, modélisation), `03-PILOTAGE/10-TEAM-CRAFT` (navigation de codebase).
 
 **Test rapide :**
-Ouvre un dépôt open-source que tu connais pas. Donne-toi 10 minutes pour répondre à : "ce projet fait quoi, et par où ça commence ?" sans lire le README.
-Si tu trouves : N2 minimum. Si en plus tu repères une zone qui pue (god class, fonction de 300 lignes) : N3.
+Ouvre un dépôt inconnu et suis une donnée métier à travers 3 à 4 fichiers : repère son entrée, ses transformations et sa sortie. Si tu peux le montrer avec des références précises : N2. Si tu repères ensuite une zone à risque et justifies le risque par une dépendance, un invariant ou une transformation : N3. La recherche du point d'entrée en moins de 10 minutes, seule, est un indicateur d'orientation N4 partiel, pas une preuve suffisante de N2/N3.
 
 ---
 
@@ -103,7 +102,7 @@ N4  Tu débuggue en prod sans reproduire localement (logs, snapshots, feature fl
 
 **Test rapide :**
 Prochaine fois qu'un bug apparaît, avant de toucher au code : écris en une phrase ce que tu penses qui se passe.
-Si t'arrives à l'écrire avant de chercher : N2. Si ton hypothèse était juste du premier coup : N3.
+Si tu écris une hypothèse avant de chercher : N2. Pour N3, il faut concevoir un test ciblé qui distingue ton hypothèse d'au moins une explication concurrente, consigner le résultat observé et confirmer ou rejeter l'hypothèse. Avoir raison du premier coup ne suffit pas : la preuve est la méthode de discrimination, pas la chance.
 
 ---
 
@@ -188,7 +187,7 @@ T'as 54 modules pédagogiques directs devant toi. Si tu regardes la montagne ent
   une version différente à chaque module. Si un dessin te paraît familier, c'est normal,
   c'est voulu.
 - **Tu cherches un fichier précis et tu sais pas dans quel module il est ?**
-  `../../05-MAITRISE/06-ANNEXES/16A-ARBORESCENCE.md` liste tout, dossier par dossier, fichier par
+  `../../05-MAITRISE/06-ANNEXES/ARBORESCENCE-CURRICULUM.md` liste tout, dossier par dossier, fichier par
   fichier, avec son rôle en une ligne. Pas à lire d'une traite : à consulter au besoin.
 
 ### Repérer les modules denses (ralentis volontairement ici)
@@ -236,7 +235,7 @@ un module en amont mal digéré. Remonte d'un cran avant d'insister sur celui qu
 
 Si tu débutes, retourne à la route canonique sans chercher à t'attribuer un niveau. Le référentiel est une carte à revisiter lorsque tu disposes de preuves ; ce n'est pas une étape supplémentaire à réussir.
 
-Suis le [parcours apprenant](README.md) du dépôt et réalise les premières activités prévues.
+Suis le [parcours apprenant](../../README.md) du dépôt et réalise les premières activités prévues.
 
 <!-- AF-DIAGRAM:reference -->
 

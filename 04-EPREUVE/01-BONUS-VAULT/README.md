@@ -7,12 +7,12 @@ route_family: vault
 
 # Module 04-EPREUVE/01-BONUS-VAULT : Bonus Vault
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Consulter le coffre à tout moment](00-PREREQUIS.md) | Niveau suivant : aucun
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Consulter le coffre à tout moment](00-PREREQUIS.md) | Niveau suivant : aucun
 
 **Auto-diagnostic facultatif :** il sert à choisir les ressources à ouvrir, pas à autoriser
 l'entrée. Aucun module précédent n'est exigé ; le coffre se consulte hors ordre.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que c'est
 
@@ -65,7 +65,7 @@ sont consultables selon le besoin et leurs conditions locales.
 Auto-test d'entrée : (1) Sais-tu nommer un incident réel qu'une checklist de mise en prod
 aurait empêché ? (2) Sais-tu distinguer un ADR d'un RFC par l'audience visée, pas par la
 longueur ? (3) Sais-tu citer un anti-pattern que tu as toi-même commis récemment ?
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Écart au gabarit
 

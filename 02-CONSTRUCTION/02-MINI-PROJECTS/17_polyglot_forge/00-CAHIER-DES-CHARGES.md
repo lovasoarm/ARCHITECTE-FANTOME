@@ -8,9 +8,14 @@ route_family: transfer
 
 # Cahier des charges : Polyglot Forge
 
+
+<!-- AF-ADR-CONTRACT -->
+
+**Contrat ADR de ce projet : 1 décision(s) réellement indépendante(s).** Détails et périmètre exact dans [`01-RULES.md`](01-RULES.md). La quantité ne justifie jamais de fractionner artificiellement une même décision. Les ADR fournis sont des contextes de départ, pas une revue humaine ni une preuve d'adoption.
+
 Temps de lecture ~2 min
 
-Mini-projet scoré : reprendre l'event loop de `01-CADRAGE/02-ASYNC/04_event_loop/` et le prouver équivalent en **deux langages** (JS + Python OU JS + Rust) via tests déterministes partagés. Deuxième livrable cross-language de ce parcours (après `15_porte_rasengan_engine_multilang`), pour matérialiser la Pierre 6 "Pensée Transférable".
+Approfondissement DEPTH : reprendre le modèle mental de l’event loop de `01-CADRAGE/02-ASYNC/04_event_loop/` et comparer une trace JavaScript avec une implémentation dans un langage cible déjà maîtrisé (de préférence celui choisi au projet 15). Ce projet approfondit la sémantique d’exécution ; il ne demande pas une troisième langue et ne constitue pas un prérequis de validation fondamentale.
 
 ## Objectif verrouillé
 
@@ -60,7 +65,7 @@ Seuil de réussite : 8/10. En dessous, `EXO_VERIFICATION.md` du module concerné
 
 - `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
 - `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
-- `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
+- `ADR/` : **1 décision** sur la représentation du modèle d’exécution et les différences de sémantique observées. Format : contexte, alternatives, décision, conséquences et signal de révision.
 - `08-POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
 - `02-TDD-JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
 

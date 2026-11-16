@@ -28,24 +28,48 @@ Le champ `noyau` classe le **rôle du dossier dans l'organisation du dépôt** ;
 
 **La route canonique ci-dessous et les statuts explicites `obligatoire`, `différé` ou `facultatif` font autorité pour l'apprenant.** Ainsi, `05_web_basics/README.md` peut porter `noyau: non` tout en étant une étape obligatoire : le tableau de route pointe explicitement vers ce dossier. Ne saute jamais une étape uniquement à cause de la valeur `noyau: non`, et ne rends jamais une activité obligatoire uniquement parce qu'elle porte `noyau: oui`.
 
+## Lire les numéros de fichiers sans se perdre
+
+Les nombres au début des noms sont des **repères de classement**, pas des numéros de leçons à suivre comme une suite de pages. Un fichier qui commence par `50` n'est pas la cinquantième étape, et un dossier qui commence à `02` ne signifie pas qu'une leçon obligatoire `01` manque.
+
+Dans ce module, les préfixes servent notamment à distinguer :
+
+- `00` : auto-calibrage ou point d'entrée ;
+- `01A`, `02A`, `03A`, `04A` : ressources complémentaires ou fiches particulières ; la majuscule fait partie de l'identifiant du fichier. `01A-00-why-fundamentals.md` est l'orientation d'entrée ; `02A` à `04A` sont des compléments ;
+- les étiquettes pédagogiques `01a`, `01b`, `01c` : une petite séquence de notions répartie volontairement entre dossiers : `01a` = Binding (Variables), `01b` = Scope lexical (Scope), `01c` = Stack vs Heap (Variables, Passage B). Ces étiquettes ne sont ni des noms de fichiers ni les étapes 1, 2 et 3 de la route ;
+- les numéros des leçons dans les noms de fichiers : identifiants locaux aux dossiers, qui ne sont pas toujours réinitialisés de la même façon ;
+- `40` à `46` dans Web Basics : pratiques natives de première passe et fiche d'accessibilité ;
+- `50` à `56` : mini-pratiques ou extensions, selon le dossier. Dans Web Basics, les `50` à `55` sont des extensions React/Next.js différées ;
+- `90` : grimoire ; `95` : challenge ; `97` et `98` : vérifications ; `99` : portage mental (transfert de concept, après les notions concernées) ; `99A` : pont obligatoire vers Problem Solving, après le challenge. `99A` n'est pas une page à lire automatiquement après `99` : la route indique quand l'ouvrir.
+
+**Pour savoir quoi lire, ne trie jamais les fichiers par leur numéro seul.** Suis d'abord la table **Route canonique** ci-dessous, puis la liste d'ordre de travail du `README.md` du sous-dossier. Ces deux repères déterminent la progression ; le nom du fichier sert à le retrouver.
+
+> **Attention à la casse :** `01A` (A majuscule) est un préfixe de fichier ; `01a`, `01b` et `01c` (a/b/c minuscules dans les titres) sont des étiquettes pédagogiques qui relient Binding, Scope lexical et Stack vs Heap. Ce sont deux conventions différentes.
+
+## Avant la route technique
+
+- `00-PREREQUIS.md` est un auto-calibrage facultatif et non éliminatoire : tu peux ne rien savoir et commencer normalement.
+- `01A-00-why-fundamentals.md` est une courte orientation à lire avant la première leçon. Elle explique pourquoi les fondamentaux comptent ; elle ne remplace aucune étape de la route.
+- Ensuite, commence l’étape 1 de la table ci-dessous. La route comporte douze étapes techniques, puis le challenge et le pont obligatoire vers Problem Solving.
+
 ## Route canonique : ordre des prérequis
 
-| Ordre | Étape                                     | Ressource                                                                                                                                                 | Ce que tu dois apprendre                                                                                                                                  |
-| ----: | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|     1 | Variables : Passage A                     | [`01_variables/02-ORDRE_DE_LECTURE.md`](01_variables/02-ORDRE_DE_LECTURE.md), étapes 1 à 3                                                                | Nommer une valeur, comprendre un binding, choisir `const` ou `let`                                                                                        |
-|     2 | Contrôle de flux                          | [`FOUNDATIONS/01_CONTROL_FLOW/`](FOUNDATIONS/01_CONTROL_FLOW/README.md)                                                                                   | Décider avec `if / else` et répéter avec `for / while`                                                                                                    |
-|     3 | Data Basics                               | [`FOUNDATIONS/02_DATA_BASICS/`](FOUNDATIONS/02_DATA_BASICS/README.md)                                                                                     | Créer, lire et modifier des tableaux et objets simples                                                                                                    |
-|     4 | Function essentials                       | [`03_functions/01-function_essentials.md`](03_functions/01-function_essentials.md)                                                                        | Déclarer, appeler une fonction, utiliser paramètres, arguments et `return`                                                                                |
-|     5 | Types                                     | [`04_types/`](04_types/README.md)                                                                                                                         | Comprendre les valeurs, conversions et vérifications de type                                                                                              |
-|     6 | Fonctions avancées : valeurs et callbacks | [`03_functions/02-function_basics.md`](03_functions/02-function_basics.md), puis [`03_functions/03-hof_map_filter.md`](03_functions/03-hof_map_filter.md) | Passer une fonction en valeur, comprendre un callback et traiter les tableaux avec `map`, `filter`, `reduce`                                              |
-|     7 | Scope                                     | [`02_scope/`](02_scope/README.md)                                                                                                                         | Comprendre portée, environnement lexical, closures et `this`                                                                                              |
-|     8 | Variables : Passage B                     | [`01_variables/02-ORDRE_DE_LECTURE.md`](01_variables/02-ORDRE_DE_LECTURE.md), étapes 4 à 7                                                                | Comprendre références, mémoire, copies, mutations et `const` avec objets, après Data Basics, callbacks et Scope ; le spread est enseigné dans cette étape |
-|     9 | Function factories                        | [`03_functions/04-function_factory.md`](03_functions/04-function_factory.md)                                                                              | Comprendre une fonction qui retourne une fonction, après Scope et les closures                                                                            |
-|    10 | Web Basics                                | [`05_web_basics/`](05_web_basics/README.md)                                                                                                               | Relier JavaScript à une page web, aux événements et aux requêtes ; appliquer la fiche courte d'accessibilité avant la première interface                  |
-|    11 | Modules                                   | [`06_modules/`](06_modules/README.md)                                                                                                                     | Séparer le code en fichiers et contrôler ce qu'un fichier expose                                                                                          |
-|    12 | Regex                                     | [`07_regex/`](07_regex/README.md)                                                                                                                         | Lire et construire des motifs simples pour reconnaître du texte                                                                                           |
+| Ordre | Étape                                     | Ressource                                                                                                                                                 | Ce que tu dois apprendre                                                                                                                                         |
+| ----: | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|     1 | Variables : Passage A                     | [`01_variables/02-ORDRE_DE_LECTURE.md`](01_variables/02-ORDRE_DE_LECTURE.md), étapes 1 à 3                                                                | Nommer une valeur, comprendre un binding, choisir `const` ou `let`                                                                                               |
+|     2 | Contrôle de flux                          | [`FOUNDATIONS/01_CONTROL_FLOW/`](FOUNDATIONS/01_CONTROL_FLOW/README.md)                                                                                   | Décider avec `if / else` et répéter avec `for / while`                                                                                                           |
+|     3 | Data Basics                               | [`FOUNDATIONS/02_DATA_BASICS/`](FOUNDATIONS/02_DATA_BASICS/README.md)                                                                                     | Créer, lire et modifier des tableaux et objets simples                                                                                                           |
+|     4 | Function essentials                       | [`03_functions/01-function_essentials.md`](03_functions/01-function_essentials.md)                                                                        | Déclarer, appeler une fonction, utiliser paramètres, arguments et `return`                                                                                       |
+|     5 | Types                                     | [`04_types/`](04_types/README.md)                                                                                                                         | Comprendre les valeurs, conversions et vérifications de type                                                                                                     |
+|     6 | Fonctions avancées : valeurs et callbacks | [`03_functions/02-function_basics.md`](03_functions/02-function_basics.md), puis [`03_functions/03-hof_map_filter.md`](03_functions/03-hof_map_filter.md) | Passer une fonction en valeur, comprendre un callback et traiter les tableaux avec `map`, `filter`, `reduce`                                                     |
+|     7 | Scope                                     | [`02_scope/`](02_scope/README.md)                                                                                                                         | Comprendre portée, environnement lexical, closures et `this`                                                                                                     |
+|     8 | Variables : Passage B                     | [`01_variables/02-ORDRE_DE_LECTURE.md`](01_variables/02-ORDRE_DE_LECTURE.md), étapes 4 à 7                                                                | Comprendre références, mémoire, copies, mutations et `const` avec objets, après Data Basics, Types, callbacks et Scope ; le spread est enseigné dans cette étape |
+|     9 | Function factories                        | [`03_functions/04-function_factory.md`](03_functions/04-function_factory.md)                                                                              | Comprendre une fonction qui retourne une fonction, après Scope et les closures                                                                                   |
+|    10 | Web Basics                                | [`05_web_basics/`](05_web_basics/README.md)                                                                                                               | Relier JavaScript à une page web, aux événements et aux requêtes ; appliquer la fiche courte d'accessibilité avant la première interface                         |
+|    11 | Modules                                   | [`06_modules/`](06_modules/README.md)                                                                                                                     | Séparer le code en fichiers et contrôler ce qu'un fichier expose                                                                                                 |
+|    12 | Regex                                     | [`07_regex/`](07_regex/README.md)                                                                                                                         | Lire et construire des motifs simples pour reconnaître du texte                                                                                                  |
 
-**Important :** le dossier `01_variables/` est volontairement divisé en deux passages. Ne commence pas le Passage B avant les fonctions avancées et Scope : ses leçons utilisent les références, le spread, `map` et les closures. `map`/`filter` n'est pas une première leçon de fonctions : commence par Function essentials puis les fonctions avancées sur les fonctions comme valeurs et les callbacks.
+**Important :** le dossier `01_variables/` est volontairement divisé en deux passages. Ne commence pas le Passage B avant Types, les fonctions avancées et Scope : ses leçons utilisent les références, le spread, `map` et les closures. `map`/`filter` n'est pas une première leçon de fonctions : commence par Function essentials puis les fonctions avancées sur les fonctions comme valeurs et les callbacks.
 
 ## Rythme pour un débutant absolu
 
@@ -62,15 +86,18 @@ Une étape peut prendre plusieurs séances. Pour chaque leçon, fais d'abord l'e
 
 ## Ressources complémentaires : après la notion correspondante
 
-Ces fichiers complètent le parcours, mais ne remplacent pas les étapes ci-dessus et ne constituent pas une liste de prérequis à lire d'un seul coup.
+Ces fichiers complètent le parcours, mais ne remplacent pas les douze étapes canoniques et ne constituent pas une liste de prérequis à lire d'un seul coup.
 
 - [`SETUP.md`](SETUP.md) : prérequis et commandes pour les activités qui nécessitent une exécution. Consulte-le avant l'activité concernée, pas comme une étape d'installation exhaustive.
-- [`02A-git_core.md`](02A-git_core.md) et [`50-git_core_minimini_projet.md`](50-git_core_minimini_projet.md) : Git, à utiliser lorsque la route demande de versionner ton travail. Git est un outil transversal, pas une notion JavaScript à maîtriser avant les variables.
+- [`02A-git_core.md`](02A-git_core.md) et [`50-git_core_minimini_projet.md`](50-git_core_minimini_projet.md) : Git, à utiliser lorsque la route demande de versionner ton travail. Fais le mini-projet 50 après la fiche Git, au moment où tu dois versionner un premier travail ; ce n’est pas une étape 50 de Fundamentals et il ne précède pas les leçons JavaScript. Git est un outil transversal, pas une notion à maîtriser avant les variables.
 - [`03A-expliquer_a_3_publics_closures.md`](03A-expliquer_a_3_publics_closures.md) : explication approfondie des closures, après Scope.
 - [`04A-EXO_LECTURE.md`](04A-EXO_LECTURE.md) : exercice de lecture à faire après les notions auxquelles il fait appel.
 - [`11_EXO_VERIFICATION.md`](11_EXO_VERIFICATION.md), [`12_EXO_VERIFICATION.md`](12_EXO_VERIFICATION.md), [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md) et [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md) : vérifications complémentaires ; fais uniquement celles dont les notions ont déjà été étudiées. Les exercices faisant intervenir une IA sont facultatifs et ne remplacent pas ton propre raisonnement.
 - [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md) : comparer un concept avec d'autres langages, après l'avoir compris en JavaScript.
-- [`99A-PONT.md`](99A-PONT.md) : relier les fondamentaux à la résolution de problèmes, après les étapes canoniques.
+
+## Transition obligatoire vers Problem Solving
+
+Après les douze étapes canoniques et le challenge `95`, termine [`99A-PONT.md`](99A-PONT.md) **avant d’ouvrir `05-PROBLEM-SOLVING`**. Ce pont ne fait pas partie des douze étapes de Fundamentals : il sert à passer de l’écriture de code à la formulation d’un problème, de ses états et de ses invariants.
 
 ## Durée
 
@@ -85,6 +112,7 @@ Tu dois pouvoir lire un petit extrait inconnu, expliquer ce qu'il fait, écrire 
 - [ ] Les douze étapes ont été parcourues dans l'ordre indiqué, y compris le retour au Passage B.
 - [ ] Les pratiques de base associées aux notions travaillées ont été réalisées ou leur blocage est consigné.
 - [ ] Une preuve datée et une prochaine action sont notées dans ton journal de progression.
+- [ ] Après le challenge, le pont `99A-PONT.md` est terminé avant de commencer Problem Solving.
 
 <!-- PIECES-MODULE:debut -->
 
@@ -96,7 +124,9 @@ Tu dois pouvoir lire un petit extrait inconnu, expliquer ce qu'il fait, écrire 
 
 <!-- PIECES-MODULE:fin -->
 
-## Contenu du dossier
+## Index des ressources par dossier
+
+> Cet index sert à retrouver les sous-dossiers et les ressources. **Ce n’est pas une deuxième route de lecture** : pour la progression, la table « Route canonique » ci-dessus fait foi.
 
 <!-- CONTENU-DOSSIER:debut -->
 

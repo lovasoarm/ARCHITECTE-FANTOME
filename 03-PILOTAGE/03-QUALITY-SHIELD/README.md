@@ -6,7 +6,7 @@ route: complete
 
 # Module 03-PILOTAGE/03-QUALITY-SHIELD : Quality Shield
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../01-ROADMAP-RUN/README.md) | [Niveau suivant](../09-TEAM-QUEST/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Niveau précédent](../01-ROADMAP-RUN/README.md) | [Niveau suivant](../09-TEAM-QUEST/README.md)
 
 **Ce niveau réutilise :** [20-API-DOJO](../../02-CONSTRUCTION/20-API-DOJO/03-errors-and-idempotence.md) : les erreurs exploitables et l'idempotence, réutilisees pour decider quoi tester et quoi observer.
 
@@ -21,7 +21,7 @@ route: complete
 [challenge](../01-ROADMAP-RUN/95-challenge.md) si deux réponses sur trois manquent. Entrer ici avec un
 trou amont, c'est attribuer au module `03-PILOTAGE/03-QUALITY-SHIELD` une difficulté qui vient du module `03-PILOTAGE/01-ROADMAP-RUN`.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que c'est
 

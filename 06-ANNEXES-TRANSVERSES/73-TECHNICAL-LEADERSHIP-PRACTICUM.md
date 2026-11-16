@@ -133,3 +133,113 @@ Dans [Kintana](77-FIL-ROUGE-KINTANA/README.md), **73 : Technical Leadership Prac
 **Critères d’acceptation :** Les preuves réelles et les simulations sont séparées ; l’impact n’est pas revendiqué avant mesure ; les responsabilités et seuils de révision existent.
 
 **Transfert obligatoire :** Une équipe refuse l’initiative : distingue le désaccord rationnel du blocage de coordination et adapte la séquence.
+
+<!-- AF-LEADERSHIP-SIMULATION-GATE -->
+
+<a id="leadership-simulation-gate--kintana--décision-technique-transverse"></a>
+
+## Leadership Simulation Gate : Kintana : décision technique transverse
+
+Cette épreuve est **autonome et réalisable en solo**. L'apprenant conduit une équipe fictive dont les rôles, intérêts et informations sont fournis ci-dessous. Elle évalue le raisonnement de leadership en simulation ; elle ne remplace ni le feedback d'une vraie équipe, ni l'adoption professionnelle, ni une preuve Staff/Principal/Distinguished sur le terrain.
+
+### Situation initiale
+
+Kintana doit lancer une réservation avec paiement différé. Le produit demande une livraison en deux semaines. Le système actuel est un monolithe avec PostgreSQL, une API et un worker. Une hausse de trafic est attendue lors d'une campagne régionale. Le budget n'autorise pas une refonte complète. Les réservations doivent rester traçables et les paiements ne peuvent pas être dupliqués.
+
+### Les cinq rôles fictifs
+
+| Rôle               | Priorité déclarée                        | Contrainte non négociable                                                          | Angle de désaccord possible                                                |
+| ------------------ | ---------------------------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Product Owner      | Livrer à la date promise                 | Une réservation doit rester compréhensible côté utilisateur                        | Refuse une refonte qui décale la release sans réduire le risque mesuré     |
+| Backend Engineer   | Garder une conception simple             | Pas de duplication de logique métier ni de dette irréversible                      | Préfère un traitement transactionnel dans le service existant              |
+| Platform Engineer  | Préserver fiabilité et exploitabilité    | Charge bornée, observabilité, rollback et capacité de reprise                      | S'oppose à une file ou un service supplémentaire sans owner/runbook        |
+| Security Engineer  | Protéger données et frontières tenant    | Autorisation côté serveur, secrets hors code, idempotence des opérations sensibles | Bloque un raccourci qui mélange statut de réservation et paiement confirmé |
+| Responsable métier | Préserver la continuité des réservations | Les dossiers ne doivent pas disparaître ; les clients doivent être informés        | Refuse un mode dégradé qui masque les réservations en attente              |
+
+Ces acteurs sont des personnages de simulation. Ne leur attribue pas de feedback réel.
+
+### Révélations progressives
+
+Lis une carte à la fois ; rédige ta décision avant d'ouvrir la suivante.
+
+1. **Carte A : brief :** date fixe dans deux semaines ; charge attendue multipliée par trois pendant 30 minutes ; le système actuel tient la charge nominale mais aucune mesure de pic récente n'est fournie.
+2. **Carte B : objection backend :** « une file séparée ajoute des retries, de l'ordre et un nouveau mode d'échec ; pourquoi ne pas garder le flux transactionnel et borner le traitement ? »
+3. **Carte C : objection plateforme :** « le worker actuel n'a ni limite de concurrence explicite ni alerte sur l'âge du plus vieux travail ; un broker ne résout pas l'absence de runbook. »
+4. **Carte D : objection sécurité :** « si un message est rejoué, comment garantis-tu l'idempotence par tenant et l'absence de double paiement ? »
+5. **Carte E : contrainte métier inconnue :** 15 % des clients ont une connexion instable ; le client peut renvoyer la même demande après timeout. La réponse API peut être perdue alors que l'opération a été créée.
+6. **Carte F : incident pendant le travail :** une intégration paiement ralentit ; la file augmente ; le produit veut maintenir la date. Tu dois décider ce qui est suspendu, dégradé ou conservé et nommer les responsables.
+7. **Carte G : transfert :** un nouvel ingénieur reprend demain ; il ne connaît pas tes hypothèses ni les risques acceptés.
+
+### Les sept épreuves obligatoires
+
+1. **Cadrage collectif.** Produis `PROBLEM-BRIEF.md` et `STAKEHOLDER-MAP.md` : problème commun, objectifs métier, contraintes techniques, acteurs, inconnues, non-objectifs, critères de réussite et décisions à différer.
+2. **Négociation architecturale.** Produis `RFC.md` et `ADR-INITIAL.md`. Compare la solution retenue, deux alternatives crédibles et le statu quo. Chiffre ce qui peut l'être, indique les hypothèses et les coûts opérationnels.
+3. **Désaccord et révision.** Produis `OBJECTION-LOG.md` et `ADR-REVISED.md`. Classe chaque objection (risque, inconnue, conflit d'objectifs ou coordination). Réponds avec une preuve, une expérience de vérification ou une révision explicite.
+4. **Gestion de crise.** Produis `INCIDENT-COMMUNICATION.md` : impact, faits confirmés, inconnues, priorité, décideur, responsables, actions réversibles, message utilisateurs et critères de retour à la normale.
+5. **Délégation.** Produis `DELEGATION-PLAN.md` avec pour chaque tâche : responsable fictif, résultat, dépendances, critères d'acceptation, définition de terminé, risque et condition de transfert.
+6. **Mentorat.** Dans `MENTORING-REVIEW.md`, analyse cette PR fictive :
+
+   ```js
+   async function confirmReservation(repo, payment, tenantId, request) {
+     const reservation = await repo.find(request.reservationId);
+     if (reservation.status === "PENDING_PAYMENT") {
+       await payment.charge(request.amount);
+       await repo.update(reservation.id, { status: "CONFIRMED", tenantId });
+       return true;
+     }
+     return false;
+   }
+   ```
+
+   Identifie au minimum : absence de contrôle explicite de l'appartenance au tenant avant lecture/modification, absence de clé d'idempotence transmise au prestataire, risque de double charge après timeout/rejeu, absence de gestion des erreurs et absence de vérification d'invariant après paiement. Rédige des commentaires qui posent des questions et guident le développeur ; ne fournis pas seulement un patch final. Propose une seconde version fictive et explique ce qu'elle corrige sans prétendre l'avoir exécutée.
+
+7. **Transmission et continuité.** Produis `HANDOVER.md` et `RETROSPECTIVE.md` : architecture retenue, décisions, responsabilités, runbook, risques résiduels, seuils d'alerte, conditions de rollback, questions ouvertes et prochaines décisions. Un ingénieur fictif doit pouvoir reprendre sans dépendre de toi.
+
+### Livrables canoniques
+
+```text
+LEADERSHIP-PRACTICUM/
+├── PROBLEM-BRIEF.md
+├── STAKEHOLDER-MAP.md
+├── RFC.md
+├── ADR-INITIAL.md
+├── OBJECTION-LOG.md
+├── ADR-REVISED.md
+├── INCIDENT-COMMUNICATION.md
+├── DELEGATION-PLAN.md
+├── MENTORING-REVIEW.md
+├── HANDOVER.md
+└── RETROSPECTIVE.md
+```
+
+Ces fichiers sont des livrables de l'apprenant, pas des preuves préremplies. Étiquette le dossier `SIMULATION`. N'ajoute pas de prétendu retour d'équipe ou d'adoption.
+
+### Barème reproductible : 100 points
+
+| Domaine                                  |  Points | Ce qui est évalué                                                             |
+| ---------------------------------------- | ------: | ----------------------------------------------------------------------------- |
+| Cadrage et compréhension collective      |      15 | Problème commun, objectifs, contraintes, inconnues et critères mesurables     |
+| Décisions et arbitrages techniques       |      20 | Options, statu quo, coûts, risques, réversibilité et justification            |
+| Gestion des objections et désaccords     |      15 | Reformulation loyale, classification, preuve, révision ou refus argumenté     |
+| Communication adaptée aux interlocuteurs |      15 | Messages cohérents selon produit, ingénierie, plateforme, sécurité et métier  |
+| Délégation et organisation               |      15 | Owners, dépendances, résultats et critères de fin vérifiables                 |
+| Mentorat et transmission                 |      10 | Feedback actionnable, progression du raisonnement et passation compréhensible |
+| Révision et continuité                   |      10 | Intégration de l'incident, limites, risques et actions de suivi               |
+| **Total**                                | **100** |                                                                               |
+
+Attribue pour chaque domaine : 0 % si absent/faux, 25 % si très incomplet, 50 % si partiel, 75 % si solide avec une lacune, 100 % si complet et traçable. Un niveau intermédiaire entre deux paliers est permis si la preuve est expliquée ; conserve le calcul dans le rapport.
+
+**Seuil : 80/100 minimum**, avec au moins 9/15 en communication, 12/20 en arbitrage et 6/10 en transmission.
+
+### Échecs éliminatoires
+
+- Ignorer volontairement une objection techniquement fondée sans l'examiner.
+- Dissimuler un risque connu ou présenter une hypothèse comme un fait.
+- Déléguer sans responsable, résultat attendu et critère d'acceptation.
+- Être incapable d'expliquer pourquoi une décision est retenue plutôt qu'une alternative.
+- Produire une passation qui masque les limites, les risques ou les actions encore ouvertes.
+- Inventer une adoption, un avis d'équipe, une exécution ou un résultat de production.
+
+### Statut de preuve
+
+`SIMULATION` valide l'entraînement au gate. `PILOT` ou `PRODUCTION` exige des éléments réellement observés, consentis et datés. L'adoption externe reste une preuve ultérieure ; elle n'est pas nécessaire pour passer ce Leadership Simulation Gate.

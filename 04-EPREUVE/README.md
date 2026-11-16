@@ -71,7 +71,7 @@ Le transfert teste ce qui survit du principe et ce qui doit être révisé dans 
 
 Ouvre la carte lorsque tu commences effectivement ce bloc. Elle aide à choisir le second langage et le second fournisseur ; ce n'est pas une lecture préalable de la Route 58.
 
-- Carte : [Niveau 5 Transfert](../06-ANNEXES-TRANSVERSES/04-TECH-ILA/tech-ila/07-niveau-5-transfert.md)
+- Carte : [Niveau 5 Transfert](../06-ANNEXES-TRANSVERSES/04-TECH-ILA/tech-ila/06-niveau-5-transfert.md)
 - Ce que tu produis avec : le dossier `PORTAGE.md`, unique livrable noté de ce palier.
 - Règle : la carte est périssable, le module ne l'est pas. Si un nom d'outil vieillit, actualise la carte et les sources sans modifier les invariants du livrable.
 
@@ -82,6 +82,7 @@ Ouvre la carte lorsque tu commences effectivement ce bloc. Elle aide à choisir 
 - [`03-REALTIME/`](03-REALTIME/README.md)
 - [`04-BIG-APP-SNOOP/`](04-BIG-APP-SNOOP/README.md)
 - [`05-CAPSTONE-ARENA/`](05-CAPSTONE-ARENA/README.md)
+- [`08-EXTERNAL-VALIDATION/`](08-EXTERNAL-VALIDATION/README.md) : gate externe appelée lorsque le parcours demande une preuve hors du contrôle du candidat ; elle n’est pas un sixième module pédagogique.
 - [`03b-BOSS-1/`](03b-BOSS-1/README.md)
 - [`04b-BOSS-2/`](04b-BOSS-2/README.md)
 - [Rétrospective de bloc : Bloc EPREUVE](02A-RETRO-BLOC-4-EPREUVE.md)

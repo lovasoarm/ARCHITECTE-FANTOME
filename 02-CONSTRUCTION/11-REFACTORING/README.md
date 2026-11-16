@@ -21,8 +21,8 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | Fichier                                                                              | Objet                                                           | Duree  |
 | ------------------------------------------------------------------------------------ | --------------------------------------------------------------- | ------ |
 | [`00-PREREQUIS.md`](00-PREREQUIS.md)                                                 | 00 : Prereq check : Refactoring                                 | 15 min |
-| [`02-smell_detection.md`](02-smell_detection.md)                                     | 00 : Smell detection                                            | 45 min |
 | [`01-00-why-refactoring.md`](01-00-why-refactoring.md)                               | POURQUOI CE MODULE MÉRITE TON TEMPS : REFACTORING               | 45 min |
+| [`02-smell_detection.md`](02-smell_detection.md)                                     | 00 : Smell detection                                            | 45 min |
 | [`03-clean_code_basics.md`](03-clean_code_basics.md)                                 | CLEAN CODE BASICS                                               | 45 min |
 | [`50-clean_code_basics_minimini_projet.md`](50-clean_code_basics_minimini_projet.md) | 01 clean code basics minimini projet                            | 45 min |
 | [`04-solid_principles.md`](04-solid_principles.md)                                   | Renvoi vers la leçon SOLID canonique (pas une séance)           | 5 min  |
@@ -34,11 +34,11 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | [`95-challenge.md`](95-challenge.md)                                                 | REFACTO CHALLENGE                                               | 90 min |
 | [`07-do_not_touch_before_explain.md`](07-do_not_touch_before_explain.md)             | NE TOUCHE À RIEN AVANT DE POUVOIR L'EXPLIQUER                   | 45 min |
 | [`08-smell_hunter.md`](08-smell_hunter.md)                                           | 08 : Smell hunter : chasser le code mort et puant               | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                                                   | Page verrouillée                                                | 30 min |
 | [`09-EXO_LECTURE.md`](09-EXO_LECTURE.md)                                             | EXO LECTURE : ~20 minutes : un cycle (Refactoring)              | 20 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                   | EXO [JEUNE IA] : 02-CONSTRUCTION/11-REFACTORING                 | 45 min |
 | [`10-EXO_CHASSE_AU_CODE_MORT.md`](10-EXO_CHASSE_AU_CODE_MORT.md)                     | EXO : chasse au code mort (15.4)                                | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                   | EXO IA MENTEUSE : module 02-CONSTRUCTION/11-REFACTORING         | 10 min |
+| [`90-grimoire.md`](90-grimoire.md)                                                   | Page verrouillée                                                | 30 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                       | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust         | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                                         | PONT : de refactorer en JS pur à ajouter des types à TypeScript | 45 min |
 
@@ -93,7 +93,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Refacto challenge](95-challenge.md)
 - [Ne touche à rien avant de pouvoir l'expliquer](07-do_not_touch_before_explain.md)
 - [08 : Smell hunter : chasser le code mort et puant](08-smell_hunter.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~20 minutes : un cycle (Refactoring)](09-EXO_LECTURE.md)
 - [EXO [jeune IA] : 02-construction/11-refactoring](98-EXO-VERIFICATION.md)
 - [EXO : chasse au code mort (15.4)](10-EXO_CHASSE_AU_CODE_MORT.md)
@@ -102,7 +101,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [PONT : de refactorer en JS pur à ajouter des types à TypeScript](99A-PONT.md)
 - [Challenge : `11-REFACTORING`](95-challenge.md)
 - [Grimoire : `11-REFACTORING`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources

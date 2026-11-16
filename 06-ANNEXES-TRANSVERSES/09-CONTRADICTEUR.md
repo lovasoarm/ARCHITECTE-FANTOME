@@ -222,14 +222,14 @@ facture actuelle palier 10 000. Preuve : `06A-BUDGET-CLOUD.md` lignes triées.
 Chiffre : ÷10 du total ; on garde le monolithe, l'index, le SLO 99,5 % si le
 volume suit. Révision : ce plan devient le palier 100 users, déjà écrit.
 
-## Objection tirée au sort (passe orale, non préparée)
+## Objection imprévue (passe orale, non préparée)
 
-Les vingt objections ci-dessus sont écrites d'avance : tu peux y répondre en les ayant
-travaillées la veille. Une soutenance réelle ne marche pas comme ça, et un public non
-technique ne pose pas les questions de cette liste. Cette passe corrige les deux défauts à la
-fois : **persona non technique, objection inconnue, réponse orale encaissée sans notes**.
+Les vingt objections précédentes forment une banque d'entraînement connue ; tirer une ligne
+au sort dans cette liste ne produit donc pas une objection inconnue. La passe ci-dessous
+sépare explicitement deux modes : avec contradicteur, l'objection peut être réellement inconnue ;
+en solo, elle est **non préparée**, sans prétendre qu'elle est secrète.
 
-### Protocole (25 min, jouable seul)
+### Protocole (25 min)
 
 1. **Tire la persona.** Lance un dé à six faces, ou `node -e "console.log(1+Math.floor(Math.random()*6))"`.
 
@@ -242,24 +242,26 @@ fois : **persona non technique, objection inconnue, réponse orale encaissée sa
    | 5   | Assurance / juridique                 | qui est responsable si ça casse                                    | ta chaîne CI                    |
    | 6   | Un nouveau de l'équipe, non technique | pourquoi c'est fait comme ça et pas plus simple                    | tout le jargon                  |
 
-2. **Tire l'objection.** Ne la choisis pas : prends la ligne dont le numéro sort d'un tirage
-   entre 1 et 20 dans la liste ci-dessus, et **reformule-la avec les mots de la persona**
-   avant de commencer. Reformuler est déjà la moitié de l'exercice.
+2. **Avec contradicteur :** après remise du livrable, le contradicteur écrit une objection
+   nouvelle qui n'est pas copiée de la banque ci-dessus. Il la choisit à partir d'un risque,
+   d'un chiffre ou d'une hypothèse du dossier et ne la communique qu'au début de l'oral.
+   **En solo :** ouvre un de tes livrables au hasard, tire une contrainte (coût, panne, délai,
+   volume, confidentialité, migration) puis formule une question qui attaque une hypothèse
+   précise de ce document. Cette variante est non préparée, pas secrète.
 
 3. **Réponds à voix haute, enregistrée, sans notes écrites, en 3 minutes maximum.** Pas de
-   brouillon préalable : c'est la contrainte qui fait la valeur de la passe. Un chiffre annoncé
-   de mémoire et faux se corrige à l'étape 5 ; un chiffre lu sur une fiche ne prouve rien.
+   brouillon préalable. Un chiffre annoncé de mémoire et faux se corrige à la réécoute ; un
+   chiffre lu sur une fiche ne prouve pas la capacité à défendre la décision.
 
-4. **Contrainte obligatoire : au moins une question où tu dis « je ne sais pas ».** Tire une
-   seconde objection et tiens l'aveu jusqu'au bout, selon le protocole de
-   [10-TEAM-CRAFT/10-dire_je_ne_sais_pas.md](../03-PILOTAGE/10-TEAM-CRAFT/10-dire_je_ne_sais_pas.md) :
-   ce que tu ne sais pas, comment tu le sauras, à quelle date tu reviens. Une soutenance sans
-   un seul « je ne sais pas » est une soutenance où quelqu'un a bluffé.
+4. **Honnêteté sur l'incertitude :** n'invente ni connaissance ni ignorance. Si tu ne sais
+   réellement pas, indique précisément ce qui manque, quelle preuve ou vérification permettrait
+   de le savoir, qui en est responsable et quand tu reviendras avec une réponse. Si tu connais
+   la réponse, donne-la et indique sa source ou son hypothèse. Le critère évalue la calibration
+   de ta certitude, pas la prononciation obligatoire de « je ne sais pas ».
 
-5. **Réécoute l'enregistrement une fois**, et note trois lignes : un terme technique qui a
-   échappé et que la persona n'aurait pas compris, un chiffre annoncé sans source, et la
-   question que tu redoutes qu'elle pose ensuite. Cette troisième ligne devient l'objection de
-   la prochaine passe.
+5. **Réécoute l'enregistrement une fois**, puis note trois lignes : un terme technique qui a
+   échappé et que la persona n'aurait pas compris, un chiffre annoncé sans source, et le risque
+   ou la question qui mérite d'être travaillé pour la prochaine passe.
 
 ### Ce que ça produit
 

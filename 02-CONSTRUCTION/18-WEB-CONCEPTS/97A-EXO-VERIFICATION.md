@@ -22,7 +22,9 @@ Temps de lecture ~2 min
 
 Sans assistance de solution ni autocomplétion générative pendant cette activité, choisis le concept-clé du module et rédige d’abord `SPEC-DRILL.md` **avant toute implémentation**. Fixe le contrat (entrée, sortie, erreurs) et au moins trois cas (nominal, limite, invalide) avec leurs résultats attendus.
 
-Implémente ton propre module `drill-2.js`. Écris `learner-verifier.js` pour importer ce module et vérifier son comportement réel avec `node:assert/strict`. Les assertions doivent contrôler les résultats ou effets attendus, pas seulement un message de réussite. Le pack du module complète cette auto-vérification par une grille d’évaluation et une défense orale ; il ne remplace pas les tests exécutables.## Critere de reussite (deterministe)
+Implémente ton propre module `drill-2.js`. Écris `learner-verifier.js` pour importer ce module et vérifier son comportement réel avec `node:assert/strict`. Les assertions doivent contrôler les résultats ou effets attendus, pas seulement un message de réussite. Le pack du module complète cette auto-vérification par une grille d’évaluation et une défense orale ; il ne remplace pas les tests exécutables.
+
+## Critère de réussite (déterministe)
 
 ```bash
 node learner-verifier.js
@@ -36,7 +38,9 @@ Le résultat automatique est accepté uniquement si les assertions testent le co
 - `SPEC-DRILL.md` : contrat et cas de test fixés avant l’implémentation.
 - `drill-2.js` : ta propre implémentation.
 - `learner-verifier.js` : tests exécutables du comportement réel.
-- `JOURNAL-EXERCICE.md` facultatif : temps, blocages et notions à revoir.## Auto-evaluation (a cocher honnetement)
+- `JOURNAL-EXERCICE.md` facultatif : temps, blocages et notions à revoir.
+
+## Auto-évaluation (à cocher honnêtement)
 
 - [ ] j’ai suivi la contrainte sans assistance (auto-déclaration, non vérifiable indépendamment).
 - [ ] les assertions comportementales passent dans le temps indicatif (auto-évaluation).
@@ -51,6 +55,11 @@ Le journal conserve une trace personnelle. Les dates déclarées, une capture ou
 
 ---
 
-3. Ensuite seulement, tu ouvres l'editeur.
+## Ordre de travail obligatoire
 
-Le jalon n’est démontré que si l’artefact demandé existe, est daté, s’exécute et peut être défendu à l’oral, conformément à la grille du pack. La grille ne certifie pas l’absence d’assistance.
+1. **Avant l'implémentation**, rédige sur papier ou dans un brouillon sans autocomplétion générative le contrat, l'entrée, la sortie, les erreurs et les cas de test.
+2. Ouvre ensuite l'éditeur pour créer et finaliser `SPEC-DRILL.md`. Relis-le et fige les résultats attendus avant d'écrire la solution.
+3. Implémente `drill-2.js`, puis écris `learner-verifier.js` et exécute les assertions.
+4. Conserve le journal et prépare la défense orale.
+
+Le jalon n’est démontré que si les artefacts demandés existent, sont cohérents, s’exécutent et peuvent être défendus à l’oral. L'auto-déclaration ne certifie pas l'absence d'assistance.

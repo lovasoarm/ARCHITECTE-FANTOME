@@ -73,9 +73,11 @@ en la construisant en aveugle".
 
 ```text
    Coût de l'expérience la moins chère : ajouter une case à cocher
-   "je voudrais un rappel automatique pour mes prochains rendez-vous"
+   "je souhaite recevoir un rappel automatique par SMS"
    dans le formulaire de prise de rendez-vous existant.
    --> 2 heures de développement, 2 semaines de collecte.
+   Mesure : proportion de clients actifs qui cochent l'option. Cela mesure une intention déclarée,
+   pas l'usage réel du rappel ni la réduction des rendez-vous manqués.
 
    Coût de construire le moteur de récurrence en aveugle :
    --> 3 semaines de développement, coût de maintenance permanent,

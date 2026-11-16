@@ -149,19 +149,31 @@ C'est le pattern barrel file. Courant dans les projets React, les bibliothèques
 
 ## 6) LE PIÈGE : imports circulaires
 
-```js
-// a.js
-import { quelqueChose } from "./b.js";
-export const valeurA = "A";
+`a.js` :
 
-// b.js
-import { valeurA } from "./a.js"; // b importe a qui importe b...
-export const quelqueChose = valeurA + "B";
+```js
+import { getB } from "./b.js";
+export const valeurA = "A";
+export function getA() {
+  return valeurA;
+}
+
+// Appelé après l'initialisation du module.
+console.log(getB()); // "AB"
 ```
 
-JS ne plante pas immédiatement. Il résout les cycles en initialisant les modules dans un certain ordre, mais `valeurA` peut valoir `undefined` au moment où `b.js` l'utilise.
+`b.js` :
 
-Le bug : ton code tourne, mais une valeur est `undefined` sans raison apparente. Cherche d'abord les imports circulaires.
+```js
+import { getA } from "./a.js"; // b importe a qui importe b...
+export function getB() {
+  return `${getA()}B`; // lecture différée : la fonction sera appelée après l'initialisation
+}
+```
+
+Un cycle d'imports n'est pas automatiquement une erreur. Le danger apparaît notamment lorsqu'un module lit, au niveau supérieur, une liaison `const` ou `let` de l'autre module avant son initialisation : cela peut provoquer `ReferenceError: Cannot access ... before initialization` (zone morte temporelle), pas simplement renvoyer `undefined`. Une lecture différée dans une fonction peut éviter cette lecture trop précoce, mais elle ne rend pas l'architecture souhaitable par défaut.
+
+Le bon réflexe est de chercher le cycle dans le graphe des modules et de vérifier à quel moment les liaisons importées sont réellement lues. Une extraction d'un troisième module partagé est souvent plus claire qu'un cycle.
 
 ---
 
@@ -221,6 +233,117 @@ Une app de scoring de matchs. Elle peut charger deux moteurs de calcul :
 (Indice : `import()` retourne une Promise -> gère le `.catch`)
 
 ---
+
+## CORRIGÉS DE RÉFÉRENCE : À CONSULTER APRÈS UNE TENTATIVE
+
+Les fichiers ci-dessous utilisent les modules ES. Dans un navigateur, charge `main.js` avec `<script type="module">`. Dans Node.js, utilise une configuration ESM explicite (par exemple `"type": "module"` dans `package.json`) ou l'extension `.mjs`.
+
+### Corrigé Exo 1 : le village de Konoha
+
+`ninjas.js` :
+
+```javascript
+export const ninjas = [
+  { name: "Naruto", rank: "Genin", clan: "Uzumaki" },
+  { name: "Sasuke", rank: "Jonin", clan: "Uchiha" },
+  { name: "Itachi", rank: "Jonin", clan: "Uchiha" },
+  { name: "Sakura", rank: "Chunin", clan: "Haruno" },
+];
+```
+
+`filtres.js` :
+
+```javascript
+export function filtrerParRang(items, rank) {
+  return items.filter((item) => item.rank === rank);
+}
+
+export function filtrerParClan(items, clan) {
+  return items.filter((item) => item.clan === clan);
+}
+```
+
+`main.js` :
+
+```javascript
+import { ninjas } from "./ninjas.js";
+import { filtrerParRang, filtrerParClan } from "./filtres.js";
+
+const joninUchiha = filtrerParClan(filtrerParRang(ninjas, "Jonin"), "Uchiha");
+console.log(joninUchiha);
+```
+
+Sortie attendue : Sasuke et Itachi. Le fichier `main.js` orchestre les fonctions, mais ne réimplémente pas le filtrage.
+
+### Corrigé Exo 2 : façade de la mission d'infiltration
+
+`formation.js` :
+
+```javascript
+export const formationDiamant = ["avant", "centre", "arrière"];
+export const formationV = ["gauche", "pointe", "droite"];
+```
+
+`equipement.js` :
+
+```javascript
+export const kunai = { quantity: 3 };
+export const parcheminsScelles = { quantity: 2 };
+```
+
+`strategie.js` :
+
+```javascript
+export default function plannerAttaque(target) {
+  return { target, plan: "reconnaissance puis approche" };
+}
+```
+
+`missionCorps/index.js` :
+
+```javascript
+export { formationDiamant, formationV } from "../formation.js";
+export { kunai, parcheminsScelles } from "../equipement.js";
+export { default as plannerAttaque } from "../strategie.js";
+```
+
+`main.js` :
+
+```javascript
+import {
+  formationDiamant,
+  kunai,
+  plannerAttaque,
+} from "./missionCorps/index.js";
+
+console.log(formationDiamant, kunai, plannerAttaque("porte nord"));
+```
+
+Le re-export du `default` doit être nommé explicitement (`default as plannerAttaque`) pour devenir un export nommé de la façade.
+
+### Corrigé Exo 3 : chargement conditionnel
+
+`main.js` :
+
+```javascript
+async function chargerMoteur({ premium, joueur }) {
+  try {
+    const module = premium
+      ? await import("./moteurAvance.js")
+      : await import("./moteurSimple.js");
+    return module.calculerStats(joueur);
+  } catch (error) {
+    // Conserve le détail technique côté diagnostic, pas dans le message utilisateur.
+    console.error("Le moteur de statistiques n'a pas pu être chargé.", error);
+    return {
+      ok: false,
+      message: "Statistiques indisponibles pour le moment.",
+    };
+  }
+}
+```
+
+Ici, l'échec du chargement du moteur choisi (simple ou avancé) est géré. Dans une application réelle, conserve l'erreur technique dans les journaux et affiche un message adapté au contrat de l'écran. Ne masque pas l'erreur technique dans les journaux, mais n'affiche pas non plus une stack trace à l'utilisateur.
 
 ## RÉSUMÉ
 

@@ -95,8 +95,8 @@ Ces ressources ne font pas partie de la première gate. Ouvre-les seulement apr�
 
 - [Git Core](02A-git_core.md) et [sa pratique](50-git_core_minimini_projet.md) : lorsque la route demande Git ; Git n'est pas un prérequis pour apprendre les variables ou les fonctions.
 - Les extensions React/Next.js Web Basics [50 à 55](05_web_basics/README.md) : après étude de React/Next.js et de leurs prérequis ; elles ne remplacent aucune des six pratiques natives obligatoires ci-dessus.
-- [ProjectCard React/JSX](03_functions/50-function_basics_minimini_projet.md) et [catalogue React/Next.js](03_functions/51-hof_map_filter_minimini_projet.md) : projets Portfolio différés ; ils supposent des prérequis d'interface et d'environnement qui ne sont pas enseignés dans cette première passe.
-- [Pratique Portfolio Function factory](03_functions/52-function_factory_minimini_projet.md) : après Scope, les closures et les prérequis du Portfolio.
+- [ProjectCard React/JSX](03_functions/51-function_basics_minimini_projet.md) et [catalogue React/Next.js](03_functions/52-hof_map_filter_minimini_projet.md) : projets Portfolio différés ; ils supposent des prérequis d'interface et d'environnement qui ne sont pas enseignés dans cette première passe.
+- [Pratique Portfolio Function factory](03_functions/53-function_factory_minimini_projet.md) : après Scope, les closures et les prérequis du Portfolio.
 - [Expliquer les closures à trois publics](03A-expliquer_a_3_publics_closures.md) : approfondissement après Scope.
 - [Exercice de lecture](04A-EXO_LECTURE.md), [vérifications complémentaires](11_EXO_VERIFICATION.md), [vérification 12](12_EXO_VERIFICATION.md), [vérification 97](97-EXO-VERIFICATION.md) et [vérification 98](98-EXO-VERIFICATION.md) : utilise-les après les notions correspondantes. Les activités faisant intervenir une IA restent facultatives.
 - [Portage mental](99-PORTAGE-MENTAL.md) et [pont vers la résolution de problèmes](99A-PONT.md) : ressources de transfert après les notions concernées.

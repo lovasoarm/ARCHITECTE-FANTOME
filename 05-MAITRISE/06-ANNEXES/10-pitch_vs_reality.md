@@ -69,52 +69,50 @@ Ajoute deux parties prenantes dont les objectifs se contredisent. Quelle décisi
 
 **Preuve à conserver :** le raisonnement ou l’artefact produit, le résultat observé, les hypothèses et une limite non démontrée.
 
-<!-- AF-DIAGRAM:portfolio -->
+<!-- AF-DIAGRAM:pitch_defense -->
 
-## Repère visuel utile : Dossier de preuve examinable
+## Repère visuel : pitch honnête face à une objection
 
 ```text
-problème -> rôle -> artefact
-                   |
-                   v
-             commande reproductible
-                   |
-                   v
-             résultat + limites
-                   |
-                   v
-             revue / objection
-                   |
-                   v
-             preuve renforcée ou claim retiré
+besoin de l'interlocuteur
+          |
+          v
+problème que je sais traiter
+          |
+          v
+preuve et résultat vérifiables
+          |
+          v
+limites / ce que je ne revendique pas
+          |
+          v
+objection -> réponse sourcée -> prochaine preuve
 ```
 
-<!-- AF-LESSON-PROFILE: portfolio -->
+<!-- AF-LESSON-PROFILE: leadership -->
 
 ## Repères de décision
 
-- **Pourquoi :** Un portfolio crédible relie compétence, artefact, décision et résultat sans transformer une simulation en expérience réelle.
-- **Quand l’utiliser / quand l’éviter :** Utilise-le pour montrer ton travail à un reviewer, entretien ou équipe. Mets en avant une preuve profonde plutôt qu'une collection de technologies.
-- **Limites :** Un portfolio personnel ne démontre pas à lui seul influence organisationnelle ou impact production. Respecte confidentialité, licences et données non publiques.
+- **Pourquoi :** Un pitch professionnel aide un interlocuteur à comprendre quelle valeur tu peux apporter et sur quelles preuves repose cette affirmation.
+- **Quand l’utiliser / quand l’éviter :** Utilise-le en entretien, en présentation de projet ou pour répondre à une proposition concurrente. Ne transforme pas une promesse future, une contribution d'équipe ou une simulation en résultat personnel acquis.
+- **Limites :** Une présentation fluide ne remplace pas la compétence. Le besoin du recruteur, le contexte et les critères du poste déterminent la pertinence du pitch.
 
 ## Mécanisme : la version sans magie
 
-Présente le problème, ton rôle, les contraintes, les choix, le code/tests, la mesure, les limites et ce qui a changé après feedback.
+Adapte ton message au problème de l’interlocuteur, relie une affirmation à une preuve précise, expose les limites et prépare une réponse factuelle à une objection.
 
 ## Ancrage produit / terrain : Kintana
 
-Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pitch : "Pourquoi moi et pas une solution ?"** se rattache à ce cas concret : Les tranches Kintana peuvent servir de cas d'étude LAB ; les contributions externes ou travaux en entreprise doivent être séparés et attestés selon les faits.
+Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **Pitch : "Pourquoi moi et pas une solution ?"** se rattache à un entretien pour un rôle d'ingénierie : l'interlocuteur compare une embauche, une solution logicielle déjà disponible et une automatisation. Tu dois répondre à son besoin réel sans te présenter comme interchangeable ni promettre une compétence non démontrée.
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Dossier de preuve examinable
+## Mission utile : Kintana : défendre une valeur professionnelle sans survendre
 
-> **Arc Arène Staff :** ton portfolio n'est pas une vitrine de captures. C'est un dossier que quelqu'un peut examiner, contredire et reproduire.
+**Mission liée à « Pitch : Pourquoi moi et pas une solution ? » :** prépare un pitch de 90 secondes pour un poste choisi. Présente le besoin de l'équipe, une compétence qui répond à ce besoin, une preuve personnelle vérifiable, une limite réelle et la façon dont tu réduirais cette limite. Prépare ensuite trois objections : « un outil IA peut déjà le faire », « tu n'as pas d'expérience de production », « pourquoi ne pas recruter un profil déjà spécialisé ? ».
 
-**Mission liée à « Pitch : "Pourquoi moi et pas une solution ?" » :** Transforme une tranche Kintana en dossier de portfolio. Donne accès au commit, aux commandes reproductibles, aux tests, à l'ADR et aux limites. Fais une revue par un pair si possible ; sinon note `EXTERNAL_REVIEW: NOT RUN`.
+**Livrable :** `PITCH-90S.md` avec le texte prononçable, le poste ciblé, les liens des preuves, les limites explicites et des réponses courtes aux objections. Sépare ce que tu as réalisé seul, en équipe, en simulation et en production.
 
-**Livrable :** une étude de cas courte, liens d'artefacts, résultat de tests, décisions et registre des limites.
+**Critères d’acceptation :** chaque affirmation de compétence pointe vers une preuve ; le besoin de l'équipe est traité avant l'auto-promotion ; aucune expérience n'est inventée ; les limites sont assumées ; le pitch reste compréhensible sans jargon non expliqué.
 
-**Critères d’acceptation :** ton rôle est précis ; les faits sont datés ; les résultats LAB/PILOT/PRODUCTION sont séparés ; les chiffres sont reproductibles ; aucune contribution d'équipe n'est revendiquée comme individuelle.
-
-**Transfert obligatoire :** Un reviewer conteste une mesure ou un choix. Ajoute la preuve qui manque ou retire la revendication au lieu de défendre un chiffre fragile.
+**Transfert obligatoire :** adapte le même pitch à un interlocuteur non technique et à un ingénieur senior. Garde les faits constants, mais change le vocabulaire, la priorité et le niveau de détail.

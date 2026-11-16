@@ -32,10 +32,10 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | [`53-async_error_traps_minimini_projet.md`](53-async_error_traps_minimini_projet.md) | 04 async error traps minimini projet                            | 45 min |
 | [`06-error_strategy.md`](06-error_strategy.md)                                       | ERROR STRATEGY : FAIL-FAST, FALLBACK, RETRY                     | 45 min |
 | [`54-error_strategy_minimini_projet.md`](54-error_strategy_minimini_projet.md)       | 05 error strategy minimini projet                               | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                                                   | Page verrouillée                                                | 30 min |
 | [`07-EXO_LECTURE.md`](07-EXO_LECTURE.md)                                             | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Error Handling) | 50 min |
 | [`98-EXO-VERIFICATION.md`](98-EXO-VERIFICATION.md)                                   | EXO [JEUNE IA] : 01-CADRAGE/04-ERROR-HANDLING                   | 45 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                   | EXO IA MENTEUSE : module 01-CADRAGE/04-ERROR-HANDLING           | 10 min |
+| [`90-grimoire.md`](90-grimoire.md)                                                   | Page verrouillée                                                | 30 min |
 | [`99A-PONT.md`](99A-PONT.md)                                                         | PONT : de prévoir l'échec à le prouver à les tests              | 45 min |
 
 Total : **11 h 30**. Le Total reprend exactement la somme du tableau. Le challenge (1 h 30) est une évaluation séparée et n'est pas ajouté au Total sauf s'il apparaît comme ligne du tableau. Aucun `96-boss-fight.md` distinct n'est fourni dans ce module ; ses checkpoints, gates ou autres critères de sortie déclarés font foi.
@@ -85,7 +85,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [53-async_error_traps_minimini_projet.md](53-async_error_traps_minimini_projet.md)
 - [Error strategy : fail-fast, fallback, retry](06-error_strategy.md)
 - [54-error_strategy_minimini_projet.md](54-error_strategy_minimini_projet.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Error Handling)](07-EXO_LECTURE.md)
 - [EXO [jeune IA] : 01-cadrage/04-error-handling](98-EXO-VERIFICATION.md)
 - [EXO IA MENTEUSE : module 01-CADRAGE/04-ERROR-HANDLING](97-EXO-VERIFICATION.md)
@@ -93,7 +92,6 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [PONT : de prévoir l'échec à le prouver à les tests](99A-PONT.md)
 - [Challenge : `04-ERROR-HANDLING`](95-challenge.md)
 - [Grimoire : `04-ERROR-HANDLING`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 <!-- AF-KINTANA-MODULE -->

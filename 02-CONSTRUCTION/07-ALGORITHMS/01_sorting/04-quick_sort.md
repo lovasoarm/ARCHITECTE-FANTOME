@@ -272,9 +272,11 @@ const joueurs = [
 
 _~20 min_
 
-Quick select : une variante de Quick sort pour trouver le kième plus petit élément en O(n) en moyenne, sans trier tout le tableau.
+Quick select : une variante de Quick sort pour trouver le k-ième plus petit élément en O(n) en moyenne, sans trier tout le tableau. Dans les exemples ci-dessous, **k est 1-indexé** : `k = 1` désigne le minimum. Dans le tableau, l'indice cible JavaScript est donc `k - 1`.
 
-Algorithme : après partition, si le pivot tombe à l'index k, c'est notre réponse. Sinon on récurse seulement sur la moitié qui contient k.
+Implémente `quickSelect(arr, k)` : la fonction doit retourner la valeur du k-ième plus petit élément. Le contrat des exemples est 1-indexé (`1 <= k <= arr.length`). Elle peut réorganiser le tableau ; utilise `[...arr]` si tu dois conserver l'entrée.
+
+Algorithme : après partition, si le pivot tombe à l'indice `k - 1`, c'est notre réponse. Sinon on continue seulement dans la partie qui contient cet indice.
 
 ```js
 quickSelect([7, 2, 1, 6, 5, 3, 4], 3); // 3 (le 3ème plus petit)

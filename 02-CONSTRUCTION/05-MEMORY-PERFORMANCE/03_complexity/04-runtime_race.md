@@ -11,13 +11,13 @@ assessment_role: diagnostic_mastery
 
 > **SCÈNE CRAZYDEVS : jauge de chakra :** optimiser sans mesurer, c'est demander à Naruto de vider son chakra sans regarder la jauge. D'abord la mesure, ensuite le coup de génie ; sinon tu optimises peut-être le mauvais ralentissement.
 
-# RUNTIME RACE : O(n log n) VS O(n²) SUR 100K ÉLÉMENTS
+# RUNTIME RACE : O(n log n) VS O(n²) : tri jusqu’à 10K, recherche jusqu’à 100K
 
 Temps de lecture ~10 min
 
 Sur 10 éléments, O(n²) et O(n log n) semblent identiques. La différence est invisible. Alors on ne s'en préoccupe pas. Et puis un jour, les données grossissent, et l'app se fige.
 
-Ce fichier, c'est le moment où on sort les chiffres réels. Pas des formules théoriques : des mesures, des courbes, et la différence entre "ça tourne" et "ça tourne encore dans 30 minutes". Sur 100k éléments, la différence entre O(n²) et O(n log n) est souvent celle entre 2 secondes et 3 heures.
+Ce fichier met en regard les ordres de grandeur théoriques et des mesures réalisées sur une machine donnée. Les courses ne couvrent pas toutes les mêmes tailles : le tri Bubble Sort est mesuré jusqu'à 10 000 éléments, car 100 000 éléments impliqueraient environ 10 milliards de comparaisons et ne constituent pas un benchmark pédagogique raisonnable ; les recherches et les autres exercices utilisent des tailles distinctes. Les temps observés varient selon le matériel, le runtime, les données et la charge.
 
 ---
 
@@ -35,21 +35,26 @@ n     O(n log n)      O(n²)
 1 000 000 20 000 000 ops    1 000 000 000 000 ops
 ```
 
-À 100 000 éléments : O(n log n) fait ~1,7 million d'opérations.
-O(n²) en fait **10 milliards**. C'est 6 000 fois plus.
+À 100 000 éléments, les termes de croissance représentent environ 1,7 million pour n log₂(n) et 10 milliards pour n². Le rapport d'environ 5 900 illustre l'écart des termes dominants, pas un ratio de temps garanti entre deux programmes concrets.
 
 ---
 
 ## 2) LE BENCHMARK : METTRE ÇA EN PRATIQUE
 
 ```js
-// Outil de mesure minimaliste
-function bench(label, fn) {
-  const start = performance.now();
-  const result = fn();
-  const end = performance.now();
-  console.log(`[${label}] : ${(end - start).toFixed(2)}ms`);
-  return result;
+// Mesure courte avec échauffement et plusieurs échantillons.
+function bench(label, fn, { warmups = 3, runs = 9 } = {}) {
+  for (let i = 0; i < warmups; i += 1) fn();
+  const samples = [];
+  for (let i = 0; i < runs; i += 1) {
+    const start = performance.now();
+    fn();
+    samples.push(performance.now() - start);
+  }
+  samples.sort((a, b) => a - b);
+  const median = samples[Math.floor(samples.length / 2)];
+  console.log(`[${label}] médiane de ${runs} runs : ${median.toFixed(2)}ms`);
+  return median;
 }
 
 // Générer un tableau de n éléments aléatoires
@@ -96,7 +101,7 @@ for (const n of sizes) {
 }
 ```
 
-Résultats typiques (machine standard, Node 22.23.3) :
+Exemple de sortie possible sur une machine donnée (ne pas la considérer comme une référence universelle). Pour une comparaison exploitable, le code réchauffe chaque fonction puis prend la médiane de neuf mesures ; conserve aussi les versions Node/V8, le CPU et les tailles mesurées :
 
 ```
 ── n = 100 ──
@@ -116,7 +121,7 @@ bubble sort O(n²)   : 580ms
 native sort O(n log n): 2.5ms
 ```
 
-À 10 000 éléments : bubble sort prend **230 fois plus longtemps**. Et ça empire de façon quadratique après.
+Sur cette machine et cette exécution seulement, le ratio affiché décrit les mesures obtenues. Il varie avec le CPU, le runtime, les données, le bruit système et l'implémentation ; ne transforme pas un ratio unique en garantie.
 
 ---
 
@@ -171,7 +176,7 @@ linear search O(n)   : 85ms  ← parcourt en moyenne 50 000 éléments par reche
 binary search O(log n) : 0.4ms  ← parcourt max 17 éléments par recherche
 ```
 
-200 fois plus rapide. Pour chercher dans une liste de candidats au Ballon d'Or, c'est anecdotique. Pour un moteur de recherche sur des millions d'entrées, c'est la différence entre utilisable et inutilisable.
+Dans cet exemple, le temps de recherche binaire est environ 212 fois inférieur. Ce ratio dépend de la machine, du runtime, de la distribution et des conditions de mesure ; l'intérêt général vient de la différence de croissance O(n) / O(log n), pas de ce chiffre isolé.
 
 ---
 
@@ -213,7 +218,7 @@ for (const n of sizes2) {
 }
 ```
 
-Résultats typiques :
+Exemple de sortie illustrative (les résultats réels dépendent de la machine et du runtime) :
 
 ```
 ── n = 1 000 ──
@@ -229,7 +234,7 @@ naive O(n²) : 310ms
 set  O(n) : 0.4ms
 
 ── n = 50 000 ──
-(naive : estimé > 7 secondes)
+(naive : extrapolation indicative depuis la mesure à 10 000 ; non exécutée dans ce benchmark)
 set  O(n) : 2ms
 ```
 
@@ -274,7 +279,7 @@ Matcher deux ensembles    100k+       O(n) avec Set/Map
 Générer toutes les paires   >1 000      Éviter O(n²)
 ```
 
-La règle empirique : si les données peuvent dépasser 10 000 éléments et que l'opération doit être interactive, O(n²) n'est pas acceptable.
+La règle empirique : si les données peuvent dépasser 10 000 éléments et que l'opération doit être interactive, un O(n²) complet doit déclencher une analyse de risque et une mesure réaliste ; le seuil acceptable dépend du coût réel, de la fréquence et du budget de latence.
 
 ---
 
@@ -282,7 +287,7 @@ La règle empirique : si les données peuvent dépasser 10 000 éléments et que
 
 ### EXO 1 : REPRODUIRE LE BENCHMARK
 
-Lancer le code de la Race 1 (bubble sort vs native sort) sur ta machine avec les tailles `[100, 500, 1000, 5000]`. Relever les temps, calculer le ratio O(n²)/O(n log n) à chaque taille. Est-ce que le ratio croît ? De combien entre 1000 et 5000 ?
+Lancer le code de la Race 1 (bubble sort vs native sort) sur ta machine avec les tailles `[100, 1000, 5000, 10000]`. Relever les temps, calculer le ratio O(n²)/O(n log n) à chaque taille. Est-ce que le ratio croît ? De combien entre 1000 et 5000 ?
 
 _(Indice : si l'algo est vraiment O(n²) vs O(n log n), le ratio devrait être proportionnel à `n / log n`)_
 
@@ -295,13 +300,16 @@ La supply chain de Walter White a un bug de performance. Cette fonction tourne s
 ```js
 function findComplementaryRoutes(routes, budget) {
   const valid = [];
+  const indicesByCost = new Map();
 
-  for (let i = 0; i < routes.length; i++) {
-    for (let j = i + 1; j < routes.length; j++) {
-      if (routes[i].cost + routes[j].cost === budget) {
-        valid.push([routes[i].id, routes[j].id]);
-      }
-    }
+  for (let j = 0; j < routes.length; j += 1) {
+    const route = routes[j];
+    const complements = indicesByCost.get(budget - route.cost) ?? [];
+    for (const i of complements) valid.push([routes[i].id, route.id]);
+
+    const sameCost = indicesByCost.get(route.cost) ?? [];
+    sameCost.push(j);
+    indicesByCost.set(route.cost, sameCost);
   }
 
   return valid;
@@ -310,7 +318,7 @@ function findComplementaryRoutes(routes, budget) {
 
 **Contrainte supplémentaire :** il peut y avoir plusieurs paires valides. La solution optimisée doit toutes les retouver.
 
-_(Indice : le problème "two sum" a une solution O(n) avec une Map)_
+_(Indice : une Map permet de trouver les compléments en O(n + k) en moyenne, où k est le nombre de paires retournées. La sortie elle-même peut contenir Θ(n²) paires ; il est donc impossible de promettre O(n) lorsque k est quadratique.)_
 
 ---
 
@@ -336,7 +344,7 @@ Méthode : si doubler n multiplie le temps par 4 → O(n²). Par 2 → O(n). Par
 
 ## RÉSUMÉ
 
-O(n²) et O(n log n) semblent proches sur de petites données. À 10 000 éléments, O(n²) est déjà 200 à 400 fois plus lent. À 100 000, c'est plusieurs milliers de fois. Le benchmark réel confirme ce que la théorie prédit : bubble sort à 10k éléments prend 600ms, native sort prend 2.5ms. Chercher avec `includes` dans une boucle est O(n²) : remplacer par un Set donne O(n). La mesure avec `performance.now()` transforme le Big O en quelque chose de visible et de décidable.
+O(n²) et O(n log n) peuvent sembler proches sur de petites données ; leur écart de croissance devient important lorsque n augmente. Dans l'exemple de sortie de la Race 1, Bubble Sort à 10 000 éléments prend environ 580 ms et le tri natif environ 2,5 ms : ce sont des valeurs illustratives, pas des seuils universels. La course de tri s'arrête à 10 000 éléments ; aucune mesure Bubble Sort à 100 000 éléments n'est revendiquée. Pour chercher plusieurs fois dans une collection, un index `Set` ou `Map` peut éviter le parcours répété, sous réserve que le coût de construction et la mémoire de l'index soient pris en compte. `performance.now()` aide à comparer des durées, à condition de réchauffer le code et d'utiliser plusieurs échantillons représentatifs.
 
 ## CHECKPOINT DE PROFONDEUR : variation H : contre-exemple hostile
 

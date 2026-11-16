@@ -71,17 +71,21 @@ lowbit(4) = 4 & (-4) = 100 & 100 = 100 = 4 → couvre 4 éléments
 
 ## 3) IMPLÉMENTATION
 
-Le Fenwick Tree est 1-indexé (l'index 0 est ignoré).
+Le Fenwick Tree est 1-indexé (l'index 0 est ignoré). Les constructeurs depuis un tableau exigent ici un tableau non vide de nombres finis ; une structure de taille zéro n'est pas représentée par cette classe.
 
 ```js
 class FenwickTree {
   constructor(n) {
+    // _lowbit utilise les opérateurs binaires JS (entiers signés sur 32 bits).
+    if (!Number.isSafeInteger(n) || n < 1 || n > 0x7fffffff) {
+      throw new RangeError("n doit être compris entre 1 et 2^31 - 1");
+    }
     // tree[i] contient la somme partielle selon la règle lowbit
     this.tree = new Array(n + 1).fill(0);
     this.n = n;
   }
 
-  // bit le plus bas : la clé de toute la structure
+  // bit le plus bas ; l'index est borné à 2^31 - 1 pour rester dans le domaine signé 32 bits de JS.
   _lowbit(i) {
     return i & -i;
   }
@@ -89,6 +93,12 @@ class FenwickTree {
   // update : ajoute delta à l'index i (1-indexé)
   // propage la mise à jour vers le haut en O(log n)
   update(i, delta) {
+    if (!Number.isSafeInteger(i) || i < 1 || i > this.n) {
+      throw new RangeError(
+        `i doit être compris entre 1 et ${this.n} (indexation 1-based)`,
+      );
+    }
+    if (!Number.isFinite(delta)) throw new TypeError("delta doit être fini");
     while (i <= this.n) {
       this.tree[i] += delta;
       i += this._lowbit(i); // monte au parent responsible
@@ -97,6 +107,9 @@ class FenwickTree {
 
   // prefix sum : somme de tree[1..i] en O(log n)
   prefixSum(i) {
+    if (!Number.isSafeInteger(i) || i < 0 || i > this.n) {
+      throw new RangeError(`i doit être compris entre 0 et ${this.n}`);
+    }
     let sum = 0;
     while (i > 0) {
       sum += this.tree[i];
@@ -105,8 +118,17 @@ class FenwickTree {
     return sum;
   }
 
-  // range sum : somme de tree[l..r] en O(log n)
+  // range sum : somme de tree[l..r] en O(log n), bornes 1-indexées inclusives
   rangeSum(l, r) {
+    if (
+      !Number.isSafeInteger(l) ||
+      !Number.isSafeInteger(r) ||
+      l < 1 ||
+      r < l ||
+      r > this.n
+    ) {
+      throw new RangeError(`l et r doivent respecter 1 <= l <= r <= ${this.n}`);
+    }
     return this.prefixSum(r) - this.prefixSum(l - 1);
   }
 }
@@ -119,6 +141,9 @@ class FenwickTree {
 ```js
 // O(n log n) : appeler update pour chaque élément
 function buildFromArray(arr) {
+  if (!Array.isArray(arr) || arr.length === 0 || !arr.every(Number.isFinite)) {
+    throw new TypeError("arr doit être un tableau non vide de nombres finis");
+  }
   const ft = new FenwickTree(arr.length);
   for (let i = 0; i < arr.length; i++) {
     ft.update(i + 1, arr[i]); // +1 : 1-indexé
@@ -128,6 +153,9 @@ function buildFromArray(arr) {
 
 // O(n) : méthode plus efficace
 function buildFromArrayFast(arr) {
+  if (!Array.isArray(arr) || arr.length === 0 || !arr.every(Number.isFinite)) {
+    throw new TypeError("arr doit être un tableau non vide de nombres finis");
+  }
   const n = arr.length;
   const ft = new FenwickTree(n);
   // copie directe

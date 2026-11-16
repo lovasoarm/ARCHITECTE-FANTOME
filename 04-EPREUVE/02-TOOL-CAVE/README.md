@@ -4,7 +4,7 @@ acte: comprendre
 route: complete
 ---
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Prérequis de contexte](../../03-PILOTAGE/01-ROADMAP-RUN/README.md) | [Autre module du bloc Épreuve](../03-REALTIME/README.md) | [Coffre de référence facultatif](../01-BONUS-VAULT/README.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Prérequis de contexte](../../03-PILOTAGE/01-ROADMAP-RUN/README.md) | [Autre module du bloc Épreuve](../03-REALTIME/README.md) | [Coffre de référence facultatif](../01-BONUS-VAULT/README.md)
 
 # Module 04-EPREUVE/02-TOOL-CAVE : Tool Cave
 
@@ -42,7 +42,7 @@ reprends [Roadmap Run](../../03-PILOTAGE/01-ROADMAP-RUN/90-grimoire.md) et son
 [challenge](../../03-PILOTAGE/01-ROADMAP-RUN/95-challenge.md). Bonus Vault est un coffre
 facultatif consultable à tout moment et ne conditionne pas l'entrée dans Tool Cave.
 
-**Durée :** source unique dans [04A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
+**Durée :** source unique dans [01A-CARTE-DU-PARCOURS.md](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) (règle de calcul détaillée plus haut).
 
 ## Ce que tu sais faire à la sortie
 

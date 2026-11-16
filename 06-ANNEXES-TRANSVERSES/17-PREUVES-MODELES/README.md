@@ -3,7 +3,7 @@ stability: intemporel
 acte: comprendre
 ---
 
-# 14-PREUVES-MODELES : à quoi ressemble une preuve remplie
+# 17-PREUVES-MODELES : à quoi ressemble une preuve remplie
 
 Ce dossier n'enseigne rien. Il montre, pour chacune des six familles de
 [PREUVES-STAFF-ENGINEER.md](../../PREUVES-STAFF-ENGINEER.md), un exemplaire rempli et anonymisé,
@@ -11,17 +11,19 @@ sur un même projet fictif : **Lumen**, plateforme de réservation de créneaux 
 associatifs. Un seul projet pour les six, volontairement : c'est la cohérence entre les pièces
 qui se juge, pas leur beauté séparée.
 
+Le protocole de sourçage des montants et données chiffrées est défini dans [17A : Protocole de la donnée sourcée](../17A-PROTOCOLE-DONNEE-SOURCEE.md) ; ce fichier est une règle transversale, pas un huitième modèle de preuve.
+
 ## Les six modèles, et la septième pièce
 
-| Famille | Fichier modèle | Ce que tu dois produire dans TON dépôt |
-| --- | --- | --- |
-| S1 : systèmes et cloud | [02-S1-BUDGET-CLOUD.md](02-S1-BUDGET-CLOUD.md) | `PREUVES/06A-BUDGET-CLOUD.md` |
-| S2 : architecture | [03-S2-ADR-PRINCIPAL.md](03-S2-ADR-PRINCIPAL.md) | `PREUVES/ADR-PRINCIPAL.md` (plus le dossier `ADR/`) |
-| S3 : sécurité et fiabilité | [04-S3-SLO.md](04-S3-SLO.md) | `PREUVES/SLO.md` |
-| S4 : produit et business | [05-S4-DECISION-ARBITRAGE.md](05-S4-DECISION-ARBITRAGE.md) | `PREUVES/DECISION-ARBITRAGE.md` |
-| S5 : leadership et pédagogie | [06-S5-NOTE-DIRECTION-ET-REVUE.md](06-S5-NOTE-DIRECTION-ET-REVUE.md) | `PREUVES/REVUE-DE-CODE.md` et `PREUVES/NOTE-DIRECTION.md` |
-| S6 : livraison & exploitation | [07-S6-LIVRAISON-EXPLOITATION.md](07-S6-LIVRAISON-EXPLOITATION.md) | `PREUVES/LIVRAISON-EXPLOITATION.md` |
-| S7 : pensée transférable | [99-PORTAGE-MENTAL.md](99-PORTAGE-MENTAL.md) | `PREUVES/PORTAGE.md` |
+| Famille                       | Fichier modèle                                                       | Ce que tu dois produire dans TON dépôt                    |
+| ----------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------- |
+| S1 : systèmes et cloud        | [02-S1-BUDGET-CLOUD.md](02-S1-BUDGET-CLOUD.md)                       | `PREUVES/06A-BUDGET-CLOUD.md`                             |
+| S2 : architecture             | [03-S2-ADR-PRINCIPAL.md](03-S2-ADR-PRINCIPAL.md)                     | `PREUVES/ADR-PRINCIPAL.md` (plus le dossier `ADR/`)       |
+| S3 : sécurité et fiabilité    | [04-S3-SLO.md](04-S3-SLO.md)                                         | `PREUVES/SLO.md`                                          |
+| S4 : produit et business      | [05-S4-DECISION-ARBITRAGE.md](05-S4-DECISION-ARBITRAGE.md)           | `PREUVES/DECISION-ARBITRAGE.md`                           |
+| S5 : leadership et pédagogie  | [06-S5-NOTE-DIRECTION-ET-REVUE.md](06-S5-NOTE-DIRECTION-ET-REVUE.md) | `PREUVES/REVUE-DE-CODE.md` et `PREUVES/NOTE-DIRECTION.md` |
+| S6 : livraison & exploitation | [07-S6-LIVRAISON-EXPLOITATION.md](07-S6-LIVRAISON-EXPLOITATION.md)   | `PREUVES/LIVRAISON-EXPLOITATION.md`                       |
+| S7 : pensée transférable      | [99-PORTAGE-MENTAL.md](99-PORTAGE-MENTAL.md)                         | `PREUVES/PORTAGE.md`                                      |
 
 La preuve d’évaluation IA est une exigence transversale G8, distincte de S6 : elle peut être produite avec le [laboratoire IA de référence](../19-PRODUIT-IA-REFERENCE/README.md) dans `PREUVES/EVALUATION-IA.md`. Une pièce `PREUVES/IA-EN-PROD.md` s’ajoute seulement si le projet embarque réellement une brique IA en mode production-like.
 
@@ -38,10 +40,12 @@ Le gabarit vivant de S1 est maintenu dans le module qui l'enseigne :
 
 ## Le test de cohérence entre les six
 
-Les six pièces de Lumen se contredisent volontairement à trois endroits, et ces contradictions
-sont écrites plutôt que masquées : le SLO à 99,5% qui interdit l'option d'export la moins chère
-(S3 contre S4), le multi-zone non financé (S1 contre S3), et la bascule de modèle IA suspendue
-pour une régression de sécurité (S6 contre S4). Si tes six pièces à toi ne se contredisent nulle
+Les six pièces de Lumen se confrontent volontairement à trois endroits, et ces tensions sont
+écrites plutôt que masquées : le SLO à 99,5 % qui écarte l'option d'export la moins chère
+(S3 contre S4), le multi-zone non financé (S1 contre S3), et le risque de pool de connexions
+révélé pendant le canari S6 alors que S4 a choisi une réplique de lecture pour isoler l'export.
+S6 montre qu'une décision d'architecture ne remplace pas une vérification de release. Aucune
+contradiction de suspension d'un modèle IA n'est revendiquée dans ces pièces Lumen. Si tes six pièces à toi ne se contredisent nulle
 part, l'une d'elles n'a pas été chiffrée sérieusement : c'est exactement ce que la section 8 du
 [dossier unique](../../05-MAITRISE/08-MAITRISE-STAFF-ENGINEER/02-dossier_unique.md) va te demander. La tension autour du coût ou de la disponibilité d'une brique IA est pertinente seulement si ton système en possède une ; dans les autres cas, choisis une contradiction réelle entre S1–S6.
 

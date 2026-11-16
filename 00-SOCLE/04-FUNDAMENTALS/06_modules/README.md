@@ -12,9 +12,15 @@ source_scope: "Notion et parcours internes reliés à 00-SOCLE/04-FUNDAMENTALS/0
 provenance_note: "Point d’ancrage interne du curriculum, pas certification des versions, prix, APIs, normes ou pratiques externes. Toute affirmation externe évolutive non reliée à une source primaire reste à vérifier avant réutilisation."
 ---
 
+> **Repère de navigation :** `02` et `03` identifient les leçons ; `50` et `51` leurs pratiques ; `90` le grimoire. Ce ne sont pas des numéros de séance. Suis l’ordre de cette page.
+
 # MODULES
 
 > Sommaire de `00-SOCLE/04-FUNDAMENTALS/06_modules`.
+
+## Quand commencer ce dossier
+
+C'est l'étape 11 de Fundamentals. Commence après Web Basics et ses pratiques natives de première passe : tu dois déjà savoir lire une fonction, manipuler des valeurs et travailler avec un navigateur sans dépendre d'un framework.
 
 ## Contenu du dossier
 
@@ -25,7 +31,6 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 - [Encapsuler, exposer, protéger : les vrais patterns de modules](03-module_patterns.md)
 - [51-module_patterns_minimini_projet.md](51-module_patterns_minimini_projet.md)
 - [Page verrouillée](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 <!-- AF-KINTANA-MODULE -->

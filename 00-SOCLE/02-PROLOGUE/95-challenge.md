@@ -14,7 +14,7 @@ assessment_role: instructional_checkpoint
 
 Temps de lecture ~2 min
 
-[Sommaire](../../06-ANNEXES-TRANSVERSES/04A-CARTE-DU-PARCOURS.md) | [Niveau](README.md) | [Grimoire](90-grimoire.md)
+[Sommaire](../../06-ANNEXES-TRANSVERSES/01A-CARTE-DU-PARCOURS.md) | [Niveau](README.md) | [Grimoire](90-grimoire.md)
 
 Ce niveau n'enseigne aucune technique. Il produit un **contrat provisoire de domaine candidat**. Le fil rouge définitif sera qualifié après les premiers travaux de Cadrage ; ce document conserve tes hypothèses de départ, sans te forcer à simuler une expertise métier que tu n’as pas encore.
 

@@ -21,7 +21,7 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 ## Parcours de préparation obligatoire
 
-Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0--socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
+Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0-socle-commun-obligatoire), puis suis les prérequis spécifiques ci-dessous. Un lien lu n’est pas une compétence validée : réussis aussi la preuve de sortie du parcours central.
 
 Étudie dans cet ordre :
 
@@ -30,7 +30,7 @@ Commence par valider le [socle commun G0](00-PARCOURS-PREPARATION.md#niveau-0--s
 3. [Parcours de lecture IA](../../06-ANNEXES-TRANSVERSES/19-PRODUIT-IA-REFERENCE/09-PARCOURS-LECTURE-APPRENANT.md), [Lab 60](../../06-ANNEXES-TRANSVERSES/60-LAB-SERVICE-IA-END-TO-END.md), puis [Leçon-pont 01 : RAG/recherche hybride](LECONS-PONTS/01-rag-recherche-hybride.md) et [02 : Évaluation IA](LECONS-PONTS/02-evaluation-et-llm-judge.md).
 4. Termine [02 : Tribunal des IA](02-tribunal-des-ia.md) avec un verdict `PASS` avant de construire RAG Blindé : le pont 02 prépare les notions, mais ne remplace pas la preuve du projet.
 
-**Gate d'entrée :** le [Tribunal des IA](02-tribunal-des-ia.md) a un verdict `PASS` traçable ; tu peux produire un baseline lexical, un baseline vectoriel, mesurer le retrieval sur des labels, expliquer le chunking/embedding et prouver une ACL cross-tenant côté serveur. Si tu n'as qu'une démo qui « répond bien », tu n'es pas `READY`. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-2--route-ia).
+**Gate d'entrée :** le [Tribunal des IA](02-tribunal-des-ia.md) a un verdict `PASS` traçable ; tu peux produire un baseline lexical, un baseline vectoriel, mesurer le retrieval sur des labels, expliquer le chunking/embedding et prouver une ACL cross-tenant côté serveur. Si tu n'as qu'une démo qui « répond bien », tu n'es pas `READY`. Voir le [parcours central](00-PARCOURS-PREPARATION.md#niveau-2-route-ia).
 
 ## Mission
 

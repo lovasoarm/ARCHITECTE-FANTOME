@@ -24,6 +24,8 @@ Chaque fiche projet conserve ses prérequis résumés, mais cette page centrale 
 
 **Règle :** lis → pratique sans corrigé → explique → casse volontairement → répare → garde la preuve. Un chapitre terminé n'est pas un gate validé.
 
+Le [contrat commun de preuve des dix projets](00A-CONTRAT-COMMUN.md) s'applique à chaque projet. Le préfixe `00A` indique une référence transversale associée au parcours de préparation `00` ; ce n'est pas une étape à faire après celui-ci.
+
 ## Pourquoi ce portefeuille existe
 
 Les mini-projets actuels forment les mécanismes. Le capstone et les preuves Staff vérifient que tu sais les assembler. Ce portefeuille sert à construire un petit nombre de systèmes assez profonds pour rencontrer les problèmes de production : sécurité des données, récupération, coûts, mesures, régressions, opérations, migration et décisions sous contraintes.

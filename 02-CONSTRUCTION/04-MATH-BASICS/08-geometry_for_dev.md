@@ -91,7 +91,7 @@ function distanceCarre(a, b) {
   const dx = b.x - a.x;
   const dy = b.y - a.y;
   return dx * dx + dy * dy;
-  // pas de sqrt : 2x plus rapide
+  // évite le calcul de la racine carrée lorsque seule la comparaison compte
   // utile pour : "est-ce que A est plus proche de C que B ?"
 }
 
@@ -227,6 +227,8 @@ function collisionCercle(a, b) {
   // a et b ont : x, y (centre), radius
   const dist = distance(a, b);
   return dist < a.radius + b.radius;
+  // Cette convention exige un chevauchement strict : un simple contact ne compte pas.
+  // Si le contact doit déclencher une collision, utilise <=.
 }
 
 const goku = { x: 200, y: 200, radius: 30 };
@@ -500,6 +502,249 @@ T'as les données d'un match de Ligue des Champions. 847 passes enregistrées av
 - Générer une heatmap sur un terrain de 105x68 mètres avec une résolution de 10m
 - Trouver les 3 zones les plus actives
 - Calculer le centre de gravité de toutes les passes (moyenne des x, moyenne des y)
+
+---
+
+## CORRIGÉS DE RÉFÉRENCE : À CONSULTER APRÈS UNE TENTATIVE
+
+Les coordonnées de ces quatre exercices sont des coordonnées cartésiennes dans le même repère et la même unité. Le code refuse les coordonnées invalides au lieu de les corriger silencieusement.
+
+### Corrigé EXO 1 : radar de reconnaissance
+
+```js
+function distanceCarree(a, b) {
+  const dx = a.x - b.x;
+  const dy = a.y - b.y;
+  return dx * dx + dy * dy;
+}
+
+function normaliserDirection(depart, cible) {
+  const dx = cible.x - depart.x;
+  const dy = cible.y - depart.y;
+  const longueur = Math.hypot(dx, dy);
+  return longueur === 0
+    ? { x: 0, y: 0 }
+    : { x: dx / longueur, y: dy / longueur };
+}
+
+export function analyserRadar(shinobi, ennemis, portee = 200) {
+  if (
+    !Array.isArray(ennemis) ||
+    ennemis.length !== 5 ||
+    !Number.isFinite(portee) ||
+    portee < 0
+  ) {
+    throw new RangeError(
+      "Le radar attend cinq ennemis et une portée positive ou nulle.",
+    );
+  }
+  const points = [shinobi, ...ennemis];
+  if (!points.every((p) => p && Number.isFinite(p.x) && Number.isFinite(p.y))) {
+    throw new TypeError(
+      "Toutes les positions doivent contenir des coordonnées finies.",
+    );
+  }
+  const mesures = ennemis.map((ennemi) => ({
+    ennemi,
+    distanceCarree: distanceCarree(shinobi, ennemi),
+    direction: normaliserDirection(shinobi, ennemi),
+  }));
+  const plusProche = mesures.reduce((best, item) =>
+    item.distanceCarree < best.distanceCarree ? item : best,
+  );
+  return {
+    plusProche: plusProche.ennemi,
+    ennemisAPortee: mesures
+      .filter((item) => item.distanceCarree < portee ** 2)
+      .map((item) => item.ennemi),
+    directions: mesures.map(({ ennemi, direction }) => ({ ennemi, direction })),
+  };
+}
+```
+
+La portée est strictement « moins de 200 » : un ennemi exactement à 200 unités n'est pas inclus. Si le métier inclut la frontière, remplace `<` par `<=`. La distance au carré permet de comparer sans calculer `Math.sqrt`.
+
+### Corrigé EXO 2 : collisions de cercles
+
+```js
+function validerCercle(cercle) {
+  if (
+    !cercle ||
+    !Number.isFinite(cercle.x) ||
+    !Number.isFinite(cercle.y) ||
+    !Number.isFinite(cercle.radius) ||
+    cercle.radius < 0
+  ) {
+    throw new TypeError(
+      "Un cercle exige x, y et un rayon fini positif ou nul.",
+    );
+  }
+}
+
+export function collisionEntreCercles(a, b) {
+  validerCercle(a);
+  validerCercle(b);
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const sommeRayons = a.radius + b.radius;
+  // Le contact compte comme collision : convention inclusive.
+  return dx * dx + dy * dy <= sommeRayons * sommeRayons;
+}
+
+export function vecteurRebond(a, b) {
+  validerCercle(a);
+  validerCercle(b);
+  const dx = a.x - b.x; // de B vers A : normale qui éloigne A de B
+  const dy = a.y - b.y;
+  const longueur = Math.hypot(dx, dy);
+  // Centres confondus : aucune normale géométrique unique n'existe.
+  return longueur === 0 ? null : { x: dx / longueur, y: dy / longueur };
+}
+
+export function detecterCollisions(personnages) {
+  if (!Array.isArray(personnages))
+    throw new TypeError("personnages doit être un tableau");
+  personnages.forEach(validerCercle);
+  const collisions = [];
+  for (let i = 0; i < personnages.length; i++) {
+    for (let j = i + 1; j < personnages.length; j++) {
+      if (collisionEntreCercles(personnages[i], personnages[j])) {
+        collisions.push({
+          a: personnages[i],
+          b: personnages[j],
+          rebond: vecteurRebond(personnages[i], personnages[j]),
+        });
+      }
+    }
+  }
+  return collisions;
+}
+```
+
+Cette méthode compare toutes les paires : O(n²). Elle convient au scénario de dix personnages. Vers cent personnages, le nombre de paires augmente fortement ; un système de partition spatiale (grille, quadtree ou autre broad phase, c'est-à-dire présélection des paires candidates) devient à évaluer. Si les centres coïncident, `rebond` vaut `null` : le moteur doit alors choisir une séparation déterministe, pas inventer une direction géométrique.
+
+### Corrigé EXO 3 : caméra smooth follow
+
+Pour garder l'exercice indépendant d'un moteur de jeu, la caméra est ici représentée par un point d'ancrage dans les limites du terrain, non par un viewport complet. `alpha` est compris entre 0 et 1 ; la caméra ne dépasse pas la cible. Le seuil de 0,5 évite une convergence infinie en virgule flottante.
+
+```js
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function distance(a, b) {
+  return Math.hypot(b.x - a.x, b.y - a.y);
+}
+
+export function updateCamera(camera, ballon, terrain, alpha = 0.1) {
+  for (const point of [camera, ballon]) {
+    if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y)) {
+      throw new TypeError(
+        "La caméra et le ballon doivent avoir des coordonnées finies.",
+      );
+    }
+  }
+  if (
+    !terrain ||
+    !Number.isFinite(terrain.width) ||
+    !Number.isFinite(terrain.height) ||
+    terrain.width < 0 ||
+    terrain.height < 0
+  )
+    throw new RangeError("Terrain invalide");
+  if (!Number.isFinite(alpha) || alpha <= 0 || alpha > 1)
+    throw new RangeError("alpha doit être dans ]0, 1]");
+
+  const cible = {
+    x: clamp(ballon.x, 0, terrain.width),
+    y: clamp(ballon.y, 0, terrain.height),
+  };
+  const actuelle = {
+    x: clamp(camera.x, 0, terrain.width),
+    y: clamp(camera.y, 0, terrain.height),
+  };
+  if (distance(actuelle, cible) < 0.5) return cible;
+  const prochaine = {
+    x: actuelle.x + (cible.x - actuelle.x) * alpha,
+    y: actuelle.y + (cible.y - actuelle.y) * alpha,
+  };
+  return {
+    x: clamp(prochaine.x, 0, terrain.width),
+    y: clamp(prochaine.y, 0, terrain.height),
+  };
+}
+```
+
+Si le ballon est à l'extérieur du terrain, la cible utilisée est sa position clampée sur le bord. Dans un vrai jeu, le centre de la caméra doit aussi tenir compte de la taille du viewport : ses bornes deviennent alors `largeurViewport / 2` à `largeurTerrain - largeurViewport / 2` (idem pour y). Cette contrainte peut empêcher le centre d'être exactement sur le ballon près d'un bord ; la promesse doit être formulée comme « suivre la cible autorisée la plus proche ».
+
+### Corrigé EXO 4 : heatmap des passes
+
+La carte de 105 × 68 m avec une résolution de 10 m donne 11 colonnes et 7 lignes, car les dimensions ne sont pas des multiples exacts de la résolution. Les coordonnées sont dans `[0,105[` et `[0,68[` ; le bord supérieur/droit exact est exclu.
+
+```js
+export function analyserPassesHeatmap(
+  passes,
+  largeur = 105,
+  hauteur = 68,
+  resolution = 10,
+) {
+  if (!Array.isArray(passes) || passes.length === 0)
+    throw new TypeError("Au moins une passe est requise");
+  if (
+    ![largeur, hauteur, resolution].every(Number.isFinite) ||
+    largeur <= 0 ||
+    hauteur <= 0 ||
+    resolution <= 0
+  ) {
+    throw new RangeError(
+      "Dimensions et résolution doivent être positives et finies",
+    );
+  }
+  const colonnes = Math.ceil(largeur / resolution);
+  const lignes = Math.ceil(hauteur / resolution);
+  const grille = Array.from({ length: lignes }, () => Array(colonnes).fill(0));
+  let sommeX = 0;
+  let sommeY = 0;
+
+  for (const passe of passes) {
+    if (
+      !passe ||
+      !Number.isFinite(passe.x) ||
+      !Number.isFinite(passe.y) ||
+      passe.x < 0 ||
+      passe.x >= largeur ||
+      passe.y < 0 ||
+      passe.y >= hauteur
+    ) {
+      throw new RangeError(
+        "Une passe se trouve hors du terrain ou a des coordonnées invalides",
+      );
+    }
+    const colonne = Math.floor(passe.x / resolution);
+    const ligne = Math.floor(passe.y / resolution);
+    grille[ligne][colonne]++;
+    sommeX += passe.x;
+    sommeY += passe.y;
+  }
+
+  const zones = [];
+  for (let ligne = 0; ligne < lignes; ligne++) {
+    for (let colonne = 0; colonne < colonnes; colonne++) {
+      zones.push({ ligne, colonne, passes: grille[ligne][colonne] });
+    }
+  }
+  zones.sort(
+    (a, b) => b.passes - a.passes || a.ligne - b.ligne || a.colonne - b.colonne,
+  );
+  return {
+    grille,
+    troisZonesActives: zones.slice(0, 3),
+    centre: { x: sommeX / passes.length, y: sommeY / passes.length },
+  };
+}
+```
+
+Les ex æquo sont départagés par ligne puis colonne pour que le résultat soit reproductible. Si les 847 passes sont requises dans le dataset final, vérifie cette cardinalité séparément avant l'appel ; la fonction reste réutilisable avec un échantillon plus petit.
 
 ---
 

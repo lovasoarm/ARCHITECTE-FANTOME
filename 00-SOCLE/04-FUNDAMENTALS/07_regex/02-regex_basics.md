@@ -42,10 +42,10 @@ const pattern2 = new RegExp(mot); // équivalent à /sasuke/
 Tester si ça matche :
 
 ```js
-const texte = "Naruto est le meilleur ninja de Konoha"
+const texte = "Naruto est le meilleur ninja de Konoha";
 
-/naruto/.test(texte)  // false : sensible à la casse
-/Naruto/.test(texte)  // true
+/naruto/.test(texte); // false : sensible à la casse
+/Naruto/.test(texte); // true
 ```
 
 `.test()` retourne `true` ou `false`. C'est ta validation de base.
@@ -57,16 +57,14 @@ const texte = "Naruto est le meilleur ninja de Konoha"
 Les flags se placent après le deuxième slash.
 
 ```js
-/naruto/i / // i : case-insensitive
-  naruto /
-  g / // g : global : trouve toutes les occurrences, pas juste la première
-  naruto /
-  m / // m : multiline : ^ et $ matchent début/fin de chaque ligne
-  naruto /
-  s / // s : dotAll : le point . matche aussi les \n
-  naruto /
-  gi; // combinaison : global + case-insensitive
+const insensitive = /naruto/i; // i : ignore la casse
+const global = /naruto/g; // g : trouve toutes les occurrences avec les méthodes compatibles
+const multiline = /^naruto/gm; // m : ^ et $ travaillent ligne par ligne
+const dotAll = /start.*end/s; // s : le point . peut aussi matcher un saut de ligne
+const combined = /naruto/gi; // g + i : toutes les occurrences, sans distinguer la casse
 ```
+
+Les flags s'écrivent après le dernier `/` du motif. Ils ne sont pas des morceaux de regex séparés ; `g`, `i`, `m` et `s` modifient le comportement du même motif.
 
 ```js
 const texte = "Naruto, naruto, NARUTO";
@@ -81,7 +79,7 @@ Le flag `g` est critique : sans lui, `.match()` s'arrête à la première occurr
 
 ## 3) LES CLASSES DE CARACTÈRES : les briques de base
 
-```js
+```text
 // caractères spéciaux
 \d  // un chiffre : [0-9]
 \D  // pas un chiffre
@@ -103,17 +101,17 @@ Le flag `g` est critique : sans lui, `.match()` s'arrête à la première occurr
 ```
 
 ```js
-/\d/.test("3")    // true
-/\d/.test("abc")   // false
-/[aeiou]/.test("naruto") // true -> il y a des voyelles
-/[^aeiou]/.test("aaa")  // false -> que des voyelles, pas de consonnes
+/\d/.test("3"); // true
+/\d/.test("abc"); // false
+/[aeiou]/.test("naruto"); // true -> il y a des voyelles
+/[^aeiou]/.test("aaa"); // false -> que des voyelles, pas de consonnes
 ```
 
 ---
 
 ## 4) LES QUANTIFICATEURS : combien de fois ?
 
-```js
+```text
 ?  // 0 ou 1 fois (optionnel)
 *  // 0 ou plusieurs fois
 +  // 1 ou plusieurs fois (au moins une)
@@ -123,42 +121,43 @@ Le flag `g` est critique : sans lui, `.match()` s'arrête à la première occurr
 ```
 
 ```js
-/colou?r/.test("color")  // true -> le u est optionnel
-/colou?r/.test("colour") // true
+/colou?r/.test("color"); // true -> le u est optionnel
+/colou?r/.test("colour"); // true
 
-/\d+/.test("42")  // true -> au moins un chiffre
-/\d+/.test("")   // false
+/\d+/.test("42"); // true -> au moins un chiffre
+/\d+/.test(""); // false
 
-/\d{4}/.test("2024")  // true -> exactement 4 chiffres
-/\d{4}/.test("24")   // false
-/\d{2,4}/.test("242") // true -> entre 2 et 4 chiffres
+/^\d{4}$/.test("2024"); // true -> toute la chaîne contient exactement 4 chiffres
+/^\d{4}$/.test("12345"); // false -> un cinquième chiffre est interdit
+/^\d{4}$/.test("24"); // false
+/^\d{2,4}$/.test("242"); // true -> toute la chaîne contient entre 2 et 4 chiffres
 ```
 
 ---
 
 ## 5) ANCRES : où dans la chaîne ?
 
-```js
+```text
 ^  // début de la chaîne (ou début de ligne avec flag m)
 $  // fin de la chaîne (ou fin de ligne avec flag m)
 \b  // word boundary -> frontière entre \w et \W
 ```
 
 ```js
-/^Naruto/.test("Naruto est fort")  // true -> commence par Naruto
-/^Naruto/.test("Fort comme Naruto") // false -> ne commence pas par Naruto
+/^Naruto/.test("Naruto est fort"); // true -> commence par Naruto
+/^Naruto/.test("Fort comme Naruto"); // false -> ne commence pas par Naruto
 
-/ninja$/.test("il est ninja")  // true -> finit par ninja
-/ninja$/.test("ninja débutant") // false
+/ninja$/.test("il est ninja"); // true -> finit par ninja
+/ninja$/.test("ninja débutant"); // false
 
 // sans ancres
-/\d+/.test("abc123def")  // true -> trouve les chiffres n'importe où
+/\d+/.test("abc123def"); // true -> trouve les chiffres n'importe où
 // avec ancres
-/^\d+$/.test("abc123def") // false -> la chaîne entière ne doit être que des chiffres
-/^\d+$/.test("123456")  // true
+/^\d+$/.test("abc123def"); // false -> la chaîne entière ne doit être que des chiffres
+/^\d+$/.test("123456"); // true
 ```
 
-Le combo `^...$` est essentiel pour la validation : il force la regex à s'appliquer à toute la chaîne, pas juste à une partie.
+Le combo `^...$` est essentiel pour la validation : il force généralement la regex à s'appliquer à la chaîne entière. Attention : en JavaScript, `$` peut aussi correspondre juste avant un terminateur de ligne final. Pour des champs saisis, normalise d'abord la valeur (par exemple `trim()`), puis valide-la ; pour une vérification stricte de chaque caractère, tu peux aussi employer une assertion de fin stricte telle que `(?![\s\S])`.
 
 ---
 
@@ -196,17 +195,17 @@ Si tu oublies ce check une fois en prod, t'as un crash silencieux sur un cas lim
 
 ## 7) ALTERNANCE ET GROUPES : choisir et regrouper
 
-```js
+```text
 |  // OU logique
 ()  // groupe : isole une partie du pattern
 (?:) // groupe non-capturant : groupe sans stocker dans les résultats
 ```
 
 ```js
-/Naruto|Sasuke|Sakura/.test("Sasuke est fort")  // true
+/Naruto|Sasuke|Sakura/.test("Sasuke est fort"); // true
 
 // groupes pour regrouper des quantificateurs
-/(?:na)+/.test("nanana")  // true : "na" répété
+/(?:na)+/.test("nanana"); // true : "na" répété
 ```
 
 ---
@@ -249,11 +248,85 @@ Tu reçois une chaîne qui représente une setlist de concert (trapsoul). Format
 "1. Money - Drake \n2.Nights-Frank Ocean\n 3. CRANES IN THE SKY - Solange"
 ```
 
-Écris une regex qui trouve tous les titres de chansons (le texte entre le tiret et la fin de la ligne, nettoyé des espaces). Résultat attendu : `["Drake", "Frank Ocean", "Solange"]` (les artistes dans ce cas).
+Écris une regex qui trouve tous les **noms d’artistes** (le texte après le tiret séparateur jusqu’à la fin de la ligne, nettoyé des espaces). Résultat attendu : `["Drake", "Frank Ocean", "Solange"]`.
 
 (Indice : `\s*` pour les espaces optionnels, `.trim()` après match)
 
 ---
+
+## CORRIGÉS DE RÉFÉRENCE : À CONSULTER APRÈS UNE TENTATIVE
+
+### Corrigé Exo 1 : validateur de codes ninja
+
+```javascript
+const codeNinjaRegex = /^[A-Z]{2}-\d{4}$/;
+
+function validerCode(code) {
+  return typeof code === "string" && codeNinjaRegex.test(code);
+}
+
+validerCode("KO-1234"); // true
+validerCode("SU-9999"); // true
+validerCode("ko-1234"); // false
+validerCode("KON-123"); // false
+validerCode("KO-12345"); // false
+```
+
+Les ancres obligent le code complet à respecter le format. Sans elles, le moteur pourrait seulement trouver une sous-chaîne qui ressemble à un code.
+
+### Corrigé Exo 2 : scanner de discours
+
+```javascript
+const motMajuscule = /(?:^|[^\p{L}\p{N}_])\p{Lu}{3,}(?=$|[^\p{L}\p{N}_])/u;
+const nombreQuatreChiffres = /(?:^|\D)\d{4}(?!\d)/;
+
+function analyserDiscours(texte) {
+  if (typeof texte !== "string") {
+    throw new TypeError("Le discours doit être une chaîne.");
+  }
+
+  return {
+    crieDesMotsCles: motMajuscule.test(texte),
+    mentionneUnNombre: nombreQuatreChiffres.test(texte),
+  };
+}
+
+analyserDiscours("LIBERTÉ pour tous en 2026");
+// { crieDesMotsCles: true, mentionneUnNombre: true }
+analyserDiscours("Un message calme en 12345");
+// { crieDesMotsCles: false, mentionneUnNombre: false }
+```
+
+`\p{Lu}` désigne une lettre majuscule Unicode et `\p{L}` une lettre Unicode. Cette solution utilise les classes Unicode modernes afin que `LIBERTÉ` soit reconnu comme un mot entièrement en majuscules. La seconde regex refuse de compter une suite de quatre chiffres lorsqu'elle est immédiatement suivie d'un cinquième chiffre.
+
+### Corrigé Exo 3 : extraction des artistes d'une setlist
+
+Le tiret séparateur est le premier `-` après le numéro de piste. Le format ne permet donc pas de distinguer automatiquement un tiret faisant partie du titre d'un tiret séparateur ; si cette variante doit être admise, il faut définir un format d'entrée moins ambigu (par exemple un CSV correctement échappé).
+
+```js
+const ligneSetlist = /^\s*\d+\.\s*(?<titre>.+?)\s*-\s*(?<artiste>.+?)\s*$/;
+
+function extraireArtistes(setlist) {
+  if (typeof setlist !== "string")
+    throw new TypeError("La setlist doit être une chaîne.");
+  const artistes = [];
+  for (const [index, ligne] of setlist.split(/\r?\n/).entries()) {
+    if (ligne.trim() === "") continue;
+    const match = ligne.match(ligneSetlist);
+    if (!match?.groups?.titre?.trim() || !match.groups.artiste.trim()) {
+      throw new Error(`Ligne ${index + 1} invalide : ${ligne}`);
+    }
+    artistes.push(match.groups.artiste.trim());
+  }
+  return artistes;
+}
+```
+
+```js
+const sample =
+  "1. Money - Drake \\n2.Nights-Frank Ocean\\n 3. CRANES IN THE SKY - Solange";
+extraireArtistes(sample); // ["Drake", "Frank Ocean", "Solange"]
+```
 
 ## RÉSUMÉ
 

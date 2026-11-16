@@ -30,8 +30,11 @@ laissant une trace publique consultable.
    Chaque bloquant : observation, conséquence, proposition, question.
 2. **Traduction (30 min)** : la même décision expliquée aux trois publics.
 3. **Aveu (15 min)** : au moins un point que tu ne sais pas, au format daté, tenu dans les délais.
-4. **Standards (30 min)** : mets à jour `STANDARDS-AGENTS.md` pour que ce cas ne se reproduise pas
-   sans validation humaine, et prouve-le en rejouant la tâche avec l'agent.
+4. **Standards (30 min)** : si ton fil rouge utilise réellement un agent autonome, mets à jour
+   `STANDARDS-AGENTS.md` et rejoue une tâche bornée dans le périmètre autorisé, avec la preuve
+   d’exécution. Sinon, mets à jour `STANDARDS-AGENTS-EXERCICE.md` et rejoue le scénario sur table
+   avec un second cas ; marque le résultat `SIMULATION`, sans lancer ni prétendre avoir lancé
+   un agent. Dans les deux cas, précise la validation humaine requise.
 5. **Contradiction (30 min)** : le proposant insiste. Tu réponds une fois, par écrit, en tenant ou en
    cédant, avec la raison chiffrée.
 6. **Trace (30 min)** : un fichier `LEADERSHIP-<date>.md` : liens, décisions, ce que tu ferais
@@ -43,7 +46,10 @@ laissant une trace publique consultable.
 - [ ] Trois niveaux respectés, ≤ 3 bloquants.
 - [ ] Note direction validée par un lecteur non technique (nom, date, reformulation obtenue).
 - [ ] Aveu d'ignorance daté **et** tenu.
-- [ ] `STANDARDS-AGENTS.md` mis à jour, commande de vérification exécutée.
+- [ ] Gouvernance vérifiée : `STANDARDS-AGENTS.md` et résultat brut d’une commande réellement
+      exécutée si un agent autonome est utilisé ; sinon `STANDARDS-AGENTS-EXERCICE.md`,
+      scénario `SIMULATION` et non-usage documenté dans `EVALUATION-IA.md`. Toute commande
+      non exécutée porte le statut `NOT RUN`.
 - [ ] Gate sécurité : le changement refusé ne laisse aucune régression de sécurité ouverte ; si oui,
       un ticket daté existe.
 

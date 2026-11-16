@@ -7,9 +7,9 @@ acte: comprendre
 
 [← Sommaire TECH-ILA](../README.md)
 
-> **Tu viens de** : [06-niveau-6-IA.md](06-niveau-6-IA.md)
+> **Tu viens de** : [07-niveau-6-IA.md](07-niveau-6-IA.md)
 > **Tu dois déjà savoir** : les six niveaux de TECH-ILA, au moins en survol
-> **Ensuite** : [08-IA-exercices-marche-audit.md](08-IA-exercices-marche-audit.md)
+> **Ensuite** : [09-IA-exercices-marche-audit.md](09-IA-exercices-marche-audit.md)
 
 # Cartes du parcours ↔ technologies
 
@@ -137,7 +137,7 @@ capture des variables, pas des valeurs : c'est le piège classique des `useEffec
 des middlewares Express qui partagent un état entre tenants. Muter au lieu de remplacer casse
 le re-rendu React et fait persister des entités ORM à ton insu.
 Technos : React, Node.js, NestJS, TypeScript, Python, Java/Spring : `02A-git_core.md` renvoie
-directement à [4.2](03-niveau-1-socle.md#42-git-et-github).
+directement à [4.2](02-niveau-1-socle.md#42-git-et-github).
 
 <a id="mod-02"></a>**02 · `00-SOCLE/05-PROBLEM-SOLVING/`.** Clarifier une demande floue avant de coder
 est la seule compétence que l'IA ne remplace pas. Aucun framework, aucun compilateur, aucun
@@ -165,7 +165,7 @@ Technos : API HTTP (4xx/5xx), NestJS (exception filters), Express (async non att
 (error boundaries), files (retry vs dead-letter).
 
 <a id="mod-06"></a>**06 · `02-CONSTRUCTION/03-TESTING/`.** Voir la fiche outillage en
-[4.8](03-niveau-1-socle.md#48-testing-en-conditions-réelles). Le point qui ne bouge
+[4.8](02-niveau-1-socle.md#48-testing-en-conditions-réelles). Le point qui ne bouge
 pas : une suite verte où tout est mocké ne prouve rien, et une couverture à 90 % sans un seul
 cas d'erreur testé ne vaut pas mieux.
 Technos : Vitest/Jest/JUnit/pytest, Testcontainers, Playwright, Pact (contract testing).
@@ -201,7 +201,7 @@ junior face à une fonction de 400 lignes est de la réécrire ; le réflexe pro
 l'entourer de tests caractérisants d'abord.
 
 <a id="mod-14"></a>**14 · `02-CONSTRUCTION/12-TYPESCRIPT/`.** Voir
-[4.5](03-niveau-1-socle.md#45-typescript-en-conditions-réelles). Génériques et unions
+[4.5](02-niveau-1-socle.md#45-typescript-en-conditions-réelles). Génériques et unions
 discriminées se transfèrent vers Java/C#/Kotlin/Rust. Les types utilitaires acrobatiques, non :
 s'ils prennent plus de temps à comprendre que le code qu'ils protègent, c'est un smell.
 

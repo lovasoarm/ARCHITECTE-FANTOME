@@ -36,7 +36,7 @@ un concept d'ingenierie que tu retrouveras ailleurs.
 
 - **Python** : FastAPI genere le contrat OpenAPI depuis les types Python (proche de la philosophie "contracts-first" si le typage est pris au serieux) ; l'idempotence se gere de la meme facon (cle d'idempotence en header, verifiee cote serveur).
 - **Go** : pas de framework dominant, souvent `net/http` brut ou `chi` : le contrat se documente manuellement (ou via `oapi-codegen`), rien n'est automatique comme un decorateur JS ; la gestion d'erreur HTTP suit le meme principe (valeur de retour explicite) que le module error-handling.
-- **Rust** : `axum`/`actix-web` avec des types de requete/reponse verifies a la compilation ; une route qui n'a pas gere un cas d'erreur declare dans son type de retour ne compile pas, la ou JS le laisserait crasher a l'execution.
+- **Rust** : `axum`/`actix-web` avec des types de requête/réponse vérifiés à la compilation. `Result<T, E>` rend le succès ou l'échec explicite dans le type ; le compilateur avertit si un `Result` marqué `must_use` est ignoré, mais ne force pas chaque fonction à traiter exhaustivement toutes les variantes. `?` propage une erreur compatible, et un `match` sur une enum doit couvrir ses variantes ou prévoir un cas générique. Le type renforce le contrat ; il ne prouve pas à lui seul que chaque erreur métier est correctement traitée.
 
 ## Auto-test (1 min)
 

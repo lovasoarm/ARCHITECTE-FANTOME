@@ -16,7 +16,7 @@ source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
 claim_reviewed_on: "2026-11-03"
 ---
 
-# 00-GUIDE : Tu ne sais pas quoi faire ? Commence ici.
+# 00-GUIDE : Boussole de référence : la porte d’entrée reste START HERE.
 
 > **Périmètre suivi :** les données de marché, les projections, les offres d’emploi et les références externes datées. Les données étrangères ou issues d’une plateforme ne décrivent pas automatiquement le marché malgache ; relis les sources et leur périmètre avant toute décision.
 
@@ -61,7 +61,7 @@ Première passe de lecture : environ 15–20 minutes pour l’introduction et la
 
 <a id="af-guide-section-0"></a>
 
-## 0. Tu pars de zero ? Lis ceci d'abord
+## 0. Tu pars de zéro ? Repères de départ
 
 Bienvenue.
 

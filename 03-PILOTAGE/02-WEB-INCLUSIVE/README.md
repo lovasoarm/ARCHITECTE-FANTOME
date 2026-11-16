@@ -23,20 +23,20 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 | [`00-PREREQUIS.md`](00-PREREQUIS.md)                                                       | 00 : Prereq check : Accessibility                                            | 15 min |
 | [`01-why-web-inclusive.md`](01-why-web-inclusive.md)                                       | POURQUOI CE MODULE MÉRITE TON TEMPS : ACCESSIBILITY (A11Y)                   | 45 min |
 | [`02-a11y-why-it-matters.md`](02-a11y-why-it-matters.md)                                   | L'ACCESSIBILITÉ N'EST PAS UNE OPTION                                         | 45 min |
-| [`51-a11y-why-it-matters-minimini-projet.md`](51-a11y-why-it-matters-minimini-projet.md)   | 01 a11y why it matters minimini projet                                       | 45 min |
+| [`50-a11y-why-it-matters-minimini-projet.md`](50-a11y-why-it-matters-minimini-projet.md)   | 01 a11y why it matters minimini projet                                       | 45 min |
 | [`03-aria_basics.md`](03-aria_basics.md)                                                   | ARIA : PARLER LA LANGUE DES LECTEURS D'ÉCRAN                                 | 45 min |
-| [`50-aria_basics_minimini_projet.md`](50-aria_basics_minimini_projet.md)                   | 02 aria basics minimini projet                                               | 45 min |
-| [`04A-keyboard_navigation.md`](04A-keyboard_navigation.md)                                 | NAVIGATION CLAVIER : QUAND LA SOURIS N'EST PAS UNE OPTION                    | 45 min |
-| [`52A-keyboard_navigation_minimini_projet.md`](52A-keyboard_navigation_minimini_projet.md) | 03 keyboard navigation minimini projet                                       | 45 min |
+| [`51-aria_basics_minimini_projet.md`](51-aria_basics_minimini_projet.md)                   | 02 aria basics minimini projet                                               | 45 min |
 | [`04-contrast_and_colors.md`](04-contrast_and_colors.md)                                   | CONTRASTE ET COULEURS : QUAND LE DESIGN DEVIENT ILLISIBLE                    | 45 min |
-| [`52-contrast_and_colors_minimini_projet.md`](52-contrast_and_colors_minimini_projet.md)   | 04 contrast and colors minimini projet                                       | 45 min |
+| [`52-contrast_and_colors_minimini_projet.md`](52-contrast_and_colors_minimini_projet.md)   | 03 contrast and colors minimini projet                                       | 45 min |
+| [`04A-keyboard_navigation.md`](04A-keyboard_navigation.md)                                 | NAVIGATION CLAVIER : QUAND LA SOURIS N'EST PAS UNE OPTION                    | 45 min |
+| [`52A-keyboard_navigation_minimini_projet.md`](52A-keyboard_navigation_minimini_projet.md) | 04 keyboard navigation minimini projet                                       | 45 min |
 | [`05-screen_readers.md`](05-screen_readers.md)                                             | LECTEURS D'ÉCRAN : COMMENT ILS LISENT VRAIMENT TON CODE                      | 45 min |
 | [`53-screen_readers_minimini_projet.md`](53-screen_readers_minimini_projet.md)             | 05 screen readers minimini projet                                            | 45 min |
 | [`06-a11y_audit.md`](06-a11y_audit.md)                                                     | AUDITER UNE PAGE : LES OUTILS ET LA MÉTHODE                                  | 45 min |
 | [`54-a11y_audit_minimini_projet.md`](54-a11y_audit_minimini_projet.md)                     | 06 a11y audit minimini projet                                                | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                                                         | Page verrouillée                                                             | 30 min |
 | [`07-EXO_LECTURE.md`](07-EXO_LECTURE.md)                                                   | EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Web Inclusive (a11y + i18n)) | 50 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                         | EXO [JEUNE IA] : 03-PILOTAGE/02-WEB-INCLUSIVE                                | 45 min |
+| [`90-grimoire.md`](90-grimoire.md)                                                         | Page verrouillée                                                             | 30 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                             | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust                      | 45 min |
 
 Sous-total du noyau accessibilité : **12 h 50**. La somme reprend exactement les 18 lignes du tableau. Le sous-parcours i18n est obligatoire pour valider le module complet ; son détail et son calcul figurent dans [`08_i18n/README.md`](08_i18n/README.md) : **4 h 15** supplémentaires.
@@ -81,30 +81,29 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [00 : Prereq check : Accessibility](00-PREREQUIS.md)
 - [Pourquoi ce module mérite ton temps : accessibility (a11y)](01-why-web-inclusive.md)
 - [L'accessibilité n'est pas une option](02-a11y-why-it-matters.md)
-- [51-a11y-why-it-matters-minimini-projet.md](51-a11y-why-it-matters-minimini-projet.md)
+- [50-a11y-why-it-matters-minimini-projet.md](50-a11y-why-it-matters-minimini-projet.md)
 - [ARIA : parler la langue des lecteurs d'écran](03-aria_basics.md)
-- [50-aria_basics_minimini_projet.md](50-aria_basics_minimini_projet.md)
-- [Navigation clavier : quand la souris n'est pas une option](04A-keyboard_navigation.md)
-- [52A-keyboard_navigation_minimini_projet.md](52A-keyboard_navigation_minimini_projet.md)
+- [51-aria_basics_minimini_projet.md](51-aria_basics_minimini_projet.md)
 - [Contraste et couleurs : quand le design devient illisible](04-contrast_and_colors.md)
 - [52-contrast_and_colors_minimini_projet.md](52-contrast_and_colors_minimini_projet.md)
+- [Navigation clavier : quand la souris n'est pas une option](04A-keyboard_navigation.md)
+- [52A-keyboard_navigation_minimini_projet.md](52A-keyboard_navigation_minimini_projet.md)
 - [Lecteurs d'écran : comment ils lisent vraiment ton code](05-screen_readers.md)
 - [53-screen_readers_minimini_projet.md](53-screen_readers_minimini_projet.md)
 - [Auditer une page : les outils et la méthode](06-a11y_audit.md)
 - [54-a11y_audit_minimini_projet.md](54-a11y_audit_minimini_projet.md)
-- [Page verrouillée](90-grimoire.md)
-- [`08_i18n/`](08_i18n/README.md)
+- [`08_i18n/`](08_i18n/README.md) : sous-parcours obligatoire pour valider le module complet
 - [EXO LECTURE : ~50 minutes : 3 cycles de 15 min (Web Inclusive (a11y + i18n))](07-EXO_LECTURE.md)
 - [EXO [jeune IA] : 03-pilotage/02-web-inclusive](97-EXO-VERIFICATION.md)
-- [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
-- [Challenge : `02-WEB-INCLUSIVE`](95-challenge.md)
-- [Grimoire : `02-WEB-INCLUSIVE`](90-grimoire.md)
+- [Challenge : `02-WEB-INCLUSIVE` : après les leçons et le sous-parcours i18n](95-challenge.md)
+- [Grimoire : `02-WEB-INCLUSIVE` : après le challenge](90-grimoire.md)
+- [Portage mental : transfert vers un autre contexte](99-PORTAGE-MENTAL.md)
 
 <!-- CONTENU-DOSSIER:fin -->
 
 ## Navigation complète des ressources
 
-Les liens ci-dessous donnent accès aux ressources documentaires du module, y compris les sous-dossiers. Le sommaire conserve l’ordre pédagogique recommandé ; cet index n’ajoute pas d’étape obligatoire.
+Les liens ci-dessous sont un inventaire de navigation ; le sommaire du module indique l’ordre à suivre. Les ressources du sous-parcours i18n gardent leur propre README et leur propre ordre.
 
 - [`00-PREREQUIS.md`](00-PREREQUIS.md)
 - [`01-why-web-inclusive.md`](01-why-web-inclusive.md)
@@ -127,8 +126,8 @@ Les liens ci-dessous donnent accès aux ressources documentaires du module, y co
 - [`08_i18n/51-dates_timezones_minimini_projet.md`](08_i18n/51-dates_timezones_minimini_projet.md)
 - [`08_i18n/90-grimoire.md`](08_i18n/90-grimoire.md)
 - [`08_i18n/README.md`](08_i18n/README.md)
-- [`50-aria_basics_minimini_projet.md`](50-aria_basics_minimini_projet.md)
-- [`51-a11y-why-it-matters-minimini-projet.md`](51-a11y-why-it-matters-minimini-projet.md)
+- [`51-aria_basics_minimini_projet.md`](51-aria_basics_minimini_projet.md)
+- [`50-a11y-why-it-matters-minimini-projet.md`](50-a11y-why-it-matters-minimini-projet.md)
 - [`52-contrast_and_colors_minimini_projet.md`](52-contrast_and_colors_minimini_projet.md)
 - [`52A-keyboard_navigation_minimini_projet.md`](52A-keyboard_navigation_minimini_projet.md)
 - [`53-screen_readers_minimini_projet.md`](53-screen_readers_minimini_projet.md)

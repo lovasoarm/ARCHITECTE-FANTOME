@@ -78,7 +78,7 @@ GET /players?version=2
 Avantages : simple à implémenter.
 Inconvénients : cacheable moins facilement, moins propre.
 
-En pratique : **URL path** est utilisé par 90% des APIs publiques (Twitter, Stripe, GitHub).
+Le versionnement par **URL path** est un choix courant et visible (`/v1`, `/v2`), mais il n’existe pas de pourcentage universel fiable sans définir un échantillon et une méthode. Certains fournisseurs sélectionnent la version par header ; le choix doit être documenté pour chaque API.
 C'est ce qu'on implémente.
 
 ---
@@ -228,23 +228,22 @@ Maintenir v1 et v2 pour toujours c'est une dette. À un moment, v1 doit mourir.
 La dépréciation est un processus, pas un acte brutal.
 
 ```js
-// middleware de dépréciation : avertit le client que v1 est deprecated
-function deprecationWarning(version, sunsetDate) {
+// RFC 9745 : Deprecation est une date Structured Field (secondes Unix précédées de @).
+// RFC 8594 : Sunset garde le format HTTP-date.
+function deprecationWarning(deprecationUnixSeconds, sunsetHttpDate) {
   return (req, res, next) => {
-    // Deprecation header : standard IETF pour indiquer la date de dépréciation
-    res.set("Deprecation", `version="${version}"`);
-    // Sunset header : date à laquelle l'API sera retirée
-    res.set("Sunset", sunsetDate);
-    // lien vers la doc de migration
+    res.set("Deprecation", `@${deprecationUnixSeconds}`);
+    res.set("Sunset", sunsetHttpDate);
     res.set("Link", '</docs/migration-v2>; rel="successor-version"');
     next();
   };
 }
 
-// monte le middleware sur toutes les routes v1
+// Exemple : annonce de dépréciation au 1er juillet 2026, retrait prévu le 31 décembre 2026.
+const DEPRECATION_2026_07_01 = Math.floor(Date.UTC(2026, 6, 1, 0, 0, 0) / 1000);
 app.use(
   "/v1",
-  deprecationWarning("v1", "Sat, 31 Dec 2026 23:59:59 GMT"),
+  deprecationWarning(DEPRECATION_2026_07_01, "Thu, 31 Dec 2026 23:59:59 GMT"),
   v1Router,
 );
 ```

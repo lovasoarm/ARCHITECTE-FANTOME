@@ -148,7 +148,7 @@ Indirectement, oui : ce module est un prérequis explicite pour `02-CONSTRUCTION
 
 ## 7) POURQUOI LES CORE WEB VITALS VIVENT ICI ET PAS DANS 16_WEB_CONCEPTS
 
-Les Core Web Vitals (LCP, INP, CLS) mesurent les conséquences directes de tes décisions techniques de performance. Un LCP lent, c'est souvent un rendu qui bloque parce qu'une ressource est trop grosse en mémoire. Un CLS élevé, c'est une mauvaise gestion des tailles avant et après le chargement. Ce sont des symptômes de perf, pas des concepts web. C'est pour ça qu'ils vivent ici, dans le module qui t'apprend à mesurer et à comprendre ce qui coûte cher : pas dans 02-CONSTRUCTION/18-WEB-CONCEPTS qui traite le protocole et le browser rendering comme des systèmes, pas comme des instruments de mesure.
+Les Core Web Vitals (LCP, INP, CLS) mesurent les conséquences directes de tes décisions techniques de performance. Un LCP lent peut venir de plusieurs phases : attente de la réponse initiale (TTFB), délai avant le chargement de la ressource LCP, durée de son téléchargement ou délai avant son rendu. Un payload réseau trop lourd peut allonger le transfert ; le décodage et la mémoire peuvent aussi contribuer selon le cas, mais « ressource trop grosse en mémoire » n'est pas une explication générale. Un CLS élevé vient de déplacements inattendus de mise en page, souvent lorsque les dimensions ne sont pas réservées ou que le contenu change après le rendu. Ce sont des symptômes de perf, pas des concepts web. C'est pour ça qu'ils vivent ici, dans le module qui t'apprend à mesurer et à comprendre ce qui coûte cher : pas dans 02-CONSTRUCTION/18-WEB-CONCEPTS qui traite le protocole et le browser rendering comme des systèmes, pas comme des instruments de mesure.
 
 ---
 
@@ -162,18 +162,18 @@ Les machines deviennent plus puissantes, mais les volumes de données augmentent
 
 Ton code qui marche en démo peut s'effondrer en prod si personne ne comprend ce qu'il coûte en mémoire et en CPU. La fuite mémoire silencieuse, la complexité qui explose avec le volume, la copie superficielle qui corrompt des données partagées : ces problèmes n'arrivent pas parce que tu codes mal. Ils arrivent parce que tu n'as jamais mesuré.
 
-Maintenant, ouvre `02-gc_basics.md`. Et découvre ce que ton code laisse vraiment traîner en mémoire.
+Maintenant, ouvre [`01_gc/02-gc_basics.md`](01_gc/02-gc_basics.md). Et découvre ce que ton code laisse vraiment traîner en mémoire.
 
-## Structure interne de ce module
+## Structure réelle des sous-parcours
 
-Ce module se lit dans l'ordre, chaque sous-partie prépare la suivante :
+Les dossiers du module livré sont ceux-ci. Ils ne forment pas six prérequis successifs à terminer avant toute pratique : le README du module distingue les ressources du noyau, les dépendances exigées par le challenge et les approfondissements.
 
-1. `01_gc/` : comment le garbage collector décide ce qui vit et ce qui meurt.
-2. `02_leaks/` : les fuites mémoire : les traquer, les prouver, les tuer.
-3. `03_references/` : références fortes, faibles, WeakRef et WeakMap.
-4. `04_profiling/` : lire un heap snapshot et un flamegraph sans paniquer.
-5. `05_complexity/` : la complexité spatiale : la mémoire d'un algorithme, pas juste son temps.
-6. `06_perf_patterns/` : les patterns qui économisent la mémoire sans casser la lisibilité.
+1. `01_gc/` : atteignabilité, garbage collector, fuites et rétention mémoire. Commence par `01_gc/02-gc_basics.md`.
+2. `02_copy_vs_ref/` : copie superficielle/profonde, références et mutations.
+3. `03_complexity/` : Big-O, analyse ligne par ligne et comparaison de coûts. `03_complexity/02-big_o_basics.md` est à maîtriser avant Data Structures.
+4. `04_profiling/` : mesures CPU/mémoire, heap snapshots et flamegraphs. Le mini-projet `50-profiling_basics_minimini_projet.md` est repris par le challenge de ce module.
+5. `05_core_web_vitals/` : performance perçue d’une interface web (LCP, INP, CLS).
+6. `06_jit/` : compilation à la volée, échauffement et comportement du moteur JavaScript.
 
 ## AILLEURS QUE JS
 

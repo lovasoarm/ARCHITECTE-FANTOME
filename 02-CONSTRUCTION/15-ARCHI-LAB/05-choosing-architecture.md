@@ -238,14 +238,16 @@ cout d'un appel : ~100 ns              cout d'un appel : ~1 ms a 100 ms
 
 Ce que ça implique, concrètement, dès la première frontière réseau :
 
-- **Timeout.** Un appel sans timeout n'échoue jamais, il attend. Une attente non bornée
-  remonte la pile et bloque des connexions en amont : la panne d'un service secondaire devient
-  l'indisponibilité du service principal. Tout appel sortant a un budget de temps explicite.
-- **Retry.** Réessayer transforme « échec » en « peut-être exécuté deux fois ». Un retry
-  aveugle sur une opération non idempotente crée des doublons : deux commandes, deux
-  prélèvements. Le retry n'est acceptable qu'avec une clé d'idempotence côté serveur, plus un
-  recul exponentiel et une limite de tentatives, sinon la charge de retry achève le service
-  déjà en difficulté.
+- **Timeout.** Un appel sans timeout peut échouer rapidement (DNS, connexion refusée, erreur
+  TLS), mais il peut aussi rester en attente sans limite si l'interlocuteur ne répond ni ne
+  ferme la connexion. Le timeout borne cette attente et protège les ressources en amont : tout
+  appel sortant doit avoir un budget de temps explicite.
+- **Retry.** Réessayer transforme parfois « échec » en « peut-être exécuté deux fois ».
+  Une opération intrinsèquement idempotente peut être retentée sans clé dédiée si tous ses
+  effets de bord respectent aussi cette propriété. Pour une opération mutante non idempotente
+  (commande, paiement, réservation), une clé d'idempotence ou un mécanisme équivalent de
+  déduplication côté serveur évite le double effet. Dans tous les cas : recul exponentiel,
+  jitter, limite de tentatives et budget global, sinon la charge de retry aggrave la panne.
 - **Doublon et ordre.** Deux messages émis dans l'ordre A puis B peuvent arriver B puis A, ou
   A deux fois. Toute logique qui suppose l'ordre doit porter un numéro de version ou un
   horodatage source, et rejeter ce qui est plus vieux que l'état courant.
@@ -306,14 +308,12 @@ Dans [Kintana](../../06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md), **M
 
 **À observer :** le comportement attendu, le cas d'échec, la trace ou mesure utile et le niveau de preuve. Étiquette `CONCEPT`, `LAB`, `SIMULATION`, `PILOT` ou `PRODUCTION` selon ce qui a réellement été fait. Une fixture synthétique n'est pas une observation de terrain.
 
-## Mission utile : Kintana : Défendre une frontière de domaine Kintana
+## Mission utile : Kintana : Choisir un monolithe ou un service sur des critères
 
-> **Arc Capsule Corp. / DBZ :** une architecture est le plan du vaisseau et les coûts qu'il impose. Si chaque pièce doit connaître toutes les autres, le vaisseau ne décolle jamais.
+**Mission liée à « Monolithe modulaire vs services : critères de décision, coûts réels » :** Compare deux options pour isoler le traitement des notifications : module interne du monolithe ou service séparé. Évalue explicitement autonomie d'équipe, profil de charge, isolation de risque/conformité et maturité opérationnelle ; calcule les coûts réseau, déploiement, observabilité, retry et support.
 
-**Mission liée à « Monolithe modulaire vs services : critères de décision, coûts réels » :** Dessine le flux réel d'une création de demande. Identifie les invariants, propriétaires de données et dépendances ; compare monolithe modulaire et service séparé dans un ADR. Simule une évolution et mesure le nombre de composants touchés.
+**Livrable :** matrice comparative, décision motivée, coût total d'exploitation connu/inconnu et deux signaux mesurables qui déclencheraient une nouvelle décision.
 
-**Livrable :** diagramme de composants/flux, ADR avec deux options, contrat de frontière et test de changement.
+**Critères d’acceptation :** les faits sont distingués des hypothèses ; chaque critère est évalué ; l'option retenue est proportionnée à l'équipe et au trafic actuels ; le plan de retour arrière est mentionné.
 
-**Critères d’acceptation :** la frontière possède une responsabilité claire ; les données ont un propriétaire ; le coût d'exploitation est explicite ; le microservice n'est pas choisi par prestige ; une condition de révision est écrite.
-
-**Transfert obligatoire :** Le nombre d'équipes ou le volume double. Indique quel signal justifierait de séparer un composant et quel coût tu acceptes.
+**Transfert obligatoire :** l'équipe passe de quatre à douze personnes et le volume est multiplié par dix. Réévalue le choix sans supposer que le service séparé devient automatiquement meilleur.

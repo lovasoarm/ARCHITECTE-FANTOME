@@ -1,6 +1,5 @@
 {
   "name": "parcours-sandbox",
-  "version": "0.0.1",
   "private": true,
   "type": "module",
   "description": "Sandbox minimal pour les exercices du parcours.",

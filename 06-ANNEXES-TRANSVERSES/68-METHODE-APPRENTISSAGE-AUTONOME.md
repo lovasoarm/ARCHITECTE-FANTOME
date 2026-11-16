@@ -36,6 +36,8 @@ Pour les noyaux durs, le seuil du challenge/boss fight s'applique en plus. Une n
 
 Après une tentative : (1) écrire l'attendu et l'observé ; (2) reproduire le problème avec le plus petit cas ; (3) vérifier environnement et version ; (4) isoler une variable ; (5) lire la documentation officielle pertinente ; (6) demander une revue avec commande, sortie, code minimal et hypothèses. Ne pas copier une solution sans pouvoir la réexpliquer ni modifier un cas limite.
 
+Pour les exercices explicitement marqués **autoévaluation sans corrigé indépendant**, utilise la [procédure de retour fiable](85-STATUT-EXERCICES-AUTO-EVALUATION-V6.5.md#procedure-de-retour-fiable) : voie A si une personne compétente peut reviewer, voie B pour un auto-retour triangulé. La voie B aide à détecter des erreurs, mais reste non indépendante et ne ferme aucune gate.
+
 ## 4. Honnêteté des preuves
 
 Distinguer une simulation d'une expérience en production. Ne jamais transformer un scénario, une estimation ou un test local en preuve d'impact réel. Anonymiser les données, ne pas publier secrets ou données personnelles, et mentionner le rôle exact tenu dans un projet d'équipe.

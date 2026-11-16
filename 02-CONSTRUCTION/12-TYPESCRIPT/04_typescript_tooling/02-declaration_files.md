@@ -112,7 +112,7 @@ class RadioCrypte {
   }
 
   recevoir() {
-    return this.historique.pop() || null;
+    return this.historique.pop() ?? null;
   }
 }
 
@@ -144,6 +144,8 @@ const dernierMessage = radio.recevoir(); // TS sait que c'est "string | null"
 ```
 
 **Technique :** le mot-clé `declare` indique à TypeScript "fais-moi confiance, cette chose existe quelque part au runtime (à l'exécution), décris juste sa forme, t'as pas besoin de l'implémenter ici". C'est ce qui sépare un `.d.ts` d'un fichier `.ts` normal.
+
+**Contrat vérifiable :** `recevoir()` retourne le dernier message, même s’il vaut `""`, puis `null` uniquement quand la pile est vide. L’opérateur `??` préserve les chaînes vides, contrairement à `||`. Le `.d.ts` annonce donc un comportement cohérent.
 
 **Risque réel :** `recevoir()` retourne `string | null` dans le `.d.ts`, ce qui force chaque appelant à gérer le cas `null`. Si le `.d.ts` avait juste dit `string` (en mentant), TypeScript laisserait passer du code qui plante à l'exécution sur `null`. La précision du `.d.ts` EST la protection.
 

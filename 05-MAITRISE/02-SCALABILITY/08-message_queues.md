@@ -432,7 +432,7 @@ Comme rien n'est effacé avant l'expiration de la rétention (durée de conserva
 
 C'est aussi ce qui permet de brancher un nouveau service sur un historique existant : le groupe "analytics" créé aujourd'hui peut lire les événements de la semaine dernière.
 
-Le prix, parce qu'il y en a un : tu stockes tout pendant la rétention (disque, coût), tu gères des partitions et un rééquilibrage qui n'existent pas dans une queue simple, et un replay mal réfléchi renvoie des e-mails déjà envoyés. Un système à faible volume avec des tâches jetables n'a rien à gagner ici : `05-niveau-3-backend.md` de TECH-ILA traite en détail le moment où ce choix devient légitime.
+Le prix, parce qu'il y en a un : tu stockes tout pendant la rétention (disque, coût), tu gères des partitions et un rééquilibrage qui n'existent pas dans une queue simple, et un replay mal réfléchi renvoie des e-mails déjà envoyés. Un système à faible volume avec des tâches jetables n'a rien à gagner ici : `04-niveau-3-backend.md` de TECH-ILA traite en détail le moment où ce choix devient légitime.
 
 ### Ce qu'il faut retenir même quand Kafka aura disparu
 

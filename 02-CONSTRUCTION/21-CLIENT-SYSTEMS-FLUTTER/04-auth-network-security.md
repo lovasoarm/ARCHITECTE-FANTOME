@@ -3,18 +3,18 @@ stability: "perissable"
 perishability_id: PER-0115
 review_interval: "3 mois"
 acte: securiser
-source_verified_on: "2026-11-03"
+source_verified_on: "2026-11-02"
 freshness_status: "verified_reference"
 source_url: "https://docs.flutter.dev/cookbook/networking"
 source_type: "primary"
-review_due: "2027-02-03"
+review_due: "2027-02-02"
 source_scope: "Documentation officielle ou source primaire consultée en rapport avec « Authentification, tokens et réseau : protéger le client sans lui confier les secrets métier ». La référence soutient le concept/version explicitement indiqué dans cette ressource ; ce statut ne certifie pas chaque phrase, chaque snippet ni l'exécution locale. Les affirmations empiriques et les API versionnées restent limitées au scope ci-dessous."
-provenance_note: "V6.4, 2026-11-03 : revue de référence réalisée. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
+provenance_note: "V6.4, 2026-11-03 : fiche éditoriale mise à jour après consultation de la source le 2026-11-02. Statut « verified_reference » limité au périmètre indiqué ; il ne vaut ni revue exhaustive ligne par ligne, ni exécution de code, ni revue experte indépendante. Pour les informations volatiles, reconsulter la source à l'échéance ou avant toute décision."
 canonical_resource: null
-source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-03"
-claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-03"
-source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-03"
-claim_reviewed_on: "2026-11-03"
+source_access_status: "SOURCE_PUBLISHER_AND_CONTENT_SCOPE_RETRIEVED_OR_CORROBORATED_2026-11-02"
+claim_alignment_status: "OFFICIAL_SOURCE_IDENTITY_AND_CONCEPT_SCOPE_CONFIRMED_2026-11-02"
+source_review_status: "SCOPED_REFERENCE_REVIEW_COMPLETE_2026-11-02"
+claim_reviewed_on: "2026-11-02"
 ---
 
 > **SCÈNE CRAZYDEVS : Naruto :** le clone de l’identité n’est pas Naruto. Un token valide ne donne pas automatiquement tous les droits.

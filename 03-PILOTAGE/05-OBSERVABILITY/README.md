@@ -57,9 +57,9 @@ Logs, métriques et traces donnent trois angles complémentaires pour reconstrui
 | [`08-prod_stack_trace_drill.md`](08-prod_stack_trace_drill.md)                         | LIRE UNE STACK TRACE DE PROD QUAND LE CODE SOURCE N'EXISTE PLUS                     | 45 min |
 | [`09-oncall_drill.md`](09-oncall_drill.md)                                             | 08 : On-call drill : il est 3h du matin                                             | 45 min |
 | [`10-instrumenter_ton_projet.md`](10-instrumenter_ton_projet.md)                       | 09 : Instrumenter TON projet (OpenTelemetry local, zéro compte externe)             | 45 min |
-| [`90-grimoire.md`](90-grimoire.md)                                                     | Page verrouillée                                                                    | 30 min |
 | [`11-EXO_LECTURE.md`](11-EXO_LECTURE.md)                                               | EXO LECTURE : ~20 minutes : un cycle (Observabilite)                                | 20 min |
 | [`97-EXO-VERIFICATION.md`](97-EXO-VERIFICATION.md)                                     | EXO [JEUNE IA] : 03-PILOTAGE/05-OBSERVABILITY                                       | 45 min |
+| [`90-grimoire.md`](90-grimoire.md)                                                     | Page verrouillée                                                                    | 30 min |
 | [`99-PORTAGE-MENTAL.md`](99-PORTAGE-MENTAL.md)                                         | 99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust                             | 45 min |
 | [`99A-PONT.md`](99A-PONT.md)                                                           | PONT : de observer un système à collaborer avec des humains à l'artisanat en équipe | 45 min |
 
@@ -110,14 +110,12 @@ n est pas fait : relis la liste ci-dessus et rends l exercice manquant.
 - [Lire une stack trace de prod quand le code source n'existe plus](08-prod_stack_trace_drill.md)
 - [08 : On-call drill : il est 3h du matin](09-oncall_drill.md)
 - [09 : Instrumenter TON projet (OpenTelemetry local, zéro compte externe)](10-instrumenter_ton_projet.md)
-- [Page verrouillée](90-grimoire.md)
 - [EXO LECTURE : ~20 minutes : un cycle (Observabilite)](11-EXO_LECTURE.md)
 - [Exercice : relier logs, métriques et traces (25 min)](12-EXO-VERIFICATION.md)
 - [99-PORTAGE-MENTAL.md : ce concept en Python / Go / Rust](99-PORTAGE-MENTAL.md)
 - [PONT : de observer un système à collaborer avec des humains à l'artisanat en équipe](99A-PONT.md)
 - [Challenge : `05-OBSERVABILITY`](95-challenge.md)
 - [Grimoire : `05-OBSERVABILITY`](90-grimoire.md)
-
 <!-- CONTENU-DOSSIER:fin -->
 
 <!-- AF-KINTANA-MODULE -->

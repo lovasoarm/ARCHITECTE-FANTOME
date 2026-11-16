@@ -234,9 +234,10 @@ Comportement :
 
 ```text
 Utilisation à t=50s  --> cache frais, réponse immédiate
-Utilisation à t=90s  --> cache périmé, réponse immédiate + refresh en cours
-Utilisation à t=70s  --> maintenant c'est le cache frais du refresh
-Utilisation à t=400s --> revalider avec le serveur
+Utilisation à t=70s  --> cache périmé, réponse immédiate + refresh en arrière-plan
+Utilisation à t=75s  --> si le refresh est encore en cours, servir le cache périmé ; ne pas lancer un second refresh identique
+Utilisation à t=90s  --> si le refresh a réussi depuis, servir la nouvelle version fraîche
+Utilisation à t=400s --> la fenêtre stale est dépassée : revalider auprès du serveur avant de répondre
 ```
 
 C'est la stratégie parfaite pour du contenu qui change mais pas trop vite : articles de blog, classements, données de catalogue.
@@ -294,34 +295,35 @@ Le cache expire. 1000 requêtes simultanées arrivent en même temps, toutes von
 La DB est submergée.
 
 ```js
-// Solution : mutex (verrou) pour éviter la stampede
-const locks = new Map();
+// Single-flight en mémoire : toutes les requêtes concurrentes du même processus
+// partagent le même travail ET le même résultat ou rejet.
+const inFlight = new Map();
 
 async function getCachedData(key, fetchFn) {
   const cached = await redis.get(key);
-  if (cached) return JSON.parse(cached);
+  if (cached !== null) return JSON.parse(cached);
 
-  // Si une requête est déjà en train de recalculer, attendre son résultat
-  if (locks.has(key)) {
-    await locks.get(key); // attendre que le verrou soit libéré
-    return JSON.parse(await redis.get(key)); // maintenant le cache est chaud
-  }
+  // Un recalcul est déjà en cours : retourner exactement sa promesse.
+  const existing = inFlight.get(key);
+  if (existing) return existing;
 
-  // Premier à arriver : poser le verrou
-  let resolve;
-  const lock = new Promise((r) => (resolve = r)); // créer une promesse non résolue
-  locks.set(key, lock);
-
-  try {
-    const data = await fetchFn();
+  const work = (async () => {
+    const data = await fetchFn(); // si cela échoue, tous les appelants reçoivent le rejet
     await redis.setex(key, 3600, JSON.stringify(data));
     return data;
+  })();
+  inFlight.set(key, work);
+
+  try {
+    return await work;
   } finally {
-    resolve(); // libérer le verrou
-    locks.delete(key);
+    // Ne pas supprimer une promesse plus récente installée pour la même clé.
+    if (inFlight.get(key) === work) inFlight.delete(key);
   }
 }
 ```
+
+**Portée du verrou :** cette `Map` ne coordonne que les appels d'un même processus Node.js. Avec plusieurs processus ou conteneurs, chacun a sa propre `Map` et peut recalculer en parallèle. Une coordination multi-instance demande un mécanisme distribué adapté (par exemple verrou Redis avec `SET NX`, expiration, libération conditionnelle par propriétaire et protection contre les anciens détenteurs). La coordination distribuée a elle-même des cas de panne ; elle n'est pas fournie par cette simple `Map`.
 
 **Piège 3 : Stale data (données périmées) affichées trop longtemps**
 `max-age` trop long + pas d'ETag + pas d'invalidation = users qui voient de vieilles données.
@@ -339,7 +341,7 @@ Définis le header `Cache-Control` exact pour chacune. Justifie chaque choix ave
 Crée un endpoint Express `/api/standings` (classement du Ballon d'Or).
 Le classement change seulement quand `standings.json` est modifié.
 Implémente la revalidation avec ETag basé sur le hash MD5 du contenu.
-Si rien n'a changé : 304 No Content. Si changé : 200 avec le nouveau contenu et le nouvel ETag.
+Si la requête conditionnelle `GET` ou `HEAD` confirme que la représentation n'a pas changé : `304 Not Modified` (sans corps ; le client réutilise sa copie en cache). Si elle a changé : `200 OK` avec le nouveau contenu et le nouvel ETag.
 
 **EXO 3 : Résoudre le cache stampede**
 Simule un stampede : 100 fonctions async qui appellent `getCachedData('ballon-dor', fetchLeaderboard)` simultanément.

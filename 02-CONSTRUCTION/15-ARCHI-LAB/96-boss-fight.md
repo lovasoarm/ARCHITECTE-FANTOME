@@ -113,13 +113,13 @@ _Ne fais défiler au-delà de cette ligne qu'une fois ta réponse écrite et hor
 | **Total**                         | **120** |
 
 ```text
-< 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
-50-69  --> valide avec reserve, identifie le critere le plus faible avant de le compter comme acquis
-70-89  --> valide, le reflexe est en place
-90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
+< 50    --> non valide : reprendre la leçon liée au critère le plus faible
+50-83   --> non validé : résultat proche, corriger les critères faibles et repasser le boss
+84-107  --> validé : le seuil de passage de 84/120 est atteint
+108-120 --> excellence : maîtrise forte et stable sur l'ensemble des critères
 ```
 
-Seuil de passage : 84/120. En dessous, le niveau n'est pas considéré comme acquis, même si le
+Seuil de passage : 84/120 (70 % du total possible). En dessous, le niveau n'est pas considéré comme acquis, même si le
 texte rendu est bien écrit.
 
 **Éliminatoire :** Si "Refus argumenté des deux extrêmes" est noté en dessous de 10/25, le total est plafonné à 60/120 : accepter l'un des deux extrêmes sans le nommer comme un extrême montre que le vocabulaire de couplage du niveau n'a pas été assimilé.

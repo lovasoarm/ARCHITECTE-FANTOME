@@ -19,11 +19,11 @@ Le 02/06, la direction annonce l'ouverture aux entreprises : facturation à la p
 
 ## Les trois nombres et leurs hypothèses
 
-| Dimension | Hypothèse du scénario                                                        | Origine simulée / limite                                                                                                  |
-| --------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| Valeur    | 4 200 € de revenu attendu sur la première année pour 7 structures en attente | projection fictive avec conversion supposée à 50 %, pas une vente constatée                                               |
-| Coût      | Option B : 14 jours-personne et +96 €/mois d'infrastructure                  | estimation fictive d'équipe et hypothèse budgétaire ; aucun tarif fournisseur n'est revendiqué                            |
-| Risque    | l'export pourrait dégrader le p95 de disponibilité                           | scénario de charge fictif : l'export consomme 60 % des connexions de base pendant 8 minutes ; à valider par mesure réelle |
+| Dimension | Hypothèse du scénario                                                        | Origine simulée / limite                                                                                                                                              |
+| --------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Valeur    | 4 200 € de revenu attendu sur la première année pour 7 structures en attente | hypothèse fictive : 7 structures × 50 % de conversion × 1 200 € de revenu annuel hypothétique par structure convertie = 4 200 € ; ni tarif observé ni vente constatée |
+| Coût      | Option B : 14 jours-personne et +96 €/mois d'infrastructure                  | estimation fictive d'équipe et hypothèse budgétaire ; aucun tarif fournisseur n'est revendiqué                                                                        |
+| Risque    | l'export pourrait dégrader le p95 de disponibilité                           | scénario de charge fictif : l'export consomme 60 % des connexions de base pendant 8 minutes ; à valider par mesure réelle                                             |
 
 ## Les deux options
 
@@ -60,3 +60,7 @@ Dans ce scénario, nous retenons l'option B parce que l'engagement de service es
 ## Ce qui a été écarté, et assumé
 
 La facturation à l'usage réel (par minute occupée) est reportée : elle exige un compteur temps réel, dont le coût de construction et d'exploitation doit être estimé avant de réexaminer cette option. La date de revue est fixée par le propriétaire du projet ; aucune date de revue passée n'est présentée comme une action future.
+
+<!-- AF-S4-REVENUE-FORMULA -->
+
+Le chiffre de 4 200 € est obtenu par `7 × 0,50 × 1 200 € = 4 200 €`. Les 1 200 € sont une hypothèse annuelle par structure convertie, introduite uniquement pour rendre le scénario recalculable. Le taux de 50 % et le revenu unitaire ne sont pas des mesures de marché : l’apprenant peut les contester et produire une sensibilité basse/centrale/haute.

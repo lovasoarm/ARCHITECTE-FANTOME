@@ -46,7 +46,7 @@ Tâches :
 
 ## Contrôler le hasard dans un test
 
-`Math.random()` ne possède pas d'API standard de seed. Pour rendre une branche déterministe, injecte une source aléatoire : `computeTotal([10, 20], () => 0)` force ici la branche rare et expose le bug pédagogique (`NaN`) ; `computeTotal([10, 20], () => 0.5)` suit la branche normale et retourne `30`. La branche rare est volontairement fautive : le test doit d'abord la révéler, puis tu corriges la règle métier (ici, un bonus absent doit être représenté par `0`, pas `undefined`). Voir [`11A-flaky.js`](./11A-flaky.js).
+`Math.random()` ne possède pas d'API standard de seed. Pour rendre une branche déterministe, injecte une source aléatoire : `computeTotal([10, 20], () => 0)` force ici la branche rare et expose le bug pédagogique (`NaN`) ; `computeTotal([10, 20], () => 0.5)` suit la branche normale et retourne `30`. La branche rare est volontairement fautive : le test doit d'abord la révéler, puis tu corriges la règle métier (ici, un bonus absent doit être représenté par `0`, pas `undefined`). Voir [`flaky-random-branch-fixture.js`](./flaky-random-branch-fixture.js).
 
 ## Livrable
 

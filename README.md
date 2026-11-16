@@ -14,9 +14,6 @@ stability: stable
 
 # ARCHITECTE-FANTOME
 
-> **Édition au 3 novembre 2026 :** `v1.0.7-final-prod` (base documentaire : `1.1.33 V6.5`). Cette édition harmonise les contrats, les durées indicatives et les livrables des 30 exercices de lecture ; aligne les 27 lignes chiffrées de leurs index et recalcule les totaux des modules concernés ; clarifie l’usage de `MAP_15MIN.md` dans l’espace de travail apprenant. Elle est destinée aux apprenants et conserve les règles de preuve de la V6.5 ; la publication documentaire ne vaut ni validation d’exécution de tous les projets, ni revue experte indépendante exhaustive, ni évaluation par cohorte débutante.
-> **Lire les identifiants de version :** `VERSION` désigne l’étiquette du paquet distribué ; `1.1.33 / V6.5` désigne la révision du corpus documentaire. Dans le frontmatter, `release` suit la révision documentaire courante et `introduced_release` conserve la révision historique d’introduction de la ressource.
-
 ARCHITECTE-FANTOME (AF) est un parcours d’ingénierie logicielle orienté pratique. Il accompagne l’apprenant des fondamentaux vers la conception, la construction, la sécurisation, l’exploitation et l’évolution de systèmes logiciels complexes, y compris lorsqu’ils intègrent de l’IA.
 
 Le parcours cherche à développer une capacité démontrable : expliquer pourquoi un système fonctionne, prévoir ses limites, diagnostiquer ses pannes, mesurer ses propriétés et défendre des décisions techniques. Terminer une page ou faire passer un exemple ne constitue pas, à lui seul, une preuve de maîtrise.
@@ -41,6 +38,14 @@ Les milliers de fichiers éventuels du dépôt représentent un corpus complet, 
 ## Lire les fichiers Markdown
 
 Ouvre les fichiers `.md` en **aperçu Markdown** plutôt qu'en vue du texte source. Certaines ressources commencent par un bloc de métadonnées YAML encadré par `---` ; d'autres contiennent des commentaires HTML (`<!-- ... -->`). Ces éléments décrivent la ressource ou balisent la structure du dossier : ils ne font pas partie de la leçon à lire. Pour masquer aussi le bloc YAML initial, l'aperçu doit prendre en charge le _YAML Front Matter_ ; les commentaires HTML sont destinés à rester cachés dans le rendu. Si ton lecteur affiche le YAML, utilise un aperçu compatible ou ignore uniquement ce bloc placé au début du fichier. **Ne supprime ni ne modifie ces métadonnées et commentaires** : ils peuvent porter des informations de stabilité, de progression, de provenance ou délimiter des sections utilisées par les index.
+
+## Comprendre les numéros dans les noms de fichiers
+
+Les préfixes numériques des fichiers et des dossiers facilitent le classement et les renvois ; **ils ne constituent pas, à eux seuls, une route de lecture globale**. Un dossier peut contenir des leçons `02` ou `03`, des pratiques `50` à `56`, un grimoire `90` et un challenge `95`. Ce classement peut aussi comporter des ressources complémentaires avec une lettre (`00A`, `01A`, `99A`, `06A`, `06B`) ou un dossier de sous-parcours (`06C`). La lettre distingue un identifiant associé ; elle ne signifie pas automatiquement « prochaine étape » et ne transforme pas les deux fichiers en doublons.
+
+Pour connaître l'ordre réel, ouvre le `README.md` local puis suis la Route 58 lorsqu'elle désigne ce dossier. Dans un module, son tableau de route et ses prérequis explicites priment sur l'ordre alphabétique des noms. Si un dossier ne donne pas d'ordre clair, ne devine pas à partir des chiffres : signale l'ambiguïté et fais-la corriger.
+
+Lorsqu'un dossier et un fichier voisin partagent le même numéro (`04-.../` et `04A-...md`, par exemple), ce ne sont pas automatiquement deux étapes. Le dossier contient une collection ou un sous-parcours ; le fichier avec lettre est une ressource compagne dont le rôle doit être expliqué dans le README parent. Si cette relation n'est pas indiquée, suis uniquement la route locale explicite et considère le nom comme ambigu.
 
 ## Le produit fil rouge et le style des leçons
 

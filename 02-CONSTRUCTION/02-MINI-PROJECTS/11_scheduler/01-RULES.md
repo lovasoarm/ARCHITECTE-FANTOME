@@ -8,70 +8,36 @@ transfer_distance: medium
 assessment_role: project_mastery
 ---
 
-> **SCÈNE CRAZYDEVS : Konoha sous siège :** les quartiers, portes et équipes ont des responsabilités différentes. Si tout le monde peut entrer partout, tu n'as pas une architecture : tu as une cour de récréation avec des incendies.
-
 # RULES : 11_scheduler
 
-<!-- AF-DIAGRAM:scheduler -->
-
-```text
-┌─────────────┐
-│ tâches      │
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│ queue       │
-└──────┬──────┘
-       ▼
-┌──────┴──────┐
-│ worker pool │
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│ résultats   │
-└─────────────┘
-```
-
-Le scheduler transforme un flux de tâches en travail ordonnancé par une capacité d’exécution limitée.
-
-Temps de lecture ~2 min
-
-Règles minimales de release. Un projet qui échoue une de ces règles est marqué
-INCOMPLET par un critere binaire ecrit dans ton `02-TDD-JOURNAL.md`.
+Règles minimales de validation. Un projet qui échoue une règle doit rester marqué **INCOMPLET** avec un critère observable écrit dans le journal TDD.
 
 ## ADR_MINIMUM
 
-Nombre minimum d'ADR à livrer dans `ADR/` : **4**
+Nombre minimum d'ADR réellement produits dans `ADR/` : **3**. Les deux documents de consigne fournis ne comptent pas comme décisions rédigées par l'apprenant.
 
-Un ADR unique ("choix d'architecture") ne suffit pas. Décisions latérales attendues :
-données, frontières de module, stratégie de tests, choix async, sécurité, observabilité.
-Template canonique : `../97-templates/03-ADR_TEMPLATE.md`.
+Les trois décisions doivent être distinctes. Couvrir les sujets pertinents au projet (files et ordonnanceur, concurrence et ressources, erreurs et annulation, stratégie de test). Ne fabrique pas une décision non prise pour atteindre le nombre.
+
+Gabarit : [03-ADR_TEMPLATE.md](../97-templates/03-ADR_TEMPLATE.md).
 
 ## SPEC_DRIFT_MODE
 
 default: off
 activation: `SPEC_DRIFT_MODE=on`
-triggers: voir `05-SPEC-DRIFT-TRIGGERS.md` (obligatoire, 3 déclencheurs J+1/J+3/J+5)
+triggers: voir `05-SPEC-DRIFT-TRIGGERS.md`.
 
-Si activé, `08-POSTMORTEM.md` doit contenir la section `## Comment j'ai encaissé le drift`.
+Si activé, `08-POSTMORTEM.md` doit contenir la section `## Comment j'ai encaissé le drift` et distinguer les déclencheurs réellement vécus des scénarios seulement proposés.
 
 ## Security Gate
 
-Bloc obligatoire (drill `node learner-verifier.js` (auto-verif ecrite par toi)) :
+La gate exécutable est limitée au périmètre de cette bibliothèque pédagogique : validation des arguments, borne de concurrence, propagation des erreurs, comportement d'annulation et absence de lancement de tâches après erreur/abort. Le POSTMORTEM résume les risques réellement pertinents et renvoie vers `SECURITY.md`. OWASP Top 10:2025 sert de référentiel de classement lorsque cela aide le diagnostic ; il n'impose pas de traiter artificiellement les dix catégories. Chaque contrôle est marqué `PASSÉ`, `ÉCHOUÉ`, `NON TESTÉ` ou `NON APPLICABLE` (avec justification).
 
-- **Entrées validées** : chaque entrée externe passe par un schéma explicite (Zod, manuel documenté).
-- **Secrets hors code** : jamais commités ; lus depuis env, documentés dans `SECURITY.md`.
-- **Dépendances scannées** : `npm audit` (ou équivalent), snapshot copié dans `SECURITY.md`.
-- **Surface d'exposition** : listée dans `SECURITY.md` (ports, endpoints, fichiers lus/écrits).
-
-Absence de `SECURITY.md` = release refusée.
+La procédure et les preuves attendues sont définies dans le document final `SECURITY.md` et `04-SECURITY-GATE.md`. N'ajoute pas artificiellement de serveur, de port, de secrets ou de dépendance tierce ; ces surfaces ne font pas partie du livrable de base.
 
 ## TDD JOURNAL
 
-Section obligatoire : `## Ce qui aurait été impossible à tester si j'avais gardé la version précédente`.
-Force l'introspection sur le lien code testable / refactoring.
+Le journal doit contenir la section `## Ce qui aurait été impossible à tester si j'avais gardé la version précédente` et relier au moins un refactor à un comportement nouvellement testable.
 
-## CHECKPOINT DE PROFONDEUR : variation A : prédire avant de réparer
+## CHECKPOINT DE PROFONDEUR : prédire avant de réparer
 
-Ferme la page. Introduis un changement de contexte (charge, données, concurrence ou contrainte).
-Prédit deux effets observables **avant** toute correction. Puis explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par : une mauvaise intuition plausible, la mesure qui permettrait de la réfuter, et le signal qui te ferait changer de modèle.
+Ferme la page. Introduis un changement de contexte (charge, taille des données, concurrence ou règle d'annulation). Prédit deux effets observables **avant** toute correction. Explique le mécanisme causal qui relie l'hypothèse au symptôme. Termine par une mauvaise intuition plausible, la mesure qui permettrait de la réfuter et le signal qui te ferait changer de modèle.
