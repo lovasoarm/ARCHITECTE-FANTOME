@@ -50,7 +50,7 @@ Lorsqu'un dossier et un fichier voisin partagent le même numéro (`04-.../` et 
 
 ## Le produit fil rouge et le style des leçons
 
-Le parcours utilise **[Kintana](06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md)** comme cas d’étude pédagogique fictif commun. Il ne remplace pas le fil rouge personnel, qui est choisi et qualifié après le Cadrage. Chaque notion contribue à comprendre un système cohérent, plutôt qu'à une collection d'applications jetables. Les principes de pratique, de preuve et de transfert sont présentés dans le [protocole de leçon approfondie](06-ANNEXES-TRANSVERSES/26-PROTOCOLE-LECON-PROFONDE.md).
+Le parcours utilise **[Kintana](06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md)** comme cas d’étude pédagogique fictif commun (un projet fictif commun utilisé dans AF pour illustrer les leçons et pratiquer (ex. : une plateforme de réservation).). Il ne remplace pas le fil rouge personnel (ton propre projet personnel que tu développes progressivement tout au long de la formation), qui est choisi et qualifié après le Cadrage. Chaque notion contribue à comprendre un système cohérent, plutôt qu'à une collection d'applications jetables. Les principes de pratique, de preuve et de transfert sont présentés dans le [protocole de leçon approfondie](06-ANNEXES-TRANSVERSES/26-PROTOCOLE-LECON-PROFONDE.md).
 
 ## Préparer ton environnement
 
