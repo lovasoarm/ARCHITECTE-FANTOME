@@ -94,7 +94,7 @@ Tu peux les ouvrir avec Excel ou LibreOffice Calc. Si toutes les données appara
 Garde cette distinction en tête : **la Route 58 donne l’ordre d’apprentissage ; les matrices CSV donnent des informations structurées sur les compétences, les ressources et les profils métiers.** Elles t’aident à te repérer, mais elles ne remplacent ni la route ni les consignes du README local.
 
 <details>
-<summary><strong>1. MATRICE-COMPETENCES.csv — Quelles compétences AF cherche-t-il à développer ?</strong></summary>
+<summary><strong>1. MATRICE-COMPETENCES.csv : Quelles compétences AF cherche-t-il à développer ?</strong></summary>
 
 Cette matrice principale contient **56 compétences** dans cette version du dépôt. Chaque ligne décrit une capacité à développer et la manière de vérifier qu’elle est acquise.
 
@@ -109,7 +109,7 @@ Cette matrice principale contient **56 compétences** dans cette version du dép
 | `canonical_resource` | Chemin vers la ressource principale officielle pour travailler cette compétence. |
 | `prerequisite_ids` | Codes des compétences à connaître avant celle-ci, lorsqu’un prérequis est renseigné. |
 
-**Exemple : `FND-02` — Git et traçabilité.** La ligne indique le domaine `Fondations`, le palier `A`, un résultat attendu (créer une branche, isoler un changement, relire un `diff` et revenir à un état sûr), une preuve (exercice encadré et récupération), la ressource principale `00-SOCLE/01-GETTING-STARTED/05-git_101.md` et le prérequis `FND-01` (Shell, fichiers, environnement).
+**Exemple : `FND-02` : Git et traçabilité.** La ligne indique le domaine `Fondations`, le palier `A`, un résultat attendu (créer une branche, isoler un changement, relire un `diff` et revenir à un état sûr), une preuve (exercice encadré et récupération), la ressource principale `00-SOCLE/01-GETTING-STARTED/05-git_101.md` et le prérequis `FND-01` (Shell, fichiers, environnement).
 
 Un `diff` est simplement une comparaison qui montre ce qui a changé entre deux versions. Un identifiant comme `FND-02` est une étiquette stable : il permet de relier la même compétence dans plusieurs tableaux sans recopier son nom partout.
 
@@ -118,7 +118,7 @@ Une cellule `prerequisite_ids` vide signifie qu’aucun identifiant de prérequi
 </details>
 
 <details>
-<summary><strong>2. MATRICE-COMPETENCES-RESSOURCES.csv — Où trouver les ressources liées à une compétence ?</strong></summary>
+<summary><strong>2. MATRICE-COMPETENCES-RESSOURCES.csv : Où trouver les ressources liées à une compétence ?</strong></summary>
 
 Cette matrice contient **59 associations compétence–ressource**. Elle complète la matrice principale : une compétence peut avoir une ressource principale et plusieurs ressources complémentaires. C’est pourquoi elle peut avoir davantage de lignes que la matrice des compétences.
 
@@ -136,7 +136,7 @@ Tu n’as pas à ouvrir toutes les ressources complémentaires dès que tu vois 
 </details>
 
 <details>
-<summary><strong>3. MATRICE-METIERS-COMPETENCES.csv — Comment les compétences se relient-elles aux métiers ?</strong></summary>
+<summary><strong>3. MATRICE-METIERS-COMPETENCES.csv : Comment les compétences se relient-elles aux métiers ?</strong></summary>
 
 Cette matrice contient **336 associations entre six profils professionnels et les 56 compétences**. Elle ne crée pas de nouvelles compétences : elle indique comment les compétences déjà présentes dans la matrice principale se rapportent à différents profils.
 
