@@ -82,7 +82,107 @@ Transférer à un autre contexte
 Revenir vérifier après un délai
 ```
 
-Consigne les résultats dans la **[fiche d’apprentissage et de preuve](06-ANNEXES-TRANSVERSES/62-FICHE-APPRENTISSAGE-PREUVE.md)**. Utilise la page **[Progression](PROGRESSION.md)** comme tableau de bord personnel. Les [compétences de référence](MATRICE-COMPETENCES.csv) relient les capacités attendues à une ressource canonique (la version officielle) ; les ressources complémentaires sont listées dans [MATRICE-COMPETENCES-RESSOURCES.csv](MATRICE-COMPETENCES-RESSOURCES.csv) et expliquées dans [MATRICE-COMPETENCES-README.md](MATRICE-COMPETENCES-README.md).
+Consigne les résultats dans la **[fiche d’apprentissage et de preuve](06-ANNEXES-TRANSVERSES/62-FICHE-APPRENTISSAGE-PREUVE.md)**. Utilise la page **[Progression](PROGRESSION.md)** comme tableau de bord personnel. Les [compétences de référence](MATRICE-COMPETENCES.csv) relient les capacités attendues à une ressource canonique ; les ressources complémentaires sont listées dans [MATRICE-COMPETENCES-RESSOURCES.csv](MATRICE-COMPETENCES-RESSOURCES.csv) et expliquées dans [MATRICE-COMPETENCES-README.md](MATRICE-COMPETENCES-README.md).
+
+
+## Lire les fichiers CSV sans se faire intimider
+
+Les fichiers `.csv` sont des **tableaux de données**. CSV signifie *Comma-Separated Values* : des valeurs séparées par des virgules. Imagine un tableau Excel : une **colonne** décrit le type d’information, une **ligne** représente une entrée et une **cellule** contient une valeur. Dans AF, ces tableaux servent à organiser les compétences et leurs liens ; ce ne sont pas des cours à lire de haut en bas. Pas besoin de tout déchiffrer avant ton premier `console.log` : la Route 58 te guide, et tu consultes une matrice quand tu as une question précise.
+
+Tu peux les ouvrir avec Excel ou LibreOffice Calc. Si toutes les données apparaissent dans une seule colonne, utilise l’import CSV et vérifie le séparateur `,` (virgule) ainsi que l’encodage UTF-8. Tu peux filtrer et rechercher les lignes ; **ne modifie pas les CSV pour noter ta progression personnelle**. Utilise [PROGRESSION.md](PROGRESSION.md) et tes fiches de preuve pour cela.
+
+Garde cette distinction en tête : **la Route 58 donne l’ordre d’apprentissage ; les matrices CSV donnent des informations structurées sur les compétences, les ressources et les profils métiers.** Elles t’aident à te repérer, mais elles ne remplacent ni la route ni les consignes du README local.
+
+<details>
+<summary><strong>1. MATRICE-COMPETENCES.csv — Quelles compétences AF cherche-t-il à développer ?</strong></summary>
+
+Cette matrice principale contient **56 compétences** dans cette version du dépôt. Chaque ligne décrit une capacité à développer et la manière de vérifier qu’elle est acquise.
+
+| Colonne | Traduction simple |
+| --- | --- |
+| `competency_id` | Code unique de la compétence. Il permet de la retrouver dans les autres matrices. |
+| `competence` | Nom de la capacité à développer. |
+| `domain` | Famille à laquelle elle appartient : Fondations, Programmation, Backend, Sécurité, etc. |
+| `mastery_palier` | Palier ou plage de paliers visés. `A-B`, par exemple, indique une compétence qui traverse plusieurs paliers ; ce n’est ni une note ni une durée. |
+| `observable_outcome` | Ce que tu dois être capable de faire concrètement et que quelqu’un peut observer. |
+| `assessment_and_evidence` | Comment la compétence est évaluée et quelle preuve pratique peut montrer que tu sais faire. |
+| `canonical_resource` | Chemin vers la ressource principale officielle pour travailler cette compétence. |
+| `prerequisite_ids` | Codes des compétences à connaître avant celle-ci, lorsqu’un prérequis est renseigné. |
+
+**Exemple : `FND-02` — Git et traçabilité.** La ligne indique le domaine `Fondations`, le palier `A`, un résultat attendu (créer une branche, isoler un changement, relire un `diff` et revenir à un état sûr), une preuve (exercice encadré et récupération), la ressource principale `00-SOCLE/01-GETTING-STARTED/05-git_101.md` et le prérequis `FND-01` (Shell, fichiers, environnement).
+
+Un `diff` est simplement une comparaison qui montre ce qui a changé entre deux versions. Un identifiant comme `FND-02` est une étiquette stable : il permet de relier la même compétence dans plusieurs tableaux sans recopier son nom partout.
+
+Une cellule `prerequisite_ids` vide signifie qu’aucun identifiant de prérequis n’est inscrit dans cette colonne ; cela ne t’autorise pas à ignorer l’ordre pédagogique de la Route 58 ou les prérequis du module.
+
+</details>
+
+<details>
+<summary><strong>2. MATRICE-COMPETENCES-RESSOURCES.csv — Où trouver les ressources liées à une compétence ?</strong></summary>
+
+Cette matrice contient **59 associations compétence–ressource**. Elle complète la matrice principale : une compétence peut avoir une ressource principale et plusieurs ressources complémentaires. C’est pourquoi elle peut avoir davantage de lignes que la matrice des compétences.
+
+| Colonne | Traduction simple |
+| --- | --- |
+| `competency_id` | Code de la compétence concernée. |
+| `resource_order` | Ordre de priorité des ressources pour cette compétence : `1` vient en premier. |
+| `resource_role` | Rôle de la ressource : `primary` (principale) ou `supporting` (complémentaire). |
+| `resource_path` | Chemin du fichier à ouvrir depuis la racine du dépôt. |
+
+**Exemple : `NET-01`.** La compétence réseau possède une ressource `primary` sur les fondations DNS/TCP/TLS, puis des ressources `supporting` sur HTTP/REST, le debugging et le distributed tracing. Le tableau conserve leur ordre et leur rôle au lieu de cacher plusieurs chemins dans une seule cellule.
+
+Tu n’as pas à ouvrir toutes les ressources complémentaires dès que tu vois une compétence. Consulte d’abord la Route 58 et la ressource principale ; utilise les compléments lorsque la route, une leçon ou une difficulté les rend utiles.
+
+</details>
+
+<details>
+<summary><strong>3. MATRICE-METIERS-COMPETENCES.csv — Comment les compétences se relient-elles aux métiers ?</strong></summary>
+
+Cette matrice contient **336 associations entre six profils professionnels et les 56 compétences**. Elle ne crée pas de nouvelles compétences : elle indique comment les compétences déjà présentes dans la matrice principale se rapportent à différents profils.
+
+| Code | Profil |
+| --- | --- |
+| `BE` | Software Engineer / Backend Engineer |
+| `FS` | Full-Stack / Product Engineer |
+| `AI` | AI Application Engineer |
+| `QE` | Quality Engineer / SDET |
+| `SRE` | Platform / SRE Engineer |
+| `MOB` | Mobile Engineer |
+
+Ses colonnes indiquent :
+
+| Colonne | Traduction simple |
+| --- | --- |
+| `profile_id` / `profile_name` | Code et nom du profil professionnel. |
+| `competency_id` / `competency_name` | Code et nom de la compétence associée. |
+| `status` | Type d’attente de ce profil pour cette compétence (voir les quatre statuts ci-dessous). |
+| `expected_depth` | Profondeur de maîtrise attendue pour ce profil. |
+| `required_evidence` | Preuve attendue pour montrer cette maîtrise. |
+| `existing_resource` | Ressource AF déjà disponible pour travailler la compétence. |
+| `external_experience` | Indique si une expérience réelle ou une revue indépendante sera nécessaire. |
+
+Les quatre statuts se lisent ainsi :
+
+- `CORE_VALIDÉ` : compétence du socle commun à démontrer et valider.
+- `DEPTH_REQUIS` : approfondissement nécessaire pour ce profil.
+- `EXPERIENCE_EXTERNE` : preuve réelle ou revue indépendante à obtenir ; une simulation seule ne suffit pas.
+- `HORS_PERIMETRE` : compétence non requise dans ce profil.
+
+**Attention : ces statuts ne décrivent pas ton avancement personnel.** `CORE_VALIDÉ` ne signifie pas que la compétence est automatiquement acquise ou déjà validée chez toi ; il décrit l’attente associée au profil. Pour consulter un profil, filtre `profile_id`, puis regarde les compétences, leur profondeur et leurs preuves attendues. Tu ne dois pas recommencer le socle déjà validé ni apprendre toutes les compétences avec la même profondeur pour chaque métier.
+
+</details>
+
+### Quel fichier consulter pour quelle question ?
+
+| Ta question | Le bon repère |
+| --- | --- |
+| « Dans quel ordre dois-je apprendre ? » | [Route 58](06-ANNEXES-TRANSVERSES/58-ROUTE-APPRENANT-COHERENTE.md) |
+| « Quelles compétences le curriculum décrit-il ? » | [MATRICE-COMPETENCES.csv](MATRICE-COMPETENCES.csv) |
+| « Quelles ressources sont associées à cette compétence ? » | [MATRICE-COMPETENCES-RESSOURCES.csv](MATRICE-COMPETENCES-RESSOURCES.csv) |
+| « Quelles compétences sont liées à un profil professionnel ? » | [MATRICE-METIERS-COMPETENCES.csv](MATRICE-METIERS-COMPETENCES.csv) |
+| « Qu’ai-je personnellement terminé et prouvé ? » | [PROGRESSION.md](PROGRESSION.md) et tes fiches de preuve |
+
+Pour approfondir le fonctionnement des matrices, consulte le [mode d’emploi des matrices de compétences](MATRICE-COMPETENCES-README.md). Si un mot technique te bloque, cherche-le dans le [glossaire général](GLOSSAIRE.md) ; tu n’as pas besoin de mémoriser tout le vocabulaire avant de commencer.
 
 ## La route
 
