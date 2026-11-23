@@ -87,17 +87,17 @@ Consigne les résultats dans la **[fiche d’apprentissage et de preuve](06-ANNE
 ## La route
 
 ```text
-00 SOCLE
+00 SOCLE (Construire tes fondations)
     ↓
-01 CADRAGE
+01 CADRAGE (Comprendre avant de construire)
     ↓
-02 CONSTRUCTION
+02 CONSTRUCTION (Fabriquer la solution)
     ↓
-03 PILOTAGE
+03 PILOTAGE (Faire vivre et contrôler le système)
     ↓
-04 ÉPREUVE
+04 ÉPREUVE (Prouver tes capacités)
     ↓
-05 MAÎTRISE
+05 MAÎTRISE (Penser et agir comme un architecte)
 ```
 
 Ce schéma montre les **six blocs physiques du dépôt** (`00` à `05`) : c'est l'organisation des dossiers, pas la liste complète des étapes pédagogiques. Les étapes de progression, l'ordre exact des ressources, les gates (un point de contrôle à réussir avant de passer à l'étape suivante (ex. : réaliser un mini-projet qui prouve que tu sais utiliser les variables JavaScript)) et les remédiations (un parcours de correction pour combler tes lacunes si tu échoues à un gate (ex. : revoir les variables, refaire des exercices, puis retenter le contrôle).) sont décrits dans la [Route 58](06-ANNEXES-TRANSVERSES/58-ROUTE-APPRENANT-COHERENTE.md), qui fait foi pour savoir quoi étudier ensuite. Une étape de cette route peut traverser plusieurs blocs physiques ; les deux cartes ne correspondent donc pas une à une.
