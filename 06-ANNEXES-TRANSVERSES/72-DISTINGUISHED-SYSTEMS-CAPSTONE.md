@@ -65,6 +65,8 @@ Un SLO sans méthode de calcul, fenêtre, exclusion et conséquence d'un dépass
 
 ## Les huit axes et leurs preuves non compensatoires
 
+> Les numéros ci-dessous sont des identifiants d'axe pour la grille du capstone. Leur ordre suit désormais la progression des domaines ; ils ne créent pas de prérequis supplémentaires. La route opérationnelle et les gates restent ceux de la [Route 58](58-ROUTE-APPRENANT-COHERENTE.md).
+
 ### 1. Software Engineering
 
 À livrer : code modulaire, conventions, tests unitaires/intégration/contrat, tests négatifs, revue de diff, gestion d'erreurs et stratégie de compatibilité.
@@ -89,22 +91,13 @@ Gate : provoquer duplication, retard, indisponibilité partielle et reprise ; ex
 
 Gate : déployer une release, observer un signal, déclencher un rollback et restaurer une donnée ; joindre les résultats réels et les limites de l'environnement.
 
-### 5. AI Engineering
-
-À livrer dans tous les cas : baseline déterministe/non-ML, analyse de la valeur attendue, qualité et provenance des données disponibles, risques, coûts, seuils d'acceptation, supervision humaine pertinente et critères d'arrêt ou de réexamen.
-
-- **Voie ML retenue :** ajouter dataset et pipeline versionnés, modèle versionné, protocole d'évaluation, seuil de décision, abstention, service d'inférence, contrôle d'accès, monitoring, limites, coût et arrêt d'urgence.
-- **Voie sans ML :** fournir une décision de non-recours étayée par les données et les besoins métier, analyser la faisabilité/qualité/quantité des données, décrire les risques d'un modèle hypothétique et fixer les preuves qui déclencheraient un nouvel examen. Aucun modèle factice ni métrique ML inventée n'est demandé.
-
-Gate : dans les deux voies, prouver que la collecte et les alertes déterministes restent autonomes. Si un modèle est déployé, mesurer une régression et bloquer une release lorsque le seuil critique est dépassé ; si aucun modèle n'est retenu, vérifier l'absence de dépendance runtime et la traçabilité de la décision de non-recours.
-
-### 6. Data Engineering & Big Data
+### 5. Data Engineering & Big Data
 
 À livrer : ingestion batch et streaming, contrat de données, schéma, stockage brut/nettoyé/analytique, qualité, quarantaine, déduplication, event time, watermark, backfill, orchestration et lineage.
 
 Gate : rejouer un lot, traiter une donnée tardive, récupérer après échec et démontrer qu'aucun événement valide n'est perdu silencieusement.
 
-### 7. Machine Learning & Mathématiques
+### 6. Machine Learning & Mathématiques
 
 À livrer dans tous les cas : analyse exploratoire des données disponibles, qualité des labels, risques de fuite temporelle, baseline déterministe, choix de métriques et analyse des coûts de faux positifs/faux négatifs.
 
@@ -112,6 +105,15 @@ Gate : rejouer un lot, traiter une donnée tardive, récupérer après échec et
 - **Voie sans ML :** produire une étude de faisabilité reproductible : volume et représentativité des données, disponibilité/fiabilité des labels, biais et fuites possibles, baseline déterministe, protocole temporel envisagé, métriques et seuils préenregistrés, critères minimums de données et conditions de décision. Une simulation ou un jeu synthétique doit être étiqueté comme tel ; il ne prouve pas une performance prédictive réelle.
 
 Gate : voie ML, démontrer l'absence de fuite connue, comparer au modèle naïf et analyser les erreurs ; voie sans ML, démontrer pourquoi les preuves disponibles ne justifient pas encore un modèle et comment une future évaluation pourrait être menée sans fuite. Le non-recours argumenté n'est pas pénalisé en soi.
+
+### 7. AI Engineering
+
+À livrer dans tous les cas : baseline déterministe/non-ML, analyse de la valeur attendue, qualité et provenance des données disponibles, risques, coûts, seuils d'acceptation, supervision humaine pertinente et critères d'arrêt ou de réexamen.
+
+- **Voie ML retenue :** ajouter dataset et pipeline versionnés, modèle versionné, protocole d'évaluation, seuil de décision, abstention, service d'inférence, contrôle d'accès, monitoring, limites, coût et arrêt d'urgence.
+- **Voie sans ML :** fournir une décision de non-recours étayée par les données et les besoins métier, analyser la faisabilité/qualité/quantité des données, décrire les risques d'un modèle hypothétique et fixer les preuves qui déclencheraient un nouvel examen. Aucun modèle factice ni métrique ML inventée n'est demandé.
+
+Gate : dans les deux voies, prouver que la collecte et les alertes déterministes restent autonomes. Si un modèle est déployé, mesurer une régression et bloquer une release lorsque le seuil critique est dépassé ; si aucun modèle n'est retenu, vérifier l'absence de dépendance runtime et la traçabilité de la décision de non-recours.
 
 ### 8. Technical Leadership
 
@@ -154,28 +156,28 @@ Pour chaque décision : contexte, options, critères, coûts directs, coût opé
 | Backend & Databases                |     12 | migration, transactions et isolation prouvées                                                                                                                                |
 | Architecture & Distributed Systems |     16 | ADR comparatif et pannes partielles démontrées                                                                                                                               |
 | Cloud & DevOps                     |     12 | livraison, rollback et restauration exécutés                                                                                                                                 |
-| AI Engineering                     |     12 | voie ML : évaluation, garde-fous et arrêt démontrés ; voie sans ML : décision de non-recours, preuve de valeur insuffisante, gouvernance et critères de réexamen vérifiables |
 | Data Engineering                   |     14 | pipeline idempotent, qualité, streaming/batch et reprise                                                                                                                     |
 | ML & Mathématiques                 |     10 | voie ML : résultats et analyse sans fuite ; voie sans ML : faisabilité des données, baseline, analyse des coûts d'erreur et protocole futur sans fuite                       |
+| AI Engineering                     |     12 | voie ML : évaluation, garde-fous et arrêt démontrés ; voie sans ML : décision de non-recours, preuve de valeur insuffisante, gouvernance et critères de réexamen vérifiables |
 | Leadership                         |     12 | revue contradictoire, transfert et feedback externe                                                                                                                          |
 
-**Règles non compensatoires :** au moins 60 % dans chaque axe ; aucune note globale ne compense une faille de sécurité critique, une fuite inter-tenant, une absence de restauration ou, lorsqu'un modèle est entraîné/évalué, une fuite de données ou une évaluation ML contaminée. Les voies ML et sans ML sont deux façons recevables de démontrer le jugement AI/ML : la voie sans ML doit satisfaire les critères alternatifs explicités dans les axes 5 et 7 ; elle ne reçoit ni bonus ni malus du seul fait de ne pas déployer de modèle. Toute donnée synthétique, simulation ou hypothèse doit être étiquetée et ne peut être présentée comme une mesure réelle. 80/100 permet de déclarer le capstone maîtrisé dans son contexte ; cela ne confère pas un titre professionnel.
+**Règles non compensatoires :** au moins 60 % dans chaque axe ; aucune note globale ne compense une faille de sécurité critique, une fuite inter-tenant, une absence de restauration ou, lorsqu'un modèle est entraîné/évalué, une fuite de données ou une évaluation ML contaminée. Les voies ML et sans ML sont deux façons recevables de démontrer le jugement AI/ML : la voie sans ML doit satisfaire les critères alternatifs explicités dans les axes 6 et 7 ; elle ne reçoit ni bonus ni malus du seul fait de ne pas déployer de modèle. Toute donnée synthétique, simulation ou hypothèse doit être étiquetée et ne peut être présentée comme une mesure réelle. 80/100 permet de déclarer le capstone maîtrisé dans son contexte ; cela ne confère pas un titre professionnel.
 
-### Barème détaillé des axes AI Engineering et ML (même niveau d'exigence pour les deux voies)
+### Barème détaillé des axes ML et AI Engineering (même niveau d'exigence pour les deux voies)
 
 Le choix ML ou sans ML est décidé dans un ADR avant la phase de construction, à partir de la valeur métier, de la disponibilité et qualité des données, du coût des erreurs, des risques, du coût opérationnel et d'une baseline déterministe. Le reviewer évalue la qualité du raisonnement et des preuves, pas la présence d'un modèle pour elle-même.
 
 | Axe                | Critère                                                      | Points | Preuve attendue, quelle que soit la voie                                                                                                                           |
 | ------------------ | ------------------------------------------------------------ | -----: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| AI Engineering     | Décision de valeur et comparaison à la baseline déterministe |      3 | Alternatives, bénéfice attendu, coût, risques et raison de retenir ou rejeter ML                                                                                   |
-| AI Engineering     | Données, provenance, qualité, droits et risques              |      3 | Inventaire des données, qualité, labels, limites et contrôles ; les données absentes sont explicitement signalées                                                  |
-| AI Engineering     | Évaluation et critères d'acceptation                         |      3 | Voie ML : résultats reproductibles ; voie sans ML : protocole, métriques, seuils et conditions de lancement définis avant toute future expérimentation             |
-| AI Engineering     | Architecture, supervision et arrêt sûr                       |      3 | Voie ML : isolation, monitoring et kill switch ; voie sans ML : absence de dépendance runtime et conditions de réexamen                                            |
 | ML & Mathématiques | Distribution, couverture et qualité des labels               |      2 | Analyse reproductible des données réellement disponibles, ou preuve précise de leur insuffisance                                                                   |
 | ML & Mathématiques | Biais, dépendances temporelles et risques de fuite           |      2 | Analyse des fuites possibles et séparation temporelle conçue pour le problème                                                                                      |
 | ML & Mathématiques | Baseline et comparaison                                      |      2 | Baseline déterministe mesurée ou caractérisée ; voie ML : comparaison aussi au modèle naïf                                                                         |
 | ML & Mathématiques | Métriques, seuils et coûts d'erreur                          |      2 | Justification des métriques, faux positifs/faux négatifs et seuils en lien avec le métier                                                                          |
 | ML & Mathématiques | Décision statistique et limites                              |      2 | Voie ML : analyse des erreurs, incertitude/calibration et limites ; voie sans ML : protocole futur préenregistré et conditions minimales nécessaires pour conclure |
+| AI Engineering     | Décision de valeur et comparaison à la baseline déterministe |      3 | Alternatives, bénéfice attendu, coût, risques et raison de retenir ou rejeter ML                                                                                   |
+| AI Engineering     | Données, provenance, qualité, droits et risques              |      3 | Inventaire des données, qualité, labels, limites et contrôles ; les données absentes sont explicitement signalées                                                  |
+| AI Engineering     | Évaluation et critères d'acceptation                         |      3 | Voie ML : résultats reproductibles ; voie sans ML : protocole, métriques, seuils et conditions de lancement définis avant toute future expérimentation             |
+| AI Engineering     | Architecture, supervision et arrêt sûr                       |      3 | Voie ML : isolation, monitoring et kill switch ; voie sans ML : absence de dépendance runtime et conditions de réexamen                                            |
 
 **Règle d'équité :** la voie sans ML peut obtenir tous les points si ses preuves démontrent que l'adoption du modèle n'est pas justifiée avec les données, contraintes et bénéfices observables du cas. Elle ne peut pas obtenir de points pour des métriques de modèle non calculées ; elle est évaluée sur l'analyse de faisabilité et le protocole de décision alternatif décrit ci-dessus. Un jeu synthétique peut vérifier un pipeline ou illustrer une méthode, jamais prouver une performance prédictive sur le terrain.
 

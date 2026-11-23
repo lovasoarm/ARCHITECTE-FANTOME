@@ -44,6 +44,10 @@ Ces paliers ne sont pas des années ni des semaines. L'entrée dans un palier es
 
 ## Curriculum par domaines et ordre de dépendance
 
+> **Vue macro :** [83 : Ordre des neuf familles de domaines](06-ANNEXES-TRANSVERSES/83-ORDRE-DOMAINES-APPRENTISSAGE.md) présente la progression synthétique **Fondations → Software Engineering → Backend & Databases → Architecture & System Design → Cloud/DevOps/Infrastructure → Data Engineering → Mathématiques/Data Science/ML → AI Engineering → Technical Leadership & Advanced Architecture**.
+>
+> Cette vue macro ne remplace pas les huit phases ci-dessous. Dans la phase 6, l'ordre d'apprentissage est explicitement **Data Engineering → Mathématiques/ML → AI Engineering**, conformément aux sous-étapes 9A, 9B et 9C de la Route 58. Les mathématiques de base commencent dès la phase 1 ; l'architecture et la sécurité sont renforcées au fil du parcours.
+>
 > **Spécialisations et frontières :** [82 : Cartographie DEPTH, MLOps et applicabilité juridique](06-ANNEXES-TRANSVERSES/82-CARTOGRAPHIE-DEPTH-ET-APPLICABILITE.md).
 
 ### Phase 1 : Fondations de programmation et pensée informatique

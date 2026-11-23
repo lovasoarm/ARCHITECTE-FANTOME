@@ -13,6 +13,7 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 # Annexes transverses : index d’apprentissage
 
 - [80 : Matrice canonique des progressions](80-MATRICE-PROGRESSIONS.md) : relation entre blocs, paliers, verbes, étapes, projets et gates.
+- [83 : Ordre des neuf familles de domaines](83-ORDRE-DOMAINES-APPRENTISSAGE.md) : vue macro des dépendances, de Fondations à Technical Leadership & Advanced Architecture.
 - [81 : Matrice de traçabilité Staff](81-MATRICE-TRACEABILITE-STAFF.md) : relation entre les huit piliers, les preuves S1–S7 et les gates G1–G9.
 - [82 : Cartographie DEPTH et applicabilité](82-CARTOGRAPHIE-DEPTH-ET-APPLICABILITE.md) : MLOps, démarche juridique et frontières de spécialisation.
 

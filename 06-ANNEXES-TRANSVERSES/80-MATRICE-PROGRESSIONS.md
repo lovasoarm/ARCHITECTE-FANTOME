@@ -7,7 +7,7 @@ type: canonical-progression-map
 
 Ce document résout une confusion de vocabulaire : AF utilise plusieurs cartes, mais elles ne décrivent **pas** plusieurs parcours concurrents et ne se correspondent pas terme à terme.
 
-## Les six couches à ne pas confondre
+## Les sept couches à ne pas confondre
 
 | Couche                | Référence                                                                                        | Ce qu’elle décrit                                                                                     | Ce qu’elle ne décrit pas                                                     |
 | --------------------- | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
@@ -17,6 +17,9 @@ Ce document résout une confusion de vocabulaire : AF utilise plusieurs cartes, 
 | Progression mentale   | Huit verbes dans le [Prologue : la carte](../00-SOCLE/02-PROLOGUE/03-the-map.md)                 | Le type de question d’ingénierie que l’apprenant apprend à poser                                      | Huit niveaux supplémentaires ni une certification                            |
 | Ordre opérationnel    | Étapes `0` à `12` et sous-étapes `9A` à `9C` dans la [Route 58](58-ROUTE-APPRENANT-COHERENTE.md) | L’enchaînement des apprentissages, pratiques, preuves et remédiations                                 | Un planning calendaire ou une correspondance un-à-un avec les blocs          |
 | Validation            | Modules, projets, gates `G1–G9`, familles `S1–S6` et transfert `S7`                              | Comment une capacité est pratiquée et vérifiée                                                        | Une nouvelle hiérarchie de dossiers ou des prérequis globaux supplémentaires |
+| Ordre macro des domaines | Neuf familles `00` à `08` dans la [carte des domaines](83-ORDRE-DOMAINES-APPRENTISSAGE.md)    | Comment lire la dépendance générale entre les grandes disciplines                                    | Neuf dossiers physiques, neuf étapes opérationnelles ou neuf nouvelles gates |
+
+La carte des neuf familles est une **vue synthétique de dépendance**, pas une nouvelle route à côté de la Route 58. Elle rend visible l'ordre Data Engineering → Mathématiques/ML → AI Engineering, déjà détaillé dans les sous-étapes 9A, 9B et 9C.
 
 ## Correspondance des huit phases de la Formation complète
 
@@ -27,7 +30,7 @@ Ce document résout une confusion de vocabulaire : AF utilise plusieurs cartes, 
 | 3     | Systèmes internes                                  | Runtime, mémoire, concurrence, réseau, protocoles et bases de données       | C–E                              |
 | 4     | Réseau, systèmes distribués et architecture        | Async, pannes partielles, cohérence, réplication, migrations et scalabilité | C–F                              |
 | 5     | Sécurité, livraison et exploitation                | Security, Observability, SLO, Cloud, CI/CD, restauration et incidents       | C–G                              |
-| 6     | Données, mathématiques, ML et IA                   | Data Engineering, statistiques, ML, évaluation, RAG et gouvernance IA       | C–G                              |
+| 6     | Données, mathématiques, ML et IA                   | **9A Data Engineering → 9B Mathématiques/ML → 9C AI Engineering**, évaluation, RAG et gouvernance IA | C–G                              |
 | 7     | Plateformes, produit et leadership technique       | Platform Engineering, ROI, Team Craft, RFC, mentorat et adoption            | E–H                              |
 | 8     | Portée Principal et Distinguished                  | Capstone intégré, décisions longitudinales, influence et preuves externes   | G–H                              |
 

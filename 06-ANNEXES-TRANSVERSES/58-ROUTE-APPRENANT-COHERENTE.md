@@ -18,7 +18,7 @@ provenance_note: "Point d’ancrage interne du curriculum, pas certification des
 
 ## Contrat d'utilisation
 
-> **Repère canonique :** les blocs, paliers, phases, étapes et gates sont des couches différentes. Consulte la [matrice des progressions](80-MATRICE-PROGRESSIONS.md) pour leurs correspondances.
+> **Repère canonique :** les blocs, paliers, phases, étapes et gates sont des couches différentes. Consulte la [matrice des progressions](80-MATRICE-PROGRESSIONS.md) pour leurs correspondances, et la [carte des neuf familles de domaines](83-ORDRE-DOMAINES-APPRENTISSAGE.md) pour leur ordre macro.
 
 > **Ne confonds pas les cartes :** les six dossiers principaux `00-SOCLE` à `05-MAITRISE` sont les blocs physiques du dépôt. Les étapes `0` à `12` de la carte canonique ci-dessous décrivent la progression pédagogique. Elles ne correspondent pas une à une aux dossiers : une étape peut mobiliser plusieurs blocs et des laboratoires transverses. Pour savoir quoi faire ensuite, suis les ressources de la carte canonique et le README local ; ne déduis jamais l'ordre d'apprentissage du seul numéro d'un dossier.
 
