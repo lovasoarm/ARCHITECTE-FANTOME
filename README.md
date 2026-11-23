@@ -14,7 +14,7 @@ stability: stable
 
 # ARCHITECTE-FANTOME
 
-ARCHITECTE-FANTOME (AF) est un parcours d’ingénierie logicielle orienté pratique. Il accompagne l’apprenant des fondamentaux vers la conception, la construction, la sécurisation, l’exploitation et l’évolution de systèmes logiciels complexes, y compris lorsqu’ils intègrent de l’IA.
+ARCHITECTE-FANTOME (AF) est un parcours d’ingénierie logicielle orienté pratique. Il accompagne l’apprenant des fondamentaux vers la conception, la construction, la sécurisation, l’exploitation et l’évolution de systèmes logiciels complexes (un ensemble de composants qui communiquent et travaillent ensemble pour répondre à un besoin réel (ex. : une plateforme de gestion du trafic combinant frontend, backend, base de données, Cloud et IA).), y compris lorsqu’ils intègrent de l’IA.
 
 Le parcours cherche à développer une capacité démontrable : expliquer pourquoi un système fonctionne, prévoir ses limites, diagnostiquer ses pannes, mesurer ses propriétés et défendre des décisions techniques. Terminer une page ou faire passer un exemple ne constitue pas, à lui seul, une preuve de maîtrise.
 
