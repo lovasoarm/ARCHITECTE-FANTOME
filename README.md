@@ -14,7 +14,7 @@ stability: stable
 
 # ARCHITECTE-FANTOME
 
-ARCHITECTE-FANTOME (AF) est un parcours d’ingénierie logicielle orienté pratique. Il accompagne l’apprenant des fondamentaux vers la conception, la construction, la sécurisation, l’exploitation et l’évolution de systèmes logiciels complexes (un ensemble de composants qui communiquent et travaillent ensemble pour répondre à un besoin réel (ex. : une plateforme de gestion du trafic combinant frontend, backend, base de données, Cloud et IA).), y compris lorsqu’ils intègrent de l’IA.
+ARCHITECTE-FANTOME (AF) est un parcours d’ingénierie logicielle orienté pratique. Il accompagne l’apprenant des fondamentaux vers la conception, la construction, la sécurisation, l’exploitation et l’évolution de systèmes logiciels complexes : plusieurs composants qui communiquent pour répondre à un besoin réel (par exemple, une plateforme de gestion du trafic réunissant interface, backend, base de données, cloud et éventuellement IA).
 
 Le parcours cherche à développer une capacité démontrable : expliquer pourquoi un système fonctionne, prévoir ses limites, diagnostiquer ses pannes, mesurer ses propriétés et défendre des décisions techniques. Terminer une page ou faire passer un exemple ne constitue pas, à lui seul, une preuve de maîtrise.
 
@@ -36,6 +36,157 @@ Le parcours cherche à développer une capacité démontrable : expliquer pourqu
 
 Les milliers de fichiers éventuels du dépôt représentent un corpus complet, pas un volume de lecture obligatoire pour commencer. Il n'y a pas de rattrapage de toutes les annexes : les statuts `différé` et `facultatif` sont réellement facultatifs jusqu'au moment de reprise indiqué.
 
+## Décoder la carte d’AF : plusieurs repères, un seul parcours
+
+AF utilise plusieurs cartes complémentaires. Elles ne donnent pas toutes le même type d’information : certaines organisent les dossiers, d’autres décrivent les domaines, les capacités ou les preuves. **Tu n’as pas à les apprendre par cœur et elles ne sont pas des étapes supplémentaires.**
+
+```mermaid
+flowchart TD
+    A["START HERE<br/>la porte d’entrée"] --> B["Route 58<br/>l’ordre opérationnel"]
+    B --> C["Ressource de l’étape"]
+    C --> D["Pratique et tests"]
+    D --> E["Preuve observable"]
+    E --> F{"Gate satisfait ?"}
+    F -->|Oui| G["Mettre à jour PROGRESSION.md"]
+    G --> I["Étape suivante"]
+    F -->|Pas encore| H["Remédiation ciblée"]
+    H --> C
+```
+
+La **Route 58** est le GPS opérationnel : elle indique le prochain travail, ses prérequis, la production attendue et le contrôle de sortie. Les autres cartes donnent des vues complémentaires du même curriculum. En particulier, les **9 familles** de la carte 83 organisent les grands domaines d’apprentissage ; les **8 piliers** de la matrice 81 servent à tracer les dimensions de compétences et de preuves. Les **10 noyaux** du document 40 décrivent des capacités durables à construire sur le long terme. Ces listes se complètent : elles ne se remplacent pas.
+
+| Repère | Ce qu’il décrit | Référence |
+| --- | --- | --- |
+| **6 blocs (`00` à `05`)** | L’organisation physique des dossiers du dépôt. | Navigation des six blocs, plus bas |
+| **Étapes `0` à `12`** | La progression opérationnelle, ses productions, ses gates et ses remédiations. `58` est l’identifiant du document, pas 58 étapes ni 58 semaines. | [Route 58](06-ANNEXES-TRANSVERSES/58-ROUTE-APPRENANT-COHERENTE.md) |
+| **8 phases** | Les grandes phases de la formation complète. | [Formation complète](FORMATION-COMPLETE-INGENIERIE.md) |
+| **9 familles (`00` à `08`)** | L’ordre macro dans lequel les domaines de compétences se construisent. | [Carte 83](06-ANNEXES-TRANSVERSES/83-ORDRE-DOMAINES-APPRENTISSAGE.md) |
+| **8 piliers** | Les grandes dimensions utilisées pour relier compétences, preuves et gates au niveau Staff. | [Matrice 81](06-ANNEXES-TRANSVERSES/81-MATRICE-TRACEABILITE-STAFF.md) |
+| **10 noyaux (`N1` à `N10`)** | Les capacités durables considérées comme non négociables pour le cap Staff → Principal → Distinguished-equivalent. | [Noyau dur 40](06-ANNEXES-TRANSVERSES/40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md) |
+| **8 verbes** | La progression mentale : les questions que tu apprends à te poser face à un système. | [La carte du Prologue](00-SOCLE/02-PROLOGUE/03-the-map.md) |
+| **7 règles** | Le contrat de travail et d’apprentissage du parcours. | [Les règles du jeu](00-SOCLE/02-PROLOGUE/04-rules-of-the-game.md) |
+| **Paliers `A` à `H`** | Des seuils de capacité et de preuve, pas des années d’étude ni des semaines. | [Formation complète](FORMATION-COMPLETE-INGENIERIE.md) |
+| **Preuves `S1` à `S6`, plus `S7`** | Six familles de preuves Staff et une pièce supplémentaire consacrée au transfert. | [Dossier de preuves Staff](PREUVES-STAFF-ENGINEER.md) |
+| **Gates `G1` à `G9`** | Neuf contrôles transversaux de préparation Staff ; ce ne sont pas neuf cours. | [Staff Readiness Gate 37](06-ANNEXES-TRANSVERSES/37-STAFF-READINESS-GATE.md) |
+
+> **À ne pas confondre :** la version stable ne définit pas de liste canonique intitulée « les 7 fondamentaux ». Le Prologue contient **7 règles du jeu** ; le document 40 décrit **10 noyaux non négociables**. Les fondations techniques correspondent notamment à la phase 1, au domaine `00` et au palier A. Le slogan sous le logo affiche sept verbes ; la carte mentale du Prologue en compte huit parce qu’elle ajoute **COMPRENDRE**, le point de départ du raisonnement. Enfin, `40`, `58`, `81` et `83` sont des identifiants de documents : ils ne donnent pas le nombre de noyaux, de piliers, de familles ou d’étapes qu’ils décrivent.
+
+<details>
+<summary><strong>Ouvrir la carte détaillée : phases, familles, piliers, noyaux et paliers</strong></summary>
+
+### Les 8 phases de la formation complète
+
+| Phase | Cap général |
+| --- | --- |
+| **1** | Fondations de programmation et pensée informatique |
+| **2** | Construction d’un logiciel maintenable |
+| **3** | Systèmes internes |
+| **4** | Réseau, systèmes distribués et architecture |
+| **5** | Sécurité, livraison et exploitation |
+| **6** | Data Engineering, Mathématiques, Machine Learning et IA |
+| **7** | Plateformes, produit et leadership technique |
+| **8** | Portée Principal et Distinguished |
+
+Ces phases donnent la vue d’ensemble de la formation. Elles ne remplacent pas les étapes opérationnelles de la Route 58. Dans la phase 6, l’ordre spécialisé est **Data Engineering → Mathématiques / ML → AI Engineering**.
+
+### Les 9 familles de domaines
+
+| Repère | Famille | Ce qui se construit |
+| --- | --- | --- |
+| `00` | Fondations | Pensée informatique, programmation, logique, environnement et bases mathématiques. |
+| `01` | Software Engineering | Code maintenable, modularité, tests, contrats et évolution sûre. |
+| `02` | Backend & Databases | API, données, SQL, transactions, persistance et cohérence. |
+| `03` | Architecture & System Design | Frontières, contrats, arbitrages, résilience et systèmes distribués. |
+| `04` | Cloud / DevOps / Infrastructure | Linux, livraison, cloud, automatisation, observabilité et SRE. |
+| `05` | Data Engineering & Big Data | Pipelines, qualité, stockage, orchestration et données à l’échelle. |
+| `06` | Mathématiques / Data Science / ML | Statistiques, probabilités, algèbre linéaire, modélisation et évaluation. |
+| `07` | AI Engineering | Intégration, évaluation, sécurité et exploitation des systèmes IA. |
+| `08` | Technical Leadership & Advanced Architecture | Décisions transverses, plateformes, adoption et influence durable. |
+
+Cette carte décrit un ordre macro, pas une règle « tout maîtriser à 100 % avant de continuer ». Les prérequis et gates de l’activité dans la Route 58 restent prioritaires. Sécurité, qualité, tests, observabilité et exploitation se construisent de manière transversale.
+
+### Les 8 piliers
+
+Les piliers sont les axes de traçabilité de la matrice 81. Ils montrent quelles dimensions une preuve peut couvrir ; ils ne constituent pas huit cours à ouvrir dès le début.
+
+| Pilier | Dimension |
+| --- | --- |
+| **1. Software Engineering** | Qualité du code, modularité, tests et évolution maîtrisée. |
+| **2. Backend & Database Systems** | Services, API, données et persistance. |
+| **3. Software Architecture & System Design** | Frontières, interactions, choix d’architecture et compromis. |
+| **4. Cloud / DevOps / Infrastructure** | Livraison, automatisation, infrastructure et exploitation. |
+| **5. AI Engineering** | Intégration, évaluation, sécurité et gouvernance des systèmes IA. |
+| **6. Data Engineering & Big Data** | Pipelines, qualité, traçabilité et traitement des données. |
+| **7. ML / Data Science / Maths** | Fondations quantitatives, modèles et évaluation. |
+| **8. Technical Leadership & Advanced Architecture** | Arbitrage, influence, mentorat et décisions à portée transverse. |
+
+### Les 10 noyaux non négociables
+
+Le document 40 décrit des capacités à construire sur la durée. Ce n’est **pas** une checklist de débutant ni dix technologies à apprendre en parallèle.
+
+| Noyau | Capacité durable visée |
+| --- | --- |
+| **N1 — Software engineering fondamental** | Programmer, modéliser, tester, déboguer, mesurer et faire évoluer du code. |
+| **N2 — Systèmes et informatique sous-jacente** | Comprendre processus, mémoire, entrées-sorties, réseau, stockage, concurrence et pannes. |
+| **N3 — Architecture et conception** | Partir des contraintes, définir les frontières, comparer les options et défendre les compromis. |
+| **N4 — Fiabilité, sécurité et exploitation** | Prévenir, détecter, limiter et récupérer les défaillances tout en protégeant le système. |
+| **N5 — Données, performance et économie** | Relier modèles de données, charge, performance, coûts et décisions produit. |
+| **N6 — Intelligence artificielle : littératie mathématique et systèmes** | Comprendre assez les maths, le ML et les LLM pour architecturer, évaluer ou refuser une solution IA. |
+| **N7 — Produit, communication et influence** | Clarifier les besoins et rendre les décisions compréhensibles, négociables et utiles. |
+| **N8 — Jugement Staff** | Décider avec des informations incomplètes, mesurer, réviser et assumer les conséquences. |
+| **N9 — Transfert** | Réutiliser un mécanisme dans un autre contexte en identifiant ce qui reste vrai et ce qui doit changer. |
+| **N10 — Principal : stratégie et portée temporelle** | Construire une vision durable, réduire les risques systémiques et rendre les autres capables de décider. |
+
+### Les 8 verbes de la carte mentale
+
+```mermaid
+flowchart TD
+    A["COMPRENDRE"] --> B["CONSTRUIRE"]
+    B --> C["CASSER"]
+    C --> D["RÉPARER"]
+    D --> E["CONCEVOIR"]
+    E --> F["EXPLOITER"]
+    F --> G["ARBITRER"]
+    G --> H["DIRIGER"]
+```
+
+Ces verbes décrivent une manière de penser et d’agir, pas huit matières à terminer une par une. Selon la situation, tu peux revenir à une étape précédente : un incident peut obliger à comprendre de nouveau, réparer peut révéler un défaut de conception, et exploiter peut fournir les mesures qui changent un arbitrage.
+
+### Les 7 règles du jeu
+
+1. **Tu progresses par preuve :** lire donne une idée ; produire et expliquer démontrent une capacité.
+2. **Le Boss compte plus que le compteur de pages :** la validation repose sur une production sous contrainte, pas sur le volume lu.
+3. **Le fil rouge revient partout :** un même problème évolue avec tes compétences.
+4. **Les rétrospectives ferment les niveaux :** tu consignes acquis, fragilités, erreurs utiles et preuves.
+5. **Le Mode Survie est une vue accélérée :** il ne remplace pas le parcours canonique et ne transforme pas une lecture en maîtrise.
+6. **Tu peux revenir en arrière :** une lacune repérée appelle une remédiation ciblée, pas une progression en faisant semblant.
+7. **Les décisions ont des conséquences :** explique problème, contraintes, options, décision et conséquences.
+
+### Les paliers de capacité A à H
+
+| Palier | Capacité attendue |
+| --- | --- |
+| **A** | Fondations : expliquer et déboguer un petit programme, traiter les cas limites. |
+| **B** | Ingénierie autonome : concevoir et livrer une petite application maintenable. |
+| **C** | Système logiciel robuste : diagnostiquer des défaillances et justifier des mesures. |
+| **D** | Livraison et exploitation : déployer, observer, restaurer et traiter des incidents. |
+| **E** | Architecture et systèmes distribués : choisir et éprouver des architectures sous contraintes. |
+| **F** | IA et systèmes de données : évaluer données, modèles, sécurité, coût et limites. |
+| **G** | Leadership transverse (Staff / Principal) : aligner des équipes et réduire les risques systémiques. |
+| **H** | Portée Distinguished-level : démontrer un impact durable et transverse dans des contextes réels. |
+
+Un palier n’est ni un diplôme automatique, ni une durée. L’entrée et la sortie dépendent des prérequis et de preuves reproductibles. Les paliers G et H supposent progressivement du travail en équipe et sur des systèmes vivants.
+
+### Les preuves S et les gates G : des repères avancés
+
+Les familles de preuves Staff sont : **S1** Systèmes, backend et cloud ; **S2** Architecture logicielle ; **S3** Sécurité et fiabilité ; **S4** Produit et business ; **S5** Leadership et pédagogie ; **S6** Livraison et exploitation. **S7** est une pièce supplémentaire de pensée transférable : elle vérifie qu’un mécanisme peut être adapté ailleurs. Ce n’est pas une septième famille S équivalente aux six premières.
+
+Les neuf gates transversaux vérifient : **G1** problème ambigu ; **G2** décision d’architecture ; **G3** fiabilité ; **G4** sécurité ; **G5** économie ; **G6** incident ; **G7** influence ; **G8** IA / automatisation ; **G9** transfert. Un gate est un contrôle, pas un chapitre ni un document qui se valide par sa seule présence.
+
+Ces repères Staff sont à consulter lorsque la Route 58 et les prérequis t’y conduisent. Ils ne sont pas des prérequis à la première leçon de JavaScript.
+
+</details>
+
 ## Lire les fichiers Markdown
 
 Ouvre les fichiers `.md` en **aperçu Markdown** plutôt qu'en vue du texte source. Certaines ressources commencent par un bloc de métadonnées YAML encadré par `---` ; d'autres contiennent des commentaires HTML (`<!-- ... -->`). Ces éléments décrivent la ressource ou balisent la structure du dossier : ils ne font pas partie de la leçon à lire. Pour masquer aussi le bloc YAML initial, l'aperçu doit prendre en charge le _YAML Front Matter_ ; les commentaires HTML sont destinés à rester cachés dans le rendu. Si ton lecteur affiche le YAML, utilise un aperçu compatible ou ignore uniquement ce bloc placé au début du fichier. **Ne supprime ni ne modifie ces métadonnées et commentaires** : ils peuvent porter des informations de stabilité, de progression, de provenance ou délimiter des sections utilisées par les index.
@@ -50,7 +201,7 @@ Lorsqu'un dossier et un fichier voisin partagent le même numéro (`04-.../` et 
 
 ## Le produit fil rouge et le style des leçons
 
-Le parcours utilise **[Kintana](06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md)** comme cas d’étude pédagogique fictif commun (un projet fictif commun utilisé dans AF pour illustrer les leçons et pratiquer (ex. : une plateforme de réservation).). Il ne remplace pas le fil rouge personnel (ton propre projet personnel que tu développes progressivement tout au long de la formation), qui est choisi et qualifié après le Cadrage. Chaque notion contribue à comprendre un système cohérent, plutôt qu'à une collection d'applications jetables. Les principes de pratique, de preuve et de transfert sont présentés dans le [protocole de leçon approfondie](06-ANNEXES-TRANSVERSES/26-PROTOCOLE-LECON-PROFONDE.md).
+Le parcours utilise **[Kintana](06-ANNEXES-TRANSVERSES/77-FIL-ROUGE-KINTANA/README.md)** comme cas d’étude pédagogique fictif commun pour illustrer les leçons et pratiquer. Il ne remplace pas ton fil rouge personnel, choisi et qualifié après le Cadrage, que tu feras évoluer au fil de la formation. Chaque notion contribue à comprendre un système cohérent, plutôt qu'à une collection d'applications jetables. Les principes de pratique, de preuve et de transfert sont présentés dans le [protocole de leçon approfondie](06-ANNEXES-TRANSVERSES/26-PROTOCOLE-LECON-PROFONDE.md).
 
 ## Préparer ton environnement
 
@@ -94,7 +245,7 @@ Tu peux les ouvrir avec Excel ou LibreOffice Calc. Si toutes les données appara
 Garde cette distinction en tête : **la Route 58 donne l’ordre d’apprentissage ; les matrices CSV donnent des informations structurées sur les compétences, les ressources et les profils métiers.** Elles t’aident à te repérer, mais elles ne remplacent ni la route ni les consignes du README local.
 
 <details>
-<summary><strong>1. MATRICE-COMPETENCES.csv : Quelles compétences AF cherche-t-il à développer ?</strong></summary>
+<summary><strong>1. MATRICE-COMPETENCES.csv — Quelles compétences AF cherche-t-il à développer ?</strong></summary>
 
 Cette matrice principale contient **56 compétences** dans cette version du dépôt. Chaque ligne décrit une capacité à développer et la manière de vérifier qu’elle est acquise.
 
@@ -109,7 +260,7 @@ Cette matrice principale contient **56 compétences** dans cette version du dép
 | `canonical_resource` | Chemin vers la ressource principale officielle pour travailler cette compétence. |
 | `prerequisite_ids` | Codes des compétences à connaître avant celle-ci, lorsqu’un prérequis est renseigné. |
 
-**Exemple : `FND-02` : Git et traçabilité.** La ligne indique le domaine `Fondations`, le palier `A`, un résultat attendu (créer une branche, isoler un changement, relire un `diff` et revenir à un état sûr), une preuve (exercice encadré et récupération), la ressource principale `00-SOCLE/01-GETTING-STARTED/05-git_101.md` et le prérequis `FND-01` (Shell, fichiers, environnement).
+**Exemple : `FND-02` — Git et traçabilité.** La ligne indique le domaine `Fondations`, le palier `A`, un résultat attendu (créer une branche, isoler un changement, relire un `diff` et revenir à un état sûr), une preuve (exercice encadré et récupération), la ressource principale `00-SOCLE/01-GETTING-STARTED/05-git_101.md` et le prérequis `FND-01` (Shell, fichiers, environnement).
 
 Un `diff` est simplement une comparaison qui montre ce qui a changé entre deux versions. Un identifiant comme `FND-02` est une étiquette stable : il permet de relier la même compétence dans plusieurs tableaux sans recopier son nom partout.
 
@@ -118,7 +269,7 @@ Une cellule `prerequisite_ids` vide signifie qu’aucun identifiant de prérequi
 </details>
 
 <details>
-<summary><strong>2. MATRICE-COMPETENCES-RESSOURCES.csv : Où trouver les ressources liées à une compétence ?</strong></summary>
+<summary><strong>2. MATRICE-COMPETENCES-RESSOURCES.csv — Où trouver les ressources liées à une compétence ?</strong></summary>
 
 Cette matrice contient **59 associations compétence–ressource**. Elle complète la matrice principale : une compétence peut avoir une ressource principale et plusieurs ressources complémentaires. C’est pourquoi elle peut avoir davantage de lignes que la matrice des compétences.
 
@@ -136,7 +287,7 @@ Tu n’as pas à ouvrir toutes les ressources complémentaires dès que tu vois 
 </details>
 
 <details>
-<summary><strong>3. MATRICE-METIERS-COMPETENCES.csv : Comment les compétences se relient-elles aux métiers ?</strong></summary>
+<summary><strong>3. MATRICE-METIERS-COMPETENCES.csv — Comment les compétences se relient-elles aux métiers ?</strong></summary>
 
 Cette matrice contient **336 associations entre six profils professionnels et les 56 compétences**. Elle ne crée pas de nouvelles compétences : elle indique comment les compétences déjà présentes dans la matrice principale se rapportent à différents profils.
 
@@ -200,7 +351,7 @@ Pour approfondir le fonctionnement des matrices, consulte le [mode d’emploi de
 05 MAÎTRISE (Penser et agir comme un architecte)
 ```
 
-Ce schéma montre les **six blocs physiques du dépôt** (`00` à `05`) : c'est l'organisation des dossiers, pas la liste complète des étapes pédagogiques. Les étapes de progression, l'ordre exact des ressources, les gates (un point de contrôle à réussir avant de passer à l'étape suivante (ex. : réaliser un mini-projet qui prouve que tu sais utiliser les variables JavaScript)) et les remédiations (un parcours de correction pour combler tes lacunes si tu échoues à un gate (ex. : revoir les variables, refaire des exercices, puis retenter le contrôle).) sont décrits dans la [Route 58](06-ANNEXES-TRANSVERSES/58-ROUTE-APPRENANT-COHERENTE.md), qui fait foi pour savoir quoi étudier ensuite. Une étape de cette route peut traverser plusieurs blocs physiques ; les deux cartes ne correspondent donc pas une à une.
+Ce schéma montre les **six blocs physiques du dépôt** (`00` à `05`) : c'est l'organisation des dossiers, pas la liste complète des étapes pédagogiques. Les étapes de progression, l'ordre exact des ressources, les **gates** (points de contrôle à réussir) et les **remédiations** (travail ciblé pour corriger une lacune avant de retenter) sont décrits dans la [Route 58](06-ANNEXES-TRANSVERSES/58-ROUTE-APPRENANT-COHERENTE.md), qui fait foi pour savoir quoi étudier ensuite. Une étape de cette route peut traverser plusieurs blocs physiques ; les deux cartes ne correspondent donc pas une à une.
 
 Le bloc `00-SOCLE` comprend six modules principaux et une passerelle Python conditionnelle, à suivre uniquement avant une activité qui demande réellement Python et si les prérequis ne sont pas déjà maîtrisés. Elle n’est pas requise pour la route JavaScript de base. Les numéros des blocs indiquent une direction, pas une obligation de lire chaque fichier. La route canonique utilise les leçons, les mini-projets, les challenges et les ateliers intégrateurs déjà présents. Le CORE de 16 semaines / 192 heures est un parcours facultatif d’orientation ou d’accélération ; il ne représente pas toute la formation et ne garantit aucun niveau professionnel dans un délai donné.
 
@@ -230,7 +381,7 @@ La complétude documentaire ne remplace pas une validation par un spécialiste i
 
 > **Spécialisations et frontières :** [82 : Cartographie DEPTH, MLOps et applicabilité juridique](06-ANNEXES-TRANSVERSES/82-CARTOGRAPHIE-DEPTH-ET-APPLICABILITE.md).
 
-Le cap (où tu veux aller) de long terme est de développer le jugement d’un ingénieur capable de concevoir et de faire évoluer des systèmes complexes, fiables, sûrs et soutenables. Les rôles Staff Engineer, Principal Engineer, Software Systems Architect ou Distinguished Engineer décrivent des périmètres qui varient selon les organisations ; ils ne sont ni des titres délivrés par ce curriculum, ni des résultats automatiques de sa complétion (ce que tu as terminé).
+Le cap de long terme est de développer le jugement d’un ingénieur capable de concevoir et de faire évoluer des systèmes complexes, fiables, sûrs et soutenables. Les rôles Staff Engineer, Principal Engineer, Software Systems Architect ou Distinguished Engineer décrivent des périmètres qui varient selon les organisations ; ils ne sont ni des titres délivrés par ce curriculum, ni des résultats automatiques de sa complétion.
 
 Le [noyau dur technique à l’horizon 2035+](06-ANNEXES-TRANSVERSES/40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md) et le [portefeuille avancé de systèmes](05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/README.md) servent à approfondir ce cap lorsque les prérequis sont acquis. Avant de lancer un de ses dix projets, suis le [parcours de préparation avec les leçons exactes et les gates d’entrée](05-MAITRISE/09-PORTFOLIO-SYSTEMES-2035/00-PARCOURS-PREPARATION.md).
 
