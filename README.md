@@ -128,16 +128,16 @@ Le document 40 décrit des capacités à construire sur la durée. Ce n’est **
 
 | Noyau | Capacité durable visée |
 | --- | --- |
-| **N1 — Software engineering fondamental** | Programmer, modéliser, tester, déboguer (chercher la cause d'un défaut), mesurer et faire évoluer du code. |
-| **N2 — Systèmes et informatique sous-jacente** | Comprendre processus, mémoire, entrées-sorties (`I/O` : échanges entre le programme et l'extérieur), réseau, stockage, concurrence (plusieurs opérations qui se chevauchent) et pannes. |
-| **N3 — Architecture et conception** | Partir des contraintes, définir les frontières, comparer les options et défendre les compromis (ce qu'on gagne et ce qu'on accepte de perdre). |
-| **N4 — Fiabilité, sécurité et exploitation** | Prévenir, détecter, limiter et récupérer les défaillances tout en protégeant le système. |
-| **N5 — Données, performance et économie** | Relier modèles de données, charge (quantité de travail reçue), performance, coûts et décisions produit. |
-| **N6 — Intelligence artificielle : littératie mathématique et systèmes** | Comprendre les maths, le ML (apprentissage automatique) et les LLM (grands modèles de langage) assez bien pour architecturer, évaluer, sécuriser ou refuser une solution IA. |
-| **N7 — Produit, communication et influence** | Clarifier les besoins et rendre les décisions compréhensibles, négociables et utiles. |
-| **N8 — Jugement Staff** | Décider avec des informations incomplètes, mesurer, réviser et assumer les conséquences. |
-| **N9 — Transfert** | Réutiliser un mécanisme dans un autre contexte en identifiant les invariants (ce qui doit rester vrai) et ce qui doit changer. |
-| **N10 — Principal : stratégie et portée temporelle** | Construire une vision durable, réduire les risques systémiques et rendre les autres capables de décider. |
+| **N1 : Software engineering fondamental** | Programmer, modéliser, tester, déboguer (chercher la cause d'un défaut), mesurer et faire évoluer du code. |
+| **N2 : Systèmes et informatique sous-jacente** | Comprendre processus, mémoire, entrées-sorties (`I/O` : échanges entre le programme et l'extérieur), réseau, stockage, concurrence (plusieurs opérations qui se chevauchent) et pannes. |
+| **N3 : Architecture et conception** | Partir des contraintes, définir les frontières, comparer les options et défendre les compromis (ce qu'on gagne et ce qu'on accepte de perdre). |
+| **N4 : Fiabilité, sécurité et exploitation** | Prévenir, détecter, limiter et récupérer les défaillances tout en protégeant le système. |
+| **N5 : Données, performance et économie** | Relier modèles de données, charge (quantité de travail reçue), performance, coûts et décisions produit. |
+| **N6 : Intelligence artificielle : littératie mathématique et systèmes** | Comprendre les maths, le ML (apprentissage automatique) et les LLM (grands modèles de langage) assez bien pour architecturer, évaluer, sécuriser ou refuser une solution IA. |
+| **N7 : Produit, communication et influence** | Clarifier les besoins et rendre les décisions compréhensibles, négociables et utiles. |
+| **N8 : Jugement Staff** | Décider avec des informations incomplètes, mesurer, réviser et assumer les conséquences. |
+| **N9 : Transfert** | Réutiliser un mécanisme dans un autre contexte en identifiant les invariants (ce qui doit rester vrai) et ce qui doit changer. |
+| **N10 : Principal : stratégie et portée temporelle** | Construire une vision durable, réduire les risques systémiques et rendre les autres capables de décider. |
 
 ### Les 8 verbes de la carte mentale
 
@@ -261,7 +261,7 @@ Tu peux les ouvrir avec Excel ou LibreOffice Calc. Si toutes les données appara
 Garde cette distinction en tête : **la Route 58 donne l’ordre d’apprentissage ; les matrices CSV donnent des informations structurées sur les compétences, les ressources et les profils métiers.** Elles t’aident à te repérer, mais elles ne remplacent ni la route ni les consignes du README local.
 
 <details>
-<summary><strong>1. MATRICE-COMPETENCES.csv — Quelles compétences AF cherche-t-il à développer ?</strong></summary>
+<summary><strong>1. MATRICE-COMPETENCES.csv : Quelles compétences AF cherche-t-il à développer ?</strong></summary>
 
 Cette matrice principale contient **56 compétences** dans cette version du dépôt. Le nombre sert à décrire le référentiel, pas à te donner 56 devoirs à ouvrir aujourd'hui. Chaque ligne décrit une capacité à développer et la manière de vérifier qu’elle est acquise.
 
@@ -276,7 +276,7 @@ Cette matrice principale contient **56 compétences** dans cette version du dép
 | `canonical_resource` | Chemin vers la ressource principale officielle pour travailler cette compétence. |
 | `prerequisite_ids` | Codes des compétences à connaître avant celle-ci ; ce sont les prérequis (les bases nécessaires pour comprendre la suite). |
 
-**Exemple : `FND-02` — Git et traçabilité.** La ligne indique le domaine `Fondations`, le palier `A`, un résultat attendu (créer une branche, isoler un changement, relire un `diff` et revenir à un état sûr), une preuve (exercice encadré et récupération), la ressource principale `00-SOCLE/01-GETTING-STARTED/05-git_101.md` et le prérequis `FND-01` (Shell, fichiers, environnement).
+**Exemple : `FND-02` : Git et traçabilité.** La ligne indique le domaine `Fondations`, le palier `A`, un résultat attendu (créer une branche, isoler un changement, relire un `diff` et revenir à un état sûr), une preuve (exercice encadré et récupération), la ressource principale `00-SOCLE/01-GETTING-STARTED/05-git_101.md` et le prérequis `FND-01` (Shell, fichiers, environnement).
 
 Un `diff` est simplement une comparaison qui montre ce qui a changé entre deux versions. Un identifiant comme `FND-02` est une étiquette stable : il permet de relier la même compétence dans plusieurs tableaux sans recopier son nom partout.
 
@@ -285,7 +285,7 @@ Une cellule `prerequisite_ids` vide signifie qu’aucun identifiant de prérequi
 </details>
 
 <details>
-<summary><strong>2. MATRICE-COMPETENCES-RESSOURCES.csv — Où trouver les ressources liées à une compétence ?</strong></summary>
+<summary><strong>2. MATRICE-COMPETENCES-RESSOURCES.csv : Où trouver les ressources liées à une compétence ?</strong></summary>
 
 Cette matrice contient **59 associations compétence–ressource**. Elle complète la matrice principale : une compétence peut avoir une ressource principale et plusieurs ressources complémentaires. C’est pourquoi elle peut avoir davantage de lignes que la matrice des compétences.
 
@@ -296,14 +296,14 @@ Cette matrice contient **59 associations compétence–ressource**. Elle complè
 | `resource_role` | Rôle de la ressource : `primary` (principale) ou `supporting` (complémentaire). |
 | `resource_path` | Chemin du fichier à ouvrir depuis la racine du dépôt. |
 
-**Exemple : `NET-01`.** La compétence réseau possède une ressource `primary` (principale) sur les fondations DNS/TCP/TLS — DNS (associer un nom de domaine à une adresse), TCP (transport fiable des données) et TLS (chiffrement de la connexion) — puis des ressources `supporting` (complémentaires) sur HTTP (protocole du Web), REST (style de conception d'API), le debugging (diagnostic d'un défaut) et le distributed tracing (suivi d'une requête à travers plusieurs services). Le tableau conserve leur ordre et leur rôle au lieu de cacher plusieurs chemins dans une seule cellule.
+**Exemple : `NET-01`.** La compétence réseau possède une ressource `primary` (principale) sur les fondations DNS/TCP/TLS : DNS (associer un nom de domaine à une adresse), TCP (transport fiable des données) et TLS (chiffrement de la connexion) : puis des ressources `supporting` (complémentaires) sur HTTP (protocole du Web), REST (style de conception d'API), le debugging (diagnostic d'un défaut) et le distributed tracing (suivi d'une requête à travers plusieurs services). Le tableau conserve leur ordre et leur rôle au lieu de cacher plusieurs chemins dans une seule cellule.
 
 Tu n’as pas à ouvrir toutes les ressources complémentaires dès que tu vois une compétence. Consulte d’abord la Route 58 et la ressource principale ; utilise les compléments lorsque la route, une leçon ou une difficulté les rend utiles.
 
 </details>
 
 <details>
-<summary><strong>3. MATRICE-METIERS-COMPETENCES.csv — Comment les compétences se relient-elles aux métiers ?</strong></summary>
+<summary><strong>3. MATRICE-METIERS-COMPETENCES.csv : Comment les compétences se relient-elles aux métiers ?</strong></summary>
 
 Cette matrice contient **336 associations entre six profils professionnels et les 56 compétences**. Elle ne crée pas de nouvelles compétences : elle indique comment les compétences déjà présentes dans la matrice principale se rapportent à différents profils.
 
@@ -433,7 +433,7 @@ Cette édition est une adaptation du curriculum ARCHITECTE-FANTOME destinée aux
 - [Validation externe](04-EPREUVE/08-EXTERNAL-VALIDATION/README.md) : périmètre et modalités de revue par un tiers.
 - [05 : Maîtrise](05-MAITRISE/README.md) : approfondissements et portefeuille avancé.
 - [Annexes transverses](06-ANNEXES-TRANSVERSES/README.md) : index des ressources complémentaires.
-## GOD OBJECTIF — Le cap absolu d’ARCHITECTE-FANTOME
+## GOD OBJECTIF : Le cap absolu d’ARCHITECTE-FANTOME
 
 > **Tu ne fais pas AF pour finir une pile de cours. Tu le fais pour devenir un ingénieur capable de prendre la responsabilité technique de systèmes complexes : les comprendre, les construire, les sécuriser, les faire fonctionner, les faire évoluer et défendre les décisions qui les engagent.**
 
@@ -447,10 +447,10 @@ Le diagramme rassemble les quatre cartes qui définissent le cap d’AF. Elles s
 flowchart TB
   subgraph MAPS["LES QUATRE CARTES DU CAP AF"]
     direction TB
-    F["9 FAMILLES — L'ORDRE MACRO DES DOMAINES<br/>00 Fondations → 01 Software Engineering → 02 Backend & Databases<br/>03 Architecture & System Design → 04 Cloud / DevOps / Infrastructure<br/>05 Data Engineering & Big Data → 06 Mathématiques / Data Science / ML<br/>07 AI Engineering → 08 Technical Leadership & Advanced Architecture"]
-    P["8 PILIERS — LES GRANDES DIMENSIONS D'INGÉNIERIE<br/>1 Software Engineering · 2 Backend & Database Systems<br/>3 Software Architecture & System Design · 4 Cloud / DevOps / Infrastructure<br/>5 AI Engineering · 6 Data Engineering & Big Data<br/>7 ML / Data Science / Maths · 8 Technical Leadership & Advanced Architecture"]
-    N["10 NOYAUX — LES CAPACITÉS À CONSTRUIRE DURABLEMENT<br/>N1 Software engineering fondamental · N2 Systèmes sous-jacents<br/>N3 Architecture et conception · N4 Fiabilité, sécurité et exploitation<br/>N5 Données, performance et économie · N6 Intelligence artificielle<br/>N7 Produit, communication et influence · N8 Jugement Staff<br/>N9 Transfert · N10 Stratégie et portée Principal"]
-    V["8 VERBES — LA FAÇON DE RAISONNER ET D'AGIR<br/>COMPRENDRE → CONSTRUIRE → CASSER → RÉPARER<br/>→ CONCEVOIR → EXPLOITER → ARBITRER → DIRIGER"]
+    F["9 FAMILLES : L'ORDRE MACRO DES DOMAINES<br/>00 Fondations → 01 Software Engineering → 02 Backend & Databases<br/>03 Architecture & System Design → 04 Cloud / DevOps / Infrastructure<br/>05 Data Engineering & Big Data → 06 Mathématiques / Data Science / ML<br/>07 AI Engineering → 08 Technical Leadership & Advanced Architecture"]
+    P["8 PILIERS : LES GRANDES DIMENSIONS D'INGÉNIERIE<br/>1 Software Engineering · 2 Backend & Database Systems<br/>3 Software Architecture & System Design · 4 Cloud / DevOps / Infrastructure<br/>5 AI Engineering · 6 Data Engineering & Big Data<br/>7 ML / Data Science / Maths · 8 Technical Leadership & Advanced Architecture"]
+    N["10 NOYAUX : LES CAPACITÉS À CONSTRUIRE DURABLEMENT<br/>N1 Software engineering fondamental · N2 Systèmes sous-jacents<br/>N3 Architecture et conception · N4 Fiabilité, sécurité et exploitation<br/>N5 Données, performance et économie · N6 Intelligence artificielle<br/>N7 Produit, communication et influence · N8 Jugement Staff<br/>N9 Transfert · N10 Stratégie et portée Principal"]
+    V["8 VERBES : LA FAÇON DE RAISONNER ET D'AGIR<br/>COMPRENDRE → CONSTRUIRE → CASSER → RÉPARER<br/>→ CONCEVOIR → EXPLOITER → ARBITRER → DIRIGER"]
   end
 
   F --> CAP["CAPACITÉ INTÉGRÉE<br/>Concevoir, construire, vérifier, sécuriser, livrer, exploiter<br/>et faire évoluer des systèmes logiciels complexes,<br/>avec ou sans brique IA, sous contraintes réelles."]
@@ -458,13 +458,13 @@ flowchart TB
   N --> CAP
   V --> CAP
 
-  CAP --> PROOF["PREUVES — PAS DES IMPRESSIONS<br/>Systèmes qui fonctionnent · tests et mesures reproductibles<br/>décisions d'architecture justifiées · sécurité et récupération éprouvées<br/>coûts et limites explicités · transfert vérifié · revue indépendante"]
+  CAP --> PROOF["PREUVES : PAS DES IMPRESSIONS<br/>Systèmes qui fonctionnent · tests et mesures reproductibles<br/>décisions d'architecture justifiées · sécurité et récupération éprouvées<br/>coûts et limites explicités · transfert vérifié · revue indépendante"]
   PROOF --> IMPACT["IMPACT DURABLE<br/>Réduire les risques · améliorer la fiabilité et la performance<br/>faire évoluer plusieurs systèmes · aider d'autres ingénieurs à décider<br/>produire des résultats mesurables dans la durée"]
 
   IMPACT --> H0["1 · PROCHAINE EMPLOYABILITÉ<br/>Software Engineer / Backend Engineer / Full-Stack Engineer<br/>selon les postes, le marché et les preuves disponibles"]
   H0 --> H1["2 · PREMIER GRAND JALON<br/>Staff Engineer ou rôle équivalent<br/>impact au-delà d'une équipe, sans management hiérarchique obligatoire"]
   H1 --> H2["3 · CAP STRATÉGIQUE<br/>Principal Engineer / Software Systems Architect<br/>portée multi-systèmes, architecture, fiabilité, sécurité et IA intégrée"]
-  H2 --> H3["4 · ÉTOILE DU NORD — NON GARANTIE<br/>Distinguished Engineer / Fellow-equivalent<br/>impact technique exceptionnel à l'échelle d'une organisation,<br/>parfois de l'industrie"]
+  H2 --> H3["4 · ÉTOILE DU NORD : NON GARANTIE<br/>Distinguished Engineer / Fellow-equivalent<br/>impact technique exceptionnel à l'échelle d'une organisation,<br/>parfois de l'industrie"]
 
   H3 --> DEST["AMBITION DESCRIPTIVE MAXIMALE D'AF<br/>Distinguished-level Individual Contributor<br/>Software & Systems Architecture, including AI-enabled systems"]
 
@@ -491,28 +491,28 @@ flowchart TB
 
 **Comment lire cette carte :** les flèches entre les quatre cartes et la capacité intégrée signifient qu'elles contribuent ensemble au même objectif. Elles ne disent pas qu'il faut finir un pilier entier avant d'en toucher un autre. L'ordre réel de ton travail reste celui de la [Route 58](06-ANNEXES-TRANSVERSES/58-ROUTE-APPRENANT-COHERENTE.md), avec les prérequis et les gates de chaque activité.
 
-### 1. Les 10 noyaux non négociables — ce que tu dois réellement savoir faire
+### 1. Les 10 noyaux non négociables : ce que tu dois réellement savoir faire
 
-Le document [40 — Noyau dur technique](06-ANNEXES-TRANSVERSES/40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md) décrit ces capacités comme le socle durable du cap Staff → Principal → Distinguished-equivalent. Ce ne sont pas dix cours ni dix technologies à apprendre simultanément.
+Le document [40 : Noyau dur technique](06-ANNEXES-TRANSVERSES/40-NOYAU-DUR-STAFF-PRINCIPAL-2035.md) décrit ces capacités comme le socle durable du cap Staff → Principal → Distinguished-equivalent. Ce ne sont pas dix cours ni dix technologies à apprendre simultanément.
 
 | Noyau | Capacité durable attendue |
 | --- | --- |
-| **N1 — Software engineering fondamental** | Programmer, modéliser, tester, déboguer, structurer et faire évoluer du code sans dépendre d'une recette. |
-| **N2 — Systèmes et informatique sous-jacente** | Comprendre processus, mémoire, I/O (entrées-sorties), réseau, stockage, concurrence (opérations qui se chevauchent), cache (copie temporaire rapide), files (mécanismes d'attente), réplication (copies maintenues entre systèmes) et pannes partielles (une partie tombe pendant que le reste continue). |
-| **N3 — Architecture et conception** | Partir des contraintes, définir les frontières, comparer les options, expliciter les compromis et préparer l'évolution d'un système. |
-| **N4 — Fiabilité, sécurité et exploitation** | Protéger, observer, détecter, limiter l'impact d'une panne, restaurer et apprendre d'un incident. |
-| **N5 — Données, performance et économie** | Relier modèle de données, charge, performance, saturation, coût d'exploitation et décision produit. |
-| **N6 — Intelligence artificielle : littératie mathématique et systèmes** | Comprendre les bases mathématiques, le ML (apprentissage automatique) et les LLM (grands modèles de langage) assez bien pour architecturer, évaluer, sécuriser ou refuser une solution IA. |
-| **N7 — Produit, communication et influence** | Reformuler un besoin, parler risque/coût/impact, expliquer une décision, négocier et aider d'autres personnes à progresser. |
-| **N8 — Jugement Staff** | Prendre et réviser une décision défendable quand le problème est ambigu et l'information incomplète. |
-| **N9 — Transfert** | Reconnaître les invariants d'un mécanisme, l'adapter à un autre contexte et produire une nouvelle preuve. |
-| **N10 — Principal : stratégie et portée temporelle** | Construire une vision à long terme, arbitrer un portefeuille de systèmes (l'ensemble des systèmes et services dont il faut gérer les priorités), établir des standards utiles et développer d'autres leaders techniques. |
+| **N1 : Software engineering fondamental** | Programmer, modéliser, tester, déboguer, structurer et faire évoluer du code sans dépendre d'une recette. |
+| **N2 : Systèmes et informatique sous-jacente** | Comprendre processus, mémoire, I/O (entrées-sorties), réseau, stockage, concurrence (opérations qui se chevauchent), cache (copie temporaire rapide), files (mécanismes d'attente), réplication (copies maintenues entre systèmes) et pannes partielles (une partie tombe pendant que le reste continue). |
+| **N3 : Architecture et conception** | Partir des contraintes, définir les frontières, comparer les options, expliciter les compromis et préparer l'évolution d'un système. |
+| **N4 : Fiabilité, sécurité et exploitation** | Protéger, observer, détecter, limiter l'impact d'une panne, restaurer et apprendre d'un incident. |
+| **N5 : Données, performance et économie** | Relier modèle de données, charge, performance, saturation, coût d'exploitation et décision produit. |
+| **N6 : Intelligence artificielle : littératie mathématique et systèmes** | Comprendre les bases mathématiques, le ML (apprentissage automatique) et les LLM (grands modèles de langage) assez bien pour architecturer, évaluer, sécuriser ou refuser une solution IA. |
+| **N7 : Produit, communication et influence** | Reformuler un besoin, parler risque/coût/impact, expliquer une décision, négocier et aider d'autres personnes à progresser. |
+| **N8 : Jugement Staff** | Prendre et réviser une décision défendable quand le problème est ambigu et l'information incomplète. |
+| **N9 : Transfert** | Reconnaître les invariants d'un mécanisme, l'adapter à un autre contexte et produire une nouvelle preuve. |
+| **N10 : Principal : stratégie et portée temporelle** | Construire une vision à long terme, arbitrer un portefeuille de systèmes (l'ensemble des systèmes et services dont il faut gérer les priorités), établir des standards utiles et développer d'autres leaders techniques. |
 
 **Le sens de « non négociable » :** aucune spécialisation ne dispense de ces capacités. Ce sont les muscles profonds de l'ingénieur : ils se renforcent sur plusieurs projets et ne s'acquièrent pas en cochant une case. Leur profondeur augmente cependant avec le contexte et le niveau visé ; tu ne dois pas tout maîtriser au niveau Principal avant d'apprendre à programmer.
 
-### 2. Les 8 piliers — les grands territoires de compétence
+### 2. Les 8 piliers : les grands territoires de compétence
 
-La [matrice 81 — Traçabilité des huit piliers](06-ANNEXES-TRANSVERSES/81-MATRICE-TRACEABILITE-STAFF.md) relie ces domaines aux preuves S et aux gates G. Un pilier est une dimension à couvrir dans ton développement, pas une étape chronologique isolée.
+La [matrice 81 : Traçabilité des huit piliers](06-ANNEXES-TRANSVERSES/81-MATRICE-TRACEABILITE-STAFF.md) relie ces domaines aux preuves S et aux gates G. Un pilier est une dimension à couvrir dans ton développement, pas une étape chronologique isolée.
 
 | Pilier | Territoire | Ce que tu dois progressivement être capable de faire |
 | --- | --- | --- |
@@ -525,9 +525,9 @@ La [matrice 81 — Traçabilité des huit piliers](06-ANNEXES-TRANSVERSES/81-MAT
 | **7. ML / Data Science / Maths** | Modélisation quantitative | Raisonner sur données, statistiques, modèles, métriques, incertitude et généralisation. |
 | **8. Technical Leadership & Advanced Architecture** | Portée technique transverse | Faire adopter des décisions, standards et architectures au-delà de son propre code. |
 
-### 3. Les 9 familles — l'ordre macro des domaines à construire
+### 3. Les 9 familles : l'ordre macro des domaines à construire
 
-La [carte 83 — Ordre des neuf familles](06-ANNEXES-TRANSVERSES/83-ORDRE-DOMAINES-APPRENTISSAGE.md) donne la progression de référence des grands domaines. Cette séquence sert à comprendre les dépendances ; elle ne signifie pas « maîtriser 100 % d'une famille avant de toucher à la suivante ».
+La [carte 83 : Ordre des neuf familles](06-ANNEXES-TRANSVERSES/83-ORDRE-DOMAINES-APPRENTISSAGE.md) donne la progression de référence des grands domaines. Cette séquence sert à comprendre les dépendances ; elle ne signifie pas « maîtriser 100 % d'une famille avant de toucher à la suivante ».
 
 | Ordre | Famille | Construction principale |
 | --- | --- | --- |
@@ -543,7 +543,7 @@ La [carte 83 — Ordre des neuf familles](06-ANNEXES-TRANSVERSES/83-ORDRE-DOMAIN
 
 **Dépendance à ne pas inverser :** dans la phase spécialisée IA, la carte 83 prévoit **Data Engineering → Mathématiques / ML → AI Engineering**. Les mathématiques élémentaires et la pensée quantitative commencent néanmoins dès les Fondations ; l'architecture, la sécurité, les tests et l'exploitation se renforcent de manière transversale.
 
-### 4. Les 8 verbes — ta façon d'agir face à n'importe quel système
+### 4. Les 8 verbes : ta façon d'agir face à n'importe quel système
 
 La [carte mentale du Prologue](00-SOCLE/02-PROLOGUE/03-the-map.md) décrit une progression de raisonnement. Ces verbes ne sont pas des matières scolaires : ce sont les gestes intellectuels que tu dois apprendre à mobiliser sur un problème réel.
 
@@ -558,7 +558,7 @@ La [carte mentale du Prologue](00-SOCLE/02-PROLOGUE/03-the-map.md) décrit une p
 | **ARBITRER** | Quel compromis est acceptable, et pourquoi ? | Mettre en balance coût, risque, délai, performance, fiabilité et besoin utilisateur. |
 | **DIRIGER** | Comment rendre la décision utile au-delà de moi ? | Communiquer, aligner, transmettre, mentorer et favoriser l'adoption sans dépendance à une seule personne. |
 
-### 5. La destination professionnelle — des jalons, pas un titre promis
+### 5. La destination professionnelle : des jalons, pas un titre promis
 
 La référence 40 distingue volontairement quatre horizons. Ils servent à garder une direction réaliste, sans confondre la prochaine employabilité avec l'ambition maximale.
 
@@ -567,15 +567,15 @@ La référence 40 distingue volontairement quatre horizons. Ils servent à garde
 | **Prochaine employabilité** | Software Engineer / Backend Engineer / Full-Stack Engineer (développement côté interface et côté serveur), selon les postes accessibles | Savoir contribuer à un logiciel de bout en bout, expliquer ses choix et apporter des preuves vérifiables. Le premier intitulé dépend du marché, des opportunités et de ton expérience réelle. |
 | **Premier grand jalon technique** | **Staff Engineer** ou rôle équivalent | Avoir un impact au-delà d'une équipe, prendre des décisions robustes, réduire les risques systémiques et influencer sans management hiérarchique obligatoire. |
 | **Cap stratégique de long terme** | **Principal Engineer / Software Systems Architect** | Porter une vision multi-systèmes, notamment en architecture, systèmes distribués, fiabilité, sécurité et systèmes intégrant l'IA. |
-| **Étoile du Nord — non garantie** | **Distinguished Engineer / Fellow-equivalent** (niveau d'expertise technique très élevé) dans une organisation qui possède ce niveau | Avoir un impact technique exceptionnel à l'échelle de l'entreprise, parfois de l'industrie, corroboré par des résultats durables et une confiance gagnée dans le temps. |
+| **Étoile du Nord : non garantie** | **Distinguished Engineer / Fellow-equivalent** (niveau d'expertise technique très élevé) dans une organisation qui possède ce niveau | Avoir un impact technique exceptionnel à l'échelle de l'entreprise, parfois de l'industrie, corroboré par des résultats durables et une confiance gagnée dans le temps. |
 
 **Formulation descriptive de l'ambition maximale d'AF :**
 
-> **Distinguished-level Individual Contributor — Software & Systems Architecture, including AI-enabled systems.**
+> **Distinguished-level Individual Contributor : Software & Systems Architecture, including AI-enabled systems.**
 >
 > En français : un expert technique individuel de niveau Distinguished (expertise technique reconnue à très grande échelle), spécialisé dans l'architecture des systèmes logiciels, y compris les systèmes intégrant l'IA. _Individual Contributor_ désigne ici une trajectoire d'expertise technique sans obligation de devenir manager hiérarchique.
 
-Ce n'est pas une promesse qu'un intitulé précis comme « Distinguished Architect AI Engineer » sera standard, existera dans toutes les entreprises ou sera accessible dans un délai donné. **AI Engineering est un pilier majeur d'AF, mais l'IA est une compétence intégrée à l'architecture des systèmes, pas une identité de carrière exclusive.** L'objectif est de savoir choisir quand l'IA apporte une valeur réelle, comment l'évaluer et la sécuriser — et aussi quand ne pas l'utiliser. Un bon architecte ne colle pas un modèle IA sur chaque problème pour faire joli : il doit pouvoir défendre le choix avec des mesures, des limites et un vrai besoin.
+Ce n'est pas une promesse qu'un intitulé précis comme « Distinguished Architect AI Engineer » sera standard, existera dans toutes les entreprises ou sera accessible dans un délai donné. **AI Engineering est un pilier majeur d'AF, mais l'IA est une compétence intégrée à l'architecture des systèmes, pas une identité de carrière exclusive.** L'objectif est de savoir choisir quand l'IA apporte une valeur réelle, comment l'évaluer et la sécuriser : et aussi quand ne pas l'utiliser. Un bon architecte ne colle pas un modèle IA sur chaque problème pour faire joli : il doit pouvoir défendre le choix avec des mesures, des limites et un vrai besoin.
 
 ### 6. À quoi ressemblera une preuve de niveau élevé ?
 
@@ -597,7 +597,7 @@ Une simulation locale (un scénario contrôlé sur ta machine) peut prouver un r
 
 ### 7. Ton chronomètre : les preuves, pas une course au calendrier
 
-AF ne fixe pas une durée universelle pour devenir Staff, Principal ou Distinguished. Le CORE de 16 semaines / 192 heures est une orientation facultative, pas un raccourci vers ces niveaux. La progression sérieuse se mesure par ce que tu peux refaire, expliquer, vérifier et transférer — pas par le nombre de jours écoulés. Ton chronomètre n'affiche donc pas « combien de fichiers restent à lire ? », mais « quelle capacité puis-je démontrer aujourd'hui que je ne savais pas démontrer hier ? ».
+AF ne fixe pas une durée universelle pour devenir Staff, Principal ou Distinguished. Le CORE de 16 semaines / 192 heures est une orientation facultative, pas un raccourci vers ces niveaux. La progression sérieuse se mesure par ce que tu peux refaire, expliquer, vérifier et transférer : pas par le nombre de jours écoulés. Ton chronomètre n'affiche donc pas « combien de fichiers restent à lire ? », mais « quelle capacité puis-je démontrer aujourd'hui que je ne savais pas démontrer hier ? ».
 
 Pour chaque étape, ton vrai chronomètre est simple :
 
@@ -610,4 +610,4 @@ Pour chaque étape, ton vrai chronomètre est simple :
 
 La [Route 58](06-ANNEXES-TRANSVERSES/58-ROUTE-APPRENANT-COHERENTE.md) choisit ton prochain pas ; les gates indiquent quand tu peux avancer ou quand une remédiation est nécessaire ; [PROGRESSION.md](PROGRESSION.md) garde la trace de ton avancement. **Ne cours pas après le titre final en sautant les fondations : construis les capacités qui rendraient ce titre crédible.**
 
-**En une phrase :** AF vise à former un ingénieur capable de concevoir et de faire évoluer des systèmes logiciels complexes, fiables, sûrs et économiquement soutenables, d'y intégrer l'IA avec discernement, puis d'influencer durablement la manière dont plusieurs personnes ou équipes les construisent et les exploitent — jusqu'à une portée Principal, avec Distinguished/Fellow comme étoile du Nord non garantie. Le parcours doit rester vivant et exigeant : on peut sourire pendant l'entraînement, mais la preuve finale doit tenir face au réel.
+**En une phrase :** AF vise à former un ingénieur capable de concevoir et de faire évoluer des systèmes logiciels complexes, fiables, sûrs et économiquement soutenables, d'y intégrer l'IA avec discernement, puis d'influencer durablement la manière dont plusieurs personnes ou équipes les construisent et les exploitent : jusqu'à une portée Principal, avec Distinguished/Fellow comme étoile du Nord non garantie. Le parcours doit rester vivant et exigeant : on peut sourire pendant l'entraînement, mais la preuve finale doit tenir face au réel.
