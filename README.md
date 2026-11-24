@@ -556,3 +556,19 @@ Deux distinctions évitent les faux raccourcis : **S7 et G9 se recoupent, mais n
 Ces repères avancés servent à lire la carte du cap ; ils ne sont pas des prérequis à ta première leçon de JavaScript. La prochaine étape reste celle que désigne la Route 58.
 
 **En une phrase :** AF vise à former un ingénieur capable de concevoir et de faire évoluer des systèmes logiciels complexes, fiables, sûrs et économiquement soutenables, d'y intégrer l'IA avec discernement, puis d'influencer durablement la manière dont plusieurs personnes ou équipes les construisent et les exploitent : jusqu'à une portée Principal, avec Distinguished/Fellow comme étoile du Nord non garantie. Le parcours doit rester vivant et exigeant : on peut sourire pendant l’entraînement, mais la preuve doit tenir face au réel.
+
+---
+
+<div align="center">
+
+**Lovasoa RM (Aramis)**
+
+Creator of [ARCHITECTE-FANTOME](https://github.com/lovasoarm/ARCHITECTE-FANTOME)
+
+Software Engineering · Systems Architecture · AI Engineering
+
+*Building from fundamentals. Working toward Distinguished-level engineering.*
+
+Based in Madagascar.
+
+</div>
