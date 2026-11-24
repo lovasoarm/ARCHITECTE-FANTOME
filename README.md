@@ -71,8 +71,6 @@ La **Route 58** est le GPS opérationnel : elle indique le prochain travail, ses
 | **Preuves `S1` à `S6`, plus `S7`** | Six familles de preuves Staff et une pièce supplémentaire consacrée au transfert. | [Dossier de preuves Staff](PREUVES-STAFF-ENGINEER.md) |
 | **Gates `G1` à `G9`** | Neuf contrôles transversaux de préparation Staff ; ce ne sont pas neuf cours. | [Staff Readiness Gate 37](06-ANNEXES-TRANSVERSES/37-STAFF-READINESS-GATE.md) |
 
-> **À ne pas confondre :** la version stable ne définit pas de liste canonique intitulée « les 7 fondamentaux ». Le Prologue contient **7 règles du jeu** ; le document 40 décrit **10 noyaux non négociables**. Les fondations techniques correspondent notamment à la phase 1, au domaine `00` et au palier A. Le slogan sous le logo affiche sept verbes ; la carte mentale du Prologue en compte huit parce qu’elle ajoute **COMPRENDRE**, le point de départ du raisonnement. Enfin, `40`, `58`, `81` et `83` sont des identifiants de documents : ils ne donnent pas le nombre de noyaux, de piliers, de familles ou d’étapes qu’ils décrivent.
-
 <details>
 <summary><strong>Ouvrir la carte détaillée : phases, familles, piliers, noyaux et paliers</strong></summary>
 
